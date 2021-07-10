@@ -1,0 +1,44 @@
+name: user
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  scoped_model: ^1.0.1
+  dio: ^3.0.10
+  shared_preferences: ^2.0.5
+  path_provider: ^2.0.1
+  intl: ^0.17.0
+  flushbar: ^1.10.0
+  dropdown_search: ^0.4.8
+  rflutter_alert: ^1.1.0
+  file_picker:
+  image_picker: ^0.6.5+2
+  date_format: ^2.0.2
+  convex_bottom_bar: ^2.7.1
+  percent_indicator: "^2.1.7+2"
+  syncfusion_flutter_calendar: ^19.1.67
+  otp_text_field: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/i18n/
+    - assets/images/
+  
