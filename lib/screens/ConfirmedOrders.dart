@@ -12,9 +12,9 @@ class ConfirmOrders extends StatefulWidget {
   _ConfirmOrdersState createState() => _ConfirmOrdersState();
 }
 
-class _ConfirmOrdersState extends State<ConfirmOrders> {
-  int _selectedDestination = -1;
-
+class _ConfirmOrdersState extends State<ConfirmOrders> { 
+  
+ int _selectedDestination = -1;
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
