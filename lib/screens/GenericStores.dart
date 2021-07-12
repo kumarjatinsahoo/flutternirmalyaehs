@@ -54,10 +54,12 @@ class _GenericStoresState extends State<GenericStores> {
                                 children: [    
                                   SizedBox(height: 10,), 
                                    Text('Find Generic Medical Store', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),  
-                                    SizedBox(height: 10,), 
-                                     Text('Request your doctor to prescribe Generic Medicine.', 
+                                    SizedBox(height: 10,),
+                                  Text('Request your doctor to prescribe Generic Medicine.', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),),
+
+                                  /*Text('Request your doctor to prescribe Generic Medicine.',
                                      overflow: TextOverflow.clip,
-                                     style: TextStyle(fontWeight: FontWeight.w600,),),
+                                     style: TextStyle(fontWeight: FontWeight.w600,),),*/
                                      SizedBox(height: 30),
                                       DropDown.staticDropdown2(
                                   'India',
@@ -86,14 +88,11 @@ class _GenericStoresState extends State<GenericStores> {
                                   
                                 });
                               }),
-          SizedBox(height: 60,),
-          _submitButton(),
-             SizedBox(height: 10,),
+                                  SizedBox(height: 60,),
+                                  _submitButton(),
+                                  SizedBox(height: 10,),
               
-         
-         
-                             
-                              ],),
+                                ],),
                             ),
                  ],
                ),
@@ -105,24 +104,42 @@ class _GenericStoresState extends State<GenericStores> {
     );
   }
 
-  Widget _submitButton() {
+ /* Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
+        *//*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
+        } else {*//*
       
-        Navigator.pushNamed(context, "/genericstoreslist");
+        Navigator.pushNamed(context, "genericstoreslist");
         //}
         
       },
     );
-  }
+  }*/
 
-  
+  Widget _submitButton() {
+  return MyWidgets.nextButton(
+    text: "search".toUpperCase(),
+    context: context,
+    fun: () {
+      //Navigator.pushNamed(context, "/navigation");
+      /*if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {*/
+
+      Navigator.pushNamed(context, "/geneicstoreslist");
+      //}
+
+    },
+  );
+}
+
 }

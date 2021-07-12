@@ -382,7 +382,7 @@ Widget _dashboardnew(context){
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-           Padding(
+           /*Padding(
              padding: const EdgeInsets.only(top:20.0, left: 10, right: 10, bottom: 10.0),
              child: FlutterToggleTab(  
   // width in percent, to set full width just set to 100  
@@ -404,7 +404,7 @@ Widget _dashboardnew(context){
 	print("Selected Index $index");
   },  
 ),
-           ),
+ ),*/
            
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -418,7 +418,7 @@ Widget _dashboardnew(context){
                                       //icon: FontAwesomeIcons.accusoft,
                                       title: "My Medical Record",
                                       fun: () {
-                                          Navigator.pushNamed(context, "/dashboardusernew");
+                                         /* Navigator.pushNamed(context, "/geneicstores");*/
                                         // AppData.showSnack(
                                         //     context, "Coming soon", Colors.green);
                                       },
@@ -434,7 +434,7 @@ Widget _dashboardnew(context){
                                       //icon: FontAwesomeIcons.accusoft,
                                       title: "Find Healthcare Services",
                                       fun: () {
-                                        Navigator.pushNamed(context, "/mediPedia");
+                                        Navigator.pushNamed(context, "/findHealthcareService");
                                       },
                                       color: Colors.indigoAccent[100],
                                       bordercolor: Colors.indigo[200],

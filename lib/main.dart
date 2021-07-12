@@ -1,7 +1,9 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
+import 'package:user/screens/FindHealthcare%20Service.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
 import 'package:user/screens/GenericStores.dart';
@@ -179,8 +181,14 @@ class _MyAppState extends State<MyApp> {
               ), 
                '/setreminderother': (context) => SetReminderOther(
                 model: _model,
-              ), 
-              
+              ),
+              '/findHealthcareService': (context) =>FindHealthcareService(
+                model: _model,
+              ),
+              '/bookanAppointmentlist': (context) =>BookanAppointmentlist(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
