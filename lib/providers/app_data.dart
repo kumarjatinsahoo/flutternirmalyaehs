@@ -6,6 +6,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppData {
   static String appId = "com.";
@@ -59,13 +60,13 @@ class AppData {
     return availableHeight;
   }
 
-  /*static launchURL(String url) async {
+  static launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
     }
-  }*/
+  }
 
 
   static int getColorFromHex(String hexColor) {

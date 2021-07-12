@@ -13,9 +13,10 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _selectedDestination = -1;
+ 
   List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders'];
   List<String> strOthers = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
+  int _selectedDestination = -1;
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -191,6 +192,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         ),
+     
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(5.0),

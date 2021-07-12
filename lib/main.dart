@@ -4,19 +4,29 @@ import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
+import 'package:user/screens/GenericStores.dart';
+import 'package:user/screens/GenericStoresList.dart';
+import 'package:user/screens/GovtSchemes.dart';
+import 'package:user/screens/GovtSchemesList.dart';
 import 'package:user/screens/LabOrders.dart';
 import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
+import 'package:user/screens/MedicineReminder.dart';
+import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
+import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
 import 'package:user/screens/SampleTracking.dart';
 import 'package:user/screens/SetDiscount.dart';
+import 'package:user/screens/SetReminder.dart';
+import 'package:user/screens/SetReminderOther.dart';
 import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignupScreen.dart';
+import 'package:user/screens/SupportScreen.dart';
 import 'package:user/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,6 +36,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'localization/application.dart';
 import 'localization/initialize_i18n.dart';
 import 'localization/localizations.dart';
+import 'screens/DashBoardNew.dart';
 
 String selectedLan;
 
@@ -103,7 +114,7 @@ class _MyAppState extends State<MyApp> {
               '/forgotuserid': (context) => ForgotUserID(
                 model: _model,
               ),
-              '/dashboard': (context) => Dashboard(
+              '/dashboard': (context) => DashboardUserNew(
                 model: _model,
               ),
               '/profile': (context) => ProfileScreen(
@@ -139,6 +150,37 @@ class _MyAppState extends State<MyApp> {
               '/pinview': (context) => PinView(
                 model: _model,
               ),
+               '/support': (context) => SupportScreen(
+                model: _model,
+              ),
+               '/geneicstores': (context) => GenericStores(
+                model: _model,
+              ),
+              '/geneicstoreslist': (context) => GenericStoresList(
+                model: _model,
+              ),
+               '/govtschemes': (context) => GovtSchemes(
+                model: _model,
+              ), 
+               '/govtschemeslist': (context) => GovtSchemesList(
+                model: _model,
+              ),
+               '/medicinereminder': (context) => MedicineReminder(
+                model: _model,
+              ),  
+               '/medicinereminderother': (context) => MedicineReminderOther(
+                model: _model,
+              ), 
+               '/organdonation': (context) => OrganDonation(
+                model: _model,
+              ), 
+               '/setreminder': (context) => SetReminder(
+                model: _model,
+              ), 
+               '/setreminderother': (context) => SetReminderOther(
+                model: _model,
+              ), 
+              
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

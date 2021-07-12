@@ -29,6 +29,8 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   syncfusion_flutter_calendar: ^19.1.67
   otp_text_field: ^1.1.1
+  flutter_toggle_tab: ^1.1.4
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
