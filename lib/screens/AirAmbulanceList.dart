@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class 
 
-AYUSHDoctors extends StatefulWidget {
+AirAmbulanceList extends StatefulWidget {
    MainModel model;
-  AYUSHDoctors({Key key, this.model}) : super(key: key);
+  AirAmbulanceList({Key key, this.model}) : super(key: key);
   @override
-  _AYUSHDoctorsState createState() => _AYUSHDoctorsState();
+  _AirAmbulanceListState createState() => _AirAmbulanceListState();
 }
 
-class _AYUSHDoctorsState extends State<AYUSHDoctors> {
+class _AirAmbulanceListState extends State<AirAmbulanceList> {
   var selectedMinValue;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                           Navigator.pop(context);
                         },
                         child: Icon(Icons.arrow_back, )),                      
-                   Text('AYUSH Doctors',
+                   Text('Air Ambulance ',
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
                         Icon(Icons.search, ),
                     ],
@@ -45,7 +45,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                 shrinkWrap: true,
                                 children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                                  padding: const EdgeInsets.only(left:20.0, right: 20.0,),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [    
@@ -54,12 +54,10 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                          shrinkWrap: true,
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
-                                           GestureDetector(
-                                             onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
-                                             child: Card(
+                                            Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: 150,
                                                width: double.maxFinite,
                                               decoration: BoxDecoration(
                                     color: Colors.white,
@@ -77,12 +75,13 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Ayurvada',
-                                                            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-
-
+                                                           Text('King Air Ambulance Services In Pune',
+                                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                                            SizedBox(height: 5,),
+                                                          Text('Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India' ,
+                                                          overflow: TextOverflow.clip,
+                                                            style: TextStyle(),),
                                                          ],
                                                        ),
                                                      ),
@@ -90,11 +89,11 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  ),
                                                )),
                                            ),
-                                           ),
+                                             
                                            Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: 150,
                                                width: double.maxFinite,
                                               decoration: BoxDecoration(
                                     color: Colors.white,
@@ -112,10 +111,13 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Homeopathy',
-                                                             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                           Text('King Air Ambulance Services In Pune',
+                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                                           SizedBox(height: 5,),
+                                                           Text('Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India' ,
+                                                             overflow: TextOverflow.clip,
+                                                             style: TextStyle(),),
                                                          ],
                                                        ),
                                                      ),
@@ -126,9 +128,8 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                              Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: 150,
                                                width: double.maxFinite,
-
                                               decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(
@@ -139,17 +140,19 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  padding: const EdgeInsets.all(10.0),
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
-
                                                    children: [
                                                      Icon(Icons.ac_unit, size: 50),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Siddha Treatment',
-                                                             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                           Text('King Air Ambulance Services In Pune',
+                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                                           SizedBox(height: 5,),
+                                                           Text('Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India' ,
+                                                             overflow: TextOverflow.clip,
+                                                             style: TextStyle(),),
                                                          ],
                                                        ),
                                                      ),
@@ -157,14 +160,11 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  ),
                                                )),
                                            ),
-                                  GestureDetector(
-                                    //onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                    child:Card(
+                                                Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: 150,
                                                width: double.maxFinite,
-
                                               decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(
@@ -175,17 +175,19 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  padding: const EdgeInsets.all(10.0),
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
-
                                                    children: [
                                                      Icon(Icons.ac_unit, size: 50),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Unani',
-                                                             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                           Text('King Air Ambulance Services In Pune',
+                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                                           SizedBox(height: 5,),
+                                                           Text('Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India' ,
+                                                             overflow: TextOverflow.clip,
+                                                             style: TextStyle(),),
                                                          ],
                                                        ),
                                                      ),
@@ -193,42 +195,44 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  ),
                                                )),
                                            ),
-
-                                  ),
-                                           Card(
+                                                Card(
                                              elevation: 5,
-                                             child: Container(
-                                                 height: 100,
-                                                 width: double.maxFinite,
-
-                                                 decoration: BoxDecoration(
-                                                     color: Colors.white,
-                                                     border: Border.all(
-                                                       color: Colors.grey[300],
-                                                     ),
-                                                     borderRadius: BorderRadius.circular(8)),
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.all(10.0),
-                                                   child: Row(
-                                                     crossAxisAlignment: CrossAxisAlignment.center,
-
-                                                     children: [
-                                                       Icon(Icons.ac_unit, size: 50),
-                                                       SizedBox(width: 10,),
-                                                       Expanded(
-                                                         child: Column(
-                                                           crossAxisAlignment: CrossAxisAlignment.start,
-                                                           mainAxisAlignment: MainAxisAlignment.center,
-                                                           children: [
-                                                             Text('Yoga & Naturopathy',
-                                                               style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-                                                           ],
-                                                         ),
+                                                     child: Container(
+                                               height: 150,
+                                               width: double.maxFinite,
+                                              decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      color: Colors.grey[300],
+                                    ),
+                                    borderRadius: BorderRadius.circular(8)),
+                                               child: Padding(
+                                                 padding: const EdgeInsets.all(10.0),
+                                                 child: Row(
+                                                   crossAxisAlignment: CrossAxisAlignment.center,
+                                                   children: [
+                                                     Icon(Icons.ac_unit, size: 50),
+                                                     SizedBox(width: 10,),
+                                                     Expanded(
+                                                             child: Column(
+                                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           Text('King Air Ambulance Services In Pune',
+                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                                                           SizedBox(height: 5,),
+                                                           Text('Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India' ,
+                                                             overflow: TextOverflow.clip,
+                                                             style: TextStyle(),),
+                                                         ],
                                                        ),
-                                                     ],
-                                                   ),
-                                                 )),
+                                                     ),
+                                                   ],
+                                                 ),
+                                               )),
                                            ),
+                                         
+                                         
+                                         
                                          ],
                                        ),
                                      

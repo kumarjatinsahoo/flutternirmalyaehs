@@ -27,6 +27,7 @@ import 'package:user/screens/SetDiscount.dart';
 import 'package:user/screens/SetReminder.dart';
 import 'package:user/screens/SetReminderOther.dart';
 import 'package:user/screens/SignUpForm.dart';
+import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
 import 'package:user/screens/splash.dart';
@@ -186,6 +187,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/bookanAppointmentlist': (context) =>BookanAppointmentlist(
+                model: _model,
+              ),
+              '/signUpForm1': (context) =>SignUpForm1(
                 model: _model,
               ),
 

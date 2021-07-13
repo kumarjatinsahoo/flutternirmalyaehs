@@ -15,7 +15,7 @@ import '../models/KeyvalueModel.dart';
 import '../providers/app_data.dart';
 
 // ignore: must_be_immutable
-class SetReminder extends StatefulWidget {
+class SignUpForm1 extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -25,7 +25,7 @@ class SetReminder extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
 
-  SetReminder({
+  SignUpForm1({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -34,10 +34,10 @@ class SetReminder extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  SetReminderState createState() => SetReminderState();
+  SignUpForm1State createState() => SignUpForm1State();
 }
 
-class SetReminderState extends State<SetReminder> {
+class SignUpForm1State extends State<SignUpForm1> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -115,9 +115,9 @@ class SetReminderState extends State<SetReminder> {
   @override
   void initState() {
     super.initState();
-    SetReminder.districtModel = null;
-    SetReminder.blockModel = null;
-    SetReminder.genderModel = null;
+    SignUpForm1.districtModel = null;
+    SignUpForm1.blockModel = null;
+    SignUpForm1.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -139,52 +139,68 @@ class SetReminderState extends State<SetReminder> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Column(
-              children: [
-          Container(
-          child: Padding(
-          padding: const EdgeInsets.only( left:15.0,right: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              InkWell(
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back, )),
-              Padding(
-                padding: const EdgeInsets.only(left: 60.0, right: 40.0),
-                child: Text('Medicine Reminder',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
-              ),
-              Icon(Icons.search, ),
-            ],
-          ),
-        ),
-        height: MediaQuery.of(context).size.height * 0.1,
-        width: MediaQuery.of(context).size.width,
-      ),
-      Expanded(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                SizedBox(height: 10,),
-              ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
+    return Scaffold(
+      key: _scaffoldKey,
+      body: SingleChildScrollView(
+        child: Container(
+          height: size.height,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/bg.jpg"),
+                  fit: BoxFit.cover)),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  padding: EdgeInsets.all(5),
+                  children: <Widget>[
                     SizedBox(
                       height: 30,
                     ),
-
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Icon(Icons.arrow_back)),
+                        ),
+                      ],
+                    ),
+                    // SizedBox(
+                    //   // height: size.height * 0.12,
+                    //   height: 20,
+                    // ),
+                    /*SvgPicture.asset(
+                      "assets/icons/govt_logo.svg",
+                      height: size.height * 0.18,
+                    ),*/
+                    // Image.asset(
+                    //   "assets/images/logo_lc1.png",
+                    //   height: size.height * 0.12,
+                    // ),
+                    //SizedBox(height: 0),
+                    FittedBox(
+                      child: Container(
+                        padding:
+                            EdgeInsets.only(left: 2.0, right: 2.0, top: 0.8),
+                        margin: EdgeInsets.only(left: 8.0, right: 8.0),
+                        decoration: BoxDecoration(
+                          //color: AppData.kPrimaryColor,
+                          color: Colors.transparent,
+                        ),
+                        child: Text(
+                          MyLocalizations.of(context).text("SIGN_UP"),
+                          style: TextStyle(
+                              color: AppData.kPrimaryColor, fontSize: 3.0),
+                        ),
+                      ),
+                    ),
+                    // Padding(
                     //   padding: EdgeInsets.only(
                     //       left: size.width * 0.20, right: size.width * 0.20),
                     //   child: Image.asset(
@@ -210,7 +226,7 @@ class SetReminderState extends State<SetReminder> {
                                   "genderSignup",
                                   genderList, (KeyvalueModel data) {
                                 setState(() {
-                                  SetReminder.genderModel = data;
+                                  SignUpForm1.genderModel = data;
                                 });
                               }),
                             ),
@@ -265,7 +281,7 @@ class SetReminderState extends State<SetReminder> {
                                   "genderSignup",
                                   districtList, (KeyvalueModel data) {
                                 setState(() {
-                                  SetReminder.districtModel = data;
+                                  SignUpForm1.districtModel = data;
                                 });
                               }),
                             ),
@@ -395,32 +411,29 @@ class SetReminderState extends State<SetReminder> {
                         ),
                       ),
                     )
-                ],
+                  ],
+                ),
               ),
-
-
-                  SizedBox(height: 10,),
-
-                ],),
-            ),
-          ],
-        ),
-      ),
-              ],
-          ),
-        ),
-
-
-      )
-    );
-  }
-              /*_
+              _isSignUpLoading
+                  ? Stack(
+                      children: [
+                        new Opacity(
+                          opacity: 0.1,
+                          child: const ModalBarrier(
+                              dismissible: false, color: Colors.grey),
+                        ),
+                        new Center(
+                          child: new CircularProgressIndicator(),
+                        ),
+                      ],
+                    )
+                  : Container()
             ],
           ),
         ),
       ),
     );
-  }*/
+  }
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -762,7 +775,7 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (SetReminder.genderModel == null || SetReminder.genderModel == "") {
+    } else if (SignUpForm1.genderModel == null || SignUpForm1.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -782,9 +795,9 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (SetReminder.districtModel == null) {
+    } else if (SignUpForm1.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (SetReminder.blockModel == null) {
+    } else if (SignUpForm1.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();

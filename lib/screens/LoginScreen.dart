@@ -174,7 +174,7 @@ var pin ;
                           left: 10.0, right: 10.0, bottom: 10.0),
                       child: InkWell(
                         onTap: () {
-                             Navigator.pushNamed(context, "/signUp");
+                             Navigator.pushNamed(context, "/signUpForm1");
                           // Navigator.pushNamed(context, "/registration1");
                         },
                         child: RichText(

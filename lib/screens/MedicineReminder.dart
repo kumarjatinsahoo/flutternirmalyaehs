@@ -30,7 +30,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                         },
                         child: Icon(Icons.arrow_back, )),                      
                    Padding(
-                     padding: const EdgeInsets.only(left: 60.0, right: 65.0),
+                     padding: const EdgeInsets.only(left: 60.0, right: 40.0),
                      child: Text('Medicine Reminder',
                       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
                    ),
@@ -177,7 +177,9 @@ class _MedicineReminderState extends State<MedicineReminder> {
                                           child: Text('Medicine'),
                                         )),
                                       ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/medicinereminderother");
+            },
             child: Container(
               height: 40,
               child: Icon(Icons.mediation, color: Colors.white, size: 29,)),
@@ -198,11 +200,13 @@ class _MedicineReminderState extends State<MedicineReminder> {
                                           child: Text('Other'),
                                         )),
                                       ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/medicinereminderother");
+            },
             child: Container(
-              height: 40,
-              child: Icon(Icons.library_books_outlined, color: Colors.white, size: 29,)),
-            style: ElevatedButton.styleFrom(
+                height: 40,
+                child: Icon(Icons.library_books_outlined, color: Colors.white, size: 29,)),
+                                        style: ElevatedButton.styleFrom(
                 shape: CircleBorder(), primary: Colors.indigo[900]),
           ),
                                     ],
@@ -221,7 +225,9 @@ class _MedicineReminderState extends State<MedicineReminder> {
              ),
            ),
            floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+
+        },
         child: Icon(Icons.delete, color: Colors.white, size: 29,),
         backgroundColor: Colors.black,        
         elevation: 5,

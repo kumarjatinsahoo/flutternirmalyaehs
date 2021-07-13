@@ -30,7 +30,7 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
                         },
                         child: Icon(Icons.arrow_back, )),                      
                    Padding(
-                     padding: const EdgeInsets.only(left: 60.0, right: 65.0),
+                     padding: const EdgeInsets.only(left: 60.0, right: 40.0),
                      child: Text('Medicine Reminder',
                       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
                    ),
@@ -44,7 +44,7 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
               Expanded(
                               child: SingleChildScrollView(
                                 child: Padding(
-                                padding: const EdgeInsets.only(left:25.0, right: 25.0,),
+                                padding: const EdgeInsets.only(left:10.0, right: 10.0,),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [    
@@ -157,7 +157,7 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
                                         //    shrinkWrap: true,
                                         //    children: [
                                         //      Container(child: Text('10.00 AM'))])
-
+                                        SizedBox(height: 20,),
                                         ListView.separated(
                                           shrinkWrap: true,
                                           physics: NeverScrollableScrollPhysics(),
