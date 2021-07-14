@@ -144,9 +144,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         body: Container(
           child: Column(
               children: [
-                Padding(
+              /*  Padding(
           padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:Container(
+          child:*/Container(
                   color: Colors.blue,
           child: Padding(
           padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -178,7 +178,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
              /*  height:*/
       ),
 
-           ),
+          /* ),*/
       Expanded(
         child: ListView(
           shrinkWrap: true,

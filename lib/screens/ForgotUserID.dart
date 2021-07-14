@@ -17,15 +17,27 @@ class _ForgotUserIDState extends State<ForgotUserID> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
           child: Scaffold(
-            appBar: AppBar(
+            /*appBar: AppBar(
           title: Text(
-            'Forgot User ID',
+            '',
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
-        ),
+        ),*/
+            appBar: AppBar(
+              /*leading: BackButton(
+                color: Colors.white,
+              ),*/
+              title: Text(
+                'Forgot User ID',
+                style: TextStyle(color: Colors.white),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.blue,
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
            body: SingleChildScrollView(
              child: Column(
                mainAxisAlignment: MainAxisAlignment.center,
