@@ -147,7 +147,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               /*  Padding(
           padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
           child:*/Container(
-                  color: Colors.blue,
+                  color: AppData.kPrimaryColor,
           child: Padding(
           padding: const EdgeInsets.only( left:15.0,right: 15.0),
 

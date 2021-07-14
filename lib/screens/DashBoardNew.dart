@@ -424,7 +424,7 @@ Widget _dashboardnew(context){
                                       },
                                       color: Colors.pink[300],
                                       bordercolor: Colors.pink[100],
-                                      size: (size.width - 42) / 2
+                                      size: (size.width - 42) / 3
                                       ),
                                       SizedBox(width: 5,),
                                  
@@ -438,27 +438,26 @@ Widget _dashboardnew(context){
                                       },
                                       color: Colors.indigoAccent[100],
                                       bordercolor: Colors.indigo[200],
-                                      size: (size.width - 42) / 2),
+                                      size: (size.width - 42) / 3),
+                                  SizedBox(width: 5,),
+                                  _buildTile(
+                                      icon: Icons.directions_walk,
+                                      //icon: FontAwesomeIcons.accusoft,
+                                      title: "Discount & Offers",
+                                      fun: () {
+                                        Navigator.pushNamed(context, "/setdiscount");
+                                        // AppData.showSnack(
+                                        //     context, "Coming soon", Colors.green);
+                                      },
+                                      color: Colors.amber[700],
+                                      bordercolor: Colors.amber[300],
+                                      size: (size.width - 42) / 3),
                                 ],
                               ),
                               SizedBox(height: size.height * 0.02),
                               Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildTile(
-                                  icon: Icons.directions_walk,
-                                  //icon: FontAwesomeIcons.accusoft,
-                                  title: "Discount & Offers",
-                                  fun: () {
-                                      Navigator.pushNamed(context, "/setdiscount");
-                                    // AppData.showSnack(
-                                    //     context, "Coming soon", Colors.green);
-                                  },
-                                  color: Colors.amber[700],
-                                  bordercolor: Colors.amber[300],
-                                  size: (size.width - 42) / 2),
-                                  SizedBox(width: 5,),
-                             
                               _buildTile(
                                   //icon: "assets/meditate.png",
                                   icon: Icons.description,
@@ -468,31 +467,26 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.blue[300],
-                                  bordercolor: Colors.blue[200],
-                                  size: (size.width - 42) / 2),
-                            ],
-                          ),
-                          SizedBox(height: size.height * 0.02),
-                              Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
+                                  color: Colors.red[700],
+                                  bordercolor: Colors.red[300],
+                                  size: (size.width - 42) / 3),
+                              SizedBox(width: 5,),
                               _buildTile(
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Medicine Reminder",
                                   fun: () {
-                                      Navigator.pushNamed(context, "/medicinereminder");
+                                    Navigator.pushNamed(context, "/medicinereminder");
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
                                   color: Colors.pink[300],
                                   bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 2),
-                                  SizedBox(width: 5,),
-                             
+                                  size: (size.width - 42) / 3),
+                              SizedBox(width: 5,),
+
                               _buildTile(
-                                  //icon: "assets/meditate.png",
+                                //icon: "assets/meditate.png",
                                   icon: Icons.calendar_today,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Upload Medical Data",
@@ -502,10 +496,10 @@ Widget _dashboardnew(context){
                                   },
                                   color: Colors.indigoAccent[100],
                                   bordercolor: Colors.indigo[200],
-                                  size: (size.width - 42) / 2),
+                                  size: (size.width - 42) / 3),
                             ],
                           ),
-                           SizedBox(height: size.height * 0.02),
+                          SizedBox(height: size.height * 0.02),
                               Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -514,48 +508,56 @@ Widget _dashboardnew(context){
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Organ Donation",
                                   fun: () {
-                                      Navigator.pushNamed(context, "/organdonation");
+                                    Navigator.pushNamed(context, "/organdonation");
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
                                   color: Colors.pink[300],
                                   bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 2),
-                                  SizedBox(width: 5,),
-                             
+                                  size: (size.width - 42) / 3),
+                              SizedBox(width: 5,),
+
                               _buildTile(
-                                  //icon: "assets/meditate.png",
+                                //icon: "assets/meditate.png",
                                   icon: Icons.calendar_today,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Generic Medical Stores",
                                   fun: () {
-                                     Navigator.pushNamed(context, "/geneicstores");
+                                    Navigator.pushNamed(context, "/geneicstores");
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
                                   },
                                   color: Colors.indigoAccent[100],
                                   bordercolor: Colors.indigo[200],
-                                  size: (size.width - 42) / 2),
-                            ],
-                          ),
-                           SizedBox(height: size.height * 0.02),
-                              Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
+                                  size: (size.width - 42) / 3),
+                              SizedBox(width: 5,),
                               _buildTile(
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Govt Schemes",
                                   fun: () {
-                                      Navigator.pushNamed(context, "/govtschemes");
+                                    Navigator.pushNamed(context, "/govtschemes");
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
                                   color: Colors.pink[300],
                                   bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 2),
-                                  SizedBox(width: 5,),
-                             
+                                  size: (size.width - 42) / 3),
+                            ],
+                          ),
+                           /*SizedBox(height: size.height * 0.02),
+                              Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+
+                            ],
+                          ),*/
+                           SizedBox(height: size.height * 0.02),
+                              Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+
                               _buildTile(
                                   //icon: "assets/meditate.png",
                                   icon: Icons.calendar_today,
@@ -568,7 +570,7 @@ Widget _dashboardnew(context){
                                   },
                                   color: Colors.indigoAccent[100],
                                   bordercolor: Colors.indigo[200],
-                                  size: (size.width - 42) / 2),
+                                  size: (size.width - 42) / 3),
                             ],
                           ),
                   ],
@@ -600,12 +602,19 @@ Widget _dashboardnew(context){
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
-        height: MediaQuery.of(context).size.height * 0.23,
+       /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 130 ,
         width: size,
         
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),  
-          color: color,        
+         /// borderRadius: BorderRadius.circular(7.0),
+         borderRadius: BorderRadius.only(
+         topLeft: Radius.circular(20.0),
+         topRight: Radius.zero,
+         bottomLeft: Radius.zero,
+         bottomRight: Radius.circular(20.0),
+         ),
+          color: color,
           boxShadow: [
             BoxShadow(
               color: bordercolor,
@@ -631,9 +640,10 @@ Widget _dashboardnew(context){
                   ),
                  
                 ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20,top: 10),
-                      child: Row(
+                   Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
@@ -659,14 +669,13 @@ Widget _dashboardnew(context){
           top: -3,
           right: -3,
           child: Container(
-            height: 60,
-            width: 60,
+            height: 40,
+            width: 40,
              decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40.0),  
-          color: Colors.white24, 
-             ),
+          color: Colors.white24,),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(10.0),
               child: Icon(icon, color: Colors.white,)
             ) )),
           //   Positioned(

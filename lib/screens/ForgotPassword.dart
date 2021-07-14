@@ -19,16 +19,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return SafeArea(
           child: Scaffold(
              appBar: AppBar(
-               leading: BackButton(
+               /*leading: BackButton(
                  color: Colors.white,
-               ),
+               ),*/
           title: Text(
             'Forgot Password',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.blue,
-          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor:AppData.kPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
 
            body: SingleChildScrollView(

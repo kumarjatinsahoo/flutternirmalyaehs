@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,11 @@ class _MedicineReminderState extends State<MedicineReminder> {
     return SafeArea(
           child: Scaffold(
            body: Container(
+
              child: Column(
                children: [
-                  Container(                   
+                  Container(
+                    color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -28,13 +31,13 @@ class _MedicineReminderState extends State<MedicineReminder> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back, )),                      
+                        child: Icon(Icons.arrow_back,color: Colors.white)),
                    Padding(
                      padding: const EdgeInsets.only(left: 60.0, right: 40.0),
                      child: Text('Medicine Reminder',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
+                      style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
                    ),
-                        Icon(Icons.search, ),
+                        Icon(Icons.search,color: Colors.white ),
                     ],
                   ),
                 ),
@@ -184,7 +187,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
               height: 40,
               child: Icon(Icons.mediation, color: Colors.white, size: 29,)),
             style: ElevatedButton.styleFrom(
-                shape: CircleBorder(), primary: Colors.indigo[900]),
+                shape: CircleBorder(), primary: AppData.kPrimaryColor,),
           ),
                                     ],
                                   ), 
@@ -207,7 +210,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                 height: 40,
                 child: Icon(Icons.library_books_outlined, color: Colors.white, size: 29,)),
                                         style: ElevatedButton.styleFrom(
-                shape: CircleBorder(), primary: Colors.indigo[900]),
+                shape: CircleBorder(), primary: Colors.red[700]),
           ),
                                     ],
                                   ),
@@ -215,7 +218,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                                    ],
                                  ),  
                                 
-          //  SizedBox(height: 10,),
+          SizedBox(height: 10,),
                                
                                 ],),
                               ),
@@ -224,12 +227,14 @@ class _MedicineReminderState extends State<MedicineReminder> {
                ],
              ),
            ),
+
+
            floatingActionButton: FloatingActionButton(
         onPressed: () {
 
         },
         child: Icon(Icons.delete, color: Colors.white, size: 29,),
-        backgroundColor: Colors.black,        
+        backgroundColor:AppData.kPrimaryColor,
         elevation: 5,
         splashColor: Colors.grey,
       ),

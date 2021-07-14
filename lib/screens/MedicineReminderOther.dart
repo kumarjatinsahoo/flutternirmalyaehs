@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,8 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
            body: Container(
              child: Column(
                children: [
-                  Container(                   
+                  Container(
+             color: AppData.kPrimaryColor ,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -28,13 +30,13 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back, )),                      
+                        child: Icon(Icons.arrow_back,color:Colors.white )),
                    Padding(
                      padding: const EdgeInsets.only(left: 60.0, right: 40.0),
                      child: Text('Medicine Reminder',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
+                      style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
                    ),
-                        Icon(Icons.search, ),
+                        Icon(Icons.search,color:Colors.white ),
                     ],
                   ),
                 ),
@@ -97,18 +99,18 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
                                            Column(
                                                children: [
                                                  Text(
-                                      'June 21',
-                                      style: TextStyle(),
+                                      'June 25',
+                                      style: TextStyle(color: AppData.kPrimaryColor),
                                     ),
                                     SizedBox(height: 10,),
                                       Text(
                                       '25',
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,color: AppData.kPrimaryColor),
                                     ),
                                     SizedBox(height: 10,),
                                       Text(
                                       'Tue',
-                                      style: TextStyle(),
+                                      style: TextStyle(color: AppData.kPrimaryColor),
                                     ),
                                                ],
                                              ),
@@ -171,8 +173,9 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(child: Container(
-              height: 30,
-              color: Colors.indigo,
+              height: 40,
+              /*color: Colors.indigo,*/
+                color: AppData.kPrimaryColor,
               width: double.infinity,
               child: Center(child: Text("07.25 PM $index", style: TextStyle(color: Colors.white),)))),
               Padding(
@@ -204,7 +207,7 @@ class _MedicineReminderOtherState extends State<MedicineReminderOther> {
            floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.add, color: Colors.white, size: 29,),
-        backgroundColor: Colors.indigo,        
+        backgroundColor: AppData.kPrimaryColor,
         elevation: 5,
         splashColor: Colors.grey,
       ),

@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ class _OrganDonationState extends State<OrganDonation> {
           child: Column(
             children: [
               Container(
+                color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                   child: Row(
@@ -48,15 +50,15 @@ class _OrganDonationState extends State<OrganDonation> {
                             Navigator.pop(context);
                           },
                           child: Icon(
-                            Icons.arrow_back,
+                            Icons.arrow_back, color:Colors.white
                           )),
                       Text(
                         'Organ Donation',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 20),
+                            fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),
                       ),
                       Icon(
-                        Icons.search,
+                        Icons.search,color:Colors.white
                       ),
                     ],
                   ),
@@ -67,7 +69,7 @@ class _OrganDonationState extends State<OrganDonation> {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.only(left: 30,right: 30,top: 30),
                     child: Container(
                       height: 400,
                       child: GridView.count(

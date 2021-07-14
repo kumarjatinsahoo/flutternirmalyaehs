@@ -25,11 +25,11 @@ class _SetDisountState extends State<SetDisount> {
         appBar: AppBar(
           title: Text(
             'Discounts and Offers',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: AppData.kPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white,),
         ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),

@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 import '../localization/localizations.dart';
@@ -145,6 +146,7 @@ class SetReminderState extends State<SetReminder> {
           child: Column(
               children: [
           Container(
+           color:AppData.kPrimaryColor,
           child: Padding(
           padding: const EdgeInsets.only( left:15.0,right: 15.0),
           child: Row(
@@ -154,13 +156,13 @@ class SetReminderState extends State<SetReminder> {
                   onTap: (){
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.arrow_back, )),
+                  child: Icon(Icons.arrow_back,color:Colors.white , )),
               Padding(
                 padding: const EdgeInsets.only(left: 60.0, right: 40.0),
-                child: Text('Medicine Reminder',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
+                child: Text('Set Reminder',
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
               ),
-              Icon(Icons.search, ),
+              Icon(Icons.search,color:Colors.white ),
             ],
           ),
         ),
@@ -386,7 +388,7 @@ class SetReminderState extends State<SetReminder> {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              child: nextButton(),
+                              child: _submitButton(),
                             ),
                             SizedBox(
                               height: 25,
@@ -553,7 +555,23 @@ class SetReminderState extends State<SetReminder> {
       ),
     );
   }
+  Widget _submitButton() {
+    return MyWidgets.nextButton(
+      text: "submit".toUpperCase(),
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        /*if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {*/
 
+        // Navigator.pushNamed(context, "/otpView");
+        //}
+      },
+    );
+  }
   Widget nextButton() {
     return GestureDetector(
       onTap: () {

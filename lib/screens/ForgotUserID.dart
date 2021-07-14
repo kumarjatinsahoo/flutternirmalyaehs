@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                 style: TextStyle(color: Colors.white),
               ),
               centerTitle: true,
-              backgroundColor: Colors.blue,
+              backgroundColor: AppData.kPrimaryColor,
               iconTheme: IconThemeData(color: Colors.white),
             ),
            body: SingleChildScrollView(
