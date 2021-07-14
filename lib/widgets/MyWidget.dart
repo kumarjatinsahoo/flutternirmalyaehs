@@ -328,16 +328,48 @@ class MyWidgets {
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 10.0, right: 10.0),
-        decoration: BoxDecoration(
+        /*decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
             borderRadius: BorderRadius.circular(25.0),
             gradient: LinearGradient(
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,
-                colors: [Colors.black, AppData.matruColor])),
+                colors: [Colors.black, AppData.matruColor])),*/
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget nextButton1({String text, context, Function fun}) {
+    return GestureDetector(
+      onTap: fun,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 9.0, right: 9.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             text,
             textAlign: TextAlign.center,

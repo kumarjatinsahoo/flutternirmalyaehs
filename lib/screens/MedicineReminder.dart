@@ -178,7 +178,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                                         )),
                                       ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/medicinereminderother");
+              Navigator.pushNamed(context, "/setreminder");
             },
             child: Container(
               height: 40,

@@ -30,6 +30,7 @@ import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
+import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -190,6 +191,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/signUpForm1': (context) =>SignUpForm1(
+                model: _model,
+              ),
+              '/userSignUpForm': (context) =>UserSignUpForm(
                 model: _model,
               ),
 

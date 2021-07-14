@@ -21,16 +21,52 @@ class _ForgotPasswordState extends State<ForgotPassword> {
              appBar: AppBar(
           title: Text(
             'Forgot Password',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.blue,
           iconTheme: IconThemeData(color: Colors.black),
         ),
+
            body: SingleChildScrollView(
              child: Column(
                mainAxisAlignment: MainAxisAlignment.center,
-               children: [    
+               children: [
+                 Padding(
+                   padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
+                   child:Container(
+                     color: Colors.blue,
+                     child: Padding(
+                       padding: const EdgeInsets.only( left:15.0,right: 15.0),
+
+                       child: Row(/*
+            mainAxisAlignment: MainAxisAlignment.start,*/
+                         children: [
+                           InkWell(
+                               onTap: (){
+                                 Navigator.pop(context);
+                               },
+                               child: Icon(Icons.arrow_back,color: Colors.white )),
+                           Padding(
+                             padding: const EdgeInsets.only(left: 60.0, right: 40.0),
+                             child: Text('Forgot Password',
+                               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
+                           ),
+                           /*Align(
+                alignment: Alignment.center,
+                child: Text('SIGN UP',textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+              ),
+              ),*/
+                         ],
+                       ),
+                     ),
+                     height: 55,
+                     width: MediaQuery.of(context).size.width,
+                     /*  height:*/
+                   ),
+
+                 ),
                  SizedBox(height: size.height * 0.02,),   
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
