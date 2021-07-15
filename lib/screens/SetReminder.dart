@@ -166,7 +166,7 @@ class SetReminderState extends State<SetReminder> {
                 child: Text('Set Reminder',
                   style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
               ),
-              Icon(Icons.search,color:Colors.white ),
+              /*Icon(Icons.search,color:Colors.white ),*/
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
@@ -198,6 +199,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/donorApplication': (context) =>DonorApplication(
+                model: _model,
+              ),
+              '/addWitness': (context) =>AddWitness(
                 model: _model,
               ),
 
