@@ -37,13 +37,14 @@ class SetReminder extends StatefulWidget {
   @override
   SetReminderState createState() => SetReminderState();
 }
-
+enum PayMode1 { cash, cheque, online }
 class SetReminderState extends State<SetReminder> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  PayMode1 payMode1 = PayMode1.cash;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -104,12 +105,15 @@ class SetReminderState extends State<SetReminder> {
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
   List<KeyvalueModel> genderList = [
-    KeyvalueModel(name: "Male", key: "1"),
-    KeyvalueModel(name: "Female", key: "2"),
-    KeyvalueModel(name: "Transgender", key: "3"),
+    KeyvalueModel(name: "0.5", key: "1"),
+    KeyvalueModel(name: "0.6", key: "2"),
+    KeyvalueModel(name: "0.7", key: "3"),
   ];
   List<KeyvalueModel> districtList = [
-    KeyvalueModel(name: "india", key: "1"),
+    KeyvalueModel(name: "3", key: "1"),
+    KeyvalueModel(name: "4", key: "1"),
+    KeyvalueModel(name: "5", key: "1"),
+    KeyvalueModel(name: "6", key: "1"),
 
   ];
 
@@ -158,7 +162,7 @@ class SetReminderState extends State<SetReminder> {
                   },
                   child: Icon(Icons.arrow_back,color:Colors.white , )),
               Padding(
-                padding: const EdgeInsets.only(left: 60.0, right: 40.0),
+                padding: const EdgeInsets.only(left: 70.0, right: 80.0),
                 child: Text('Set Reminder',
                   style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
               ),
@@ -184,7 +188,7 @@ class SetReminderState extends State<SetReminder> {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
 
                     //   padding: EdgeInsets.only(
@@ -204,11 +208,45 @@ class SetReminderState extends State<SetReminder> {
                       child: Expanded(
                         child: Column(
                           children: <Widget>[
+
+                            Padding(
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: "Type",
+                                    hintStyle: TextStyle(color: Colors.grey)),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.text,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[a-zA-Z ]")),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText:
+                                        "Medicine Name",
+                                    hintStyle: TextStyle(color: Colors.grey)),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.text,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[a-zA-Z ]")),
+                                ],
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 25),
                               child: DropDown.staticDropdown2(
-                                  MyLocalizations.of(context)
-                                      .text("SELECT_TITLE"),
+                                 "Dosager",
                                   "genderSignup",
                                   genderList, (KeyvalueModel data) {
                                 setState(() {
@@ -216,53 +254,23 @@ class SetReminderState extends State<SetReminder> {
                                 });
                               }),
                             ),
-
                             SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    hintText: MyLocalizations.of(context)
-                                            .text("FIRST_NAME") +
-                                        "*",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('Reminder Time',
+                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    hintText: MyLocalizations.of(context)
-                                            .text("LAST_NAME") +
-                                        "*",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
-                              ),
-                            ),
 
+                      ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                              const EdgeInsets.symmetric(horizontal: 25),
                               child: DropDown.staticDropdown2(
-                                  'India',
+                                  'How Many Times a Day  ',
                                   // MyLocalizations.of(context).text("SELECT_GENDER"),
                                   "genderSignup",
                                   districtList, (KeyvalueModel data) {
@@ -271,117 +279,144 @@ class SetReminderState extends State<SetReminder> {
                                 });
                               }),
                             ),
-
-                            // dob(),
                             SizedBox(
-                              height: 10,
-                            ),
+                                height:5),
                             Padding(
-                              padding: const EdgeInsets.only(right: 9.0),
-                              child: mobileNoOTPSearch(),
+                              padding: const EdgeInsets.symmetric(horizontal: 25),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Timings',
+                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
+                              ),
+
+                            ),
+
+                            SizedBox(
+                                height:10),
+                            Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  children: const <Widget>[
+                                    Expanded(
+                                      child: Text('07:25', textAlign: TextAlign.center,style: TextStyle(
+                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
+                                      )),
+                                    ),
+                                    Expanded(
+                                      child: Text('08:25', textAlign: TextAlign.center,style: TextStyle(
+                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
+                                      )
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text('09:25', textAlign: TextAlign.center,style: TextStyle(
+                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
+                                      )),
+                                    ),
+                                    /* Expanded(
+                                    child: FittedBox(
+                                      fit: BoxFit.contain, // otherwise the logo will be tiny
+                                      child: FlutterLogo(),
+                                    ),
+                                  ),*/
+                                  ],
+                                )
+                            ),
+                           /* Padding(
+                              padding: const EdgeInsets.only(left: 25, right: 25),
+                              child: Text('Frequency',
+                                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.black),),
+                            ),
+*/                             SizedBox(
+                                height:5),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 25),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Frequency',
+                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
+                              ),
+
                             ),
                             SizedBox(
-                              height: 10,
+                                height:5),
+                            viewMode(),
+                            SizedBox(
+                                height:5),
+                            Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 25),
+                                child: Row(
+                                  children: const <Widget>[
+                                    Expanded(
+                                      child: Text('Start Date',
+                                        style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
+                                    ),
+                                    SizedBox(
+                                        width:75),
+                                    Expanded(
+                                      child: Text('End Date',
+                                        style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
+                                    ),
+
+                                    /* Expanded(
+                                    child: FittedBox(
+                                      fit: BoxFit.contain, // otherwise the logo will be tiny
+                                      child: FlutterLogo(),
+                                    ),
+                                  ),*/
+                                  ],
+                                )
+                            ),
+                            SizedBox(
+                                height:10),
+                            Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 25),
+                                child: Row(
+                                  children: const <Widget>[
+                                    Expanded(
+                                      child: Text('25-Jul-2020', textAlign: TextAlign.start,style: TextStyle(
+                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
+                                      )),
+                                    ),
+                                    Expanded(
+                                      child: Text('26-Jul-2020', textAlign: TextAlign.center,style: TextStyle(
+                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
+                                      )
+                                      ),
+                                    ),
+                                    
+                                    /* Expanded(
+                                    child: FittedBox(
+                                      fit: BoxFit.contain, // otherwise the logo will be tiny
+                                      child: FlutterLogo(),
+                                    ),
+                                  ),*/
+                                  ],
+                                )
                             ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                    hintText: MyLocalizations.of(context)
-                                        .text("EMAIL"),
+                                    hintText:
+                                        "Add Docter Instruction",
                                     hintStyle: TextStyle(color: Colors.grey)),
                                 textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.emailAddress,
-                                //           inputFormatters: [
-                                //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                //           ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    ispartnercode = !ispartnercode;
-                                  });
-                                },
-                                child: Text(
-                                  MyLocalizations.of(context)
-                                          .text("HAVE_PARTNERCODE") +
-                                      "?",
-                                  style: TextStyle(color: Colors.indigo),
-                                )),
-
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Visibility(
-                              visible: ispartnercode,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 25),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      hintText: MyLocalizations.of(context)
-                                          .text("PARTNERCODE"),
-                                      hintStyle: TextStyle(color: Colors.grey)),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
-                                  //           inputFormatters: [
-                                  //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                  //           ],
-                                ),
-                              ),
-                            ),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                //  mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Checkbox(
-                                    value: _checkbox,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _checkbox = !_checkbox;
-                                      });
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  RichText(
-                                      textAlign: TextAlign.start,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'I agree to NCORDS ',
-                                            /* "Welcome back",*/
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w800,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Terms and Conditions',
-                                            /* "Welcome back",*/
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w500,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.indigo,
-                                            ),
-                                          )
-                                        ],
-                                      )),
+                                keyboardType: TextInputType.text,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[a-zA-Z ]")),
                                 ],
                               ),
                             ),
+                            SizedBox(
+                              height: 5,
+                            ),
+
                             SizedBox(
                               height: 20,
                             ),
@@ -423,7 +458,49 @@ class SetReminderState extends State<SetReminder> {
       ),
     );
   }*/
+  Widget viewMode() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Radio(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          value: PayMode1.cash,
+          groupValue: payMode1,
+          onChanged: (PayMode1 value) {
+            setState(() {
+              payMode1 = value;
+            });
+          },
+        ),
+        Text("Daily"),
+        SizedBox(width: 10,),
+        Radio(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          value: PayMode1.cheque,
+          groupValue: payMode1,
+          onChanged: (PayMode1 value) {
+            setState(() {
+              payMode1 = value;
+            });
+          },
+        ),
 
+        Text("Weekly"),
+        SizedBox(width: 10,),
+        Radio(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          value: PayMode1.online,
+          groupValue: payMode1,
+          onChanged: (PayMode1 value) {
+            setState(() {
+              payMode1 = value;
+            });
+          },
+        ),
+        Text("Monthly"),
+      ],
+    );
+  }
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -557,7 +634,7 @@ class SetReminderState extends State<SetReminder> {
   }
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "submit".toUpperCase(),
+      text: "Set Reminder".toUpperCase(),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");

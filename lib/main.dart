@@ -3,6 +3,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
+import 'package:user/screens/DonorApplication.dart';
 import 'package:user/screens/FindHealthcare%20Service.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
@@ -194,6 +195,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/userSignUpForm': (context) =>UserSignUpForm(
+                model: _model,
+              ),
+              '/donorApplication': (context) =>DonorApplication(
                 model: _model,
               ),
 

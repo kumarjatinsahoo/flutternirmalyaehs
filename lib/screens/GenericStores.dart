@@ -1,6 +1,7 @@
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/GenericStoresList.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -37,11 +38,11 @@ class _GenericStoresState extends State<GenericStores> {
              appBar: AppBar(
           title: Text(
             'Generic Medical Stores',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white,),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: AppData.kPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
            body: SingleChildScrollView(
              child: Container(

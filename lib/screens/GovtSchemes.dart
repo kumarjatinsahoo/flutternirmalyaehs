@@ -1,6 +1,7 @@
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/GovtSchemesList.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -37,7 +38,8 @@ class _GovtSchemesState extends State<GovtSchemes> {
            body: Container(
              child: Column(
                children: [
-                  Container(                   
+                  Container(
+                  color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -47,13 +49,13 @@ class _GovtSchemesState extends State<GovtSchemes> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back, )),                      
+                        child: Icon(Icons.arrow_back,color: Colors.white )),
                    Padding(
-                     padding: const EdgeInsets.only(left: 50.0, right: 50.0),
+                     padding: const EdgeInsets.only(left: 50.0, right: 30.0),
                      child: Text('Government Schemes',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
+                      style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
                    ),
-                        Icon(Icons.search, ),
+                        Icon(Icons.search,color: Colors.white ),
                     ],
                   ),
                 ),

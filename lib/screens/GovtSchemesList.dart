@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _GovtSchemesListState extends State<GovtSchemesList> {
         child: Column(
           children: [
             Container(
+              color: AppData.kPrimaryColor,
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                 child: Row(
@@ -30,14 +32,14 @@ class _GovtSchemesListState extends State<GovtSchemesList> {
                         },
                         child: Icon(
                           Icons.arrow_back,
-                        )),
+                          color: AppData.white,)),
                     Text(
                       'Maharastra ',
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: AppData.white),
                     ),
                     Icon(
-                      Icons.search,
+                      Icons.search,color: AppData.white
                     ),
                   ],
                 ),

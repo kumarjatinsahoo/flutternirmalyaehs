@@ -12,24 +12,7 @@ class OrganDonation extends StatefulWidget {
 
 class _OrganDonationState extends State<OrganDonation> {
 
- Widget _applicationButton() {
-    return MyWidgets.nextButton(
-      text: "Application",
-      context: context,
-      fun: () {
-        //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
-       
-        Navigator.pushNamed(context, "/donorapplication");
-       
-        //}
-      },
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +91,8 @@ class _OrganDonationState extends State<OrganDonation> {
                                   height: 10,
                                 ),
                                 Expanded(
-                                                                  child: Text(
-                                                                    'Which Organ?',
+                                  child: Text(
+                                    'Which Organ?',
                                     // 'What is Organ Donation?',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -152,7 +135,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                   height: 10,
                                 ),
                                 Expanded(
-                                                                  child: Text(
+                                  child: Text(
                                     'Who Can Do?',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -184,7 +167,6 @@ class _OrganDonationState extends State<OrganDonation> {
                                           padding: const EdgeInsets.all(30.0),
                                           child: Image.network(
                                             'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-                                           
                                           ),
                                         ),
                                       ],
@@ -195,7 +177,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                   height: 10,
                                 ),
                                 Expanded(
-                                                                  child: Text(
+                                  child: Text(
                                     'Which Organs?',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -238,7 +220,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                   height: 10,
                                 ),
                                 Expanded(
-                                                                  child: Text(
+                                  child: Text(
                                     'How to Donate?',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -250,14 +232,12 @@ class _OrganDonationState extends State<OrganDonation> {
                               ],
                             ),
                           ),
-                         
-                         ],
+                        ],
                       ),
                     ),
                   ),
                   Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-
                     child: _applicationButton(),
                   ),
                 ],
@@ -266,6 +246,24 @@ class _OrganDonationState extends State<OrganDonation> {
           ),
         ),
       ),
+    );
+  }
+  Widget _applicationButton() {
+    return MyWidgets.nextButton(
+      text: "Application",
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        /*if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {*/
+
+        Navigator.pushNamed(context, "/donorApplication");
+
+        //}
+      },
     );
   }
 }
