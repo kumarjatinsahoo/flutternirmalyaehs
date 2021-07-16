@@ -161,11 +161,11 @@ var pin ;
                 SizedBox(
                               height: size.height * 0.01,
                             ),
-                   Text('- OR -', style: TextStyle(color: Colors.black54), ),
+                 /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
                    SizedBox(
                               height: size.height * 0.01,
                             ),
-                          _otpButton(),
+                          _otpButton(),*/
                   SizedBox(
                               height: size.height * 0.02,
                             ),

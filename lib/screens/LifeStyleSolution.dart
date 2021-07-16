@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
            body: Container(
              child: Column(
                children: [
-                  Container(                   
+                  Container(
+             color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -30,10 +32,10 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back, )),                      
+                        child: Icon(Icons.arrow_back,color: Colors.white )),
                    Text('Donor Organisation',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
-                        Icon(Icons.search, ),
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
+                        Icon(Icons.search,color: Colors.white ),
                     ],
                   ),
                 ),
@@ -72,7 +74,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -111,7 +113,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -149,7 +151,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -186,7 +188,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -223,7 +225,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -261,7 +263,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(

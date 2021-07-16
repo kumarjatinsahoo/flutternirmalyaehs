@@ -216,7 +216,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     // Navigator.pushNamed(context, "/Notifications");
                   },
                 ),
-                ListTile(
+               /* ListTile(
                   leading: Icon(Icons.notifications),
                   selected: _selectedDestination == 3,
                   onTap: () {
@@ -227,7 +227,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   title: Text('Online Chat'),
                   // onTap: () {
                   // },
-                ),
+                ),*/
                 ListTile(
                   leading: Icon(Icons.help_center),
                   selected: _selectedDestination == 4,
@@ -466,6 +466,8 @@ Widget _dashboardnew(context){
                                   fun: () {
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
+                                    Navigator.pushNamed(context, "/emergencyHelp");
+
                                   },
                                   color: Colors.red[700],
                                   bordercolor: Colors.red[300],

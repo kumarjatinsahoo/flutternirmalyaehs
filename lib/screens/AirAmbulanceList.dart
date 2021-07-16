@@ -1,3 +1,4 @@
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
            body: Container(
              child: Column(
                children: [
-                  Container(                   
+                  Container(
+                  color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -30,10 +32,10 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back, )),                      
+                        child: Icon(Icons.arrow_back,color: Colors.white, )),
                    Text('Air Ambulance ',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
-                        Icon(Icons.search, ),
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
+                        Icon(Icons.search,color: Colors.white ),
                     ],
                   ),
                 ),
@@ -45,11 +47,11 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                 shrinkWrap: true,
                                 children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left:20.0, right: 20.0,),
+                                  padding: const EdgeInsets.only(left:10.0, right: 10.0,),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [    
-                                      SizedBox(height: 10,), 
+                                      SizedBox(height: 5,),
                                        ListView(
                                          shrinkWrap: true,
                                          physics: NeverScrollableScrollPhysics(),
@@ -70,7 +72,7 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red,),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -106,7 +108,7 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -141,7 +143,7 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -176,7 +178,7 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -211,7 +213,7 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(

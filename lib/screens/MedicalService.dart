@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class 
 
-AYUSHDoctors extends StatefulWidget {
+MedicalService extends StatefulWidget {
    MainModel model;
-  AYUSHDoctors({Key key, this.model}) : super(key: key);
+  MedicalService({Key key, this.model}) : super(key: key);
   @override
-  _AYUSHDoctorsState createState() => _AYUSHDoctorsState();
+  _MedicalServiceState createState() => _MedicalServiceState();
 }
 
-class _AYUSHDoctorsState extends State<AYUSHDoctors> {
+class _MedicalServiceState extends State<MedicalService> {
   var selectedMinValue;
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
              child: Column(
                children: [
                   Container(
-                  color: AppData.kPrimaryColor,
+               color:AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
                   child: Row(
@@ -32,10 +32,10 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                         onTap: (){
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back,color: Colors.white, )),
-                   Text('AYUSH Doctors',
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                        Icon(Icons.search,color: Colors.white ),
+                        child: Icon(Icons.arrow_back,color:Colors.white )),
+                   Text('Medical Service',
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
+                        Icon(Icons.search,color:Colors.white ),
                     ],
                   ),
                 ),
@@ -57,7 +57,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
-                                             onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                             onTap: () =>   Navigator.pushNamed(context, "/aYUSHDoctors"),
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
@@ -74,14 +74,14 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                     Icon(Icons.medical_services_outlined, size: 50,color:Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                          mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Ayurvada',
+                                                           Text('AYUSH Doctors',
                                                             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
 
 
@@ -93,7 +93,10 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                )),
                                            ),
                                            ),
-                                           Card(
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/donorOrganisation"),
+
+                                          child:Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -109,14 +112,14 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                     Icon(Icons.accessible_forward, size: 50,color:AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                                mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Homeopathy',
+                                                           Text('Donor Organisation',
                                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
                                                          ],
                                                        ),
@@ -125,7 +128,10 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                  ),
                                                )),
                                            ),
-                                             Card(
+                                           ),
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/lifeStyleSolution"),
+                                             child: Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -143,14 +149,14 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                    crossAxisAlignment: CrossAxisAlignment.center,
 
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                     Icon(Icons.style,size: 50,color:Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                                mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Siddha Treatment',
+                                                           Text('Life Style Solution',
                                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
                                                          ],
                                                        ),
@@ -158,9 +164,10 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                    ],
                                                  ),
                                                )),
+                                           ),
                                            ),
                                   GestureDetector(
-                                    //onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                                    onTap: () =>   Navigator.pushNamed(context, "/treatmentCenters"),
                                     child:Card(
                                              elevation: 5,
                                                      child: Container(
@@ -179,14 +186,14 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                    crossAxisAlignment: CrossAxisAlignment.center,
 
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                     Icon(Icons.center_focus_weak_sharp, size: 50,color:AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                                mainAxisAlignment: MainAxisAlignment.center,
                                                          children: [
-                                                           Text('Unani',
+                                                           Text('Treatment Centers',
                                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
                                                          ],
                                                        ),
@@ -197,39 +204,79 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                            ),
 
                                   ),
-                                           Card(
-                                             elevation: 5,
-                                             child: Container(
-                                                 height: 100,
-                                                 width: double.maxFinite,
-
-                                                 decoration: BoxDecoration(
-                                                     color: Colors.white,
-                                                     border: Border.all(
-                                                       color: Colors.grey[300],
-                                                     ),
-                                                     borderRadius: BorderRadius.circular(8)),
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.all(10.0),
-                                                   child: Row(
-                                                     crossAxisAlignment: CrossAxisAlignment.center,
-
-                                                     children: [
-                                                       Icon(Icons.ac_unit, size: 50,color: Colors.red),
-                                                       SizedBox(width: 10,),
-                                                       Expanded(
-                                                         child: Column(
-                                                           crossAxisAlignment: CrossAxisAlignment.start,
-                                                           mainAxisAlignment: MainAxisAlignment.center,
-                                                           children: [
-                                                             Text('Yoga & Naturopathy',
-                                                               style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-                                                           ],
-                                                         ),
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
+                                             child: Card(
+                                               elevation: 5,
+                                               child: Container(
+                                                   height: 100,
+                                                   width: double.maxFinite,
+                                                   decoration: BoxDecoration(
+                                                       color: Colors.white,
+                                                       border: Border.all(
+                                                         color: Colors.grey[300],
                                                        ),
-                                                     ],
-                                                   ),
-                                                 )),
+                                                       borderRadius: BorderRadius.circular(8)),
+                                                   child: Padding(
+                                                     padding: const EdgeInsets.all(10.0),
+                                                     child: Row(
+                                                       crossAxisAlignment: CrossAxisAlignment.center,
+
+                                                       children: [
+                                                         Icon(Icons.airplanemode_active,size: 50,color:Colors.red),
+                                                         SizedBox(width: 10,),
+                                                         Expanded(
+                                                           child: Column(
+                                                             crossAxisAlignment: CrossAxisAlignment.start,
+                                                             mainAxisAlignment: MainAxisAlignment.center,
+                                                             children: [
+                                                               Text('Air Ambulance',
+                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                             ],
+                                                           ),
+                                                         ),
+                                                       ],
+                                                     ),
+                                                   )),
+                                             ),
+                                           ),
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/rPScreen"),
+                                             child:Card(
+                                               elevation: 5,
+                                               child: Container(
+                                                   height: 100,
+                                                   width: double.maxFinite,
+
+                                                   decoration: BoxDecoration(
+                                                       color: Colors.white,
+                                                       border: Border.all(
+                                                         color: Colors.grey[300],
+                                                       ),
+                                                       borderRadius: BorderRadius.circular(8)),
+                                                   child: Padding(
+                                                     padding: const EdgeInsets.all(10.0),
+                                                     child: Row(
+                                                       crossAxisAlignment: CrossAxisAlignment.center,
+
+                                                       children: [
+                                                         Icon(Icons.pregnant_woman_sharp, size: 50,color:AppData.kPrimaryColor),
+                                                         SizedBox(width: 10,),
+                                                         Expanded(
+                                                           child: Column(
+                                                             crossAxisAlignment: CrossAxisAlignment.start,
+                                                             mainAxisAlignment: MainAxisAlignment.center,
+                                                             children: [
+                                                               Text('RIP',
+                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                             ],
+                                                           ),
+                                                         ),
+                                                       ],
+                                                     ),
+                                                   )),
+                                             ),
+
                                            ),
                                          ],
                                        ),

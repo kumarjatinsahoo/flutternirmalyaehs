@@ -74,7 +74,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                   Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.account_circle_rounded, size: 50),
+                                                     Icon(Icons.account_circle_rounded, size: 50,color:Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -98,7 +98,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                      ),
                                                    ],
                                                  ),
-                                                       SizedBox(width: 50,),
+                                                       SizedBox(height: 10,),
                                                 Row(
                                                      children: [
                                                        Text('Call Now' ,
@@ -131,7 +131,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                          Row(
                                                            crossAxisAlignment: CrossAxisAlignment.center,
                                                            children: [
-                                                             Icon(Icons.account_circle_rounded, size: 50),
+                                                             Icon(Icons.account_circle_rounded, size: 50,color: AppData.kPrimaryColor,),
                                                              SizedBox(width: 10,),
                                                              Expanded(
                                                                child: Column(
@@ -155,7 +155,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                              ),
                                                            ],
                                                          ),
-                                                         SizedBox(width: 10,),
+                                                         SizedBox(height: 10,),
                                                          Row(
                                                              children: [
                                                                Text('Call Now' ,
@@ -188,7 +188,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                          Row(
                                                            crossAxisAlignment: CrossAxisAlignment.center,
                                                            children: [
-                                                             Icon(Icons.account_circle_rounded, size: 50),
+                                                             Icon(Icons.account_circle_rounded, size: 50,color:Colors.red,),
                                                              SizedBox(width: 10,),
                                                              Expanded(
                                                                child: Column(
@@ -212,7 +212,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                              ),
                                                            ],
                                                          ),
-                                                         SizedBox(width: 10,),
+                                                         SizedBox(height: 10,),
                                                          Row(
                                                              children: [
                                                                Text('Call Now' ,
@@ -245,7 +245,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                          Row(
                                                            crossAxisAlignment: CrossAxisAlignment.center,
                                                            children: [
-                                                             Icon(Icons.account_circle_rounded, size: 50),
+                                                             Icon(Icons.account_circle_rounded, size: 50,color:AppData.kPrimaryColor),
                                                              SizedBox(width: 10,),
                                                              Expanded(
                                                                child: Column(
@@ -269,7 +269,7 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
                                                              ),
                                                            ],
                                                          ),
-                                                         SizedBox(width: 10,),
+                                                         SizedBox(height:10,),
                                                          Row(
                                                              children: [
                                                                Text('Call Now' ,

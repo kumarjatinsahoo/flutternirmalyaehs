@@ -74,7 +74,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.date_range, size: 50,color:Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -109,7 +109,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.date_range_rounded, size: 50,color:AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -125,7 +125,9 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                  ),
                                                )),
                                            ),
-                                             Card(
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                                             child: Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -143,7 +145,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                    crossAxisAlignment: CrossAxisAlignment.center,
 
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.search_rounded,size: 50,color:Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -159,8 +161,9 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                  ),
                                                )),
                                            ),
+                                           ),
                                   GestureDetector(
-                                    onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                                    onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                                     child:Card(
                                              elevation: 5,
                                                      child: Container(
@@ -179,7 +182,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                    crossAxisAlignment: CrossAxisAlignment.center,
 
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.mobile_screen_share_outlined, size: 50,color:AppData.kPrimaryColor),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(

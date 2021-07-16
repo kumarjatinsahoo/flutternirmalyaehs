@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class 
 
-LifeStyleSolution extends StatefulWidget {
+RIPScreen extends StatefulWidget {
    MainModel model;
-  LifeStyleSolution({Key key, this.model}) : super(key: key);
+  RIPScreen({Key key, this.model}) : super(key: key);
   @override
-  _LifeStyleSolutionState createState() => _LifeStyleSolutionState();
+  _RIPScreenState createState() => _RIPScreenState();
 }
 
-class _LifeStyleSolutionState extends State<LifeStyleSolution> {
+class _RIPScreenState extends State<RIPScreen> {
   var selectedMinValue;
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                  child: Row(
                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50),
+                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                      SizedBox(width: 10,),
                                                      Expanded(
                                                              child: Column(
@@ -113,7 +113,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -151,7 +151,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -188,7 +188,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -225,7 +225,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(
@@ -263,7 +263,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                      child: Row(
                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50),
+                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
                                                          SizedBox(width: 10,),
                                                          Expanded(
                                                            child: Column(

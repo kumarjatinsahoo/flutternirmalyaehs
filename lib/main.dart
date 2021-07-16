@@ -1,10 +1,14 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/AYUSH%20Doctors.dart';
 import 'package:user/screens/AddWitness.dart';
+import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
 import 'package:user/screens/DonorApplication.dart';
+import 'package:user/screens/DonorOrganisation.dart';
+import 'package:user/screens/EmergencyHelp.dart';
 import 'package:user/screens/FindHealthcare%20Service.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
@@ -13,8 +17,10 @@ import 'package:user/screens/GenericStoresList.dart';
 import 'package:user/screens/GovtSchemes.dart';
 import 'package:user/screens/GovtSchemesList.dart';
 import 'package:user/screens/LabOrders.dart';
+import 'package:user/screens/LifeStyleSolution.dart';
 import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
+import 'package:user/screens/MedicalService.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
@@ -24,7 +30,9 @@ import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
+import 'package:user/screens/RIP.dart';
 import 'package:user/screens/SampleTracking.dart';
+import 'package:user/screens/Search.dart';
 import 'package:user/screens/SetDiscount.dart';
 import 'package:user/screens/SetReminder.dart';
 import 'package:user/screens/SetReminderOther.dart';
@@ -32,7 +40,9 @@ import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
+import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
+import 'package:user/screens/find.dart';
 import 'package:user/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -167,22 +177,22 @@ class _MyAppState extends State<MyApp> {
               ),
                '/govtschemes': (context) => GovtSchemes(
                 model: _model,
-              ), 
+              ),
                '/govtschemeslist': (context) => GovtSchemesList(
                 model: _model,
               ),
                '/medicinereminder': (context) => MedicineReminder(
                 model: _model,
-              ),  
+              ),
                '/medicinereminderother': (context) => MedicineReminderOther(
                 model: _model,
-              ), 
+              ),
                '/organdonation': (context) => OrganDonation(
                 model: _model,
-              ), 
+              ),
                '/setreminder': (context) => SetReminder(
                 model: _model,
-              ), 
+              ),
                '/setreminderother': (context) => SetReminderOther(
                 model: _model,
               ),
@@ -202,6 +212,36 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/addWitness': (context) =>AddWitness(
+                model: _model,
+              ),
+              '/findScreen': (context) =>FindScreen(
+                model: _model,
+              ),
+              '/searchScreen': (context) =>SearchScreen(
+                model: _model,
+              ),
+              '/medicalService': (context) =>MedicalService(
+                model: _model,
+              ),
+              '/aYUSHDoctors': (context) =>AYUSHDoctors(
+                model: _model,
+              ),
+              '/donorOrganisation': (context) =>DonorOrganisation(
+                model: _model,
+              ),
+              '/rPScreen': (context) =>RIPScreen(
+                model: _model,
+              ),
+              '/lifeStyleSolution': (context) =>LifeStyleSolution(
+                model: _model,
+              ),
+          '/treatmentCenters': (context) =>TreatmentCenters(
+          model: _model,
+          ),
+              '/airAmbulanceList': (context) =>AirAmbulanceList(
+          model: _model,
+              ),
+              '/emergencyHelp': (context) =>EmergencyHelp(
                 model: _model,
               ),
 
