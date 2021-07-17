@@ -102,7 +102,8 @@ class _DashboardState extends State<Dashboard> {
                   selected: _selectedDestination == 1,
                   onTap: () {
                     selectDestination(1);
-                    Navigator.pushNamed(context, "/profile");
+                    //Navigator.pushNamed(context, "/profile");
+                    Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
                 ListTile(

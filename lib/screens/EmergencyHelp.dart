@@ -81,7 +81,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 50,
                   ),
                  /* buildTile(
                       name: "Contact Number",
@@ -107,57 +107,282 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   //Text("Follow us",style: Text,),
                   MyWidgets.subHeader("Follow us", Alignment.center),
                   SizedBox(height: 10,),*/
-                   Padding(
-                     padding: const EdgeInsets.only(left:10.0,right: 10.0,),
-                     child: Container(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
+                    child: Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 40,
-                       decoration: BoxDecoration(
+                      height: 50,
+                      decoration: BoxDecoration(
                         // color: Colors.indigo[50],
                         borderRadius: BorderRadius.circular(5.0),
                         border: Border.all(color: Colors.grey, width: 0.7),
                       ),
-                      /*  child:Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [*/
-                            //icon: CupertinoIcons.phone_fill)
-                       child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.spic,
-                          children: [
-                            InkWell(
-                                onTap: (){
-                                 // Navigator.pop(context);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left:10.0,right: 10.0),
-                                  child: Icon(Icons.group_rounded,color: Colors.red, ),
-                                )),/*Divider(
-                              height: 20,
-                              color: Colors.red,
-                            ),*/
-                            Container(
-                              width: 2,
-                              child: Divider(
-                                thickness: 20,
-                                color: Colors.red,
-                              ),
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spic,
+                        children: [
+                          Expanded(
+                              child: Row(
+                                  //mainAxisAlignment: MainAxisAlignment.spic,
+                                  children: [
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.group_rounded,
+                                        color: Colors.red,
+                                      ),
+                                    )),
+                                Container(
+                                  width: 2,
+                                  child: Divider(
+                                    thickness: 21,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                                /* SizedBox(width: 100,),*/
+                              ])),
+                          Expanded(
+                            child: Text(
+                              'Call Family ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: 15,
+                                  color: Colors.black),
                             ),
-                            SizedBox(width: 100,),
-                     Align(
-                       alignment: Alignment.center,
-                           child:Text('Call Family ',
-                              style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15,color: Colors.black),),),
-                               Padding(padding: const EdgeInsets.only(right:10.0),
-                                 child: Icon(Icons.call, color: Colors.red),),
-                          ],
-                        ),
-
-
-                       /* ],
-                  ),*/
-              ),
-                   ),
-                  SizedBox(height: 30,),
+                          ),
+                          Row(
+                              //mainAxisAlignment: MainAxisAlignment.spic,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.phone_in_talk,
+                                        color: Colors.red,
+                                      ),
+                                    )),
+                                Container(
+                                  width: 2,
+                                  child: Divider(
+                                    thickness: 21,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                                /* SizedBox(width: 100,),*/
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.info,
+                                        color: Colors.red,
+                                      ),
+                                    )),
+                              ]) /*),*/
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        // color: Colors.indigo[50],
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(color: Colors.grey, width: 0.7),
+                      ),
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spic,
+                        children: [
+                          Expanded(
+                              child: Row(
+                                  //mainAxisAlignment: MainAxisAlignment.spic,
+                                  children: [
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.directions_car,
+                                        color: AppData.kPrimaryColor,
+                                      ),
+                                    )),
+                                Container(
+                                  width: 2,
+                                  child: Divider(
+                                    thickness: 21,
+                                    color: AppData.kPrimaryColor,
+                                  ),
+                                ),
+                                /* SizedBox(width: 100,),*/
+                              ])),
+                          Expanded(
+                            child: Text(
+                              'Call Ambulance ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Row(
+                              //mainAxisAlignment: MainAxisAlignment.spic,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.phone_in_talk,
+                                        color: AppData.kPrimaryColor,
+                                      ),
+                                    )),
+                                Container(
+                                  width: 2,
+                                  child: Divider(
+                                    thickness: 21,
+                                    color: AppData.kPrimaryColor,
+                                  ),
+                                ),
+                                /* SizedBox(width: 100,),*/
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.info,
+                                        color: AppData.kPrimaryColor,
+                                      ),
+                                    )),
+                              ]) /*),*/
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        // color: Colors.indigo[50],
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(color: Colors.grey, width: 0.7),
+                      ),
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spic,
+                        children: [
+                          Expanded(
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spic,
+                                  children: [
+                                    InkWell(
+                                        onTap: () {
+                                          // Navigator.pop(context);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, right: 10.0),
+                                          child: Icon(
+                                            Icons.local_police,
+                                            color: Colors.red,
+                                          ),
+                                        )),
+                                    Container(
+                                      width: 2,
+                                      child: Divider(
+                                        thickness: 21,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    /* SizedBox(width: 100,),*/
+                                  ])),
+                          Expanded(
+                            child: Text(
+                              'Call Police ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: 15,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Row(
+                            //mainAxisAlignment: MainAxisAlignment.spic,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.phone_in_talk,
+                                        color: Colors.red,
+                                      ),
+                                    )),
+                                Container(
+                                  width: 2,
+                                  child: Divider(
+                                    thickness: 21,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                                /* SizedBox(width: 100,),*/
+                                InkWell(
+                                    onTap: () {
+                                      // Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Icon(
+                                        Icons.info,
+                                        color: Colors.red,
+                                      ),
+                                    )),
+                              ]) /*),*/
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

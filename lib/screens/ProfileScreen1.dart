@@ -39,7 +39,7 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top:20.0,bottom: 10.0,left: 20.0, right: 20.0),
+                    padding: const EdgeInsets.only(top:10.0,bottom: 10.0,left: 20.0, right: 10.0),
                     child: Container(
                       // height: 100,
                       width: double.infinity,
@@ -53,14 +53,31 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
                       ),                    
                       child:  Padding(
                         padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
-                        child: Row(
+                       /* child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [*/
+                        child:Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
+                        Container(
+                        // height: 95,
+                        // width: 95,
+                        // decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(55),
+                        //     border: Border.all(color: Colors.white, width: 0.5),
+                        //     color: Colors.blue[50]
+                        //     ),
+                       child:ClipRRect(
+                        borderRadius: BorderRadius.circular(55),
+                          child: Image.asset(
+                            'assets/images/user.png',
+                            // height: 95,
+                            height: size.height * 0.12,
+                            width: size.width * 0.22,
+                            fit: BoxFit.cover,
+                          )),
+                        ), Text(
                                       'BMS Lab',
                                       style: TextStyle(
                                           fontSize: 18,
@@ -82,29 +99,13 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
                               ],
                             ),
 
-                         Container(
-                              // height: 95,
-                              // width: 95,
-                              // decoration: BoxDecoration(
-                              //     borderRadius: BorderRadius.circular(55),
-                              //     border: Border.all(color: Colors.white, width: 0.5),
-                              //     color: Colors.blue[50]
-                              //     ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(55),
-                                  child: Image.asset(
-                                    'assets/images/user.png',
-                                    // height: 95,
-                                    height: size.height * 0.12,
-                                    width: size.width * 0.22,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                          ],
+                        /*
+                            ),*/
+                         /* ],*/
                         ),
                       ),
                     ),
-                  ),
+                 /* ),*/
                   SizedBox(height: size.height * 0.04,),
                   TabBar(
                     indicatorSize: TabBarIndicatorSize.tab,

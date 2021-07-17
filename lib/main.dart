@@ -30,6 +30,7 @@ import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
+import 'package:user/screens/ProfileScreen1.dart';
 import 'package:user/screens/RIP.dart';
 import 'package:user/screens/SampleTracking.dart';
 import 'package:user/screens/Search.dart';
@@ -242,6 +243,9 @@ class _MyAppState extends State<MyApp> {
           model: _model,
               ),
               '/emergencyHelp': (context) =>EmergencyHelp(
+                model: _model,
+              ),
+              '/profileScreen1': (context) =>ProfileScreen1(
                 model: _model,
               ),
 
