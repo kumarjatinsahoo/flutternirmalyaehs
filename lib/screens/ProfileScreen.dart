@@ -6,13 +6,17 @@ import 'package:flutter/material.dart';
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
 
-  const ProfileScreen({Key key, this.model}) : super(key: key);
+ ProfileScreen({Key key, this.model}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
+final List<Tab> myTabs = <Tab>[
+  Tab(text: 'LEFT'),
+  Tab(text: 'RIGHT'),
+];
+class _ProfileScreenState extends State<ProfileScreen> {
 
-class _ProfileScreenState extends State<ProfileScreen> {  
   @override
   Widget build(BuildContext context) {
      Size size = MediaQuery.of(context).size;
@@ -94,13 +98,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   SizedBox(height: size.height * 0.02,),
+
+
+
+           /* DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                appBar: AppBar(
+                  bottom: TabBar(
+                    tabs: [
+                      Tab(text: 'FIRST'),
+                      Tab(text: 'SECOND',),
+                      Tab(text: 'THIRD'),
+                    ],
+                  ),
+                  title: Text('TABS TITLE TEXT'),
+                ),
+                body: TabBarView(
+                  children: [
+                    rowValue(),
+                    rowValue1(),
+                    rowValue2(),
+                  ],
+                ),
+              ),
+              DefaultTabController(
+      length: myTabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: myTabs,
+          ),
+        ),
+        body: TabBarView(
+          children: myTabs.map((Tab tab) {
+            return Center(child: Text(tab.text));
+          }).toList(),
+        ),
+      ),
+    )
+            ),*/
+            /**/
+
                   DefaultTabController(
                       length: 3,
                       initialIndex: 0,
-
                       child: Column(
                         children: [
-                          TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
+                          TabBar(tabs: [Text('DETAILS',style: TextStyle(color: Colors.black)),
+                            Text('CONTACTS',style: TextStyle(color: Colors.black)),
+                            Text('FAMILY DOCTORS',style: TextStyle(color: Colors.black))]),
+                          //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                           Container(
                               height: 300.0,
                               child: TabBarView(
@@ -288,19 +336,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+         /* Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                /* Image.asset('assets/images/edit.png',
+                *//* Image.asset('assets/images/edit.png',
                   color: Colors.grey[700],
-                )*/
+                )*//*
 
               ],
             ),
-          ),
+          ),*/
           Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
             child: Row(
