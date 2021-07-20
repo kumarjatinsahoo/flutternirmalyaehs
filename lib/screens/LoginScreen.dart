@@ -99,34 +99,35 @@ var pin ;
             Container(
               padding: EdgeInsets.only(left: 20.0, right: 20.0),
               margin: EdgeInsets.only(
-                top: 120.0,
+                top: 200.0,
               ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
+                  topLeft: Radius.circular(0.0),
+                  topRight: Radius.circular(0.0),
                 ),
               ),
               child: ListView(shrinkWrap: true, children: <Widget>[
-                SizedBox(height: size.height * 0.10),
+               SizedBox(height: 6),
                /* SizedBox(
                   height: size.height * 0.14,
                 ),*/
-               SizedBox(
+              /* SizedBox(
                               height: size.height * 0.02,
                             ),
-                
+                */
+
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: RichText(
                       textAlign: TextAlign.start,
                       text: TextSpan(
                         children: [
-                          TextSpan(
-                            text:
-                                MyLocalizations.of(context).text("WELCOMENACK"),
-                            /* "Welcome back",*/
+
+                          TextSpan(text:MyLocalizations.of(context).text("WELCOMENACK"),
+                             /*"Welcomeback",*/
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
                               fontFamily: "Monte",
@@ -137,13 +138,31 @@ var pin ;
                         ],
                       )),
                 ),
-                SizedBox(
-                              height: size.height * 0.01,
-                            ),
+                /*Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                    child: Image.asset(
+                      "assets/logo1.png",
+                      fit: BoxFit.fitWidth,
+                      //width: ,
+                      height: 70.0,
+                    ),
+                  ),
+                ),*/
+               /* Align(
+                  alignment: Alignment.center,
+                    child: Text('eHealthSystem',style:
+                    TextStyle(fontWeight: FontWeight.w800, fontSize: 20,color: AppData.kPrimaryColor),)),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text("Let's Heal the World",style:
+                    TextStyle(fontWeight: FontWeight.w500, fontSize: 15,color:Colors.red),)),
+*/
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: fromFieldNumber(),
@@ -154,24 +173,22 @@ var pin ;
                     ),
                     
                    
-                    SizedBox(
-                              height: size.height * 0.1,
-                            ),
+                    SizedBox(height: size.height * 0.1,),
                     _loginButton(),
                 SizedBox(
-                              height: size.height * 0.01,
+                              height: size.height * 0.04,
                             ),
                  /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
                    SizedBox(
                               height: size.height * 0.01,
                             ),
                           _otpButton(),*/
-                  SizedBox(
+                  /*SizedBox(
                               height: size.height * 0.02,
-                            ),
+                            ),*/
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 10.0),
+                          left: 10.0, right: 10.0, bottom: 25.0),
                       child: InkWell(
                         onTap: () {
                              Navigator.pushNamed(context, "/userSignUpForm");

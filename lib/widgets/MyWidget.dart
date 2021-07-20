@@ -341,13 +341,11 @@ class MyWidgets {
             gradient: LinearGradient(
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
+                colors: [AppData.kPrimaryColor, AppData.kPrimaryColor])),
         child: Padding(
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
+          child: Text(text,textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
         ),

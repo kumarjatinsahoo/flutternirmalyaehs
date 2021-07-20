@@ -22,6 +22,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
      Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+       /* floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white, size: 29,),
+          backgroundColor: AppData.kPrimaryColor,
+          elevation: 5,
+          splashColor: Colors.grey,
+        ),*/
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),

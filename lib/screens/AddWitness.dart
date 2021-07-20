@@ -732,7 +732,7 @@ class AddWitnessState extends State<AddWitness> {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
 
-        // Navigator.pushNamed(context, "/otpView");
+         Navigator.pushNamed(context, "/termsAndConditions");
         //}
       },
     );

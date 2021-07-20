@@ -209,8 +209,8 @@ class _DashboardState extends State<Dashboard> {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-  itemCount: strOrders.length,
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                   itemCount: strOrders.length,
+  gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
     // mainAxisExtent: 110,
     // mainAxisSpacing: 5,
       crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),

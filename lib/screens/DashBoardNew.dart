@@ -632,7 +632,7 @@ Widget _dashboardnew(context){
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
+                /*Text(
                   '12',
                   style: TextStyle(
                             color: Colors.white,
@@ -640,9 +640,9 @@ Widget _dashboardnew(context){
                             fontFamily: "Monte",
                             fontSize: 22.0,
                   ),
-                 
-                ),
-                   Padding(
+
+                ),*/
+                   /*Padding(
                       padding: const EdgeInsets.only( top: 10,left: 3,right: 3
                       ),
                      child: Row(
@@ -664,10 +664,10 @@ Widget _dashboardnew(context){
                           ),
                         ],
                       ),
-                    ),
+                    ),*/
               ],
             ),
-        Positioned(
+       /* Positioned(
           top: -3,
           right: -3,
           child: Container(
@@ -679,7 +679,9 @@ Widget _dashboardnew(context){
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Icon(icon, color: Colors.white,)
-            ) )),
+            )
+          )
+        ),*/
           //   Positioned(
           // top: 20,
           // left: 15,

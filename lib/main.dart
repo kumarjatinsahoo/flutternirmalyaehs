@@ -41,6 +41,7 @@ import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
+import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/find.dart';
@@ -246,6 +247,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/profileScreen1': (context) =>ProfileScreen1(
+                model: _model,
+              ),
+              '/termsAndConditions': (context) =>TermsAndConditions(
                 model: _model,
               ),
 

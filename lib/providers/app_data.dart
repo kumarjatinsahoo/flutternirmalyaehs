@@ -21,7 +21,9 @@ class AppData {
   static String SALT_KEY = "kimarhs";
 
   //static Color kPrimaryColor = Color(0xFF5bc878);
-  static Color kPrimaryColor = Colors.blue[600];
+  static Color kPrimaryColor1 = Colors.blue[600];
+  static Color kPrimaryColor = Color(0xFF2372B6) ;
+  static Color kPrimaryRedColor = Color(0xFFCF3564) ;
   static Color matruColor = Colors.indigo;
   static Color kPrimaryLightColor = Color(0xFFe9f7ea);
   //static Color kPrimaryLightColor = Color(0xFF92CA91);
