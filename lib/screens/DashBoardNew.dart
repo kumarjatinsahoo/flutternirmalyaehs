@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
@@ -16,7 +17,7 @@ class DashboardUserNew extends StatefulWidget {
 }
 
 class _DashboardUserNewState extends State<DashboardUserNew> {
- 
+  int _currentIndex = 0;
  int _selectedIndex = 0;
   String motherName, lastPerioddt, deliverydt, id;
   String dateLeft = "0";
@@ -27,7 +28,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       _selectedDestination = index;
     });
   }
-
+  List<String> imageSliders = [
+    "assets/offer_ad.png",
+   /* "assets/sstory_one.jpg",*/
+  ];
   @override
   void initState() {
     // TODO: implement initState
@@ -413,7 +417,7 @@ Widget _dashboardnew(context){
                     Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  _buildTile(
+                                  _buildTileblue(
                                       icon: Icons.book_online,
                                       //icon: FontAwesomeIcons.accusoft,
                                       title: "My Medical Record",
@@ -422,13 +426,13 @@ Widget _dashboardnew(context){
                                         // AppData.showSnack(
                                         //     context, "Coming soon", Colors.green);
                                       },
-                                      color: Colors.pink[300],
-                                      bordercolor: Colors.pink[100],
-                                      size: (size.width - 42) / 3
-                                      ),
+                                      color: AppData.kPrimaryLightColor,
+                                      bordercolor:AppData.kPrimaryLightColor,
+                                    size: (size.width - 90) / 3,),
+
                                       SizedBox(width: 5,),
-                                 
-                                  _buildTile(
+
+                                  _buildTilered(
                                       //icon: "assets/meditate.png",
                                       icon: Icons.mark_as_unread,
                                       //icon: FontAwesomeIcons.accusoft,
@@ -436,11 +440,11 @@ Widget _dashboardnew(context){
                                       fun: () {
                                         Navigator.pushNamed(context, "/findHealthcareService");
                                       },
-                                      color: Colors.indigoAccent[100],
-                                      bordercolor: Colors.indigo[200],
-                                      size: (size.width - 42) / 3),
+                                      color: AppData.klightRedColor,
+                                      bordercolor:AppData.klightRedColor,
+                                    size: (size.width - 90) / 3,),
                                   SizedBox(width: 5,),
-                                  _buildTile(
+                                  _buildTileblue(
                                       icon: Icons.directions_walk,
                                       //icon: FontAwesomeIcons.accusoft,
                                       title: "Discount & Offers",
@@ -449,31 +453,31 @@ Widget _dashboardnew(context){
                                         // AppData.showSnack(
                                         //     context, "Coming soon", Colors.green);
                                       },
-                                      color: Colors.amber[700],
-                                      bordercolor: Colors.amber[300],
-                                      size: (size.width - 42) / 3),
+                                    color: AppData.kPrimaryLightColor,
+                                    bordercolor:AppData.kPrimaryLightColor,
+                                    size: (size.width - 90) / 3,),
                                 ],
                               ),
                               SizedBox(height: size.height * 0.02),
                               Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildTile(
+                              _buildTile1(
                                   //icon: "assets/meditate.png",
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
-                                  title: "Emergency Help",
+                                  title: "HELP",
                                   fun: () {
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
                                     Navigator.pushNamed(context, "/emergencyHelp");
 
                                   },
-                                  color: Colors.red[700],
-                                  bordercolor: Colors.red[300],
-                                  size: (size.width - 42) / 3),
+                                  color: AppData.kPrimaryRedColor,
+                                  bordercolor:AppData.kPrimaryRedColor,
+                                  size: (size.width - 90) / 3,),
                               SizedBox(width: 5,),
-                              _buildTile(
+                              _buildTileblue(
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Medicine Reminder",
@@ -482,12 +486,12 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.pink[300],
-                                  bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 3),
+                                color: AppData.kPrimaryLightColor,
+                                bordercolor:AppData.kPrimaryLightColor,
+                                size: (size.width - 90) / 3,),
                               SizedBox(width: 5,),
 
-                              _buildTile(
+                              _buildTilered(
                                 //icon: "assets/meditate.png",
                                   icon: Icons.calendar_today,
                                   //icon: FontAwesomeIcons.accusoft,
@@ -496,16 +500,16 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.indigoAccent[100],
-                                  bordercolor: Colors.indigo[200],
-                                  size: (size.width - 42) / 3),
+                                color: AppData.klightRedColor,
+                                bordercolor:AppData.klightRedColor,
+                                size: (size.width - 90) / 3,),
                             ],
                           ),
                           SizedBox(height: size.height * 0.02),
                               Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildTile(
+                              _buildTileblue(
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Organ Donation",
@@ -514,12 +518,12 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.pink[300],
-                                  bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 3),
+                                color: AppData.kPrimaryLightColor,
+                                bordercolor:AppData.kPrimaryLightColor,
+                                size: (size.width - 90) / 3,),
                               SizedBox(width: 5,),
 
-                              _buildTile(
+                              _buildTilered(
                                 //icon: "assets/meditate.png",
                                   icon: Icons.calendar_today,
                                   //icon: FontAwesomeIcons.accusoft,
@@ -529,11 +533,11 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //   context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.indigoAccent[100],
-                                  bordercolor: Colors.indigo[200],
-                                  size: (size.width - 42) / 3),
+                                color: AppData.klightRedColor,
+                                bordercolor:AppData.klightRedColor,
+                                size: (size.width - 90) / 3,),
                               SizedBox(width: 5,),
-                              _buildTile(
+                              _buildTileblue(
                                   icon: Icons.description,
                                   //icon: FontAwesomeIcons.accusoft,
                                   title: "Govt Schemes",
@@ -542,9 +546,9 @@ Widget _dashboardnew(context){
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
-                                  color: Colors.pink[300],
-                                  bordercolor: Colors.pink[100],
-                                  size: (size.width - 42) / 3),
+                                color: AppData.kPrimaryLightColor,
+                                bordercolor:AppData.kPrimaryLightColor,
+                                size: (size.width - 90) / 3,),
                             ],
                           ),
                            /*SizedBox(height: size.height * 0.02),
@@ -555,7 +559,117 @@ Widget _dashboardnew(context){
                             ],
                           ),*/
                            SizedBox(height: size.height * 0.02),
-                              Row(
+                    CarouselSlider(
+                      options: CarouselOptions(
+                          autoPlay: true,
+                          pageSnapping: true,
+                          viewportFraction: 0.9,
+                          scrollDirection: Axis.horizontal,
+                          disableCenter: true,
+                          autoPlayInterval: Duration(seconds: 10),
+                          //autoPlayAnimationDuration: Duration(seconds: 90),
+                          pauseAutoPlayInFiniteScroll: true,
+                          onPageChanged: (index, reason) {
+                            setState(
+                                  () {
+                                _currentIndex = index;
+                              },
+                            );
+                          }),
+                      items: imageSliders
+                          .map((item) =>
+                          InkWell(
+                           /* onTap: (){
+                              int index=imageSliders.indexOf(item);
+                              if(index==1)
+                                //AppData.showInSnackDone(context, "Clicked");
+                                AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                            },*/
+                            child: Container(
+                              child: Container(
+                                margin: EdgeInsets.all(10),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(5)),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        item,
+                                        fit: BoxFit.fill,
+                                        width: 1000,
+                                        height: double.maxFinite,
+                                        //height: 100,
+                                      ),
+                                      /* Image.network(
+                                                     item.bannerImage,
+                                                     fit: BoxFit.fill,
+                                                      width: 1000,
+                                                    height: double.maxFinite,
+                                                     ),*/
+                                      Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color.fromARGB(
+                                                    200, 0, 0, 0),
+                                                Color.fromARGB(
+                                                    0, 0, 0, 0)
+                                              ],
+                                              begin: Alignment
+                                                  .bottomCenter,
+                                              end:
+                                              Alignment.topCenter,
+                                            ),
+                                          ),
+                                          padding:
+                                          EdgeInsets.symmetric(
+                                              vertical: 10.0,
+                                              horizontal: 20.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .spaceBetween,
+                                            children: [
+                                              Text(
+                                                (imageSliders.indexOf(
+                                                    item) +
+                                                    1)
+                                                    .toString() +
+                                                    "/" +
+                                                    imageSliders
+                                                        .length
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13.0,
+                                                  fontWeight:
+                                                  FontWeight.w200,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      /*Positioned(
+                                        top: 0,
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child:(imageSliders.indexOf(item)==1)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+                                      )*/
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ))
+                          .toList(),
+                    ),
+                             /* Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
 
@@ -574,7 +688,7 @@ Widget _dashboardnew(context){
                                   bordercolor: Colors.indigo[200],
                                   size: (size.width - 42) / 3),
                             ],
-                          ),
+                          ),*/
                   ],
                 ),
               ),
@@ -587,8 +701,7 @@ Widget _dashboardnew(context){
     );
 }
 
-          
-            void _onItemTapped(int index) {
+void _onItemTapped(int index) {
              setState(() {
                if(index == 1){
                  Navigator.pushNamed(context, "/profile");
@@ -599,39 +712,51 @@ Widget _dashboardnew(context){
       _selectedIndex = index;
     });
   }
-       Widget _buildTile({IconData icon, String title, double size, Color bordercolor, Color color, Function fun}) {
+       Widget _buildTileblue({IconData icon, String title, double size, Color bordercolor, Color color, Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 130 ,
+          height: 115 ,
         width: size,
-        
         decoration: BoxDecoration(
          /// borderRadius: BorderRadius.circular(7.0),
          borderRadius: BorderRadius.only(
-         topLeft: Radius.circular(20.0),
+         topLeft: Radius.circular(10.0),
          topRight: Radius.zero,
          bottomLeft: Radius.zero,
-         bottomRight: Radius.circular(20.0),
+         bottomRight: Radius.circular(10.0),
          ),
           color: color,
-          boxShadow: [
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 1.5,
+            )
+         /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
               spreadRadius: 2.0,
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
-          ],
+          ],*/
         ),
-        child: Stack(
-                  children: [
+        child: Stack(children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment:CrossAxisAlignment.center,
+              mainAxisAlignment:MainAxisAlignment.center,
               children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                      "assets/logo1.png",
+                      fit: BoxFit.fitWidth,
+                      //width: ,
+                      height: 60.0,
+                    ),
+                  ),
+
                 /*Text(
                   '12',
                   style: TextStyle(
@@ -701,5 +826,218 @@ Widget _dashboardnew(context){
     );
   }
 
-        
+  Widget _buildTile1({IconData icon, String title, double size, Color bordercolor, Color color, Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 115 ,
+        width: size,
+        decoration: BoxDecoration(
+          /// borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.zero,
+            topRight: Radius.circular(10.0),
+            bottomLeft: Radius.circular(10.0),
+            bottomRight:Radius.zero,
+          ),
+          color: color,
+
+         /* boxShadow: [
+            BoxShadow(
+              color: bordercolor,
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],*/
+        ),
+        child: Stack(children: [
+          Column(
+            crossAxisAlignment:CrossAxisAlignment.center,
+            mainAxisAlignment:MainAxisAlignment.center,
+            children: <Widget>[
+              /*Text(
+                  '12',
+                  style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+
+                ),*/
+              Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                  title,
+                  style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+                          ),
+                        ],
+                      ),
+                    ),
+            ],
+          ),
+
+          /* Positioned(
+          top: -3,
+          right: -3,
+          child: Container(
+            height: 40,
+            width: 40,
+             decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Colors.white24,),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(icon, color: Colors.white,)
+            )
+          )
+        ),*/
+          //   Positioned(
+          // top: 20,
+          // left: 15,
+          // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+          //  Positioned(
+          // bottom: 20,
+          // right: 15,
+          // child:Column(
+          //   children: [
+          //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+          //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+          //   ],
+          // ))
+        ],
+        ),
+      ),
+    );
+  }
+  Widget _buildTilered({IconData icon, String title, double size, Color bordercolor, Color color, Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 115 ,
+        width: size,
+        decoration: BoxDecoration(
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft:Radius.zero,
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
+              bottomRight:Radius.zero ,
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryRedColor,
+              width: 1.5,
+            )
+          /* boxShadow: [
+            BoxShadow(
+              color: bordercolor,
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],*/
+        ),
+        child: Stack(children: [
+          Column(
+            crossAxisAlignment:CrossAxisAlignment.center,
+            mainAxisAlignment:MainAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  "assets/logo1.png",
+                  fit: BoxFit.fitWidth,
+                  //width: ,
+                  height: 60.0,
+                ),
+              ),
+
+              /*Text(
+                  '12',
+                  style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+
+                ),*/
+              /*Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                  title,
+                  style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+                          ),
+                        ],
+                      ),
+                    ),*/
+            ],
+          ),
+          /* Positioned(
+          top: -3,
+          right: -3,
+          child: Container(
+            height: 40,
+            width: 40,
+             decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Colors.white24,),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(icon, color: Colors.white,)
+            )
+          )
+        ),*/
+          //   Positioned(
+          // top: 20,
+          // left: 15,
+          // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+          //  Positioned(
+          // bottom: 20,
+          // right: 15,
+          // child:Column(
+          //   children: [
+          //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+          //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+          //   ],
+          // ))
+        ],
+        ),
+      ),
+    );
+  }
 }

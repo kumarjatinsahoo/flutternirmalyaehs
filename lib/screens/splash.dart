@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                       child: Image.asset(
                         //"assets/logo_matru.png",
-                        "assets/logo1.png",
+                        "assets/ehealthlogo.png",
                         fit: BoxFit.fitWidth,
                         //width: 120,
                         height: 210.0,
