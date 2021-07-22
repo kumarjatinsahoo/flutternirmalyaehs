@@ -431,31 +431,43 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 children: [
                                   _buildTilered(
                                     //icon: "assets/meditate.png",
-                                    icon: Icons.search,
+                                    icon: Icons.animation,
                                     //icon: FontAwesomeIcons.accusoft,
-                                    title: "Find Healthcare Services",
+                                    title: "Generic Medical Stores",
                                     fun: () {
                                       Navigator.pushNamed(
-                                          context, "/findHealthcareService");
+                                          context, "/geneicstores");
+                                      // AppData.showSnack(
+                                      //   context, "Coming soon", Colors.green);
                                     },
                                     color: AppData.klightRedColor,
                                     bordercolor: AppData.klightRedColor,
-                                    //size: (size.width - 130) / 3,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 50,
+                                    child: Expanded(
+                                      child: Text(
+                                        "Test Report",textAlign:TextAlign.center ,
+                                        //overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
-                                          "Find Healthcare Services",
+                                          "Test            Report",
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
                           ),
+
                           SizedBox(
                             width: 5,
                           ),
@@ -465,32 +477,44 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   _buildTileblue(
-                                    icon: Icons.local_offer,
+                                    //icon: "assets/meditate.png",
+                                    icon: Icons.animation,
                                     //icon: FontAwesomeIcons.accusoft,
-                                    title: "Discount & Offers",
+                                    title: "Generic Medical Stores",
                                     fun: () {
                                       Navigator.pushNamed(
-                                          context, "/setdiscount");
+                                          context, "/geneicstores");
                                       // AppData.showSnack(
-                                      //     context, "Coming soon", Colors.green);
+                                      //   context, "Coming soon", Colors.green);
                                     },
-                                    color: AppData.kPrimaryLightColor,
-                                    bordercolor: AppData.kPrimaryLightColor,
-                                    // size: (size.width - 130) / 3,
+                                    color: AppData.klightRedColor,
+                                    bordercolor: AppData.klightRedColor,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Discount & Offers",
-                                      style: TextStyle(color: Colors.black),
-                                      textAlign: TextAlign.center,
+                                  Container(
+                                    width: 50,
+                                    child: Expanded(
+                                      child: Text(
+                                        "Health chat",textAlign:TextAlign.center ,
+                                        //overflow: TextOverflow.ellipsis,
+                                      ),
                                     ),
                                   ),
+                                  /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Health               chat",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
                                 ]),
-                          ),
+                          )
+
                         ],
                       ),
                       SizedBox(height: size.height * 0.02),
@@ -515,7 +539,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.kPrimaryRedColor,
                                     bordercolor: AppData.kPrimaryRedColor,
-                                    //size: (size.width - 130) / 3,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -552,7 +576,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.kPrimaryLightColor,
                                     bordercolor: AppData.kPrimaryLightColor,
-                                    // size: (size.width - 130) / 3,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -587,7 +611,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.klightRedColor,
                                     bordercolor: AppData.klightRedColor,
-                                    // size: (size.width - 130) / 3,
+                                     size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -627,7 +651,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.kPrimaryLightColor,
                                     bordercolor: AppData.kPrimaryLightColor,
-                                    // size: (size.width - 130) / 3,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -664,7 +688,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.klightRedColor,
                                     bordercolor: AppData.klightRedColor,
-                                    //size: (size.width - 130) / 3,
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -700,7 +724,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     },
                                     color: AppData.kPrimaryLightColor,
                                     bordercolor: AppData.kPrimaryLightColor,
-                                    // size: (size.width - 130) / 3,)
+                                    size: (size.width - 130) / 3,
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -727,26 +751,97 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                             ),*/
                       SizedBox(height: size.height * 0.02),
 
-                      /* Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                               // crossAxisAlignment: CrossAxisAlignment.center,
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                  Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        _buildTilered(
+                                          //icon: "assets/meditate.png",
+                                          icon: Icons.search,
+                                          //icon: FontAwesomeIcons.accusoft,
+                                          title: "Find Healthcare Services",
+                                          fun: () {
+                                            Navigator.pushNamed(
+                                                context, "/findHealthcareService");
+                                          },
+                                          color: AppData.klightRedColor,
+                                          bordercolor: AppData.klightRedColor,
+                                          size: (size.width - 130) / 3,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          width: 100,
+
+                                              child: Expanded(
+                                          child: Text(
+                                            "Find Healthcare Services",textAlign:TextAlign.center ,
+                                            //overflow: TextOverflow.ellipsis,
+                                          ),
+                                              ),
+                                          ),
 
 
-                                _buildTile(
-                                    //icon: "assets/meditate.png",
-                                    icon: Icons.calendar_today,
-                                    //icon: FontAwesomeIcons.accusoft,
-                                    title: "Monthly Overview",
-                                    fun: () {
-                                       Navigator.pushNamed(context, "/monthlyview");
-                                      // AppData.showSnack(
-                                      //   context, "Coming soon", Colors.green);
-                                    },
-                                    color: Colors.indigoAccent[100],
-                                    bordercolor: Colors.indigo[200],
-                                    size: (size.width - 42) / 3),
+
+
+
+                                      ]),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        _buildTileblue(
+                                          icon: Icons.local_offer,
+                                          //icon: FontAwesomeIcons.accusoft,
+                                          title: "Discount & Offers",
+                                          fun: () {
+                                            Navigator.pushNamed(
+                                                context, "/setdiscount");
+                                            // AppData.showSnack(
+                                            //     context, "Coming soon", Colors.green);
+                                          },
+                                          color: AppData.kPrimaryLightColor,
+                                          bordercolor: AppData.kPrimaryLightColor,
+                                          size: (size.width - 130) / 3,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          width: 60,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Discount & Offers",textAlign:TextAlign.center ,
+                                              //overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                      /*  Align(
+                                          alignment: Alignment.center,
+                                          child:SizedBox(
+                                            width:100, child: FittedBox(child:Text(
+                                            "Discount & Offers",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          )
+                                        ),
+                                        ),*/
+                                      ]),
+
                               ],
-                            ),*/
+                            ),
                     ],
                   ),
                 ),
@@ -1113,7 +1208,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery.of(context).size.width - 130) / 3,
+        width: /*(MediaQuery.of(context).size.width - 130) / 3*/size,
         decoration: BoxDecoration(
 
             /// borderRadius: BorderRadius.circular(7.0),

@@ -228,7 +228,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 0),
-                              child: DropDown.staticDropdown2(
+                              child: DropDown.staticDropdown3(
                                   MyLocalizations.of(context)
                                       .text("SELECT_TITLE"),
                                   "genderSignup",
@@ -241,12 +241,29 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             SizedBox(
                               height: 10,
                             ),
+                           /* fromAddress(
+                                5,
+                                "Reason for choice of Dr",
+                                TextInputAction.next,
+                                TextInputType.text,
+                                address_,
+                                email_,
+                                "reasonforchoiceofDr"),*/
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 0),
-                              child: TextFormField(
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child:Container(
+                                height: 50,
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black,width: 0.3)),
+                                child: TextFormField(
 
                                 decoration: InputDecoration(
+                                    border: InputBorder.none,
                                     hintText: MyLocalizations.of(context)
                                             .text("FIRST_NAME") +
                                         "*",
@@ -260,14 +277,24 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ],
                               ),
                             ),
+                            ),
                             SizedBox(
                               height: 10,
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child:Container(
+                                height: 50,
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black,width: 0.3)),
                               child: TextFormField(
                                 decoration: InputDecoration(
+                                    border: InputBorder.none,
                                     hintText: MyLocalizations.of(context)
                                             .text("LAST_NAME") +
                                         "*",
@@ -280,11 +307,13 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ],
                               ),
                             ),
+                            ),
+
 
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal:0),
-                              child: DropDown.staticDropdown2(
+                              child: DropDown.staticDropdown3(
                                   'India',
                                   // MyLocalizations.of(context).text("SELECT_GENDER"),
                                   "genderSignup",
@@ -308,9 +337,18 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child:Container(
+                                height: 50,
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black,width: 0.3)),
                               child: TextFormField(
                                 decoration: InputDecoration(
+                                    border: InputBorder.none,
                                     hintText: MyLocalizations.of(context)
                                         .text("EMAIL"),
                                     hintStyle: TextStyle(color: Colors.grey)),
@@ -320,6 +358,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                                 //           ],
                               ),
+                            ),
                             ),
                             SizedBox(
                               height: 10,
@@ -344,9 +383,18 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                               visible: ispartnercode,
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 25),
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child:Container(
+                                  height: 50,
+                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                          color: Colors.black,width: 0.3)),
                                 child: TextFormField(
                                   decoration: InputDecoration(
+                                      border: InputBorder.none,
                                       hintText: MyLocalizations.of(context)
                                           .text("PARTNERCODE"),
                                       hintStyle: TextStyle(color: Colors.grey)),
@@ -358,7 +406,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ),
                               ),
                             ),
-
+                            ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
@@ -443,6 +491,37 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             ],
           ),
         ),
+      ),
+    );
+  }*/
+  /*Widget fromAddress(int index, String hint, inputAct, keyType,
+      FocusNode currentfn, FocusNode nextFn, String type) {
+    return TextFieldAddress(
+      child: TextFormField(
+        controller: textEditingController[index],
+        focusNode: currentfn,
+        textInputAction: inputAct,
+        inputFormatters: [
+          UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+        ],
+        keyboardType: keyType,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey),
+          // suffixIcon: Icon(Icons.person_rounded),
+          //contentPadding: EdgeInsets.symmetric(vertical: 10)
+        ),
+        textAlignVertical: TextAlignVertical.center,
+        onChanged: (newValue) {},
+        onFieldSubmitted: (value) {
+          print("ValueValue" + error[index].toString());
+          setState(() {
+            error[index] = false;
+          });
+          AppData.fieldFocusChange(context, currentfn, nextFn);
+        },
       ),
     );
   }*/
