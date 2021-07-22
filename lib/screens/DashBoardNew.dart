@@ -393,8 +393,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
 
-                          Expanded(
-                            child: Column(
+                         /* Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -414,18 +414,27 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "My Medical Record",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                /*  Text(
                                     "My Medical Record",
                                     style: TextStyle(color: Colors.black),
                                     textAlign: TextAlign.center,
-                                  ),
+                                  ),*/
                                 ]),
-                          ),
+                         
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(
-                            child: Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -448,14 +457,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     height: 5,
                                   ),
                                   Container(
-                                    width: 50,
-                                    child: Expanded(
+                                    width: 100,
+                                    height:35,
+                                     /* child: Expanded(*/
                                       child: Text(
                                         "Test Report",textAlign:TextAlign.center ,
                                         //overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                  ),
+                                /*  ),*/
                                   /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
@@ -466,13 +476,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                         ),
                                       )),*/
                                 ]),
-                          ),
+
 
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(
-                            child: Column(
+                         /* Expanded(*/
+                            Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -495,14 +505,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     height: 5,
                                   ),
                                   Container(
-                                    width: 50,
-                                    child: Expanded(
+                                    width: 100,
+                                    height:35,
                                       child: Text(
                                         "Health chat",textAlign:TextAlign.center ,
                                         //overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                  ),
+
                                   /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
@@ -513,7 +523,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                         ),
                                       )),*/
                                 ]),
-                          )
+
 
                         ],
                       ),
@@ -521,8 +531,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Expanded(
-                            child: Column(
+                         /* Expanded(*/
+                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -544,7 +554,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Emergency Help",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -552,14 +571,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(
-                            child: Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -581,7 +600,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Medicine Reminder",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -589,14 +617,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+                          /*),*/
                           SizedBox(
                             width: 5,
-                          ),
-                          Expanded(
-                            child: Column(
+                          ),/*  Expanded(*/
+
+                            Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -616,7 +644,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Upload Medical Data",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -624,17 +661,17 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+
                         ],
                       ),
                       SizedBox(height: size.height * 0.02),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Expanded(
-                            child: Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -656,7 +693,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Organ Donation",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                 /* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -664,14 +710,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(
-                            child: Column(
+                          /*Expanded(*/
+                           Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -693,7 +739,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Generic Medical Stores",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                 /* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -701,14 +756,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(
-                            child: Column(
+                         /* Expanded(
+                            child: */Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -729,7 +784,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  Align(
+                                  Container(
+                                    width: 100,
+                                    height:35,
+                                    /* child: Expanded(*/
+                                    child: Text(
+                                      "Govternment Schemes",textAlign:TextAlign.center ,
+                                      //overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -737,9 +801,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),
+                                      )),*/
                                 ]),
-                          ),
+
                         ],
                       ),
                       /*SizedBox(height: size.height * 0.02),
@@ -755,9 +819,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                          mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                // crossAxisAlignment: CrossAxisAlignment.center,
-                                SizedBox(
-                                  width: 5,
-                                ),
+
                                   Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -780,14 +842,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                         ),
                                         Container(
                                           width: 100,
+                                          height:35,
 
-                                              child: Expanded(
                                           child: Text(
                                             "Find Healthcare Services",textAlign:TextAlign.center ,
                                             //overflow: TextOverflow.ellipsis,
                                           ),
                                               ),
-                                          ),
+
 
 
 
@@ -819,14 +881,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           height: 5,
                                         ),
                                         Container(
-                                          width: 60,
-                                          child: Expanded(
+                                          width: 100,
+                                          height:35,
+
                                             child: Text(
                                               "Discount & Offers",textAlign:TextAlign.center ,
                                               //overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
-                                        ),
+
                                       /*  Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
