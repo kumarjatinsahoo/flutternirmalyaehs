@@ -472,12 +472,25 @@ class DropDown {
           ],
         )));
   }
-
+  static Widget newContainer(child) {
+    return Padding(
+      padding:
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
+        child: child,
+      ),
+    );
+  }
   static staticDropdown2(String label,
       String callFrom,
       List<KeyvalueModel> list,
       Function fun,) {
-    return inputFieldContainer(
+    return newContainer(
       DropdownSearch<KeyvalueModel>(
         mode: Mode.BOTTOM_SHEET,
         searchBoxDecoration: InputDecoration(
@@ -496,6 +509,24 @@ class DropDown {
         dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
+          disabledBorder: InputBorder.none,
+          // border: InputBorder.none,
+          enabledBorder: const OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+          ),
+          border: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+              borderRadius: BorderRadius.circular(29)),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          contentPadding: EdgeInsets.all(0),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(29)),
+            borderSide: BorderSide(width: 0, color: Colors.black),
+          ),
+        ),
+      /*  dropdownSearchDecoration: InputDecoration(
+          // filled: true,
+          isDense: true,
           // disabledBorder: InputBorder.none,
           // border: InputBorder.none,
           // enabledBorder: const OutlineInputBorder(
@@ -511,7 +542,7 @@ class DropDown {
           //   borderRadius: BorderRadius.all(Radius.circular(29)),
           //   borderSide: BorderSide(width: 0, color: AppData.grey),
           // ),
-        ),
+        ),*/
         label: label,
         showSearchBox: true,
         //items: maritalStatus,
@@ -523,6 +554,76 @@ class DropDown {
         },
       ),
     );
+  }
+  static staticDropdown3(String label, String callFrom,
+      List<KeyvalueModel> list,Function fun) {
+    return newContainer(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      label: label,
+      showSearchBox: true,
+      //items: maritalStatus,
+      selectedItem: getData(callFrom),
+      items: list,
+
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+        switch (callFrom) {
+          case "district":
+            selectedKey = data;
+
+            break;
+          case "block":
+            selectedKey1 = data;
+
+            break;
+          case "gender":
+            gender = data;
+            break;
+            break;
+          case "admissioncenter":
+            gender = data;
+            break;
+          case "risk":
+            gender = data;
+            break;
+
+
+        }
+        //selectbank = data;
+
+      },
+    ));
   }
 
   static staticDropdown7(String label,
@@ -577,7 +678,7 @@ class DropDown {
     );
   }
 
-  static staticDropdown3(String label, String callFrom,
+  static staticDropdown6(String label, String callFrom,
       List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,

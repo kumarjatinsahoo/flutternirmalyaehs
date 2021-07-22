@@ -227,7 +227,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25),
+                              padding: const EdgeInsets.symmetric(horizontal: 0),
                               child: DropDown.staticDropdown2(
                                   MyLocalizations.of(context)
                                       .text("SELECT_TITLE"),
@@ -238,14 +238,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 });
                               }),
                             ),
-
                             SizedBox(
                               height: 10,
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                                  const EdgeInsets.symmetric(horizontal: 0),
                               child: TextFormField(
+
                                 decoration: InputDecoration(
                                     hintText: MyLocalizations.of(context)
                                             .text("FIRST_NAME") +
@@ -253,6 +253,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     hintStyle: TextStyle(color: Colors.grey)),
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.text,
+
                                 inputFormatters: [
                                   WhitelistingTextInputFormatter(
                                       RegExp("[a-zA-Z ]")),
@@ -282,7 +283,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
+                                  const EdgeInsets.symmetric(horizontal:0),
                               child: DropDown.staticDropdown2(
                                   'India',
                                   // MyLocalizations.of(context).text("SELECT_GENDER"),
@@ -452,16 +453,23 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         });
   }
 
+
+
+
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
         Expanded(
           //flex: 8,
           child: Padding(
-            padding: const EdgeInsets.only(left: 5.0, right: 7.0),
+            padding: const EdgeInsets.only(left: 7.0, right: 0.0),
             child: Container(
               // padding: EdgeInsets.only(left: 2),
               height: 50.0,
+            decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(5),
+    border: Border.all(color: Colors.black, width: 0.3)),
               // decoration: BoxDecoration(
               //     color: AppData.kPrimaryLightColor,
               //     borderRadius: BorderRadius.circular(20),
@@ -665,7 +673,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  // border: InputBorder.none,
+                   border: InputBorder.none,
                   counterText: "",
                   hintText:
                       MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
