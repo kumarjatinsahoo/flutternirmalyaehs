@@ -490,8 +490,7 @@ class DropDown {
       String callFrom,
       List<KeyvalueModel> list,
       Function fun,) {
-    return newContainer(
-      DropdownSearch<KeyvalueModel>(
+    return DropdownSearch<KeyvalueModel>(
         mode: Mode.BOTTOM_SHEET,
         searchBoxDecoration: InputDecoration(
           hintText: "Search here",
@@ -506,10 +505,10 @@ class DropDown {
                 topLeft: Radius.circular(3.0)),
           ),
         ),
-        dropdownSearchDecoration: InputDecoration(
+       /* dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
-          disabledBorder: InputBorder.none,
+          //disabledBorder: InputBorder.none,
           // border: InputBorder.none,
           enabledBorder: const OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
@@ -523,8 +522,8 @@ class DropDown {
             borderRadius: BorderRadius.all(Radius.circular(29)),
             borderSide: BorderSide(width: 0, color: Colors.black),
           ),
-        ),
-      /*  dropdownSearchDecoration: InputDecoration(
+        ),*/
+        dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
           // disabledBorder: InputBorder.none,
@@ -542,7 +541,7 @@ class DropDown {
           //   borderRadius: BorderRadius.all(Radius.circular(29)),
           //   borderSide: BorderSide(width: 0, color: AppData.grey),
           // ),
-        ),*/
+        ),
         label: label,
         showSearchBox: true,
         //items: maritalStatus,
@@ -552,8 +551,8 @@ class DropDown {
         onChanged: (KeyvalueModel data) {
           fun(data);
         },
-      ),
-    );
+      );
+
   }
   static staticDropdown3(String label, String callFrom,
       List<KeyvalueModel> list,Function fun) {

@@ -211,7 +211,7 @@ class SetReminderState extends State<SetReminder> {
 
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 10),
+                              const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                     hintText: "Type",

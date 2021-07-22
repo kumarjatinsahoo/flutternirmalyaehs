@@ -255,20 +255,20 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(6);
                     Navigator.pushNamed(context, "/myorder");
                   }),
-              ListTile(
+             /* ListTile(
                   leading: Icon(Icons.calendar_today),
                   title: Text('Monthly Overview'),
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
                     Navigator.pushNamed(context, "/monthlyview");
-                  }),
+                  }),*/
               ListTile(
                   leading: Icon(Icons.healing),
                   title: Text('Processed Orders'),
                   selected: _selectedDestination == 8,
                   onTap: () {
-                    selectDestination(8);
+                    selectDestination(7);
                     Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
@@ -276,7 +276,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Set Discount and Offer'),
                 selected: _selectedDestination == 9,
                 onTap: () {
-                  selectDestination(9);
+                  selectDestination(8);
                   Navigator.pushNamed(context, "/setdiscount");
                 },
               ),
@@ -285,7 +285,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
-                  selectDestination(10);
+                  selectDestination(9);
                   Navigator.pushNamed(context, "/login");
                 },
               ),
@@ -442,10 +442,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     //icon: "assets/meditate.png",
                                     icon: Icons.animation,
                                     //icon: FontAwesomeIcons.accusoft,
-                                    title: "Generic Medical Stores",
+                                    title: "Test Report",
                                     fun: () {
-                                      Navigator.pushNamed(
-                                          context, "/geneicstores");
+                                     /* Navigator.pushNamed(
+                                          context, "/geneicstores");*/
                                       // AppData.showSnack(
                                       //   context, "Coming soon", Colors.green);
                                     },
@@ -492,8 +492,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     //icon: FontAwesomeIcons.accusoft,
                                     title: "Generic Medical Stores",
                                     fun: () {
-                                      Navigator.pushNamed(
-                                          context, "/geneicstores");
+                                     /* Navigator.pushNamed(
+                                          context, "/geneicstores");*/
                                       // AppData.showSnack(
                                       //   context, "Coming soon", Colors.green);
                                     },
