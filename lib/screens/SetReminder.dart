@@ -205,7 +205,7 @@ class SetReminderState extends State<SetReminder> {
                       key: _formKey,
                       // ignore: deprecated_member_use
                       autovalidate: _autovalidate,
-                      child: Expanded(
+                      /*child: Expanded(*/
                         child: Column(
                           children: <Widget>[
 
@@ -431,7 +431,7 @@ class SetReminderState extends State<SetReminder> {
                           ],
                         ),
                       ),
-                    )
+                   /* )*/
                 ],
               ),
 
