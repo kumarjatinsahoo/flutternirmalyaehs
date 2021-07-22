@@ -10,12 +10,12 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
 
-import '../localization/localizations.dart';
-import '../models/KeyvalueModel.dart';
-import '../providers/app_data.dart';
+import '../../localization/localizations.dart';
+import '../../models/KeyvalueModel.dart';
+import '../../providers/app_data.dart';
 
 // ignore: must_be_immutable
-class UserSignUpForm extends StatefulWidget {
+class LabSignUpForm extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -25,7 +25,7 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
 
-  UserSignUpForm({
+  LabSignUpForm({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -34,10 +34,10 @@ class UserSignUpForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  UserSignUpFormState createState() => UserSignUpFormState();
+  LabSignUpFormState createState() => LabSignUpFormState();
 }
 
-class UserSignUpFormState extends State<UserSignUpForm> {
+class LabSignUpFormState extends State<LabSignUpForm> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -115,9 +115,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   @override
   void initState() {
     super.initState();
-    UserSignUpForm.districtModel = null;
-    UserSignUpForm.blockModel = null;
-    UserSignUpForm.genderModel = null;
+    LabSignUpForm.districtModel = null;
+    LabSignUpForm.blockModel = null;
+    LabSignUpForm.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -233,7 +233,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   "genderSignup",
                                   genderList, (KeyvalueModel data) {
                                 setState(() {
-                                  UserSignUpForm.genderModel = data;
+                                  LabSignUpForm.genderModel = data;
                                 });
                               }),
                             ),
@@ -248,7 +248,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   "genderSignup",
                                   genderList, (KeyvalueModel data) {
                                 setState(() {
-                                  UserSignUpForm.genderModel = data;
+                                  LabSignUpForm.genderModel = data;
                                 });
                               }),
                             ),
@@ -281,7 +281,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   "genderSignup",
                                   districtList, (KeyvalueModel data) {
                                 setState(() {
-                                  UserSignUpForm.districtModel = data;
+                                  LabSignUpForm.districtModel = data;
                                 });
                               }),
                             ),
@@ -440,7 +440,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
             (KeyvalueModel model) {
-          UserSignUpForm.genderModel = model;
+          LabSignUpForm.genderModel = model;
         });
   }
 
@@ -791,7 +791,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (UserSignUpForm.genderModel == null || UserSignUpForm.genderModel == "") {
+    } else if (LabSignUpForm.genderModel == null || LabSignUpForm.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -811,9 +811,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (UserSignUpForm.districtModel == null) {
+    } else if (LabSignUpForm.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (UserSignUpForm.blockModel == null) {
+    } else if (LabSignUpForm.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
