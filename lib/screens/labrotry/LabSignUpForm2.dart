@@ -285,7 +285,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                          ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("BLOOD_GROUP"),
                                               "bloodgroup",
@@ -300,7 +300,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("GENDER"),
                                               "Gender",

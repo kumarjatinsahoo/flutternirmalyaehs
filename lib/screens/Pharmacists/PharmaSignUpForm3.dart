@@ -252,7 +252,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
 
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("SELECT_COUNTRY"),
                                               "bloodgroup",
@@ -267,7 +267,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("STATE"),
                                               "bloodgroup",
@@ -282,7 +282,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("DISTRICT"),
                                               "bloodgroup",
@@ -297,7 +297,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("SELECT_CITY"),
                                               "bloodgroup",

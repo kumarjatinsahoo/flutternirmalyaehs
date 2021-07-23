@@ -257,14 +257,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(6);
                     Navigator.pushNamed(context, "/myorder");
                   }),
-             /* ListTile(
+              ListTile(
                   leading: Icon(Icons.calendar_today),
                   title: Text('Monthly Overview'),
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
                     Navigator.pushNamed(context, "/monthlyview");
-                  }),*/
+                  }),
               ListTile(
                   leading: Icon(Icons.healing),
                   title: Text('Processed Orders'),

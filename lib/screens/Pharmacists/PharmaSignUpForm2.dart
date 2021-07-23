@@ -268,7 +268,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("SPECIALITY"),
                                               "bloodgroup",
@@ -287,7 +287,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("BLOOD_GROUP"),
                                               "bloodgroup",
@@ -302,7 +302,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown2(
+                                          child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
                                                   .text("GENDER"),
                                               "Gender",
