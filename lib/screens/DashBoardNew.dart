@@ -231,13 +231,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),*/
               ListTile(
                 leading: Icon(Icons.help_center),
+                title: Text('Help'),
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
-                  // Navigator.pushNamed(context, "/onlinechats");
+                  Navigator.pushNamed(context, "/help");
                 },
-
-                title: Text('Help'),
                 // onTap: () {
                 // },
               ),
@@ -245,7 +244,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 leading: Icon(Icons.share),
                 title: Text('Share'),
                 selected: _selectedDestination == 5,
-                onTap: () => selectDestination(5),
+                  onTap: () {
+                    selectDestination(5);
+                    Navigator.pushNamed(context, "/share");
+                  }
               ),
               ListTile(
                   leading: Icon(Icons.collections),

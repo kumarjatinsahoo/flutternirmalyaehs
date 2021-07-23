@@ -439,6 +439,7 @@
   "WEIGHT": "Weight",
   "HEART_RATE": "Heart rate",
   "BLOOD_PRESSURE": "Blood pressure",
+  "BLOOD_GROUP": "Blood group",
   "HEMOGLOBIN": "Hemoglobin",
   "URINE_TEST": "Urine test",
   "ULTRASOUND_REPORT": "Ultrasound report",
@@ -491,13 +492,14 @@
   "DUR_DEL": "During delivery",
   "AFT_DEL": "After delivery",
   "CLINIC": "Clinic",
-
+   "HOME": "Home",
   "SELECT_TITLE":"Title",
   "PARTNERCODE":"Partner code",
   "HAVE_PARTNERCODE":"Have a Partner Code",
   "SELECT_COUNTRY":"Select Country",
   "SELECT_CITY":"Select City",
   "SELECT_SCHEME":"Select Scheme",
-  "SELECT_TYPE":"Select Type"
+  "SELECT_TYPE":"Select Type",
+  "SPECIALITY": "Speciality"
 }
 

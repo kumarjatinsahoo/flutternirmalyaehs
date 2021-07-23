@@ -6,6 +6,11 @@ import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
+import 'package:user/screens/Doctor/DoctorSignUpForm.dart';
+import 'package:user/screens/Doctor/DoctorSignUpForm2.dart';
+import 'package:user/screens/Doctor/DoctorSignUpForm3.dart';
+import 'package:user/screens/Doctor/DoctorSignUpForm4.dart';
+import 'package:user/screens/Doctor/DoctorSignUpForm5.dart';
 import 'package:user/screens/DonorApplication.dart';
 import 'package:user/screens/DonorOrganisation.dart';
 import 'package:user/screens/EmergencyHelp.dart';
@@ -27,6 +32,9 @@ import 'package:user/screens/MonthlyView.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
+import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
+import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
@@ -45,6 +53,10 @@ import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/find.dart';
+import 'package:user/screens/labrotry/LabSignUpForm.dart';
+import 'package:user/screens/labrotry/LabSignUpForm2.dart';
+import 'package:user/screens/labrotry/LabSignUpForm3.dart';
+import 'package:user/screens/labrotry/LabSignUpForm4.dart';
 import 'package:user/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -153,7 +165,40 @@ class _MyAppState extends State<MyApp> {
               '/onlinechats': (context) => OnlineChats(
                 model: _model,
               ),
-              '/monthlyview': (context) => MonthlyView(
+              '/help': (context) => PharmaSignUpForm(
+                model: _model,
+              ),
+              '/pharmasignupform2': (context) => PharmaSignUpForm2(
+                model: _model,
+              ),
+              '/pharmasignupform3': (context) => PharmaSignUpForm3(
+                model: _model,
+              ),
+              '/share': (context) => DoctorSignUpForm(
+                model: _model,
+              ),
+              '/doctorsignupform2': (context) => DoctorSignUpForm2(
+                model: _model,
+              ),
+              '/doctorsignupform3': (context) => DoctorSignUpForm3(
+                model: _model,
+              ),
+              '/doctorsignupform4': (context) => DoctorSignUpForm4(
+                model: _model,
+              ),
+              '/doctorsignupform5': (context) => DoctorSignUpForm5(
+                model: _model,
+              ),
+              '/monthlyview': (context) => LabSignUpForm(
+                model: _model,
+              ),
+              '/labsignup2': (context) => LabSignUpForm2(
+                model: _model,
+              ),
+              '/labsignup3': (context) => LabSignUpForm3(
+                model: _model,
+              ) ,
+              '/labsignup4': (context) => LabSignUpForm4(
                 model: _model,
               ),
               '/myorder': (context) => MyOrders(
