@@ -29,6 +29,7 @@ import 'package:user/screens/MedicalService.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
+import 'package:user/screens/MyAppointment.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
@@ -295,6 +296,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/termsAndConditions': (context) =>TermsAndConditions(
+                model: _model,
+              ),
+              '/myAppointment': (context) =>MyAppointment(
                 model: _model,
               ),
 
