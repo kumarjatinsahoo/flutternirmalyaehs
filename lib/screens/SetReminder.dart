@@ -205,13 +205,13 @@ class SetReminderState extends State<SetReminder> {
                       key: _formKey,
                       // ignore: deprecated_member_use
                       autovalidate: _autovalidate,
-                      child: Expanded(
+                      /*child: Expanded(*/
                         child: Column(
                           children: <Widget>[
 
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 10),
+                              const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                     hintText: "Type",
@@ -431,7 +431,7 @@ class SetReminderState extends State<SetReminder> {
                           ],
                         ),
                       ),
-                    )
+                   /* )*/
                 ],
               ),
 
