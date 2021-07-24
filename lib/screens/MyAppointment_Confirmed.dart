@@ -2,10 +2,9 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class 
-
-MyAppointmentConfirmed extends StatefulWidget {
+class MyAppointmentConfirmed extends StatefulWidget {
    MainModel model;
   MyAppointmentConfirmed({Key key, this.model}) : super(key: key);
   @override
@@ -13,7 +12,24 @@ MyAppointmentConfirmed extends StatefulWidget {
 }
 
 class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
+  DateTime selectedDate = DateTime.now();
+  TextEditingController fromThis_ = TextEditingController();
+  TextEditingController toThis_ = TextEditingController();
+  final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
+  DateTime date = DateTime.now();
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    setState(() {
+
+      var df = DateFormat("dd/MM/yyyy");
+      fromThis_.text = df.format(date);
+      toThis_.text = df.format(date);
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +37,49 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
            body: Container(
              child: Column(
                children: [
-                  Container(
+               Container(
+               height: 40,
+               width: 190,
+               margin: EdgeInsets.only(top: 20, bottom: 10),
+               child: Expanded(
+                   child: InkWell(
+                     onTap: () {
+                       print("Click done");
+                       _selectDate(context);
+                     },
+                     child: AbsorbPointer(
+                       child: Padding(
+                         padding: const EdgeInsets.only(left: 15, right: 15),
+                         child: TextFormField(
+                           autofocus: false,
+                           controller: fromThis_,
+                           decoration: InputDecoration(
+                             prefixIcon: Icon(Icons.calendar_today),
+                             floatingLabelBehavior:
+                             FloatingLabelBehavior.always,
+                             hintText: 'From this',
+                             //labelText: 'Booking Date',
+                             alignLabelWithHint: false,
+                             focusedBorder: OutlineInputBorder(
+                               borderSide: BorderSide(
+                                 color: Colors.blue,
+                               ),
+                             ),
+                             contentPadding:
+                             EdgeInsets.only(left: 10, top: 4, right: 4),
+                             enabledBorder: OutlineInputBorder(
+                               borderSide: BorderSide(
+                                 color: Colors.grey,
+                                 width: 1.0,
+                               ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+                   ),
+                 ),),
+                /*  Container(
              color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -41,12 +99,12 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                 ),
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: MediaQuery.of(context).size.width,
-              ),
+              ),*/
               Expanded(
-                               child: ListView(
-                                shrinkWrap: true,
-                                children: [
-                                Padding(
+                child: ListView(
+                  shrinkWrap: true,
+                      children: [
+                            Padding(
                                   padding: const EdgeInsets.only(left:5.0, right: 5.0,),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -86,9 +144,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                              SizedBox(height: 5,),
                                                              Text("Patient Notes:Lorem ipsum dolor"
                                                                  "Consectetar adipisicing elit" ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-                                                           ],
+                                                                  overflow: TextOverflow.clip,
+                                                                  style: TextStyle(),),
+                                                            ],
                                                          ),),
                                                        /*new Spacer(),*/
                                                Padding(
@@ -99,7 +157,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                          children: [
                                                            Text('Confirmed',
                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                           SizedBox(height: 3,),
+                                                           SizedBox(height: 3, ),
                                                            Text('23-Nov-2020-11:30AM' ,
                                                              overflow: TextOverflow.clip,
                                                              style: TextStyle(),),
@@ -349,7 +407,22 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
           )  
     );
   }
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(Duration(days: 100)),
+        lastDate: DateTime.now()
+      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        fromThis_.value = TextEditingValue(text: df.format(picked));
 
+
+      });
+  }
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),

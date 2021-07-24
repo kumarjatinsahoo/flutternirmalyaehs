@@ -2,10 +2,8 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
-
-class 
-
-MyAppointmentTreated extends StatefulWidget {
+import 'package:intl/intl.dart';
+class MyAppointmentTreated extends StatefulWidget {
    MainModel model;
   MyAppointmentTreated({Key key, this.model}) : super(key: key);
   @override
@@ -13,7 +11,24 @@ MyAppointmentTreated extends StatefulWidget {
 }
 
 class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
+  DateTime selectedDate = DateTime.now();
+  TextEditingController fromThis_ = TextEditingController();
+  TextEditingController toThis_ = TextEditingController();
+  final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
+  DateTime date = DateTime.now();
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    setState(() {
+
+      var df = DateFormat("dd/MM/yyyy");
+      fromThis_.text = df.format(date);
+      toThis_.text = df.format(date);
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +36,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
            body: Container(
              child: Column(
                children: [
-                  Container(
+                  /*Container(
              color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -41,7 +56,49 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 ),
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: MediaQuery.of(context).size.width,
-              ),
+              ),*/
+                 Container(
+                   height: 40,
+                   width: 190,
+                   margin: EdgeInsets.only(top: 20, bottom: 10),
+                   child: Expanded(
+                     child: InkWell(
+                       onTap: () {
+                         print("Click done");
+                         _selectDate(context);
+                       },
+                       child: AbsorbPointer(
+                         child: Padding(
+                           padding: const EdgeInsets.only(left: 15, right: 15),
+                           child: TextFormField(
+                             autofocus: false,
+                             controller: fromThis_,
+                             decoration: InputDecoration(
+                               prefixIcon: Icon(Icons.calendar_today),
+                               floatingLabelBehavior:
+                               FloatingLabelBehavior.always,
+                               hintText: 'From this',
+                               //labelText: 'Booking Date',
+                               alignLabelWithHint: false,
+                               focusedBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                   color: Colors.blue,
+                                 ),
+                               ),
+                               contentPadding:
+                               EdgeInsets.only(left: 10, top: 4, right: 4),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                   color: Colors.grey,
+                                   width: 1.0,
+                                 ),
+                               ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+                   ),),
               Expanded(
                                child: ListView(
                                 shrinkWrap: true,
@@ -349,7 +406,22 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
           )  
     );
   }
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(Duration(days: 100)),
+        lastDate: DateTime.now()
+      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        fromThis_.value = TextEditingValue(text: df.format(picked));
 
+
+      });
+  }
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),

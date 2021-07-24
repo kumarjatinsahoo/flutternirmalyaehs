@@ -1,372 +1,493 @@
+import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-class 
+import 'MyAppointment_Cancel.dart';
+import 'MyAppointment_Confirmed.dart';
+import 'MyAppointment_Requested.dart';
+import 'MyAppointment_Treated.dart';
 
-MyAppointment extends StatefulWidget {
-   MainModel model;
-  MyAppointment({Key key, this.model}) : super(key: key);
+class MyAppointment extends StatefulWidget {
+  final MainModel model;
+
+ MyAppointment({Key key, this.model}) : super(key: key);
+
   @override
   _MyAppointmentState createState() => _MyAppointmentState();
 }
-
+final List<Tab> myTabs = <Tab>[
+  Tab(text: 'LEFT'),
+  Tab(text: 'RIGHT'),
+];
 class _MyAppointmentState extends State<MyAppointment> {
-  var selectedMinValue;
+
   @override
   Widget build(BuildContext context) {
+     Size size = MediaQuery.of(context).size;
     return SafeArea(
-          child: Scaffold(
-           body: Container(
-             child: Column(
-               children: [
-                  Container(
-             color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back,color: Colors.white )),
-                   Text('My Appoinment',
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                        Icon(Icons.search,color: Colors.white ),
+      child: Scaffold(
+       /* floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white, size: 29,),
+          backgroundColor: AppData.kPrimaryColor,
+          elevation: 5,
+          splashColor: Colors.grey,
+        ),*/
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Text(
+            'My Appointment',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: AppData.kPrimaryColor,
+          centerTitle: true,
+          // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              child: Column(
+                children: [
+                  /*Padding(
+                    padding: const EdgeInsets.only(top:0.0,bottom: 0.0,left: 0.0, right: 0.0),
+                    child: Container(
+                      // height: 100,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                         gradient: LinearGradient(colors: [
+                              Colors.blue[400],
+                              Colors.blue[200]
+                            ]),
+                             borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey[200]),
+                      ),                    
+                      child:  Padding(
+                        padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
+                        child: *//*Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [*//*
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  // height: 95,
+                                  // width: 95,
+                                  // decoration: BoxDecoration(
+                                  //     borderRadius: BorderRadius.circular(55),
+                                  //     border: Border.all(color: Colors.white, width: 0.5),
+                                  //     color: Colors.blue[50]
+                                  //     ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(55),
+                                      child: Image.asset(
+                                        'assets/images/user.png',
+                                        // height: 95,
+                                        height: size.height * 0.12,
+                                        width: size.width * 0.22,
+                                        fit: BoxFit.cover,
+                                      )),
+                                ),
+                                SizedBox(height: size.height * 0.04,),
+                                Text(
+                                      'BMS Lab',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                SizedBox(height: size.height * 0.04,),
+                              ],
+                            ),
+
+                        *//*  ],
+                        ),*//*
+                      ),
+                    ),
+                  ),*/
+                  SizedBox(height: size.height * 0.02,),
+                  DefaultTabController(
+                      length: 4,
+                      initialIndex: 0,
+                      child: Column(
+                        children: [
+                          TabBar(tabs: [Text('CONFIRMED',style: TextStyle(color: Colors.black)),
+                            Text('REQUESTED',style: TextStyle(color: Colors.black)),
+                            Text('CANCELLED',style: TextStyle(color: Colors.black)),
+                            Text('TREATED',style: TextStyle(color: Colors.black)),
+                          ]),
+                          //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
+                          Container(
+                              height: 550,
+                              child: TabBarView(
+                                children: [
+                                  MyAppointmentConfirmed(),
+                                  MyAppointmentRequested(),
+                                  MyAppointmentCancle(),
+                                  MyAppointmentTreated(),
+                                ],
+                              ))],
+                      ))
+                /*  SizedBox(height: size.height * 0.02,),*/
+                  /*TabBar(
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicatorColor: Colors.orangeAccent,
+                    isScrollable: false,
+                    dragStartBehavior:DragStartBehavior.down,
+                    tabs: [
+                      Tab(text: "PROCESS",),
+                      Tab(text: "STATEMENT",),
+                      Tab(text: "REPORTS",),
                     ],
+                  ),*/
+                  /*TabBarView(
+                    children: [
+                      rowValue(),
+                      rowValue(),
+                      rowValue(),
+                    ],
+                  ),*/
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget rowValue() {
+    return  Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        borderRadius: BorderRadius.circular(1),
+        // border: Border.all(color: Colors.blue[100]),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /*Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
+                *//* Image.asset('assets/images/edit.png',
+                  color: Colors.grey[700],
+                )*//*
+
+              ],
+            ),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Date Of Birth:',
+                  style: TextStyle(
+                    // color: Colors.black54,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Expanded(
-                               child: ListView(
-                                shrinkWrap: true,
-                                children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left:5.0, right: 5.0,),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [    
-                                      SizedBox(height: 10,), 
-                                       ListView(
-                                         shrinkWrap: true,
-                                         physics: NeverScrollableScrollPhysics(),
-                                         children: [
-
-                                           Card(
-                                             elevation: 5,
-                                             child: Container(
-                                                 height: 120,
-                                                 width: double.maxFinite,
-                                                 decoration: BoxDecoration(
-                                                     color: Colors.white,
-                                                     border: Border.all(
-                                                       color: Colors.grey[300],
-                                                     ),
-                                                     borderRadius: BorderRadius.circular(8)),
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.all(10.0),
-                                                   child: Row(
-                                                     crossAxisAlignment: CrossAxisAlignment.center,
-                                                     children: [
-                                                   Expanded(
-                                                   child:  Column(
-                                                           crossAxisAlignment: CrossAxisAlignment.start,
-                                                           children: [
-                                                             Text('Dr.Maya Tulple',
-                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                             SizedBox(height: 5,),
-                                                             Text('Gen Physician' ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-                                                             SizedBox(height: 5,),
-                                                             Text("Patient Notes:Lorem ipsum dolor"
-                                                                 "Consectetar adipisicing elit" ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-                                                           ],
-                                                         ),),
-                                                       /*new Spacer(),*/
-                                               Padding(
-                                                 padding: const EdgeInsets.only( top: 15.0,),
-                                                 child: Column(
-                                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                                         crossAxisAlignment: CrossAxisAlignment.end,
-                                                         children: [
-                                                           Text('Requeested',
-                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                           SizedBox(height: 3,),
-                                                           Text('23-Nov-2020-11:30AM' ,
-                                                             overflow: TextOverflow.clip,
-                                                             style: TextStyle(),),
-
-                                                         ],
-                                                       ),
-                                               ),
-                                                     ],
-                                                   ),
-                                                 )),
-                                           ),
-
-                                           Card(
-                                             elevation: 5,
-                                             child: Container(
-                                                 height: 120,
-                                                 width: double.maxFinite,
-                                                 decoration: BoxDecoration(
-                                                     color: Colors.white,
-                                                     border: Border.all(
-                                                       color: Colors.grey[300],
-                                                     ),
-                                                     borderRadius: BorderRadius.circular(8)),
-                                                 child: Padding(
-                                                   padding: const EdgeInsets.all(10.0),
-                                                   child: Row(
-                                                     crossAxisAlignment: CrossAxisAlignment.center,
-                                                     children: [
-                                                       Expanded(
-                                                         child:  Column(
-                                                           crossAxisAlignment: CrossAxisAlignment.start,
-                                                           children: [
-                                                             Text('Dr.Maya Tulple',
-                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                             SizedBox(height: 5,),
-                                                             Text('Gen Physician' ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-                                                             SizedBox(height: 5,),
-                                                             Text("Patient Notes:Lorem ipsum dolor"
-                                                                 "Consectetar adipisicing elit" ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-                                                           ],
-                                                         ),),
-                                                       /*new Spacer(),*/
-                                                       Padding(
-                                                         padding: const EdgeInsets.only( top: 15.0,),
-                                                         child: Column(
-                                                           // mainAxisAlignment: MainAxisAlignment.center,
-                                                           crossAxisAlignment: CrossAxisAlignment.end,
-                                                           children: [
-                                                             Text('Requeested',
-                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                             SizedBox(height: 3,),
-                                                             Text('23-Nov-2020-11:30AM' ,
-                                                               overflow: TextOverflow.clip,
-                                                               style: TextStyle(),),
-
-                                                           ],
-                                                         ),
-                                                       ),
-                                                     ],
-                                                   ),
-                                                 )),
-                                           ),
-                                         ],
-                                       ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Requeested',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Requeested',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Requeested',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-          
-           SizedBox(height: 10,),
-            
-         
-         
-                                 
-                                  ],),
-                                ),
-                              ],
+                SizedBox(width:10),
+                Text(
+                  '30-Jul-2019',
+                  style: TextStyle(
+                    // fontWeight: FontWeight.w500,
+                    // color: Colors.black54,
+                  ),
                 ),
-              ),
-               ],
-             ),
-           ),
-                      
-                      
-          )  
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Bloood Group:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'unknown',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height:10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'eHealthCard No:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  '009167445576779889',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    // color: AppData.kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height:10),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Gender:',
+                  style: TextStyle(
+                    // color: AppData.kPrimaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'Male',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.w500,
+                    // color: AppData.kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Contact Details:',
+                  style: TextStyle(
+                    // color: AppData.kPrimaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  '+2345678900',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.w500,
+                    // color: AppData.kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
     );
+
+  }
+  Widget rowValue1() {
+    return  Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        borderRadius: BorderRadius.circular(1),
+        // border: Border.all(color: Colors.blue[100]),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+         /* Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
+                *//* Image.asset('assets/images/edit.png',
+                  color: Colors.grey[700],
+                )*//*
+
+              ],
+            ),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Name:',
+                  style: TextStyle(
+                    // color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'Mr.abc',
+                  style: TextStyle(
+                    // fontWeight: FontWeight.w500,
+                    // color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Relaton:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'Friend',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height:10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Mobile No.:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  '2345688999',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    // color: AppData.kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+
   }
 
-  Widget _submitButton() {
-    return MyWidgets.nextButton(
-      text: "search".toUpperCase(),
-      context: context,
-      fun: () {
-        //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
-      
-        // Navigator.pushNamed(context, "/otpView");
-        //}
-      },
-    );
-  }
+  Widget rowValue2() {
+    return  Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        borderRadius: BorderRadius.circular(1),
+        // border: Border.all(color: Colors.blue[100]),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+         /* Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
+                *//* Image.asset('assets/images/edit.png',
+                  color: Colors.grey[700],
+                )*//*
 
-  
+              ],
+            ),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Name:',
+                  style: TextStyle(
+                    // color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'Dr.abc',
+                  style: TextStyle(
+                    // fontWeight: FontWeight.w500,
+                    // color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Specialty:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width:10),
+                Text(
+                  'Dental Pedodontia',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height:10,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  'Mobile No.:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  '2345688999',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    // color: AppData.kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+
+  }
 }

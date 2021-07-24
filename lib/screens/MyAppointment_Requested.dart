@@ -3,19 +3,21 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentCancle extends StatefulWidget {
+import 'package:intl/intl.dart';
+class MyAppointmentRequested extends StatefulWidget {
+
    MainModel model;
-  MyAppointmentCancle({Key key, this.model}) : super(key: key);
+  MyAppointmentRequested({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentCancleState createState() => _MyAppointmentCancleState();
+  _MyAppointmentRequestedState createState() => _MyAppointmentRequestedState();
 }
 
-class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
+class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
+  var selectedMinValue;
   DateTime selectedDate = DateTime.now();
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   final df = new DateFormat('dd/MM/yyyy');
-  var selectedMinValue;
   DateTime date = DateTime.now();
   void initState() {
     // TODO: implement initState
@@ -36,49 +38,51 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
            body: Container(
              child: Column(
                children: [
-                 Container(
-                   height: 40,
-                   width: 190,
-                   margin: EdgeInsets.only(top: 20, bottom: 10),
-                   child: Expanded(
-                     child: InkWell(
-                       onTap: () {
-                         print("Click done");
-                         _selectDate(context);
-                       },
-                       child: AbsorbPointer(
-                         child: Padding(
-                           padding: const EdgeInsets.only(left: 15, right: 15),
-                           child: TextFormField(
-                             autofocus: false,
-                             controller: fromThis_,
-                             decoration: InputDecoration(
-                               prefixIcon: Icon(Icons.calendar_today),
-                               floatingLabelBehavior:
-                               FloatingLabelBehavior.always,
-                               hintText: 'From this',
-                               //labelText: 'Booking Date',
-                               alignLabelWithHint: false,
-                               focusedBorder: OutlineInputBorder(
-                                 borderSide: BorderSide(
-                                   color: Colors.blue,
-                                 ),
+               Container(
+               height: 40,
+               width: 190,
+               margin: EdgeInsets.only(top: 10, bottom: 10),
+
+                   child:Expanded(
+                   child: InkWell(
+                     onTap: () {
+                       print("Click done");
+                       _selectDate(context);
+                     },
+                     child: AbsorbPointer(
+                       child: Padding(
+                         padding: const EdgeInsets.only(left: 15, right: 15),
+                         child: TextFormField(
+                           autofocus: false,
+                           controller: fromThis_,
+                           decoration: InputDecoration(
+                             prefixIcon: Icon(Icons.calendar_today),
+                             floatingLabelBehavior:
+                             FloatingLabelBehavior.always,
+                             hintText: 'From this',
+                             //labelText: 'Booking Date',
+                             alignLabelWithHint: false,
+                             focusedBorder: OutlineInputBorder(
+                               borderSide: BorderSide(
+                                 color: Colors.blue,
                                ),
-                               contentPadding:
-                               EdgeInsets.only(left: 10, top: 4, right: 4),
-                               enabledBorder: OutlineInputBorder(
-                                 borderSide: BorderSide(
-                                   color: Colors.grey,
-                                   width: 1.0,
-                                 ),
+                             ),
+                             contentPadding:
+                             EdgeInsets.only(left: 10, top: 4, right: 4),
+                             enabledBorder: OutlineInputBorder(
+                               borderSide: BorderSide(
+                                 color: Colors.grey,
+                                 width: 1.0,
                                ),
                              ),
                            ),
                          ),
                        ),
                      ),
-                   ),),
-                 /* Container(
+                   ),
+                 ),
+  ),
+                /*  Container(
              color: AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -154,8 +158,8 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                          crossAxisAlignment: CrossAxisAlignment.end,
                                                          children: [
-                                                           Text('Cancle',
-                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
+                                                           Text('Requeested',
+                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
                                                            SizedBox(height: 3,),
                                                            Text('23-Nov-2020-11:30AM' ,
                                                              overflow: TextOverflow.clip,
