@@ -268,7 +268,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           MyLocalizations.of(context)
                                               .text("SELECT_TITLE"),
                                           "title",
-                                          Icons.male,
+                                          Icons.mail,
                                           23.0,
                                           titleList, (KeyvalueModel data) {
                                         setState(() {
@@ -365,7 +365,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           'Gender',
                                           // MyLocalizations.of(context).text("SELECT_GENDER"),
                                           "genderSignup",
-                                          Icons.male,
+                                          Icons.mail,
                                           23.0,
                                           genderList, (KeyvalueModel data) {
                                         setState(
