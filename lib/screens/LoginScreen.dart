@@ -59,16 +59,18 @@ class _LoginScreenState extends State<LoginScreen> {
   // LoginResponse loginResponse;
   SharedPref sharedPref = SharedPref();
   bool isPassShow = false;
+
   //  String phoneNumber = "; //enter your 10 digit number
-   int minNumber = 1000;
-   int maxNumber = 6000;
-   String countryCode ="+91"; 
-   bool isotpVisible = false;
-   bool ispassVisible= true;
-   bool isloginButton = true;
-   var rng = new Random();
-var code ;
-var pin ;
+  int minNumber = 1000;
+  int maxNumber = 6000;
+  String countryCode = "+91";
+  bool isotpVisible = false;
+  bool ispassVisible = true;
+  bool isloginButton = true;
+  var rng = new Random();
+  var code;
+
+  var pin;
 
   @override
   void initState() {
@@ -85,16 +87,18 @@ var pin ;
     );
   }
 
-  Widget body(BuildContext context) {  
-    
+  Widget body(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
         height: size.height,
+        color: Colors.white,
         child: Stack(
           children: <Widget>[
             Image.asset(
-              "assets/back_logo.jpg",
-              fit: BoxFit.fitWidth,
+              "assets/bg_img.jpeg",
+              fit: BoxFit.cover,
+              height: 200,
+              width: double.maxFinite,
             ),
             Container(
               padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -108,26 +112,20 @@ var pin ;
                   topRight: Radius.circular(0.0),
                 ),
               ),
-              child: ListView(shrinkWrap: true, children: <Widget>[
-               SizedBox(height: 6),
-               /* SizedBox(
-                  height: size.height * 0.14,
-                ),*/
-              /* SizedBox(
-                              height: size.height * 0.02,
-                            ),
-                */
-
-
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: RichText(
                       textAlign: TextAlign.start,
                       text: TextSpan(
                         children: [
-
-                          TextSpan(text:MyLocalizations.of(context).text("WELCOMENACK"),
-                             /*"Welcomeback",*/
+                          TextSpan(
+                            text:
+                                MyLocalizations.of(context).text("WELCOMENACK"),
+                            /*"Welcomeback",*/
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
                               fontFamily: "Monte",
@@ -150,7 +148,7 @@ var pin ;
                     ),
                   ),
                 ),*/
-               /* Align(
+                /* Align(
                   alignment: Alignment.center,
                     child: Text('eHealthSystem',style:
                     TextStyle(fontWeight: FontWeight.w800, fontSize: 20,color: AppData.kPrimaryColor),)),
@@ -171,19 +169,19 @@ var pin ;
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: fromFieldPass(),
                     ),
-                    
-                   
-                    SizedBox(height: size.height * 0.1,),
+                    SizedBox(
+                      height: size.height * 0.1,
+                    ),
                     _loginButton(),
-                SizedBox(
-                              height: size.height * 0.04,
-                            ),
-                 /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
+                    SizedBox(
+                      height: size.height * 0.04,
+                    ),
+                    /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
                    SizedBox(
                               height: size.height * 0.01,
                             ),
                           _otpButton(),*/
-                  /*SizedBox(
+                    /*SizedBox(
                               height: size.height * 0.02,
                             ),*/
                     Padding(
@@ -191,7 +189,7 @@ var pin ;
                           left: 10.0, right: 10.0, bottom: 25.0),
                       child: InkWell(
                         onTap: () {
-                             Navigator.pushNamed(context, "/userSignUpForm");
+                          Navigator.pushNamed(context, "/userSignUpForm");
                           // Navigator.pushNamed(context, "/registration1");
                         },
                         child: RichText(
@@ -200,6 +198,8 @@ var pin ;
                               TextSpan(
                                   text: MyLocalizations.of(context)
                                       .text("DIDHAVEACC"),
+                                  style: TextStyle(color: Colors.black)), TextSpan(
+                                  text: " ",
                                   style: TextStyle(color: Colors.black)),
                               TextSpan(
                                   text: MyLocalizations.of(context)
@@ -213,25 +213,24 @@ var pin ;
                         ),
                       ),
                     ),
-                   
-         SizedBox(
-                              height: size.height * 0.01,
-                            ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                     InkWell(
-                      onTap: (){
-                         Navigator.pushNamed(context, "/forgotpassword");
-                      },
-                      child: Text('Forgot Password?')),
-                   SizedBox(
-                              height: size.height * 0.06,
-                            ),
+                        onTap: () {
+                          Navigator.pushNamed(context, "/forgotpassword");
+                        },
+                        child: Text('Forgot Password?')),
+                    SizedBox(
+                      height: size.height * 0.10,
+                    ),
                   ],
                 ),
               ]),
             ),
             Positioned(
-              top: 100,
-              //left: 0,
+              top: 170,
+              //right: 30,
               child: Container(
                 width: size.width,
                 height: 60,
@@ -399,27 +398,23 @@ var pin ;
         } else {*/
         widget.model.phnNo = _loginId.text;
         Navigator.pushNamed(context, "/dashboard");
-         
-       
+
         //}
       },
     );
   }
-  
-  
- 
+
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: "Login with OTP".toUpperCase(),
       context: context,
-      fun: () {      
+      fun: () {
         widget.model.phnNo = _loginId.text;
         Navigator.pushNamed(context, "/pinview");
-       
-            //       otp.sendOtp(_loginId.text, 'OTP is : $code',
-            // minNumber, maxNumber, countryCode);    
 
-       
+        //       otp.sendOtp(_loginId.text, 'OTP is : $code',
+        // minNumber, maxNumber, countryCode);
+
         // }
       },
     );

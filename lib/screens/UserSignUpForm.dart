@@ -21,9 +21,8 @@ class UserSignUpForm extends StatefulWidget {
   final bool isConfirmPage;
   final bool isFromDash;
   MainModel model;
-  static KeyvalueModel districtModel = null;
-  static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel titleModel = null;
 
   UserSignUpForm({
     Key key,
@@ -36,6 +35,8 @@ class UserSignUpForm extends StatefulWidget {
   @override
   UserSignUpFormState createState() => UserSignUpFormState();
 }
+
+enum TypeDob { Age, DOB }
 
 class UserSignUpFormState extends State<UserSignUpForm> {
   File _image;
@@ -51,6 +52,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     new TextEditingController(),
     new TextEditingController()
   ];
+
+  TypeDob selectDobEn = TypeDob.Age;
 
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
@@ -107,16 +110,18 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     KeyvalueModel(name: "Female", key: "2"),
     KeyvalueModel(name: "Transgender", key: "3"),
   ];
-  List<KeyvalueModel> districtList = [
-    KeyvalueModel(name: "india", key: "1"),
 
+  List<KeyvalueModel> titleList = [
+    KeyvalueModel(name: "Mr.", key: "1"),
+    KeyvalueModel(name: "Mrs.", key: "2"),
   ];
+
+  File pathUsr = null;
+  TextEditingController dob = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    UserSignUpForm.districtModel = null;
-    UserSignUpForm.blockModel = null;
     UserSignUpForm.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
@@ -136,405 +141,585 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     });
   }
 
+  Future getCameraImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Column(
-              children: [
-              /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
-                  color: AppData.kPrimaryColor,
-          child: Padding(
-          padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-          child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
-            children: [
-              InkWell(
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back,color: Colors.white)),
-              Padding(
-                padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                child: Text('SIGN UP',
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-              ),
-              /*Align(
-                alignment: Alignment.center,
-                child: Text('SIGN UP',textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
-              ),
-              ),*/
-            ],
-          ),
-        ),
-        height: 55,
-        width: MediaQuery.of(context).size.width,
-             /*  height:*/
+        child: Scaffold(
+      appBar: AppBar(
+        title: Text("SIGN UP"),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-
-          /* ),*/
-      Expanded(
-        child: ListView(
-          shrinkWrap: true,
+      body: Container(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                SizedBox(height: 10,),
-              ListView(
+            Expanded(
+              child: ListView(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
                 children: [
-                   Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                      child: Image.asset(
-                        "assets/logo1.png",
-                        fit: BoxFit.fitWidth,
-                        //width: ,
-                        height: 110.0,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
                     ),
-                  ),
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    //   padding: EdgeInsets.only(
-                    //       left: size.width * 0.20, right: size.width * 0.20),
-                    //   child: Image.asset(
-                    //     "assets/icons/sanju-vector.png",
-                    //   ),
-                    // ),
-
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
-                    Form(
-                      key: _formKey,
-                      // ignore: deprecated_member_use
-                      autovalidate: _autovalidate,
-                      child: Expanded(
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 0),
-                              child: DropDown.staticDropdown3(
-                                  MyLocalizations.of(context)
-                                      .text("SELECT_TITLE"),
-                                  "genderSignup",
-                                  genderList, (KeyvalueModel data) {
-                                setState(() {
-                                  UserSignUpForm.genderModel = data;
-                                });
-                              }),
-                            ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
                             SizedBox(
-                              height: 10,
+                              height: 30,
                             ),
-                           /* fromAddress(
-                                5,
-                                "Reason for choice of Dr",
-                                TextInputAction.next,
-                                TextInputType.text,
-                                address_,
-                                email_,
-                                "reasonforchoiceofDr"),*/
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child:Container(
-                                height: 50,
-                                padding: EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                        color: Colors.black,width: 0.3)),
-                                child: TextFormField(
-
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: MyLocalizations.of(context)
-                                            .text("FIRST_NAME") +
-                                        "*",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
-                              ),
-                            ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child:Container(
-                                height: 50,
-                                padding: EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                        color: Colors.black,width: 0.3)),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: MyLocalizations.of(context)
-                                            .text("LAST_NAME") +
-                                        "*",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
-                              ),
-                            ),
-                            ),
-
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal:0),
-                              child: DropDown.staticDropdown3(
-                                  'India',
-                                  // MyLocalizations.of(context).text("SELECT_GENDER"),
-                                  "genderSignup",
-                                  districtList, (KeyvalueModel data) {
-                                setState(() {
-                                  UserSignUpForm.districtModel = data;
-                                });
-                              }),
-                            ),
-
-                            // dob(),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 9.0),
-                              child: mobileNoOTPSearch(),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child:Container(
-                                height: 50,
-                                padding: EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                        color: Colors.black,width: 0.3)),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: MyLocalizations.of(context)
-                                        .text("EMAIL"),
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.emailAddress,
-                                //           inputFormatters: [
-                                //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                //           ],
-                              ),
-                            ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    ispartnercode = !ispartnercode;
-                                  });
-                                },
-                                child: Text(
-                                  MyLocalizations.of(context)
-                                          .text("HAVE_PARTNERCODE") +
-                                      "?",
-                                  style: TextStyle(color: Colors.blue),
-                                )),
-
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Visibility(
-                              visible: ispartnercode,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child:Container(
-                                  height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: Colors.black,width: 0.3)),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: MyLocalizations.of(context)
-                                          .text("PARTNERCODE"),
-                                      hintStyle: TextStyle(color: Colors.grey)),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
-                                  //           inputFormatters: [
-                                  //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                  //           ],
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 83,
+                                width: 83,
+                                child: Stack(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    (pathUsr != null)
+                                        ? Material(
+                                            elevation: 5.0,
+                                            shape: CircleBorder(),
+                                            child: CircleAvatar(
+                                              radius: 40.0,
+                                              backgroundImage:
+                                                  FileImage(pathUsr),
+                                            ),
+                                          )
+                                        : Material(
+                                            elevation: 5.0,
+                                            shape: CircleBorder(),
+                                            child: CircleAvatar(
+                                              radius: 40.0,
+                                              backgroundImage: NetworkImage(
+                                                  AppData.defaultImgUrl),
+                                            ),
+                                          ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          getCameraImage();
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: AppData.kPrimaryColor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                //  mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Checkbox(
-                                    value: _checkbox,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _checkbox = !_checkbox;
-                                      });
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  RichText(
-                                      textAlign: TextAlign.start,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'I agree to NCORDS ',
-                                            /* "Welcome back",*/
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w800,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Terms and Conditions',
-                                            /* "Welcome back",*/
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w500,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.indigo,
-                                            ),
-                                          )
-                                        ],
-                                      )),
-                                ],
+                            /*Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
+                                ),
                               ),
-                            ),
+                            ),*/
+
                             SizedBox(
                               height: 20,
                             ),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: nextButton(),
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
+                            Form(
+                              key: _formKey,
+                              // ignore: deprecated_member_use
+                              autovalidate: _autovalidate,
+                              child: Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0),
+                                      child: DropDown.staticDropdownIcon(
+                                          MyLocalizations.of(context)
+                                              .text("SELECT_TITLE"),
+                                          "title",
+                                          Icons.male,
+                                          23.0,
+                                          titleList, (KeyvalueModel data) {
+                                        setState(() {
+                                          UserSignUpForm.titleModel = data;
+                                        });
+                                      }),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: Container(
+                                        height: 50,
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                              color: Colors.black, width: 0.3),
+                                        ),
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText:
+                                                MyLocalizations.of(context)
+                                                        .text("FIRST_NAME") +
+                                                    "*",
+                                            prefixIcon:
+                                                Icon(Icons.person_rounded),
+                                            hintStyle: TextStyle(
+                                                color: AppData.hintColor,
+                                                fontSize: 17),
+                                          ),
+                                          textInputAction: TextInputAction.next,
+                                          keyboardType: TextInputType.text,
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          inputFormatters: [
+                                            WhitelistingTextInputFormatter(
+                                                RegExp("[a-zA-Z ]")),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: Container(
+                                        height: 50,
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                color: Colors.black,
+                                                width: 0.3)),
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText:
+                                                MyLocalizations.of(context)
+                                                        .text("LAST_NAME") +
+                                                    "*",
+                                            prefixIcon:
+                                                Icon(Icons.person_rounded),
+                                            hintStyle: TextStyle(
+                                                color: AppData.hintColor,
+                                                fontSize: 17),
+                                          ),
+                                          textInputAction: TextInputAction.next,
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          keyboardType: TextInputType.text,
+                                          inputFormatters: [
+                                            WhitelistingTextInputFormatter(
+                                                RegExp("[a-zA-Z ]")),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0),
+                                      child: DropDown.staticDropdownIcon(
+                                          'Gender',
+                                          // MyLocalizations.of(context).text("SELECT_GENDER"),
+                                          "genderSignup",
+                                          Icons.male,
+                                          23.0,
+                                          genderList, (KeyvalueModel data) {
+                                        setState(
+                                          () {
+                                            UserSignUpForm.genderModel = data;
+                                          },
+                                        );
+                                      }),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 9.0, left: 0),
+                                      child: mobileNoOTPSearch(),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: ListTile(
+                                            title: const Text('Age'),
+                                            leading: Radio(
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              value: TypeDob.Age,
+                                              groupValue: selectDobEn,
+                                              onChanged: (TypeDob value) {
+                                                setState(() {
+                                                  selectDobEn = value;
+                                                });
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: ListTile(
+                                            title: const Text('DOB'),
+                                            leading: Radio(
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              value: TypeDob.DOB,
+                                              groupValue: selectDobEn,
+                                              onChanged: (TypeDob value) {
+                                                setState(() {
+                                                  selectDobEn = value;
+                                                });
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    (selectDobEn == TypeDob.Age)
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8,
+                                                          right: 8,
+                                                          top: 10),
+                                                  child: Container(
+                                                    height: 47,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 5,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: Colors.black,
+                                                          width: 0.3),
+                                                    ),
+                                                    child: TextFormField(
+                                                      decoration:
+                                                          InputDecoration(
+                                                        prefixIcon: Icon(Icons
+                                                            .accessibility_outlined),
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText:
+                                                            MyLocalizations.of(
+                                                                    context)
+                                                                .text("AGE"),
+                                                        hintStyle: TextStyle(
+                                                            color: AppData
+                                                                .hintColor,
+                                                            fontSize: 17),
+                                                      ),
+                                                      textAlignVertical:
+                                                          TextAlignVertical
+                                                              .center,
+                                                      textInputAction:
+                                                          TextInputAction.next,
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      //maxLength: 2,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 4,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8,
+                                                          right: 8,
+                                                          top: 10),
+                                                  child: Container(
+                                                    height: 47,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 5,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: Colors.black,
+                                                          width: 0.3),
+                                                    ),
+                                                    child: TextFormField(
+                                                      enabled: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        prefixIcon: Icon(Icons
+                                                            .calendar_today),
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText: "Years",
+                                                        hintStyle: TextStyle(
+                                                            color: AppData
+                                                                .hintColor,
+                                                            fontSize: 17),
+                                                      ),
+                                                      textAlignVertical:
+                                                          TextAlignVertical
+                                                              .center,
+                                                      textInputAction:
+                                                          TextInputAction.next,
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      //maxLength: 2,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              /*Expanded(
+                                                flex: 4,
+                                                child: DropDown
+                                                    .staticDropdownIcon(
+                                                        "Years",
+                                                        "title",
+                                                        Icons.calendar_today,
+                                                        23.0,
+                                                        titleList,
+                                                        (KeyvalueModel data) {
+                                                  setState(() {
+                                                    UserSignUpForm
+                                                        .titleModel = data;
+                                                  });
+                                                }),
+                                              ),*/
+                                            ],
+                                          )
+                                        : InkWell(
+                                            onTap: () {
+                                              _selectDate(context);
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8),
+                                              child: Container(
+                                                height: 50,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 5),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                      color: Colors.black,
+                                                      width: 0.3),
+                                                ),
+                                                child: TextFormField(
+                                                  enabled: false,
+                                                  decoration: InputDecoration(
+                                                    prefixIcon: Icon(
+                                                        Icons.calendar_today),
+                                                    border: InputBorder.none,
+                                                    hintText: "Date of Birth",
+                                                    hintStyle: TextStyle(
+                                                        color:
+                                                            AppData.hintColor,
+                                                        fontSize: 17),
+                                                  ),
+                                                  textInputAction:
+                                                      TextInputAction.next,
+                                                  textAlignVertical:
+                                                      TextAlignVertical.center,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  //maxLength: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: Row(
+                                        //  mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Checkbox(
+                                            value: _checkbox,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _checkbox = !_checkbox;
+                                              });
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          RichText(
+                                              textAlign: TextAlign.start,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text:
+                                                        'I agree to eHealthSystem\'s ',
+                                                    /* "Welcome back",*/
+                                                    style: TextStyle(
+                                                      // fontWeight: FontWeight.w800,
+                                                      fontFamily: "Monte",
+                                                      // fontSize: 25.0,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        'Terms and Conditions',
+                                                    /* "Welcome back",*/
+                                                    style: TextStyle(
+                                                      // fontWeight: FontWeight.w500,
+                                                      fontFamily: "Monte",
+                                                      // fontSize: 25.0,
+                                                      color:
+                                                          AppData.kPrimaryColor,
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: nextButton(),
+                                    ),
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
                         ),
-                      ),
-                    )
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-
-
-                  SizedBox(height: 10,),
-
-                ],),
             ),
           ],
         ),
       ),
-              ],
+    ));
+  }
+
+  Widget dobBirth() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled: !widget.isConfirmPage ? false : true,
+              controller: dob,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Date Of Birth",
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                prefixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: AppData.kPrimaryColor,
+                ),
+              ),
+            ),
           ),
         ),
-
-
-      )
+      ),
     );
   }
-              /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
-  /*Widget fromAddress(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type) {
-    return TextFieldAddress(
-      child: TextFormField(
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          // suffixIcon: Icon(Icons.person_rounded),
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {},
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-      ),
-    );
-  }*/
+
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          UserSignUpForm.genderModel = model;
-        });
+        (KeyvalueModel model) {
+      UserSignUpForm.genderModel = model;
+    });
   }
-
-
-
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -546,10 +731,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             child: Container(
               // padding: EdgeInsets.only(left: 2),
               height: 50.0,
-            decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(5),
-    border: Border.all(color: Colors.black, width: 0.3)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.black, width: 0.3)),
               // decoration: BoxDecoration(
               //     color: AppData.kPrimaryLightColor,
               //     borderRadius: BorderRadius.circular(20),
@@ -753,11 +938,12 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                   border: InputBorder.none,
+                  suffixIcon: Icon(Icons.phone),
+                  border: InputBorder.none,
                   counterText: "",
                   hintText:
                       MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -779,71 +965,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget dob() {
-    return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-        onTap: () => widget.isConfirmPage ? null : _selectDate(context),
-        child: AbsorbPointer(
-          child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            // width: size.width * 0.8,
-            decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
-                // border: Border.all(color: Colors.black, width: 0.3)
-              ),
-            ),
-            child: TextFormField(
-              focusNode: fnode3,
-              enabled: !widget.isConfirmPage ? false : true,
-              controller: textEditingController[2],
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              onSaved: (value) {
-                //userPersonalForm.dob = value;
-                selectDob = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[2] = true;
-                  return null;
-                }
-                error[2] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[2] = false;
-                // print("error>>>" + error[2].toString());
-
-                setState(() {});
-                AppData.fieldFocusChange(context, fnode3, fnode4);
-              },
-              decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
-                border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
         ),
       ),
     );
@@ -871,54 +992,5 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   validate() async {
     _formKey.currentState.validate();
-
-    if (error[0] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_FIRST_NAME"));
-      FocusScope.of(context).requestFocus(fnode1);
-    } else if (error[1] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
-      FocusScope.of(context).requestFocus(fnode2);
-    } else if (UserSignUpForm.genderModel == null || UserSignUpForm.genderModel == "") {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
-      FocusScope.of(context).requestFocus(fnode4);
-    } else if (textEditingController[5].text == '') {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_AADHAAR_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode4);
-    } else if (error[3] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_FATHER_NAME"));
-      FocusScope.of(context).requestFocus(fnode6);
-    } else if (error[2] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_DOB"));
-      FocusScope.of(context).requestFocus(fnode3);
-    } else if (error[4] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode7);
-    } else if (UserSignUpForm.districtModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (UserSignUpForm.blockModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
-    } else {
-      _formKey.currentState.save();
-
-      if (isOnline) {
-        setState(() {
-          _isSignUpLoading = true;
-        });
-        await Future.delayed(const Duration(seconds: 2), () {
-          setState(() {
-            _isSignUpLoading = false;
-          });
-        });
-      } else {
-        AppData.showInSnackBar(context, "INTERNET_CONNECTION");
-      }
-    }
   }
 }

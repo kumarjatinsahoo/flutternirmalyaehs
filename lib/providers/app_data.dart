@@ -9,24 +9,19 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppData {
-  static String appId = "com.";
-  static String appName = "Construction Workers";
-  static String baseUrl = 'http://sug.sugamatourists.com';
   static String ODISHA = 'ODISHA';
   static String defaultImgUrl =
       'https://thumbs.dreamstime.com/b/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg';
 
   static int bgColor = 00000000;
   static int textColor = 00000000;
-  static String SALT_KEY = "kimarhs";
 
-  //static Color kPrimaryColor = Color(0xFF5bc878);
-  static Color kPrimaryColor1 = Colors.blue[600];
-  static Color kPrimaryColor = Color(0xFF2372B6) ;
+  static Color kPrimaryColor = Color(0xFF2372B6);
+  static Color hintColor = Color(0xFF666666);
   static Color klightblurColor = Color(0xFFF0F8FF) ;
   static Color kPrimaryRedColor = Color(0xFFCF3564) ;
   static Color klightRedColor = Color(0xFFFEF9F6) ;
-  static Color matruColor = Colors.indigo;
+  static Color matruColor = Color(0xFF2372B6);
   static Color kPrimaryLightColor = Color(0xFFe9f7ea);
   //static Color kPrimaryLightColor = Color(0xFF92CA91);
   static Color grey = Color(0xFFF2F2F2);

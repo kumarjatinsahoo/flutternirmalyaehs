@@ -331,8 +331,8 @@ class SignUpForm1State extends State<SignUpForm1> {
                             SizedBox(
                               height: 5,
                             ),
-                            Visibility(
-                              visible: ispartnercode,
+                           /* Visibility(
+                              visible: false,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 25),
@@ -348,7 +348,7 @@ class SignUpForm1State extends State<SignUpForm1> {
                                   //           ],
                                 ),
                               ),
-                            ),
+                            ),*/
 
                             Padding(
                               padding:
@@ -372,7 +372,7 @@ class SignUpForm1State extends State<SignUpForm1> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: 'I agree to NCORDS ',
+                                            text: 'I agree to eHealthSystem ',
                                             /* "Welcome back",*/
                                             style: TextStyle(
                                               // fontWeight: FontWeight.w800,
