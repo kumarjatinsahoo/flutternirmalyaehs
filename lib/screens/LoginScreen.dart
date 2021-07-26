@@ -176,20 +176,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: size.height * 0.04,
                     ),
-                    /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
-                   SizedBox(
-                              height: size.height * 0.01,
-                            ),
-                          _otpButton(),*/
-                    /*SizedBox(
-                              height: size.height * 0.02,
-                            ),*/
+
+
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, bottom: 25.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, "/userSignUpForm");
+                          dashOption(context);
+                         // Navigator.pushNamed(context, "/userSignUpForm");
                           // Navigator.pushNamed(context, "/registration1");
                         },
                         child: RichText(
@@ -294,6 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
+
   Widget fromFieldNumber() {
     return Theme(
       data: ThemeData(primaryColor: AppData.matruColor),
@@ -331,6 +327,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 
   Widget fromFieldPass() {
     return Theme(
@@ -385,6 +382,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
   Widget _loginButton() {
     return MyWidgets.nextButton(
       text: "LOGIN",
@@ -404,6 +402,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: "Login with OTP".toUpperCase(),
@@ -418,5 +417,81 @@ class _LoginScreenState extends State<LoginScreen> {
         // }
       },
     );
+  }
+
+
+  dashOption(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text("User Dashboard"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            Navigator.pushNamed(context, "/userSignUpForm");
+                            //_validate();
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Doctor Dashboard"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            Navigator.pushNamed(context, "/doctorsignupform");
+                            //_validate();
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Lab Dashboard"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/labsignupform");
+                          },
+                        ),
+                        Divider(),
+                        MaterialButton(
+                          child: Text(
+                            MyLocalizations.of(context).text("CANCEL"),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
   }
 }

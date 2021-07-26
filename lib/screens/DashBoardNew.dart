@@ -295,6 +295,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           ),
         ),
       ),
+
+
       body: _dashboardnew(context),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 9,
@@ -371,6 +373,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 
+
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -379,7 +382,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -394,9 +396,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-
-                         /* Expanded(
-                            child:*/ Column(
+                          Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -431,7 +431,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     textAlign: TextAlign.center,
                                   ),*/
                                 ]),
-                         
                           SizedBox(
                             width: 5,
                           ),
@@ -467,7 +466,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                         //overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                /*  ),*/
+                                /*  ),
+                                * */
                                   /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
@@ -478,8 +478,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                         ),
                                       )),*/
                                 ]),
-
-
                           SizedBox(
                             width: 5,
                           ),
@@ -816,7 +814,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               ],
                             ),*/
                       SizedBox(height: size.height * 0.02),
-
                        Row(
                          mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -851,12 +848,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             //overflow: TextOverflow.ellipsis,
                                           ),
                                               ),
-
-
-
-
-
-
                                       ]),
                                 SizedBox(
                                   width: 15,
