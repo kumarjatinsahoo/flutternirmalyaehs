@@ -177,6 +177,9 @@ class _MyAppState extends State<MyApp> {
               '/pharmasignupform3': (context) => PharmaSignUpForm3(
                     model: _model,
                   ),
+              '/doctorsignupform': (context) => DoctorSignUpForm(
+                model: _model,
+              ),
               '/share': (context) => DoctorSignUpForm(
                     model: _model,
                   ),
@@ -192,6 +195,9 @@ class _MyAppState extends State<MyApp> {
               '/doctorsignupform5': (context) => DoctorSignUpForm5(
                     model: _model,
                   ),
+              '/labsignupform': (context) => LabSignUpForm(
+                model: _model,
+              ),
               '/monthlyview': (context) => LabSignUpForm(
                     model: _model,
                   ),

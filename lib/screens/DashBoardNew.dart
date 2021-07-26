@@ -39,6 +39,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   List<String> imageSliders = [
     "assets/offer_ad.png",
     "assets/bannerimag1.jpeg",
+    "assets/images/sliding1.jpeg",
+    "assets/images/sliding1 (2).jpeg",
+    "assets/images/sliding2.jpeg",
+    "assets/images/sliding3.jpeg",
+    "assets/images/sliding4.jpeg",
+    "assets/images/sliding5.jpeg",
+    "assets/images/sliding6.jpeg",
+    "assets/images/sliding7.jpeg",
 
     /* "assets/sstory_one.jpg",*/
   ];
@@ -150,6 +158,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
+
+
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Column(
@@ -206,7 +216,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
                   ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading:Image.asset("assets/images/myprofile.png",height: 30,),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
                 onTap: () {
@@ -214,6 +224,77 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
+              ListTile(
+                 leading:Image.asset("assets/images/home.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
+                selected: _selectedDestination == 2,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                 leading:Image.asset("assets/images/account.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
+                selected: _selectedDestination == 3,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                leading:Image.asset("assets/images/aboutus.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('About Us'),
+                selected: _selectedDestination == 4,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                  leading: Image.asset("assets/images/share.png",height: 30,),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  // onTap: () {
+                  //   selectDestination(5);
+                  //   Navigator.pushNamed(context, "/share");
+                  // }
+              ),
+
+              ListTile(
+                  leading: Image.asset("assets/images/contact us.png",height: 30,),
+                  title: Text('Contact Us'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(5);
+                    Navigator.pushNamed(context, "/share");
+                  }
+              ),
+
+              ListTile(
+                leading: Image.asset("assets/images/support.png",height: 30,),
+                title: Text('Support'),
+                selected: _selectedDestination == 7,
+                // onTap: () {
+                //   selectDestination(5);
+                //   Navigator.pushNamed(context, "/share");
+                // }
+              ),
+              ListTile(
+                leading: Image.asset("assets/images/reminder.png",height: 30,),
+                title: Text('Reminder'),
+                selected: _selectedDestination == 8,
+                // onTap: () {
+                //   selectDestination(5);
+                //   Navigator.pushNamed(context, "/share");
+                // }
+              ),
+
+
+
               ListTile(
                 leading: Icon(Icons.person),
                 title: Text('Notifications'),
@@ -223,18 +304,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   // Navigator.pushNamed(context, "/Notifications");
                 },
               ),
-              /* ListTile(
-                  leading: Icon(Icons.notifications),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    Navigator.pushNamed(context, "/onlinechats");
-                  },
-
-                  title: Text('Online Chat'),
-                  // onTap: () {
-                  // },
-                ),*/
               ListTile(
                 leading: Icon(Icons.help_center),
                 title: Text('Help'),
@@ -246,15 +315,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // onTap: () {
                 // },
               ),
-              ListTile(
-                leading: Icon(Icons.share),
-                title: Text('Share'),
-                selected: _selectedDestination == 5,
-                  onTap: () {
-                    selectDestination(5);
-                    Navigator.pushNamed(context, "/share");
-                  }
-              ),
+
               ListTile(
                   leading: Icon(Icons.collections),
                   title: Text('My Orders'),
@@ -289,7 +350,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout),
+                leading: Image.asset("assets/images/logout.png",height: 30,),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
@@ -301,6 +362,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           ),
         ),
       ),
+
+
       body: _dashboardnew(context),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 9,
@@ -381,9 +444,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
-       /* color: Colors.blue,*/
         height: double.maxFinite,
-
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -413,8 +474,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
 
-                         *//* Expanded(
-                            child:*//* Column(
+                         /* Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -423,7 +484,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     //icon: FontAwesomeIcons.accusoft,
                                     title: "My Medical Record",
                                     fun: () {
-                                      *//* Navigator.pushNamed(context, "/geneicstores");*//*
+                                      /* Navigator.pushNamed(context, "/geneicstores");*/
                                       // AppData.showSnack(
                                       //     context, "Coming soon", Colors.green);
                                     },
@@ -437,24 +498,24 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "My Medical Record",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                *//*  Text(
+                                /*  Text(
                                     "My Medical Record",
                                     style: TextStyle(color: Colors.black),
                                     textAlign: TextAlign.center,
-                                  ),*//*
+                                  ),*/
                                 ]),
-                         
+
                           SizedBox(
                             width: 5,
                           ),
-                          *//*Expanded(
-                            child:*//* Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -464,8 +525,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     //icon: FontAwesomeIcons.accusoft,
                                     title: "Test Report",
                                     fun: () {
-                                     *//* Navigator.pushNamed(
-                                          context, "/geneicstores");*//*
+                                     /* Navigator.pushNamed(
+                                          context, "/geneicstores");*/
                                       // AppData.showSnack(
                                       //   context, "Coming soon", Colors.green);
                                     },
@@ -479,14 +540,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                     *//* child: Expanded(*//*
+                                     /* child: Expanded(*/
                                       child: Text(
                                         "Test Report",textAlign:TextAlign.center ,
                                         //overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                *//*  ),*//*
-                                  *//*Align(
+                                /*  ),*/
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -494,14 +555,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
 
                           SizedBox(
                             width: 5,
                           ),
-                         *//* Expanded(*//*
+                         /* Expanded(*/
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -512,8 +573,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     //icon: FontAwesomeIcons.accusoft,
                                     title: "Generic Medical Stores",
                                     fun: () {
-                                     *//* Navigator.pushNamed(
-                                          context, "/geneicstores");*//*
+                                     /* Navigator.pushNamed(
+                                          context, "/geneicstores");*/
                                       // AppData.showSnack(
                                       //   context, "Coming soon", Colors.green);
                                     },
@@ -533,7 +594,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
 
-                                  *//*Align(
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -541,7 +602,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
 
@@ -551,7 +612,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                         *//* Expanded(*//*
+                         /* Expanded(*/
                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -577,13 +638,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Emergency Help",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  *//*Align(
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -591,14 +652,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
                           SizedBox(
                             width: 5,
                           ),
-                          *//*Expanded(
-                            child:*//* Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -623,13 +684,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Medicine Reminder",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  *//*Align(
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -637,12 +698,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
-                          *//*),*//*
+                          /*),*/
                           SizedBox(
                             width: 5,
-                          ),*//*  Expanded(*//*
+                          ),/*  Expanded(*/
 
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -667,13 +728,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Upload Medical Data",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  *//*Align(
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -681,7 +742,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
                         ],
@@ -690,8 +751,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          *//*Expanded(
-                            child:*//* Column(
+                          /*Expanded(
+                            child:*/ Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -716,13 +777,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Organ Donation",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                 *//* Align(
+                                 /* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -730,13 +791,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
                           SizedBox(
                             width: 5,
                           ),
-                          *//*Expanded(*//*
+                          /*Expanded(*/
                            Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -762,13 +823,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Generic Medical Stores",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                 *//* Align(
+                                 /* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -776,14 +837,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
                           SizedBox(
                             width: 5,
                           ),
-                         *//* Expanded(
-                            child: *//*Column(
+                         /* Expanded(
+                            child: */Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -807,13 +868,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   Container(
                                     width: 100,
                                     height:35,
-                                    *//* child: Expanded(*//*
+                                    /* child: Expanded(*/
                                     child: Text(
                                       "Govternment Schemes",textAlign:TextAlign.center ,
                                       //overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  *//*Align(
+                                  /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -821,18 +882,18 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )),*//*
+                                      )),*/
                                 ]),
 
                         ],
                       ),
-                      *//*SizedBox(height: size.height * 0.02),
+                      /*SizedBox(height: size.height * 0.02),
                                 Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
 
                               ],
-                            ),*//*
+                            ),*/
                       SizedBox(height: size.height * 0.02),
 
                        Row(
@@ -910,7 +971,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             ),
                                           ),
 
-                                      *//*  Align(
+                                      /*  Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
                                             width:100, child: FittedBox(child:Text(
@@ -920,7 +981,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                           ),
                                           )
                                         ),
-                                        ),*//*
+                                        ),*/
                                       ]),
 
                               ],
@@ -929,10 +990,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   ),
                 ),
               ),
-            ),*/
-            PageIndicator(
-              length: 2,
-              pageController: _controller,
             ),
             CarouselSlider(
               options: CarouselOptions(
@@ -942,7 +999,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   viewportFraction: 0.9,
                   scrollDirection: Axis.horizontal,
                   disableCenter: true,
-                  autoPlayInterval: Duration(seconds: 10),
+                  autoPlayInterval: Duration(seconds: 8),
                   //autoPlayAnimationDuration: Duration(seconds: 90),
                   pauseAutoPlayInFiniteScroll: true,
                   onPageChanged: (index, reason) {

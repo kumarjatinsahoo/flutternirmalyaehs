@@ -24,8 +24,8 @@ enum gender{
   Female,
 }
 // ignore: must_be_immutable
-class PharmaSignUpForm3 extends StatefulWidget {
-  final Function(int, bool) updateTab;
+class PharmaSignUpForm4 extends StatefulWidget {
+
 
   final bool isConfirmPage;
   final bool isFromDash;
@@ -35,19 +35,18 @@ class PharmaSignUpForm3 extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel bloodgroupModel=null;
 
-  PharmaSignUpForm3({
+  PharmaSignUpForm4({
     Key key,
-    @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
     this.model,
   }) : super(key: key);
 
   @override
-  PharmaSignUpForm3State createState() => PharmaSignUpForm3State();
+  PharmaSignUpForm4State createState() => PharmaSignUpForm4State();
 }
 
-class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
+class PharmaSignUpForm4State extends State<PharmaSignUpForm4> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -130,28 +129,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> BloodGroup = [
-    KeyvalueModel(name: "A+", key: "1"),
-    KeyvalueModel(name: "B+", key: "2"),
-    KeyvalueModel(name: "O+", key: "3"),
-    KeyvalueModel(name: "AB+", key: "4"),
-    KeyvalueModel(name: "A-", key: "5"),
-    KeyvalueModel(name: "B-", key: "6"),
-    KeyvalueModel(name: "O-", key: "7"),
-    KeyvalueModel(name: "AB-", key: "8"),
-  ];
-  List<KeyvalueModel> Gender=[
-    KeyvalueModel(name: "Male",key: "0"),
-    KeyvalueModel(name: "Female",key: "1"),
-    KeyvalueModel(name: "Transgender",key: "2"),
-  ];
-
   @override
   void initState() {
     super.initState();
-    PharmaSignUpForm3.districtModel = null;
-    PharmaSignUpForm3.blockModel = null;
-    PharmaSignUpForm3.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -228,165 +208,38 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 20,
+                                  height: 10,
                                 ),
-                                Form(
+                                Card(
                                   key: _formKey,
-                                  autovalidate: _autovalidate,
+                                  // autovalidate: _autovalidate,
                                   child: Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
+                                            Text(" Welcome to eHealthSystem",
+                                              style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
                                           ],
                                         ),
                                         SizedBox(height: 5,),
-
-                                        formField(8, "Address"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_COUNTRY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm3.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("STATE"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm3.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("DISTRICT"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm3.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_CITY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm3.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(5, "Enter Zip/Pin Code :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(4, "Enter Home Phone (Optional)"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(9, "Enter Office phone (Optional)"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(10, "Mobile Number :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(11, "Email Id :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(12, "Alternate Email Id"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
                                         Column(
                                           children: [
-                                            Text("Upload Document :",style: TextStyle(fontSize: 20,color: Colors.black),),
+                                            Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
+                                                "Your document verification process started now . Verification will be"
+                                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
+                                              style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
                                           ],
                                         ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Row(
-                                            //  mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox = !_checkbox;
-                                                  });
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              RichText(
-                                                  textAlign: TextAlign.start,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'I agree to NCORDS ',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w800,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: 'Terms and Conditions',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w500,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.indigo,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
+                                        SizedBox(
+                                          height: 10,
                                         ),
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
+                                          child: home(),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
                                         ),
                                       ],
                                     ),
@@ -395,7 +248,6 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                               ],
                             ),
                             SizedBox(height: 10,),
-
                           ],),
                       ),
                     ],
@@ -404,28 +256,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
               ],
             ),
           ),
-
-
         )
     );
   }
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
-  // Widget gender() {
-  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-  //           (KeyvalueModel model) {
-  //         LabSignUpForm2.genderModel = model;
-  //       });
-  // }
-
-
-
-
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -562,12 +395,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     );
   }
 
-
-
-  Widget nextButton1() {
+  Widget home() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/pharmasignupform4");
+        Navigator.pushNamed(context, "/dashboard");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -583,7 +414,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("SUBMIT"),
+            MyLocalizations.of(context).text("HOME"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -800,7 +631,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (PharmaSignUpForm3.genderModel == null || PharmaSignUpForm3.genderModel == "") {
+    } else if (PharmaSignUpForm4.genderModel == null || PharmaSignUpForm4.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -820,9 +651,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (PharmaSignUpForm3.districtModel == null) {
+    } else if (PharmaSignUpForm4.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (PharmaSignUpForm3.blockModel == null) {
+    } else if (PharmaSignUpForm4.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -932,39 +763,5 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       ),
     );
   }
-
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
-
 
 }
