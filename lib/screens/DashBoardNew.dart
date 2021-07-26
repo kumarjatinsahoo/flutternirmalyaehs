@@ -152,6 +152,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
+
+
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Column(
@@ -208,7 +210,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
                   ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading:Image.asset("assets/images/myprofile.png",height: 30,),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
                 onTap: () {
@@ -216,6 +218,77 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
+              ListTile(
+                 leading:Image.asset("assets/images/home.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
+                selected: _selectedDestination == 2,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                 leading:Image.asset("assets/images/account.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
+                selected: _selectedDestination == 3,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                leading:Image.asset("assets/images/aboutus.png",height: 30,),
+                // leading: Icon(Icons.person),
+                title: Text('About Us'),
+                selected: _selectedDestination == 4,
+                // onTap: () {
+                //   selectDestination(1);
+                //   Navigator.pushNamed(context, "/profile");
+                // },
+              ),
+              ListTile(
+                  leading: Image.asset("assets/images/share.png",height: 30,),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  // onTap: () {
+                  //   selectDestination(5);
+                  //   Navigator.pushNamed(context, "/share");
+                  // }
+              ),
+
+              ListTile(
+                  leading: Image.asset("assets/images/contact us.png",height: 30,),
+                  title: Text('Contact Us'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(5);
+                    Navigator.pushNamed(context, "/share");
+                  }
+              ),
+
+              ListTile(
+                leading: Image.asset("assets/images/support.png",height: 30,),
+                title: Text('Support'),
+                selected: _selectedDestination == 7,
+                // onTap: () {
+                //   selectDestination(5);
+                //   Navigator.pushNamed(context, "/share");
+                // }
+              ),
+              ListTile(
+                leading: Image.asset("assets/images/reminder.png",height: 30,),
+                title: Text('Reminder'),
+                selected: _selectedDestination == 8,
+                // onTap: () {
+                //   selectDestination(5);
+                //   Navigator.pushNamed(context, "/share");
+                // }
+              ),
+
+
+
               ListTile(
                 leading: Icon(Icons.person),
                 title: Text('Notifications'),
@@ -225,18 +298,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   // Navigator.pushNamed(context, "/Notifications");
                 },
               ),
-              /* ListTile(
-                  leading: Icon(Icons.notifications),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    Navigator.pushNamed(context, "/onlinechats");
-                  },
-
-                  title: Text('Online Chat'),
-                  // onTap: () {
-                  // },
-                ),*/
               ListTile(
                 leading: Icon(Icons.help_center),
                 title: Text('Help'),
@@ -248,15 +309,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // onTap: () {
                 // },
               ),
-              ListTile(
-                leading: Icon(Icons.share),
-                title: Text('Share'),
-                selected: _selectedDestination == 5,
-                  onTap: () {
-                    selectDestination(5);
-                    Navigator.pushNamed(context, "/share");
-                  }
-              ),
+            
               ListTile(
                   leading: Icon(Icons.collections),
                   title: Text('My Orders'),
@@ -291,7 +344,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout),
+                leading: Image.asset("assets/images/logout.png",height: 30,),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
