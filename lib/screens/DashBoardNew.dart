@@ -1422,8 +1422,8 @@ class MyPage1Widget extends StatelessWidget {
                      child: Image.asset(
                    /* "assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
-                    //width: ,
-                    height: 60.0,
+                       width: 50,
+                       height: 60.0,
 
                   )),
                     //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
@@ -1656,9 +1656,8 @@ class MyPage1Widget extends StatelessWidget {
                      child: Image.asset(
                     /*"assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
-                    //width: ,
-                    height: 60.0,
-
+                       width: 50,
+                       height: 60.0,
                   ),),
                     /*child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),*/
 
@@ -2038,8 +2037,8 @@ class MyPage2Widget extends StatelessWidget {
                      child: Image.asset(
                     /*"assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
-                    //width: ,
-                    height: 60.0,
+                       width: 50,
+                       height: 60.0,
 
                   ),
                    /* child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)*/),
@@ -2271,9 +2270,8 @@ class MyPage2Widget extends StatelessWidget {
                      child: Image.asset(
                    /* "assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
-                    //width: ,
-                    height: 60.0,
-
+                       width: 50,
+                       height: 60.0,
                   ),),
                     //child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),
 
