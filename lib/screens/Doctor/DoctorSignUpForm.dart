@@ -300,7 +300,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                         Row(
                                           children: [
                                             Radio(
-                                              value: Organization.Pharmacist,
+                                              value: Organization.Pathologist,
                                               groupValue: org,
                                               onChanged: (Organization org) {
                                                 setState(() {
@@ -314,7 +314,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                         Row(
                                           children: [
                                             Radio(
-                                              value: Organization.Pharmacist,
+                                              value: Organization.Receptionist,
                                               groupValue: org,
                                               onChanged: (Organization org) {
                                                 setState(() {
@@ -328,7 +328,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                         Row(
                                           children: [
                                             Radio(
-                                              value: Organization.Pharmacist,
+                                              value: Organization.Hospital,
                                               groupValue: org,
                                               onChanged: (Organization org) {
                                                 setState(() {
@@ -342,7 +342,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                         Row(
                                           children: [
                                             Radio(
-                                              value: Organization.Pharmacist,
+                                              value: Organization.Pharmacy,
                                               groupValue: org,
                                               onChanged: (Organization org) {
                                                 setState(() {
@@ -356,7 +356,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                         Row(
                                           children: [
                                             Radio(
-                                              value: Organization.Pharmacist,
+                                              value: Organization.PathologyLab,
                                               groupValue: org,
                                               onChanged: (Organization org) {
                                                 setState(() {

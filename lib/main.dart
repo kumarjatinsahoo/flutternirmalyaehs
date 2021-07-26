@@ -34,6 +34,7 @@ import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
+import 'package:user/screens/Pharmacists/PharmaSignUpForm4.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
@@ -172,6 +173,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/pharmasignupform3': (context) => PharmaSignUpForm3(
+                model: _model,
+              ),
+              '/pharmasignupform4': (context) => PharmaSignUpForm4(
                 model: _model,
               ),
               '/share': (context) => DoctorSignUpForm(
