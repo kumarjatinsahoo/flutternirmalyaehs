@@ -388,4 +388,80 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+
+
+  dashOption(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text("User Registration"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            Navigator.pushNamed(context, "/userSignUpForm");
+                            //_validate();
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Doctor Registration"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            Navigator.pushNamed(context, "/doctorsignupform");
+                            //_validate();
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Lab Registration"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/labsignupform");
+                          },
+                        ),
+                        Divider(),
+                        MaterialButton(
+                          child: Text(
+                            MyLocalizations.of(context).text("CANCEL"),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
 }

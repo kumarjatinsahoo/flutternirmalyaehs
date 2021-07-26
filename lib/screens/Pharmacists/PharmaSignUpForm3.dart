@@ -567,7 +567,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/doctorsignupform5");
+        Navigator.pushNamed(context, "/pharmasignupform4");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

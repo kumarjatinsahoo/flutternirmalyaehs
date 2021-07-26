@@ -60,7 +60,7 @@ class _MyAppointmentState extends State<MyAppointment> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                          gradient: LinearGradient(colors: [
-                              Colors.blue[400],
+                              Colors.blue[400] ,
                               Colors.blue[200]
                             ]),
                              borderRadius: BorderRadius.circular(10),

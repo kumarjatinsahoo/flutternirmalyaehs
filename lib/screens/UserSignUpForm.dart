@@ -268,7 +268,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           MyLocalizations.of(context)
                                               .text("SELECT_TITLE"),
                                           "title",
-                                          Icons.male,
+                                          Icons.mail,
                                           23.0,
                                           titleList, (KeyvalueModel data) {
                                         setState(() {
@@ -365,7 +365,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           'Gender',
                                           // MyLocalizations.of(context).text("SELECT_GENDER"),
                                           "genderSignup",
-                                          Icons.male,
+                                          Icons.mail,
                                           23.0,
                                           genderList, (KeyvalueModel data) {
                                         setState(
@@ -610,35 +610,37 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          RichText(
-                                              textAlign: TextAlign.start,
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text:
-                                                        'I agree to eHealthSystem\'s ',
-                                                    /* "Welcome back",*/
-                                                    style: TextStyle(
-                                                      // fontWeight: FontWeight.w800,
-                                                      fontFamily: "Monte",
-                                                      // fontSize: 25.0,
-                                                      color: Colors.grey,
+                                          Expanded(
+                                            child: RichText(
+                                                textAlign: TextAlign.start,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text:
+                                                          'I agree to eHealthSystem\'s ',
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w800,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.grey,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                        'Terms and Conditions',
-                                                    /* "Welcome back",*/
-                                                    style: TextStyle(
-                                                      // fontWeight: FontWeight.w500,
-                                                      fontFamily: "Monte",
-                                                      // fontSize: 25.0,
-                                                      color:
-                                                          AppData.kPrimaryColor,
-                                                    ),
-                                                  )
-                                                ],
-                                              )),
+                                                    TextSpan(
+                                                      text:
+                                                          'Terms and Conditions',
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w500,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color:
+                                                            AppData.kPrimaryColor,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         ],
                                       ),
                                     ),
