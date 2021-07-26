@@ -112,121 +112,92 @@ class _LoginScreenState extends State<LoginScreen> {
                   topRight: Radius.circular(0.0),
                 ),
               ),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text:
-                                MyLocalizations.of(context).text("WELCOMENACK"),
-                            /*"Welcomeback",*/
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontFamily: "Monte",
-                              fontSize: 25.0,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                /*Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                    child: Image.asset(
-                      "assets/logo1.png",
-                      fit: BoxFit.fitWidth,
-                      //width: ,
-                      height: 70.0,
-                    ),
-                  ),
-                ),*/
-                /* Align(
-                  alignment: Alignment.center,
-                    child: Text('eHealthSystem',style:
-                    TextStyle(fontWeight: FontWeight.w800, fontSize: 20,color: AppData.kPrimaryColor),)),
-                Align(
-                    alignment: Alignment.center,
-                    child: Text("Let's Heal the World",style:
-                    TextStyle(fontWeight: FontWeight.w500, fontSize: 15,color:Colors.red),)),
-*/
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: fromFieldNumber(),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: fromFieldPass(),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.1,
-                    ),
-                    _loginButton(),
-                    SizedBox(
-                      height: size.height * 0.04,
-                    ),
-                    /*  Text('- OR -', style: TextStyle(color: Colors.black54), ),
-                   SizedBox(
-                              height: size.height * 0.01,
-                            ),
-                          _otpButton(),*/
-                    /*SizedBox(
-                              height: size.height * 0.02,
-                            ),*/
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 25.0),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, "/userSignUpForm");
-                          // Navigator.pushNamed(context, "/registration1");
-                        },
+              child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      //Spacer(),
+                      SizedBox(height: 160,),
+                      Align(
+                        alignment:Alignment.topLeft,
                         child: RichText(
+                          textAlign: TextAlign.start,
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                  text: MyLocalizations.of(context)
-                                      .text("DIDHAVEACC"),
-                                  style: TextStyle(color: Colors.black)), TextSpan(
-                                  text: " ",
-                                  style: TextStyle(color: Colors.black)),
-                              TextSpan(
-                                  text: MyLocalizations.of(context)
-                                      .text("CREATEACC"),
-                                  style: TextStyle(
-                                      color: AppData.matruColor,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w600))
+                                text: MyLocalizations.of(context)
+                                    .text("WELCOMENACK"),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontFamily: "Monte",
+                                  fontSize: 25.0,
+                                  color: Colors.black,
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, "/forgotpassword");
-                        },
-                        child: Text('Forgot Password?')),
-                    SizedBox(
-                      height: size.height * 0.10,
-                    ),
-                  ],
-                ),
-              ]),
+                      SizedBox(height: 5),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: fromFieldNumber(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: fromFieldPass(),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.1,
+                      ),
+                      _loginButton(),
+                      SizedBox(
+                        height: size.height * 0.04,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, bottom: 25.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/userSignUpForm");
+                            // Navigator.pushNamed(context, "/registration1");
+                          },
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: MyLocalizations.of(context)
+                                        .text("DIDHAVEACC"),
+                                    style: TextStyle(color: Colors.black,fontSize: 17)),
+                                TextSpan(
+                                    text: " ",
+                                    style: TextStyle(color: Colors.black)),
+                                TextSpan(
+                                    text: MyLocalizations.of(context)
+                                        .text("CREATEACC"),
+                                    style: TextStyle(
+                                        color: AppData.matruColor,
+                                        fontStyle: FontStyle.normal,fontSize: 17,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/forgotpassword");
+                          },
+                          child: Text('Forgot Password?',style: TextStyle(fontSize: 17,color: AppData.kPrimaryColor),)),
+                      SizedBox(
+                        height: size.height * 0.10,
+                      ),
+                    ]),
+              ),
             ),
             Positioned(
               top: 170,
@@ -244,12 +215,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Container(
-                      //color:Colors.white,
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                       alignment: Alignment.center,
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          // hint: Text("Select Device"),
                           value: AppData.selectedLanguage,
                           isDense: true,
                           onChanged: (newValue) {
@@ -304,8 +273,8 @@ class _LoginScreenState extends State<LoginScreen> {
         autofocus: false,
         maxLength: 10,
         decoration: InputDecoration(
-            /*prefix:
-                Padding(padding: EdgeInsets.only(top: 10), child: Text('+91 ')),*/
+            prefix:
+                Padding(padding: EdgeInsets.only(top: 10), child: Text('+91 ')),
             //hintText: "Enter number",
             labelText: MyLocalizations.of(context).text("MOBILENO"),
             alignLabelWithHint: true,
