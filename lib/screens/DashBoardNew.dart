@@ -33,6 +33,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   List<String> imageSliders = [
     "assets/offer_ad.png",
     "assets/bannerimag1.jpeg",
+    "assets/images/sliding1.jpeg",
+    "assets/images/sliding1 (2).jpeg",
+    "assets/images/sliding2.jpeg",
+    "assets/images/sliding3.jpeg",
+    "assets/images/sliding4.jpeg",
+    "assets/images/sliding5.jpeg",
+    "assets/images/sliding6.jpeg",
+    "assets/images/sliding7.jpeg",
 
     /* "assets/sstory_one.jpg",*/
   ];
@@ -912,7 +920,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   viewportFraction: 0.9,
                   scrollDirection: Axis.horizontal,
                   disableCenter: true,
-                  autoPlayInterval: Duration(seconds: 10),
+                  autoPlayInterval: Duration(seconds: 8),
                   //autoPlayAnimationDuration: Duration(seconds: 90),
                   pauseAutoPlayInFiniteScroll: true,
                   onPageChanged: (index, reason) {

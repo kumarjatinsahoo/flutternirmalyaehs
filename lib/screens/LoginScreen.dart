@@ -176,8 +176,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: size.height * 0.04,
                     ),
-
-
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, bottom: 25.0),
@@ -439,7 +437,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Text("User Dashboard"),
+                          title: Text("User Registration"),
                           leading: Icon(
                             CupertinoIcons.calendar_today,
                             size: 40,
@@ -452,7 +450,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Doctor Dashboard"),
+                          title: Text("Doctor Registration"),
                           leading: Icon(
                             CupertinoIcons.calendar_today,
                             size: 40,
@@ -465,7 +463,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Lab Dashboard"),
+                          title: Text("Lab Registration"),
                           leading: Icon(
                             CupertinoIcons.calendar_today,
                             size: 40,
