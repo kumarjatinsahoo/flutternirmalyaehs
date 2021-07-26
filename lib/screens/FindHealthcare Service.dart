@@ -93,7 +93,9 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                )),
                                            ),
                                            ),
-                                           Card(
+                                           GestureDetector(
+                                             onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
+                                             child: Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -124,7 +126,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                                    ],
                                                  ),
                                                )),
-                                           ),
+                                           ),),
                                            GestureDetector(
                                              onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
                                              child: Card(

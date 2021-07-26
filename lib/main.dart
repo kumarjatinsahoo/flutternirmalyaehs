@@ -29,12 +29,13 @@ import 'package:user/screens/MedicalService.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
+import 'package:user/screens/MyAppointment.dart';
+import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
-import 'package:user/screens/Pharmacists/PharmaSignUpForm4.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/ProcessedOrders.dart';
@@ -133,175 +134,175 @@ class _MyAppState extends State<MyApp> {
               '/login': (context) => LoginScreen(
                     model: _model,
                   ),
-                '/loginwithotp': (context) => LoginwithOTP(
+              '/loginwithotp': (context) => LoginwithOTP(
                     model: _model,
                   ),
               '/signUp': (context) => SignupScreen(
-                    model: _model, updateTab: (int , bool ) {  },
+                    model: _model,
+                    updateTab: (int, bool) {},
                   ),
               '/forgotpassword': (context) => ForgotPassword(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/forgotuserid': (context) => ForgotUserID(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/dashboard': (context) => DashboardUserNew(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/profile': (context) => ProfileScreen(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/laborders': (context) => LabOrders(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/processedorders': (context) => ProccesedOrders(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/sampletracking': (context) => SampleTracking(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/setdiscount': (context) => SetDisount(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/onlinechats': (context) => OnlineChats(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/help': (context) => PharmaSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/pharmasignupform2': (context) => PharmaSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/pharmasignupform3': (context) => PharmaSignUpForm3(
-                model: _model,
-              ),
-              '/pharmasignupform4': (context) => PharmaSignUpForm4(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/share': (context) => DoctorSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/doctorsignupform2': (context) => DoctorSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/doctorsignupform3': (context) => DoctorSignUpForm3(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/doctorsignupform4': (context) => DoctorSignUpForm4(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/doctorsignupform5': (context) => DoctorSignUpForm5(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/monthlyview': (context) => LabSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/labsignup2': (context) => LabSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/labsignup3': (context) => LabSignUpForm3(
-                model: _model,
-              ) ,
+                    model: _model,
+                  ),
               '/labsignup4': (context) => LabSignUpForm4(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/myorder': (context) => MyOrders(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/confirmorder': (context) => ConfirmOrders(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/deliveredorder': (context) => SampleTracking(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/pinview': (context) => PinView(
-                model: _model,
-              ),
-               '/support': (context) => SupportScreen(
-                model: _model,
-              ),
-               '/geneicstores': (context) => GenericStores(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/support': (context) => SupportScreen(
+                    model: _model,
+                  ),
+              '/geneicstores': (context) => GenericStores(
+                    model: _model,
+                  ),
               '/geneicstoreslist': (context) => GenericStoresList(
-                model: _model,
-              ),
-               '/govtschemes': (context) => GovtSchemes(
-                model: _model,
-              ),
-               '/govtschemeslist': (context) => GovtSchemesList(
-                model: _model,
-              ),
-               '/medicinereminder': (context) => MedicineReminder(
-                model: _model,
-              ),
-               '/medicinereminderother': (context) => MedicineReminderOther(
-                model: _model,
-              ),
-               '/organdonation': (context) => OrganDonation(
-                model: _model,
-              ),
-               '/setreminder': (context) => SetReminder(
-                model: _model,
-              ),
-               '/setreminderother': (context) => SetReminderOther(
-                model: _model,
-              ),
-              '/findHealthcareService': (context) =>FindHealthcareService(
-                model: _model,
-              ),
-              '/bookanAppointmentlist': (context) =>BookanAppointmentlist(
-                model: _model,
-              ),
-              '/signUpForm1': (context) =>SignUpForm1(
-                model: _model,
-              ),
-              '/userSignUpForm': (context) =>UserSignUpForm(
-                model: _model,
-              ),
-              '/donorApplication': (context) =>DonorApplication(
-                model: _model,
-              ),
-              '/addWitness': (context) =>AddWitness(
-                model: _model,
-              ),
-              '/findScreen': (context) =>FindScreen(
-                model: _model,
-              ),
-              '/searchScreen': (context) =>SearchScreen(
-                model: _model,
-              ),
-              '/medicalService': (context) =>MedicalService(
-                model: _model,
-              ),
-              '/aYUSHDoctors': (context) =>AYUSHDoctors(
-                model: _model,
-              ),
-              '/donorOrganisation': (context) =>DonorOrganisation(
-                model: _model,
-              ),
-              '/rPScreen': (context) =>RIPScreen(
-                model: _model,
-              ),
-              '/lifeStyleSolution': (context) =>LifeStyleSolution(
-                model: _model,
-              ),
-          '/treatmentCenters': (context) =>TreatmentCenters(
-          model: _model,
-          ),
-              '/airAmbulanceList': (context) =>AirAmbulanceList(
-          model: _model,
-              ),
-              '/emergencyHelp': (context) =>EmergencyHelp(
-                model: _model,
-              ),
-              '/profileScreen1': (context) =>ProfileScreen1(
-                model: _model,
-              ),
-              '/termsAndConditions': (context) =>TermsAndConditions(
-                model: _model,
-              ),
-
+                    model: _model,
+                  ),
+              '/govtschemes': (context) => GovtSchemes(
+                    model: _model,
+                  ),
+              '/govtschemeslist': (context) => GovtSchemesList(
+                    model: _model,
+                  ),
+              '/medicinereminder': (context) => MedicineReminder(
+                    model: _model,
+                  ),
+              '/medicinereminderother': (context) => MedicineReminderOther(
+                    model: _model,
+                  ),
+              '/organdonation': (context) => OrganDonation(
+                    model: _model,
+                  ),
+              '/setreminder': (context) => SetReminder(
+                    model: _model,
+                  ),
+              '/setreminderother': (context) => SetReminderOther(
+                    model: _model,
+                  ),
+              '/findHealthcareService': (context) => FindHealthcareService(
+                    model: _model,
+                  ),
+              '/bookanAppointmentlist': (context) => BookanAppointmentlist(
+                    model: _model,
+                  ),
+              '/signUpForm1': (context) => SignUpForm1(
+                    model: _model,
+                  ),
+              '/userSignUpForm': (context) => UserSignUpForm(
+                    model: _model,
+                  ),
+              '/donorApplication': (context) => DonorApplication(
+                    model: _model,
+                  ),
+              '/addWitness': (context) => AddWitness(
+                    model: _model,
+                  ),
+              '/findScreen': (context) => FindScreen(
+                    model: _model,
+                  ),
+              '/searchScreen': (context) => SearchScreen(
+                    model: _model,
+                  ),
+              '/medicalService': (context) => MedicalService(
+                    model: _model,
+                  ),
+              '/aYUSHDoctors': (context) => AYUSHDoctors(
+                    model: _model,
+                  ),
+              '/donorOrganisation': (context) => DonorOrganisation(
+                    model: _model,
+                  ),
+              '/rPScreen': (context) => RIPScreen(
+                    model: _model,
+                  ),
+              '/lifeStyleSolution': (context) => LifeStyleSolution(
+                    model: _model,
+                  ),
+              '/treatmentCenters': (context) => TreatmentCenters(
+                    model: _model,
+                  ),
+              '/airAmbulanceList': (context) => AirAmbulanceList(
+                    model: _model,
+                  ),
+              '/emergencyHelp': (context) => EmergencyHelp(
+                    model: _model,
+                  ),
+              '/profileScreen1': (context) => ProfileScreen1(
+                    model: _model,
+                  ),
+              '/termsAndConditions': (context) => TermsAndConditions(
+                    model: _model,
+                  ),
+              '/myAppointment': (context) => MyAppointment(
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

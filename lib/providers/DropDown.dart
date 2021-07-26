@@ -72,7 +72,7 @@ class DropDown {
   static Widget inputFieldSmall(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 3.0, left: 3.0, right: 3.0, bottom: 3.0),
+          const EdgeInsets.only(top: 3.0, left: 3.0, right: 3.0, bottom: 3.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
@@ -103,7 +103,7 @@ class DropDown {
     return AbsorbPointer(
       child: Padding(
         padding:
-        const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+            const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           decoration: BoxDecoration(
@@ -206,8 +206,8 @@ class DropDown {
     ));
   }
 
-  static networkDropdownPost(String label, final String API, String callFrom,
-      Function fun) {
+  static networkDropdownPost(
+      String label, final String API, String callFrom, Function fun) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -321,8 +321,8 @@ class DropDown {
     ));
   }
 
-  static networkDropdownGet(String label, final String API, String callFrom,
-      Function fun) {
+  static networkDropdownGet(
+      String label, final String API, String callFrom, Function fun) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -386,8 +386,8 @@ class DropDown {
     ));
   }
 
-  static staticDropdown(String label, String callFrom,
-      List<KeyvalueModel> list) {
+  static staticDropdown(
+      String label, String callFrom, List<KeyvalueModel> list) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -438,8 +438,8 @@ class DropDown {
             //NewUserRegister.regModel.permanentBlock=data;
             break;
           case "gender":
-          // PersonalForm.selectGender = data;
-          //NewUserRegister.regModel.gender=data;
+            // PersonalForm.selectGender = data;
+            //NewUserRegister.regModel.gender=data;
             gender = data;
             break;
         }
@@ -451,7 +451,7 @@ class DropDown {
   static employeeInfo() {
     return inputFieldContainer(Padding(
         padding:
-        const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -472,10 +472,11 @@ class DropDown {
           ],
         )));
   }
+
   static Widget newContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
@@ -486,26 +487,29 @@ class DropDown {
       ),
     );
   }
-  static staticDropdown2(String label,
-      String callFrom,
-      List<KeyvalueModel> list,
-      Function fun,) {
+
+  static staticDropdown2(
+    String label,
+    String callFrom,
+    List<KeyvalueModel> list,
+    Function fun,
+  ) {
     return DropdownSearch<KeyvalueModel>(
-        mode: Mode.BOTTOM_SHEET,
-        searchBoxDecoration: InputDecoration(
-          hintText: "Search here",
-          hintStyle: TextStyle(color: Colors.grey),
-          contentPadding: EdgeInsets.only(left: 15),
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.green, width: 3.0),
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(3.0),
-                bottomRight: Radius.circular(3.0),
-                topRight: Radius.circular(3.0),
-                topLeft: Radius.circular(3.0)),
-          ),
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
         ),
-       /* dropdownSearchDecoration: InputDecoration(
+      ),
+      /* dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
           //disabledBorder: InputBorder.none,
@@ -523,39 +527,39 @@ class DropDown {
             borderSide: BorderSide(width: 0, color: Colors.black),
           ),
         ),*/
-        dropdownSearchDecoration: InputDecoration(
-          // filled: true,
-          isDense: true,
-          // disabledBorder: InputBorder.none,
-          // border: InputBorder.none,
-          // enabledBorder: const OutlineInputBorder(
-          //   borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
-          // ),
-          // border: OutlineInputBorder(
-          //     borderSide:
-          //     const BorderSide(color: Colors.transparent, width: 0.0),
-          //     borderRadius: BorderRadius.circular(29)),
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          contentPadding: EdgeInsets.all(0),
-          // focusedBorder: OutlineInputBorder(
-          //   borderRadius: BorderRadius.all(Radius.circular(29)),
-          //   borderSide: BorderSide(width: 0, color: AppData.grey),
-          // ),
-        ),
-        label: label,
-        showSearchBox: true,
-        //items: maritalStatus,
-        selectedItem: getData(callFrom),
-        items: list,
-        //itemAsString: (KeyvalueModel u) => u.userAsString(),
-        onChanged: (KeyvalueModel data) {
-          fun(data);
-        },
-      );
-
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        // disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        // enabledBorder: const OutlineInputBorder(
+        //   borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        // ),
+        // border: OutlineInputBorder(
+        //     borderSide:
+        //     const BorderSide(color: Colors.transparent, width: 0.0),
+        //     borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        // focusedBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.all(Radius.circular(29)),
+        //   borderSide: BorderSide(width: 0, color: AppData.grey),
+        // ),
+      ),
+      label: label,
+      showSearchBox: true,
+      //items: maritalStatus,
+      selectedItem: getData(callFrom),
+      items: list,
+      //itemAsString: (KeyvalueModel u) => u.userAsString(),
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    );
   }
-  static staticDropdown3(String label, String callFrom,
-      List<KeyvalueModel> list,Function fun) {
+
+  static staticDropdown3(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -616,19 +620,89 @@ class DropDown {
           case "risk":
             gender = data;
             break;
-
-
         }
         //selectbank = data;
-
       },
     ));
   }
 
-  static staticDropdown7(String label,
-      String callFrom,
-      List<KeyvalueModel> list,
-      Function fun,) {
+  static staticDropdownIcon(String label, String callFrom, IconData iconData,
+      double iconSize, List<KeyvalueModel> list, Function fun) {
+    return newContainer(
+      DropdownSearch<KeyvalueModel>(
+        mode: Mode.BOTTOM_SHEET,
+        searchBoxDecoration: InputDecoration(
+          hintText: "Search here",
+          hintStyle: TextStyle(color: Colors.grey),
+          contentPadding: EdgeInsets.only(left: 15),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.green, width: 3.0),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(3.0),
+                bottomRight: Radius.circular(3.0),
+                topRight: Radius.circular(3.0),
+                topLeft: Radius.circular(3.0)),
+          ),
+        ),
+        dropdownSearchDecoration: InputDecoration(
+            // filled: true,
+            icon: Icon(
+              iconData,
+              size: iconSize,
+            ),
+            isDense: true,
+            disabledBorder: InputBorder.none,
+            enabledBorder: const OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: Colors.transparent, width: 0.0),
+            ),
+            border: OutlineInputBorder(
+                borderSide:
+                    const BorderSide(color: Colors.transparent, width: 0.0),
+                borderRadius: BorderRadius.circular(29)),
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            contentPadding: EdgeInsets.all(0),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(29)),
+              borderSide:
+                  BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+            ),
+            labelStyle: TextStyle(fontSize: 17)),
+        label: label,
+        showSearchBox: true,
+        selectedItem: getData(callFrom),
+        items: list,
+        onChanged: (KeyvalueModel data) {
+          fun(data);
+          switch (callFrom) {
+            case "district":
+              selectedKey = data;
+              break;
+            case "block":
+              selectedKey1 = data;
+              break;
+            case "gender":
+              gender = data;
+              break;
+              break;
+            case "admissioncenter":
+              gender = data;
+              break;
+            case "risk":
+              gender = data;
+              break;
+          }
+        },
+      ),
+    );
+  }
+
+  static staticDropdown7(
+    String label,
+    String callFrom,
+    List<KeyvalueModel> list,
+    Function fun,
+  ) {
     return fromFieldNew(
       DropdownSearch<KeyvalueModel>(
         mode: Mode.BOTTOM_SHEET,
@@ -655,7 +729,7 @@ class DropDown {
           ),
           border: OutlineInputBorder(
               borderSide:
-              const BorderSide(color: Colors.transparent, width: 0.0),
+                  const BorderSide(color: Colors.transparent, width: 0.0),
               borderRadius: BorderRadius.circular(29)),
           floatingLabelBehavior: FloatingLabelBehavior.never,
           contentPadding: EdgeInsets.all(0),
@@ -677,8 +751,8 @@ class DropDown {
     );
   }
 
-  static staticDropdown6(String label, String callFrom,
-      List<KeyvalueModel> list, Function fun) {
+  static staticDropdown6(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -717,15 +791,15 @@ class DropDown {
     );
   }
 
-  static searchDropdown(String label, String callFrom, List<KeyvalueModel> list,
-      Function fun) {
+  static searchDropdown(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           alignLabelWithHint: true,
           contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.always),
       searchBoxDecoration: InputDecoration(
@@ -755,15 +829,15 @@ class DropDown {
     );
   }
 
-  static searchDropdowntyp(String label, String callFrom,
-      List<KeyvalueModel> list, Function fun) {
+  static searchDropdowntyp(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           alignLabelWithHint: true,
           contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.always),
       searchBoxDecoration: InputDecoration(
@@ -792,8 +866,8 @@ class DropDown {
     );
   }
 
-  static networkDropdownGetpart(String label, final String API, String callFrom,
-      Function fun) {
+  static networkDropdownGetpart(
+      String label, final String API, String callFrom, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -813,7 +887,7 @@ class DropDown {
           hintText: label,
           labelText: label,
           contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           floatingLabelBehavior: FloatingLabelBehavior.always),
       label: label,
       showSearchBox: true,
@@ -849,8 +923,6 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["itemlist"]);
         }
 
-
-
         return list;
       },
       onChanged: (KeyvalueModel data) {
@@ -859,8 +931,8 @@ class DropDown {
     );
   }
 
-  static networkDropdownGetpart1(String label, final String API, String callFrom,
-      Function fun) {
+  static networkDropdownGetpart1(
+      String label, final String API, String callFrom, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -880,7 +952,7 @@ class DropDown {
           hintText: label,
           //labelText: label,
           contentPadding:
-          EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 7),
           floatingLabelBehavior: FloatingLabelBehavior.always),
       //label: label,
       showSearchBox: true,
@@ -895,8 +967,6 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["itemlist"]);
         }
 
-
-
         return list;
       },
       onChanged: (KeyvalueModel data) {
@@ -905,8 +975,8 @@ class DropDown {
     );
   }
 
-  static networkDropdownGetvenderpart(String label, final String API,
-      String callFrom, Function fun) {
+  static networkDropdownGetvenderpart(
+      String label, final String API, String callFrom, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -926,7 +996,7 @@ class DropDown {
           hintText: label,
           labelText: label,
           contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           floatingLabelBehavior: FloatingLabelBehavior.always),
 
       label: label,
@@ -945,7 +1015,7 @@ class DropDown {
             break;
           case "vendorAddGrn":
             list = KeyvalueModel.fromJsonList(response.data["vendorlst"]);
-            list.add(KeyvalueModel(name: "Not Available",key: "N/A"));
+            list.add(KeyvalueModel(name: "Not Available", key: "N/A"));
             break;
         }
         return list;
@@ -957,15 +1027,15 @@ class DropDown {
     );
   }
 
-  static searchDropdown1(String label, String callFrom,
-      List<KeyvalueModel> list, Function fun) {
+  static searchDropdown1(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           //alignLabelWithHint: true,
           contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+              EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           //labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.never),
       searchBoxDecoration: InputDecoration(
@@ -995,8 +1065,8 @@ class DropDown {
     );
   }
 
-  static staticDropdownUnchangeble(String label, String callFrom,
-      List<KeyvalueModel> list, Function fun) {
+  static staticDropdownUnchangeble(
+      String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return inputFieldContainerDisable(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -1052,6 +1122,4 @@ class DropDown {
         break;
     }
   }
-
-
 }
