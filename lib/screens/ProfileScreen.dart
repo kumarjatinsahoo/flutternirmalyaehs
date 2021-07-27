@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 SizedBox(height: size.height * 0.04,),
                                 Text(
-                                      'BMS Lab',
+                                      ' Mr.Swapnil Newale',
                                       style: TextStyle(
                                           fontSize: 18,
                                           color: Colors.white),
@@ -106,9 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: size.height * 0.02,),
 
-
-
-           /* DefaultTabController(
+                  /* DefaultTabController(
               length: 3,
               child: Scaffold(
                 appBar: AppBar(

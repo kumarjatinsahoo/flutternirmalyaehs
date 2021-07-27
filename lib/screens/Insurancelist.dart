@@ -53,8 +53,8 @@ class _InsuranceListState extends State<InsuranceList> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
+                      left: 10.0,
+                      right: 10.0,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -67,15 +67,23 @@ class _InsuranceListState extends State<InsuranceList> {
                           physics: NeverScrollableScrollPhysics(),
                           children: [
                             Card(
-                              elevation: 5,
+                              elevation: 8,
                               child: Container(
-                                  height: 150,
+                                color: Colors.white,
+                                  height: 90,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
-                                      border: Border.all(
+
+                                        border: Border(
+                                          left: BorderSide(width: 16.0, color:AppData.klightblurColor),
+
+                                        ),
+
+
+                                     /* border: Border.fromBorderSide(
                                         color: Colors.grey[300],
-                                      ),
+                                      ),*/
                                       borderRadius: BorderRadius.circular(8)),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -98,7 +106,13 @@ class _InsuranceListState extends State<InsuranceList> {
                                             ],
                                           ),
                                         ),
-                                        Icon(Icons.arrow_forward_ios, size: 50,color: Colors.black),
+                                        //Icon(Icons.arrow_forward_ios_sharp, size: 30,color: Colors.black),
+                                        Image.asset(
+                                          "assets/forwardarrow.png",
+                                          fit: BoxFit.fitWidth,
+                                          /*width: 50,*/
+                                          height: 30,
+                                        ),
                                         SizedBox(width: 10,),
                                       ],
                                     ),
@@ -108,9 +122,10 @@ class _InsuranceListState extends State<InsuranceList> {
                               height: 10,
                             ),
                             Card(
-                              elevation: 5,
+                              elevation: 8,
                               child: Container(
-                                  height: 150,
+                                color: Colors.white,
+                                  height: 90,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -139,7 +154,14 @@ class _InsuranceListState extends State<InsuranceList> {
                                             ],
                                           ),
                                         ),
-                                        Icon(Icons.arrow_forward_ios, size: 50,color: Colors.black),
+                                        //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                        Image.asset(
+                                          "assets/forwardarrow.png",
+                                          fit: BoxFit.fitWidth,
+                                          /*width: 50,*/
+                                          height: 30,
+
+                                        ),
                                         SizedBox(width: 10,),
                                       ],
                                     ),
@@ -151,7 +173,7 @@ class _InsuranceListState extends State<InsuranceList> {
                             Card(
                               elevation: 5,
                               child: Container(
-                                  height: 150,
+                                  height: 90,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -180,7 +202,14 @@ class _InsuranceListState extends State<InsuranceList> {
                                             ],
                                           ),
                                         ),
-                                        Icon(Icons.arrow_forward_ios, size: 50,color: Colors.black),
+                                        //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                        Image.asset(
+                                          "assets/forwardarrow.png",
+                                          fit: BoxFit.fitWidth,
+                                          /*width: 50,*/
+                                          height: 30,
+
+                                        ),
                                         SizedBox(width: 10,),
                                       ],
                                     ),
@@ -194,7 +223,7 @@ class _InsuranceListState extends State<InsuranceList> {
                         Card(
                           elevation: 5,
                           child: Container(
-                              height: 150,
+                              height: 90,
                               width: double.maxFinite,
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -223,7 +252,16 @@ class _InsuranceListState extends State<InsuranceList> {
                                         ],
                                       ),
                                     ),
-                                    Icon(Icons.arrow_forward_ios, size: 50,color: Colors.black),
+                            /*Align(
+                              alignment: Alignment.l,child:*/
+                               Image.asset(
+                                "assets/forwardarrow.png",
+                                fit: BoxFit.fitWidth,
+                                /*width: 50,*/
+                                height: 30,
+
+                              ),
+                                    /*Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),*/
                                     SizedBox(width: 10,),
                                   ],
                                 ),

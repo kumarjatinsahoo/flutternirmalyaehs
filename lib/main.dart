@@ -21,6 +21,7 @@ import 'package:user/screens/GenericStores.dart';
 import 'package:user/screens/GenericStoresList.dart';
 import 'package:user/screens/GovtSchemes.dart';
 import 'package:user/screens/GovtSchemesList.dart';
+import 'package:user/screens/HealthCheckup.dart';
 import 'package:user/screens/Insurancelist.dart';
 import 'package:user/screens/IntroScreen.dart';
 import 'package:user/screens/LabOrders.dart';
@@ -313,6 +314,9 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/intro': (context) => IntroScreen(),
               '/insuranceList': (context) => InsuranceList(
+                model: _model,
+              ),
+              '/healthCheckup': (context) => HealthCheckup(
                 model: _model,
               ),
 

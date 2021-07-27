@@ -1915,8 +1915,8 @@ class MyPage2Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Health Checkup",
                               fun: () {
-                               /* Navigator.pushNamed(
-                                    context, "/findHealthcareService");*/
+                                Navigator.pushNamed(
+                                    context, "/healthCheckup");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
