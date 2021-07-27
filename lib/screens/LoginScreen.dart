@@ -161,9 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, bottom: 25.0),
+
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/userSignUpForm");
+                            dashOption(context);
                             // Navigator.pushNamed(context, "/registration1");
                           },
                           child: RichText(

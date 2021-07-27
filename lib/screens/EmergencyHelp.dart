@@ -15,10 +15,6 @@ class EmergencyHelp extends StatefulWidget {
 }
 
 class _EmergencyHelpState extends State<EmergencyHelp> {
-
-
-  
-
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -72,8 +68,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         width: 150.0,
                         child: Stack(
                           children: [
-                            ClipRRect(borderRadius: BorderRadius.circular(150.0),
-                                child:Image.asset("assets/helplogo.png",
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(150.0),
+                                child: Image.asset("assets/helplogo.png",
                                     height: 150)),
                           ],
                         ),
@@ -83,7 +80,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   SizedBox(
                     height: 50,
                   ),
-                 /* buildTile(
+                  /* buildTile(
                       name: "Contact Number",
                       value: "1800 345 7461",
                       value1: "011-41182138",
@@ -107,6 +104,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   //Text("Follow us",style: Text,),
                   MyWidgets.subHeader("Follow us", Alignment.center),
                   SizedBox(height: 10,),*/
+
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15.0,
@@ -120,128 +118,86 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         borderRadius: BorderRadius.circular(5.0),
                         border: Border.all(color: Colors.grey, width: 0.7),
                       ),
-                      child:Row(
-                        mainAxisAlignment: MainAxisAlignment.start, //change here don't //worked
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        //change here don't //worked
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container( child:
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-
-                                InkWell(
+                          Container(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
                                     },
-
-                                    child:Padding(
+                                    child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
-                                      /* child: Image.asset(
-                                        "assets/images/callambulance.png",
-                                        fit: BoxFit.fitWidth,
-                                        //width: ,
-                                        height: 35.0,
-                                      ),*/
-                                      child: Icon(
-                                        Icons.group_rounded,
-                                        color: Colors.red,
-                                      ),
-                                    )),
-
-                                Container(
-                                  width: 2,
-                                  child: Divider(
-                                    thickness: 21,
-                                    color: Colors.red,
+                                      child: Image.asset(
+                                          "assets/images/medical_emergency.png",height: 30,),
+                                    ),
                                   ),
-                                ),
-                                /* SizedBox(width: 100,),*/
-                              ])/*)*/,
-                            /*Expanded(*/
+                                  Container(
+                                    width: 2,
+                                    child: Divider(
+                                      thickness: 21,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ]),
                           ),
-                         /* Container(
-                            margin:
-                            EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0, right: 12.0),
-                            width: 15.0,
-                            height: 15.0,
-                            decoration: BoxDecoration(
-                                color: Colors.red, borderRadius: BorderRadius.circular(40.0)),
-                          ),*/
                           new Spacer(),
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'Call Family ',
+                              'Call Emergency ',
                               style: TextStyle(
                                   fontWeight: FontWeight.w100,
                                   fontSize: 15,
                                   color: Colors.black),
                             ),
                           ),
-                          /*Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "task.title",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 19.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Duration',
-                                style: TextStyle(color: Colors.black, fontSize: 14.0),
-                              )
-                            ],
-                          ),*/
-                          new Spacer(), // I just added one line
-                         /* Icon(Icons.navigate_next, color: Colors.black) // This Icon*/
+                          new Spacer(),
                           Container(
-
-                              child:
-                              Row(
-
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          // Navigator.pop(context);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                               right: 10.0),
-                                          child: Icon(
-                                            Icons.phone_in_talk,
-                                            color: Colors.red,
-                                          ),
-                                        )),
-                                    Container(
-                                      width: 2,
-                                      child: Divider(
-                                        thickness: 21,
-                                        color: Colors.red,
-                                      ),
-                                    ),
-                                    /* SizedBox(width: 100,),*/
-                                    InkWell(
-                                        onTap: () {
-                                          // Navigator.pop(context);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10.0, right: 10.0),
-                                          child: Icon(
-                                            Icons.info,
-                                            color: Colors.red,
-                                          ),
-                                        )),
-                                  ]) /*),*/
-                          )
+                              child: Row(children: [
+                            InkWell(
+                                onTap: () {
+                                  // Navigator.pop(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Icon(
+                                    Icons.phone_in_talk,
+                                    color: Colors.red,
+                                  ),
+                                )),
+                            Container(
+                              width: 2,
+                              child: Divider(
+                                thickness: 21,
+                                color: Colors.red,
+                              ),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  // Navigator.pop(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 10.0),
+                                  child: Icon(
+                                    Icons.info,
+                                    color: Colors.red,
+                                  ),
+                                )),
+                          ])
+                              )
                         ],
                       ),
                     ),
                   ),
-                /*  Padding(
+                  /*  Padding(
                     padding: const EdgeInsets.only(
                       left: 15.0,
                       right: 15.0,
@@ -270,12 +226,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     child:Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
-                                     *//* child: Image.asset(
+                                     */
+                  /* child: Image.asset(
                                         "assets/images/callambulance.png",
                                         fit: BoxFit.fitWidth,
                                         //width: ,
                                         height: 35.0,
-                                      ),*//*
+                                      ),*/
+                  /*
                                       child: Icon(
                                         Icons.group_rounded,
                                         color: Colors.red,
@@ -289,9 +247,11 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     color: Colors.red,
                                   ),
                                 ),
-                                *//* SizedBox(width: 100,),*//*
-                              ])*//*)*//*,
-                          *//*Expanded(*//*
+                                */
+                  /* SizedBox(width: 100,),*/ /*
+                              ])*/ /*)*/ /*,
+                          */
+                  /*Expanded(*/ /*
             ),
 
                     Container(
@@ -320,7 +280,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     color: Colors.red,
                                   ),
                                 ),
-                                *//* SizedBox(width: 100,),*//*
+                                */ /* SizedBox(width: 100,),*/
+                  /*
                                 InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
@@ -333,7 +294,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                         color: Colors.red,
                                       ),
                                     )),
-                              ]) *//*),*//*
+                              ]) */ /*),*/ /*
                     )
                         ],
                       ),
@@ -358,7 +319,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       child: Row(
                         //mainAxisAlignment: MainAxisAlignment.spic,
                         children: [
-                        Container(
+                          Container(
                               child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.spic,
                                   children: [
@@ -369,10 +330,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
-                                      child: Icon(
-                                        Icons.directions_car,
-                                        color: AppData.kPrimaryColor,
-                                      ),
+                                      child: Image.asset("assets/images/callambulance.png",height: 30,)
                                     )),
                                 Container(
                                   width: 2,
@@ -385,14 +343,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               ])),
                           new Spacer(),
                           /*  Expanded(child:*/
-                            Text(
-                              'Call Ambulance ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w100,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                         /* ),*/
+                          Text(
+                            'Call Ambulance ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 15,
+                                color: Colors.black),
+                          ),
+                          /* ),*/
                           new Spacer(),
                           Row(
                               //mainAxisAlignment: MainAxisAlignment.spic,
@@ -402,8 +360,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       // Navigator.pop(context);
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                           right: 10.0),
+                                      padding:
+                                          const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
                                         color: AppData.kPrimaryColor,
@@ -434,9 +392,11 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),
+
                   SizedBox(
                     height: 30,
                   ),
+
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15.0,
@@ -462,31 +422,29 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           // Navigator.pop(context);
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10.0, right: 10.0),
-                                          child: Icon(
-                                            Icons.local_police,
-                                            color: Colors.red,
-                                          ),
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Image.asset("assets/images/Call_police.png",height: 30,)
                                         )),
                                     Container(
                                       width: 2,
                                       child: Divider(
                                         thickness: 21,
-                                        color: Colors.red,
+                                        color:Colors.red,
                                       ),
                                     ),
                                     /* SizedBox(width: 100,),*/
                                   ])),
                           new Spacer(),
-
-                            Text(
-                              'Call Police ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w100,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
+                          /*  Expanded(child:*/
+                          Text(
+                            'Call Police ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 15,
+                                color: Colors.black),
+                          ),
+                          /* ),*/
                           new Spacer(),
                           Row(
                             //mainAxisAlignment: MainAxisAlignment.spic,
@@ -496,8 +454,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       // Navigator.pop(context);
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                           right: 10.0),
+                                      padding:
+                                      const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
                                         color: Colors.red,
@@ -523,7 +481,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                         color: Colors.red,
                                       ),
                                     )),
-                              ])/*),*/
+                              ]) /*),*/
                         ],
                       ),
                     ),
@@ -562,14 +520,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           ),
           (value != null)
               ? SizedBox(
-            height: 3,
-          )
+                  height: 3,
+                )
               : Container(),
           (value != null) ? Text(value) : Container(),
           (value1 != null)
               ? SizedBox(
-            height: 3,
-          )
+                  height: 3,
+                )
               : Container(),
           (value1 != null) ? Text(value1) : Container(),
           SizedBox(
