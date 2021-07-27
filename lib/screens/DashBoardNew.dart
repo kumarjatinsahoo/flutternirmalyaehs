@@ -447,6 +447,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         .size;
     return SafeArea(
       child: Container(
+        color: Colors.white,
         height: double.maxFinite,
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -466,6 +467,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             PageIndicator(
               length: 2,
               pageController: _controller,
+              currentColor:Colors.grey,
+              normalColor:Colors.black12,
+              /*colorDot: Colors.grey,
+              sizeDot: 8.0,
+              colorActiveDot: Colors.black,*/
             ),
 
             CarouselSlider(
@@ -1014,8 +1020,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Test Report",
                               fun: () {
-                                /* Navigator.pushNamed(
-                                          context, "/geneicstores");*/
+                                Navigator.pushNamed(
+                                    context, "/findHealthcareService");
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
@@ -1052,8 +1058,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Generic Medical Stores",
                               fun: () {
-                                /* Navigator.pushNamed(
-                                          context, "/geneicstores");*/
+                                Navigator.pushNamed(
+                                    context, "/setdiscount");
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
@@ -1192,8 +1198,11 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Upload Medical Data",
                               fun: () {
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
+                                Navigator.pushNamed(
+                                    context, "/insuranceList");
+
+                              /*  AppData.showSnack(
+                                context, "Coming soon", Colors.green);*/
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
@@ -1292,7 +1301,7 @@ class MyPage1Widget extends StatelessWidget {
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
-                              size: (size.width - 130) / 3,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1380,8 +1389,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Upload Medical Data",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/organdonation");
+                               /* Navigator.pushNamed(
+                                    context, "/organdonation");*/
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
@@ -1426,8 +1435,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Generic Medical Stores",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/geneicstores");
+                              /*  Navigator.pushNamed(
+                                    context, "/geneicstores");*/
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
@@ -1472,8 +1481,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Govt Schemes",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/govtschemes");
+                                /*Navigator.pushNamed(
+                                    context, "/govtschemes");*/
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
@@ -1563,7 +1572,7 @@ class MyPage1Widget extends StatelessWidget {
                    /* "assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
                        width: 50,
-                       height: 60.0,
+                       height: 70.0,
 
                   )),
                     //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
@@ -1797,7 +1806,7 @@ class MyPage1Widget extends StatelessWidget {
                     /*"assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
                        width: 50,
-                       height: 60.0,
+                       height: 70.0,
                   ),),
                     /*child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),*/
 
@@ -1906,8 +1915,8 @@ class MyPage2Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Health Checkup",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/findHealthcareService");
+                               /* Navigator.pushNamed(
+                                    context, "/findHealthcareService");*/
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -1939,8 +1948,8 @@ class MyPage2Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                               title: "Discount & Offers",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/setdiscount");
+                               /* Navigator.pushNamed(
+                                    context, "/setdiscount");*/
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
@@ -2033,7 +2042,7 @@ class MyPage2Widget extends StatelessWidget {
                     /*"assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
                        width: 50,
-                       height: 60.0,
+                       height: 70.0,
 
                   ),
                    /* child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)*/),
@@ -2266,7 +2275,7 @@ class MyPage2Widget extends StatelessWidget {
                    /* "assets/logo1.png"*/icon,
                     fit: BoxFit.fitWidth,
                        width: 50,
-                       height: 60.0,
+                       height: 70.0,
                   ),),
                     //child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),
 
