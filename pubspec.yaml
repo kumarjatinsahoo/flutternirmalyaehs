@@ -33,6 +33,7 @@ dependencies:
   otp_text_field: ^1.1.1
   flutter_toggle_tab: ^1.1.4
   url_launcher: ^6.0.9
+  intro_slider: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -45,4 +46,5 @@ flutter:
     - assets/
     - assets/i18n/
     - assets/images/
-  
+    - assets/intro/
+

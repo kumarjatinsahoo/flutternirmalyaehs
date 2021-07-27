@@ -18,6 +18,8 @@ class AppData {
 
   static Color kPrimaryColor = Color(0xFF2372B6);
   static Color hintColor = Color(0xFF666666);
+  static Color BG1RED = Color(0xFFFEF7F8);
+  static Color BG2BLUE = Color(0xFFF5FAFE);
   static Color klightblurColor = Color(0xFFF0F8FF) ;
   static Color kPrimaryRedColor = Color(0xFFCF3564) ;
   static Color klightRedColor = Color(0xFFFEF9F6) ;

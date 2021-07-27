@@ -21,6 +21,7 @@ import 'package:user/screens/GenericStores.dart';
 import 'package:user/screens/GenericStoresList.dart';
 import 'package:user/screens/GovtSchemes.dart';
 import 'package:user/screens/GovtSchemesList.dart';
+import 'package:user/screens/IntroScreen.dart';
 import 'package:user/screens/LabOrders.dart';
 import 'package:user/screens/LifeStyleSolution.dart';
 import 'package:user/screens/LoginScreen.dart';
@@ -178,8 +179,8 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/doctorsignupform': (context) => DoctorSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/share': (context) => DoctorSignUpForm(
                     model: _model,
                   ),
@@ -196,8 +197,8 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/labsignupform': (context) => LabSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/monthlyview': (context) => LabSignUpForm(
                     model: _model,
                   ),
@@ -309,6 +310,7 @@ class _MyAppState extends State<MyApp> {
               '/myAppointment': (context) => MyAppointment(
                     model: _model,
                   ),
+              '/intro': (context) => IntroScreen(),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

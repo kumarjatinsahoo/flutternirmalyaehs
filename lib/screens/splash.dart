@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:intro_slider/intro_slider.dart';
+import 'package:intro_slider/slide_object.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'LoginScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   final MainModel model;
@@ -18,13 +22,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   SharedPref sharedPref = SharedPref();
+  bool isFirstTym = true;
 
   @override
   void initState() {
     super.initState();
     callResourceTimer();
+  }
+
+  Future<Null> isFirstTimes() async {
+    String isFirstTime = await sharedPref.getKey('first_time');
+    if (isFirstTime != null) {
+      if (isFirstTime.replaceAll("\"", "") == "false") {
+        callResourceTimer();
+        setState(() => isFirstTym = false);
+      } else {
+        setState(() => isFirstTym = true);
+      }
+    } else {
+      setState(() => isFirstTym = true);
+    }
   }
 
   @override
@@ -93,6 +111,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() async {
-    Navigator.pushNamed(context, "/login");
+    if (isFirstTym) {
+      Navigator.pushNamed(context, "/intro");
+    } else {
+      Navigator.pushNamed(context, "/login");
+    }
   }
 }

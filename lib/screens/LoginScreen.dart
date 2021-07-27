@@ -10,6 +10,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intro_slider/dot_animation_enum.dart';
+import 'package:intro_slider/intro_slider.dart';
+import 'package:intro_slider/slide_object.dart';
+import 'package:intro_slider/scrollbar_behavior_enum.dart';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -95,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Stack(
           children: <Widget>[
             Image.asset(
-              "assets/bg_img.jpeg",
+              "assets/bg_img.jpg",
               fit: BoxFit.cover,
               height: 200,
               width: double.maxFinite,
@@ -117,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       //Spacer(),
-                      SizedBox(height: 160,),
+                      SizedBox(height: 90,),
                       Align(
                         alignment:Alignment.topLeft,
                         child: RichText(
@@ -148,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: fromFieldPass(),
                       ),
                       SizedBox(
-                        height: size.height * 0.1,
+                        height: size.height * 0.06,
                       ),
                       _loginButton(),
                       SizedBox(
@@ -194,7 +198,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text('Forgot Password?',style: TextStyle(fontSize: 17,color: AppData.kPrimaryColor),)),
                       SizedBox(
-                        height: size.height * 0.10,
+                        height: size.height * 0.06,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                        child: Image.asset("assets/intro/main_logo.bmp"),
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
                     ]),
               ),
@@ -465,3 +476,5 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 }
+
+
