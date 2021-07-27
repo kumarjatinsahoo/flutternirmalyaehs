@@ -938,6 +938,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 }
+
+
 class MyPage1Widget extends StatelessWidget {
   double _height = 75;
   double _width;
@@ -953,7 +955,6 @@ class MyPage1Widget extends StatelessWidget {
                 left: 10, right: 10, bottom: 10),
             child: SingleChildScrollView(
               child: Column(
-
                 children: [
                   SizedBox(
                     height: 15,
@@ -961,21 +962,14 @@ class MyPage1Widget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      /* Expanded(
-                            child:*/ Column(
+                     Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                             //icon: Icons.movie_filter_sharp,
-                              //icon: FontAwesomeIcons.accusoft,
-                              //icon: "assets/logo1.png",
                               icon: "assets/folder.png",
                               title: "My Medical Record",
                               fun: () {
-                                /* Navigator.pushNamed(context, "/geneicstores");*/
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -993,18 +987,12 @@ class MyPage1Widget extends StatelessWidget {
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            /*  Text(
-                                    "My Medical Record",
-                                    style: TextStyle(color: Colors.black),
-                                    textAlign: TextAlign.center,
-                                  ),*/
                           ]),
 
                       SizedBox(
                         width: 5,
                       ),
-                      /*Expanded(
-                            child:*/ Column(
+                     Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -1089,7 +1077,6 @@ class MyPage1Widget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      /* Expanded(*/
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
