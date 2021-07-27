@@ -950,7 +950,7 @@ class MyPage1Widget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(
                 left: 10, right: 10, bottom: 10),
-           /* child: SingleChildScrollView(*/
+            child: SingleChildScrollView(
               child: Column(
 
                 children: [
@@ -960,7 +960,6 @@ class MyPage1Widget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-
                       /* Expanded(
                             child:*/ Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -977,8 +976,8 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
                               // ,
                             ),
                             SizedBox(
@@ -1019,9 +1018,9 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1057,9 +1056,9 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1072,7 +1071,6 @@ class MyPage1Widget extends StatelessWidget {
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-
                             /*Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
@@ -1083,7 +1081,6 @@ class MyPage1Widget extends StatelessWidget {
                                         ),
                                       )),*/
                           ]),
-
 
                     ],
                   ),
@@ -1153,9 +1150,9 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1197,9 +1194,9 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1246,8 +1243,8 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
                               size: (size.width - 130) / 3,
                             ),
                             SizedBox(
@@ -1292,8 +1289,8 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
                               size: (size.width - 130) / 3,
                             ),
                             SizedBox(
@@ -1338,9 +1335,9 @@ class MyPage1Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1367,8 +1364,150 @@ class MyPage1Widget extends StatelessWidget {
 
                     ],
                   ),
+                  SizedBox(height: size.height * 0.01),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      /*Expanded(
+                            child:*/ Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              icon: "assets/upload.png",
+                              //icon: Icons.wc_rounded,
+                              //icon: FontAwesomeIcons.accusoft,
+                              title: "Upload Medical Data",
+                              fun: () {
+                                Navigator.pushNamed(
+                                    context, "/organdonation");
+                                // AppData.showSnack(
+                                //     context, "Coming soon", Colors.green);
+                              },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height:35,
+                              /* child: Expanded(*/
+                              child: Text(
+                                "Upload Medical Data",textAlign:TextAlign.center ,
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            /* Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Organ     Donation",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                          ]),
+
+                      SizedBox(
+                        width: 5,
+                      ),
+                      /*Expanded(*/
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTileblue(
+                              icon: "assets/health_care.png",
+                              //icon: Icons.animation,
+                              //icon: FontAwesomeIcons.accusoft,
+                              title: "Generic Medical Stores",
+                              fun: () {
+                                Navigator.pushNamed(
+                                    context, "/geneicstores");
+                                // AppData.showSnack(
+                                //   context, "Coming soon", Colors.green);
+                              },
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              //size: (size.width - 130) / 3,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height:35,
+                              /* child: Expanded(*/
+                              child: Text(
+                                "Preventive Health Care",textAlign:TextAlign.center ,
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            /* Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Generic Medical Stores",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                          ]),
+
+                      SizedBox(
+                        width: 5,
+                      ),
+                      /* Expanded(
+                            child: */Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              icon: "assets/medipedia.png",
+                              //icon: Icons.home_outlined,
+                              //icon: FontAwesomeIcons.accusoft,
+                              title: "Govt Schemes",
+                              fun: () {
+                                Navigator.pushNamed(
+                                    context, "/govtschemes");
+                                // AppData.showSnack(
+                                //     context, "Coming soon", Colors.green);
+                              },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              size: (size.width - 130) / 3,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height:35,
+                              /* child: Expanded(*/
+                              child: Text(
+                                "Medipedia",textAlign:TextAlign.center ,
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                          ]),
+
+                    ],
+                  ),
                 ],
               ),
+            ),
             ),
           ),
       ],
@@ -1750,146 +1889,7 @@ class MyPage2Widget extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      /*Expanded(
-                            child:*/ Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/upload.png",
-                              //icon: Icons.wc_rounded,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Upload Medical Data",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/organdonation");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Upload Medical Data",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Organ     Donation",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
 
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /*Expanded(*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/health_care.png",
-                              //icon: Icons.animation,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Generic Medical Stores",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/geneicstores");
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Preventive Health Care",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Generic Medical Stores",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /* Expanded(
-                            child: */Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/medipedia.png",
-                              //icon: Icons.home_outlined,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Govt Schemes",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/govtschemes");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Medipedia",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-
-                    ],
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -1908,9 +1908,9 @@ class MyPage2Widget extends StatelessWidget {
                                 Navigator.pushNamed(
                                     context, "/findHealthcareService");
                               },
-                              color: AppData.klightRedColor,
-                              bordercolor: AppData.klightRedColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1924,12 +1924,6 @@ class MyPage2Widget extends StatelessWidget {
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-
-
-
-
-
-
                           ]),
                       SizedBox(
                         width: 15,
@@ -1949,9 +1943,9 @@ class MyPage2Widget extends StatelessWidget {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.kPrimaryLightColor,
-                              bordercolor: AppData.kPrimaryLightColor,
-                              size: (size.width - 130) / 3,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
