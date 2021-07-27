@@ -57,11 +57,13 @@ import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/find.dart';
+import 'package:user/screens/MedipediaPage.dart';
 import 'package:user/screens/labrotry/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/LabSignUpForm3.dart';
 import 'package:user/screens/labrotry/LabSignUpForm4.dart';
 import 'package:user/screens/splash.dart';
+import 'package:user/screens/DiscountOffer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -315,7 +317,13 @@ class _MyAppState extends State<MyApp> {
               '/insuranceList': (context) => InsuranceList(
                 model: _model,
               ),
+              '/discountoffer': (context) => DiscountOffer(
+                model: _model,
+              ),
 
+              '/medipedia': (context) => MedipediaPage(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

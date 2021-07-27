@@ -974,7 +974,7 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTileblue(
                               icon: "assets/folder.png",
-                              title: "My Medical Record",
+                            //  title: "My Medical Record",
                               fun: () {
                               },
                               color: AppData.BG2BLUE,
@@ -1004,14 +1004,9 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTilered(
                               icon: "assets/search_icon.png",
-                              /*icon: Icons.animation,*/
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Test Report",
                               fun: () {
                                 Navigator.pushNamed(
                                     context, "/findHealthcareService");
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
@@ -1044,10 +1039,10 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/offers.png",
                               //icon: Icons.animation,
                               //icon: FontAwesomeIcons.accusoft,
-                              title: "Generic Medical Stores",
+                             // title: "Generic Medical Stores",
                               fun: () {
                                 Navigator.pushNamed(
-                                    context, "/setdiscount");
+                                    context, "/discountoffer");
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
@@ -1207,15 +1202,6 @@ class MyPage1Widget extends StatelessWidget {
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Upload Medical Data",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
                           ]),
 
                     ],
@@ -1374,7 +1360,7 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/upload.png",
                               //icon: Icons.wc_rounded,
                               //icon: FontAwesomeIcons.accusoft,
-                              title: "Upload Medical Data",
+                             // title: "Upload Medical Data",
                               fun: () {
                                /* Navigator.pushNamed(
                                     context, "/organdonation");*/
@@ -1420,7 +1406,7 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/health_care.png",
                               //icon: Icons.animation,
                               //icon: FontAwesomeIcons.accusoft,
-                              title: "Generic Medical Stores",
+                             // title: "Generic Medical Stores",
                               fun: () {
                               /*  Navigator.pushNamed(
                                     context, "/geneicstores");*/
@@ -1464,12 +1450,9 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTilered(
                               icon: "assets/medipedia.png",
-                              //icon: Icons.home_outlined,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Govt Schemes",
                               fun: () {
-                                /*Navigator.pushNamed(
-                                    context, "/govtschemes");*/
+                                Navigator.pushNamed(
+                                    context, "/medipedia");
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
