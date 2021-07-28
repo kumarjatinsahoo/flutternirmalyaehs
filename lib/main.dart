@@ -57,6 +57,7 @@ import 'package:user/screens/SupportScreen.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
+import 'package:user/screens/VitalSigns.dart';
 import 'package:user/screens/find.dart';
 import 'package:user/screens/labrotry/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/LabSignUpForm2.dart';
@@ -153,6 +154,9 @@ class _MyAppState extends State<MyApp> {
               '/dashboard': (context) => DashboardUserNew(
                     model: _model,
                   ),
+              '/dashboard1': (context) => Dashboard(
+                model: _model,
+              ),
               '/profile': (context) => ProfileScreen(
                     model: _model,
                   ),
@@ -317,6 +321,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/healthCheckup': (context) => HealthCheckup(
+                model: _model,
+              ),
+              '/vitalSigns': (context) => VitalSigns(
                 model: _model,
               ),
 

@@ -211,6 +211,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(0);
                     Navigator.pushNamed(context, "/dashboard");
+                   // Navigator.pushNamed(context, "/dashboard1");
                   }
                   // onTap: (){},
 
@@ -258,10 +259,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   leading: Image.asset("assets/images/share.png",height: 30,),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
-                  // onTap: () {
-                  //   selectDestination(5);
-                  //   Navigator.pushNamed(context, "/share");
-                  // }
+                   onTap: () {
+                   selectDestination(5);
+                   Navigator.pushNamed(context, "/vitalSigns");
+                  }
               ),
 
               ListTile(
