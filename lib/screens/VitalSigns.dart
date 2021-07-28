@@ -181,14 +181,20 @@ class _VitalSignsState extends State<VitalSigns> {
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                      /*    itemCount: strOrders.length,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 8.0,
+                          /*    itemCount: strOrders.length,
                           gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                             // mainAxisExtent: 110,
                             // mainAxisSpacing: 5,
                               crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
                           itemBuilder: (BuildContext context, int index) {*/
                           children: List.generate(choices.length, (index) {
-                            return Card(
+                            return /*Center(
+                              child: SelectCard(choice: choices[index]),
+                            );*/
+                             Card(
                               elevation: 2,
 
                               child: Container(
@@ -198,13 +204,12 @@ class _VitalSignsState extends State<VitalSigns> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
                                   child: InkWell(
-                                    /*onTap: (){
+                                    onTap: (){
                                       Navigator.pushNamed(context, "/deliveredorder");
-                                    },*/
+                                    },
                                     child: Container(
                                       child: new GridTile(
                                         child:
-
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +232,7 @@ class _VitalSignsState extends State<VitalSigns> {
 
                                             ),
                                             SizedBox(height: size.height * 0.02,),
-                                            Text(choices..toString(),
+                                            Text( choices[index].title.toString(),
                                               style: TextStyle( color: Colors.black,fontSize: 15),
                                               textAlign: TextAlign.center,
                                               overflow: TextOverflow.clip,
@@ -245,7 +250,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                               ),
                                             ),
                                             SizedBox(height: size.height * 0.02,),
-                                            Text(gridState[index].toString(),
+                                            Text( choices[index].title1.toString(),
                                               style: TextStyle( color: Colors.grey,fontSize: 12),
                                               textAlign: TextAlign.center,
                                               overflow: TextOverflow.clip,
@@ -278,18 +283,110 @@ class _VitalSignsState extends State<VitalSigns> {
   }
 }
 class Choice {
-  const Choice({this.title, this.icon});
+  const Choice({this.title, this.icon,this.title1});
   final String title;
   final IconData icon;
+  final String title1;
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Home', icon: Icons.home),
-  const Choice(title: 'Contact', icon: Icons.contacts),
-  const Choice(title: 'Map', icon: Icons.map),
-  const Choice(title: 'Phone', icon: Icons.phone),
-  const Choice(title: 'Camera', icon: Icons.camera_alt),
-  const Choice(title: 'Setting', icon: Icons.settings),
-  const Choice(title: 'Album', icon: Icons.photo_album),
-  const Choice(title: 'WiFi', icon: Icons.wifi),
+  //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
+  const Choice(title: '38.000C 1000.000F',title1: 'Temperature'),
+  const Choice(title: '213/4 mmHg', title1: 'Systolic Diastolic Blood Pressure'),
+  const Choice(title: '120/min',title1: 'Pulse'),
+  const Choice(title: '24 bpm',title1: 'Respiration'),
+  const Choice(title: '50 % ',title1: 'Oxygen Saturation'),
+
 ];
+class SelectCard extends StatelessWidget {
+  const SelectCard({Key key, this.choice}) : super(key: key);
+  final Choice choice;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    return  Card(
+                              elevation: 2,
+
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppData.grey100,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
+                                  child: InkWell(
+                                    onTap: (){
+                                      Navigator.pushNamed(context, "/deliveredorder");
+                                    },
+                                    child: Container(
+                                      child: new GridTile(
+                                        child:
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Container(),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 10,
+                                                  child: new Image.asset(
+                                                    "assets/images/dashboard (1).png",
+                                                    height: 40,
+                                                    fit: BoxFit.cover,
+                                                    // color: Colors.blue
+                                                  ),
+                                                ),
+                                              ],
+
+                                            ),
+                                            SizedBox(height: size.height * 0.02,),
+                                            Text( choice.title,
+                                              style: TextStyle( color: Colors.black,fontSize: 15),
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 2,
+                                            ),
+                                            SizedBox(height: size.height * 0.01,),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                    color: Color(0xFFD8ABAF),
+                                                    width: 1.0, // Underline thickness
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: size.height * 0.02,),
+                                            Text( choice.title1,
+                                              style: TextStyle( color: Colors.grey,fontSize: 12),
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 2,
+                                            ),
+                                          ],
+                                        ),
+
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+    /*Card(
+        color: Colors.orange,
+        child: Center(child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(child: Icon(choice.icon, size:50.0, color: textStyle.color)),
+              Text(choice.title, style: textStyle),
+            ]
+        ),
+        )
+    );*/
+  }
+}
