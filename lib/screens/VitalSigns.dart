@@ -6,8 +6,8 @@ import 'package:user/scoped-models/MainModel.dart';
 
 class VitalSigns extends StatefulWidget {
   final MainModel model;
-
-  const VitalSigns({Key key, this.model}) : super(key: key);
+  final Choice choice;
+  const VitalSigns({Key key, this.model,this.choice}) : super(key: key);
 
   @override
   _VitalSignsState createState() => _VitalSignsState();
@@ -15,6 +15,8 @@ class VitalSigns extends StatefulWidget {
 
 class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
+  List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
+  List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
 
   void selectDestination(int index) {
     setState(() {
@@ -24,6 +26,8 @@ class _VitalSignsState extends State<VitalSigns> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final orientation = MediaQuery.of(context).orientation;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -38,7 +42,7 @@ class _VitalSignsState extends State<VitalSigns> {
 
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
             child: Column(
               children: [
                 Container(
@@ -51,7 +55,7 @@ class _VitalSignsState extends State<VitalSigns> {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.black12),
+                            border: Border.all(color: Colors.black26),
                             /*color: Colors.blue[50]*/),
                         child: Center(
                           child: Padding(
@@ -72,7 +76,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 Text(
                                   ' Height(CM)',
                                   style: TextStyle(
-                                    color: Colors.grey,
+                                    color: Colors.black38,
                                     fontWeight: FontWeight.w500,
                                   ),
                                   textAlign: TextAlign.center,
@@ -89,8 +93,9 @@ class _VitalSignsState extends State<VitalSigns> {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.red[200]),
-                            color: Colors.red[50]),
+                            border: Border.all(color: Colors.black26),
+                            //color: Colors.red[50]),
+                        ),
                         child: Center(
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
@@ -98,19 +103,19 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '14',
+                                  '63',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: AppData.kPrimaryColor),
+                                      color: Colors.black),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Text(
-                                  'Pending Request',
+                                  'Weigth(kg)',
                                   style: TextStyle(
-                                    color: AppData.kPrimaryColor,
+                                    color: Colors.black38,
                                     fontWeight: FontWeight.w500,
                                   ),
                                   textAlign: TextAlign.center,
@@ -127,8 +132,8 @@ class _VitalSignsState extends State<VitalSigns> {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.green[200]),
-                            color: Colors.green[50]),
+                            border: Border.all(color: Colors.black26),
+                            ),
                         child: Center(
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
@@ -136,20 +141,20 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '14',
+                                  '24',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: AppData.kPrimaryColor),
+                                      color: Colors.black),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Text(
-                                  'Reports Submitted',
+                                  'BMI(kg/m)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: AppData.kPrimaryColor),
+                                      color: Colors.black38),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -157,80 +162,8 @@ class _VitalSignsState extends State<VitalSigns> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.blue[200]),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppData.kPrimaryColor),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  'Reject requests',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppData.kPrimaryColor),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.blue[200]),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '14',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppData.kPrimaryColor),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  'Monthly Overview/Daily Salesr',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: AppData.kPrimaryColor),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+
+
                     ],
                   ),
                 ),
@@ -242,316 +175,98 @@ class _VitalSignsState extends State<VitalSigns> {
 //                  shrinkWrap: true,
                     children: [
                       Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.blue[200]),
-                            color: Colors.blue[50]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
+                        color: Colors.black12,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                        child: GridView.count(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                      /*    itemCount: strOrders.length,
+                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                            // mainAxisExtent: 110,
+                            // mainAxisSpacing: 5,
+                              crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
+                          itemBuilder: (BuildContext context, int index) {*/
+                          children: List.generate(choices.length, (index) {
+                            return Card(
+                              elevation: 2,
+
+                              child: Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(color: Colors.grey),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '14',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppData.kPrimaryColor),
+                                  color: AppData.grey100,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
+                                  child: InkWell(
+                                    /*onTap: (){
+                                      Navigator.pushNamed(context, "/deliveredorder");
+                                    },*/
+                                    child: Container(
+                                      child: new GridTile(
+                                        child:
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Container(),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 10,
+                                                  child: new Image.asset(
+                                                    "assets/images/dashboard (1).png",
+                                                    height: 40,
+                                                    fit: BoxFit.cover,
+                                                    // color: Colors.blue
+                                                  ),
+                                                ),
+                                              ],
+
+                                            ),
+                                            SizedBox(height: size.height * 0.02,),
+                                            Text(choices..toString(),
+                                              style: TextStyle( color: Colors.black,fontSize: 15),
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 2,
+                                            ),
+                                            SizedBox(height: size.height * 0.01,),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                    color: Color(0xFFD8ABAF),
+                                                    width: 1.0, // Underline thickness
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: size.height * 0.02,),
+                                            Text(gridState[index].toString(),
+                                              style: TextStyle( color: Colors.grey,fontSize: 12),
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 2,
+                                            ),
+                                          ],
                                         ),
-                                        // SizedBox(height: 10,),
-                                        Text(
-                                          'Dec',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: AppData.kPrimaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Mr. Swapnil Nevale',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppData.kPrimaryColor),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Complete Hemogram',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: AppData.kPrimaryColor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
+
+                    ),
+                    ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.blue[200]),
-                            color: Colors.blue[50]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(color: Colors.grey),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '14',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppData.kPrimaryColor),
-                                        ),
-                                        // SizedBox(height: 10,),
-                                        Text(
-                                          'Dec',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: AppData.kPrimaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Mr. Swapnil Nevale',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppData.kPrimaryColor),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Complete Hemogram',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: AppData.kPrimaryColor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.red[200]),
-                            color: Colors.red[50]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(color: Colors.grey),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '10',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.red[900]),
-                                        ),
-                                        // SizedBox(height: 10,),
-                                        Text(
-                                          'Dec',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.red[900],
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Mrs. Supriya',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.red[900]),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Lipid Profile',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.red[900],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.green[200]),
-                            color: Colors.green[50]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(color: Colors.grey),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '14',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.green[900]),
-                                        ),
-                                        // SizedBox(height: 10,),
-                                        Text(
-                                          'Dec',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.green[900],
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Mr. Swapnil Nevale',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.green[900]),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Complete Hemogram',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.green[900],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+  ]
                   ),
                 )
               ],
@@ -562,3 +277,19 @@ class _VitalSignsState extends State<VitalSigns> {
     );
   }
 }
+class Choice {
+  const Choice({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'Home', icon: Icons.home),
+  const Choice(title: 'Contact', icon: Icons.contacts),
+  const Choice(title: 'Map', icon: Icons.map),
+  const Choice(title: 'Phone', icon: Icons.phone),
+  const Choice(title: 'Camera', icon: Icons.camera_alt),
+  const Choice(title: 'Setting', icon: Icons.settings),
+  const Choice(title: 'Album', icon: Icons.photo_album),
+  const Choice(title: 'WiFi', icon: Icons.wifi),
+];
