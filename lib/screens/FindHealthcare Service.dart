@@ -18,6 +18,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
   @override
   Widget build(BuildContext context) {
     double tileSize=80;
+    double spaceTab=20;
 
     return SafeArea(
         child: Scaffold(
@@ -90,10 +91,13 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                           Icon(Icons.date_range,
-                                              size: 50, color: Colors.red),
+                                           Container(color:Colors.red,
+                                             padding: EdgeInsets.all(3),
+                                             child: Icon(Icons.date_range,
+                                                size: 40, color: Colors.white),
+                                           ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
@@ -112,6 +116,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               ],
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -138,11 +143,14 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.date_range_rounded,
-                                              size: 50,
-                                              color: AppData.kPrimaryColor),
+                                          Container(color:Colors.blue,
+                                            padding: EdgeInsets.all(3),
+                                            child: Icon(Icons.date_range_rounded,
+                                                size: 40,
+                                                color:Colors.white),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
@@ -161,6 +169,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               ],
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -186,10 +195,13 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.search_rounded,
-                                              size: 50, color: Colors.red),
+                                          Container(color:Colors.red,
+                                            padding: EdgeInsets.all(3),
+                                            child: Icon(Icons.search_rounded,
+                                                size: 40, color: Colors.white),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
@@ -208,6 +220,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               ],
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -233,13 +246,15 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                              Icons
-                                                  .mobile_screen_share_outlined,
-                                              size: 50,
-                                              color: AppData.kPrimaryColor),
+                                          Container(color:Colors.blue,
+                                            padding: EdgeInsets.all(3),
+                                            child: Icon(
+                                                Icons.mobile_screen_share_outlined,
+                                                size: 40,
+                                                color:Colors.white),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
@@ -258,6 +273,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               ],
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),

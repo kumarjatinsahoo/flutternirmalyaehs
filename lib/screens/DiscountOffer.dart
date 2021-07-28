@@ -340,7 +340,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                               physics: NeverScrollableScrollPhysics(),
                               children: [
                                 GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                  onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
@@ -378,7 +378,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
@@ -418,7 +418,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
 
 
                                 GestureDetector(
-                                  //  onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
+                                    onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
@@ -456,7 +456,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
@@ -494,7 +494,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
