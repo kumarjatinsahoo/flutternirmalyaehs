@@ -3,21 +3,22 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-class FindHealthcareService extends StatefulWidget {
+class MedipediaPage extends StatefulWidget {
   MainModel model;
 
-  FindHealthcareService({Key key, this.model}) : super(key: key);
+  MedipediaPage({Key key, this.model}) : super(key: key);
 
   @override
-  _FindHealthcareServiceState createState() => _FindHealthcareServiceState();
+  _MedipediaPageState createState() => _MedipediaPageState();
 }
 
-class _FindHealthcareServiceState extends State<FindHealthcareService> {
+class _MedipediaPageState extends State<MedipediaPage> {
   var selectedMinValue;
 
   @override
   Widget build(BuildContext context) {
     double tileSize=80;
+    double spaceTab=20;
 
     return SafeArea(
         child: Scaffold(
@@ -37,7 +38,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                         },
                         child: Icon(Icons.arrow_back, color: Colors.white)),
                     Text(
-                      'Find Healthcare Service ',
+                      'Medipedia ',
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           fontSize: 20,
@@ -71,8 +72,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                           children: [
 
                             GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/bookanAppointmentlist"),
+                              // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -90,28 +90,20 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                           Icon(Icons.date_range,
-                                              size: 50, color: Colors.red),
+                                         Container(color:Colors.blue,child: Image.asset("assets/DiseaseInfo.png",height: 40,)),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Book an Appointment',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Disease Info',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -119,8 +111,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                             ),
 
                             GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/myAppointment"),
+                              //  onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -138,37 +129,27 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.date_range_rounded,
-                                              size: 50,
-                                              color: AppData.kPrimaryColor),
+                                          Container(color:Colors.red,child: Image.asset("assets/Healthdays.png",height: 40,)),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'My Appointment',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Health Days',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
                               ),
                             ),
                             GestureDetector(
-                              onTap: () =>
-                                  Navigator.pushNamed(context, "/findScreen"),
+                              // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -186,36 +167,27 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.search_rounded,
-                                              size: 50, color: Colors.red),
+                                          Container(color:Colors.blue,child: Image.asset("assets/Healttips.png",height: 40,)),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Find',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Health Tips',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
                               ),
                             ),
                             GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/medicalService"),
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -233,31 +205,20 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                              Icons
-                                                  .mobile_screen_share_outlined,
-                                              size: 50,
-                                              color: AppData.kPrimaryColor),
+                                        Container (color:Colors.red,child: Image.asset("assets/Videos.png",height: 40,)),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Medical Service',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Videos',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -266,7 +227,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 2,
                         ),
                       ],
                     ),
@@ -274,6 +235,10 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset("assets/images/medipediabg.png",fit: BoxFit.fill,),
+            )
           ],
         ),
       ),

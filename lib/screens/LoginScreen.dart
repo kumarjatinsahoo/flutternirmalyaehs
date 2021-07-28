@@ -101,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Image.asset(
               "assets/bg_img.jpg",
               fit: BoxFit.cover,
+              //centerSlice: ,
               height: 200,
               width: double.maxFinite,
             ),
