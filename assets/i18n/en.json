@@ -466,6 +466,7 @@
   "DOCUMENT": "Documents",
   "UPLOAD": "Upload ",
   "DOCTOR_NAME": "Doctor Name",
+  "PATIENT_NAME": "Patient Name",
   "ADMISSION_COMMENT": "Admission comment",
   "DELIVERY_COMMENT":"Delivery comment",
   "DISCHARGE_COMMENT": "Discharge comment",

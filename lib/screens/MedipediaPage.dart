@@ -70,6 +70,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
+
                             GestureDetector(
                               // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
                               child: Card(
@@ -94,27 +95,21 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                             width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Disease Info',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Disease Info',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
                               ),
                             ),
+
                             GestureDetector(
                               //  onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
                               child: Card(
@@ -139,22 +134,15 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                             width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Health Days',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Health Days',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -184,22 +172,15 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                             width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Health Tips',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Health Tips',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),
@@ -229,22 +210,15 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                             width: spaceTab,
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Videos',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
+                                            child: Text(
+                                              'Videos',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
                                           ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
                                         ],
                                       ),
                                     )),

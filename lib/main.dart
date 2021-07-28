@@ -27,6 +27,7 @@ import 'package:user/screens/LabOrders.dart';
 import 'package:user/screens/LifeStyleSolution.dart';
 import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
+import 'package:user/screens/MedicalRecordPage.dart';
 import 'package:user/screens/MedicalService.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
@@ -320,8 +321,10 @@ class _MyAppState extends State<MyApp> {
               '/discountoffer': (context) => DiscountOffer(
                 model: _model,
               ),
-
               '/medipedia': (context) => MedipediaPage(
+                model: _model,
+              ),
+              '/medicalrecordpage': (context) => MedicalRecordPage(
                 model: _model,
               ),
             },

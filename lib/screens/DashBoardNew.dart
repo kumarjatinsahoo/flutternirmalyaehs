@@ -974,8 +974,8 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTileblue(
                               icon: "assets/folder.png",
-                            //  title: "My Medical Record",
                               fun: () {
+                                Navigator.pushNamed(context, "/medicalrecordpage");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -1026,7 +1026,6 @@ class MyPage1Widget extends StatelessWidget {
                             ),
                           ]),
 
-
                       SizedBox(
                         width: 5,
                       ),
@@ -1037,15 +1036,10 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTileblue(
                               icon: "assets/offers.png",
-                              //icon: Icons.animation,
-                              //icon: FontAwesomeIcons.accusoft,
-                             // title: "Generic Medical Stores",
                               fun: () {
                                 Navigator.pushNamed(
                                     context, "/discountoffer");
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
-                              },
+                                },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
                               //size: (size.width - 130) / 3,

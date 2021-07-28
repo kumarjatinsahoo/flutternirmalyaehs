@@ -363,22 +363,15 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Hospital & Doctor',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  'Hospital & Doctor',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ),
+                                              Image.asset("assets/Forwordarrow.png",height: 25,)
                                             ],
                                           ),
                                         )),
@@ -408,22 +401,15 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Diagnostic & Pathalogy',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  'Diagnostic & Pathalogy',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ),
+                                              Image.asset("assets/Forwordarrow.png",height: 25,)
                                             ],
                                           ),
                                         )),
@@ -455,22 +441,15 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Pharmacy',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  'Pharmacy',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ),
+                                              Image.asset("assets/Forwordarrow.png",height: 25,)
                                             ],
                                           ),
                                         )),
@@ -500,22 +479,15 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Shopping',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  'Shopping',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ),
+                                              Image.asset("assets/Forwordarrow.png",height: 25,)
                                             ],
                                           ),
                                         )),
@@ -545,22 +517,15 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Other Health Service',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  'Other Health Service',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ),
+                                              Image.asset("assets/Forwordarrow.png",height: 25,)
                                             ],
                                           ),
                                         )),
