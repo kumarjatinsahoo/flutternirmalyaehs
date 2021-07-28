@@ -53,14 +53,14 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
+                      left: 10.0,
+                      right: 10.0,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         ListView(
                           shrinkWrap: true,
@@ -70,7 +70,7 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                               elevation: 5,
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
-                                height: 100,
+                                height: 80,
                                 decoration: BoxDecoration(
                                   // color: Colors.indigo[50],
                                   borderRadius: BorderRadius.circular(5.0),
@@ -88,48 +88,119 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                     // Navigator.pop(context);
                                                   },
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 10.0, right: 10.0),
-                                                    child: Icon(
-                                                      Icons.animation,
-                                                      color: Colors.red,
-                                                    ),
+                                                      padding: const EdgeInsets.only(
+                                                          left: 10.0, right: 10.0),
+                                                      child: Image.asset("assets/greeninjection.png",height: 40,)
+
                                                   )),
-                                              /* SizedBox(width: 100,),*/
+
                                             ])),
-                                   /* new Spacer(),*/
+                                    /* new Spacer(),*/
 
                                     Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Prescrlbed by:Dr Manasl Pathak',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('18-jan-2019',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('Hepatitis B Vaccine' ,
-                                            overflow: TextOverflow.clip,
-                                            style: TextStyle(color: Colors.grey),),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Prescrlbed by:Dr Manasl Pathak',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('18-jan-2019',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('Hepatitis B Vaccine' ,
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(color: Colors.green),),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    new Spacer(),
+
                                     Row(
                                       //mainAxisAlignment: MainAxisAlignment.spic,
                                         children: [
                                           InkWell(
                                               onTap: () {
                                                 // Navigator.pop(context);
-                                                },
+                                              },
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10.0),
-                                                child: Icon(
-                                                  Icons.cancel,
-                                                  color: Colors.red,
-                                                ),
+                                                  padding: const EdgeInsets.only(right: 10.0),
+                                                  child: Image.asset("assets/green40.png",height: 30,)
+                                              )),
+
+                                          /* SizedBox(width: 100,),*/
+
+                                        ])/*),*/
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Card(
+                              elevation: 5,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  // color: Colors.indigo[50],
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  border: Border.all(color: Colors.grey, width: 0.7),
+                                ),
+                                child: Row(
+                                  //mainAxisAlignment: MainAxisAlignment.spic,
+                                  children: [
+                                    Container(
+                                        child: Row(
+                                          //mainAxisAlignment: MainAxisAlignment.spic,
+                                            children: [
+                                              InkWell(
+                                                  onTap: () {
+                                                    // Navigator.pop(context);
+                                                  },
+                                                  child: Padding(
+                                                      padding: const EdgeInsets.only(
+                                                          left: 10.0, right: 10.0),
+                                                      child: Image.asset("assets/redinjection40.png",height: 40,)
+
+                                                  )),
+
+                                            ])),
+                                    /* new Spacer(),*/
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Prescrlbed by:Dr Manasl Pathak',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('18-jan-2019',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('Hepatitis B Vaccine' ,
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(color: AppData.kPrimaryRedColor),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                                    Row(
+                                      //mainAxisAlignment: MainAxisAlignment.spic,
+                                        children: [
+                                          InkWell(
+                                              onTap: () {
+                                                // Navigator.pop(context);
+                                              },
+                                              child: Padding(
+                                                  padding: const EdgeInsets.only(right: 10.0),
+                                                  child: Image.asset("assets/red40.png",height: 30,)
                                               )),
 
                                           /* SizedBox(width: 100,),*/
@@ -140,13 +211,13 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
                             Card(
                               elevation: 5,
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
-                                height: 100,
+                                height: 80,
                                 decoration: BoxDecoration(
                                   // color: Colors.indigo[50],
                                   borderRadius: BorderRadius.circular(5.0),
@@ -164,34 +235,35 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                     // Navigator.pop(context);
                                                   },
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 10.0, right: 10.0),
-                                                    child: Icon(
-                                                      Icons.animation,
-                                                      color: Colors.green,
-                                                    ),
+                                                      padding: const EdgeInsets.only(
+                                                          left: 10.0, right: 10.0),
+                                                      child: Image.asset("assets/greeninjection.png",height: 40,)
+
                                                   )),
-                                              /* SizedBox(width: 100,),*/
+
                                             ])),
-                                   /* new Spacer(),*/
+                                    /* new Spacer(),*/
 
                                     Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Prescrlbed by:Dr Manasl Pathak',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('18-jan-2019',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('Hepatitis B Vaccine' ,
-                                            overflow: TextOverflow.clip,
-                                            style: TextStyle(color: Colors.grey),),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Prescrlbed by:Dr Manasl Pathak',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('18-jan-2019',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                            SizedBox(height: 5,),
+                                            Text('Hepatitis B Vaccine' ,
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(color: Colors.green),),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    new Spacer(),
+
                                     Row(
                                       //mainAxisAlignment: MainAxisAlignment.spic,
                                         children: [
@@ -200,87 +272,8 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                 // Navigator.pop(context);
                                               },
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10.0),
-                                                child: Icon(
-                                                  Icons.done_outline_rounded,
-                                                  color: Colors.green,
-                                                ),
-                                              )),
-
-                                          /* SizedBox(width: 100,),*/
-                                        ])/*),*/
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  // color: Colors.indigo[50],
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  border: Border.all(color: Colors.grey, width: 0.7),
-                                ),
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.spic,
-                                  children: [
-                                    Container(
-                                        child: Row(
-                                          //mainAxisAlignment: MainAxisAlignment.spic,
-                                            children: [
-                                              InkWell(
-                                                  onTap: () {
-                                                    // Navigator.pop(context);
-                                                  },
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 10.0, right: 10.0),
-                                                    child: Icon(
-                                                      Icons.animation,
-                                                      color: Colors.red,
-                                                    ),
-                                                  )),
-                                              /* SizedBox(width: 100,),*/
-                                            ])),
-                                    /*new Spacer(),*/
-
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Prescrlbed by:Dr Manasl Pathak',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('18-jan-2019',
-                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                          SizedBox(height: 5,),
-                                          Text('Hepatitis B Vaccine' ,
-                                            overflow: TextOverflow.clip,
-                                            style: TextStyle(color: Colors.grey),),
-                                        ],
-                                      ),
-                                    ),
-                                    new Spacer(),
-                                    Row(
-                                      //mainAxisAlignment: MainAxisAlignment.spic,
-                                        children: [
-                                          InkWell(
-                                              onTap: () {
-                                                // Navigator.pop(context);
-                                              },
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10.0),
-                                                child: Icon(
-                                                  Icons.cancel,
-                                                  color: Colors.red,
-                                                ),
+                                                  padding: const EdgeInsets.only(right: 10.0),
+                                                  child: Image.asset("assets/green40.png",height: 30,)
                                               )),
 
                                           /* SizedBox(width: 100,),*/
@@ -293,13 +286,13 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Card(
                           elevation: 5,
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 100,
+                            height: 80,
                             decoration: BoxDecoration(
                               // color: Colors.indigo[50],
                               borderRadius: BorderRadius.circular(5.0),
@@ -317,34 +310,35 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                 // Navigator.pop(context);
                                               },
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10.0, right: 10.0),
-                                                child: Icon(
-                                                  Icons.animation,
-                                                  color: Colors.green,
-                                                ),
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10.0, right: 10.0),
+                                                  child: Image.asset("assets/redinjection40.png",height: 40,)
+
                                               )),
-                                          /* SizedBox(width: 100,),*/
+
                                         ])),
-                                /*new Spacer(),*/
+                                /* new Spacer(),*/
 
                                 Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Prescrlbed by:Dr Manasl Pathak',
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                      SizedBox(height: 5,),
-                                      Text('18-jan-2019',
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                      SizedBox(height: 5,),
-                                      Text('Hepatitis B Vaccine' ,
-                                        overflow: TextOverflow.clip,
-                                        style: TextStyle(color: Colors.grey),),
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Prescrlbed by:Dr Manasl Pathak',
+                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                        SizedBox(height: 5,),
+                                        Text('18-jan-2019',
+                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+                                        SizedBox(height: 5,),
+                                        Text('Hepatitis B Vaccine' ,
+                                          overflow: TextOverflow.clip,
+                                          style: TextStyle(color: AppData.kPrimaryRedColor),),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                new Spacer(),
+
                                 Row(
                                   //mainAxisAlignment: MainAxisAlignment.spic,
                                     children: [
@@ -353,15 +347,12 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                             // Navigator.pop(context);
                                           },
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10.0),
-                                            child: Icon(
-                                              Icons.done_outline_rounded,
-                                              color: Colors.green,
-                                            ),
+                                              padding: const EdgeInsets.only(right: 10.0),
+                                              child: Image.asset("assets/red40.png",height: 30,)
                                           )),
 
                                       /* SizedBox(width: 100,),*/
+
                                     ])/*),*/
                               ],
                             ),

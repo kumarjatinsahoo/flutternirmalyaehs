@@ -229,7 +229,6 @@ class _VitalSignsState extends State<VitalSigns> {
                                                   ),
                                                 ),
                                               ],
-
                                             ),
                                             SizedBox(height: size.height * 0.02,),
                                             Text( choices[index].title.toString(),
@@ -288,7 +287,6 @@ class Choice {
   final IconData icon;
   final String title1;
 }
-
 const List<Choice> choices = const <Choice>[
   //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
   const Choice(title: '38.000C 1000.000F',title1: 'Temperature'),
@@ -296,7 +294,6 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: '120/min',title1: 'Pulse'),
   const Choice(title: '24 bpm',title1: 'Respiration'),
   const Choice(title: '50 % ',title1: 'Oxygen Saturation'),
-
 ];
 class SelectCard extends StatelessWidget {
   const SelectCard({Key key, this.choice}) : super(key: key);

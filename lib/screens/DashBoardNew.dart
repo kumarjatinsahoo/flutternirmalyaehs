@@ -279,10 +279,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 leading: Image.asset("assets/images/support.png",height: 30,),
                 title: Text('Support'),
                 selected: _selectedDestination == 7,
-                // onTap: () {
-                //   selectDestination(5);
-                //   Navigator.pushNamed(context, "/share");
-                // }
+                onTap: () {
+                  selectDestination(5);
+                  Navigator.pushNamed(context, "/immunizationlist");
+                }
               ),
               ListTile(
                 leading: Image.asset("assets/images/reminder.png",height: 30,),
