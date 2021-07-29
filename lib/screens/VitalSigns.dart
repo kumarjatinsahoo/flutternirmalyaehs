@@ -169,7 +169,6 @@ class _VitalSignsState extends State<VitalSigns> {
                 SizedBox(
                   height: 20,
                 ),
-
                 SingleChildScrollView(
                   child: Column(
 //                  shrinkWrap: true,
@@ -184,6 +183,12 @@ class _VitalSignsState extends State<VitalSigns> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 4.0,
                           mainAxisSpacing: 8.0,
+                          /*    itemCount: strOrders.length,
+                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                            // mainAxisExtent: 110,
+                            // mainAxisSpacing: 5,
+                              crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
+                          itemBuilder: (BuildContext context, int index) {*/
                           children: List.generate(choices.length, (index) {
                             return
                              Card(
@@ -197,7 +202,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                   padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
                                   child: InkWell(
                                     onTap: (){
-                                     // Navigator.pushNamed(context, "/deliveredorder");
+                                      Navigator.pushNamed(context, "/deliveredorder");
                                     },
                                     child: Container(
                                       child: new GridTile(
@@ -213,16 +218,27 @@ class _VitalSignsState extends State<VitalSigns> {
                                                 
                                                 Container(
                                             /*count % 2 == 1 ??*/
-                                                    color:AppData.kPrimaryRedColor,
+                                                    color:choices[index].color,
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
                                                 ),
-                                                Container(
-                                                  /*count % 2 == 1 ??*/
+
+                                               /* Container(
+                                                  *//*count % 2 == 1 ??*//*
                                                     color:AppData.klightblurColor,
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
-                                                ),
+                                                ),*/
+                                                /*Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 10,
+                                                  child: new Image.asset(
+                                                    "assets/images/dashboard (1).png",
+                                                    height: 40,
+                                                    fit: BoxFit.cover,
+                                                    // color: Colors.blue
+                                                  ),
+                                                ),*/
                                               ],
                                             ),
                                             SizedBox(height: size.height * 0.02,),
@@ -277,18 +293,19 @@ class _VitalSignsState extends State<VitalSigns> {
   }
 }
 class Choice {
-  const Choice({this.title, this.icon,this.title1});
+  const Choice({this.title, this.icon,this.title1,this.color});
   final String title;
   final String icon;
+  final Color color;
   final String title1;
 }
 const List<Choice> choices = const <Choice>[
   //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
-  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",title1: 'Temperature'),
-  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png", title1: 'Systolic Diastolic Blood Pressure'),
-  const Choice(title: '120/min',icon: "assets/pulse.png",title1: 'Pulse'),
-  const Choice(title: '24 bpm',icon: "assets/respiration.png",title1: 'Respiration'),
-  const Choice(title: '50 % ',icon: "assets/oxygen.png",title1: 'Oxygen Saturation'),
+  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",color:Color(0xFFCF3564),title1: 'Temperature'),
+  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png",color:Color(0xFF2372B6), title1: 'Systolic Diastolic Blood Pressure'),
+  const Choice(title: '120/min',icon: "assets/pulse.png",color:Color(0xFF2372B6),title1: 'Pulse'),
+  const Choice(title: '24 bpm',icon: "assets/respiration.png",color:Color(0xFFCF3564),title1: 'Respiration'),
+  const Choice(title: '50 % ',icon: "assets/oxygen.png",color:Color(0xFFCF3564),title1: 'Oxygen Saturation'),
 ];
 class SelectCard extends StatelessWidget {
   const SelectCard({Key key, this.choice}) : super(key: key);
@@ -309,7 +326,7 @@ class SelectCard extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
                                   child: InkWell(
                                     onTap: (){
-                                     // Navigator.pushNamed(context, "/deliveredorder");
+                                      Navigator.pushNamed(context, "/deliveredorder");
                                     },
                                     child: Container(
                                       child: new GridTile(

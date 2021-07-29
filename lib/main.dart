@@ -47,6 +47,7 @@ import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
 import 'package:user/screens/RIP.dart';
+import 'package:user/screens/RequestHealthCheakup.dart';
 import 'package:user/screens/SampleTracking.dart';
 import 'package:user/screens/Search.dart';
 import 'package:user/screens/SetDiscount.dart';
@@ -345,6 +346,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/worldwidehospital': (context) => WorldwideHospitals(
+                model: _model,
+              ),
+              '/requestHealthCheakup': (context) =>RequestHealthCheakup(
                 model: _model,
               ),
 
