@@ -23,6 +23,7 @@ import 'package:user/screens/GovtSchemes.dart';
 import 'package:user/screens/GovtSchemesList.dart';
 import 'package:user/screens/HealthCheckup.dart';
 import 'package:user/screens/Immunizationlist.dart';
+import 'package:user/screens/InsuranceDet.dart';
 import 'package:user/screens/Insurancelist.dart';
 import 'package:user/screens/IntroScreen.dart';
 import 'package:user/screens/LabOrders.dart';
@@ -349,6 +350,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/requestHealthCheakup': (context) =>RequestHealthCheakup(
+                model: _model,
+              ),
+              '/insuranceDetalis': (context) =>InsuranceDetalis(
                 model: _model,
               ),
 

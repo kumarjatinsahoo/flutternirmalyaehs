@@ -66,7 +66,10 @@ class _InsuranceListState extends State<InsuranceList> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
-                        Card(
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/insuranceDetalis"),
+                              child:  Card(
                         shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                         ),
@@ -119,6 +122,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                     borderRadius: BorderRadius.circular(8))),
                               ),*/
                             ),),
+                            ),
                             SizedBox(
                               height: 10,
                             ),
