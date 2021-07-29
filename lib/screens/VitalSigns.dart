@@ -15,6 +15,7 @@ class VitalSigns extends StatefulWidget {
 
 class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
+  int count = 0;
   List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
   List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
 
@@ -191,9 +192,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
                           itemBuilder: (BuildContext context, int index) {*/
                           children: List.generate(choices.length, (index) {
-                            return /*Center(
-                              child: SelectCard(choice: choices[index]),
-                            );*/
+                            return
                              Card(
                               elevation: 2,
 
@@ -218,7 +217,20 @@ class _VitalSignsState extends State<VitalSigns> {
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                Material(
+                                                
+                                                Container(
+                                            /*count % 2 == 1 ??*/
+                                                    color:AppData.kPrimaryRedColor,
+                                                    padding: EdgeInsets.all(3),
+                                                    child: Image.asset(choices[index].icon,height: 40,)
+                                                ),
+                                                Container(
+                                                  /*count % 2 == 1 ??*/
+                                                    color:AppData.klightblurColor,
+                                                    padding: EdgeInsets.all(3),
+                                                    child: Image.asset(choices[index].icon,height: 40,)
+                                                ),
+                                                /*Material(
                                                   color: Colors.transparent,
                                                   elevation: 10,
                                                   child: new Image.asset(
@@ -227,7 +239,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                                     fit: BoxFit.cover,
                                                     // color: Colors.blue
                                                   ),
-                                                ),
+                                                ),*/
                                               ],
                                             ),
                                             SizedBox(height: size.height * 0.02,),
@@ -284,16 +296,16 @@ class _VitalSignsState extends State<VitalSigns> {
 class Choice {
   const Choice({this.title, this.icon,this.title1});
   final String title;
-  final IconData icon;
+  final String icon;
   final String title1;
 }
 const List<Choice> choices = const <Choice>[
   //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
-  const Choice(title: '38.000C 1000.000F',title1: 'Temperature'),
-  const Choice(title: '213/4 mmHg', title1: 'Systolic Diastolic Blood Pressure'),
-  const Choice(title: '120/min',title1: 'Pulse'),
-  const Choice(title: '24 bpm',title1: 'Respiration'),
-  const Choice(title: '50 % ',title1: 'Oxygen Saturation'),
+  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",title1: 'Temperature'),
+  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png", title1: 'Systolic Diastolic Blood Pressure'),
+  const Choice(title: '120/min',icon: "assets/pulse.png",title1: 'Pulse'),
+  const Choice(title: '24 bpm',icon: "assets/respiration.png",title1: 'Respiration'),
+  const Choice(title: '50 % ',icon: "assets/oxygen.png",title1: 'Oxygen Saturation'),
 ];
 class SelectCard extends StatelessWidget {
   const SelectCard({Key key, this.choice}) : super(key: key);

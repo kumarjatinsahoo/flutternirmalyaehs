@@ -259,10 +259,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   leading: Image.asset("assets/images/share.png",height: 30,),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
-                   onTap: () {
+                   /*onTap: () {
                    selectDestination(5);
                    Navigator.pushNamed(context, "/vitalSigns");
-                  }
+                  }*/
               ),
 
               ListTile(
@@ -279,10 +279,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 leading: Image.asset("assets/images/support.png",height: 30,),
                 title: Text('Support'),
                 selected: _selectedDestination == 7,
-                onTap: () {
+              /*  onTap: () {
                   selectDestination(5);
                   Navigator.pushNamed(context, "/immunizationlist");
-                }
+                }*/
               ),
               ListTile(
                 leading: Image.asset("assets/images/reminder.png",height: 30,),

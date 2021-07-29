@@ -72,7 +72,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                               physics: NeverScrollableScrollPhysics(),
                               children: [
                                 GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                   onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
@@ -113,7 +113,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  //  onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
+                                    onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
