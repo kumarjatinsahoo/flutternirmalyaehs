@@ -163,14 +163,13 @@ class _VitalSignsState extends State<VitalSigns> {
                           ),
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
+
                 SingleChildScrollView(
                   child: Column(
 //                  shrinkWrap: true,
@@ -185,12 +184,6 @@ class _VitalSignsState extends State<VitalSigns> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 4.0,
                           mainAxisSpacing: 8.0,
-                          /*    itemCount: strOrders.length,
-                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                            // mainAxisExtent: 110,
-                            // mainAxisSpacing: 5,
-                              crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
-                          itemBuilder: (BuildContext context, int index) {*/
                           children: List.generate(choices.length, (index) {
                             return
                              Card(
@@ -204,7 +197,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                   padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.pushNamed(context, "/deliveredorder");
+                                     // Navigator.pushNamed(context, "/deliveredorder");
                                     },
                                     child: Container(
                                       child: new GridTile(
@@ -230,16 +223,6 @@ class _VitalSignsState extends State<VitalSigns> {
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
                                                 ),
-                                                /*Material(
-                                                  color: Colors.transparent,
-                                                  elevation: 10,
-                                                  child: new Image.asset(
-                                                    "assets/images/dashboard (1).png",
-                                                    height: 40,
-                                                    fit: BoxFit.cover,
-                                                    // color: Colors.blue
-                                                  ),
-                                                ),*/
                                               ],
                                             ),
                                             SizedBox(height: size.height * 0.02,),
@@ -326,7 +309,7 @@ class SelectCard extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.pushNamed(context, "/deliveredorder");
+                                     // Navigator.pushNamed(context, "/deliveredorder");
                                     },
                                     child: Container(
                                       child: new GridTile(

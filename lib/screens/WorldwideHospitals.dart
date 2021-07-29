@@ -3,230 +3,453 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-class WorldwideHospitalsList extends StatefulWidget {
+class WorldwideHospitals extends StatefulWidget {
   MainModel model;
-  WorldwideHospitalsList({Key key, this.model}) : super(key: key);
+
+  WorldwideHospitals({Key key, this.model}) : super(key: key);
+
   @override
-  _WorldwideHospitalsListState createState() => _WorldwideHospitalsListState();
+  _WorldwideHospitalsState createState() => _WorldwideHospitalsState();
 }
 
-class _WorldwideHospitalsListState extends State<WorldwideHospitalsList> {
+class _WorldwideHospitalsState extends State<WorldwideHospitals> {
   var selectedMinValue;
+
   @override
   Widget build(BuildContext context) {
+    double tileSize=100;
+    double spaceTab=20;
+    double edgeInsets=3;
+
     return SafeArea(
         child: Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: AppData.white,)),
-                    Text(
-                      'Worldwide Hospitals ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: AppData.white),
-                    ),
-                    Icon(
-                      Icons.search,color: AppData.white
-                    ),
-                  ],
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-            ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+          body: Container(
+            child: Column(
+              children: [
+                Container(
+                  color: AppData.kPrimaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: 10,
+                        InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(Icons.arrow_back, color: Colors.white)),
+                        Text(
+                          'Worldwide Hospitals ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                              color: Colors.white),
                         ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.home_work_outlined, size: 50,color: AppData.klightRedColor),
-                                        SizedBox(width: 10,),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                            /*  Text('Ms. Paylla Tanaji sdul/ chaitali ram',
-                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)*/
-                                              SizedBox(height: 5,),
-                                              Text('Unlverslty of missourl health care,I hospital Dr.Columbia ,M0652121,USA' ,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.home_work_outlined, size: 50,color: AppData.klightblurColor),
-                                        SizedBox(width: 10,),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              /*  Text('Ms. Paylla Tanaji sdul/ chaitali ram',
-                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)*/
-                                              SizedBox(height: 5,),
-                                              Text('Unlverslty of missourl health care,I hospital Dr.Columbia ,M0652121,USA' ,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.home_work_outlined, size: 50,color: AppData.klightRedColor),
-                                        SizedBox(width: 10,),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              /*  Text('Ms. Paylla Tanaji sdul/ chaitali ram',
-                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)*/
-                                              SizedBox(height: 5,),
-                                              Text('Unlverslty of missourl health care,I hospital Dr.Columbia ,M0652121,USA' ,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Card(
-                          elevation: 5,
-                          child: Container(
-                              height: 150,
-                              width: double.maxFinite,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.grey[300],
-                                  ),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.home_work_outlined, size: 50,color: AppData.klightblurColor),
-                                    SizedBox(width: 10,),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          /*  Text('Ms. Paylla Tanaji sdul/ chaitali ram',
-                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)*/
-                                          SizedBox(height: 5,),
-                                          Text('Unlverslty of missourl health care,I hospital Dr.Columbia ,M0652121,USA' ,
-                                            overflow: TextOverflow.clip,
-                                            style: TextStyle(),),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )),
-                        ),
+                        Icon(Icons.search, color: Colors.white),
                       ],
                     ),
                   ),
-                ],
-              ),
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 10.0,
+                          right: 10.0,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ListView(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: [
+
+                                GestureDetector(
+                                 // onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care  ',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12) ,),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                             // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                                GestureDetector(
+                                 // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital1.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                                GestureDetector(
+                                  // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                             // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                                GestureDetector(
+                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital1.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                                GestureDetector(
+                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                                GestureDetector(
+                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital1.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                           //   Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                                  child:Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset("assets/Hospital.png",height: 40,),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'University of Mlssourl Health Care',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text("1 Hospital Dr.Columbia,MO 65212,USA",
+                                                          style:TextStyle(fontSize: 12),)
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget _submitButton() {

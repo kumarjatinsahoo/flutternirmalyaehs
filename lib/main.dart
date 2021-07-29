@@ -60,6 +60,7 @@ import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/VitalSigns.dart';
+import 'package:user/screens/WorldwideHospitals.dart';
 import 'package:user/screens/find.dart';
 import 'package:user/screens/MedipediaPage.dart';
 import 'package:user/screens/labrotry/LabSignUpForm.dart';
@@ -341,6 +342,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/immunizationlist': (context) => Immunizationlist(
+                model: _model,
+              ),
+              '/worldwidehospital': (context) => WorldwideHospitals(
                 model: _model,
               ),
 
