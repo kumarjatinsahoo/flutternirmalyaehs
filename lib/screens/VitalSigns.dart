@@ -163,8 +163,6 @@ class _VitalSignsState extends State<VitalSigns> {
                           ),
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
@@ -220,16 +218,17 @@ class _VitalSignsState extends State<VitalSigns> {
                                                 
                                                 Container(
                                             /*count % 2 == 1 ??*/
-                                                    color:AppData.kPrimaryRedColor,
+                                                    color:choices[index].color,
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
                                                 ),
-                                                Container(
-                                                  /*count % 2 == 1 ??*/
+
+                                               /* Container(
+                                                  *//*count % 2 == 1 ??*//*
                                                     color:AppData.klightblurColor,
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
-                                                ),
+                                                ),*/
                                                 /*Material(
                                                   color: Colors.transparent,
                                                   elevation: 10,
@@ -294,18 +293,19 @@ class _VitalSignsState extends State<VitalSigns> {
   }
 }
 class Choice {
-  const Choice({this.title, this.icon,this.title1});
+  const Choice({this.title, this.icon,this.title1,this.color});
   final String title;
   final String icon;
+  final Color color;
   final String title1;
 }
 const List<Choice> choices = const <Choice>[
   //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
-  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",title1: 'Temperature'),
-  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png", title1: 'Systolic Diastolic Blood Pressure'),
-  const Choice(title: '120/min',icon: "assets/pulse.png",title1: 'Pulse'),
-  const Choice(title: '24 bpm',icon: "assets/respiration.png",title1: 'Respiration'),
-  const Choice(title: '50 % ',icon: "assets/oxygen.png",title1: 'Oxygen Saturation'),
+  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",color:Color(0xFFCF3564),title1: 'Temperature'),
+  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png",color:Color(0xFF2372B6), title1: 'Systolic Diastolic Blood Pressure'),
+  const Choice(title: '120/min',icon: "assets/pulse.png",color:Color(0xFF2372B6),title1: 'Pulse'),
+  const Choice(title: '24 bpm',icon: "assets/respiration.png",color:Color(0xFFCF3564),title1: 'Respiration'),
+  const Choice(title: '50 % ',icon: "assets/oxygen.png",color:Color(0xFFCF3564),title1: 'Oxygen Saturation'),
 ];
 class SelectCard extends StatelessWidget {
   const SelectCard({Key key, this.choice}) : super(key: key);

@@ -57,7 +57,7 @@ class _HealthCheckupState extends State<HealthCheckup> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
-                                             //onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                             onTap: () =>   Navigator.pushNamed(context, "/requestHealthCheakup"),
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
