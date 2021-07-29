@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 
 class GovtSchemes extends StatefulWidget {
   MainModel model;
+
   GovtSchemes({Key key, this.model}) : super(key: key);
+
   @override
   _GovtSchemesState createState() => _GovtSchemesState();
 }
@@ -28,87 +30,99 @@ class _GovtSchemesState extends State<GovtSchemes> {
   ];
   List<KeyvalueModel> schemeList = [
     KeyvalueModel(name: "Scheme1", key: "1"),
-     KeyvalueModel(name: "Scheme2", key: "2"),
+    KeyvalueModel(name: "Scheme2", key: "2"),
     KeyvalueModel(name: "Scheme3", key: "3"),
   ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
-           body: Container(
-             child: Column(
-               children: [
-                  Container(
-                  color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: (){
+        child: Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    InkWell(
+                        onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.arrow_back,color: Colors.white )),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 50.0, right: 30.0),
-                     child: Text('Government Schemes',
-                      style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                   ),
-                        Icon(Icons.search,color: Colors.white ),
-                    ],
-                  ),
+                        child: Icon(Icons.arrow_back, color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50.0, right: 30.0),
+                      child: Text(
+                        'Government Schemes',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: Colors.white),
+                      ),
+                    ),
+                    Icon(Icons.search, color: Colors.white),
+                  ],
                 ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
               ),
-              Padding(
-                            padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [    
-                                SizedBox(height: 10,), 
-                                 Text('Find Health Schemes', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),  
-                                 
-                                   SizedBox(height: 30),
-                                   DropDown.staticDropdown2(
-                                'India',
-                                "country",
-                                countryList, (KeyvalueModel data) {
-                              setState(() {
-                                
-                              });
-                            }),
-                             SizedBox(height: 10,),
-                              DropDown.staticDropdown2(
-                                MyLocalizations.of(context).text("SELECT_STATE"),
-                                "state",
-                                stateList, (KeyvalueModel data) {
-                              setState(() {
-                                
-                              });
-                            }),
-                               
-                           SizedBox(height: 10,),
-                               DropDown.staticDropdown2(
-                                MyLocalizations.of(context).text("SELECT_SCHEME"),
-                                "scheme",
-                                schemeList, (KeyvalueModel data) {
-                              setState(() {
-                                
-                              });
-                            }),
-          SizedBox(height: 60,),
-          _submitButton(),
-           SizedBox(height: 10,),
-                           
-                            ],),
-                          ),
-               ],
-             ),
-           ),
-          )  
-    );
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 10.0,
+                right: 10.0,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Find Health Schemes',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 30),
+                  DropDown.staticDropdown2('India', "country", countryList,
+                      (KeyvalueModel data) {
+                    setState(() {});
+                  }),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  DropDown.staticDropdown2(
+                      MyLocalizations.of(context).text("SELECT_STATE"),
+                      "state",
+                      stateList, (KeyvalueModel data) {
+                    setState(() {});
+                  }),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  DropDown.staticDropdown2(
+                      MyLocalizations.of(context).text("SELECT_SCHEME"),
+                      "scheme",
+                      schemeList, (KeyvalueModel data) {
+                    setState(() {});
+                  }),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  _submitButton(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 
   Widget _submitButton() {
@@ -122,13 +136,10 @@ class _GovtSchemesState extends State<GovtSchemes> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-      
+
         Navigator.pushNamed(context, "/govtschemeslist");
         //}
-        
       },
     );
   }
-
-  
 }

@@ -1357,8 +1357,8 @@ class MyPage1Widget extends StatelessWidget {
                               //icon: FontAwesomeIcons.accusoft,
                              // title: "Upload Medical Data",
                               fun: () {
-                               /* Navigator.pushNamed(
-                                    context, "/organdonation");*/
+                               Navigator.pushNamed(
+                                    context, "/worldwidehospital");
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },

@@ -122,6 +122,8 @@ class _InsuranceListState extends State<InsuranceList> {
                             SizedBox(
                               height: 10,
                             ),
+
+
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),
