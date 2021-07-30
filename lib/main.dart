@@ -3,9 +3,11 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/AYUSH%20Doctors.dart';
 import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/AirAmbulanceList.dart';
+import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
+import 'package:user/screens/DocAponmnttListPage.dart';
 import 'package:user/screens/Doctor/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/DoctorSignUpForm3.dart';
@@ -59,6 +61,7 @@ import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
 import 'package:user/screens/TermsandConditions.dart';
+import 'package:user/screens/TestReport.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/VitalSigns.dart';
@@ -355,7 +358,15 @@ class _MyAppState extends State<MyApp> {
               '/insuranceDetalis': (context) =>InsuranceDetalis(
                 model: _model,
               ),
-
+              '/testReport': (context) =>TestReport(
+                model: _model,
+              ),
+              '/docApntlist': (context) =>DocAponmnttListPage(
+                model: _model,
+              ),
+              '/docApnt': (context) => AllAppointmentPage(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
