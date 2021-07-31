@@ -304,7 +304,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-                  // Navigator.pushNamed(context, "/Notifications");
+                   Navigator.pushNamed(context, "/patientRegistration");
                 },
               ),
               ListTile(
@@ -479,7 +479,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
             CarouselSlider(
               options: CarouselOptions(
-                  height: 130,
+                  height: 170,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 0.9,
@@ -950,7 +950,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
 
 class MyPage1Widget extends StatelessWidget {
-  double _height = 75;
+  double _height = 85;
   double _width;
   @override
   Widget build(BuildContext context) {
@@ -1038,14 +1038,17 @@ class MyPage1Widget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/offers.png",
+                              icon: "assets/health_checkup.png",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/discountoffer");
-                                },
+                                //chooseAppointment(context);
+                                /*Navigator.pushNamed(
+                                    context, "/medipedia");*/
+                                // AppData.showSnack(
+                                //     context, "Coming soon", Colors.green);
+                              },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
-                              //size: (size.width - 130) / 3,
+                              size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1053,8 +1056,9 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
+                              /* child: Expanded(*/
                               child: Text(
-                                "Discount & Offers",textAlign:TextAlign.center ,
+                                "Appointment",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -1062,7 +1066,7 @@ class MyPage1Widget extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
-                                          "Health               chat",
+                                          "Govternment Schemes",
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
@@ -1348,8 +1352,7 @@ class MyPage1Widget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      /*Expanded(
-                            child:*/ Column(
+                      /*Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -1374,17 +1377,53 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
-                              /* child: Expanded(*/
+                              *//* child: Expanded(*//*
                               child: Text(
                                 "Upload Medical Data",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            /* Align(
+                            *//* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
                                           "Organ     Donation",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*//*
+                          ]),*/
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              icon: "assets/offers.png",
+                              fun: () {
+                                Navigator.pushNamed(
+                                    context, "/discountoffer");
+                              },
+                              //color: AppData.BG2BLUE,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height:35,
+                              child: Text(
+                                "Discount & Offers",textAlign:TextAlign.center ,
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Health               chat",
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
@@ -1847,7 +1886,7 @@ class MyPage1Widget extends StatelessWidget {
   }
 }
 class MyPage2Widget extends StatelessWidget {
-  double _height = 75;
+  double _height = 85;
   double _width;
   @override
   Widget build(BuildContext context) {
@@ -1949,48 +1988,9 @@ class MyPage2Widget extends StatelessWidget {
                                         ),*/
                           ]),
                       SizedBox(
-                        width: 5,
+                        width: 15,
                       ),
-                      /* Expanded(
-                            child: */Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/health_checkup.png",
-                              fun: () {
-                                chooseAppointment(context);
-                                /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Appointment",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
+
                     ],
                   ),
                 ],

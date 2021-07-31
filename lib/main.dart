@@ -42,6 +42,9 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/PatientRegistration.dart';
+import 'package:user/screens/PatientRegistration2.dart';
+import 'package:user/screens/PatientRegistration3.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
@@ -367,6 +370,16 @@ class _MyAppState extends State<MyApp> {
               '/docApnt': (context) => AllAppointmentPage(
                 model: _model,
               ),
+              '/patientRegistration': (context) => PatientRegistration(
+                model: _model,
+              ),
+              '/patientRegistration3': (context) => PatientRegistration3(
+                model: _model,
+              ),
+              '/patientRegistration2': (context) => PatientRegistration2(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
