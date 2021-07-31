@@ -260,7 +260,8 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                        heroTag: 1,
                        onPressed: () {
                          //do something on press
-                         Navigator.pushNamed(context, "/patientRegistration3");
+                         Navigator.pop(context);
+                        // Navigator.pushNamed(context, "/patientRegistration3");
                        },
                      ),),),
                  )

@@ -106,7 +106,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                    backgroundColor: Colors.orange,
                    heroTag: 1,
                    onPressed: () {
-                     Navigator.pushNamed(context, "/patientRegistration");
+                     Navigator.pushNamed(context, "/patientRegistration2");
                      //do something on press
                    },
                  ),
@@ -170,7 +170,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        Navigator.pushNamed(context, "/navigation");
+        Navigator.pushNamed(context, "/patientRegistration4");
         /*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {

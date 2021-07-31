@@ -212,7 +212,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
-                    Navigator.pushNamed(context, "/dashboard");
+                    //Navigator.pushNamed(context, "/dashboard");
                    // Navigator.pushNamed(context, "/dashboard1");
                   }
                   // onTap: (){},
@@ -242,10 +242,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('Manage Account'),
                 selected: _selectedDestination == 3,
-                // onTap: () {
-                //   selectDestination(1);
-                //   Navigator.pushNamed(context, "/profile");
-                // },
+                onTap: () {
+                  selectDestination(1);
+                 // Navigator.pushNamed(context, "/patientDashboard");
+                },
               ),
               ListTile(
                 leading:Image.asset("assets/images/aboutus.png",height: 30,),
@@ -261,9 +261,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   leading: Image.asset("assets/images/share.png",height: 30,),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
-                   /*onTap: () {
+                  /* onTap: () {
                    selectDestination(5);
-                   Navigator.pushNamed(context, "/vitalSigns");
+                   Navigator.pushNamed(context, "/dashboard1");
                   }*/
               ),
 
@@ -272,7 +272,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   title: Text('Contact Us'),
                   selected: _selectedDestination == 6,
                   onTap: () {
-                    selectDestination(5);
+                    selectDestination(6);
                     Navigator.pushNamed(context, "/share");
                   }
               ),
@@ -1442,7 +1442,7 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/health_care.png",
                               //icon: Icons.animation,
                               //icon: FontAwesomeIcons.accusoft,
-                             // title: "Generic Medical Stores",
+                             title: "Generic Medical Stores",
                               fun: () {
                               /*  Navigator.pushNamed(
                                     context, "/geneicstores");*/
