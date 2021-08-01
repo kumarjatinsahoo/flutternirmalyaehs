@@ -38,7 +38,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     initialPage: 0,
   );
 
-  List<String> imageSliders = [
+  /*List<String> imageSliders = [
     "assets/offer_ad.png",
     "assets/bannerimag1.jpeg",
     "assets/images/sliding1.jpeg",
@@ -50,9 +50,17 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/images/sliding6.jpeg",
     "assets/images/sliding7.jpeg",
 
-    /* "assets/sstory_one.jpg",*/
+    *//* "assets/sstory_one.jpg",*//*
+  ];*/
+List<String> imageSliders = [
+    "assets/AjitPawarji.PNG",
+     "assets/JaiRamThakurji.jpg",
+     "assets/NitishKumarji.jpg",
+     "assets/PramodAgrawalji .jpg",
+     "assets/PramodSawantji.jpg",
+     "assets/UddhavThackeryji.jfif",
+     "assets/YogiAdityanathji.jpg",
   ];
-
   @override
   void initState() {
     // TODO: implement initState
@@ -212,7 +220,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
-                    Navigator.pushNamed(context, "/dashboard");
+                    //Navigator.pushNamed(context, "/dashboard");
                    // Navigator.pushNamed(context, "/dashboard1");
                   }
                   // onTap: (){},
@@ -242,10 +250,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('Manage Account'),
                 selected: _selectedDestination == 3,
-                // onTap: () {
-                //   selectDestination(1);
-                //   Navigator.pushNamed(context, "/profile");
-                // },
+                onTap: () {
+                  selectDestination(1);
+                 // Navigator.pushNamed(context, "/patientDashboard");
+                },
               ),
               ListTile(
                 leading:Image.asset("assets/images/aboutus.png",height: 30,),
@@ -261,9 +269,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   leading: Image.asset("assets/images/share.png",height: 30,),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
-                   /*onTap: () {
+                  /* onTap: () {
                    selectDestination(5);
-                   Navigator.pushNamed(context, "/vitalSigns");
+                   Navigator.pushNamed(context, "/dashboard1");
                   }*/
               ),
 
@@ -272,7 +280,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   title: Text('Contact Us'),
                   selected: _selectedDestination == 6,
                   onTap: () {
-                    selectDestination(5);
+                    selectDestination(6);
                     Navigator.pushNamed(context, "/share");
                   }
               ),
@@ -304,7 +312,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-                  // Navigator.pushNamed(context, "/Notifications");
+                   Navigator.pushNamed(context, "/patientRegistration");
                 },
               ),
               ListTile(
@@ -485,10 +493,257 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               sizeDot: 8.0,
               colorActiveDot: Colors.black,*/
             ),
-
+            /*CarouselSlider(
+              options: CarouselOptions(
+                  autoPlay: true,
+                  pageSnapping: true,
+                  viewportFraction: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  disableCenter: true,
+                  autoPlayInterval: Duration(seconds: 10),
+                  //autoPlayAnimationDuration: Duration(seconds: 90),
+                  pauseAutoPlayInFiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                          () {
+                        _currentIndex = index;
+                      },
+                    );
+                  }),
+              items: imageSliders
+                  .map((item) =>
+                  InkWell(
+                    onTap: (){
+                      int index=imageSliders.indexOf(item);
+                      if(index==1)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                    },
+                    child: Container(
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5)),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                item,
+                                fit: BoxFit.fill,
+                                width: 1000,
+                                height: double.maxFinite,
+                                //height: 100,
+                              ),
+                              *//* Image.network(
+                                                     item.bannerImage,
+                                                     fit: BoxFit.fill,
+                                                      width: 1000,
+                                                    height: double.maxFinite,
+                                                     ),*//*
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(
+                                            200, 0, 0, 0),
+                                        Color.fromARGB(
+                                            0, 0, 0, 0)
+                                      ],
+                                      begin: Alignment
+                                          .bottomCenter,
+                                      end:
+                                      Alignment.topCenter,
+                                    ),
+                                  ),
+                                  padding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .spaceBetween,
+                                    children: [
+                                      Text(
+                                        (imageSliders.indexOf(
+                                            item) +
+                                            1)
+                                            .toString() +
+                                            "/" +
+                                            imageSliders
+                                                .length
+                                                .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13.0,
+                                          fontWeight:
+                                          FontWeight.w200,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==1)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                  .toList(),
+            ),*/
             CarouselSlider(
               options: CarouselOptions(
-                  height: 130,
+                  height: 170,
+                  autoPlay: true,
+                  pageSnapping: true,
+                  viewportFraction: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  disableCenter: true,
+                  autoPlayInterval: Duration(seconds: 10),
+                  //autoPlayAnimationDuration: Duration(seconds: 90),
+                  pauseAutoPlayInFiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                          () {
+                        _currentIndex = index;
+                      },
+                    );
+                  }),
+              items: imageSliders
+                  .map((item) =>
+                  InkWell(
+                    onTap: (){
+                      int index=imageSliders.indexOf(item);
+                      if(index==3)
+                        //AppData.showInSnackDone(context, "Clicked");
+                       // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                       AppData.launchURL("https://www.youtube.com/watch?v=axzWoVaF4N4");
+                      if(index==6)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                        AppData.launchURL("https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                      if(index==0)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                        AppData.launchURL("https://youtu.be/-sTLaWKiklM");
+                    },
+                    child: Container(
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5)),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                item,
+                                fit: BoxFit.fill,
+                                width: 1000,
+                                height: double.maxFinite,
+                                //height: 100,
+                              ),
+                              /* Image.network(
+                                       item.bannerImage,
+                                       fit: BoxFit.fill,
+                                       width: 1000,
+                                       height: double.maxFinite,
+                                     ),*/
+
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(
+                                            200, 0, 0, 0),
+                                        Color.fromARGB(
+                                            0, 0, 0, 0)
+                                      ],
+                                      begin: Alignment
+                                          .bottomCenter,
+                                      end:
+                                      Alignment.topCenter,
+                                    ),
+                                  ),
+                                  padding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .spaceBetween,
+                                    children: [
+                                      Text(
+                                        (imageSliders.indexOf(
+                                            item) +
+                                            1)
+                                            .toString() +
+                                            "/" +
+                                            imageSliders
+                                                .length
+                                                .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13.0,
+                                          fontWeight:
+                                          FontWeight.w200,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==3)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==6)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==0)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                  .toList(),
+            ),
+
+            /*CarouselSlider(
+              options: CarouselOptions(
+                  height: 170,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 0.9,
@@ -504,14 +759,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       },
                     );
                   }),
+
               items: imageSliders
                   .map((item) => InkWell(
-                        /* onTap: (){
+                        *//* onTap: (){
                           int index=imageSliders.indexOf(item);
                           if(index==1)
                             //AppData.showInSnackDone(context, "Clicked");
                             AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
-                        },*/
+                        },*//*
                         child: Container(
                           child: Container(
                             margin: EdgeInsets.all(10),
@@ -527,12 +783,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     height: double.maxFinite,
                                     //height: 100,
                                   ),
-                                  /* Image.network(
+                                   *//*Image.network(
                                                  item.bannerImage,
                                                  fit: BoxFit.fill,
                                                   width: 1000,
                                                 height: double.maxFinite,
-                                                 ),*/
+                                                 ),*//*
                                   Positioned(
                                     bottom: 0,
                                     left: 0,
@@ -570,13 +826,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
                                   ),
-                                  /*Positioned(
+                                  Positioned(
                                     top: 0,
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
                                     child:(imageSliders.indexOf(item)==1)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
-                                  )*/
+                                  )
                                 ],
                               ),
                             ),
@@ -584,7 +840,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         ),
                       ))
                   .toList(),
-            )
+            )*/
           ],
         ),
       ),
@@ -959,7 +1215,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
 
 class MyPage1Widget extends StatelessWidget {
-  double _height = 75;
+  double _height = 85;
   double _width;
   @override
   Widget build(BuildContext context) {
@@ -1047,14 +1303,17 @@ class MyPage1Widget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/offers.png",
+                              icon: "assets/health_checkup.png",
                               fun: () {
-                                Navigator.pushNamed(
-                                    context, "/discountoffer");
-                                },
+                                //chooseAppointment(context);
+                                /*Navigator.pushNamed(
+                                    context, "/medipedia");*/
+                                // AppData.showSnack(
+                                //     context, "Coming soon", Colors.green);
+                              },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
-                              //size: (size.width - 130) / 3,
+                              size: (size.width - 130) / 3,
                             ),
                             SizedBox(
                               height: 5,
@@ -1062,8 +1321,9 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
+                              /* child: Expanded(*/
                               child: Text(
-                                "Discount & Offers",textAlign:TextAlign.center ,
+                                "Appointment",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -1071,7 +1331,7 @@ class MyPage1Widget extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
-                                          "Health               chat",
+                                          "Govternment Schemes",
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
@@ -1357,8 +1617,7 @@ class MyPage1Widget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      /*Expanded(
-                            child:*/ Column(
+                      /*Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -1383,17 +1642,53 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
-                              /* child: Expanded(*/
+                              *//* child: Expanded(*//*
                               child: Text(
                                 "Upload Medical Data",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            /* Align(
+                            *//* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
                                           "Organ     Donation",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*//*
+                          ]),*/
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              icon: "assets/offers.png",
+                              fun: () {
+                                Navigator.pushNamed(
+                                    context, "/discountoffer");
+                              },
+                              //color: AppData.BG2BLUE,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              //size: (size.width - 130) / 3,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height:35,
+                              child: Text(
+                                "Discount & Offers",textAlign:TextAlign.center ,
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Health               chat",
                                           style: TextStyle(color: Colors.black),
                                           textAlign: TextAlign.center,
                                         ),
@@ -1412,7 +1707,7 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/health_care.png",
                               //icon: Icons.animation,
                               //icon: FontAwesomeIcons.accusoft,
-                             // title: "Generic Medical Stores",
+                             title: "Generic Medical Stores",
                               fun: () {
                               /*  Navigator.pushNamed(
                                     context, "/geneicstores");*/
@@ -1856,7 +2151,7 @@ class MyPage1Widget extends StatelessWidget {
   }
 }
 class MyPage2Widget extends StatelessWidget {
-  double _height = 75;
+  double _height = 85;
   double _width;
   @override
   Widget build(BuildContext context) {
@@ -1958,48 +2253,9 @@ class MyPage2Widget extends StatelessWidget {
                                         ),*/
                           ]),
                       SizedBox(
-                        width: 5,
+                        width: 15,
                       ),
-                      /* Expanded(
-                            child: */Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/health_checkup.png",
-                              fun: () {
-                                chooseAppointment(context);
-                                /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Appointment",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
+
                     ],
                   ),
                 ],

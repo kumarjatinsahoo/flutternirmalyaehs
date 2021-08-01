@@ -42,6 +42,11 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/PatientDaashboard.dart';
+import 'package:user/screens/PatientRegistration.dart';
+import 'package:user/screens/PatientRegistration2.dart';
+import 'package:user/screens/PatientRegistration3.dart';
+import 'package:user/screens/PatientRegistration4.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
@@ -171,9 +176,10 @@ class _MyAppState extends State<MyApp> {
               '/dashboard': (context) => DashboardUserNew(
                     model: _model,
                   ),
-              '/dashboard1': (context) => Dashboard(
-                model: _model,
-              ),
+
+          '/dashboardd': (context) => Dashboard(
+          model: _model,
+          ),
               '/profile': (context) => ProfileScreen(
                     model: _model,
                   ),
@@ -374,6 +380,7 @@ class _MyAppState extends State<MyApp> {
               '/docApnt': (context) => AllAppointmentPage(
                 model: _model,
               ),
+
               '/tabinstruction': (context) => TabInstruction(
                 model: _model,
               ),
@@ -393,6 +400,21 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/tabinstruction7': (context) => TabInstruction7(
+                model: _model,
+              ),
+              '/patientRegistration': (context) => PatientRegistration(
+                model: _model,
+              ),
+              '/patientRegistration3': (context) => PatientRegistration3(
+                model: _model,
+              ),
+              '/patientRegistration2': (context) => PatientRegistration2(
+                model: _model,
+              ),
+              '/patientRegistration4': (context) => PatientRegistration4(
+                model: _model,
+              ),
+              '/patientDashboard': (context) => PatientDashboard(
                 model: _model,
               ),
             },

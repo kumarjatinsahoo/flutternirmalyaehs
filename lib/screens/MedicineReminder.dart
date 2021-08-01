@@ -17,7 +17,6 @@ class _MedicineReminderState extends State<MedicineReminder> {
     return SafeArea(
           child: Scaffold(
            body: Container(
-
              child: Column(
                children: [
                   Container(
