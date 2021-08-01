@@ -353,6 +353,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Tab Instruction'),
+                selected: _selectedDestination == 9,
+                onTap: () {
+                  selectDestination(8);
+                  Navigator.pushNamed(context, "/tabinstruction");
+                },
+              ),
+              ListTile(
                 leading: Image.asset("assets/images/logout.png",height: 30,),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,

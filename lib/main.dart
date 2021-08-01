@@ -60,6 +60,13 @@ import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction2.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction3.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction4.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction5.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
+import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TestReport.dart';
 import 'package:user/screens/TreatmentCenters.dart';
@@ -365,6 +372,27 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/docApnt': (context) => AllAppointmentPage(
+                model: _model,
+              ),
+              '/tabinstruction': (context) => TabInstruction(
+                model: _model,
+              ),
+              '/tabinstruction2': (context) => TabInstruction2(
+                model: _model,
+              ),
+              '/tabinstruction3': (context) => TabInstruction3(
+                model: _model,
+              ),
+              '/tabinstruction4': (context) => TabInstruction4(
+                model: _model,
+              ),
+              '/tabinstruction5': (context) => TabInstruction5(
+                model: _model,
+              ),
+              '/tabinstruction6': (context) => TabInstruction6(
+                model: _model,
+              ),
+              '/tabinstruction7': (context) => TabInstruction7(
                 model: _model,
               ),
             },
