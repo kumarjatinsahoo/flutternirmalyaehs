@@ -38,7 +38,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     initialPage: 0,
   );
 
-  List<String> imageSliders = [
+  /*List<String> imageSliders = [
     "assets/offer_ad.png",
     "assets/bannerimag1.jpeg",
     "assets/images/sliding1.jpeg",
@@ -50,9 +50,17 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/images/sliding6.jpeg",
     "assets/images/sliding7.jpeg",
 
-    /* "assets/sstory_one.jpg",*/
+    *//* "assets/sstory_one.jpg",*//*
+  ];*/
+List<String> imageSliders = [
+    "assets/AjitPawarji.PNG",
+     "assets/JaiRamThakurji.jpg",
+     "assets/NitishKumarji.jpg",
+     "assets/PramodAgrawalji .jpg",
+     "assets/PramodSawantji.jpg",
+     "assets/UddhavThackeryji.jfif",
+     "assets/YogiAdityanathji.jpg",
   ];
-
   @override
   void initState() {
     // TODO: implement initState
@@ -476,8 +484,244 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               sizeDot: 8.0,
               colorActiveDot: Colors.black,*/
             ),
-
+            /*CarouselSlider(
+              options: CarouselOptions(
+                  autoPlay: true,
+                  pageSnapping: true,
+                  viewportFraction: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  disableCenter: true,
+                  autoPlayInterval: Duration(seconds: 10),
+                  //autoPlayAnimationDuration: Duration(seconds: 90),
+                  pauseAutoPlayInFiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                          () {
+                        _currentIndex = index;
+                      },
+                    );
+                  }),
+              items: imageSliders
+                  .map((item) =>
+                  InkWell(
+                    onTap: (){
+                      int index=imageSliders.indexOf(item);
+                      if(index==1)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                    },
+                    child: Container(
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5)),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                item,
+                                fit: BoxFit.fill,
+                                width: 1000,
+                                height: double.maxFinite,
+                                //height: 100,
+                              ),
+                              *//* Image.network(
+                                                     item.bannerImage,
+                                                     fit: BoxFit.fill,
+                                                      width: 1000,
+                                                    height: double.maxFinite,
+                                                     ),*//*
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(
+                                            200, 0, 0, 0),
+                                        Color.fromARGB(
+                                            0, 0, 0, 0)
+                                      ],
+                                      begin: Alignment
+                                          .bottomCenter,
+                                      end:
+                                      Alignment.topCenter,
+                                    ),
+                                  ),
+                                  padding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .spaceBetween,
+                                    children: [
+                                      Text(
+                                        (imageSliders.indexOf(
+                                            item) +
+                                            1)
+                                            .toString() +
+                                            "/" +
+                                            imageSliders
+                                                .length
+                                                .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13.0,
+                                          fontWeight:
+                                          FontWeight.w200,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==1)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                  .toList(),
+            ),*/
             CarouselSlider(
+              options: CarouselOptions(
+                  height: 170,
+                  autoPlay: true,
+                  pageSnapping: true,
+                  viewportFraction: 0.9,
+                  scrollDirection: Axis.horizontal,
+                  disableCenter: true,
+                  autoPlayInterval: Duration(seconds: 10),
+                  //autoPlayAnimationDuration: Duration(seconds: 90),
+                  pauseAutoPlayInFiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                          () {
+                        _currentIndex = index;
+                      },
+                    );
+                  }),
+              items: imageSliders
+                  .map((item) =>
+                  InkWell(
+                    onTap: (){
+                      int index=imageSliders.indexOf(item);
+                      if(index==3)
+                        //AppData.showInSnackDone(context, "Clicked");
+                       // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                       AppData.launchURL("https://www.youtube.com/watch?v=axzWoVaF4N4");
+                      if(index==6)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                        AppData.launchURL("https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                    },
+                    child: Container(
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5)),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                item,
+                                fit: BoxFit.fill,
+                                width: 1000,
+                                height: double.maxFinite,
+                                //height: 100,
+                              ),
+                              /* Image.network(
+                                       item.bannerImage,
+                                       fit: BoxFit.fill,
+                                       width: 1000,
+                                       height: double.maxFinite,
+                                     ),*/
+
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(
+                                            200, 0, 0, 0),
+                                        Color.fromARGB(
+                                            0, 0, 0, 0)
+                                      ],
+                                      begin: Alignment
+                                          .bottomCenter,
+                                      end:
+                                      Alignment.topCenter,
+                                    ),
+                                  ),
+                                  padding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .spaceBetween,
+                                    children: [
+                                      Text(
+                                        (imageSliders.indexOf(
+                                            item) +
+                                            1)
+                                            .toString() +
+                                            "/" +
+                                            imageSliders
+                                                .length
+                                                .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13.0,
+                                          fontWeight:
+                                          FontWeight.w200,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==3)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==6)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
+
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                  .toList(),
+            ),
+
+            /*CarouselSlider(
               options: CarouselOptions(
                   height: 170,
                   autoPlay: true,
@@ -495,14 +739,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       },
                     );
                   }),
+
               items: imageSliders
                   .map((item) => InkWell(
-                        /* onTap: (){
+                        *//* onTap: (){
                           int index=imageSliders.indexOf(item);
                           if(index==1)
                             //AppData.showInSnackDone(context, "Clicked");
                             AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
-                        },*/
+                        },*//*
                         child: Container(
                           child: Container(
                             margin: EdgeInsets.all(10),
@@ -518,12 +763,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     height: double.maxFinite,
                                     //height: 100,
                                   ),
-                                  /* Image.network(
+                                   *//*Image.network(
                                                  item.bannerImage,
                                                  fit: BoxFit.fill,
                                                   width: 1000,
                                                 height: double.maxFinite,
-                                                 ),*/
+                                                 ),*//*
                                   Positioned(
                                     bottom: 0,
                                     left: 0,
@@ -561,13 +806,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
                                   ),
-                                  /*Positioned(
+                                  Positioned(
                                     top: 0,
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
                                     child:(imageSliders.indexOf(item)==1)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
-                                  )*/
+                                  )
                                 ],
                               ),
                             ),
@@ -575,7 +820,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         ),
                       ))
                   .toList(),
-            )
+            )*/
           ],
         ),
       ),
