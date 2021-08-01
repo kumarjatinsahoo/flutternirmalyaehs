@@ -625,6 +625,10 @@ List<String> imageSliders = [
                         //AppData.showInSnackDone(context, "Clicked");
                         // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
                         AppData.launchURL("https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                      if(index==0)
+                        //AppData.showInSnackDone(context, "Clicked");
+                        // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
+                        AppData.launchURL("https://youtu.be/-sTLaWKiklM");
                     },
                     child: Container(
                       child: Container(
@@ -711,6 +715,13 @@ List<String> imageSliders = [
                                 right: 0,
                                 child:(imageSliders.indexOf(item)==6)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
 
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child:(imageSliders.indexOf(item)==0)? Icon(Icons.play_circle_fill,color: Colors.white,size: 45,):Container(),
                               )
                             ],
                           ),
