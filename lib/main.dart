@@ -5,6 +5,7 @@ import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
+import 'package:user/screens/ChemistsPage.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
 import 'package:user/screens/DocAponmnttListPage.dart';
@@ -16,6 +17,7 @@ import 'package:user/screens/Doctor/DoctorSignUpForm5.dart';
 import 'package:user/screens/DonorApplication.dart';
 import 'package:user/screens/DonorOrganisation.dart';
 import 'package:user/screens/EmergencyHelp.dart';
+import 'package:user/screens/EmergencyRoom.dart';
 import 'package:user/screens/FindHealthcare%20Service.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
@@ -176,9 +178,10 @@ class _MyAppState extends State<MyApp> {
               '/dashboard': (context) => DashboardUserNew(
                     model: _model,
                   ),
-              '/dashboardd': (context) => Dashboard(
-                    model: _model,
-                  ),
+
+          '/dashboardd': (context) => Dashboard(
+          model: _model,
+          ),
               '/profile': (context) => ProfileScreen(
                     model: _model,
                   ),
@@ -340,80 +343,88 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/intro': (context) => IntroScreen(),
               '/insuranceList': (context) => InsuranceList(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/healthCheckup': (context) => HealthCheckup(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/vitalSigns': (context) => VitalSigns(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
+
               '/discountoffer': (context) => DiscountOffer(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/medipedia': (context) => MedipediaPage(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/medicalrecordpage': (context) => MedicalRecordPage(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/immunizationlist': (context) => Immunizationlist(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/worldwidehospital': (context) => WorldwideHospitals(
-                    model: _model,
-                  ),
-              '/requestHealthCheakup': (context) => RequestHealthCheakup(
-                    model: _model,
-                  ),
-              '/insuranceDetalis': (context) => InsuranceDetalis(
-                    model: _model,
-                  ),
-              '/testReport': (context) => TestReport(
-                    model: _model,
-                  ),
-              '/docApntlist': (context) => DocAponmnttListPage(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
+              '/requestHealthCheakup': (context) =>RequestHealthCheakup(
+                model: _model,
+              ),
+              '/insuranceDetalis': (context) =>InsuranceDetalis(
+                model: _model,
+              ),
+              '/testReport': (context) =>TestReport(
+                model: _model,
+              ),
+              '/docApntlist': (context) =>DocAponmnttListPage(
+                model: _model,
+              ),
               '/docApnt': (context) => AllAppointmentPage(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
+
               '/tabinstruction': (context) => TabInstruction(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction2': (context) => TabInstruction2(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction3': (context) => TabInstruction3(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction4': (context) => TabInstruction4(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction5': (context) => TabInstruction5(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction6': (context) => TabInstruction6(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/tabinstruction7': (context) => TabInstruction7(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/patientRegistration': (context) => PatientRegistration(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/patientRegistration3': (context) => PatientRegistration3(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/patientRegistration2': (context) => PatientRegistration2(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/patientRegistration4': (context) => PatientRegistration4(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/patientDashboard': (context) => PatientDashboard(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
+              '/chemistspage': (context) => ChemistsPage(
+                model: _model,
+              ),
+              '/emergencyroom': (context) => EmergencyRoom(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

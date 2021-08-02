@@ -426,7 +426,7 @@ class TabInstruction7State extends State<TabInstruction7> {
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/tabinstruction2");
+        Navigator.pushNamed(context, "/dashboard");
         validate();
       },
       child: Container(
