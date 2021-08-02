@@ -591,7 +591,7 @@ List<String> imageSliders = [
             ),*/
             CarouselSlider(
               options: CarouselOptions(
-                  height: 225,
+                  height: 210,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -727,7 +727,9 @@ List<String> imageSliders = [
                   ))
                   .toList(),
             ),
-
+            SizedBox(
+              height: 15,
+            ),
             /*CarouselSlider(
               options: CarouselOptions(
                   height: 170,
