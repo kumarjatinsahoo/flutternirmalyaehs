@@ -38,20 +38,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     initialPage: 0,
   );
 
-  /*List<String> imageSliders = [
-    "assets/offer_ad.png",
-    "assets/bannerimag1.jpeg",
-    "assets/images/sliding1.jpeg",
-    "assets/images/sliding1 (2).jpeg",
-    "assets/images/sliding2.jpeg",
-    "assets/images/sliding3.jpeg",
-    "assets/images/sliding4.jpeg",
-    "assets/images/sliding5.jpeg",
-    "assets/images/sliding6.jpeg",
-    "assets/images/sliding7.jpeg",
-
-    *//* "assets/sstory_one.jpg",*//*
-  ];*/
 List<String> imageSliders = [
     "assets/AjitPawarji.PNG",
      "assets/JaiRamThakurji.jpg",
@@ -605,10 +591,10 @@ List<String> imageSliders = [
             ),*/
             CarouselSlider(
               options: CarouselOptions(
-                  height: 170,
+                  height: 180,
                   autoPlay: true,
                   pageSnapping: true,
-                  viewportFraction: 0.9,
+                  viewportFraction: 1,
                   scrollDirection: Axis.horizontal,
                   disableCenter: true,
                   autoPlayInterval: Duration(seconds: 10),
@@ -633,11 +619,12 @@ List<String> imageSliders = [
                       if(index==6)
                         //AppData.showInSnackDone(context, "Clicked");
                         // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
-                        AppData.launchURL("https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                        AppData.launchURL("https://www.youtube.com/watch?v=ckYGlJwCmlg&fs=1");
                       if(index==0)
                         //AppData.showInSnackDone(context, "Clicked");
                         // AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
-                        AppData.launchURL("https://youtu.be/-sTLaWKiklM");
+                        //AppData.launchURL("https://youtu.be/-sTLaWKiklM");
+                        AppData.launchURL("https://www.youtube.com/embed/-sTLaWKiklM&vs");
                     },
                     child: Container(
                       child: Container(

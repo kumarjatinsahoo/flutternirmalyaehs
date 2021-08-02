@@ -197,7 +197,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                 _submitButton(),
 
                 //SizedBox(height: size.height * 0.,),
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child:Align(
                     alignment: Alignment.bottomRight,
@@ -211,7 +211,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                       },
                     ),
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 30.0,
                 ),
