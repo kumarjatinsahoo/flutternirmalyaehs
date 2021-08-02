@@ -267,7 +267,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTile1(
-                                icon: Icons.document_scanner,
+                                //icon: Icons.document_scanner,
+                                icon: CupertinoIcons.doc_append,
                                 title: "POC Reports",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");

@@ -371,7 +371,7 @@ List<String> imageSliders = [
 
 
       body: _dashboardnew(context),
-      bottomNavigationBar: BottomNavigationBar(
+     /* bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 9,
         unselectedFontSize: 9,
         showSelectedLabels: true,
@@ -395,7 +395,7 @@ List<String> imageSliders = [
               style: TextStyle(color: Colors.grey),
             ),
           ),
-          /* BottomNavigationBarItem(
+          *//* BottomNavigationBarItem(
                 icon: Icon(
                   Icons.child_friendly_outlined,
                   //color: Colors.grey,
@@ -405,7 +405,7 @@ List<String> imageSliders = [
                   'Maa Gruha',
                   style: TextStyle(color: Colors.grey),
                 ),
-              ),*/
+              ),*//*
           BottomNavigationBarItem(
             icon: Icon(
               Icons.support,
@@ -442,7 +442,7 @@ List<String> imageSliders = [
             //backgroundColor: Colors.blue,
           ),
         ],
-      ),
+      ),*/
     );
   }
 
@@ -591,7 +591,7 @@ List<String> imageSliders = [
             ),*/
             CarouselSlider(
               options: CarouselOptions(
-                  height: 180,
+                  height: 225,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -894,9 +894,7 @@ List<String> imageSliders = [
                     "assets/logo1.png",
                     fit: BoxFit.fitWidth,
                     //width: ,
-                    height: 60.0,
-
-                  ),*/
+                    height: 60.0,),*/
                     child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
 
                 /*Text(
@@ -1428,17 +1426,12 @@ class MyPage1Widget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/insurance.png",
-                             //icon: Icons.drive_folder_upload,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Upload Medical Data",
+                              icon: "assets/offers.png",
                               fun: () {
                                 Navigator.pushNamed(
-                                    context, "/insuranceList");
-
-                              /*  AppData.showSnack(
-                                context, "Coming soon", Colors.green);*/
+                                    context, "/discountoffer");
                               },
+                              //color: AppData.BG2BLUE,
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
                               //size: (size.width - 130) / 3,
@@ -1449,12 +1442,20 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
-                              /* child: Expanded(*/
                               child: Text(
-                                "Insurance",textAlign:TextAlign.center ,
+                                "Discount & Offers",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
+                            /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Health               chat",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
                           ]),
 
                     ],
@@ -1645,17 +1646,23 @@ class MyPage1Widget extends StatelessWidget {
                                         ),
                                       )),*//*
                           ]),*/
+
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/offers.png",
+                              icon: "assets/insurance.png",
+                              //icon: Icons.drive_folder_upload,
+                              //icon: FontAwesomeIcons.accusoft,
+                              title: "Upload Medical Data",
                               fun: () {
                                 Navigator.pushNamed(
-                                    context, "/discountoffer");
+                                    context, "/insuranceList");
+
+                                /*  AppData.showSnack(
+                                context, "Coming soon", Colors.green);*/
                               },
-                              //color: AppData.BG2BLUE,
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
                               //size: (size.width - 130) / 3,
@@ -1666,22 +1673,13 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
+                              /* child: Expanded(*/
                               child: Text(
-                                "Discount & Offers",textAlign:TextAlign.center ,
+                                "Insurance",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Health               chat",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
                           ]),
-
                       SizedBox(
                         width: 5,
                       ),
