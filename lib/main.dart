@@ -5,6 +5,7 @@ import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
+import 'package:user/screens/ChemistsPage.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
 import 'package:user/screens/DocAponmnttListPage.dart';
@@ -16,6 +17,7 @@ import 'package:user/screens/Doctor/DoctorSignUpForm5.dart';
 import 'package:user/screens/DonorApplication.dart';
 import 'package:user/screens/DonorOrganisation.dart';
 import 'package:user/screens/EmergencyHelp.dart';
+import 'package:user/screens/EmergencyRoom.dart';
 import 'package:user/screens/FindHealthcare%20Service.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
@@ -415,6 +417,12 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/patientDashboard': (context) => PatientDashboard(
+                model: _model,
+              ),
+              '/chemistspage': (context) => ChemistsPage(
+                model: _model,
+              ),
+              '/emergencyroom': (context) => EmergencyRoom(
                 model: _model,
               ),
             },
