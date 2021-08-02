@@ -1690,12 +1690,9 @@ class MyPage1Widget extends StatelessWidget {
                           children: [
                             _buildTileblue(
                               icon: "assets/health_care.png",
-                              //icon: Icons.animation,
-                              //icon: FontAwesomeIcons.accusoft,
-                             title: "Generic Medical Stores",
                               fun: () {
-                              /*  Navigator.pushNamed(
-                                    context, "/geneicstores");*/
+                              Navigator.pushNamed(
+                                    context, "/chemistspage");
                                 // AppData.showSnack(
                                 //   context, "Coming soon", Colors.green);
                               },
@@ -2199,12 +2196,10 @@ class MyPage2Widget extends StatelessWidget {
                           children: [
                             _buildTilered(
                               icon: "assets/infomatics.png",
-                              //icon: Icons.local_offer,
-                              //icon: FontAwesomeIcons.accusoft,
                               title: "Discount & Offers",
                               fun: () {
-                               /* Navigator.pushNamed(
-                                    context, "/setdiscount");*/
+                               Navigator.pushNamed(
+                                    context, "/emergencyroom");
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
