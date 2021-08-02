@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -10,10 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intro_slider/dot_animation_enum.dart';
-import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
-import 'package:intro_slider/scrollbar_behavior_enum.dart';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -379,8 +374,11 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
         widget.model.phnNo = _loginId.text;
-        Navigator.pushNamed(context, "/dashboard");
-
+        if(_loginId.text!=""){
+          Navigator.pushNamed(context, "/patientDashboard");
+        }else {
+          Navigator.pushNamed(context, "/dashboard");
+        }
         //}
       },
     );

@@ -13,10 +13,21 @@ class PatientDashboard extends StatefulWidget {
 }
 
 class _PatientDashboardState extends State<PatientDashboard> {
- 
-  List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders'];
-  List<String> strOthers = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
+  List<String> strOrders = [
+    'My Orders',
+    'Confirm Orders',
+    'Processed Orders',
+    'Delivered Orders'
+  ];
+  List<String> strOthers = [
+    'Invoices',
+    'Monthly Review',
+    'Offers and Discount',
+    'Online Chat',
+    'Daily Sales'
+  ];
   int _selectedDestination = -1;
+
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -43,46 +54,45 @@ class _PatientDashboardState extends State<PatientDashboard> {
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
-              children: [ 
-                             
+              children: [
                 Container(
                   // height: 120,
                   color: AppData.kPrimaryColor,
                   width: double.infinity,
                   child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 20.0,
-                      top: 20.0,
-                      bottom: 20.0
-                    ),
+                    padding:
+                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                         height: size.height * 0.07,
-                         width: size.width * 0.13,
-                         decoration: BoxDecoration(
-                             borderRadius: BorderRadius.circular(55),
-                             border: Border.all(color: Colors.white, width: 0.5),
-                             color: Colors.white),
-                         child: ClipRRect(
-                             borderRadius: BorderRadius.circular(55),
-                             child: Image.asset(
-                               'assets/images/user.png',
-                               height: size.height * 0.07,
-                         width: size.width * 0.13,
-                               fit: BoxFit.cover,
-                             )),
+                          height: size.height * 0.07,
+                          width: size.width * 0.13,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(55),
+                              border:
+                                  Border.all(color: Colors.white, width: 0.5),
+                              color: Colors.white),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(55),
+                              child: Image.asset(
+                                'assets/images/user.png',
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                fit: BoxFit.cover,
+                              )),
                         ),
-                  SizedBox(width: 20,),
-                    Text(
-                      'Dr John',
-                      style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 18,
-                     fontWeight: FontWeight.w600),
-                    ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'Dr John',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ],
                     ),
                   ),
@@ -148,14 +158,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   onTap: () => selectDestination(5),
                 ),
                 ListTile(
-                  leading: Icon(Icons.collections),
-                  title: Text('My Orders'),
-                  selected: _selectedDestination == 6,
-                  onTap: (){
-                    selectDestination(6);
-                     Navigator.pushNamed(context, "/myorder");
-                  } 
-                ),
+                    leading: Icon(Icons.collections),
+                    title: Text('My Orders'),
+                    selected: _selectedDestination == 6,
+                    onTap: () {
+                      selectDestination(6);
+                      Navigator.pushNamed(context, "/myorder");
+                    }),
                 ListTile(
                     leading: Icon(Icons.calendar_today),
                     title: Text('Monthly Overview'),
@@ -165,14 +174,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
                       Navigator.pushNamed(context, "/monthlyview");
                     }),
                 ListTile(
-                  leading: Icon(Icons.healing),
-                  title: Text('Processed Orders'),
-                  selected: _selectedDestination == 8,
-                  onTap: () {
-                    selectDestination(8);
-                    Navigator.pushNamed(context, "/processedorders");
-                  } 
-                ),
+                    leading: Icon(Icons.healing),
+                    title: Text('Processed Orders'),
+                    selected: _selectedDestination == 8,
+                    onTap: () {
+                      selectDestination(8);
+                      Navigator.pushNamed(context, "/processedorders");
+                    }),
                 ListTile(
                   leading: Icon(Icons.home),
                   title: Text('Set Discount and Offer'),
@@ -195,15 +203,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
             ),
           ),
         ),
-     
-        body:  _dashboardnew(context),
+        body: _dashboardnew(context),
       ),
     );
   }
+
   Widget _dashboardnew(context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
         color: Colors.black12,
@@ -213,41 +219,35 @@ class _PatientDashboardState extends State<PatientDashboard> {
           children: <Widget>[
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(top:20.0,right: 10,left: 10),
+                padding: const EdgeInsets.only(top: 20.0, right: 10, left: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTile1(
-                                icon: Icons.alarm,
+                                icon: Icons.people,
                                 title: "Register patient",
                                 fun: () {
-                                  // Navigator.pushNamed(context, "/medicalrecordpage");
+                                   Navigator.pushNamed(context, "/patientRegistration");
                                 },
                                 color: AppData.white,
                                 bordercolor: AppData.white,
                                 // ,
                               ),
-
-
                             ]),
-
-
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTile1(
                                 icon: Icons.alarm,
-                                title: "Appoin",
+                                title: "Appointment",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
                                 },
@@ -255,25 +255,19 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 bordercolor: AppData.white,
                                 // ,
                               ),
-
                             ]),
-
-
-
-
                       ],
                     ),
                     SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTile1(
-                                icon: Icons.alarm,
+                                icon: Icons.document_scanner,
                                 title: "POC Reports",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -282,17 +276,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 bordercolor: AppData.white,
                                 // ,
                               ),
-
-
                             ]),
-
-
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTile1(
-                                icon: Icons.alarm,
+                                icon: Icons.edit_attributes,
                                 title: "Test",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -301,12 +291,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 bordercolor: AppData.white,
                                 // ,
                               ),
-
                             ]),
-
-
-
-
                       ],
                     ),
 
@@ -445,27 +430,23 @@ class _PatientDashboardState extends State<PatientDashboard> {
   },
 ),
                 ),*/
-
                   ],
                 ),
               ),
             )
-
-
-
-
           ],
         ),
       ),
     );
   }
+
   Widget _buildTile1(
-      { IconData icon,
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+      {IconData icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -494,12 +475,12 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 /* Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    *//*"assets/logo1.png"*//*icon,
+                    */ /*"assets/logo1.png"*/ /*icon,
                     fit: BoxFit.fitWidth,
                     width: 50,
                     height: 70.0,
                   ),),*/
-           Icon(icon, color: Colors.black,size: 40.0),
+                Icon(icon, color: Colors.black, size: 40.0),
                 /*Text(
                   title,
                   style: TextStyle(
@@ -534,27 +515,27 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 ),
               ],
             ),
-
-             Positioned(
-          top: 6,
-          right: 6,
-          child: Container(
-            height: 35,
-            width: 35,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.black12,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text('67', style: TextStyle(color: Colors.white,fontSize: 10),
-            )
-          )
-        ),
+            Positioned(
+              top: 6,
+              right: 6,
+              child: Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40.0),
+                    color: Colors.black12,
+                  ),
+                  child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        '67',
+                        style: TextStyle(color: Colors.white, fontSize: 10),
+                      ))),
               /*Positioned(
             top: 20,
             left: 15,
             child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/
-             /*Positioned(
+              /*Positioned(
             bottom: 20,
             right: 15,
             child:Column(
@@ -563,11 +544,10 @@ class _PatientDashboardState extends State<PatientDashboard> {
                  Text('900 kcal', style: TextStyle(color: Colors.white),),
               ],
             ))*/
-             )
+            )
           ],
         ),
       ),
     );
   }
-
 }
