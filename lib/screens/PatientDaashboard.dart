@@ -212,7 +212,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
-        color: Colors.black12,
+        color: Colors.white,
         height: double.maxFinite,
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -236,8 +236,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 fun: () {
                                    Navigator.pushNamed(context, "/patientRegistration");
                                 },
-                                color: AppData.white,
-                                bordercolor: AppData.white,
+                                color: AppData.BG2BLUE,
+                                bordercolor: AppData.BG2BLUE,
                                 // ,
                               ),
                             ]),
@@ -245,14 +245,14 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildTile1(
+                              _buildTile2(
                                 icon: Icons.alarm,
                                 title: "Appointment",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
                                 },
-                                color: AppData.white,
-                                bordercolor: AppData.white,
+                                color: AppData.BG1RED,
+                                bordercolor: AppData.BG1RED,
                                 // ,
                               ),
                             ]),
@@ -266,15 +266,15 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildTile1(
+                              _buildTile2(
                                 //icon: Icons.document_scanner,
                                 icon: CupertinoIcons.doc_append,
                                 title: "POC Reports",
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
                                 },
-                                color: AppData.white,
-                                bordercolor: AppData.white,
+                                color: AppData.BG1RED,
+                                bordercolor: AppData.BG1RED,
                                 // ,
                               ),
                             ]),
@@ -288,8 +288,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 fun: () {
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
                                 },
-                                color: AppData.white,
-                                bordercolor: AppData.white,
+                                color: AppData.BG2BLUE,
+                                bordercolor: AppData.BG2BLUE,
                                 // ,
                               ),
                             ]),
@@ -458,12 +458,16 @@ class _PatientDashboardState extends State<PatientDashboard> {
         decoration: BoxDecoration(
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10.0),
+            topLeft: Radius.zero,
             topRight: Radius.circular(10.0),
             bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.circular(10.0),
+            bottomRight: Radius.zero,
           ),
           color: color,
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 1.0,
+            )
         ),
         child: Stack(
           children: [
@@ -551,4 +555,120 @@ class _PatientDashboardState extends State<PatientDashboard> {
       ),
     );
   }
+  Widget _buildTile2(
+      {IconData icon,
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 145,
+        width: (MediaQuery.of(context).size.width - 60) / 2,
+        decoration: BoxDecoration(
+          /// borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            topRight: Radius.zero,
+            bottomLeft: Radius.zero,
+            bottomRight: Radius.circular(10.0),
+          ),
+          color: color,
+            border: Border.all(
+              color: AppData.kPrimaryRedColor,
+              width: 1.0,
+            )
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 15),
+
+                /* Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    */ /*"assets/logo1.png"*/ /*icon,
+                    fit: BoxFit.fitWidth,
+                    width: 50,
+                    height: 70.0,
+                  ),),*/
+                Icon(icon, color: Colors.black, size: 40.0),
+                /*Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Monte",
+                    fontSize: 22.0,
+                  ),
+
+                ),*/
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.black,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 15.0,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              top: 6,
+              right: 6,
+              child: Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40.0),
+                    color: Colors.black12,
+                  ),
+                  child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        '67',
+                        style: TextStyle(color: Colors.white, fontSize: 10),
+                      ))),
+              /*Positioned(
+            top: 20,
+            left: 15,
+            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/
+              /*Positioned(
+            bottom: 20,
+            right: 15,
+            child:Column(
+              children: [
+                Text('Daily Goal', style: TextStyle(color: Colors.white),),
+                 Text('900 kcal', style: TextStyle(color: Colors.white),),
+              ],
+            ))*/
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
 }
+
