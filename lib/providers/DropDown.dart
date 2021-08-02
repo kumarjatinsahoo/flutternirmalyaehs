@@ -105,11 +105,20 @@ class DropDown {
         padding:
             const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          height: 90,
+          padding: EdgeInsets.symmetric(horizontal: 0),
           decoration: BoxDecoration(
-              color: AppData.kPrimaryLightColor,
-              borderRadius: BorderRadius.circular(29),
-              border: Border.all(color: Colors.black, width: 0.3)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(3),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+                offset: Offset(1.0, 1.0), //shadow direction: bottom right
+              )
+            ],
+          ),
           child: child,
         ),
       ),
@@ -1122,4 +1131,54 @@ class DropDown {
         break;
     }
   }
+  static networkDropdownGetpart4(
+      String label, final String API, String callFrom, Function fun) {
+    return inputFieldContainerDisable(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      dropdownSearchDecoration: InputDecoration(
+          hintText: label,
+        /*  labelText: label,*/
+          contentPadding:
+          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+          floatingLabelBehavior: FloatingLabelBehavior.always),
+      label: label,
+      showSearchBox: true,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        var response = await Dio().get(
+          API,
+        );
+        var list;
+        switch (callFrom) {
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+        }
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    )
+    );
+
+  }
+
 }

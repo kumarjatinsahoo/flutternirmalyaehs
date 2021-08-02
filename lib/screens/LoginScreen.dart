@@ -1,7 +1,10 @@
 import 'dart:math';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -362,17 +365,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _loginButton() {
+ /* Widget _loginButton() {
     return MyWidgets.nextButton(
       text: "LOGIN",
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
+        *//*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
+        } else {*//*
         widget.model.phnNo = _loginId.text;
         if(_loginId.text!=""){
           Navigator.pushNamed(context, "/patientDashboard");
@@ -383,7 +386,75 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+*/
+  Widget _loginButton() {
+    return MyWidgets.nextButton(
+      text: "LOGIN",
+      context: context,
+        ///_loginId,passController
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        }
+        // else if (_loginId.text.length != 10) {
+        //   AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        // }
+        else if (passController.text == "" || passController.text == null) {
+          AppData.showInSnackBar(context, "Please enter password");
+        } else {
+          widget.model.phnNo = _loginId.text;
+          //widget.model.phnNo = _loginId.text;
+          //Navigator.pushNamed(context, "/otpView");
+          // Navigator.pushNamed(context, "/pinView");
 
+          MyWidgets.showLoading(context);
+          widget.model.GETMETHODCALL(
+              api: ApiFactory.LOGIN_PASS(widget.model.phnNo, passController.text),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  setState(() {
+                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                    sharedPref.save(Const.LOGIN_DATA, loginResponse);
+                    widget.model.setLoginData1(loginResponse);
+                    sharedPref.save(Const.IS_LOGIN, "true");
+                    widget.model.token = loginResponse.body.token;
+                    if (loginResponse.body.user[0]=="4"
+                        /*describeEnum(UserType.USER)*/.toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/patientDashboard', (Route<dynamic> route) => false);
+                    }
+                   /* else if(loginResponse.ashadtls[0].userType ==
+                        describeEnum(UserType.SUPADMIN).toLowerCase()){
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dash', (Route<dynamic> route) => false);
+
+                    }
+                    else if(loginResponse.ashadtls[0].userType ==
+                        describeEnum(UserType.DMF).toLowerCase()){
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dmfdashboard', (Route<dynamic> route) => false);
+                    }
+                    else if(loginResponse.ashadtls[0].userType ==
+                        describeEnum(UserType.ACCOUNT).toLowerCase()){
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dmfaccount', (Route<dynamic> route) => false);
+                    }
+
+                    else {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dash', (Route<dynamic> route) => false);
+                    }*/
+                  }); }
+                else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+        }
+      },
+    );
+  }
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: "Login with OTP".toUpperCase(),
@@ -391,8 +462,7 @@ class _LoginScreenState extends State<LoginScreen> {
       fun: () {
         widget.model.phnNo = _loginId.text;
         Navigator.pushNamed(context, "/pinview");
-
-        //       otp.sendOtp(_loginId.text, 'OTP is : $code',
+        // otp.sendOtp(_loginId.text, 'OTP is : $code',
         // minNumber, maxNumber, countryCode);
 
         // }

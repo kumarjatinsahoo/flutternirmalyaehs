@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/cupertino.dart';
@@ -232,7 +234,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             children: [
                               _buildTile1(
                                 icon: Icons.people,
-                                title: "Register patient",
+                                title: "Register Patient",
                                 fun: () {
                                    Navigator.pushNamed(context, "/patientRegistration");
                                 },
@@ -485,7 +487,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     width: 50,
                     height: 70.0,
                   ),),*/
-                Icon(icon, color: Colors.black, size: 40.0),
+                Icon(icon, color:AppData.kPrimaryColor, size: 40.0),
                 /*Text(
                   title,
                   style: TextStyle(
@@ -599,7 +601,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     width: 50,
                     height: 70.0,
                   ),),*/
-                Icon(icon, color: Colors.black, size: 40.0),
+                Icon(icon, color: AppData.kPrimaryRedColor, size: 40.0),
                 /*Text(
                   title,
                   style: TextStyle(

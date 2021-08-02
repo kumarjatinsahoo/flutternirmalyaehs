@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -23,27 +25,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
+
   ];
 
   @override
@@ -210,8 +192,8 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                                 ),
                                 child: TextFormField(
                                   //enabled: widget.isConfirmPage ? false : true,
-                                  controller: textEditingController[4],
-                                  //focusNode: fnode7,
+                                  controller: textEditingController[0],
+                                  //focusNode: fnode1,
                                   cursorColor: AppData.kPrimaryColor,
                                   textInputAction: TextInputAction.next,
                                   maxLength: 10,
@@ -323,7 +305,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
           ),
           child: TextFormField(
             //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[4],
+            controller: textEditingController[1],
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
@@ -349,21 +331,26 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        Navigator.pushNamed(context, "/patientRegistration2");
-        /*if (_loginId.text == "" || _loginId.text == null) {
+        //Navigator.pushNamed(context, "/patientRegistration2");
+        if (textEditingController[0].text== "" || textEditingController[0].text== null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
+        }  else if (textEditingController[0].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
-
-        // Navigator.pushNamed(context, "/otpView");
-        //}
+        }else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
+          AppData.showInSnackBar(context, "Please enter patient name");
+        }else if (textEditingController[1].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid Name ");
+        } else {
+          widget.model.patientphnNo = textEditingController[0].text;
+          widget.model.patientName = textEditingController[1].text;
+          Navigator.pushNamed(context, "/patientRegistration2");
+        }
       },
     );
   }
-
   Future getCameraImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+   // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();
@@ -374,8 +361,11 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       var pos = _fileName.lastIndexOf('.');
       String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
       print(extName);
-
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        widget.model.patientimg =base64Encode(enc);
+      });
+
     }
   }
 }

@@ -1,4 +1,7 @@
 import 'package:image_picker/image_picker.dart';
+import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -10,6 +13,8 @@ import 'package:user/widgets/text_field_container.dart';
 
 class PatientRegistration3 extends StatefulWidget {
   final MainModel model;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel cityModel = null;
 
   const PatientRegistration3({Key key, this.model}) : super(key: key);
 
@@ -21,25 +26,6 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
   var selectedMinValue;
   File pathUsr = null;
   List<TextEditingController> textEditingController = [
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -79,29 +65,81 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(8, "Height(CM)"),
+                      child: formField(0, "Height(CM)"),
                     ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(8, "Weight(CM)"),
+                      child: formField(1, "Weight(kg)"),
                     ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(8, "Email(OPTIONAL)"),
+                      child: formField(2, "Email(OPTIONAL)"),
                     ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(8, "Aadhar(OPTIONAL)"),
+                      child: formField(3, "Aadhar(OPTIONAL)"),
                     ),
+
+                   /* Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, bottom: 7.0),
+                      child: SizedBox(
+                        height: 45,
+                        child: DropDown.networkDropdownGetpart(
+                            "State", ApiFactory.STATE_API, "state",
+                                (KeyvalueModel data) {
+                              setState(() {
+                                PatientRegistration3.stateModel = data;
+                                *//*PartnerSignUpForm.cityModel = null;*//*
+                              });
+                            }),
+                      ),
+                    ),*/
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0),
+                      child: SizedBox(
+                        height: 45,
+                        child: DropDown.networkDropdownGetpart4(
+                            "State", ApiFactory.STATE_API, "state",
+                                (KeyvalueModel data) {
+                              setState(() {
+                                PatientRegistration3.stateModel = data;
+                                PatientRegistration3.cityModel = null;
+                              });
+                            }),
+                      ),
+                    ),
+                    (PatientRegistration3.stateModel != null)
+                        ? Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, bottom: 7.0),
+                      child: SizedBox(
+                        height: 45,
+                        child: DropDown.networkDropdownGetpart(
+                            "City",
+                            ApiFactory.CITY_API +
+                                PatientRegistration3.stateModel.key,
+                            "city", (KeyvalueModel data) {
+                          setState(() {
+                            PatientRegistration3.cityModel = data;
+                          });
+                        }),
+                      ),
+                    )
+                        : Container(),
                     SizedBox(
                       height: size.height * 0.07,
                     ),
@@ -162,7 +200,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           ),
           child: TextFormField(
             //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[4],
+            controller: textEditingController[index],
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
@@ -189,18 +227,23 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        Navigator.pushNamed(context, "/patientRegistration4");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
 
-        // Navigator.pushNamed(context, "/otpView");
-        //}
+        if (textEditingController[0].text == "" || textEditingController[0].text == null) {
+          AppData.showInSnackBar(context, "Please enter height(CM)");
+        }else if(textEditingController[1].text == "" || textEditingController[1].text == null) {
+         AppData.showInSnackBar(context, "Please enter Weight(kg)");
+        }else{
+      widget.model.patientheight = textEditingController[0].text;
+      widget.model.patientweight = textEditingController[1].text;
+      widget.model.patientemail = textEditingController[2].text;
+      widget.model.patientaadhar = textEditingController[3].text;
+
+      Navigator.pushNamed(context, "/patientRegistration4");
+
+      }
       },
     );
-  }
+    }
 
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);

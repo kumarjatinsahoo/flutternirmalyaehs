@@ -25,27 +25,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
+
   ];
   bool _value = false;
 
@@ -145,15 +125,25 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
       child: Transform.scale(
         scale: 1.5,
         child: Switch(
-          activeColor: Colors.grey,
-          //inactiveThumbColor: Colors.white,
+          //activeColor: Colors.pinkAccent,
+          inactiveTrackColor: Colors.pinkAccent,
+          activeTrackColor: Colors.green,
+          //inactiveThumbColor: Colors.green,
+
           value: _value,
           activeThumbImage: AssetImage("assets/man.png",),
           inactiveThumbImage: AssetImage("assets/women.png"),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           onChanged: (bool value) {
+            print("VALUE : $value");
             setState(() {
               _value = value;
+              if(value==false) {
+                widget.model.patientgender = "2";
+              }else{
+                widget.model.patientgender = "1";
+
+              }
             });
           },
         ),
@@ -187,12 +177,12 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
           ),
           child: TextFormField(
             //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[4],
+            controller: textEditingController[0],
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
             maxLength: 10,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
@@ -214,15 +204,13 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        Navigator.pushNamed(context, "/patientRegistration3");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
+        if (textEditingController[0].text == "" || textEditingController[0].text== null) {
+          AppData.showInSnackBar(context, "Please enter age");
+        }  else {
+          widget.model.patientage = textEditingController[0].text;
+          Navigator.pushNamed(context, "/patientRegistration3");
 
-        // Navigator.pushNamed(context, "/otpView");
-        //}
+        }
       },
     );
   }
