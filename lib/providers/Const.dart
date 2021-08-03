@@ -57,6 +57,9 @@ class Const {
   static const String NEXT_SERVER_LOAD = "next_server_load";
   static const String ALREADY_REG_STATUS = "registered";
 
+  static String DOC_APNT = "DOC_APNT";
+  static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
+  static String HEALTH_CHKUP_APNT = "HEALTH_CHKUP_APNT";
   static const String DEATH_CODE = "B3";
   static const String FUNERAL_CODE = "B5";
   static const String MATERNITY_CODE = "B8";

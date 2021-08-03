@@ -2217,7 +2217,7 @@ class MyPage2Widget extends StatelessWidget {
                               height:35,
 
                               child: Text(
-                                "eHealth Infomatics",textAlign:TextAlign.center ,
+                                "eHealth Informatics",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),

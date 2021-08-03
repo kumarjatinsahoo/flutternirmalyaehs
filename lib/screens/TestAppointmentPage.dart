@@ -3,38 +3,38 @@ import 'dart:convert';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LabBookModel.dart';
-import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
+
 import 'CreateAppointmentLab.dart';
 
-
-
 // ignore: must_be_immutable
-class AllAppointmentPage extends StatefulWidget {
+class TestAppointmentPage extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
 
-  AllAppointmentPage({
+  TestAppointmentPage({
     Key key,
     this.model,
     this.isConfirmPage = false,
   }) : super(key: key);
 
   @override
-  _AllAppointmentPageState createState() => _AllAppointmentPageState();
+  _TestAppointmentPageState createState() => _TestAppointmentPageState();
 }
 
-class _AllAppointmentPageState extends State<AllAppointmentPage> {
+class _TestAppointmentPageState extends State<TestAppointmentPage>
+    with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  //LoginResponse1 loginResponse;
+ // LoginResponse1 loginResponse;
   LabBookModel appointModel;
 
   StreamSubscription _connectionChangeStream;
@@ -43,6 +43,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   bool isOnline = false;
   TimeOfDay selectedTime = TimeOfDay.now();
   String time;
+  TextEditingController height = new TextEditingController();
+  TextEditingController weight = new TextEditingController();
   TextEditingController shiftname_ = new TextEditingController();
   TextEditingController starttime_ = new TextEditingController();
   TextEditingController endtime_ = new TextEditingController();
@@ -56,12 +58,14 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   bool _isSignUpLoading = false;
   String today;
   String comeFrom;
-  bool isDataNotAvail = false;
+
+  static const platform = AppData.channel;
 
   @override
   void initState() {
     super.initState();
-   // loginResponse = widget.model.loginResponse1;
+    //loginResponse = widget.model.loginResponse1;
+    WidgetsBinding.instance.addObserver(this);
 
     /* ConnectionStatusSingleton connectionStatus =
     ConnectionStatusSingleton.getInstance();
@@ -74,39 +78,30 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
     callAPI(today);
+    //printInterger()
+  }
+
+  Future<void> _callLabApp(String data) async {
+    try {
+      final int result = await platform.invokeMethod('iLab', data);
+
+    } on PlatformException catch (e) {
+    }
   }
 
   callAPI(String today) {
-    if (comeFrom == Const.HEALTH_SCREENING_APNT) {
-      widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL(
         api: ApiFactory.HEALTH_SCREENING_LIST + today,
-          fun: (Map<String, dynamic> map) {
-            setState(() {
-              String msg = map[Const.MESSAGE];
-              if (map[Const.STATUS] == Const.SUCCESS) {
-                appointModel = LabBookModel.fromJson(map);
-              } else {
-                isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
-              }
-            });
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              appointModel = LabBookModel.fromJson(map);
+            } else {
+              AppData.showInSnackBar(context, msg);
+            }
           });
-    }
-    else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
-      widget.model.GETMETHODCALL(
-          api: ApiFactory.HEALTH_CHKUP_LIST + today,
-          fun: (Map<String, dynamic> map) {
-            setState(() {
-              String msg = map[Const.MESSAGE];
-              if (map[Const.STATUS] == Const.SUCCESS) {
-                appointModel = LabBookModel.fromJson(map);
-              } else {
-                isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
-              }
-            });
-          });
-    }
+        });
   }
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -140,7 +135,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   }
 
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -151,7 +148,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Appointments",
+              MyLocalizations.of(context).text("TESTS"),
               style: TextStyle(color: bgColor),
             ),
             /*InkWell(
@@ -172,7 +169,10 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         child: Container(
           color: bgColor,
           margin: EdgeInsets.only(left: 5, right: 5),
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -212,7 +212,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         ),
                       ),
                     ),
-                    Row(
+                    /*Row(
                       children: [
                         MyWidgets.toggleButton("NEW", () {
                           //Navigator.pushNamed(context, "/qrCode1");
@@ -228,7 +228,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                           AppData.showInSnackBar(context, "Reports click");
                         }),
                       ],
-                    ),
+                    ),*/
 
                     /*InkWell(
                       onTap: () {
@@ -419,16 +419,24 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                   child: InkWell(
                                     onTap: () {
                                       showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            changeStatus(
-                                                context,
-                                                appointModel
-                                                    .labappointmnt[index],
-                                                index),
-                                      );
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              dialogRegNo(
+                                                  context,
+                                                  appointModel
+                                                      .labappointmnt[
+                                                  index]));
                                     },
                                     child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(2.0)),
+                                        border:
+                                        Border.all(color: Colors.black),
+                                      ),
+                                      alignment: Alignment.topLeft,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 2, horizontal: 3),
                                       child: Text(
                                         appointModel.labappointmnt[index]
                                             .appntmntStatus,
@@ -450,13 +458,6 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         ],
                       );
                     })
-                    : (isDataNotAvail)
-                    ? Container(
-                  height: size.height - 100,
-                  child: Center(
-                    child: Text("Data Not Found"),
-                  ),
-                )
                     : MyWidgets.loading(context),
               ],
             ),
@@ -466,10 +467,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     );
   }
 
-  Widget dialogRegNo(BuildContext context) {
+  Widget dialogRegNo(BuildContext context, Labappointmnt labappointmnt) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
-    //shiftname_.text="";
+    height.text = "";
+    weight.text = "";
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -483,22 +485,27 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
                 Text(
-                  "SEARCH BENEFICIARY",
+                  "FILL UP DETAILS",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(child: Divider(height: 2,), width: 180,),
+                Text(
+                  "(" + labappointmnt.motherName + ")",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),
-                fromFieldNew(
-                    "Beneficiary No",
-                    widget.isConfirmPage,
-                    TextInputAction.next,
-                    TextInputType.number,
-                    MyLocalizations.of(context).text("NAME"),
-                    shiftname_),
+                fromFieldNew("Height(In CM)", TextInputAction.next,
+                    TextInputType.number, "name", height),
+                fromFieldNew("Weight(In KG)", TextInputAction.next,
+                    TextInputType.number, "name", weight),
               ],
             ),
           );
@@ -510,59 +517,40 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
             Navigator.of(context).pop();
           },
           textColor: Colors.grey[900],
-          child: Text(MyLocalizations.of(context).text("CANCEL")),
+          child: const Text('CANCEL'),
         ),
-        new FlatButton(
+        /* new FlatButton(
           onPressed: () {
-           // widget.model.QR_FROM = Const.APNT_CALL;
-            Navigator.pushNamed(context, "/qrCode1");
+            Navigator.of(context).pop();
           },
           textColor: Colors.grey[900],
           child: const Text('SCAN'),
-        ),
+        ),*/
         new FlatButton(
           onPressed: () {
-            if (shiftname_.text == "" || shiftname_.text == null) {
-              AppData.showInSnackBar(context, "Please enter beneficiary no");
+            if (height.text == "" || height.text == null) {
+              AppData.showInSnackBar(context, "Please enter height");
+            } else if (weight.text == "" || weight.text == null) {
+              AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              MyWidgets.showLoading(context);
-              widget.model.GETMETHODCALL(
-                  api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
-                  fun: (Map<String, dynamic> map) {
-                    setState(() {
-                      Navigator.of(context).pop();
-                      String msg = map[Const.MESSAGE];
-                      if (map[Const.STATUS] == Const.SUCCESS) {
-                        /*Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);*/
-                        UserDetailsModel userModel =
-                        UserDetailsModel.fromJson(map);
-                        widget.model.userModel = userModel;
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CreateAppointmentLab(
-                              model: widget.model,
-                            ),
-                          ),
-                        ).then((value) {
-                          if (value) {
-                            callAPI(today);
-                          }
-                        });
-                      } else {
-                        //Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);
-                      }
-                    });
-                  });
+              String mob=(labappointmnt.mob==null ||labappointmnt.mob==""||labappointmnt.mob=="null")?"":labappointmnt.mob;
+              String mapping=labappointmnt.regNo+","+labappointmnt.motherName+","+mob+","+"Female"+","+height.text+","+weight.text+","+labappointmnt.age;
+              _callLabApp(mapping.trim());
             }
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: Theme
+              .of(context)
+              .primaryColor,
           child: const Text('SEARCH'),
         ),
       ],
     );
+  }
+
+
+  String removeFirstandLast(String str1) {
+    String str = str1.substring(1, str1.length - 1);
+    return str;
   }
 
   Widget changeStatus(BuildContext context, Labappointmnt userName, int i) {
@@ -635,7 +623,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
             Navigator.of(context).pop();
           },
           textColor: Colors.grey[900],
-          child: Text(MyLocalizations.of(context).text("CANCEL")),
+          child: const Text('CANCEL'),
         ),
       ],
     );
@@ -713,7 +701,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     }
   }
 
-  Widget fromFieldNew(String hint, bool enb, inputAct, keyType, String type,
+  Widget fromFieldNew(String hint, inputAct, keyType, String type,
       TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 7.0),
@@ -721,24 +709,24 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         autofocus: false,
         controller: controller,
         inputFormatters: [
-          /* AppData.*/
-        //  UpperCaseTextFormatter(),
+          //UpperCaseTextFormatter(),
         ],
+        maxLength: 3,
         decoration: InputDecoration(
-          //prefixIcon: Icon(Icons.insert_drive_file_outlined),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,
           labelText: hint,
           alignLabelWithHint: false,
           contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
-          /*enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.transparent,
-              width: 2.0,
-            ),
-          ),*/
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 }

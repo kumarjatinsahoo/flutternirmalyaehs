@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/models/UserDetailsModel.dart';
 
 class PassData extends Model {
   String saloonImg;
@@ -14,6 +15,8 @@ class PassData extends Model {
   String billdtbookingNo;
   String billdtinvoiceNo;
   String phnNo;
+  String apntUserType;
+  UserDetailsModel userModel;
   String slempid;
   String fromdate;
   String todate;
