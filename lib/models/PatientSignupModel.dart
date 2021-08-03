@@ -35,9 +35,9 @@ class PatientSignupModel{
 
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    List<String> img=[this.profileImage];
+  dynamic toJson() {
+   /* final Map<String, dynamic> data = new Map<String, dynamic>();
+   // List<String> img=[this.profileImage];
     data['fName'] = this.fName;
     data['mobile'] = this.mobile;
     data['age'] = this.age;
@@ -53,9 +53,27 @@ class PatientSignupModel{
    // data['profileImage'].map =img;
     data['profileImageType'] = this.profileImageType;
     data['stateCode']= this.stateCode;
-    data['countryCode'] = this.countryCode;
+    data['countryCode'] = this.countryCode;*/
 
-    return data;
+    var param={
+      "fName": this.fName,
+      "mobile": this.mobile,
+      "age": this.age,
+      "country": this.country,
+      "state": this.state,
+      "gender": (this.gender=="Female")?"2":"1",
+      "height": this.height,
+      "weight": this.weight,
+      "email": this.email,
+      "aadhar": this.aadhar,
+      "enteredBy": this.enteredBy,
+      "profileImageType": this.profileImageType,
+      "stateCode": this.stateCode,
+      "countryCode": this.countryCode,
+      "profileImage":[this.profileImage]
+    };
+
+    return param;
   }
   @override
   String toString() {

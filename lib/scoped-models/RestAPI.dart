@@ -53,6 +53,8 @@ class RestAPI extends Model {
     print(ApiFactory.POST_SIGNUP);
     try {
       //Response response = await dio.post(ApiFactory.POST_SIGNUP+token,data: FormData.fromMap(json));
+
+      print(jsonEncode(json));
       Response response = await dio.post(ApiFactory.POST_SIGNUP,
           options: Options(
             headers: {

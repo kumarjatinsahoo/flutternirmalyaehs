@@ -50,6 +50,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   String patientemail;
   String patientphnNo;
   String patientgender;
+  String patientgenderSTR;
   String patienCitycode;
   String patienCitykey;
   String patienStatecode;
@@ -83,9 +84,9 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     print(patienStatekey);
     print(patienCitycode);
      if(patientgender=="1"){
-       patientgender="Male";
+       patientgenderSTR="Male";
      }else{
-       patientgender="Female";
+       patientgenderSTR="Female";
      }
 
   }
@@ -237,7 +238,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(Icons.group),
-                                title: Text(/*"Male"*/patientgender),
+                                title: Text(/*"Male"*/patientgenderSTR),
                                 subtitle: Text(
                                     "Gender"
                                     /*address*/),
