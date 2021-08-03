@@ -200,18 +200,20 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
 
   saveDb() {
     //regNo=REG/2020-2021/000042&appontdt=12/06/2021&apponttime=10:00AM
+    print(widget.model.token);
     Map<String, dynamic> map = {
       "regNo": widget.model.userModel.body[0].regNo,
       "appontdt": controller[1].text,
       "apponttime": controller[2].text,
     };
     if (widget.model.apntUserType == Const.HEALTH_SCREENING_APNT) {
-      widget.model.POSTMETHOD(
+      widget.model.POSTMETHOD_TOKEN(
           api: ApiFactory.POST_HEALTH_SCREEN,
+          token: widget.model.token,
           json: map,
           fun: (Map<String, dynamic> map) {
             //Navigator.pop(context);
-            if (map[Const.STATUS] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {
               //Navigator.pop(context, true);
               popup(map[Const.MESSAGE], context);
             } else {
@@ -219,12 +221,13 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
             }
           });
     } else {
-      widget.model.POSTMETHOD(
+      widget.model.POSTMETHOD_TOKEN(
           api: ApiFactory.POST_HEALTH_CHCKUP,
           json: map,
+          token: widget.model.token,
           fun: (Map<String, dynamic> map) {
             //Navigator.pop(context);
-            if (map[Const.STATUS] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {
               //Navigator.pop(context, true);
               popup(map[Const.MESSAGE], context);
             } else {

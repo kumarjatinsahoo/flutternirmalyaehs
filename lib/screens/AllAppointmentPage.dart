@@ -526,8 +526,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
               AppData.showInSnackBar(context, "Please enter beneficiary no");
             } else {
               MyWidgets.showLoading(context);
-              widget.model.GETMETHODCALL(
+              widget.model.GETMETHODCALL_TOKEN(
                   api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
+                  token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     setState(() {
                       Navigator.of(context).pop();
