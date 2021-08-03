@@ -531,7 +531,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   fun: (Map<String, dynamic> map) {
                     setState(() {
                       Navigator.of(context).pop();
-                      String msg = map[Const.MESSAGE];
+                      //String msg = map[Const.MESSAGE];
                       if (map[Const.STATUS] == Const.SUCCESS) {
                         /*Navigator.of(context).pop();
                         AppData.showInSnackBar(context, msg);*/
@@ -552,7 +552,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         });
                       } else {
                         //Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
                       }
                     });
                   });

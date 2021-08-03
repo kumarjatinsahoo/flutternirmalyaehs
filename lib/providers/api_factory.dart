@@ -1,9 +1,12 @@
 class ApiFactory {
   static String SERVERIP =
-      'https://sidhudkl.000webhostapp.com/api/master1.php?';
+      'https://www.matrujyoti.in/api/';
 
-  static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
-//https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
+  //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
+
+  //192.168.29.107:8062/nirmalyaRest/api/get-regDetails?regNo=9121819335976326
+
   ////?//////////////MASTER DATA//////////////////
   static String STATE_API = MAIN_URL + 'get-country-list';
   static String CITY_API = MAIN_URL + 'get-state-list?country=';
@@ -19,7 +22,8 @@ class ApiFactory {
   static String VIEWBOOKINGLIST_LIST = SERVERIP + 'flag=viewbooking&partnerId=';
   static String VIEW_SALARYSTATEMENT= SERVERIP + 'flag=viewSalaryStatement&partnerId=';
   static String VIEW_PAYSLIP= SERVERIP + 'flag=viewPaySlip&empId=';
-  static String GET_BENE_DETAILS = SERVERIP + 'get-regDetails?regNo=';
+
+  static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = SERVERIP + 'post-addLabAppointment';
   static String POST_HEALTH_CHCKUP = SERVERIP + 'post-addchkupAppointment';
 

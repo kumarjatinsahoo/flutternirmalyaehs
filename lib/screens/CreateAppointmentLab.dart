@@ -54,7 +54,7 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
     // TODO: implement initState
     super.initState();
    // loginRes = widget.model.loginResponse1;
-   // CreateAppointmentLab.selectClinic = null;
+    //CreateAppointmentLab.selectClinic = null;
 
     final df = new DateFormat('dd/MM/yyyy');
     controller[1].text = df.format(DateTime.now());
@@ -128,17 +128,6 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
               SizedBox(
                 height: 4,
               ),
-
-              /* DropDown.networkDropdownGetpart1(
-                  MyLocalizations.of(context).text("CLINIC"),
-                  ApiFactory.CLINIC_LIST + loginRes.ashadtls[0].district_code,
-                  "clinic", (ClinicModel data) {
-                setState(() {
-                  AppointmentLab.selectClinic = data;
-                  controller[0].text = data.clinicAddress;
-                });
-              }),*/
-              //textFieldDisable(controlI: 0, hint: "Address of clinic"),
               appointmentDt(),
               appointmentTime(),
               SizedBox(

@@ -410,10 +410,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
-              api: ApiFactory.LOGIN_PASS(widget.model.phnNo, passController.text),
+              api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
-                if (map[Const.STATUS] == Const.SUCCESS) {
+                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
@@ -448,7 +449,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }*/
                   }); }
                 else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
         }
