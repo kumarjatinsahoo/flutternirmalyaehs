@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
+import 'package:user/models/PatientSignupModel.dart';
 
 class PatientRegistration4 extends StatefulWidget {
   MainModel model;
@@ -21,6 +22,7 @@ class PatientRegistration4 extends StatefulWidget {
 class _PatientRegistration4State extends State<PatientRegistration4> {
   String imgValue;
 
+
   String profileImage = null;
   String valueText = null;
   String codeDialog = null;
@@ -30,9 +32,15 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   File _camImage;
   String base64Img;
 
+
+
   double widthSize;
 
+
+
   //LoginResponse loginResponse;
+  String user;
+  String token;
   String patientName;
   String patientage;
   String patientimg;
@@ -42,6 +50,12 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   String patientemail;
   String patientphnNo;
   String patientgender;
+  String patientgenderSTR;
+  String patienCitycode;
+  String patienCitykey;
+  String patienStatecode;
+  String patienStatekey;
+  String patientimgtype;
 
 
   @override
@@ -58,10 +72,21 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     patientimg = widget.model.patientimg;
     patientage = widget.model.patientage;
     patientgender = widget.model.patientgender;
+    patienCitycode = widget.model.patienCitycode;
+    patienCitykey = widget.model.patienCitykey;
+    patienStatecode = widget.model.patienStatecode;
+    patienStatekey = widget.model.patienStatekey;
+    patientimgtype = widget.model.patientimgtype;
+    user = widget.model.user;
+    token = widget.model.token;
+    print(patienCitykey);
+    print(patienStatecode);
+    print(patienStatekey);
+    print(patienCitycode);
      if(patientgender=="1"){
-       patientgender="Male";
+       patientgenderSTR="Male";
      }else{
-       patientgender="Female";
+       patientgenderSTR="Female";
      }
 
   }
@@ -106,7 +131,50 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                     )),
                               ),
                             ),
-                            Container(
+                          /*  Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 83,
+                                width: 83,
+                                child: Stack(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                     *//*Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage: FileImage(pathUsr),
+                                      ),
+                                    )
+                                        : *//*Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        //backgroundImage:Image.memory(base64Decode(patientimg))
+                                        //NetworkImage(AppData.defaultImgUrl),
+                                      ),
+                                    ),
+                                    *//*Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          getCameraImage();
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: AppData.kPrimaryColor,
+                                        ),
+                                      ),
+                                    )*//*
+                                  ],
+                                ),
+                              ),
+                            ),*/
+            Align(
+               alignment: Alignment.topCenter,
+              child: Container(
                               width: double.infinity,
                               height: 100.0,
                               child: Center(
@@ -126,13 +194,14 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                           )
                                               : Image./*network(
                                               imgValue ?? AppData.defaultImgUrl,
-                                              height: 140)*/memory(base64Decode(patientimg))),
+                                              height: 140)*/memory(base64Decode(patientimg),height: 100)),
 
                                     ],
                                   ),
                                 ),
                               ),
                             ),
+    ),
                             Text(
                               /*"Swapnil Nevale"*/patientName,
                               style: TextStyle(fontSize: 28.0, color: Colors.white),
@@ -169,7 +238,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(Icons.group),
-                                title: Text(/*"Male"*/patientgender),
+                                title: Text(/*"Male"*/patientgenderSTR),
                                 subtitle: Text(
                                     "Gender"
                                     /*address*/),
@@ -244,12 +313,39 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        Navigator.pushNamed(context, "/patientDashboard");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
+        //print("form submit");
+        MyWidgets.showLoading(context);
+        PatientSignupModel patientSignupModel=PatientSignupModel();
+        patientSignupModel.fName = patientName;
+        patientSignupModel.mobile = patientphnNo;
+        patientSignupModel.age = patientage;
+        patientSignupModel.country = patienCitykey;
+        patientSignupModel.state = patienStatekey;
+        patientSignupModel.gender = patientgender;
+        patientSignupModel.height =patientheight;
+        patientSignupModel.weight = patientweight;
+        patientSignupModel.email = patientemail;
+        patientSignupModel.aadhar = patientaadhar;
+        patientSignupModel.profileImageType = patientimgtype;
+        patientSignupModel.stateCode = patienStatecode;
+        patientSignupModel.countryCode = patienCitycode;
+        patientSignupModel.profileImage = patientimg;
+        patientSignupModel.enteredBy = user;
+
+        //signupModel.image_path = position.longitude.toString();
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ token);
+        widget.model.postSignUp(token,patientSignupModel.toJson(), (Map<String, dynamic> map) {
+         // Map<String, dynamic> map = jsonDecode(data);
+          String msg = map["message"].toString();
+          //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
+          if (map["code"] == "success") {
+           // popup(msg, context);
+            AppData.showInSnackBar(context, msg);
+          } else {
+            AppData.showInSnackBar(context, msg);
+          }
+          //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+data);
+        });
 
         // Navigator.pushNamed(context, "/otpView");
         //}
@@ -483,3 +579,5 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     );
   }
 }
+
+

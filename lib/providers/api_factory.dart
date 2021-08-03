@@ -5,14 +5,19 @@ class ApiFactory {
   //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
   static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 
-  //192.168.29.107:8062/nirmalyaRest/api/get-regDetails?regNo=9121819335976326
-
+  static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
+//https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
   ////?//////////////MASTER DATA//////////////////
   static String STATE_API = MAIN_URL + 'get-country-list';
   static String CITY_API = MAIN_URL + 'get-state-list?country=';
+
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";
   }
+ /* static String POST_SIGNUP(String mob,) {
+    return MAIN_URL + "signup-by-pathologist?Authorization=$mob";
+  }*/
+  static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
 
   static String EMPL_DETAILS = SERVERIP + 'flag=viewemployeeDetailslist&employeeId=';
   static String VENDOR_LIST = SERVERIP + 'flag=getVendorlist&prtnrId=';

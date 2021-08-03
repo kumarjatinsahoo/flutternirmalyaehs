@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 
 //import 'package:matrujyoti/models/LoginResponse.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/providers/api_factory.dart';
 
 class RestAPI extends Model {
   var dio = Dio();
@@ -47,13 +49,53 @@ class RestAPI extends Model {
     }
   }
 
+  postSignUp(String token, Map<String, dynamic> json, Function fun) async {
+    print(ApiFactory.POST_SIGNUP);
+    try {
+      //Response response = await dio.post(ApiFactory.POST_SIGNUP+token,data: FormData.fromMap(json));
+
+      print(jsonEncode(json));
+      Response response = await dio.post(ApiFactory.POST_SIGNUP,
+          options: Options(
+            headers: {
+              "Authorization": token,
+            },
+          ),
+          data: jsonEncode(json));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print("api call>>>>");
+        try {
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(Const.TIMEOUT);
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(Const.TIMEOUT);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(Const.TIMEOUT);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(Const.TIMEOUT);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(Const.TIMEOUT);
+      }
+    }
+  }
 
   POSTMETHOD(
       {@required String api,
       @required Map<String, dynamic> json,
       @required Function fun}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
-    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + JsonEncoder().convert(json).toString());
+    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+        JsonEncoder().convert(json).toString());
     try {
       Response response = await dio.post(api, data: FormData.fromMap(json));
       if (response.statusCode == 200) {
@@ -82,9 +124,11 @@ class RestAPI extends Model {
       }
     }
   }
+
   setLoginData1(LoginResponse1 loginData) {
     this.loginData1 = loginData;
   }
+
   Future<bool> POST_METHOD_TRUE(
       {@required String api, @required Map<String, dynamic> json}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
@@ -96,7 +140,7 @@ class RestAPI extends Model {
               JsonEncoder().convert(response.data).toString());
           String status = response.data[Const.STATUS];
           String msg = response.data[Const.MESSAGE];
-          print("\n\n\n\n\n\n\n\n\n\n\n\n Hidiiid"+msg.toString());
+          print("\n\n\n\n\n\n\n\n\n\n\n\n Hidiiid" + msg.toString());
           if (status == Const.SUCCESS)
             return true;
           else if (status == Const.ALREADY_REG_STATUS)
@@ -128,6 +172,4 @@ class RestAPI extends Model {
       }
     }
   }
-
-
 }

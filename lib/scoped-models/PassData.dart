@@ -12,14 +12,20 @@ class PassData extends Model {
   String todate;
 
   String token;
+  String user;
   String patientName;
   String patientphnNo;
   String patientimg;
+  String patientimgtype;
   String patientgender;
   String patientage;
   String patientheight;
   String patientweight;
   String patientemail;
   String patientaadhar;
+  String patienStatekey;
+  String patienStatecode;
+  String patienCitykey;
+  String patienCitycode;
 
 }

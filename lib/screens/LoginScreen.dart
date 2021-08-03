@@ -421,6 +421,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
                     widget.model.token = loginResponse.body.token;
+                    widget.model.user = loginResponse.body.user;
                     if (loginResponse.body.user[0]=="4"
                         /*describeEnum(UserType.USER)*/.toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
@@ -449,7 +450,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }*/
                   }); }
                 else {
-                  //AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
         }
