@@ -32,6 +32,8 @@ class AppData {
   static String currentSelectedValue = "+91";
   static String currentSelectedValue1 = "S/o";
   static String currency = "₹";
+  static const channel=const MethodChannel("com.matrujyoti/goAnotherApp");
+
   static Color grey100 = Color(0xFFF4F4F4);
   static Color greyBorder = Color(0xFFD7D7D7);
   static Color greyText = Color(0xFF616267);

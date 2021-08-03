@@ -1,8 +1,16 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/models/UserDetailsModel.dart';
 
 class PassData extends Model {
   String empid;
   String phnNo;
+
+  String apntUserType;
+  UserDetailsModel userModel;
+  String slempid;
+  String fromdate;
+  String todate;
+
   String token;
   String user;
   String patientName;
@@ -19,4 +27,5 @@ class PassData extends Model {
   String patienStatecode;
   String patienCitykey;
   String patienCitycode;
+
 }

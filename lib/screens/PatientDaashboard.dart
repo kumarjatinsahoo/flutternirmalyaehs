@@ -1,4 +1,8 @@
+
+import 'package:user/providers/Const.dart';
+
 //import 'dart:html';
+
 
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -251,6 +255,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: Icons.alarm,
                                 title: "Appointment",
                                 fun: () {
+                                  chooseAppointment(context);
                                   // Navigator.pushNamed(context, "/medicalrecordpage");
                                 },
                                 color: AppData.BG1RED,
@@ -288,7 +293,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: Icons.edit_attributes,
                                 title: "Test",
                                 fun: () {
-                                  // Navigator.pushNamed(context, "/medicalrecordpage");
+                                   Navigator.pushNamed(context, "/testappointmentpage");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
@@ -670,6 +675,84 @@ class _PatientDashboardState extends State<PatientDashboard> {
         ),
       ),
     );
+  }
+
+  chooseAppointment(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text("Health Screening"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType =
+                                Const.HEALTH_SCREENING_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                           // AppData.showInSnackBar(context,"hi");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Health Check-up"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Doctor Visit"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType = Const.DOC_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                          },
+                        ),
+                        Divider(),
+                        MaterialButton(
+                          child: Text(
+                              "CANCEL",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
   }
 
 }
