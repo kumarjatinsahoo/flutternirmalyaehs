@@ -111,24 +111,28 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0),
                       child: SizedBox(
-                        height: 45,
+                        height: 55,
                         child: DropDown.networkDropdownGetpart4(
                             "State", ApiFactory.STATE_API, "state",
                                 (KeyvalueModel data) {
                               setState(() {
+                                print(ApiFactory.STATE_API);
                                 PatientRegistration3.stateModel = data;
                                 PatientRegistration3.cityModel = null;
                               });
                             }),
                       ),
                     ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                     (PatientRegistration3.stateModel != null)
                         ? Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, bottom: 7.0),
                       child: SizedBox(
-                        height: 45,
-                        child: DropDown.networkDropdownGetpart(
+                        height: 55,
+                        child: DropDown.networkDropdownGetpart4(
                             "City",
                             ApiFactory.CITY_API +
                                 PatientRegistration3.stateModel.key,
@@ -204,7 +208,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-            maxLength: 10,
+           /* maxLength: 10,*/
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
@@ -232,11 +236,21 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           AppData.showInSnackBar(context, "Please enter height(CM)");
         }else if(textEditingController[1].text == "" || textEditingController[1].text == null) {
          AppData.showInSnackBar(context, "Please enter Weight(kg)");
+        } else if (PatientRegistration3.stateModel == null ||
+            PatientRegistration3.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select State");
+        } else if (PatientRegistration3.cityModel == null ||
+            PatientRegistration3.cityModel == "") {
+          AppData.showInSnackBar(context, "Please select city");
         }else{
       widget.model.patientheight = textEditingController[0].text;
       widget.model.patientweight = textEditingController[1].text;
       widget.model.patientemail = textEditingController[2].text;
       widget.model.patientaadhar = textEditingController[3].text;
+      widget.model.patienStatekey =  PatientRegistration3.stateModel.key;
+      widget.model.patienStatecode =  PatientRegistration3.stateModel.code;
+      widget.model.patienCitykey =  PatientRegistration3.cityModel.key;
+      widget.model.patienCitycode =  PatientRegistration3.cityModel.code;
 
       Navigator.pushNamed(context, "/patientRegistration4");
 

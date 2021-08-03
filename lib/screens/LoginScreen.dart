@@ -410,8 +410,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
-              api: ApiFactory.LOGIN_PASS(widget.model.phnNo, passController.text),
-              fun: (Map<String, dynamic> map) {
+                  api: ApiFactory.LOGIN_PASS(widget.model.phnNo, passController.text),
+                  fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 if (map[Const.STATUS] == Const.SUCCESS) {
                   setState(() {
@@ -420,6 +420,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
                     widget.model.token = loginResponse.body.token;
+                    widget.model.user = loginResponse.body.user;
                     if (loginResponse.body.user[0]=="4"
                         /*describeEnum(UserType.USER)*/.toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(

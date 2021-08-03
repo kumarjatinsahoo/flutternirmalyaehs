@@ -105,7 +105,7 @@ class DropDown {
         padding:
             const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
         child: Container(
-          height: 90,
+
           padding: EdgeInsets.symmetric(horizontal: 0),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -496,7 +496,32 @@ class DropDown {
       ),
     );
   }
-
+  static Widget newContainer1(child) {
+    return Padding(
+      padding:
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(3),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 1.0,
+              spreadRadius: 0.0,
+              offset: Offset(1.0, 1.0), //shadow direction: bottom right
+            )
+          ],
+        ),
+       /* decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),*/
+        child: child,
+      ),
+    );
+  }
   static staticDropdown2(
     String label,
     String callFrom,
@@ -1133,7 +1158,7 @@ class DropDown {
   }
   static networkDropdownGetpart4(
       String label, final String API, String callFrom, Function fun) {
-    return inputFieldContainerDisable(DropdownSearch<KeyvalueModel>(
+    return newContainer1(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
@@ -1148,13 +1173,33 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      hint: label,
       dropdownSearchDecoration: InputDecoration(
-          hintText: label,
-        /*  labelText: label,*/
+        // filled: true,
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+     /* dropdownSearchDecoration: InputDecoration(
+          hintText: label, *//*labelText: label,*//*
+          disabledBorder: InputBorder.none,
           contentPadding:
           EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
-          floatingLabelBehavior: FloatingLabelBehavior.always),
-      label: label,
+        floatingLabelBehavior: FloatingLabelBehavior.never),*/
+
+      //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
       onFind: (String filter) async {

@@ -26,8 +26,7 @@ class LoginResponse1 {
   data['total'] = this.total;
   return data;
   }
-  }
-
+}
   class Body {
   String user;
   String userName;

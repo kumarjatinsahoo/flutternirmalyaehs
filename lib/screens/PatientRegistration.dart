@@ -309,7 +309,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-            maxLength: 10,
+           /// maxLength: 10,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
@@ -364,6 +364,8 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
         widget.model.patientimg =base64Encode(enc);
+        widget.model.patientimgtype =extName;
+
       });
 
     }
