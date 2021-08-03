@@ -108,15 +108,13 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
               MyWidgets.header1("User Details", Alignment.center),
               Divider(),
               rowData(
-                  "User Name", widget.model.userModel.reglist[0].name ?? ""),
-              rowData("Reg No.", widget.model.userModel.reglist[0].regNo ?? ""),
-              rowData("Father/Husband Name",
-                  widget.model.userModel.reglist[0].husbandorfather ?? ""),
-              rowData("District",
-                  widget.model.userModel.reglist[0].districtnm ?? ""),
-              rowData("Gender", widget.model.userModel.reglist[0].gender ?? ""),
+                  "User Name", widget.model.userModel.body[0].name ?? ""),
+              rowData("Reg No.", widget.model.userModel.body[0].regNo ?? ""),
+              rowData("State",
+                  widget.model.userModel.body[0].state ?? ""),
+              rowData("Gender", widget.model.userModel.body[0].gender ?? ""),
               rowData("Mobile No",
-                  widget.model.userModel.reglist[0].mobileNo ?? ""),
+                  widget.model.userModel.body[0].mobileNo ?? ""),
 
               SizedBox(
                 height: 7,
@@ -203,7 +201,7 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
   saveDb() {
     //regNo=REG/2020-2021/000042&appontdt=12/06/2021&apponttime=10:00AM
     Map<String, dynamic> map = {
-      "regNo": widget.model.userModel.reglist[0].regNo,
+      "regNo": widget.model.userModel.body[0].regNo,
       "appontdt": controller[1].text,
       "apponttime": controller[2].text,
     };

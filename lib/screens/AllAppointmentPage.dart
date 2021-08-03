@@ -532,7 +532,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     setState(() {
                       Navigator.of(context).pop();
                       //String msg = map[Const.MESSAGE];
-                      if (map[Const.STATUS] == Const.SUCCESS) {
+                      if (map[Const.CODE] == Const.SUCCESS) {
                         /*Navigator.of(context).pop();
                         AppData.showInSnackBar(context, msg);*/
                         UserDetailsModel userModel =

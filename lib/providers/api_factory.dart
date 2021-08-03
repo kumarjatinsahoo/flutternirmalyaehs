@@ -24,8 +24,8 @@ class ApiFactory {
   static String VIEW_PAYSLIP= SERVERIP + 'flag=viewPaySlip&empId=';
 
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
-  static String POST_HEALTH_SCREEN = SERVERIP + 'post-addLabAppointment';
-  static String POST_HEALTH_CHCKUP = SERVERIP + 'post-addchkupAppointment';
+  static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
+  static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
 
 
   static String STATUSCHANGELIST_LIST = SERVERIP + 'flag=statusChange&bstatus=';
