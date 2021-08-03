@@ -33,12 +33,15 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   double widthSize;
 
   //LoginResponse loginResponse;
-  String servicesCount="0";
-  String stylistCount="0";
-  String name="";
-  String mobile="";
-  String address="";
-  String email="";
+  String patientName;
+  String patientage;
+  String patientimg;
+  String patientweight;
+  String patientheight;
+  String patientaadhar;
+  String patientemail;
+  String patientphnNo;
+  String patientgender;
 
 
   @override
@@ -46,7 +49,20 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     // TODO: implement initState
     super.initState();
     //loginResponse=widget.model.loginResponse;
-
+    patientName = widget.model.patientName;
+    patientphnNo = widget.model.patientphnNo;
+    patientemail = widget.model.patientemail;
+    patientaadhar = widget.model.patientaadhar;
+    patientheight = widget.model.patientheight;
+    patientweight = widget.model.patientweight;
+    patientimg = widget.model.patientimg;
+    patientage = widget.model.patientage;
+    patientgender = widget.model.patientgender;
+     if(patientgender=="1"){
+       patientgender="Male";
+     }else{
+       patientgender="Female";
+     }
 
   }
 
@@ -92,25 +108,25 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                             ),
                             Container(
                               width: double.infinity,
-                              height: 110.0,
+                              height: 100.0,
                               child: Center(
                                 child: Container(
-                                  height: 110.0,
-                                  width: 110.0,
+                                  height: 100.0,
+                                  width: 100.0,
                                   child: Stack(
                                     children: [
                                       ClipRRect(
-                                          borderRadius: BorderRadius.circular(110.0),
+                                          borderRadius: BorderRadius.circular(100.0),
                                           child: _camImage != null
                                               ? Image.file(
                                             _camImage,
-                                            height: 110,
-                                            width: 110,
+                                            height: 100,
+                                            width: 100,
                                             fit: BoxFit.cover,
                                           )
-                                              : Image.network(
+                                              : Image./*network(
                                               imgValue ?? AppData.defaultImgUrl,
-                                              height: 140)),
+                                              height: 140)*/memory(base64Decode(patientimg))),
 
                                     ],
                                   ),
@@ -118,7 +134,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                               ),
                             ),
                             Text(
-                              "Swapnil Nevale",
+                              /*"Swapnil Nevale"*/patientName,
                               style: TextStyle(fontSize: 28.0, color: Colors.white),
                             ),
                           ],
@@ -134,25 +150,26 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                     padding: EdgeInsets.all(8),
                     child: Column(children: <Widget>[
                       Column(
+
                         children: <Widget>[
                           ...ListTile.divideTiles(
                             color: Colors.grey,
                             tiles: [
                               ListTile(
                                 leading: Icon(Icons.call),
-                                title: Text("9011118424"),
+                                title: Text(/*"9011118424"*/patientphnNo),
                                 subtitle: Text("Mobile"),
                               ),
                               ListTile(
                                 leading: Icon(Icons.assignment_ind),
-                                title: Text("32 Year"),
+                                title: Text(/*"32 Year"*/patientage),
                                 subtitle: Text("Age"),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(Icons.group),
-                                title: Text("Male"),
+                                title: Text(/*"Male"*/patientgender),
                                 subtitle: Text(
                                     "Gender"
                                     /*address*/),
@@ -168,14 +185,14 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(CupertinoIcons.sportscourt),
-                                title: Text("184CM"),
+                                title: Text(/*"184CM"*/patientheight),
                                 subtitle: Text("Height"),
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(CupertinoIcons.sportscourt),
-                                title: Text("134 Kg"),
+                                title: Text(/*"134 Kg"*/patientweight),
                                 subtitle: Text("Weight"),
                               ),
                               /*ListTile(

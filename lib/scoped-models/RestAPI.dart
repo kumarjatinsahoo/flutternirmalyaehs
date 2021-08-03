@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/Const.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'package:scoped_model/scoped_model.dart';
 class RestAPI extends Model {
   var dio = Dio();
   SharedPref sharedPref = SharedPref();
-
+  LoginResponse1 loginData1;
 
   Map<String, dynamic> failedMap = {
     Const.STATUS: Const.FAILED,
@@ -46,6 +47,7 @@ class RestAPI extends Model {
     }
   }
 
+
   POSTMETHOD(
       {@required String api,
       @required Map<String, dynamic> json,
@@ -80,7 +82,9 @@ class RestAPI extends Model {
       }
     }
   }
-
+  setLoginData1(LoginResponse1 loginData) {
+    this.loginData1 = loginData;
+  }
   Future<bool> POST_METHOD_TRUE(
       {@required String api, @required Map<String, dynamic> json}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);

@@ -1,35 +1,15 @@
 class ApiFactory {
   static String SERVERIP =
       'https://sidhudkl.000webhostapp.com/api/master1.php?';
-  static String POST_SIGNUP = SERVERIP + 'flag=PartnerRegistration';
-  static String SERVERIP1 =
-      "https://sidhudkl.000webhostapp.com/api/master.php?";
+
+  static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
 //https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
   ////?//////////////MASTER DATA//////////////////
-  static String STATE_API = SERVERIP1 + 'flag=getStates';
-  static String CITY_API = SERVERIP1 + 'flag=getCity&stateid=';
-  static String SHIFT_API = SERVERIP + 'flag=getShiftsName&partnerId=';
-  static String PH_LOGIN = SERVERIP + 'flag=partnermobileverify';
-  static String SERVICE_API = SERVERIP + 'flag=getService';
-  static String SUBSERVICE_API = SERVERIP + 'flag=getSubService&serviceId=';
-  static String SKILLS_LIST = SERVERIP + 'flag=getSkills';
-  static String VIEWPHONEDTLS_LIST = SERVERIP + 'flag=viewPhonedtls&phoneno=';
-  static String RELATION_LIST = SERVERIP + 'flag=getRelation';
-  static String POST_ADDEMPLOYEE = SERVERIP + 'flag=PartnerEmployee';
-  static String POST_ADDSERVICE = SERVERIP + 'flag=PartnerAddService';
-  static String POST_PARTNERADDGRN = SERVERIP + 'flag=partnerAddGrn';
-
-  static String PIN_VERIFY = SERVERIP + 'flag=partnerpinverify';
-  static String SEND_OTP = SERVERIP + 'flag=partnersendotp';
-  static String VERIFY_OTP = SERVERIP + 'flag=partnerverifyotp';
-  static String VENDORLIST_API = SERVERIP + 'flag=getVendorlist&prtnrId=';
-
-  static String PARTNERADDITEM_API = SERVERIP + 'flag=PartnerAddItem';
-  //static String PARTNERADDITEM_API = SERVERIP + 'flag=partnerPostItem';
-  static String PARTNERADDPURCHASORDER_API = SERVERIP + 'flag=partnerAddPurchaseOrdr';
-  static String PARTNERADDVENDER_API = SERVERIP + 'flag=PartnerAddVendor';
-  static String VIEW_EMPLOYEE = SERVERIP + 'flag=viewemployeelist&partnerId=';
-  static String INOUT_ATTENDANCE = SERVERIP + 'flag=addattendance&partnerId=';
+  static String STATE_API = MAIN_URL + 'get-country-list';
+  static String CITY_API = MAIN_URL + 'get-state-list?country=';
+  static String LOGIN_PASS(String mob, String pass) {
+    return MAIN_URL + "login?mobileNo=$mob&password=$pass";
+  }
 
   static String EMPL_DETAILS = SERVERIP + 'flag=viewemployeeDetailslist&employeeId=';
   static String VENDOR_LIST = SERVERIP + 'flag=getVendorlist&prtnrId=';
@@ -71,7 +51,7 @@ class ApiFactory {
 
   static String POST_ADDNEWCLINT = SERVERIP + 'flag=addnewclient';
 
-  static String SALOON_TECH_SERVICES =
+ /* static String SALOON_TECH_SERVICES =
       SERVERIP1 + 'flag=saloonservicetechndetail&salid=';
 
   static String SERVICE_LIST1({String salID, String gender}) {
@@ -82,7 +62,7 @@ class ApiFactory {
       {String salID, String bookDate, String stylishid}) {
     return SERVERIP1 +
         "flag=stylishtimingdetails&saloonid=$salID&bookdate=$bookDate&stylishid=$stylishid";
-  }
+  }*/
 
   static String PAYMENT_METHOD(
       {String invoiceNo, String paymentMode, String paymentRefNo, String partnerId}) {
