@@ -1,6 +1,9 @@
 class ApiFactory {
   static String SERVERIP =
-      'https://sidhudkl.000webhostapp.com/api/master1.php?';
+      'https://www.matrujyoti.in/api/';
+
+  //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 
   static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 //https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
@@ -24,9 +27,10 @@ class ApiFactory {
   static String VIEWBOOKINGLIST_LIST = SERVERIP + 'flag=viewbooking&partnerId=';
   static String VIEW_SALARYSTATEMENT= SERVERIP + 'flag=viewSalaryStatement&partnerId=';
   static String VIEW_PAYSLIP= SERVERIP + 'flag=viewPaySlip&empId=';
-  static String GET_BENE_DETAILS = SERVERIP + 'get-regDetails?regNo=';
-  static String POST_HEALTH_SCREEN = SERVERIP + 'post-addLabAppointment';
-  static String POST_HEALTH_CHCKUP = SERVERIP + 'post-addchkupAppointment';
+
+  static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
+  static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
+  static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
 
 
   static String STATUSCHANGELIST_LIST = SERVERIP + 'flag=statusChange&bstatus=';

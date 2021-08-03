@@ -1,57 +1,49 @@
 class UserDetailsModel {
-  String status;
+  List<Body> body;
   String message;
-  List<Reglist> reglist;
+  String code;
+  Null total;
 
-  UserDetailsModel({this.status, this.message, this.reglist});
+  UserDetailsModel({this.body, this.message, this.code, this.total});
 
   UserDetailsModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
-    if (json['reglist'] != null) {
-      reglist = new List<Reglist>();
-      json['reglist'].forEach((v) {
-        reglist.add(new Reglist.fromJson(v));
+    if (json['body'] != null) {
+      body = new List<Body>();
+      json['body'].forEach((v) {
+        body.add(new Body.fromJson(v));
       });
     }
+    message = json['message'];
+    code = json['code'];
+    total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.reglist != null) {
-      data['reglist'] = this.reglist.map((v) => v.toJson()).toList();
+    if (this.body != null) {
+      data['body'] = this.body.map((v) => v.toJson()).toList();
     }
+    data['message'] = this.message;
+    data['code'] = this.code;
+    data['total'] = this.total;
     return data;
   }
 }
 
-class Reglist {
+class Body {
   String regNo;
   String name;
-  String husbandorfather;
-  String districtnm;
-  String districtcd;
-  String gender;
   String mobileNo;
+  String state;
+  String gender;
 
-  Reglist(
-      {this.regNo,
-        this.name,
-        this.husbandorfather,
-        this.districtnm,
-        this.districtcd,
-        this.mobileNo,
-        this.gender});
+  Body({this.regNo, this.name, this.mobileNo, this.state, this.gender});
 
-  Reglist.fromJson(Map<String, dynamic> json) {
+  Body.fromJson(Map<String, dynamic> json) {
     regNo = json['regNo'];
     name = json['name'];
-    husbandorfather = json['husbandorfather'];
-    districtnm = json['districtnm'];
-    districtcd = json['districtcd'];
     mobileNo = json['mobileNo'];
+    state = json['state'];
     gender = json['gender'];
   }
 
@@ -59,11 +51,9 @@ class Reglist {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['regNo'] = this.regNo;
     data['name'] = this.name;
-    data['husbandorfather'] = this.husbandorfather;
-    data['districtnm'] = this.districtnm;
-    data['districtcd'] = this.districtcd;
-    data['gender'] = this.gender;
     data['mobileNo'] = this.mobileNo;
+    data['state'] = this.state;
+    data['gender'] = this.gender;
     return data;
   }
 }

@@ -526,13 +526,14 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
               AppData.showInSnackBar(context, "Please enter beneficiary no");
             } else {
               MyWidgets.showLoading(context);
-              widget.model.GETMETHODCALL(
+              widget.model.GETMETHODCALL_TOKEN(
                   api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
+                  token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     setState(() {
                       Navigator.of(context).pop();
-                      String msg = map[Const.MESSAGE];
-                      if (map[Const.STATUS] == Const.SUCCESS) {
+                      //String msg = map[Const.MESSAGE];
+                      if (map[Const.CODE] == Const.SUCCESS) {
                         /*Navigator.of(context).pop();
                         AppData.showInSnackBar(context, msg);*/
                         UserDetailsModel userModel =
@@ -552,7 +553,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         });
                       } else {
                         //Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
                       }
                     });
                   });

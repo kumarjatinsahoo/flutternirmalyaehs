@@ -48,6 +48,38 @@ class RestAPI extends Model {
       }
     }
   }
+GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token}) async {
+    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    try {
+      Response response = await dio.get(api,options: Options(
+        headers: {
+          "Authorization": token,
+        },
+      ),);
+      if (response.statusCode == 200) {
+        try {
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(failedMap);
+      }
+    }
+  }
 
   postSignUp(String token, Map<String, dynamic> json, Function fun) async {
     print(ApiFactory.POST_SIGNUP);
@@ -97,7 +129,46 @@ class RestAPI extends Model {
     print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
         JsonEncoder().convert(json).toString());
     try {
-      Response response = await dio.post(api, data: FormData.fromMap(json));
+      Response response = await dio.post(api,data: FormData.fromMap(json));
+      if (response.statusCode == 200) {
+        try {
+          print("RESPONSE CALL>>>>" +
+              JsonEncoder().convert(response.data).toString());
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(failedMap);
+      }
+    }
+  }
+POSTMETHOD_TOKEN(
+      {@required String api,
+      @required Map<String, dynamic> json,
+      @required Function fun,String token}) async {
+    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+        JsonEncoder().convert(json).toString());
+    try {
+      Response response = await dio.post(api,options: Options(
+        headers: {
+          "Authorization": token,
+        },
+      ), data: jsonEncode(json));
       if (response.statusCode == 200) {
         try {
           print("RESPONSE CALL>>>>" +

@@ -54,7 +54,7 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
     // TODO: implement initState
     super.initState();
    // loginRes = widget.model.loginResponse1;
-   // CreateAppointmentLab.selectClinic = null;
+    //CreateAppointmentLab.selectClinic = null;
 
     final df = new DateFormat('dd/MM/yyyy');
     controller[1].text = df.format(DateTime.now());
@@ -108,15 +108,13 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
               MyWidgets.header1("User Details", Alignment.center),
               Divider(),
               rowData(
-                  "User Name", widget.model.userModel.reglist[0].name ?? ""),
-              rowData("Reg No.", widget.model.userModel.reglist[0].regNo ?? ""),
-              rowData("Father/Husband Name",
-                  widget.model.userModel.reglist[0].husbandorfather ?? ""),
-              rowData("District",
-                  widget.model.userModel.reglist[0].districtnm ?? ""),
-              rowData("Gender", widget.model.userModel.reglist[0].gender ?? ""),
+                  "User Name", widget.model.userModel.body[0].name ?? ""),
+              rowData("Reg No.", widget.model.userModel.body[0].regNo ?? ""),
+              rowData("State",
+                  widget.model.userModel.body[0].state ?? ""),
+              rowData("Gender", widget.model.userModel.body[0].gender ?? ""),
               rowData("Mobile No",
-                  widget.model.userModel.reglist[0].mobileNo ?? ""),
+                  widget.model.userModel.body[0].mobileNo ?? ""),
 
               SizedBox(
                 height: 7,
@@ -128,17 +126,6 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
               SizedBox(
                 height: 4,
               ),
-
-              /* DropDown.networkDropdownGetpart1(
-                  MyLocalizations.of(context).text("CLINIC"),
-                  ApiFactory.CLINIC_LIST + loginRes.ashadtls[0].district_code,
-                  "clinic", (ClinicModel data) {
-                setState(() {
-                  AppointmentLab.selectClinic = data;
-                  controller[0].text = data.clinicAddress;
-                });
-              }),*/
-              //textFieldDisable(controlI: 0, hint: "Address of clinic"),
               appointmentDt(),
               appointmentTime(),
               SizedBox(
@@ -213,18 +200,20 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
 
   saveDb() {
     //regNo=REG/2020-2021/000042&appontdt=12/06/2021&apponttime=10:00AM
+    print(widget.model.token);
     Map<String, dynamic> map = {
-      "regNo": widget.model.userModel.reglist[0].regNo,
+      "regNo": widget.model.userModel.body[0].regNo,
       "appontdt": controller[1].text,
       "apponttime": controller[2].text,
     };
     if (widget.model.apntUserType == Const.HEALTH_SCREENING_APNT) {
-      widget.model.POSTMETHOD(
+      widget.model.POSTMETHOD_TOKEN(
           api: ApiFactory.POST_HEALTH_SCREEN,
+          token: widget.model.token,
           json: map,
           fun: (Map<String, dynamic> map) {
             //Navigator.pop(context);
-            if (map[Const.STATUS] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {
               //Navigator.pop(context, true);
               popup(map[Const.MESSAGE], context);
             } else {
@@ -232,12 +221,13 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
             }
           });
     } else {
-      widget.model.POSTMETHOD(
+      widget.model.POSTMETHOD_TOKEN(
           api: ApiFactory.POST_HEALTH_CHCKUP,
           json: map,
+          token: widget.model.token,
           fun: (Map<String, dynamic> map) {
             //Navigator.pop(context);
-            if (map[Const.STATUS] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {
               //Navigator.pop(context, true);
               popup(map[Const.MESSAGE], context);
             } else {
