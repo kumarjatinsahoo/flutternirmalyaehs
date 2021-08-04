@@ -443,6 +443,7 @@
   "BLOOD_GROUP": "Blood group",
   "HEMOGLOBIN": "Hemoglobin",
   "URINE_TEST": "Urine test",
+  "TESTS": "Tests",
   "ULTRASOUND_REPORT": "Ultrasound report",
   "ULTRASOUND_REPORT_1": "Ultrasound report (first)",
   "ULTRASOUND_REPORT_2": "Ultrasound report (Second)",
@@ -502,6 +503,8 @@
   "SELECT_CITY":"Select City",
   "SELECT_SCHEME":"Select Scheme",
   "SELECT_TYPE":"Select Type",
-  "SPECIALITY": "Speciality"
+  "SPECIALITY": "Speciality",
+
+
 }
 

@@ -294,8 +294,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 title: "Test",
                                 fun: () {
 
-                                  chooseAppointment1(context);
-                                  // Navigator.pushNamed(context, "/testappointmentpage");
+                                  //chooseAppointment1(context);
+                                   Navigator.pushNamed(context, "/testappointmentpage");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
