@@ -199,6 +199,9 @@ POSTMETHOD_TOKEN(
   setLoginData1(LoginResponse1 loginData) {
     this.loginData1 = loginData;
   }
+  LoginResponse1 get loginResponse1 {
+    return loginData1;
+  }
 
   Future<bool> POST_METHOD_TRUE(
       {@required String api, @required Map<String, dynamic> json}) async {

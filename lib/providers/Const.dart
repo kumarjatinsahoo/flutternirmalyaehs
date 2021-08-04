@@ -32,6 +32,7 @@ class Const {
   static String IS_LOGIN = "IS_LOGIN";
   static String IS_REGISTRATION = "IS_REGISTRATION";
   static String IS_DETAIL_VIEW = "IS_VIEW_SHOWING";
+  static String IS_REG_SERVER = "is_already_register";
 
   static const String DEATH = "DEATH BENEFIT";
   static const String TRUE="true";

@@ -85,9 +85,9 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     print(patienStatekey);
     print(patienCitycode);
      if(patientgender=="1"){
-       patientgenderSTR="Male";
+       patientgender="Male";
      }else{
-       patientgenderSTR="Female";
+       patientgender="Female";
      }
 
   }
@@ -175,33 +175,27 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                             ),*/
             Align(
                alignment: Alignment.topCenter,
-              child: Container(
+              /*child: Container(
                               width: double.infinity,
-                              height: 100.0,
+                              height: 100.0,*/
                               child: Center(
                                 child: Container(
                                   height: 100.0,
                                   width: 100.0,
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
+                                  /*child: Stack(*/
+                                    /*children: [*/
+                                    child:ClipRRect(
                                           borderRadius: BorderRadius.circular(100.0),
-                                          child: _camImage != null
-                                              ? Image.file(
-                                            _camImage,
-                                            height: 100,
+                                          child: /*patientimg != null ? */
+                                          Image.memory(base64Decode(patientimg?? AppData.defaultImgUrl,),height: 100,
                                             width: 100,
-                                            fit: BoxFit.cover,
-                                          )
-                                              : Image./*network(
-                                              imgValue ?? AppData.defaultImgUrl,
-                                              height: 140)*/memory(base64Decode(patientimg),height: 100)),
+                                            fit: BoxFit.cover,)),
 
-                                    ],
-                                  ),
+                                    /*],
+                                  ),*/
                                 ),
                               ),
-                            ),
+                            /*),*/
     ),
                             Text(
                               /*"Swapnil Nevale"*/patientName,
@@ -239,7 +233,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 4),
                                 leading: Icon(Icons.group),
-                                title: Text(/*"Male"*/patientgenderSTR),
+                                title: Text(/*"Male"*/patientgender),
                                 subtitle: Text(
                                     "Gender"
                                     /*address*/),
@@ -334,7 +328,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
         patientSignupModel.enteredBy = user;
 
         //signupModel.image_path = position.longitude.toString();
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ token);
+        //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ token);
         widget.model.postSignUp(token,patientSignupModel.toJson(), (Map<String, dynamic> map) {
          // Map<String, dynamic> map = jsonDecode(data);
           String msg = map["message"].toString();
@@ -398,7 +392,11 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
             ),
             onPressed: () {
               Navigator.pop(context);
-             // Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

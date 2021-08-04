@@ -62,6 +62,7 @@ class PatientSignupModel{
       "country": this.country,
       "state": this.state,
       "gender": (this.gender=="Female")?"2":"1",
+      //"gender": (this.gender),
       "height": this.height,
       "weight": this.weight,
       "email": this.email,
