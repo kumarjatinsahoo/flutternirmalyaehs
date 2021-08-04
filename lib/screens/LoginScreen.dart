@@ -418,8 +418,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
-                    widget.model.setLoginData1(loginResponse);
-                    sharedPref.save(Const.IS_LOGIN, "true");
+                   /* widget.model.setLoginData1(loginResponse);
+                    sharedPref.save(Const.IS_LOGIN, "true");*/
+                    sharedPref.save(Const.LOGIN_DATA, loginResponse);
+                    sharedPref.save(Const.IS_LOGIN, Const.TRUE);
                     widget.model.token = loginResponse.body.token;
                     widget.model.user = loginResponse.body.user;
                     if (loginResponse.body.user[0]=="4"

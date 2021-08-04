@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/foundation.dart';
@@ -109,12 +110,33 @@ class _SplashScreenState extends State<SplashScreen> {
   void callResourceTimer() {
     Timer(Duration(seconds: 5), navigationPage);
   }
-
   void navigationPage() async {
+    //Navigator.of(context)
+    //.pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    Navigator.of(context).pushReplacementNamed('/login');
+
+    SharedPref sharedPref = SharedPref();
+    var login = await sharedPref.getKey(Const.IS_LOGIN);
+    if (login != null) {
+      String isLogin = await sharedPref.read(Const.IS_LOGIN);
+      if (isLogin == Const.TRUE) {
+        //widget.model.dashData(loginData.referenceNo);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+      } else {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+      }
+    } else {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
+    }
+  }
+  /*void navigationPage() async {
     if (isFirstTym) {
       Navigator.pushNamed(context, "/intro");
     } else {
       Navigator.pushNamed(context, "/login");
     }
-  }
+  }*/
 }

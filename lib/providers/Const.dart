@@ -34,6 +34,7 @@ class Const {
   static String IS_DETAIL_VIEW = "IS_VIEW_SHOWING";
 
   static const String DEATH = "DEATH BENEFIT";
+  static const String TRUE="true";
   static const String FUNERAL = "FUNERAL EXPENSES";
   static const String MARRIAGE = "ASSISTANCE FOR MARRIAGE";
   static const String EDUCATION = "ASSISTANCE FOR THE EDUCATION OF CHILDREN";
