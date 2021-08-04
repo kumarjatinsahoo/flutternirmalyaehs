@@ -111,7 +111,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
         child: Switch(
           //activeColor: Colors.pinkAccent,
           inactiveTrackColor: Colors.pinkAccent,
-          activeTrackColor: Colors.green,
+          activeTrackColor: AppData.kPrimaryColor,
           //inactiveThumbColor: Colors.green,
 
           value: _value,
