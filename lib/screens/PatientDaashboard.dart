@@ -210,17 +210,17 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   leading: Icon(Icons.logout),
                   title: Text('Logout'),
                   selected: _selectedDestination == 10,
+                 /* onTap: () {
+                  if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                    _exitApp();
+                  else
+                    initUniqueIdentifierState();
+                },*/
                   onTap: () {
-                    if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
-                      _exitApp();
-                   /* else
-                      initUniqueIdentifierState();*/
-                  },
-                /*  onTap: () {
 
                     selectDestination(10);
                     Navigator.pushNamed(context, "/login");
-                  },*/
+                  },
                 ),
               ],
             ),

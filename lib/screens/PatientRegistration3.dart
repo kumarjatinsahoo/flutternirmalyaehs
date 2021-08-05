@@ -362,15 +362,11 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
           AppData.showInSnackBar(context, "Please select State");
-        } if (PatientRegistration3.cityModel == null ||
+        }else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select city");
-         /*}else if (textEditingController[2].text != ""||textEditingController[1].text == null) {
-         if ( !AppData.isValidEmail(textEditingController[2].text)) {
+         }else if (textEditingController[2].text != null || !AppData.isValidEmail(textEditingController[2].text)) {
            AppData.showInSnackBar(context, "Please enter a valid E-mail");
-         }*/
-        }
-        else{
+         }else{
       widget.model.patientheight = textEditingController[0].text;
       widget.model.patientweight = textEditingController[1].text;
       widget.model.patientemail = textEditingController[2].text;

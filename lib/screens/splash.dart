@@ -42,12 +42,13 @@ class _SplashScreenState extends State<SplashScreen> {
   /*@override
   void initState() {
     super.initState();
-    callResourceTimer();
+
   }*/
   @override
   void initState() {
     super.initState();
     fetchLocalData();
+    callResourceTimer();
     ConnectionStatusSingleton connectionStatus =
     ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
@@ -58,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       isOffline = !connectionStatus.hasConnection;
       if (!connectionStatus.hasConnection) {
-        // isFirstTime = true;
+       // isFirstTime = true;
         color = Colors.green;
       }
     });
@@ -159,27 +160,17 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 5), navigationPage);
   }
   void navigationPage() async {
-   /* SharedPref sharedPref = SharedPref();
-    var login = await sharedPref.getKey(Const.IS_LOGIN);*/
+    //SharedPref sharedPref = SharedPref();
+    var login = await sharedPref.getKey(Const.IS_LOGIN);
     if (login != null) {
       if (login.replaceAll("\"", "") == "true" || login.toString() == "true") {
         LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
         widget.model.setLoginData1(loginResponse1);
+        widget.model.token = loginResponse1.body.token;
+        widget.model.user = loginResponse1.body.user;
         if (loginResponse1.body.roles[0]=="4".toLowerCase()) {
-          widget.model.token = loginResponse1.body.token;
-          widget.model.user = loginResponse1.body.user;
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/patientDashboard', (Route<dynamic> route) => false);}
-       /* } else if(loginResponse1.ashadtls[0].userType ==
-            describeEnum(UserType.DMF).toLowerCase()){
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dmfdashboard', (Route<dynamic> route) => false);
-        }
-        else if(loginResponse1.ashadtls[0].userType ==
-            describeEnum(UserType.ACCOUNT).toLowerCase()){
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dmfaccount', (Route<dynamic> route) => false);*/
-
         else {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/login', (Route<dynamic> route) => false);
@@ -189,8 +180,12 @@ class _SplashScreenState extends State<SplashScreen> {
             '/login', (Route<dynamic> route) => false);
       }
     } else {
+      if(isFirstTym)
       Navigator.of(context)
           .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
+      else
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            '/login', (Route<dynamic> route) => false);
     }
   }
   /*void navigationPage() async {

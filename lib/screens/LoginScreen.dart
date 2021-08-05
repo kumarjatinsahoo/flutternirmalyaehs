@@ -421,13 +421,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-
-                    if (loginResponse.body.user[0]=="4"
-                        /*describeEnum(UserType.USER)*/.toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/patientDashboard', (Route<dynamic> route) => false);
+                    if (loginResponse.body.roles[0]=="4".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil('/patientDashboard', (Route<dynamic> route) => false);
                     }
-                   /* else if(loginResponse.ashadtls[0].userType ==
+                   /*else if(loginResponse.ashadtls[0].userType ==
                         describeEnum(UserType.SUPADMIN).toLowerCase()){
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dash', (Route<dynamic> route) => false);
