@@ -33,6 +33,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
     new TextEditingController(),
   ];
   String email;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -90,7 +91,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       child: adharaformField(3, "Aadhar(OPTIONAL)"),
                     ),
 
-                   /* Padding(
+                    /* Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, bottom: 7.0),
                       child: SizedBox(
@@ -100,7 +101,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.stateModel = data;
-                                *//*PartnerSignUpForm.cityModel = null;*//*
+                                */ /*PartnerSignUpForm.cityModel = null;*/ /*
                               });
                             }),
                       ),
@@ -109,19 +110,18 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       height: size.height * 0.01,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                       child: SizedBox(
                         height: 55,
                         child: DropDown.networkDropdownGetpart4(
                             "Country", ApiFactory.STATE_API, "state",
-                                (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.STATE_API);
-                                PatientRegistration3.stateModel = data;
-                                PatientRegistration3.cityModel = null;
-                              });
-                            }),
+                            (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.STATE_API);
+                            PatientRegistration3.stateModel = data;
+                            PatientRegistration3.cityModel = null;
+                          });
+                        }),
                       ),
                     ),
                     SizedBox(
@@ -129,21 +129,21 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     ),
                     (PatientRegistration3.stateModel != null)
                         ? Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 7.0),
-                      child: SizedBox(
-                        height: 55,
-                        child: DropDown.networkDropdownGetpart4(
-                            "State",
-                            ApiFactory.CITY_API +
-                                PatientRegistration3.stateModel.key,
-                            "city", (KeyvalueModel data) {
-                          setState(() {
-                            PatientRegistration3.cityModel = data;
-                          });
-                        }),
-                      ),
-                    )
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, bottom: 7.0),
+                            child: SizedBox(
+                              height: 55,
+                              child: DropDown.networkDropdownGetpart4(
+                                  "State",
+                                  ApiFactory.CITY_API +
+                                      PatientRegistration3.stateModel.key,
+                                  "city", (KeyvalueModel data) {
+                                setState(() {
+                                  PatientRegistration3.cityModel = data;
+                                });
+                              }),
+                            ),
+                          )
                         : Container(),
                     SizedBox(
                       height: size.height * 0.07,
@@ -209,7 +209,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-           /* maxLength: 10,*/
+            /* maxLength: 10,*/
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -223,13 +223,14 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //validator: (val) => AppData.isValidEmail(textEditingController[2].text)? null : "Check your email",
             // validator: (input) => AppData.isValidEmail(2) ? null : "Check your email",
             onSaved: (String value) {
-             // email = value;
+              // email = value;
               //userPersonalForm.phoneNumber = value;
             },
           ),
         ) /*),*/
         );
   }
+
   /*Widget EmailFieldNew(String hint, bool enb, inputAct, keyType,
       FocusNode currentfn, FocusNode nextFn, String type, int index) {
     return Padding(
@@ -240,10 +241,10 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         focusNode: currentfn,
         textInputAction: inputAct,
         //inputFormatters: [AppData.filtterInputType(format: "0-9")],
-        *//* inputFormatters: [
+        */ /* inputFormatters: [
           UpperCaseTextFormatter(),
           //WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-        ],*//*
+        ],*/ /*
         decoration: InputDecoration(
           //prefixIcon: Icon(Icons.insert_drive_file_outlined),
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -260,56 +261,9 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
     );
   }*/
   Widget NumberformField(
-          int index,
-          String hint,
-        ) {
-    return Padding(
-    padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
-    child: Container(
-    //color: Colors.white,
-    height: 47,
-    padding: EdgeInsets.symmetric(
-    horizontal: 5,
-    ),
-    decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(3),
-    boxShadow: [
-    BoxShadow(
-    color: Colors.grey,
-    blurRadius: 1.0,
-    spreadRadius: 0.0,
-    offset: Offset(1.0, 1.0), //shadow direction: bottom right
-    )
-    ],
-    ),
-          child: TextFormField(
-            //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[index],
-            //focusNode: fnode7,
-            cursorColor: AppData.kPrimaryColor,
-            textInputAction: TextInputAction.next,
-            /* maxLength: 10,*/
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              /* suffixIcon: Icon(Icons.phone),*/
-              border: InputBorder.none,
-              counterText: "",
-              //hintText:"Patient Name",
-              hintText: hint,
-              hintStyle: TextStyle(color: Colors.black26, fontSize: 17),
-            ),
-            onSaved: (value) {
-              //userPersonalForm.phoneNumber = value;
-            },
-          ),
-        ) /*),*/
-    );
-  }
-  Widget adharaformField(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
         padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
         child: Container(
@@ -336,7 +290,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-             maxLength: 12,
+            /* maxLength: 10,*/
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
@@ -351,7 +305,55 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             },
           ),
         ) /*),*/
-    );
+        );
+  }
+
+  Widget adharaformField(
+    int index,
+    String hint,
+  ) {
+    return Padding(
+        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
+        child: Container(
+          //color: Colors.white,
+          height: 47,
+          padding: EdgeInsets.symmetric(
+            horizontal: 5,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(3),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+                offset: Offset(1.0, 1.0), //shadow direction: bottom right
+              )
+            ],
+          ),
+          child: TextFormField(
+            //enabled: widget.isConfirmPage ? false : true,
+            controller: textEditingController[index],
+            //focusNode: fnode7,
+            cursorColor: AppData.kPrimaryColor,
+            textInputAction: TextInputAction.next,
+            maxLength: 12,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              /* suffixIcon: Icon(Icons.phone),*/
+              border: InputBorder.none,
+              counterText: "",
+              //hintText:"Patient Name",
+              hintText: hint,
+              hintStyle: TextStyle(color: Colors.black26, fontSize: 17),
+            ),
+            onSaved: (value) {
+              //userPersonalForm.phoneNumber = value;
+            },
+          ),
+        ) /*),*/
+        );
   }
 
   Widget _submitButton() {
@@ -359,37 +361,42 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        if (textEditingController[0].text == "" || textEditingController[0].text == null) {
+        if (textEditingController[0].text == "" ||
+            textEditingController[0].text == null) {
           AppData.showInSnackBar(context, "Please enter height(CM)");
-        }else if(textEditingController[1].text == "" || textEditingController[1].text == null) {
-         AppData.showInSnackBar(context, "Please enter Weight(kg)");
+        } else if (textEditingController[1].text == "" ||
+            textEditingController[1].text == null) {
+          AppData.showInSnackBar(context, "Please enter Weight(kg)");
+        } else if (textEditingController[2].text != '' &&
+            !AppData.isValidEmail(textEditingController[2].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");
         } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
           AppData.showInSnackBar(context, "Please select Country");
-        }else if (PatientRegistration3.cityModel == null ||
+
+        }
+        else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
           AppData.showInSnackBar(context, "Please select State");
-        }/*else if (textEditingController[2].text !="" ) {
-          if(!AppData.isValidEmail(textEditingController[2].text)) {
-            return AppData.showInSnackBar(context, "Please enter a valid E-mail");
-           //return null;
-          }
-          //return null;
-        }*/
-       else{
-      widget.model.patientheight = textEditingController[0].text;
-      widget.model.patientweight = textEditingController[1].text;
-      widget.model.patientemail = textEditingController[2].text;
-      widget.model.patientaadhar = textEditingController[3].text;
-      widget.model.patienStatekey =  PatientRegistration3.stateModel.key;
-      widget.model.patienStatecode =  PatientRegistration3.stateModel.code;
-      widget.model.patienCitykey =  PatientRegistration3.cityModel.key;
-      widget.model.patienCitycode =  PatientRegistration3.cityModel.code;
-      Navigator.pushNamed(context, "/patientRegistration4");
+       /* } else if (textEditingController[2].text != '' &&
+            !AppData.isValidEmail(textEditingController[2].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
+          // return false;
+
+        } else {
+          widget.model.patientheight = textEditingController[0].text;
+          widget.model.patientweight = textEditingController[1].text;
+          widget.model.patientemail = textEditingController[2].text;
+          widget.model.patientaadhar = textEditingController[3].text;
+          widget.model.patienStatekey = PatientRegistration3.stateModel.key;
+          widget.model.patienStatecode = PatientRegistration3.stateModel.code;
+          widget.model.patienCitykey = PatientRegistration3.cityModel.key;
+          widget.model.patienCitycode = PatientRegistration3.cityModel.code;
+          Navigator.pushNamed(context, "/patientRegistration4");
         }
       },
     );
-    }
+  }
 
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
