@@ -53,6 +53,7 @@ import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
+import 'package:user/screens/PocReportListPage.dart';
 import 'package:user/screens/ProcessedOrders.dart';
 import 'package:user/screens/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
@@ -424,6 +425,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testappointmentpage': (context) => TestAppointmentPage(
+                    model: _model,
+                  ),
+              '/pocreportlist': (context) => PocReportListPage(
                     model: _model,
                   ),
             },
