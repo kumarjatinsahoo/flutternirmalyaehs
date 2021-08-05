@@ -89,14 +89,16 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   callAPI(String today) {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.HEALTH_SCREENING_LIST + today,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
-            if (map[Const.STATUS] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {
               appointModel = LabBookModel.fromJson(map);
             } else {
+              //isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });
@@ -344,13 +346,13 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                   ),
                 ),
                 (appointModel != null &&
-                    appointModel.labappointmnt != null &&
-                    appointModel.labappointmnt.length > 0)
+                    appointModel.body != null &&
+                    appointModel.body.length > 0)
                     ? ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                    itemCount: appointModel.labappointmnt.length,
+                    itemCount: appointModel.body.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -369,7 +371,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                 SizedBox(
                                   width: 60,
                                   child: Text(
-                                    appointModel.labappointmnt[index].regNo,
+                                    appointModel.body[index].regNo,
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -380,7 +382,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                 Expanded(
                                   child: Text(
                                     appointModel
-                                        .labappointmnt[index].motherName,
+                                        .body[index].patientName,
                                     style: TextStyle(color: Colors.black),
                                     textAlign: TextAlign.start,
                                   ),
@@ -395,7 +397,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                 SizedBox(
                                   width: 35,
                                   child: Text(
-                                    appointModel.labappointmnt[index].age,
+                                    appointModel.body[index].age.toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -423,7 +425,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                               dialogRegNo(
                                                   context,
                                                   appointModel
-                                                      .labappointmnt[
+                                                      .body[
                                                   index]));
                                     },
                                     child: Container(
@@ -437,7 +439,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                       padding: EdgeInsets.symmetric(
                                           vertical: 2, horizontal: 3),
                                       child: Text(
-                                        appointModel.labappointmnt[index]
+                                        appointModel.body[index]
                                             .appntmntStatus,
                                         style: TextStyle(
                                             color: Colors.green,
@@ -466,7 +468,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     );
   }
 
-  Widget dialogRegNo(BuildContext context, Labappointmnt labappointmnt) {
+  Widget dialogRegNo(BuildContext context, Body body) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
     height.text = "";
@@ -492,7 +494,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                 ),
                 SizedBox(child: Divider(height: 2,), width: 180,),
                 Text(
-                  "(" + labappointmnt.motherName + ")",
+                  "(" + body.patientName + ")",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
@@ -532,8 +534,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              String mob=(labappointmnt.mob==null ||labappointmnt.mob==""||labappointmnt.mob=="null")?"":labappointmnt.mob;
-              String mapping=labappointmnt.regNo+","+labappointmnt.motherName+","+mob+","+"Female"+","+height.text+","+weight.text+","+labappointmnt.age;
+              String mob=(body.mob==null ||body.mob==""||body.mob=="null")?"":body.mob;
+              String mapping=body.regNo+","+body.patientName+","+mob+","+"Female"+","+height.text+","+weight.text+","+body.age.toString();
               _callLabApp(mapping.trim());
             }
           },
@@ -552,9 +554,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     return str;
   }
 
-  Widget changeStatus(BuildContext context, Labappointmnt userName, int i) {
-    //NomineeModel nomineeModel = NomineeModel();
-    //Nomine
+  Widget changeStatus(BuildContext context, Body userName, int i) {
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
       //title: const Text(''),
@@ -575,7 +575,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                   ),
                 ),
                 Text(
-                  userName.motherName,
+                  userName.patientName,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
@@ -644,18 +644,18 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                 setState(() {
                   switch (statusCode) {
                     case "0":
-                      appointModel.labappointmnt[i].appntmntStatus = "Booked";
-                      appointModel.labappointmnt[i].appointStatus = 0;
+                      appointModel.body[i].appntmntStatus = "Booked";
+                      appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.labappointmnt[i].appntmntStatus =
+                      appointModel.body[i].appntmntStatus =
                       "In-Progress";
-                      appointModel.labappointmnt[i].appointStatus = 1;
+                      appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.labappointmnt[i].appntmntStatus =
+                      appointModel.body[i].appntmntStatus =
                       "Completed";
-                      appointModel.labappointmnt[i].appointStatus = 2;
+                      appointModel.body[i].appointStatus = 2;
                       break;
                   }
                 });
@@ -677,18 +677,18 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                 setState(() {
                   switch (statusCode) {
                     case "0":
-                      appointModel.labappointmnt[i].appntmntStatus = "Booked";
-                      appointModel.labappointmnt[i].appointStatus = 0;
+                      appointModel.body[i].appntmntStatus = "Booked";
+                      appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.labappointmnt[i].appntmntStatus =
+                      appointModel.body[i].appntmntStatus =
                       "In-Progress";
-                      appointModel.labappointmnt[i].appointStatus = 1;
+                      appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.labappointmnt[i].appntmntStatus =
+                      appointModel.body[i].appntmntStatus =
                       "Completed";
-                      appointModel.labappointmnt[i].appointStatus = 2;
+                      appointModel.body[i].appointStatus = 2;
                       break;
                   }
                 });

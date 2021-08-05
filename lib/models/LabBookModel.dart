@@ -1,86 +1,84 @@
 class LabBookModel {
-  String status;
+  List<Body> body;
   String message;
-  List<Labappointmnt> labappointmnt;
+  String code;
+  Null total;
 
-  LabBookModel({this.status, this.message, this.labappointmnt});
+  LabBookModel({this.body, this.message, this.code, this.total});
 
   LabBookModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
-    if (json['labappointmnt'] != null) {
-      labappointmnt = new List<Labappointmnt>();
-      json['labappointmnt'].forEach((v) {
-        labappointmnt.add(new Labappointmnt.fromJson(v));
+    if (json['body'] != null) {
+      body = new List<Body>();
+      json['body'].forEach((v) {
+        body.add(new Body.fromJson(v));
       });
     }
+    message = json['message'];
+    code = json['code'];
+    total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.labappointmnt != null) {
-      data['labappointmnt'] =
-          this.labappointmnt.map((v) => v.toJson()).toList();
+    if (this.body != null) {
+      data['body'] = this.body.map((v) => v.toJson()).toList();
     }
+    data['message'] = this.message;
+    data['code'] = this.code;
+    data['total'] = this.total;
     return data;
   }
 }
 
-class Labappointmnt {
-  String regNo;
-  String motherName;
+class Body {
   int id;
-  int districtcd;
-  int appointStatus;
+  String regNo;
+  String patientName;
+  int age;
   String gender;
-  String age;
+  String mob;
   String appntmntDate;
   String appntmntTime;
+  int appointStatus;
   String appntmntStatus;
-  String mob;
 
-  Labappointmnt(
-      {this.regNo,
-        this.id,
-        this.motherName,
-        this.districtcd,
+  Body(
+      {this.id,
+        this.regNo,
+        this.patientName,
+        this.age,
         this.gender,
+        this.mob,
         this.appntmntDate,
         this.appntmntTime,
         this.appointStatus,
-        this.age,
-        this.appntmntStatus,
-        this.mob});
+        this.appntmntStatus});
 
-  Labappointmnt.fromJson(Map<String, dynamic> json) {
-    regNo = json['regNo'];
-    motherName = json['motherName'];
+  Body.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    districtcd = json['districtcd'];
+    regNo = json['regNo'];
+    patientName = json['patientName'];
+    age = json['age'];
     gender = json['gender'];
+    mob = json['mob'];
     appntmntDate = json['appntmntDate'];
     appntmntTime = json['appntmntTime'];
-    age = json['age'].toString();
-    appntmntStatus = json['appntmntStatus'];
     appointStatus = json['appointStatus'];
-    mob = json['mob'];
+    appntmntStatus = json['appntmntStatus'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['regNo'] = this.regNo;
-    data['motherName'] = this.motherName;
     data['id'] = this.id;
-    data['districtcd'] = this.districtcd;
+    data['regNo'] = this.regNo;
+    data['patientName'] = this.patientName;
+    data['age'] = this.age;
     data['gender'] = this.gender;
+    data['mob'] = this.mob;
     data['appntmntDate'] = this.appntmntDate;
     data['appntmntTime'] = this.appntmntTime;
-    data['appntmntStatus'] = this.appntmntStatus;
-    data['age'] = this.age;
     data['appointStatus'] = this.appointStatus;
-    data['mob'] = this.mob;
+    data['appntmntStatus'] = this.appntmntStatus;
     return data;
   }
 }

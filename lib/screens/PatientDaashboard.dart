@@ -330,7 +330,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: CupertinoIcons.doc_append,
                                 title: "POC Reports",
                                 fun: () {
-                                  // Navigator.pushNamed(context, "/medicalrecordpage");
+                                  Navigator.pushNamed(context, "/pocreportlist");
                                 },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -346,8 +346,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 title: "Test",
                                 fun: () {
 
-                                  chooseAppointment1(context);
-                                  // Navigator.pushNamed(context, "/testappointmentpage");
+                                  //chooseAppointment1(context);
+                                   Navigator.pushNamed(context, "/testappointmentpage");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,

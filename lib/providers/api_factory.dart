@@ -31,6 +31,7 @@ class ApiFactory {
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
+  static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
 
 
   static String STATUSCHANGELIST_LIST = SERVERIP + 'flag=statusChange&bstatus=';
@@ -155,14 +156,14 @@ class ApiFactory {
   static String VIEW_ITEM_MASTER = SERVERIP + 'flag=getitemmasterlist&partnerId=';
   static String VIEWBILLINGDETAIL_LIST = SERVERIP + 'flag=viewBillingDetails&partnerId=';
   static String PURCHASE_ORDER_DROP = SERVERIP + 'flag=getPurchaseOrdrlist&prtnrId=';
-  static String CHANGE_STATUS_CHKUP = SERVERIP + "post-chkupAppointmentStatus";
-  static String CHANGE_STATUS_SCREENING = SERVERIP + "post-appointmentStatus";
+  static String CHANGE_STATUS_CHKUP = MAIN_URL + "post-chkupAppointmentStatus";
+  static String CHANGE_STATUS_SCREENING = MAIN_URL + "post-appointmentStatus";
   static String HEALTH_CHKUP_LIST =
-      SERVERIP + 'view-chkupAppointmentlist?appontdt=';
+      MAIN_URL + 'view-chkupAppointmentlist?appontdt=';
 
 
   static String HEALTH_SCREENING_LIST =
-      SERVERIP + 'view-labAppointmentlist?appontdt=';
+      MAIN_URL + 'view-labAppointmentlist?appontdt=';
 
   //static String VIEWPURCHASED_LIST = SERVERIP + 'flag=viewPurchaseOrder&partnerId=';
   static String VIEWPURCHASED_LIST(
