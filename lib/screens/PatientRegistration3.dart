@@ -113,7 +113,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       child: SizedBox(
                         height: 55,
                         child: DropDown.networkDropdownGetpart4(
-                            "State", ApiFactory.STATE_API, "state",
+                            "", ApiFactory.STATE_API, "state",
                                 (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.STATE_API);
@@ -359,14 +359,16 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           AppData.showInSnackBar(context, "Please enter height(CM)");
         }else if(textEditingController[1].text == "" || textEditingController[1].text == null) {
          AppData.showInSnackBar(context, "Please enter Weight(kg)");
+        }else if (textEditingController[2].text!= null && !AppData.isValidEmail(textEditingController[2].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");
         } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
           AppData.showInSnackBar(context, "Please select State");
         }else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
-         }else if (textEditingController[2].text != null || !AppData.isValidEmail(textEditingController[2].text)) {
-           AppData.showInSnackBar(context, "Please enter a valid E-mail");
-         }else{
+
+        }
+       else{
       widget.model.patientheight = textEditingController[0].text;
       widget.model.patientweight = textEditingController[1].text;
       widget.model.patientemail = textEditingController[2].text;
