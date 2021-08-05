@@ -424,7 +424,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (loginResponse.body.roles[0]=="4".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil('/patientDashboard', (Route<dynamic> route) => false);
                     }
-                   /*else if(loginResponse.ashadtls[0].userType ==
+                   /* else if(loginResponse.ashadtls[0].userType ==
                         describeEnum(UserType.SUPADMIN).toLowerCase()){
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dash', (Route<dynamic> route) => false);

@@ -110,7 +110,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(Duration(days: 30)),
         lastDate:
         DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
