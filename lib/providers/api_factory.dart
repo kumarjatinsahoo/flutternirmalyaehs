@@ -6,8 +6,6 @@ class ApiFactory {
   //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 
-//  192.168.29.25:8062/nirmalyaRest/api/view-labAppointmentlist?appontdt=03/08/2021
-
   static String MAIN_URL = "http://192.168.29.243:8062/nirmalyaRest/api/";
 //https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
   ////?//////////////MASTER DATA//////////////////
