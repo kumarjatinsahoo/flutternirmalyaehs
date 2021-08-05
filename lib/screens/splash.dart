@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/ConnectionStatusSingleton.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/foundation.dart';
@@ -24,13 +27,51 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   SharedPref sharedPref = SharedPref();
   bool isFirstTym = true;
+  StreamSubscription _connectionChangeStream;
+  bool isOffline = true;
+  bool isOnline = false;
+  Color color = Colors.transparent;
+  num myVerCode = 0;
+  var myVer;
+  var login; //= await sharedPref.getKey(Const.IS_LOGIN);
+  var loginData; //= await sharedPref.getKey(Const.LOGIN_DATA);
+  LoginResponse1 loginResponse1;
+  String value;
+  String selectedLan = "";
 
-  @override
+  /*@override
   void initState() {
     super.initState();
     callResourceTimer();
+  }*/
+  @override
+  void initState() {
+    super.initState();
+    fetchLocalData();
+    ConnectionStatusSingleton connectionStatus =
+    ConnectionStatusSingleton.getInstance();
+    _connectionChangeStream =
+        connectionStatus.connectionChange.listen(connectionChanged);
+
+    // HourlyCallApi.updateFromServer(false, widget.model);
+
+    setState(() {
+      isOffline = !connectionStatus.hasConnection;
+      if (!connectionStatus.hasConnection) {
+        // isFirstTime = true;
+        color = Colors.green;
+      }
+    });
+    isFirstTimes();
+   // getLocal();
   }
 
+  void connectionChanged(dynamic hasConnection) {
+    if (mounted)
+      setState(() {
+        isOffline = !hasConnection;
+      });
+  }
   Future<Null> isFirstTimes() async {
     String isFirstTime = await sharedPref.getKey('first_time');
     if (isFirstTime != null) {
@@ -105,16 +146,79 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-
+  fetchLocalData() async {
+    login = await sharedPref.getKey(Const.IS_LOGIN);
+    loginData = await sharedPref.getKey(Const.LOGIN_DATA);
+    if (login != null && login.replaceAll("\"", "") == "true") {
+      setState(() {
+        loginResponse1 = LoginResponse1.fromJson(jsonDecode(loginData));
+      });
+    }
+  }
   void callResourceTimer() {
     Timer(Duration(seconds: 5), navigationPage);
   }
-
   void navigationPage() async {
+   /* SharedPref sharedPref = SharedPref();
+    var login = await sharedPref.getKey(Const.IS_LOGIN);*/
+    if (login != null) {
+      if (login.replaceAll("\"", "") == "true" || login.toString() == "true") {
+        LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
+        widget.model.setLoginData1(loginResponse1);
+        if (loginResponse1.body.roles[0]=="4".toLowerCase()) {
+          widget.model.token = loginResponse1.body.token;
+          widget.model.user = loginResponse1.body.user;
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/patientDashboard', (Route<dynamic> route) => false);}
+       /* } else if(loginResponse1.ashadtls[0].userType ==
+            describeEnum(UserType.DMF).toLowerCase()){
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dmfdashboard', (Route<dynamic> route) => false);
+        }
+        else if(loginResponse1.ashadtls[0].userType ==
+            describeEnum(UserType.ACCOUNT).toLowerCase()){
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dmfaccount', (Route<dynamic> route) => false);*/
+
+        else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/login', (Route<dynamic> route) => false);
+        }
+      } else {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            '/login', (Route<dynamic> route) => false);
+      }
+    } else {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
+    }
+  }
+  /*void navigationPage() async {
+    //Navigator.of(context)
+    //.pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    Navigator.of(context).pushReplacementNamed('/login');
+    SharedPref sharedPref = SharedPref();
+    var login = await sharedPref.getKey(Const.IS_LOGIN);
+    if (login != null) {
+      String isLogin = await sharedPref.read(Const.IS_LOGIN);
+      if (isLogin == Const.TRUE) {
+        //widget.model.dashData(loginData.referenceNo);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/patientDashboard', (Route<dynamic> route) => false);
+      } else {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+      }
+    } else {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
+    }
+  }*/
+  /*void navigationPage() async {
     if (isFirstTym) {
       Navigator.pushNamed(context, "/intro");
     } else {
       Navigator.pushNamed(context, "/login");
     }
-  }
+  }*/
 }

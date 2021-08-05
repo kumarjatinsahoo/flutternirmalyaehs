@@ -407,7 +407,6 @@ class _LoginScreenState extends State<LoginScreen> {
           //widget.model.phnNo = _loginId.text;
           //Navigator.pushNamed(context, "/otpView");
           // Navigator.pushNamed(context, "/pinView");
-
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
@@ -417,11 +416,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                    widget.model.token = loginResponse.body.token;
+                    widget.model.user = loginResponse.body.user;
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-                    widget.model.token = loginResponse.body.token;
-                    widget.model.user = loginResponse.body.user;
+
                     if (loginResponse.body.user[0]=="4"
                         /*describeEnum(UserType.USER)*/.toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(

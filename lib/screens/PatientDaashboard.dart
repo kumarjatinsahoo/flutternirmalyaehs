@@ -1,13 +1,14 @@
-
+import 'dart:io';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
-
+import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
 //import 'dart:html';
-
-
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class PatientDashboard extends StatefulWidget {
   final MainModel model;
@@ -19,7 +20,11 @@ class PatientDashboard extends StatefulWidget {
 }
 
 class _PatientDashboardState extends State<PatientDashboard> {
+  LoginResponse1 loginResponse;
+  SharedPref sharedPref = SharedPref();
+  File pathUsr = null;
   List<String> strOrders = [
+
     'My Orders',
     'Confirm Orders',
     'Processed Orders',
@@ -38,6 +43,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
     setState(() {
       _selectedDestination = index;
     });
+  }
+  @override
+  void initState() {
+    super.initState();
+    loginResponse = widget.model.loginResponse1;
   }
 
   @override
@@ -201,9 +211,16 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   title: Text('Logout'),
                   selected: _selectedDestination == 10,
                   onTap: () {
+                    if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                      _exitApp();
+                   /* else
+                      initUniqueIdentifierState();*/
+                  },
+                /*  onTap: () {
+
                     selectDestination(10);
                     Navigator.pushNamed(context, "/login");
-                  },
+                  },*/
                 ),
               ],
             ),
@@ -213,7 +230,42 @@ class _PatientDashboardState extends State<PatientDashboard> {
       ),
     );
   }
-
+ /* Future<void> initUniqueIdentifierState() async {
+    if(Platform.isAndroid) {
+      MyWidgets.showLoading(context);
+      String identifier;
+      try {
+        identifier = await UniqueIdentifier.serial;
+        if (identifier != null) {
+          Map<String, dynamic> postData = {
+            "apid": Const.APP_ID,
+            "deviceId": identifier,
+            "action": "remove"
+          };
+          widget.model.POSTMETHOD(
+            api: ApiFactory.REG_DEVICE,
+            json: postData,
+            fun: (Map<String, dynamic> map) {
+              if (map["code"] == 200) {
+                AppData.showInSnackDone(context, map["msg"] ?? "Offline");
+                //if (map["msg"] == "device id added") {
+                sharedPref.save(Const.IS_REG_SERVER, "false");
+                _exitApp();
+                //}
+              } else {
+                AppData.showInSnackBar(context, map["msg"] ?? "Offline");
+              }
+            },
+          );
+        }
+      } on PlatformException {
+        identifier = 'Failed to get Unique Identifier';
+      }
+      if (!mounted) return;
+    }else{
+      _exitApp();
+    }
+  }*/
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -837,7 +889,16 @@ class _PatientDashboardState extends State<PatientDashboard> {
           );
         });
   }
-
+  _exitApp() async {
+    sharedPref.save(Const.IS_LOGIN, false.toString());
+    sharedPref.save(Const.IS_REGISTRATION, false.toString());
+    sharedPref.remove(Const.IS_REGISTRATION);
+    sharedPref.remove(Const.IS_LOGIN);
+    sharedPref.remove(Const.LOGIN_DATA);
+    sharedPref.remove(Const.IS_REG_SERVER);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login1', (Route<dynamic> route) => false);
+  }
 
 }
 

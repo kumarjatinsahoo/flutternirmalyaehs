@@ -85,7 +85,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                             alignment: Alignment.bottomRight,
                             child: InkWell(
                               onTap: () {
-                                getCameraImage();
+                                _settingModalBottomSheet(context);
                               },
                               child: Icon(
                                 Icons.camera_alt,
@@ -350,7 +350,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
   }
   Future getCameraImage() async {
    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-     var image = await ImagePicker.pickImage(source: ImageSource.camera);
+     var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 20);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();
@@ -369,5 +369,54 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       });
 
     }
+  }
+  Future getGalleryImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+    //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        widget.model.patientimg =base64Encode(enc);
+        widget.model.patientimgtype =extName;
+
+      });
+
+    }
+  }
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getGalleryImage(),
+                  },
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
