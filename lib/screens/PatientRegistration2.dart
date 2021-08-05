@@ -165,7 +165,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-            maxLength: 10,
+            maxLength: 3,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/

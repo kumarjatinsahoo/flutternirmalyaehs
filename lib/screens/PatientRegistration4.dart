@@ -186,10 +186,10 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                     /*children: [*/
                                     child:ClipRRect(
                                           borderRadius: BorderRadius.circular(100.0),
-                                          child: /*patientimg != null ? */
-                                          Image.memory(base64Decode(patientimg?? AppData.defaultImgUrl,),height: 100,
+                                          child: patientimg != null ? 
+                                          Image.memory(base64Decode(patientimg),height: 100,
                                             width: 100,
-                                            fit: BoxFit.cover,)),
+                                            fit: BoxFit.cover,): Image.network(AppData.defaultImgUrl)),
 
                                     /*],
                                   ),*/
@@ -334,6 +334,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
           String msg = map["message"].toString();
           //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
           if (map["code"] == "success") {
+
            // popup(msg, context);
             popup(msg, context);
             //AppData.showInSnackBar(context, msg);
@@ -391,12 +392,27 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
+              widget.model.patientName=null;
+              widget.model.patientphnNo=null;
+              widget.model.patientemail=null;
+              widget.model.patientaadhar=null;
+              widget.model.patientheight=null;
+              widget.model.patientweight=null;
+              widget.model.patientimg=null;
+              widget.model.patientage=null;
+              widget.model.patientgender=null;
+              widget.model.patienCitycode=null;
+              widget.model.patienCitykey=null;
+              widget.model.patienStatecode=null;
+              widget.model.patienStatekey=null;
+              widget.model.patientimgtype=null;
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
+
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

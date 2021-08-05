@@ -25,13 +25,14 @@ class PatientRegistration3 extends StatefulWidget {
 class _PatientRegistration3State extends State<PatientRegistration3> {
   var selectedMinValue;
   File pathUsr = null;
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
   ];
-
+  String email;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -214,12 +215,15 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
               floatingLabelBehavior: FloatingLabelBehavior.always,
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
-              counterText: "",
+
               //hintText:"Patient Name",
               hintText: hint,
               hintStyle: TextStyle(color: Colors.black26, fontSize: 17),
             ),
-            onSaved: (value) {
+            //validator: (val) => AppData.isValidEmail(textEditingController[2].text)? null : "Check your email",
+            // validator: (input) => AppData.isValidEmail(2) ? null : "Check your email",
+            onSaved: (String value) {
+             // email = value;
               //userPersonalForm.phoneNumber = value;
             },
           ),
@@ -359,15 +363,19 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           AppData.showInSnackBar(context, "Please enter height(CM)");
         }else if(textEditingController[1].text == "" || textEditingController[1].text == null) {
          AppData.showInSnackBar(context, "Please enter Weight(kg)");
-        /*}else if (textEditingController[2].text!= null && !AppData.isValidEmail(textEditingController[2].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
         } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select Country");
         }else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
-
-        }
+          AppData.showInSnackBar(context, "Please select State");
+        }/*else if (textEditingController[2].text !="" ) {
+          if(!AppData.isValidEmail(textEditingController[2].text)) {
+            return AppData.showInSnackBar(context, "Please enter a valid E-mail");
+           //return null;
+          }
+          //return null;
+        }*/
        else{
       widget.model.patientheight = textEditingController[0].text;
       widget.model.patientweight = textEditingController[1].text;
