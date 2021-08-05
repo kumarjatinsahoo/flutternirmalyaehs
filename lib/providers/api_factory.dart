@@ -1,13 +1,14 @@
 class ApiFactory {
   static String SERVERIP =
       'https://www.matrujyoti.in/api/';
+ // http://api.ehealthsystem.com/
 
   //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 
 //  192.168.29.25:8062/nirmalyaRest/api/view-labAppointmentlist?appontdt=03/08/2021
 
-  static String MAIN_URL = "http://192.168.29.106:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.243:8062/nirmalyaRest/api/";
 //https://sidhudkl.000webhostapp.com/api/master1.php?flag=viewemployeeDetailslist&employeeId=126
   ////?//////////////MASTER DATA//////////////////
   static String STATE_API = MAIN_URL + 'get-country-list';

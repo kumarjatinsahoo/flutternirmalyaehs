@@ -2,7 +2,7 @@ class PocReportModel {
   List<Body> body;
   String message;
   String code;
-  Null total;
+  String total;
 
   PocReportModel({this.body, this.message, this.code, this.total});
 
@@ -41,7 +41,7 @@ class Body {
   String screeningDate;
   String patientUniqueid;
   String reportUrl;
-  List<Null> screeningDetails;
+  List<String> screeningDetails;
 
   Body(
       {this.medteluniqueid,
