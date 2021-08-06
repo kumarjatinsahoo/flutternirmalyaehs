@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:unique_identifier/unique_identifier.dart';
@@ -75,6 +76,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
           "deviceId": identifier,
           "action": "add"
         };
+        print("POST DATA>>>MEDTEL"+jsonEncode(postData).toString());
         widget.model.POSTMETHOD(
           api: ApiFactory.REG_DEVICE,
           json: postData,
