@@ -1,5 +1,6 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/UserDetailsModel.dart';
+import 'package:user/models/PatientListModel.dart' as patiet;
 
 class PassData extends Model {
   String empid;
@@ -10,6 +11,8 @@ class PassData extends Model {
   String slempid;
   String fromdate;
   String todate;
+  patiet.Body model;
+  String pdfUrl;
 
   String token;
   String user;

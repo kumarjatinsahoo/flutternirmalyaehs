@@ -2,10 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-//import 'package:matrujyoti/models/LoginResponse.dart';
 
 class TestReport extends StatefulWidget {
   MainModel model;
@@ -46,9 +44,7 @@ class _TestReportState extends State<TestReport> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-      /*url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,*/
-      //url:'https://matrujyoti.in/testreport/9122U000000000001.pdf',
-      url:'https://matrujyoti.in/report/9121389950648015',
+      url:widget.model.pdfUrl,
       withZoom: true,
       useWideViewPort: false,
    displayZoomControls: true,

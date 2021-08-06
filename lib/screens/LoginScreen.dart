@@ -423,6 +423,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.IS_LOGIN, "true");
                     if (loginResponse.body.roles[0]=="4".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil('/patientDashboard', (Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0]=="1".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => false);
                     }
                    /* else if(loginResponse.ashadtls[0].userType ==
                         describeEnum(UserType.SUPADMIN).toLowerCase()){

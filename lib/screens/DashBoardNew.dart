@@ -7,7 +7,9 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 import '../providers/app_data.dart';
@@ -47,11 +49,15 @@ List<String> imageSliders = [
      "assets/UddhavThackeryji.jfif",
      "assets/YogiAdityanathji.jpg",
   ];
+
+SharedPref sharedPref=SharedPref();
+
+LoginResponse1 loginResponse1;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    loginResponse1=widget.model.loginResponse1;
     /*setState(() {
       dateLeft = getDateTimeFormat("2021-01-15");
     });*/
@@ -183,18 +189,20 @@ List<String> imageSliders = [
                               'assets/images/user.png',
                               height: size.height * 0.07,
                               width: size.width * 0.13,
-                              fit: BoxFit.cover,
+                              //fit: BoxFit.cover,
                             )),
                       ),
                       SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        'Dr John',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
+                      Expanded(
+                        child: Text(
+                          "Hi "+loginResponse1.body.userName??"N/A",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ],
                   ),
@@ -358,10 +366,10 @@ List<String> imageSliders = [
               ListTile(
                 leading: Image.asset("assets/images/logout.png",height: 30,),
                 title: Text('Logout'),
-                selected: _selectedDestination == 10,
+                selected: _selectedDestination == 11,
                 onTap: () {
                   selectDestination(9);
-                  Navigator.pushNamed(context, "/login");
+                  _exitApp();
                 },
               ),
             ],
@@ -444,6 +452,18 @@ List<String> imageSliders = [
         ],
       ),*/
     );
+  }
+
+
+  _exitApp() async {
+    sharedPref.save(Const.IS_LOGIN, false.toString());
+    sharedPref.save(Const.IS_REGISTRATION, false.toString());
+    sharedPref.remove(Const.IS_REGISTRATION);
+    sharedPref.remove(Const.IS_LOGIN);
+    sharedPref.remove(Const.LOGIN_DATA);
+    sharedPref.remove(Const.IS_REG_SERVER);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
 

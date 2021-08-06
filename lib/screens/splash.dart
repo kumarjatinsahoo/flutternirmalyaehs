@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
     fetchLocalData();
     callResourceTimer();
     ConnectionStatusSingleton connectionStatus =
-    ConnectionStatusSingleton.getInstance();
+        ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
         connectionStatus.connectionChange.listen(connectionChanged);
 
@@ -59,12 +59,12 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       isOffline = !connectionStatus.hasConnection;
       if (!connectionStatus.hasConnection) {
-       // isFirstTime = true;
+        // isFirstTime = true;
         color = Colors.green;
       }
     });
     isFirstTimes();
-   // getLocal();
+    // getLocal();
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -73,6 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
         isOffline = !hasConnection;
       });
   }
+
   Future<Null> isFirstTimes() async {
     String isFirstTime = await sharedPref.getKey('first_time');
     if (isFirstTime != null) {
@@ -147,6 +148,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
   fetchLocalData() async {
     login = await sharedPref.getKey(Const.IS_LOGIN);
     loginData = await sharedPref.getKey(Const.LOGIN_DATA);
@@ -156,39 +158,45 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }
   }
+
   void callResourceTimer() {
     Timer(Duration(seconds: 5), navigationPage);
   }
+
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
     var login = await sharedPref.getKey(Const.IS_LOGIN);
     if (login != null) {
       if (login.replaceAll("\"", "") == "true" || login.toString() == "true") {
-        LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
+        LoginResponse1 loginResponse1 =
+            LoginResponse1.fromJson(jsonDecode(loginData));
         widget.model.setLoginData1(loginResponse1);
         widget.model.token = loginResponse1.body.token;
         widget.model.user = loginResponse1.body.user;
-        if (loginResponse1.body.roles[0]=="4".toLowerCase()) {
+        if (loginResponse1.body.roles[0] == "4".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/patientDashboard', (Route<dynamic> route) => false);}
-        else {
+              '/patientDashboard', (Route<dynamic> route) => false);
+        } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboard', (Route<dynamic> route) => false);
+        } else {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/login', (Route<dynamic> route) => false);
         }
       } else {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            '/login', (Route<dynamic> route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }
     } else {
-      if(isFirstTym)
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
+      if (isFirstTym)
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
       else
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            '/login', (Route<dynamic> route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
     }
   }
-  /*void navigationPage() async {
+/*void navigationPage() async {
     //Navigator.of(context)
     //.pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
     Navigator.of(context).pushReplacementNamed('/login');
@@ -209,7 +217,7 @@ class _SplashScreenState extends State<SplashScreen> {
           .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
     }
   }*/
-  /*void navigationPage() async {
+/*void navigationPage() async {
     if (isFirstTym) {
       Navigator.pushNamed(context, "/intro");
     } else {
