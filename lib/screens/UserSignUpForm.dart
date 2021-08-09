@@ -1,14 +1,19 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/SignUpForm.dart';
 import 'package:user/widgets/text_field_container.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../localization/localizations.dart';
 import '../models/KeyvalueModel.dart';
@@ -23,6 +28,8 @@ class UserSignUpForm extends StatefulWidget {
   MainModel model;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel titleModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel cityModel = null;
 
   UserSignUpForm({
     Key key,
@@ -95,12 +102,50 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-        error[2] = false;
-        textEditingController[2].value =
+        error[5] = false;
+        textEditingController[5].value =
             TextEditingValue(text: df.format(picked));
       });
   }
-
+  Future<Null> _selectDate1(BuildContext context) async {
+    final DateTime picked = await  showDatePicker(
+      context: context,
+      initialDatePickerMode: DatePickerMode.year,
+     // initialDate: DateTime.now().subtract(Duration(y: 6570)),
+      firstDate: DateTime(1901),
+      lastDate: DateTime(2025),
+    );
+    /*DateTime newDateTime = await showRoundedDatePicker(
+      context: context,
+      initialDatePickerMode: DatePickerMode.year,
+      theme: ThemeData(primarySwatch: Colors.green),
+    );
+*/
+    /*  final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDatePickerMode: DatePickerMode.year,
+        firstDate: DateTime(2010),
+        *//*lastDate: DateTime(2025),*//*
+        lastDate: DateTime.now().subtract(Duration(days: 6570)));*/ //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        error[5] = false;
+        textEditingController[4].value = TextEditingValue(text: df.format(picked));
+      });
+  }
+ /* showDatePicker(
+  context: context,
+  initialDate: selectedDate,
+  firstDate: DateTime(2010),
+  lastDate: DateTime(2025),
+  helpText: "SELECT BOOKING DATE",
+  cancelText: "NOT NOW",
+  confirmText: "BOOK NOW",
+  initialDatePickerMode: DatePickerMode.year
+  );
+*/
   bool fromLogin = false;
 
   StreamSubscription _connectionChangeStream;
@@ -264,17 +309,19 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 0),
-                                      child: DropDown.staticDropdownIcon(
-                                          MyLocalizations.of(context)
-                                              .text("SELECT_TITLE"),
-                                          "title",
-                                          Icons.mail,
-                                          23.0,
-                                          titleList, (KeyvalueModel data) {
-                                        setState(() {
-                                          UserSignUpForm.titleModel = data;
-                                        });
-                                      }),
+                                      child: SizedBox(
+                                        height: 58,
+                                        child: DropDown.networkDropdownGetpartUser(
+                                            "TITLE", ApiFactory.TITLE_API, "title", Icons.mail,
+                                             23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.TITLE_API);
+                                                UserSignUpForm.titleModel = data;
+                                               // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -308,6 +355,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           ),
                                           textInputAction: TextInputAction.next,
                                           keyboardType: TextInputType.text,
+                                            controller: textEditingController[0],
                                           textAlignVertical:
                                               TextAlignVertical.center,
                                           inputFormatters: [
@@ -350,6 +398,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           textInputAction: TextInputAction.next,
                                           textAlignVertical:
                                               TextAlignVertical.center,
+                                          controller: textEditingController[1],
                                           keyboardType: TextInputType.text,
                                           inputFormatters: [
                                             WhitelistingTextInputFormatter(
@@ -361,7 +410,19 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 0),
-                                      child: DropDown.staticDropdownIcon(
+                                       child: SizedBox(
+                                      height: 58,
+                                      child: DropDown.networkDropdownGetpartUser(
+                                          "Gender", ApiFactory.GENDER_API, "gender", Icons.mail,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.GENDER_API);
+                                              UserSignUpForm.genderModel = data;
+                                             // UserSignUpForm.cityModel = null;
+                                            });
+                                          }),
+                                    ), /*DropDown.staticDropdownIcon(
                                           'Gender',
                                           // MyLocalizations.of(context).text("SELECT_GENDER"),
                                           "genderSignup",
@@ -373,7 +434,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             UserSignUpForm.genderModel = data;
                                           },
                                         );
-                                      }),
+                                      }),*/
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -386,6 +447,44 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     SizedBox(
                                       height: 5,
                                     ),
+
+                                     SizedBox(
+                                        height: 58,
+                                        child: DropDown.networkDropdownGetpartUser(
+                                            "Country", ApiFactory.STATE_API, "state", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.STATE_API);
+                                                UserSignUpForm.stateModel = data;
+                                                UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                      ),
+
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+
+                                    (UserSignUpForm.stateModel != null)
+                                        ?/* Padding(*/
+                                     /* padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0, bottom: 7.0),
+                                      child:*/ SizedBox(
+                                      height: 58,
+                                        child: DropDown.networkDropdownGetpartUser(
+                                            "State",
+                                            ApiFactory.CITY_API +
+                                                UserSignUpForm.stateModel.key,
+                                            "city",  Icons.location_on_rounded,
+                                            23.0,(KeyvalueModel data) {
+                                          setState(() {
+                                            UserSignUpForm.cityModel = data;
+                                          });
+                                        }),
+                                      )
+                                    /*)*/
+                                        : Container(),
                                     Row(
                                       children: [
                                         Expanded(
@@ -453,6 +552,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                           width: 0.3),
                                                     ),
                                                     child: TextFormField(
+                                                      controller: textEditingController[3],
                                                       decoration:
                                                           InputDecoration(
                                                         prefixIcon: Icon(Icons
@@ -482,7 +582,13 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               ),
                                               Expanded(
                                                 flex: 4,
-                                                child: Padding(
+                                                child: InkWell(
+                                                  onTap: () {
+
+                                                   // _selectDate1(context);
+
+                                                  },
+                                                  child: Padding(
                                                   padding:
                                                       const EdgeInsets.only(
                                                           left: 8,
@@ -505,7 +611,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                     ),
                                                     child: TextFormField(
                                                       enabled: false,
+                                                      controller: textEditingController[4],
                                                       decoration:
+
                                                           InputDecoration(
                                                         prefixIcon: Icon(Icons
                                                             .calendar_today),
@@ -528,6 +636,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                     ),
                                                   ),
                                                 ),
+                                              ),
                                               ),
                                               /*Expanded(
                                                 flex: 4,
@@ -568,6 +677,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                       width: 0.3),
                                                 ),
                                                 child: TextFormField(
+                                                  controller: textEditingController[5],
                                                   enabled: false,
                                                   decoration: InputDecoration(
                                                     prefixIcon: Icon(
@@ -933,7 +1043,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             new Expanded(
               child: TextFormField(
                 enabled: widget.isConfirmPage ? false : true,
-                controller: textEditingController[4],
+                controller: textEditingController[2],
                 focusNode: fnode7,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
