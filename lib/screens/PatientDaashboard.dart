@@ -118,6 +118,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 0,
         ),
+
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -659,7 +660,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
             top: 20,
             left: 15,
             child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
-              *//*Positioned(
+              */
+            /*Positioned(
             bottom: 20,
             right: 15,
             child:Column(
@@ -771,11 +773,13 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         '67',
                         style: TextStyle(color: Colors.white, fontSize: 10),
                       ))),
-              *//*Positioned(
+              */
+            /*Positioned(
             top: 20,
             left: 15,
             child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
-              *//*Positioned(
+              */
+            /*Positioned(
             bottom: 20,
             right: 15,
             child:Column(
@@ -783,7 +787,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 Text('Daily Goal', style: TextStyle(color: Colors.white),),
                  Text('900 kcal', style: TextStyle(color: Colors.white),),
               ],
-            ))*//*
+            ))*/
+            /*
             )*/
           ],
         ),
@@ -837,8 +842,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                           },
                         ),
                         Divider(),
-                       /* ListTile(
-                          title: Text("Doctor Visit"),
+                        ListTile(
+                          title: Text("Doctor Appointment"),
                           leading: Icon(
                             CupertinoIcons.calendar_today,
                             size: 40,
@@ -849,7 +854,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             Navigator.pushNamed(context, "/docApnt");
                           },
                         ),
-                        Divider(),*/
+                        Divider(),
                         MaterialButton(
                           child: Text(
                             "CANCEL",

@@ -93,8 +93,8 @@ class _DocAponmnttListPageState extends State<DocAponmnttListPage> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-      body:/* (regDataModel != null)
-          ?*/ ListView.builder(
+      body:
+          ListView.builder(
               itemBuilder: (context, i) {
                 //Docappntdtls patient = regDataModel.docappntdtls[i];
                 return Stack(
