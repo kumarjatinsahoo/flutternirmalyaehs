@@ -2,10 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-//import 'package:matrujyoti/models/LoginResponse.dart';
 
 class TestReport extends StatefulWidget {
   MainModel model;
@@ -17,13 +15,16 @@ class TestReport extends StatefulWidget {
 }
 
 class _TestReportState extends State<TestReport> {
- // LoginResponse1 loginResponse;
+  // LoginResponse1 loginResponse;
+
+  String pdfUrl;
 
   @override
   void initState() {
     //loginResponse = widget.model.loginResponse1;
     super.initState();
-    //print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
+    pdfUrl = widget.model.pdfUrl.replaceAll("http", "https");
+    print(">>>>>>PDF URL TEST REPORT????>>" + pdfUrl);
   }
 
   @override
@@ -46,61 +47,10 @@ class _TestReportState extends State<TestReport> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-      /*url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,*/
-      //url:'https://matrujyoti.in/testreport/9122U000000000001.pdf',
-      url:'https://matrujyoti.in/report/9121389950648015',
+      url: pdfUrl,
       withZoom: true,
       useWideViewPort: false,
-   displayZoomControls: true,
+      displayZoomControls: true,
     );
   }
-
-   Widget _buildTile({String icon, String title, String text, String image, Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        height: MediaQuery.of(context).size.height * 0.23,        
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),  
-          color: AppData.matruColor,        
-        ),
-        child: Stack(
-                  children: [
-            Padding(
-              padding: const EdgeInsets.all( 15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                      Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "Monte",
-                      fontSize: 12.0,
-                    ),
-                    
-                  ),
-                  SizedBox(height: 10,),
-                      Text(text, style: TextStyle(color: Colors.white, fontFamily: "Monte", fontWeight: FontWeight.bold, fontSize: 17),),
-                      Spacer(),
-                     Image.network(image, fit: BoxFit.cover,
-                     height: 60,
-                     width: double.infinity,
-                     )
-                ],
-              ),
-            ),
-        Positioned(
-          top: 15,
-          right: 15,
-          child: Image.asset(icon, height: 10, color: Colors.white,)),                     
-          ],
-        ),
-      ),
-    );
-  }
-
-
 }

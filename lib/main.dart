@@ -81,6 +81,8 @@ import 'package:user/screens/TestReport.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/VitalSigns.dart';
+import 'package:user/screens/WalkInUserProfile.dart';
+import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
 import 'package:user/screens/find.dart';
 import 'package:user/screens/MedipediaPage.dart';
@@ -428,6 +430,12 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/pocreportlist': (context) => PocReportListPage(
+                    model: _model,
+                  ),
+              '/walkInProfile': (context) => WalkInUserProfile(
+                    model: _model,
+                  ),
+              '/walkRegList': (context) => WalkinRegisterListPage(
                     model: _model,
                   ),
             },

@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
+
 //import 'dart:html';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -24,7 +28,6 @@ class _PatientDashboardState extends State<PatientDashboard> {
   SharedPref sharedPref = SharedPref();
   File pathUsr = null;
   List<String> strOrders = [
-
     'My Orders',
     'Confirm Orders',
     'Processed Orders',
@@ -44,10 +47,58 @@ class _PatientDashboardState extends State<PatientDashboard> {
       _selectedDestination = index;
     });
   }
+
   @override
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
+    checkApiCallOrNot();
+  }
+
+  checkApiCallOrNot() async {
+    String isAlreadyReg = await sharedPref.getKey(Const.IS_REG_SERVER);
+    if (isAlreadyReg != null) {
+      if (isAlreadyReg.replaceAll("\"", "") == "false") {
+        if (Platform.isAndroid) initUniqueIdentifierState();
+      }
+    } else {
+      if (Platform.isAndroid) initUniqueIdentifierState();
+    }
+  }
+
+  Future<void> initUniqueIdentifierState() async {
+    String identifier;
+    try {
+      identifier = await UniqueIdentifier.serial;
+      if (identifier != null) {
+        Map<String, dynamic> postData = {
+          "apid": Const.APP_ID,
+          "deviceId": identifier,
+          "action": "add"
+        };
+        print("POST DATA>>>MEDTEL"+jsonEncode(postData).toString());
+        widget.model.POSTMETHOD(
+          api: ApiFactory.REG_DEVICE,
+          json: postData,
+          fun: (Map<String, dynamic> map) {
+            if (map["code"] == 200) {
+              AppData.showInSnackDone(context, map["msg"] ?? "Offline");
+              //if (map["msg"] == "device id added") {
+              sharedPref.save(Const.IS_REG_SERVER, "true");
+              //}
+            } else {
+              AppData.showInSnackBar(context, map["msg"] ?? "Offline");
+            }
+          },
+        );
+      }
+    } on PlatformException {
+      identifier = 'Failed to get Unique Identifier';
+    }
+
+    if (!mounted) return;
+
+    print("Another ID>>>>>" + identifier);
   }
 
   @override
@@ -103,7 +154,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                           width: 20,
                         ),
                         Text(
-                          'Dr John',
+                          "Hi " + loginResponse.body.userName,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -212,13 +263,14 @@ class _PatientDashboardState extends State<PatientDashboard> {
                   selected: _selectedDestination == 10,
                   onTap: () {
                     selectDestination(10);
-                    Navigator.pushNamed(context, "/dashboard");
+                    //Navigator.pushNamed(context, "/dashboard");
                     // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
                     //   _exitApp();
-                   /* else
+                    /* else
                       initUniqueIdentifierState();*/
+                    _exitApp();
                   },
-                /*  onTap: () {
+                  /*  onTap: () {
 
                     selectDestination(10);
                     Navigator.pushNamed(context, "/login");
@@ -232,7 +284,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
       ),
     );
   }
- /* Future<void> initUniqueIdentifierState() async {
+
+  /* Future<void> initUniqueIdentifierState() async {
     if(Platform.isAndroid) {
       MyWidgets.showLoading(context);
       String identifier;
@@ -294,7 +347,10 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: Icons.people,
                                 title: "Register Patient",
                                 fun: () {
-                                   Navigator.pushNamed(context, "/patientRegistration");
+                                  /*Navigator.pushNamed(
+                                      context, "/patientRegistration");*/
+                                  Navigator.pushNamed(
+                                      context, "/walkRegList");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
@@ -332,7 +388,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: CupertinoIcons.doc_append,
                                 title: "POC Reports",
                                 fun: () {
-                                  Navigator.pushNamed(context, "/pocreportlist");
+                                  Navigator.pushNamed(
+                                      context, "/pocreportlist");
                                 },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -347,9 +404,9 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 icon: Icons.edit_attributes,
                                 title: "Test",
                                 fun: () {
-
                                   //chooseAppointment1(context);
-                                   Navigator.pushNamed(context, "/testappointmentpage");
+                                  Navigator.pushNamed(
+                                      context, "/testappointmentpage");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
@@ -519,26 +576,25 @@ class _PatientDashboardState extends State<PatientDashboard> {
         height: 145,
         width: (MediaQuery.of(context).size.width - 60) / 2,
         decoration: BoxDecoration(
-          /// borderRadius: BorderRadius.circular(7.0),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.zero,
-            topRight: Radius.circular(10.0),
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.zero,
-          ),
-          color: color,
+
+            /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.zero,
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
+              bottomRight: Radius.zero,
+            ),
+            color: color,
             border: Border.all(
               color: AppData.kPrimaryColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 15),
 
                 /* Align(
                   alignment: Alignment.center,
@@ -548,7 +604,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                     width: 50,
                     height: 70.0,
                   ),),*/
-                Icon(icon, color:AppData.kPrimaryColor, size: 40.0),
+                Icon(icon, color: AppData.kPrimaryColor, size: 40.0),
                 /*Text(
                   title,
                   style: TextStyle(
@@ -583,7 +639,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 ),
               ],
             ),
-            Positioned(
+            /*Positioned(
               top: 6,
               right: 6,
               child: Container(
@@ -599,11 +655,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         '67',
                         style: TextStyle(color: Colors.white, fontSize: 10),
                       ))),
-              /*Positioned(
+              *//*Positioned(
             top: 20,
             left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/
-              /*Positioned(
+            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
+              *//*Positioned(
             bottom: 20,
             right: 15,
             child:Column(
@@ -611,8 +667,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 Text('Daily Goal', style: TextStyle(color: Colors.white),),
                  Text('900 kcal', style: TextStyle(color: Colors.white),),
               ],
-            ))*/
-            )
+            ))*//*
+            )*/
           ],
         ),
       ),
@@ -621,11 +677,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
 
   Widget _buildTile2(
       {IconData icon,
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -634,26 +690,25 @@ class _PatientDashboardState extends State<PatientDashboard> {
         height: 145,
         width: (MediaQuery.of(context).size.width - 60) / 2,
         decoration: BoxDecoration(
-          /// borderRadius: BorderRadius.circular(7.0),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10.0),
-            topRight: Radius.zero,
-            bottomLeft: Radius.zero,
-            bottomRight: Radius.circular(10.0),
-          ),
-          color: color,
+
+            /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(10.0),
+            ),
+            color: color,
             border: Border.all(
               color: AppData.kPrimaryRedColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 15),
 
                 /* Align(
                   alignment: Alignment.center,
@@ -700,7 +755,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 ),
               ],
             ),
-            Positioned(
+            /*Positioned(
               top: 6,
               right: 6,
               child: Container(
@@ -716,11 +771,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         '67',
                         style: TextStyle(color: Colors.white, fontSize: 10),
                       ))),
-              /*Positioned(
+              *//*Positioned(
             top: 20,
             left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/
-              /*Positioned(
+            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
+              *//*Positioned(
             bottom: 20,
             right: 15,
             child:Column(
@@ -728,8 +783,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
                 Text('Daily Goal', style: TextStyle(color: Colors.white),),
                  Text('900 kcal', style: TextStyle(color: Colors.white),),
               ],
-            ))*/
-            )
+            ))*//*
+            )*/
           ],
         ),
       ),
@@ -765,7 +820,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                                 Const.HEALTH_SCREENING_APNT;
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "/docApnt");
-                           // AppData.showInSnackBar(context,"hi");
+                            // AppData.showInSnackBar(context,"hi");
                           },
                         ),
                         Divider(),
@@ -782,7 +837,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                           },
                         ),
                         Divider(),
-                        ListTile(
+                       /* ListTile(
                           title: Text("Doctor Visit"),
                           leading: Icon(
                             CupertinoIcons.calendar_today,
@@ -794,10 +849,10 @@ class _PatientDashboardState extends State<PatientDashboard> {
                             Navigator.pushNamed(context, "/docApnt");
                           },
                         ),
-                        Divider(),
+                        Divider(),*/
                         MaterialButton(
                           child: Text(
-                              "CANCEL",
+                            "CANCEL",
                             style: TextStyle(color: Colors.black),
                           ),
                           onPressed: () {
@@ -891,6 +946,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
           );
         });
   }
+
   _exitApp() async {
     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
@@ -899,8 +955,6 @@ class _PatientDashboardState extends State<PatientDashboard> {
     sharedPref.remove(Const.LOGIN_DATA);
     sharedPref.remove(Const.IS_REG_SERVER);
     Navigator.of(context)
-        .pushNamedAndRemoveUntil('/login1', (Route<dynamic> route) => false);
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
-
 }
-

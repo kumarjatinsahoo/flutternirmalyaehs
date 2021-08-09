@@ -15,8 +15,6 @@ import 'package:user/widgets/MyWidget.dart';
 
 import 'CreateAppointmentLab.dart';
 
-
-
 // ignore: must_be_immutable
 class AllAppointmentPage extends StatefulWidget {
   final bool isConfirmPage;
@@ -34,6 +32,7 @@ class AllAppointmentPage extends StatefulWidget {
 
 class _AllAppointmentPageState extends State<AllAppointmentPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   //LoginResponse1 loginResponse;
   lab.LabBookModel appointModel;
 
@@ -61,17 +60,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   @override
   void initState() {
     super.initState();
-   // loginResponse = widget.model.loginResponse1;
-
-    /* ConnectionStatusSingleton connectionStatus =
-    ConnectionStatusSingleton.getInstance();
-    _connectionChangeStream =
-        connectionStatus.connectionChange.listen(connectionChanged);
-    setState(() {
-      isOnline = connectionStatus.hasConnection;
-    });*/
     comeFrom = widget.model.apntUserType;
-    final df = new DateFormat('dd/MM/yyyy');
+    final df = new DateFormat('yyyy/MM/dd');
     today = df.format(DateTime.now());
     callAPI(today);
   }
@@ -79,7 +69,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   callAPI(String today) {
     if (comeFrom == Const.HEALTH_SCREENING_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.HEALTH_SCREENING_LIST + today,
+          api: ApiFactory.HEALTH_SCREENING_LIST + today,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
             setState(() {
@@ -92,8 +82,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
               }
             });
           });
-    }
-    else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
+    } else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.HEALTH_CHKUP_LIST + today,
           token: widget.model.token,
@@ -118,10 +107,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 30)),
         lastDate:
-        DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
+            DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
-      final df = new DateFormat('dd/MM/yyyy');
+      isDataNotAvail=false;
+      final df = new DateFormat('yyyy/MM/dd');
       today = df.format(picked);
       callAPI(today);
     });
@@ -156,15 +146,6 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
               "Appointments",
               style: TextStyle(color: bgColor),
             ),
-            /*InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "/qrCode1");
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: Icon(Icons.qr_code),
-              ),
-            )*/
           ],
         ),
         titleSpacing: 2,
@@ -347,119 +328,117 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   ),
                 ),
                 (appointModel != null &&
-                    appointModel.body != null &&
-                    appointModel.body.length > 0)
+                        appointModel.body != null &&
+                        appointModel.body.length > 0)
                     ? ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                    itemCount: appointModel.body.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: 3),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                /*Expanded(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                        itemCount: appointModel.body.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 3),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    /*Expanded(
                                       child: Text(
                                         appointModel.appointList[index].id,
                                         style: TextStyle(color: Colors.black),
                                         textAlign: TextAlign.start,
                                       ),
                                     ),*/
-                                SizedBox(
-                                  width: 60,
-                                  child: Text(
-                                    appointModel.body[index].regNo,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
+                                    SizedBox(
+                                      width: 60,
+                                      child: Text(
+                                        appointModel.body[index].regNo,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    appointModel
-                                        .body[index].patientName,
-                                    style: TextStyle(color: Colors.black),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                                /*Expanded(
+                                    Expanded(
+                                      child: Text(
+                                        appointModel.body[index].patientName,
+                                        style: TextStyle(color: Colors.black),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                    /*Expanded(
                                       child: Text(
                                         appointModel.appointList[index].age,
                                         style: TextStyle(color: Colors.black),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),*/
-                                SizedBox(
-                                  width: 35,
-                                  child: Text(
-                                    appointModel.body[index].age.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 60,
-                                  child: Text(
-                                    appointModel.body[index].gender[0],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            changeStatus(
-                                                context,
-                                                appointModel
-                                                    .body[index],
-                                                index),
-                                      );
-                                    },
-                                    child: Container(
+                                    SizedBox(
+                                      width: 35,
                                       child: Text(
-                                        appointModel.body[index]
-                                            .appntmntStatus,
+                                        appointModel.body[index].age.toString(),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: Colors.green,
-                                            decoration:
-                                            TextDecoration.underline),
-                                        textAlign: TextAlign.start,
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: 60,
+                                      child: Text(
+                                        appointModel.body[index].gender[0],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: InkWell(
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                changeStatus(
+                                                    context,
+                                                    appointModel.body[index],
+                                                    index),
+                                          );
+                                        },
+                                        child: Container(
+                                          child: Text(
+                                            appointModel
+                                                .body[index].appntmntStatus,
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                decoration:
+                                                    TextDecoration.underline),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                          ),
-                        ],
-                      );
-                    })
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                              ),
+                            ],
+                          );
+                        })
                     : (isDataNotAvail)
-                    ? Container(
-                  height: size.height - 100,
-                  child: Center(
-                    child: Text("Data Not Found"),
-                  ),
-                )
-                    : MyWidgets.loading(context),
+                        ? Container(
+                            height: size.height - 100,
+                            child: Center(
+                              child: Text("Data Not Found"),
+                            ),
+                          )
+                        : MyWidgets.loading(context),
               ],
             ),
           ),
@@ -516,7 +495,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         ),
         new FlatButton(
           onPressed: () {
-           // widget.model.QR_FROM = Const.APNT_CALL;
+            // widget.model.QR_FROM = Const.APNT_CALL;
             Navigator.pushNamed(context, "/qrCode1");
           },
           textColor: Colors.grey[900],
@@ -539,7 +518,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         /*Navigator.of(context).pop();
                         AppData.showInSnackBar(context, msg);*/
                         UserDetailsModel userModel =
-                        UserDetailsModel.fromJson(map);
+                            UserDetailsModel.fromJson(map);
                         widget.model.userModel = userModel;
                         Navigator.pushReplacement(
                           context,
@@ -644,8 +623,6 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     );
   }
 
-
-
   updateApi(String id, String statusCode, int i) {
     MyWidgets.showLoading(context);
     Map<String, dynamic> mapPost = {"id": id, "appontstatus": statusCode};
@@ -667,13 +644,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                       appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.body[i].appntmntStatus =
-                      "In-Progress";
+                      appointModel.body[i].appntmntStatus = "In-Progress";
                       appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.body[i].appntmntStatus =
-                      "Completed";
+                      appointModel.body[i].appntmntStatus = "Completed";
                       appointModel.body[i].appointStatus = 2;
                       break;
                   }
@@ -701,13 +676,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                       appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.body[i].appntmntStatus =
-                      "In-Progress";
+                      appointModel.body[i].appntmntStatus = "In-Progress";
                       appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.body[i].appntmntStatus =
-                      "Completed";
+                      appointModel.body[i].appntmntStatus = "Completed";
                       appointModel.body[i].appointStatus = 2;
                       break;
                   }
@@ -729,7 +702,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         controller: controller,
         inputFormatters: [
           /* AppData.*/
-        //  UpperCaseTextFormatter(),
+          //  UpperCaseTextFormatter(),
         ],
         decoration: InputDecoration(
           //prefixIcon: Icon(Icons.insert_drive_file_outlined),

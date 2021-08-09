@@ -895,7 +895,7 @@ class MyWidgets {
     return Container(
       height: AppData.properSafeArea(context) - 100,
       child: Center(
-        child: Image.asset('assets/icons/logo.gif', width: 80, height: 80),
+        child: CircularProgressIndicator(),
       ),
     );
   }
@@ -904,7 +904,7 @@ class MyWidgets {
     return Container(
       height: AppData.properSafeArea(context),
       child: Center(
-        child: Image.asset('assets/icons/logo.gif', width: 80, height: 80),
+        child: CircularProgressIndicator(),
       ),
     );
   }

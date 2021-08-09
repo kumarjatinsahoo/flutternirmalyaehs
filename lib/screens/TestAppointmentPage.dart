@@ -74,11 +74,12 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
       isOnline = connectionStatus.hasConnection;
     });*/
     comeFrom = widget.model.apntUserType;
-    final df = new DateFormat('dd/MM/yyyy');
+    final df = new DateFormat('yyyy/MM/dd');
     today = df.format(DateTime.now());
     callAPI(today);
     //printInterger()
   }
+  bool isDataNotAvail = false;
 
   Future<void> _callLabApp(String data) async {
     try {
@@ -98,7 +99,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             if (map[Const.CODE] == Const.SUCCESS) {
               appointModel = LabBookModel.fromJson(map);
             } else {
-              //isDataNotAvail = true;
+              isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });
@@ -106,6 +107,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   Future<Null> _selectDate(BuildContext context) async {
+
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
@@ -115,7 +117,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
-      final df = new DateFormat('dd/MM/yyyy');
+      isDataNotAvail=false;
+      final df = new DateFormat('yyyy/MM/dd');
       today = df.format(picked);
       callAPI(today);
     });
@@ -459,6 +462,13 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                         ],
                       );
                     })
+                    :  (isDataNotAvail)
+                    ? Container(
+                  height: size.height - 100,
+                  child: Center(
+                    child: Text("Data Not Found"),
+                  ),
+                )
                     : MyWidgets.loading(context),
               ],
             ),
@@ -535,7 +545,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
               String mob=(body.mob==null ||body.mob==""||body.mob=="null")?"":body.mob;
-              String mapping=body.regNo+","+body.patientName+","+mob+","+"Female"+","+height.text+","+weight.text+","+body.age.toString();
+              String mapping=body.regNo+","+body.patientName+","+mob+","+body.gender+","+height.text+","+weight.text+","+body.age.toString();
               _callLabApp(mapping.trim());
             }
           },
