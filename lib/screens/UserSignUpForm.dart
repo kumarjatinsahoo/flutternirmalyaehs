@@ -1162,14 +1162,29 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }
     else {
-
+     // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
-      userModel.fName = textEditingController[1].text;
+      userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
       userModel.age = textEditingController[3].text;
       userModel.dob = textEditingController[4].text;
+      userModel.country=UserSignUpForm.stateModel.key;
+      userModel.countryCode=UserSignUpForm.stateModel.code;
+      userModel.stateCode=UserSignUpForm.cityModel.code;
+      userModel.state=UserSignUpForm.cityModel.key;
 
-
+      //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ UserRegistrationModel.toJson().toString());
+      /*widget.model.POSTMETHOD_TOKEN(api:ApiFactory.USER_REGISTRATION,json: ,
+             fun: (Map<String, dynamic> map) {
+                String msg = map["message"].toString();
+               // String userid = map["body"].toString();
+                if (map["code"] == "success"){
+                }
+                else {t
+                  AppData.showInSnackBar(context, msg);
+                }
+              },token: token
+      );*/
       widget.model.POSTMETHOD(api:ApiFactory.USER_REGISTRATION,json:userModel.toJson(),
           fun:(Map<String, dynamic> map) {
             // Map<String, dynamic> map = jsonDecode(data);
@@ -1179,7 +1194,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             if (map["code"] == "success") {
               // popup(msg, context);
               //popup(msg, context,userid,patientphnNo);
-              //AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, msg);
             } else {
               AppData.showInSnackBar(context, msg);
             }

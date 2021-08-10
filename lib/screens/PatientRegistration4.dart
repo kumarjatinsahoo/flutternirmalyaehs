@@ -138,7 +138,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 child: Stack(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                     */ /*Material(
+                                     */
+                              /*Material(
                                       elevation: 5.0,
                                       shape: CircleBorder(),
                                       child: CircleAvatar(
@@ -146,7 +147,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                         backgroundImage: FileImage(pathUsr),
                                       ),
                                     )
-                                        : */ /*Material(
+                                        : */
+                              /*Material(
                                       elevation: 5.0,
                                       shape: CircleBorder(),
                                       child: CircleAvatar(
@@ -155,7 +157,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                         //NetworkImage(AppData.defaultImgUrl),
                                       ),
                                     ),
-                                    */ /*Align(
+                                    */
+                              /*Align(
                                       alignment: Alignment.bottomRight,
                                       child: InkWell(
                                         onTap: () {
