@@ -32,8 +32,8 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel titleModel = null;
   static KeyvalueModel stateModel = null;
-  //static KeyvalueModel cityModel = null;
-  static KeyvalueModel countryModel = null;
+  static KeyvalueModel cityModel = null;
+  //static KeyvalueModel countryModel = null;
 
   UserSignUpForm({
     Key key,
@@ -389,7 +389,49 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         SizedBox(
                                           height: 5,
                                         ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0, right: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child: DropDown.networkDropdownGetpartUser(
+                                                "Country", ApiFactory.STATE_API, "state", Icons.location_on_rounded,
+                                                23.0,
+                                                (KeyvalueModel data) {
+                                                  setState(() {
+                                                    print(ApiFactory.STATE_API);
+                                                    UserSignUpForm.stateModel = data;
+                                                    userModel.country=data.key;
+                                                    userModel.countryCode=data.code;
+                                                    UserSignUpForm.cityModel = null;
+                                                  });
+                                                }),
+                                          ),
+                                        ),
                                         SizedBox(
+                                          height: 5,
+                                        ),
+                                        (UserSignUpForm.stateModel != null)
+                                            ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 0, right: 0, bottom: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child: DropDown.networkDropdownGetpartUser(
+                                                "State",
+                                                ApiFactory.CITY_API +
+                                                    UserSignUpForm.stateModel.key,
+                                                "city", Icons.location_on_rounded,
+                                                23.0,  (KeyvalueModel data) {
+                                              setState(() {
+                                                UserSignUpForm.cityModel = data;
+                                                userModel.state=data.key;
+                                                userModel.stateCode=data.code;
+                                              });
+                                            }),
+                                          ),
+                                        )
+                                            : Container(),
+                                        /*SizedBox(
                                           height: 58,
                                           child:
                                           DropDown.networkDropdownGetpartUser(
@@ -400,10 +442,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               23.0, (KeyvalueModel data) {
                                             setState(() {
                                               print(ApiFactory.STATE_API);
-                                              UserSignUpForm.countryModel = data;
+                                              UserSignUpForm.stateModel = data;
                                               userModel.country=data.key;
                                               userModel.countryCode=data.code;
-                                              UserSignUpForm.stateModel = null;
+                                              UserSignUpForm.cityModel = null;
                                             });
                                           }),
                                         ),
@@ -418,18 +460,18 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               .networkDropdownGetpartUser(
                                               "State",
                                               ApiFactory.CITY_API +
-                                                  UserSignUpForm.countryModel.key,
+                                                  UserSignUpForm.stateModel.key,
                                               "city",
                                               Icons.location_on_rounded,
                                               23.0, (KeyvalueModel data) {
                                             setState(() {
-                                              UserSignUpForm.stateModel = data;
+                                              UserSignUpForm.cityModel = data;
                                               userModel.state=data.key;
                                               userModel.stateCode=data.code;
                                             });
                                           }),
                                         )
-                                            : Container(),
+                                            : Container(),*/
                                         Row(
                                           children: [
                                             Expanded(
@@ -1104,11 +1146,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Mobile Number");
     }
-    else if (UserSignUpForm.countryModel == null ||
-        UserSignUpForm.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
-    } else if (UserSignUpForm.stateModel == null ||
+    else if (UserSignUpForm.stateModel == null ||
         UserSignUpForm.stateModel == "") {
+      AppData.showInSnackBar(context, "Please select Country");
+    } else if (UserSignUpForm.cityModel == null ||
+        UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select State");
     }
     else if (textEditingController[3].text == "" ||
