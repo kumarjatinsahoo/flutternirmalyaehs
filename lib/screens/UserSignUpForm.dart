@@ -132,8 +132,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   File pathUsr = null;
   TextEditingController dob = TextEditingController();
-  UserRegistrationModel userModel;
-
+  ///UserRegistrationModel userModel;
+  UserRegistrationModel userModel = UserRegistrationModel();
   @override
   void initState() {
     super.initState();
@@ -400,8 +400,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                   setState(() {
                                                     print(ApiFactory.STATE_API);
                                                     UserSignUpForm.stateModel = data;
-                                                    userModel.country=data.key;
-                                                    userModel.countryCode=data.code;
+                                                   /* userModel.country=data.key;
+                                                    userModel.countryCode=data.code;*/
                                                     UserSignUpForm.cityModel = null;
                                                   });
                                                 }),
@@ -424,8 +424,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 23.0,  (KeyvalueModel data) {
                                               setState(() {
                                                 UserSignUpForm.cityModel = data;
-                                                userModel.state=data.key;
-                                                userModel.stateCode=data.code;
+                                                /*userModel.state=data.key;
+                                                userModel.stateCode=data.code;*/
                                               });
                                             }),
                                           ),
@@ -992,6 +992,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
+        //AppData.showInSnackBar(context, "Please select Title");
         validate();
       },
       child: Container(
@@ -1105,7 +1106,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     );
   }
 
-  Widget continueButton() {
+ /* Widget continueButton() {
     return InkWell(
       child: Center(
         child: CircleAvatar(
@@ -1123,7 +1124,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         validate();
       },
     );
-  }
+  }*/
 
   validate() async {
     _formKey.currentState.validate(
@@ -1161,25 +1162,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }
     else {
-     // PatientSignupModel patientSignupModel = PatientSignupModel();
+
       userModel.fName = textEditingController[0].text;
       userModel.fName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
       userModel.age = textEditingController[3].text;
       userModel.dob = textEditingController[4].text;
 
-      //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ UserRegistrationModel.toJson().toString());
-      /*widget.model.POSTMETHOD_TOKEN(api:ApiFactory.USER_REGISTRATION,json: ,
-             fun: (Map<String, dynamic> map) {
-                String msg = map["message"].toString();
-               // String userid = map["body"].toString();
-                if (map["code"] == "success"){
-                }
-                else {t
-                  AppData.showInSnackBar(context, msg);
-                }
-              },token: token
-      );*/
+
       widget.model.POSTMETHOD(api:ApiFactory.USER_REGISTRATION,json:userModel.toJson(),
           fun:(Map<String, dynamic> map) {
             // Map<String, dynamic> map = jsonDecode(data);
