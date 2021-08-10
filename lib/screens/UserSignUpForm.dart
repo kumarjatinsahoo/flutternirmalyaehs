@@ -400,8 +400,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                   setState(() {
                                                     print(ApiFactory.STATE_API);
                                                     UserSignUpForm.stateModel = data;
-                                                    userModel.country=data.key;
-                                                    userModel.countryCode=data.code;
+                                                    // userModel.country=data.key;
+                                                   // userModel.countryCode=data.code;
                                                     UserSignUpForm.cityModel = null;
                                                   });
                                                 }),
@@ -424,8 +424,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 23.0,  (KeyvalueModel data) {
                                               setState(() {
                                                 UserSignUpForm.cityModel = data;
-                                                userModel.state=data.key;
-                                                userModel.stateCode=data.code;
+                                                // userModel.state=data.key;
+                                                // userModel.stateCode=data.code;
                                               });
                                             }),
                                           ),
@@ -1163,10 +1163,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     else {
      // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
-      userModel.fName = textEditingController[1].text;
+      userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
       userModel.age = textEditingController[3].text;
       userModel.dob = textEditingController[4].text;
+      userModel.country=UserSignUpForm.stateModel.key;
+      userModel.countryCode=UserSignUpForm.stateModel.code;
+      userModel.stateCode=UserSignUpForm.cityModel.code;
+      userModel.state=UserSignUpForm.cityModel.key;
 
       //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ UserRegistrationModel.toJson().toString());
       /*widget.model.POSTMETHOD_TOKEN(api:ApiFactory.USER_REGISTRATION,json: ,
@@ -1189,7 +1193,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             if (map["code"] == "success") {
               // popup(msg, context);
               //popup(msg, context,userid,patientphnNo);
-              //AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, msg);
             } else {
               AppData.showInSnackBar(context, msg);
             }
