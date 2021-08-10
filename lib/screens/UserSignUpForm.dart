@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:user/models/UserRegistrationModel.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -29,7 +32,8 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel titleModel = null;
   static KeyvalueModel stateModel = null;
-  static KeyvalueModel cityModel = null;
+  //static KeyvalueModel cityModel = null;
+  static KeyvalueModel countryModel = null;
 
   UserSignUpForm({
     Key key,
@@ -60,6 +64,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     new TextEditingController()
   ];
 
+  String token;
   TypeDob selectDobEn = TypeDob.Age;
 
   List<bool> error = [false, false, false, false, false, false];
@@ -88,6 +93,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   String selectDob;
   KeyvalueModel selectedKey = null;
   final df = new DateFormat('dd/MM/yyyy');
+  final df1 = new DateFormat('yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
 
@@ -107,45 +113,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             TextEditingValue(text: df.format(picked));
       });
   }
-  Future<Null> _selectDate1(BuildContext context) async {
-    final DateTime picked = await  showDatePicker(
-      context: context,
-      initialDatePickerMode: DatePickerMode.year,
-     // initialDate: DateTime.now().subtract(Duration(y: 6570)),
-      firstDate: DateTime(1901),
-      lastDate: DateTime(2025),
-    );
-    /*DateTime newDateTime = await showRoundedDatePicker(
-      context: context,
-      initialDatePickerMode: DatePickerMode.year,
-      theme: ThemeData(primarySwatch: Colors.green),
-    );
-*/
-    /*  final DateTime picked = await showDatePicker(
-        context: context,
-        locale: Locale("en"),
-        initialDatePickerMode: DatePickerMode.year,
-        firstDate: DateTime(2010),
-        *//*lastDate: DateTime(2025),*//*
-        lastDate: DateTime.now().subtract(Duration(days: 6570)));*/ //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-        error[5] = false;
-        textEditingController[4].value = TextEditingValue(text: df.format(picked));
-      });
-  }
- /* showDatePicker(
-  context: context,
-  initialDate: selectedDate,
-  firstDate: DateTime(2010),
-  lastDate: DateTime(2025),
-  helpText: "SELECT BOOKING DATE",
-  cancelText: "NOT NOW",
-  confirmText: "BOOK NOW",
-  initialDatePickerMode: DatePickerMode.year
-  );
-*/
+
+  DateTime _selectYear = DateTime.now();
   bool fromLogin = false;
 
   StreamSubscription _connectionChangeStream;
@@ -163,6 +132,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   File pathUsr = null;
   TextEditingController dob = TextEditingController();
+  UserRegistrationModel userModel;
 
   @override
   void initState() {
@@ -180,445 +150,463 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     });*/
   }
 
+
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;
     });
   }
-
-  Future getCameraImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    if (image != null) {
-      var enc = await image.readAsBytes();
-      String _path = image.path;
-      setState(() => pathUsr = File(_path));
-
-      String _fileName = _path != null ? _path.split('/').last : '...';
-      var pos = _fileName.lastIndexOf('.');
-      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-      print(extName);
-
-      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: Text("SIGN UP"),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 10,
+          appBar: AppBar(
+            title: Text("SIGN UP"),
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
+          body: Container(
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 10.0,
+                          right: 10.0,
                         ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              height: 30,
+                              height: 10,
                             ),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                height: 83,
-                                width: 83,
-                                child: Stack(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    (pathUsr != null)
-                                        ? Material(
-                                            elevation: 5.0,
-                                            shape: CircleBorder(),
-                                            child: CircleAvatar(
-                                              radius: 40.0,
-                                              backgroundImage:
-                                                  FileImage(pathUsr),
-                                            ),
-                                          )
-                                        : Material(
-                                            elevation: 5.0,
-                                            shape: CircleBorder(),
-                                            child: CircleAvatar(
-                                              radius: 40.0,
-                                              backgroundImage: NetworkImage(
-                                                  AppData.defaultImgUrl),
-                                            ),
-                                          ),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: InkWell(
-                                        onTap: () {
-                                          getCameraImage();
-                                        },
-                                        child: Icon(
-                                          Icons.camera_alt,
-                                          color: AppData.kPrimaryColor,
-                                        ),
-                                      ),
-                                    )
-                                  ],
+                            ListView(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: [
+                                SizedBox(
+                                  height: 30,
                                 ),
-                              ),
-                            ),
-                            /*Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 60.0, right: 60.0),
-                                child: Image.asset(
-                                  "assets/logo1.png",
-                                  fit: BoxFit.fitWidth,
-                                  //width: ,
-                                  height: 110.0,
-                                ),
-                              ),
-                            ),*/
-
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Form(
-                              key: _formKey,
-                              // ignore: deprecated_member_use
-                              autovalidate: _autovalidate,
-                              child: Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                      child: SizedBox(
-                                        height: 58,
-                                        child: DropDown.networkDropdownGetpartUser(
-                                            "TITLE", ApiFactory.TITLE_API, "title", Icons.mail,
-                                             23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.TITLE_API);
-                                                UserSignUpForm.titleModel = data;
-                                               // UserSignUpForm.cityModel = null;
-                                              });
-                                            }),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      child: Container(
-                                        height: 50,
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border: Border.all(
-                                              color: Colors.black, width: 0.3),
-                                        ),
-                                        child: TextFormField(
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText:
-                                                MyLocalizations.of(context)
-                                                        .text("FIRST_NAME") +
-                                                    "*",
-                                            prefixIcon:
-                                                Icon(Icons.person_rounded),
-                                            hintStyle: TextStyle(
-                                                color: AppData.hintColor,
-                                                fontSize: 17),
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Container(
+                                    height: 83,
+                                    width: 83,
+                                    child: Stack(
+                                      //mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        (pathUsr != null)
+                                            ? Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage:
+                                            FileImage(pathUsr),
                                           ),
-                                          textInputAction: TextInputAction.next,
-                                          keyboardType: TextInputType.text,
-                                            controller: textEditingController[0],
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          inputFormatters: [
-                                            WhitelistingTextInputFormatter(
-                                                RegExp("[a-zA-Z ]")),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      child: Container(
-                                        height: 50,
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 5),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            border: Border.all(
-                                                color: Colors.black,
-                                                width: 0.3)),
-                                        child: TextFormField(
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText:
-                                                MyLocalizations.of(context)
-                                                        .text("LAST_NAME") +
-                                                    "*",
-                                            prefixIcon:
-                                                Icon(Icons.person_rounded),
-                                            hintStyle: TextStyle(
-                                                color: AppData.hintColor,
-                                                fontSize: 17),
+                                        )
+                                            : Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage: NetworkImage(
+                                                AppData.defaultImgUrl),
                                           ),
-                                          textInputAction: TextInputAction.next,
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          controller: textEditingController[1],
-                                          keyboardType: TextInputType.text,
-                                          inputFormatters: [
-                                            WhitelistingTextInputFormatter(
-                                                RegExp("[a-zA-Z ]")),
-                                          ],
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                       child: SizedBox(
-                                      height: 58,
-                                      child: DropDown.networkDropdownGetpartUser(
-                                          "Gender", ApiFactory.GENDER_API, "gender", Icons.mail,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.GENDER_API);
-                                              UserSignUpForm.genderModel = data;
-                                             // UserSignUpForm.cityModel = null;
-                                            });
-                                          }),
-                                    ), /*DropDown.staticDropdownIcon(
-                                          'Gender',
-                                          // MyLocalizations.of(context).text("SELECT_GENDER"),
-                                          "genderSignup",
-                                          Icons.mail,
-                                          23.0,
-                                          genderList, (KeyvalueModel data) {
-                                        setState(
-                                          () {
-                                            UserSignUpForm.genderModel = data;
-                                          },
-                                        );
-                                      }),*/
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 9.0, left: 0),
-                                      child: mobileNoOTPSearch(),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-
-                                     SizedBox(
-                                        height: 58,
-                                        child: DropDown.networkDropdownGetpartUser(
-                                            "Country", ApiFactory.STATE_API, "state", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.STATE_API);
-                                                UserSignUpForm.stateModel = data;
-                                                UserSignUpForm.cityModel = null;
-                                              });
-                                            }),
-                                      ),
-
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-
-                                    (UserSignUpForm.stateModel != null)
-                                        ?/* Padding(*/
-                                     /* padding: const EdgeInsets.only(
-                                          left: 10.0, right: 10.0, bottom: 7.0),
-                                      child:*/ SizedBox(
-                                      height: 58,
-                                        child: DropDown.networkDropdownGetpartUser(
-                                            "State",
-                                            ApiFactory.CITY_API +
-                                                UserSignUpForm.stateModel.key,
-                                            "city",  Icons.location_on_rounded,
-                                            23.0,(KeyvalueModel data) {
-                                          setState(() {
-                                            UserSignUpForm.cityModel = data;
-                                          });
-                                        }),
-                                      )
-                                    /*)*/
-                                        : Container(),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: ListTile(
-                                            title: const Text('Age'),
-                                            leading: Radio(
-                                              materialTapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
-                                              value: TypeDob.Age,
-                                              groupValue: selectDobEn,
-                                              onChanged: (TypeDob value) {
-                                                setState(() {
-                                                  selectDobEn = value;
-                                                });
-                                              },
+                                        Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: InkWell(
+                                            onTap: () {
+                                              _settingModalBottomSheet(context);;
+                                            },
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                              color: AppData.kPrimaryColor,
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: ListTile(
-                                            title: const Text('DOB'),
-                                            leading: Radio(
-                                              materialTapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
-                                              value: TypeDob.DOB,
-                                              groupValue: selectDobEn,
-                                              onChanged: (TypeDob value) {
-                                                setState(() {
-                                                  selectDobEn = value;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ),
+                                        )
                                       ],
                                     ),
-                                    (selectDobEn == TypeDob.Age)
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Expanded(
-                                                flex: 2,
-                                                child: Padding(
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Form(
+                                  key: _formKey,
+                                  // ignore: deprecated_member_use
+                                  autovalidate: _autovalidate,
+                                  child: Expanded(
+                                    child: Column(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "TITLE",
+                                                ApiFactory.TITLE_API,
+                                                "title",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.TITLE_API);
+                                                UserSignUpForm.titleModel =
+                                                    data;
+                                                userModel.title=data.key;
+                                                // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Container(
+                                            height: 50,
+                                            padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 0.3),
+                                            ),
+                                            child: TextFormField(
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintText:
+                                                MyLocalizations.of(context)
+                                                    .text("FIRST_NAME") +
+                                                    "*",
+                                                prefixIcon:
+                                                Icon(Icons.person_rounded),
+                                                hintStyle: TextStyle(
+                                                    color: AppData.hintColor,
+                                                    fontSize: 17),
+                                              ),
+                                              textInputAction: TextInputAction
+                                                  .next,
+                                              keyboardType: TextInputType.text,
+                                              controller: textEditingController[0],
+                                              textAlignVertical:
+                                              TextAlignVertical.center,
+                                              inputFormatters: [
+                                                WhitelistingTextInputFormatter(
+                                                    RegExp("[a-zA-Z ]")),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Container(
+                                            height: 50,
+                                            padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black,
+                                                    width: 0.3)),
+                                            child: TextFormField(
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintText:
+                                                MyLocalizations.of(context)
+                                                    .text("LAST_NAME") +
+                                                    "*",
+                                                prefixIcon:
+                                                Icon(Icons.person_rounded),
+                                                hintStyle: TextStyle(
+                                                    color: AppData.hintColor,
+                                                    fontSize: 17),
+                                              ),
+                                              textInputAction: TextInputAction
+                                                  .next,
+                                              textAlignVertical:
+                                              TextAlignVertical.center,
+                                              controller: textEditingController[1],
+                                              keyboardType: TextInputType.text,
+                                              inputFormatters: [
+                                                WhitelistingTextInputFormatter(
+                                                    RegExp("[a-zA-Z ]")),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Gender",
+                                                ApiFactory.GENDER_API,
+                                                "gender",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.GENDER_API);
+                                                UserSignUpForm.genderModel =
+                                                    data;
+                                                userModel.gender=data.key;
+                                                // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 9.0, left: 0),
+                                          child: mobileNoOTPSearch(),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        SizedBox(
+                                          height: 58,
+                                          child:
+                                          DropDown.networkDropdownGetpartUser(
+                                              "Country",
+                                              ApiFactory.STATE_API,
+                                              "state",
+                                              Icons.location_on_rounded,
+                                              23.0, (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.STATE_API);
+                                              UserSignUpForm.countryModel = data;
+                                              userModel.country=data.key;
+                                              userModel.countryCode=data.code;
+                                              UserSignUpForm.stateModel = null;
+                                            });
+                                          }),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        (UserSignUpForm.stateModel != null)
+                                            ?
+                                        SizedBox(
+                                          height: 58,
+                                          child: DropDown
+                                              .networkDropdownGetpartUser(
+                                              "State",
+                                              ApiFactory.CITY_API +
+                                                  UserSignUpForm.countryModel.key,
+                                              "city",
+                                              Icons.location_on_rounded,
+                                              23.0, (KeyvalueModel data) {
+                                            setState(() {
+                                              UserSignUpForm.stateModel = data;
+                                              userModel.state=data.key;
+                                              userModel.stateCode=data.code;
+                                            });
+                                          }),
+                                        )
+                                            : Container(),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: ListTile(
+                                                title: const Text('Age'),
+                                                leading: Radio(
+                                                  materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                                  value: TypeDob.Age,
+                                                  groupValue: selectDobEn,
+                                                  onChanged: (TypeDob value) {
+                                                    setState(() {
+                                                      selectDobEn = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: ListTile(
+                                                title: const Text('DOB'),
+                                                leading: Radio(
+                                                  materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                                  value: TypeDob.DOB,
+                                                  groupValue: selectDobEn,
+                                                  onChanged: (TypeDob value) {
+                                                    setState(() {
+                                                      selectDobEn = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        (selectDobEn == TypeDob.Age)
+                                            ? Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              flex: 2,
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.only(
+                                                    left: 8,
+                                                    right: 8,
+                                                    top: 10),
+                                                child: Container(
+                                                  height: 47,
                                                   padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8,
-                                                          right: 8,
-                                                          top: 10),
-                                                  child: Container(
-                                                    height: 47,
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                      horizontal: 5,
+                                                  EdgeInsets.symmetric(
+                                                    horizontal: 5,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                    border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 0.3),
+                                                  ),
+                                                  child: TextFormField(
+                                                    controller:
+                                                    textEditingController[
+                                                    3],
+                                                    decoration:
+                                                    InputDecoration(
+                                                      prefixIcon: Icon(Icons
+                                                          .accessibility_outlined),
+                                                      border:
+                                                      InputBorder.none,
+                                                      hintText:
+                                                      MyLocalizations.of(
+                                                          context)
+                                                          .text("AGE"),
+                                                      hintStyle: TextStyle(
+                                                          color: AppData
+                                                              .hintColor,
+                                                          fontSize: 17),
                                                     ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      border: Border.all(
-                                                          color: Colors.black,
-                                                          width: 0.3),
-                                                    ),
-                                                    child: TextFormField(
-                                                      controller: textEditingController[3],
-                                                      decoration:
-                                                          InputDecoration(
-                                                        prefixIcon: Icon(Icons
-                                                            .accessibility_outlined),
-                                                        border:
-                                                            InputBorder.none,
-                                                        hintText:
-                                                            MyLocalizations.of(
-                                                                    context)
-                                                                .text("AGE"),
-                                                        hintStyle: TextStyle(
-                                                            color: AppData
-                                                                .hintColor,
-                                                            fontSize: 17),
-                                                      ),
-                                                      textAlignVertical:
-                                                          TextAlignVertical
-                                                              .center,
-                                                      textInputAction:
-                                                          TextInputAction.next,
-                                                      keyboardType:
-                                                          TextInputType.number,
-                                                      //maxLength: 2,
-                                                    ),
+                                                    textAlignVertical:
+                                                    TextAlignVertical
+                                                        .center,
+                                                    textInputAction:
+                                                    TextInputAction.next,
+                                                    keyboardType:
+                                                    TextInputType.number,
+                                                    //maxLength: 2,
                                                   ),
                                                 ),
                                               ),
-                                              Expanded(
-                                                flex: 4,
-                                                child: InkWell(
-                                                  onTap: () {
+                                            ),
+                                            Expanded(
+                                              flex: 4,
+                                              child: InkWell(
+                                                onTap: () {
+                                                  //_selectDate1(context);
 
-                                                   // _selectDate1(context);
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (
+                                                        BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            "Select Year"),
+                                                        content: Container( // Need to use container to add size constraint.
+                                                          width: 300,
+                                                          height: 300,
+                                                          child: YearPicker(
+                                                            firstDate: DateTime(
+                                                                DateTime
+                                                                    .now()
+                                                                    .year - 100,
+                                                                1),
+                                                            lastDate: DateTime
+                                                                .now(),
+                                                            initialDate: DateTime
+                                                                .now(),
+                                                            selectedDate: _selectYear,
+                                                            onChanged: (
+                                                                DateTime dateTime) {
+                                                              // close the dialog when year is selected.
+                                                              Navigator.pop(
+                                                                  context);
+                                                              textEditingController[4]
+                                                                  .value =
+                                                                  TextEditingValue(
+                                                                      text: df1
+                                                                          .format(
+                                                                          dateTime));
 
-                                                  },
-                                                  child: Padding(
+                                                              // Do something with the dateTime selected.
+                                                              // Remember that you need to use dateTime.year to get the year
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                child: Padding(
                                                   padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8,
-                                                          right: 8,
-                                                          top: 10),
+                                                  const EdgeInsets.only(
+                                                      left: 8,
+                                                      right: 8,
+                                                      top: 10),
                                                   child: Container(
                                                     height: 47,
                                                     padding:
-                                                        EdgeInsets.symmetric(
+                                                    EdgeInsets.symmetric(
                                                       horizontal: 5,
                                                     ),
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
+                                                      BorderRadius
+                                                          .circular(5),
                                                       border: Border.all(
                                                           color: Colors.black,
                                                           width: 0.3),
                                                     ),
                                                     child: TextFormField(
                                                       enabled: false,
-                                                      controller: textEditingController[4],
+                                                      controller:
+                                                      textEditingController[
+                                                      4],
                                                       decoration:
-
-                                                          InputDecoration(
+                                                      InputDecoration(
                                                         prefixIcon: Icon(Icons
                                                             .calendar_today),
                                                         border:
-                                                            InputBorder.none,
+                                                        InputBorder.none,
                                                         hintText: "Years",
                                                         hintStyle: TextStyle(
                                                             color: AppData
@@ -626,19 +614,21 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                             fontSize: 17),
                                                       ),
                                                       textAlignVertical:
-                                                          TextAlignVertical
-                                                              .center,
+                                                      TextAlignVertical
+                                                          .center,
                                                       textInputAction:
-                                                          TextInputAction.next,
+                                                      TextInputAction
+                                                          .next,
                                                       keyboardType:
-                                                          TextInputType.number,
+                                                      TextInputType
+                                                          .number,
                                                       //maxLength: 2,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              ),
-                                              /*Expanded(
+                                            ),
+                                            /*Expanded(
                                                 flex: 4,
                                                 child: DropDown
                                                     .staticDropdownIcon(
@@ -654,136 +644,138 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                   });
                                                 }),
                                               ),*/
-                                            ],
-                                          )
-                                        : InkWell(
-                                            onTap: () {
-                                              _selectDate(context);
-                                            },
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8),
-                                              child: Container(
-                                                height: 50,
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 5),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  border: Border.all(
-                                                      color: Colors.black,
-                                                      width: 0.3),
+                                          ],
+                                        )
+                                            : InkWell(
+                                          onTap: () {
+                                            _selectDate(context);
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            child: Container(
+                                              height: 50,
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black,
+                                                    width: 0.3),
+                                              ),
+
+                                              child: TextFormField(
+                                                controller:
+                                                textEditingController[5],
+                                                enabled: false,
+                                                decoration: InputDecoration(
+                                                  prefixIcon: Icon(
+                                                      Icons.calendar_today),
+                                                  border: InputBorder.none,
+                                                  hintText: "Date of Birth",
+                                                  hintStyle: TextStyle(
+                                                      color:
+                                                      AppData.hintColor,
+                                                      fontSize: 17),
                                                 ),
-                                                child: TextFormField(
-                                                  controller: textEditingController[5],
-                                                  enabled: false,
-                                                  decoration: InputDecoration(
-                                                    prefixIcon: Icon(
-                                                        Icons.calendar_today),
-                                                    border: InputBorder.none,
-                                                    hintText: "Date of Birth",
-                                                    hintStyle: TextStyle(
-                                                        color:
-                                                            AppData.hintColor,
-                                                        fontSize: 17),
-                                                  ),
-                                                  textInputAction:
-                                                      TextInputAction.next,
-                                                  textAlignVertical:
-                                                      TextAlignVertical.center,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  //maxLength: 2,
-                                                ),
+                                                textInputAction:
+                                                TextInputAction.next,
+                                                textAlignVertical:
+                                                TextAlignVertical.center,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                //maxLength: 2,
                                               ),
                                             ),
                                           ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Row(
-                                        //  mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Checkbox(
-                                            value: _checkbox,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _checkbox = !_checkbox;
-                                              });
-                                            },
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Expanded(
-                                            child: RichText(
-                                                textAlign: TextAlign.start,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text:
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Row(
+                                            //  mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox = !_checkbox;
+                                                  });
+                                                },
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Expanded(
+                                                child: RichText(
+                                                    textAlign: TextAlign.start,
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
                                                           'I agree to eHealthSystem\'s ',
-                                                      /* "Welcome back",*/
-                                                      style: TextStyle(
-                                                        // fontWeight: FontWeight.w800,
-                                                        fontFamily: "Monte",
-                                                        // fontSize: 25.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text:
+                                                          /* "Welcome back",*/
+                                                          style: TextStyle(
+                                                            // fontWeight: FontWeight.w800,
+                                                            fontFamily: "Monte",
+                                                            // fontSize: 25.0,
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
                                                           'Terms and Conditions',
-                                                      /* "Welcome back",*/
-                                                      style: TextStyle(
-                                                        // fontWeight: FontWeight.w500,
-                                                        fontFamily: "Monte",
-                                                        // fontSize: 25.0,
-                                                        color:
-                                                            AppData.kPrimaryColor,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
+                                                          /* "Welcome back",*/
+                                                          style: TextStyle(
+                                                            // fontWeight: FontWeight.w500,
+                                                            fontFamily: "Monte",
+                                                            // fontSize: 25.0,
+                                                            color: AppData
+                                                                .kPrimaryColor,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: nextButton(),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: nextButton(),
-                                    ),
-                                    SizedBox(
-                                      height: 25,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget dobBirth() {
@@ -828,9 +820,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-        (KeyvalueModel model) {
-      UserSignUpForm.genderModel = model;
-    });
+            (KeyvalueModel model) {
+          UserSignUpForm.genderModel = model;
+        });
   }
 
   Widget mobileNoOTPSearch() {
@@ -857,20 +849,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         ),
       ],
     );
-  }
-
-  Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
-
-    setState(() {
-      _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
-    });
   }
 
   Future getImage() async {
@@ -911,7 +889,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -975,7 +953,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         validate();
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         margin: EdgeInsets.only(left: 9.0, right: 9.0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
@@ -986,7 +967,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -1001,7 +982,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -1054,7 +1035,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
                 ),
                 validator: (value) {
@@ -1103,6 +1084,152 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   }
 
   validate() async {
-    _formKey.currentState.validate();
+    _formKey.currentState.validate(
+    );
+    if (UserSignUpForm.titleModel == null ||
+        UserSignUpForm.titleModel == "") {
+      AppData.showInSnackBar(context, "Please select Title");
+    } else if (textEditingController[0].text == "" ||
+        textEditingController[0].text == null) {
+      AppData.showInSnackBar(context, "Please enter first Name");
+    } else if (textEditingController[1].text == "" ||
+        textEditingController[1].text == null) {
+      AppData.showInSnackBar(context, "Please enter Last Name");
+    }
+    else if (UserSignUpForm.genderModel == null ||
+        UserSignUpForm.genderModel == "") {
+      AppData.showInSnackBar(context, "Please select gender");
+    }
+    else if (textEditingController[2].text == "" ||
+        textEditingController[2].text == null) {
+      AppData.showInSnackBar(context, "Please enter Mobile Number");
+    }
+    else if (UserSignUpForm.countryModel == null ||
+        UserSignUpForm.countryModel == "") {
+      AppData.showInSnackBar(context, "Please select Country");
+    } else if (UserSignUpForm.stateModel == null ||
+        UserSignUpForm.stateModel == "") {
+      AppData.showInSnackBar(context, "Please select State");
+    }
+    else if (textEditingController[3].text == "" ||
+        textEditingController[3].text == null) {
+      AppData.showInSnackBar(context, "Please enter your Age");
+    } else if (textEditingController[4].text == "" ||
+        textEditingController[4].text == null) {
+      AppData.showInSnackBar(context, "Please enter your DOB");
+    }
+    else {
+     // PatientSignupModel patientSignupModel = PatientSignupModel();
+      userModel.fName = textEditingController[0].text;
+      userModel.fName = textEditingController[1].text;
+      userModel.mobile = textEditingController[2].text;
+      userModel.age = textEditingController[3].text;
+      userModel.dob = textEditingController[4].text;
+
+      //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ UserRegistrationModel.toJson().toString());
+      /*widget.model.POSTMETHOD_TOKEN(api:ApiFactory.USER_REGISTRATION,json: ,
+             fun: (Map<String, dynamic> map) {
+                String msg = map["message"].toString();
+               // String userid = map["body"].toString();
+                if (map["code"] == "success"){
+                }
+                else {t
+                  AppData.showInSnackBar(context, msg);
+                }
+              },token: token
+      );*/
+      widget.model.POSTMETHOD(api:ApiFactory.USER_REGISTRATION,json:userModel.toJson(),
+          fun:(Map<String, dynamic> map) {
+            // Map<String, dynamic> map = jsonDecode(data);
+            String msg = map["message"].toString();
+            String userid = map["body"].toString();
+            //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
+            if (map["code"] == "success") {
+              // popup(msg, context);
+              //popup(msg, context,userid,patientphnNo);
+              //AppData.showInSnackBar(context, msg);
+            } else {
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+    }
+  }
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getGalleryImage(),
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera,imageQuality: 25);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path
+          .split('/')
+          .last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        // widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimgtype =extName;
+        userModel.profileImage=base64Encode(enc);
+        userModel.profileImageType=extName;
+
+      });
+
+    }
+  }
+  Future getGalleryImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+    //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        // widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimgtype =extName;
+        userModel.profileImage=base64Encode(enc);
+        userModel.profileImageType=extName;
+
+      });
+
+    }
   }
 }
