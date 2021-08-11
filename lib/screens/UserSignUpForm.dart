@@ -9,12 +9,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/models/UserRegistrationModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/SignUpForm.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -394,11 +397,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           child: SizedBox(
                                             height: 58,
                                             child: DropDown.networkDropdownGetpartUser(
-                                                "Country", ApiFactory.STATE_API, "state", Icons.location_on_rounded,
+                                                "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
                                                 23.0,
                                                 (KeyvalueModel data) {
                                                   setState(() {
-                                                    print(ApiFactory.STATE_API);
+                                                    print(ApiFactory.COUNTRY_API);
                                                     UserSignUpForm.stateModel = data;
                                                    /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
@@ -418,9 +421,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             height: 58,
                                             child: DropDown.networkDropdownGetpartUser(
                                                 "State",
-                                                ApiFactory.CITY_API +
+                                                ApiFactory.STATE_API +
                                                     UserSignUpForm.stateModel.key,
-                                                "city", Icons.location_on_rounded,
+                                                "state", Icons.location_on_rounded,
                                                 23.0,  (KeyvalueModel data) {
                                               setState(() {
                                                 UserSignUpForm.cityModel = data;
@@ -1167,41 +1170,53 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
       userModel.age = textEditingController[3].text;
-      userModel.dob = textEditingController[4].text;
+      userModel.ageYears = textEditingController[4].text;
+      userModel.dob = textEditingController[5].text;
       userModel.country=UserSignUpForm.stateModel.key;
       userModel.countryCode=UserSignUpForm.stateModel.code;
       userModel.stateCode=UserSignUpForm.cityModel.code;
       userModel.state=UserSignUpForm.cityModel.key;
 
-      //print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ UserRegistrationModel.toJson().toString());
-      /*widget.model.POSTMETHOD_TOKEN(api:ApiFactory.USER_REGISTRATION,json: ,
-             fun: (Map<String, dynamic> map) {
-                String msg = map["message"].toString();
-               // String userid = map["body"].toString();
-                if (map["code"] == "success"){
-                }
-                else {t
-                  AppData.showInSnackBar(context, msg);
-                }
-              },token: token
-      );*/
-      widget.model.POSTMETHOD(api:ApiFactory.USER_REGISTRATION,json:userModel.toJson(),
-          fun:(Map<String, dynamic> map) {
-            // Map<String, dynamic> map = jsonDecode(data);
-            String msg = map["message"].toString();
-            String userid = map["body"].toString();
-            //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
-            if (map["code"] == "success") {
-              // popup(msg, context);
-              //popup(msg, context,userid,patientphnNo);
-              AppData.showInSnackBar(context, msg);
+      MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD(api: ApiFactory.USER_REGISTRATION, json: userModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
             } else {
-              AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });
     }
   }
-
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1254,6 +1269,83 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       });
 
     }
+  }
+  chooseAppointment(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text("Health Screening"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType =
+                                Const.HEALTH_SCREENING_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                            // AppData.showInSnackBar(context,"hi");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Health Check-up"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Doctor Appointment"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            widget.model.apntUserType = Const.DOC_APNT;
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/docApnt");
+                          },
+                        ),
+                        Divider(),
+                        MaterialButton(
+                          child: Text(
+                            "CANCEL",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
   }
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);

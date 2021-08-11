@@ -44,7 +44,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                           fontSize: 20,
                           color: Colors.white),
                     ),
-                    Icon(Icons.search, color: Colors.white),
+                   // Icon(Icons.search, color: Colors.white),
                   ],
                 ),
               ),

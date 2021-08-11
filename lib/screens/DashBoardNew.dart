@@ -1313,8 +1313,8 @@ class MyPage1Widget extends StatelessWidget {
                               icon: "assets/health_checkup.png",
                               fun: () {
                                 //chooseAppointment(context);
-                                /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
+                                Navigator.pushNamed(
+                                    context, "/doctorconsultationPage");
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },

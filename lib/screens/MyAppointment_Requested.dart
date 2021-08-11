@@ -134,8 +134,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                    child: Row(
                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                      children: [
-                                                   Expanded(
-                                                   child:  Column(
+                                                       Expanded(
+                                                         child:  Column(
                                                            crossAxisAlignment: CrossAxisAlignment.start,
                                                            children: [
                                                              Text('Dr.Maya Tulple',
@@ -152,22 +152,22 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                            ],
                                                          ),),
                                                        /*new Spacer(),*/
-                                               Padding(
-                                                 padding: const EdgeInsets.only( top: 15.0,),
-                                                 child: Column(
-                                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                                         crossAxisAlignment: CrossAxisAlignment.end,
-                                                         children: [
-                                                           Text('Requeested',
-                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
-                                                           SizedBox(height: 3,),
-                                                           Text('23-Nov-2020-11:30AM' ,
-                                                             overflow: TextOverflow.clip,
-                                                             style: TextStyle(),),
+                                                       Padding(
+                                                         padding: const EdgeInsets.only( top: 15.0,),
+                                                         child: Column(
+                                                           // mainAxisAlignment: MainAxisAlignment.center,
+                                                           crossAxisAlignment: CrossAxisAlignment.end,
+                                                           children: [
+                                                             Text('Requeested',
+                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
+                                                             SizedBox(height: 3,),
+                                                             Text('23-Nov-2020-11:30AM' ,
+                                                               overflow: TextOverflow.clip,
+                                                               style: TextStyle(),),
 
-                                                         ],
+                                                           ],
+                                                         ),
                                                        ),
-                                               ),
                                                      ],
                                                    ),
                                                  )),

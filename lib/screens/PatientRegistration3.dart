@@ -114,10 +114,10 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       child: SizedBox(
                         height: 55,
                         child: DropDown.networkDropdownGetpart4(
-                            "Country", ApiFactory.STATE_API, "state",
+                            "Country", ApiFactory.COUNTRY_API, "country",
                                 (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.STATE_API);
+                                print(ApiFactory.COUNTRY_API);
                                 PatientRegistration3.stateModel = data;
                                 PatientRegistration3.cityModel = null;
                               });
@@ -135,9 +135,9 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                               height: 55,
                               child: DropDown.networkDropdownGetpart4(
                                   "State",
-                                  ApiFactory.CITY_API +
+                                  ApiFactory.STATE_API +
                                       PatientRegistration3.stateModel.key,
-                                  "city", (KeyvalueModel data) {
+                                  "state", (KeyvalueModel data) {
                                 setState(() {
                                   PatientRegistration3.cityModel = data;
                                 });
