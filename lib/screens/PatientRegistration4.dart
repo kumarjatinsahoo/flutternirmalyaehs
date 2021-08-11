@@ -138,7 +138,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                 child: Stack(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                     */ /*Material(
+                                     */
+                              /*Material(
                                       elevation: 5.0,
                                       shape: CircleBorder(),
                                       child: CircleAvatar(
@@ -146,7 +147,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                         backgroundImage: FileImage(pathUsr),
                                       ),
                                     )
-                                        : */ /*Material(
+                                        : */
+                              /*Material(
                                       elevation: 5.0,
                                       shape: CircleBorder(),
                                       child: CircleAvatar(
@@ -155,7 +157,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                         //NetworkImage(AppData.defaultImgUrl),
                                       ),
                                     ),
-                                    */ /*Align(
+                                    */
+                              /*Align(
                                       alignment: Alignment.bottomRight,
                                       child: InkWell(
                                         onTap: () {
@@ -335,10 +338,11 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
             (Map<String, dynamic> map) {
           // Map<String, dynamic> map = jsonDecode(data);
           String msg = map["message"].toString();
+          String userid = map["body"].toString();
           //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
           if (map["code"] == "success") {
             // popup(msg, context);
-            popup(msg, context);
+            popup(msg, context,userid,patientphnNo);
             //AppData.showInSnackBar(context, msg);
           } else {
             AppData.showInSnackBar(context, msg);
@@ -349,7 +353,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     );
   }
 
-  popup(String msg, BuildContext context) {
+  popup(String msg, BuildContext context,String userid,String mobile) {
     return Alert(
         context: context,
         //title: "Success",
@@ -378,6 +382,25 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
             SizedBox(
               height: 5,
             ),
+            Text(
+            "Mobile No.:"+mobile,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "UserId:."+userid,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
         closeIcon: Icon(
@@ -392,14 +415,15 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-             /*
-              Navigator.pop(context);
+
+              widget.model.patientName = null;/* Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);*/
-              widget.model.patientName = null;
+
+              Navigator.pop(context);
               widget.model.patientphnNo = null;
               widget.model.patientemail = null;
               widget.model.patientaadhar = null;

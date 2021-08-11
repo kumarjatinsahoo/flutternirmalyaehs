@@ -129,7 +129,6 @@ class SignUpForm1State extends State<SignUpForm1> {
       isOnline = connectionStatus.hasConnection;
     });*/
   }
-
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;

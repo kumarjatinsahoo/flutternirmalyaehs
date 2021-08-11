@@ -115,13 +115,13 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                         height: 55,
                         child: DropDown.networkDropdownGetpart4(
                             "Country", ApiFactory.STATE_API, "state",
-                            (KeyvalueModel data) {
-                          setState(() {
-                            print(ApiFactory.STATE_API);
-                            PatientRegistration3.stateModel = data;
-                            PatientRegistration3.cityModel = null;
-                          });
-                        }),
+                                (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.STATE_API);
+                                PatientRegistration3.stateModel = data;
+                                PatientRegistration3.cityModel = null;
+                              });
+                            }),
                       ),
                     ),
                     SizedBox(
@@ -376,6 +376,11 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         } else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
           AppData.showInSnackBar(context, "Please select State");
+       /* } else if (textEditingController[2].text != '' &&
+            !AppData.isValidEmail(textEditingController[2].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
+          // return false;
+
         } else {
           widget.model.patientheight = textEditingController[0].text;
           widget.model.patientweight = textEditingController[1].text;
