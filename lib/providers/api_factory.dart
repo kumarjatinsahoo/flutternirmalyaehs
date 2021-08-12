@@ -4,8 +4,7 @@ class ApiFactory {
 //  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL = "http://192.168.29.28:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
- // static String MAIN_URLlocal = "http://192.168.29.108:8062/nirmalyaRest/api/";
+
 
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -14,20 +13,13 @@ class ApiFactory {
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
-
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=5093626841904641';
-
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
-  static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
-  static String DISTRICT_API = MAIN_URL + 'get-district-list?state=26';
-  static String CITY_API = MAIN_URL + 'get-city-list?district=259';
   static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
-  static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=17&city=2694';
-  static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=5';
 
 
 
@@ -43,6 +35,7 @@ class ApiFactory {
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
 
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
+  static String POST_APPOINTMENT= MAIN_URL + 'post-doctor-appointment';
 
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
 

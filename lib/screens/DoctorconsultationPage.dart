@@ -39,7 +39,7 @@ class DoctorconsultationPage extends StatefulWidget {
   static KeyvalueModel stateModel = null;
   static KeyvalueModel distrModel = null;
   static KeyvalueModel cityModel = null;
-  static KeyvalueModel specialistModel = null;
+  static KeyvalueModel  specialistModel = null;
   static KeyvalueModel doctorModel = null;
   static KeyvalueModel hospitalModel = null;
 
@@ -73,7 +73,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   ];
 
   TextEditingController appointmentdate = TextEditingController();
-  TextEditingController validitydat = TextEditingController();
+  TextEditingController validitytime = TextEditingController();
   TextEditingController expdt = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   FocusNode firstname_ = new FocusNode();
@@ -142,7 +142,9 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
               if (map[Const.CODE] == Const.SUCCESS) {
 
+
                 appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
+
                 AppData.showInSnackBar(context, map[Const.MESSAGE]);
               } else {
                 //Navigator.of(context).pop();
@@ -223,7 +225,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
         setState(() {
           //validitydat.text = picked.format(context);
-          validitydat.text =time;
+          validitytime.text =time;
          // dob.value = TextEditingValue(text: time.format(selectedTime));
           //(isIn)?timelist.intime=time:timelist.outtime=time;
          /* widget.model.GETMETHODCALL(
@@ -595,17 +597,19 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
      }else if (DoctorconsultationPage.hospitalModel == null ||
          DoctorconsultationPage.hospitalModel == "") {
        AppData.showInSnackBar(context, "Please select hospital");
-     }else if (textEditingController[3].text == "" ||
-        textEditingController[3].text == null) {
-      AppData.showInSnackBar(context, "Please enter your Age");
-      } else if (textEditingController[4].text == "" ||
-        textEditingController[4].text == null) {
-      AppData.showInSnackBar(context, "Please enter your DOB");
+     }else if (appointmentdate.text == "" ||
+         appointmentdate.text == null) {
+      AppData.showInSnackBar(context, "Please enter your appointmentdate");
+      } else if (validitytime.text == "" ||
+         validitytime.text == null) {
+      AppData.showInSnackBar(context, "Please enter your appointmenttime");
     }
+
     else {
+       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       /* MyWidgets.showLoading(context);
-      widget.model.POSTMETHOD(api: ApiFactory.USER_REGISTRATION, json: userModel.toJson(),
+      widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
             Navigator.pop(context);
             if (map[Const.STATUS] == Const.SUCCESS) {
@@ -616,6 +620,46 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           });*/
     }
   }
+  saveDb() {
+    Map<String, dynamic> map = {
+      //"regNo": loginRes.ashadtls[0].id,
+      "userid": widget.model.user,
+      "date": appointmentdate.text,
+      "opdid": /*appointmentdate.selectGender.id*/"4",
+      "time": "19:00",//validitytime.text,
+      "doctor": DoctorconsultationPage.doctorModel.key,
+      "notes": textEditingController[0].text,
+      "hospitalid":DoctorconsultationPage.hospitalModel.key ,
+
+    };
+    // http://localhost/matrujyoti/api/post-childsRegistration?
+    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
+    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
+    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
+    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(api: ApiFactory.POST_APPOINTMENT,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            popup(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
+  }
+
   popup(BuildContext context, String message) {
     return Alert(
         context: context,
@@ -852,7 +896,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller: validitydat,
+              controller: validitytime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
@@ -1088,143 +1132,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       },
       onSaved: (value) {},
     );
-  }
-
-  //////////////////////////////////////////////////////
- /* personalFormValidate() async {
-    if (textEditingController[0].text == null ||
-        textEditingController[0].text == "") {
-      AppData.showInSnackBar(context, "Enter first name");
-    } else if (textEditingController[2].text == "" ||
-        textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Enter last name");
-    } else if (textEditingController[3].text == "" ||
-        textEditingController[3].text == null) {
-      AppData.showInSnackBar(context, "Enter adhar/UDID number");
-    } else if (!Aadhar.validateVerhoeff(
-        textEditingController[3].text.replaceAll("-", "").toString())) {
-      AppData.showInSnackBar(context, "Enter valid Aadhar number");
-    } else if (textEditingController[4].text == "" ||
-        textEditingController[4].text == null) {
-      AppData.showInSnackBar(context, "Enter mobile number of pregnet woman");
-    } else if (textEditingController[5].text == "" ||
-        textEditingController[5].text == null) {
-      AppData.showInSnackBar(context, "Enter husband/father name");
-    }
-    *//*else if (textEditingController[6].text == "" ||
-        textEditingController[6].text == null) {
-      AppData.showInSnackBar(context, "Enter mobile number of husband/father");
-    }*//*
-    else if (selectSector == null) {
-      AppData.showInSnackBar(context, "Enter sector name");
-    } else if (textEditingController[8].text == "" ||
-        textEditingController[8].text == null) {
-      AppData.showInSnackBar(context, "Enter AWC name");
-    } else if (dob.text == null || dob.text == "") {
-      AppData.showInSnackBar(context, "Enter date of pregency");
-    } else if (textEditingController[9].text == "" ||
-        textEditingController[9].text == null) {
-      AppData.showInSnackBar(context, "Enter village name");
-    } else if (textEditingController[10].text == "" ||
-        textEditingController[10].text == null) {
-      AppData.showInSnackBar(context, "Enter panchayat name");
-    } else if (textEditingController[11].text == "" ||
-        textEditingController[11].text == null) {
-      AppData.showInSnackBar(context, "Enter Block name");
-    } else if (RegisterPage.selectDistrict == null) {
-      AppData.showInSnackBar(context, "Enter Dist name");
-    } else if (textEditingController[13].text == "" ||
-        textEditingController[13].text == null) {
-      AppData.showInSnackBar(context, "Enter State name");
-    } else if (dofP.text == null || dofP.text == "") {
-      AppData.showInSnackBar(context, "Enter last period date");
-    } else if (expdt.text == null || expdt.text == "") {
-      AppData.showInSnackBar(context, "Enter expect delivery date");
-    } else if (textEditingController[14].text == "" ||
-        textEditingController[14].text == null) {
-      AppData.showInSnackBar(context, "Enter no of previous pregency");
-    } else {
-      RegisterModel registerModel = RegisterModel();
-      registerModel.frstname = textEditingController[0].text;
-      registerModel.midname = textEditingController[1].text ?? "";
-      registerModel.lstname = textEditingController[2].text;
-      registerModel.adhaarno = textEditingController[3].text;
-      registerModel.phoneno_pregwmn = textEditingController[4].text;
-      registerModel.hsbndfthrnm = textEditingController[5].text;
-      registerModel.phoneno_hsbnd = textEditingController[6].text;
-      registerModel.sector = selectSector.name;
-      registerModel.awcname = textEditingController[8].text;
-      registerModel.regdtofpreg = dob.text;
-      registerModel.vilage = textEditingController[9].text;
-      registerModel.panchayat = textEditingController[10].text;
-      registerModel.block = textEditingController[11].text;
-      registerModel.districtid = RegisterPage.selectDistrict.id;
-      registerModel.state = textEditingController[13].text;
-      registerModel.lstprddt = dofP.text;
-      registerModel.expectdelvrydt = expdt.text;
-      registerModel.noofprvsprgncy = textEditingController[14].text;
-      registerModel.other = other;
-      registerModel.abortion = abortion;
-      registerModel.abnormal = abnormal;
-      registerModel.aph = aph;
-      registerModel.eclampsia = eclampsia;
-      registerModel.highBP = highBP;
-      registerModel.anemia = anemia;
-      registerModel.pph = pph;
-      registerModel.ashaid = loginResponse.ashadtls[0].id.toString();
-      registerModel.lscs = lscs;
-      registerModel.defect = defect;
-      registerModel.turberculosis = turberculosis;
-      registerModel.bldpressure = bldpressure;
-      registerModel.heartdisease = heartdisease;
-      registerModel.respiratory = respiratory;
-      registerModel.diabetes = diabetes;
-
-      if (isOffline) {
-        insertTable(registerModel.toJson());
-      } else {
-        MyWidgets.showLoading(context);
-        widget.model.POSTMETHOD(
-            api: ApiFactory.POST_SIGNUP,
-            json: registerModel.toJson(),
-            fun: (Map<String, dynamic> map) {
-              Navigator.pop(context);
-              if (map[Const.STATUS] == Const.SUCEESS) {
-                popup(context, map[Const.MESSAGE]);
-              } else {
-                AppData.showInSnackBar(context, map[Const.MESSAGE]);
-              }
-            });
-      }
-    }
-  }*/
-
-  popup(BuildContext context, String message) {
-    return Alert(
-        context: context,
-        title: message,
-        type: AlertType.success,
-        onWillPopActive: true,
-        closeIcon: Icon(
-          Icons.info,
-          color: Colors.transparent,
-        ),
-        //image: Image.asset("assets/success.png"),
-        closeFunction: () {},
-        buttons: [
-          DialogButton(
-            child: Text(
-              "OK",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            color: Color.fromRGBO(0, 179, 134, 1.0),
-            radius: BorderRadius.circular(0.0),
-          ),
-        ]).show();
   }
 
   finalFormSubmit() {
