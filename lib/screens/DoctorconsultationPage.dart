@@ -14,7 +14,9 @@ import 'package:flutter/widgets.dart';
 
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:time_picker_widget/time_picker_widget.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
@@ -27,16 +29,7 @@ import 'package:user/widgets/text_field_address.dart';
 
 import '../models/KeyvalueModel.dart';
 import '../providers/app_data.dart';
-/*class DoctorconsultationPage extends StatefulWidget {
- *//* final Function(int, bool) updateTab;
-  final bool isConfirmPage;
-  final bool isFromDash;*//*
- MainModel model;
- *//* bool isToolbarShow = true;*//*
 
-  DoctorconsultationPage(
-      {Key key,this.model})
-      : super(key: key);*/
 class DoctorconsultationPage extends StatefulWidget {
   MainModel model;
 
@@ -64,7 +57,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
+  String comeFrom;
+
   DateTime selectedDate = DateTime.now();
+  String selectedDatestr;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -76,7 +72,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   ];
 
-  TextEditingController dob = TextEditingController();
+  TextEditingController appointmentdate = TextEditingController();
   TextEditingController validitydat = TextEditingController();
   TextEditingController expdt = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
@@ -130,23 +126,33 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
-        firstDate: DateTime.now().subtract(Duration(days: 6570)),
-        lastDate: DateTime.now()); //18 years is 6570 days
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
+      selectedDatestr =  df.format(selectedDate).toString();
+      //MyWidgets.showLoading(context);
+      widget.model.GETMETHODCALL_TOKEN(
+          api: ApiFactory.AVAILABLE_DATE_CHKUP +DoctorconsultationPage.doctorModel.key+"&date="+selectedDatestr ,
+          token: widget.model.token,
+          fun: (Map<String, dynamic> map) {
+            setState(() {
+              //Navigator.of(context).pop();
 
-      switch (comeFrom) {
-        case "dob":
-          dob.value = TextEditingValue(text: df.format(selectedDate));
-          break;
-        case "validity":
-          validitydat.value = TextEditingValue(text: df.format(selectedDate));
-          break;
-        case "exptdeliveryDt":
-          expdt.value = TextEditingValue(text: df.format(selectedDate));
-          break;
-      }
+              if (map[Const.CODE] == Const.SUCCESS) {
+
+                appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
+                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+              } else {
+                //Navigator.of(context).pop();
+                appointmentdate.text=null;
+                appointmentdate.text="";
+                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+
+              }
+            });
+          });
     });
   }
 
@@ -184,6 +190,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   @override
   void initState() {
     super.initState();
+    comeFrom = widget.model.apntUserType;
    // loginResponse = widget.model.loginResponse1;
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
@@ -202,11 +209,13 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       isOffline = !hasConnection;
     });
   }
+  List<int> _availableHours = [1, 4, 6, 8, 12];
   Future<Null> _selectTime(BuildContext context,bool isIn) async {
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     );
+
     if (picked != null)
       setState(() {
         selectedTime = picked;
@@ -217,7 +226,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           validitydat.text =time;
          // dob.value = TextEditingValue(text: time.format(selectedTime));
           //(isIn)?timelist.intime=time:timelist.outtime=time;
-          /*widget.model.GETMETHODCALL(
+         /* widget.model.GETMETHODCALL(
               api:(isIn==true)? ApiFactory.EMP_ADDATTENCE +loginResponse.userData.partnerid +"&stylistId="+attendDetailModel.employeeid+"&entryexittime="+time
                   +"&status=0":ApiFactory.EMP_ADDATTENCE +loginResponse.userData.partnerid +"&stylistId="+attendDetailModel.employeeid+"&entryexittime="+time
                   +"&status=1",
@@ -242,7 +251,26 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     final format = DateFormat.jm();  //"6:00 AM"
     return format.format(dt);
   }
-
+  Future<Null> _selectTime1(BuildContext context,bool isIn) async {
+   /* showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+        allowedHours: [8,9,10,11,12, 15,16,17],
+        allowedMinutes: [0,10,20,30,40,50],
+        displayDisabledValues: true
+    );*/
+    /*showCustomTimePicker(
+    context:context,
+    // It is a must if you provide selectableTimePredicate
+    onFailValidation: (context) => print('Unavailable selection'),
+    initialTime: TimeOfDay(hour: 2, minute: 0),
+    selectableTimePredicate: (time) =>
+    time.hour > 1 &&
+    time.hour < 14 &&
+    time.minute % 10 == 0).then((time) =>
+    setState(() => selectedTime = time?.format(context)));
+*/
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -342,10 +370,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 "District",
                                 ApiFactory.DISTRICT_API + DoctorconsultationPage.stateModel.key,
                                 "district",
-                                Icons.mail,
+                                Icons.location_on_rounded,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.DISTRICT_API);
+                                print(ApiFactory.DISTRICT_API+ DoctorconsultationPage.stateModel.key);
                                 DoctorconsultationPage.distrModel= data;
 
                                 // UserSignUpForm.cityModel = null;
@@ -365,10 +393,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 "City",
                                 ApiFactory.CITY_API+ DoctorconsultationPage.distrModel.key,
                                 "city",
-                                Icons.mail,
+                                Icons.location_on_rounded,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.CITY_API);
+                                print(ApiFactory.CITY_API+ DoctorconsultationPage.distrModel.key);
                                 DoctorconsultationPage.cityModel= data;
 
                                 // UserSignUpForm.cityModel = null;
@@ -408,12 +436,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             child:
                             DropDown.networkDropdownGetpartUser(
                                 "Doctor",
-                                ApiFactory.DOCTOOR_API,
+                                ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key,
                                 "doctor",
                                 Icons.mail,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.GENDER_API);
+                                print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
                                 DoctorconsultationPage.doctorModel= data;
                                 DoctorconsultationPage.hospitalModel = null;
                                 // UserSignUpForm.cityModel = null;
@@ -422,7 +450,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             }),
                           ),
                         ):Container(),
-                        (DoctorconsultationPage.specialistModel != null)
+                        (DoctorconsultationPage.doctorModel != null)
                             ?
                         Padding(
                           padding: const EdgeInsets.symmetric(
@@ -432,12 +460,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             child:
                             DropDown.networkDropdownGetpartUser(
                                 "Hospital",
-                                ApiFactory.HOSPITAL_API,
+                                ApiFactory.HOSPITAL_API+ DoctorconsultationPage.doctorModel.key,
                                 "hospital",
-                                Icons.mail,
+                                Icons.home,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.HOSPITAL_API);
+                                print(ApiFactory.HOSPITAL_API+ DoctorconsultationPage.doctorModel.key,);
                                 DoctorconsultationPage.hospitalModel= data;
 
                                 // UserSignUpForm.cityModel = null;
@@ -445,34 +473,18 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             }),
                           ),
                         ):Container(),
-                       /* DropDown.staticDropdown(
-                            "Specialisation",
-                            "specialisation",
-                            specialisation, (KeyvalueModel model) {
-                          selectspecialisation = model;
-                        }),*/
+                        SizedBox(
+                          height: 10,
+                        ),
+                        appointdate(),
 
-                        /*DropDown.staticDropdown(
-                            "Dr.Name",
-                            "drname",
-                            drname, (KeyvalueModel model) {
-                          selectdrname = model;
-                        }),
-                        DropDown.staticDropdown(
-                            "Consultation Time",
-                            "consultationtime",
-                            consultationtime, (KeyvalueModel model) {
-                          selectconsultationtime = model;
-                        }),
-                        //comultationTime(),
-                        DropDown.staticDropdown(
-                            "Visit",
-                            "visit",
-                            visit, (KeyvalueModel model) {
-                          selectvisit = model;
-                        }),*/
+                        SizedBox(
+                          height: 10,
+                        ),
+                        comultationTime(),
+
                         fromAddress(
-                            5,
+                            1,
                             "Reason for choice of Dr",
                             TextInputAction.next,
                             TextInputType.text,
@@ -492,13 +504,13 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Buttons.nextButton(
+                          child: nextButton(),/*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
-                              context: context),
+                              context: context),*/
                         ),
                         SizedBox(
                           height: 18,
@@ -528,7 +540,110 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
-
+  Widget nextButton() {
+    return GestureDetector(
+      onTap: () {
+        //AppData.showInSnackBar(context, "Please select Title");
+        validate();
+      },
+      child: Container(
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
+        margin: EdgeInsets.only(left: 9.0, right: 9.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            "Add Appointment",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
+  validate() async {
+    _formKey.currentState.validate(
+    );
+     if (DoctorconsultationPage.countryModel == null ||
+         DoctorconsultationPage.countryModel == "") {
+      AppData.showInSnackBar(context, "Please select country");
+    }else if (DoctorconsultationPage.stateModel == null ||
+         DoctorconsultationPage.stateModel == "") {
+      AppData.showInSnackBar(context, "Please select state");
+    } else if (DoctorconsultationPage.distrModel == null ||
+         DoctorconsultationPage.distrModel == "") {
+      AppData.showInSnackBar(context, "Please select Distric");
+    }else if (DoctorconsultationPage.cityModel == null ||
+      DoctorconsultationPage.cityModel == "") {
+     AppData.showInSnackBar(context, "Please select city");
+     }else if (DoctorconsultationPage.specialistModel == null ||
+     DoctorconsultationPage.specialistModel == "") {
+     AppData.showInSnackBar(context, "Please select specialist");
+     }else if (DoctorconsultationPage.doctorModel == null ||
+         DoctorconsultationPage.doctorModel == "") {
+       AppData.showInSnackBar(context, "Please select doctor");
+     }else if (DoctorconsultationPage.hospitalModel == null ||
+         DoctorconsultationPage.hospitalModel == "") {
+       AppData.showInSnackBar(context, "Please select hospital");
+     }else if (textEditingController[3].text == "" ||
+        textEditingController[3].text == null) {
+      AppData.showInSnackBar(context, "Please enter your Age");
+      } else if (textEditingController[4].text == "" ||
+        textEditingController[4].text == null) {
+      AppData.showInSnackBar(context, "Please enter your DOB");
+    }
+    else {
+      // PatientSignupModel patientSignupModel = PatientSignupModel();
+      /* MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD(api: ApiFactory.USER_REGISTRATION, json: userModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });*/
+    }
+  }
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
   otherFormvalidate() {
     showDialog(
         context: _scaffoldKey.currentContext,
@@ -624,49 +739,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         });
   }
 
-  Widget gmailfromField(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ,@,.,0-9]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          // suffixIcon: Icon(Icons.person_rounded),
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {},
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-      ),
-    );
-  }
-  insertTable(Map<String, dynamic> row) async {
-    //final id = await dbHelper.insert(DbHelper.REG_TABLE, row);
-   // print('inserted row id: $id');
-    popup(context,
-        "You are offline! Data saved in Locally. Sync when network available in dashboard");
-    //AppData.showInSnackBar(context, "ID id:" + id.toString());
-  }
 
-  Widget nextButton() {
+  Widget nextButton1() {
     return GestureDetector(
       onTap: () {
         //personalFormValidate();
@@ -723,40 +797,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     );
   }
 
-  Widget fromField(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type) {
-    // print(index); df
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-         // suffixIcon: Icon(Icons.person_rounded),
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {},
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-      ),
-    );
-  }
+
   Widget fromAddress(int index, String hint, inputAct, keyType,
       FocusNode currentfn, FocusNode nextFn, String type) {
     return TextFieldAddress(
@@ -788,132 +829,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
-  Widget fromFieldpayment(String hint, inputAct, keyType, FocusNode currentfn,
-      FocusNode nextFn, String type, int index) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        controller: textEditingController[index],
-        //controller: ,
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          /*suffixIcon: Icon(
-            Icons.person_rounded,
-            color: Colors.transparent,
-          ),*/
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {
-          setState(() {
-            detailDoc = newValue;
-          });
-        },
-        onFieldSubmitted: (value) {
-          //print("ValueValue" + error[index].toString());
-          setState(() {
-            //error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-      ),
-    );
-  }
-  Widget fromFieldNumber(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type, int maxLength) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        //enabled: false,
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        maxLength: maxLength,
-        inputFormatters: [
-          /* MaskedTextInputFormatter(
-            mask: 'xxxx-xxxx-xxxx',
-            separator: '-',
-          ),*/
-        ],
-        textAlignVertical: TextAlignVertical.center,
-        textInputAction: inputAct,
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          counterText: '',
-          hintStyle: TextStyle(color: Colors.grey),
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            error[index] = true;
-            return null;
-          } else if (value.length != 14) {
-            error[index] = true;
-            return null;
-          } else {
-            error[index] = false;
-            return null;
-          }
-        },
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
 
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-        onSaved: (newValue) {
-          print("onsave");
-          if (type == "aadhar") {
-            // registrationModel.aadhaarNo = newValue.replaceAll("-", "");
-          }
-        },
-      ),
-    );
-  }
-
-
-
-  Widget aadharNo(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type, int maxLength) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        //enabled: !enb,
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        inputFormatters: [
-         /* MaskedTextInputFormatter(
-            mask: 'xxxx-xxxx-xxxx',
-            separator: '-',
-          ),*/
-        ],
-        textInputAction: inputAct,
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-    );
-  }
   Widget comultationTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -957,37 +873,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
-  Widget agefild(int index, String hint, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type, int maxLength) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        //enabled: !enb,
-        controller: textEditingController[3],
-        focusNode: currentfn,
-        maxLength: 3,
-
-        keyboardType: TextInputType.number,
-        textInputAction: inputAct,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          counterText: "",
-          hintStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-    );
-  }
-
-  Widget Dob() {
+  Widget appointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-        onTap: () => _selectDate(context, "dob"),
+        onTap: () => _selectDate(context, "appointdate"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1002,7 +893,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller: dob,
+              controller: appointmentdate,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               textAlignVertical: TextAlignVertical.center,
@@ -1026,8 +917,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
               },
               decoration: InputDecoration(
                 hintText: //"Last Period Date",
-                    "Data of birth",
-
+                "Appointment Date",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -1043,61 +933,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     );
   }
 
-  Widget exptdeliveryDt() {
-    return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: GestureDetector(
-        onTap: () => _selectDate(context, "exptdeliveryDt"),
-        child: AbsorbPointer(
-          child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-            // width: size.width * 0.8,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.black, width: 0.3)),
-            child: TextFormField(
-              enabled: false,
-              controller: expdt,
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              onSaved: (value) {
-                // registrationModel.dathOfBirth = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[3] = true;
-                  return null;
-                }
-                error[3] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[3] = false;
-                // print("error>>>" + error[2].toString());
 
-                setState(() {});
-                // AppData.fieldFocusChange(context, fnode4, fnode5);
-              },
-              textAlignVertical: TextAlignVertical.center,
-              decoration: InputDecoration(
-                hintText: "EXPECT_DELIVERY",
-                border: InputBorder.none,
-                suffixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+
 
   Widget updateButton() {
     return Visibility(
