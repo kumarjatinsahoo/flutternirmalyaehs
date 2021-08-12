@@ -401,31 +401,31 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[0].text== "" || textEditingController[0].text== null) {
+        if (textEditingController[8].text== "" || textEditingController[8].text== null) {
           AppData.showInSnackBar(context, "Please enter organization name");
         }
-        else if (textEditingController[2].text== "" || textEditingController[1].text== null) {
+        else if (textEditingController[9].text== "" || textEditingController[9].text== null) {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         }
-        else if (textEditingController[2].text.length <= 3) {
+        else if (textEditingController[9].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter valid Name ");
         }
-        else if (textEditingController[3].text== "" || textEditingController[1].text== null) {
+        else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
           AppData.showInSnackBar(context, "Please enter Userid");
         }
-        else if (textEditingController[3].text.length <= 3) {
+        else if (textEditingController[10].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter valid Name ");
         }
-        else if (textEditingController[4].text== "" || textEditingController[1].text== null) {
+        else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
           AppData.showInSnackBar(context, "Please enter password");
         }
-        else if (textEditingController[4].text.length <= 3) {
+        else if (textEditingController[11].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter valid password ");
         }
-        else if (textEditingController[5].text== "" || textEditingController[1].text== null) {
+        else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
           AppData.showInSnackBar(context, "Please enter confirm password");
         }
-        else if (textEditingController[5].text.length <= 3) {
+        else if (textEditingController[12].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter valid password ");
         }
 
