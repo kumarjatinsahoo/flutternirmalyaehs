@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
 
 class DasboardDoctor extends StatefulWidget {
   MainModel model;
@@ -79,9 +80,9 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () {
-                      /*Navigator.push(context,
+                      Navigator.push(context,
                           new MaterialPageRoute(
-                              builder: (context) => new Appointment()));*/
+                              builder: (context) => new Appointment1()));
                       Navigator.pushNamed(context, "/apntMange");
                     }
                 ),

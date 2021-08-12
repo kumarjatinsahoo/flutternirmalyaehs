@@ -13,7 +13,8 @@ class MyWidgets {
         children: <Widget>[
           Expanded(flex: 6, child: Text(name)),
           Expanded(flex: 1, child: Text(":")),
-          Expanded(flex: 5, child: Text(value))
+          Expanded(flex: 5, child: Text(value)),
+          Expanded(flex: 5, child: Text(value)),
         ],
       ),
     );

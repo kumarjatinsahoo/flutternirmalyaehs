@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 
 class DocWalkPatient extends StatefulWidget {
   MainModel model;
@@ -160,9 +161,17 @@ class _WalkPatient extends State<DocWalkPatient> {
                       onPressed: () async {},
                       minWidth: 350,
                       height: 40.0,
-                      child: Text(
-                        "Show EMR",
-                        style: TextStyle(color: Colors.white, fontSize: 17.0),
+                      child: GestureDetector(
+                        child: Text(
+                          "Show EMR",
+                          style: TextStyle(color: Colors.white, fontSize: 17.0),
+                        ),
+                          onTap: () async {
+                            Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new ShowEmr()));
+                          }
                       ),
                     ),
                     onTap: () async {

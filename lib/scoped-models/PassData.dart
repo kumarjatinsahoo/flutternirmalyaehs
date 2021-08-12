@@ -31,4 +31,13 @@ class PassData extends Model {
   String patienCitykey;
   String patienCitycode;
 
+  String organisationname;
+  String title;
+  String professionalname;
+  String userid;
+  String password;
+  String cnfrmpwd;
+
+  String education;
+
 }

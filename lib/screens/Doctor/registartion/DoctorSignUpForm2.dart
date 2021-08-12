@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
@@ -291,98 +292,6 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
                                         ),
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
                                       ],
                                     ),
                                   ),
@@ -404,81 +313,11 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
         )
     );
   }
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
             (KeyvalueModel model) {
           DoctorSignUpForm2.genderModel = model;
         });
-  }
-
-
-
-
-  Widget mobileNoOTPSearch() {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          //flex: 8,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 7.0, right: 0.0),
-            child: Container(
-              // padding: EdgeInsets.only(left: 2),
-              height: 50.0,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.black, width: 0.3)),
-              // decoration: BoxDecoration(
-              //     color: AppData.kPrimaryLightColor,
-              //     borderRadius: BorderRadius.circular(20),
-              //     border: Border.all(color: Colors.black, width: 0.3)),
-              child: mobileNumber(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
-
-    setState(() {
-      _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
-    });
-  }
-
-  Future getImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    //var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    var enc = await image.readAsBytes();
-
-    print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-    if (50000 < enc.length) {
-      /*AppData.showToastMessage(
-          "Please select image with maximum size 50 KB ", Colors.red);*/
-      return;
-    }
-
-    setState(() {
-      _image = image;
-
-      print('Image Path $_image');
-    });
   }
 
   Widget errorMsg(text) {
@@ -556,35 +395,78 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       ),
     );
   }
-
-
-
   Widget nextButton1() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, "/doctorsignupform3");
+    return MyWidgets.nextButton(
+      text: "NEXT".toUpperCase(),
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/patientRegistration2");
+        if (textEditingController[0].text== "" || textEditingController[0].text== null) {
+          AppData.showInSnackBar(context, "Please enter organization name");
+        }
+        else if (textEditingController[2].text== "" || textEditingController[1].text== null) {
+          AppData.showInSnackBar(context, "Please enter Professional's name");
+        }
+        else if (textEditingController[2].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid Name ");
+        }
+        else if (textEditingController[3].text== "" || textEditingController[1].text== null) {
+          AppData.showInSnackBar(context, "Please enter Userid");
+        }
+        else if (textEditingController[3].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid Name ");
+        }
+        else if (textEditingController[4].text== "" || textEditingController[1].text== null) {
+          AppData.showInSnackBar(context, "Please enter password");
+        }
+        else if (textEditingController[4].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid password ");
+        }
+        else if (textEditingController[5].text== "" || textEditingController[1].text== null) {
+          AppData.showInSnackBar(context, "Please enter confirm password");
+        }
+        else if (textEditingController[5].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid password ");
+        }
+
+        else {
+          widget.model.organisationname = textEditingController[0].text;
+          widget.model.title = textEditingController[1].text;
+          widget.model.professionalname = textEditingController[2].text;
+          widget.model.userid = textEditingController[3].text;
+          widget.model.password = textEditingController[4].text;
+          widget.model.cnfrmpwd = textEditingController[5].text;
+          Navigator.pushNamed(context, "/doctorsignupform3");
+        }
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("NEXT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
     );
+
+    // return GestureDetector(
+    //   onTap: () {
+    //
+    //     Navigator.pushNamed(context, "/doctorsignupform3");
+    //   },
+    //   child: Container(
+    //     width: MediaQuery.of(context).size.width,
+    //     margin: EdgeInsets.only(left:180, right: 0),
+    //     decoration: BoxDecoration(
+    //         color: AppData.kPrimaryColor,
+    //         borderRadius: BorderRadius.circular(10.0),
+    //         gradient: LinearGradient(
+    //             begin: Alignment.bottomRight,
+    //             end: Alignment.topLeft,
+    //             colors: [Colors.blue, AppData.kPrimaryColor])),
+    //     child: Padding(
+    //       padding:
+    //       EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+    //       child: Text(
+    //         MyLocalizations.of(context).text("NEXT"),
+    //         textAlign: TextAlign.center,
+    //         style: TextStyle(color: Colors.white, fontSize: 16.0),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
   Widget nextButton() {
@@ -615,154 +497,154 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
     );
   }
 
-  Widget mobileNumber() {
-    return Padding(
-      //padding: const EdgeInsets.all(8.0),
-      padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
-      child: Container(
-        // decoration: BoxDecoration(
-        //   color: AppData.kPrimaryLightColor,
-        //   borderRadius: BorderRadius.circular(29),
-        //   /*border: Border.all(
-        //        color: Colors.black,width: 0.3)*/
-        // ),
-        child: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: DropdownButton<String>(
-                // hint: Text("Select Device"),
-                underline: Container(
-                  color: Colors.grey,
-                ),
-                value: AppData.currentSelectedValue,
-                isDense: true,
-                onChanged: (newValue) {
-                  setState(() {
-                    AppData.currentSelectedValue = newValue;
-                  });
-                  print(AppData.currentSelectedValue);
-                },
-                items: AppData.phoneFormat.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ),
-            Container(
-              height: 35.0,
-              width: 1.0,
-              color: Colors.grey.withOpacity(0.5),
-              margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-            ),
-            new Expanded(
-              child: TextFormField(
-                enabled: widget.isConfirmPage ? false : true,
-                controller: textEditingController[4],
-                focusNode: fnode7,
-                cursorColor: AppData.kPrimaryColor,
-                textInputAction: TextInputAction.next,
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  counterText: "",
-                  hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
-                  hintStyle: TextStyle(color: Colors.grey),
-                ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    error[4] = true;
-                    return null;
-                  }
-                  error[4] = false;
-                  return null;
-                },
-                onFieldSubmitted: (value) {
-                  // print(error[2]);
-                  error[4] = false;
-                  setState(() {});
-                  AppData.fieldFocusChange(context, fnode7, fnode8);
-                },
-                onSaved: (value) {
-                  //userPersonalForm.phoneNumber = value;
-                },
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget mobileNumber() {
+  //   return Padding(
+  //     //padding: const EdgeInsets.all(8.0),
+  //     padding:
+  //     const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+  //     child: Container(
+  //       // decoration: BoxDecoration(
+  //       //   color: AppData.kPrimaryLightColor,
+  //       //   borderRadius: BorderRadius.circular(29),
+  //       //   /*border: Border.all(
+  //       //        color: Colors.black,width: 0.3)*/
+  //       // ),
+  //       child: Row(
+  //         children: <Widget>[
+  //           Padding(
+  //             padding: const EdgeInsets.only(left: 8),
+  //             child: DropdownButton<String>(
+  //               // hint: Text("Select Device"),
+  //               underline: Container(
+  //                 color: Colors.grey,
+  //               ),
+  //               value: AppData.currentSelectedValue,
+  //               isDense: true,
+  //               onChanged: (newValue) {
+  //                 setState(() {
+  //                   AppData.currentSelectedValue = newValue;
+  //                 });
+  //                 print(AppData.currentSelectedValue);
+  //               },
+  //               items: AppData.phoneFormat.map((String value) {
+  //                 return DropdownMenuItem<String>(
+  //                   value: value,
+  //                   child: Text(value),
+  //                 );
+  //               }).toList(),
+  //             ),
+  //           ),
+  //           Container(
+  //             height: 35.0,
+  //             width: 1.0,
+  //             color: Colors.grey.withOpacity(0.5),
+  //             margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+  //           ),
+  //           new Expanded(
+  //             child: TextFormField(
+  //               enabled: widget.isConfirmPage ? false : true,
+  //               controller: textEditingController[4],
+  //               focusNode: fnode7,
+  //               cursorColor: AppData.kPrimaryColor,
+  //               textInputAction: TextInputAction.next,
+  //               maxLength: 10,
+  //               keyboardType: TextInputType.number,
+  //               decoration: InputDecoration(
+  //                 border: InputBorder.none,
+  //                 counterText: "",
+  //                 hintText:
+  //                 MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+  //                 hintStyle: TextStyle(color: Colors.grey),
+  //               ),
+  //               validator: (value) {
+  //                 if (value.isEmpty) {
+  //                   error[4] = true;
+  //                   return null;
+  //                 }
+  //                 error[4] = false;
+  //                 return null;
+  //               },
+  //               onFieldSubmitted: (value) {
+  //                 // print(error[2]);
+  //                 error[4] = false;
+  //                 setState(() {});
+  //                 AppData.fieldFocusChange(context, fnode7, fnode8);
+  //               },
+  //               onSaved: (value) {
+  //                 //userPersonalForm.phoneNumber = value;
+  //               },
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget dob() {
-    return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-        onTap: () => widget.isConfirmPage ? null : _selectDate(context),
-        child: AbsorbPointer(
-          child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            // width: size.width * 0.8,
-            decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
-                // border: Border.all(color: Colors.black, width: 0.3)
-              ),
-            ),
-            child: TextFormField(
-              focusNode: fnode3,
-              enabled: !widget.isConfirmPage ? false : true,
-              controller: textEditingController[2],
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              onSaved: (value) {
-                //userPersonalForm.dob = value;
-                selectDob = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[2] = true;
-                  return null;
-                }
-                error[2] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[2] = false;
-                // print("error>>>" + error[2].toString());
-
-                setState(() {});
-                AppData.fieldFocusChange(context, fnode3, fnode4);
-              },
-              decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
-                border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget dob() {
+  //   return Padding(
+  //     //padding: const EdgeInsets.symmetric(horizontal: 8),
+  //     padding: const EdgeInsets.symmetric(horizontal: 0),
+  //     child: GestureDetector(
+  //       onTap: () => widget.isConfirmPage ? null : _selectDate(context),
+  //       child: AbsorbPointer(
+  //         child: Container(
+  //           // margin: EdgeInsets.symmetric(vertical: 10),
+  //           height: 45,
+  //           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+  //           // width: size.width * 0.8,
+  //           decoration: BoxDecoration(
+  //             // color: AppData.kPrimaryLightColor,
+  //             // borderRadius: BorderRadius.circular(29),
+  //             border: Border(
+  //               bottom: BorderSide(
+  //                 width: 2.0,
+  //                 color: Colors.grey,
+  //               ),
+  //               // border: Border.all(color: Colors.black, width: 0.3)
+  //             ),
+  //           ),
+  //           child: TextFormField(
+  //             focusNode: fnode3,
+  //             enabled: !widget.isConfirmPage ? false : true,
+  //             controller: textEditingController[2],
+  //             keyboardType: TextInputType.datetime,
+  //             textAlign: TextAlign.left,
+  //             onSaved: (value) {
+  //               //userPersonalForm.dob = value;
+  //               selectDob = value;
+  //             },
+  //             validator: (value) {
+  //               if (value.isEmpty) {
+  //                 error[2] = true;
+  //                 return null;
+  //               }
+  //               error[2] = false;
+  //               return null;
+  //             },
+  //             onFieldSubmitted: (value) {
+  //               error[2] = false;
+  //               // print("error>>>" + error[2].toString());
+  //
+  //               setState(() {});
+  //               AppData.fieldFocusChange(context, fnode3, fnode4);
+  //             },
+  //             decoration: InputDecoration(
+  //               hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+  //               border: InputBorder.none,
+  //               //contentPadding: EdgeInsets.symmetric(vertical: 10),
+  //               prefixIcon: Icon(
+  //                 Icons.calendar_today,
+  //                 size: 18,
+  //                 color: AppData.kPrimaryColor,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget continueButton() {
     return InkWell(
@@ -789,37 +671,30 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
 
     if (error[0] == true) {
       AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_FIRST_NAME"));
+          context, MyLocalizations.of(context).text("PLEASE_ENTER_ORGANISATION_NAME"));
       FocusScope.of(context).requestFocus(fnode1);
     } else if (error[1] == true) {
       AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
-      FocusScope.of(context).requestFocus(fnode2);
+          context, MyLocalizations.of(context).text("PLEASE_ENTER_PROFESSIOAL _NAME"));
+      FocusScope.of(context).requestFocus(fnode3);
     } else if (DoctorSignUpForm2.genderModel == null || DoctorSignUpForm2.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
-      FocusScope.of(context).requestFocus(fnode4);
+      FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[5].text == '') {
       AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_AADHAAR_NUMBER"));
+          MyLocalizations.of(context).text("PLEASE_ENTER_USER_ID"));
       FocusScope.of(context).requestFocus(fnode4);
     } else if (error[3] == true) {
       AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_FATHER_NAME"));
-      FocusScope.of(context).requestFocus(fnode6);
+          MyLocalizations.of(context).text("PLEASE_ENTER_PASSWORD"));
+      FocusScope.of(context).requestFocus(fnode5);
     } else if (error[2] == true) {
       AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_DOB"));
-      FocusScope.of(context).requestFocus(fnode3);
-    } else if (error[4] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode7);
-    } else if (DoctorSignUpForm2.districtModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (DoctorSignUpForm2.blockModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
-    } else {
+          context, MyLocalizations.of(context).text("PLEASE_ENTER_CONFIRM_PASSWORD"));
+      FocusScope.of(context).requestFocus(fnode6);
+    }
+     else {
       _formKey.currentState.save();
 
       if (isOnline) {
