@@ -123,13 +123,13 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
 
   POSTMETHOD(
       {@required String api,
-      @required Map<String, dynamic> json,
-      @required Function fun}) async {
+        @required Map<String, dynamic> json,
+        @required Function fun}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
     print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
         JsonEncoder().convert(json).toString());
     try {
-      Response response = await dio.post(api,data: FormData.fromMap(json));
+      Response response = await dio.post(api, data: jsonEncode(json));
       if (response.statusCode == 200) {
         try {
           print("RESPONSE CALL>>>>" +
@@ -156,7 +156,8 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
       }
     }
   }
-POSTMETHOD_TOKEN(
+
+  POSTMETHOD_TOKEN(
       {@required String api,
       @required Map<String, dynamic> json,
       @required Function fun,String token}) async {

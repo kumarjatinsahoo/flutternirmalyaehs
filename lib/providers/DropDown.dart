@@ -1215,19 +1215,35 @@ class DropDown {
         );
         var list;
         switch (callFrom) {
-          case "state":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "city":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "gender":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "hospital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "doctor":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
+
 
         return list;
       },
@@ -1238,7 +1254,76 @@ class DropDown {
     );
 
   }
+  static staticDropdown5(String label, String callFrom,
+      List<KeyvalueModel> list,Function fun) {
+    return newContainer(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      label: label,
+      showSearchBox: true,
+      //items: maritalStatus,
+      selectedItem: getData(callFrom),
+      items: list,
 
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+        switch (callFrom) {
+          case "district":
+            selectedKey = data;
+
+            break;
+          case "block":
+            selectedKey1 = data;
+
+            break;
+          case "gender":
+            gender = data;
+            break;
+            break;
+          case "admissioncenter":
+            gender = data;
+            break;
+          case "risk":
+            gender = data;
+            break;
+
+
+        }
+        //selectbank = data;
+
+      },
+    ));
+  }
 
   static networkDropdownGetpart4(
       String label, final String API, String callFrom, Function fun) {

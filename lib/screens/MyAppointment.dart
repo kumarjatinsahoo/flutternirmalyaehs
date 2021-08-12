@@ -25,15 +25,53 @@ class _MyAppointmentState extends State<MyAppointment> {
   @override
   Widget build(BuildContext context) {
      Size size = MediaQuery.of(context).size;
-    return SafeArea(
+    return DefaultTabController(
+      length: 4,
+      initialIndex: 0,
       child: Scaffold(
-       /* floatingActionButton: FloatingActionButton(
+        appBar: AppBar(
+          title: Text("My Appointment"),
+          titleSpacing: 0.0,
+          backgroundColor: AppData.kPrimaryColor,
+          centerTitle: true,
+          //iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+          bottom: TabBar(
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorColor: Colors.orangeAccent,
+            isScrollable: true,
+            dragStartBehavior:DragStartBehavior.down,
+            tabs: [
+              Tab(text: /*"Confirmed"*/"COFIRMED",),
+              Tab(text: /*"Requested"*/"REQUESTED",),
+              Tab(text: /*"Cancelled"*/"CANCELLED",),
+              Tab(text: /*"Treated"*/"TREATED",),
+            ],
+          ),
+          //title: Text(widget.model.saloonName),
+
+        ),
+        body: TabBarView(
+          children: [
+            MyAppointmentConfirmed(),
+            MyAppointmentRequested(),
+            MyAppointmentCancle(),
+            MyAppointmentTreated(),
+            /*SalaryProcessPage(model:widget.model,),
+            SalaryStatementPage1(model: widget.model,),
+            SalaryReportPage(model: widget.model,)*/
+          ],
+        ),
+      ),
+    );
+    /*SafeArea(
+      child: Scaffold(
+       *//* floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: Icon(Icons.add, color: Colors.white, size: 29,),
           backgroundColor: AppData.kPrimaryColor,
           elevation: 5,
           splashColor: Colors.grey,
-        ),*/
+        ),*//*
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -45,15 +83,16 @@ class _MyAppointmentState extends State<MyAppointment> {
           ),
           backgroundColor: AppData.kPrimaryColor,
           centerTitle: true,
+
           // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               child: Column(
                 children: [
-                  /*Padding(
+                  *//*Padding(
                     padding: const EdgeInsets.only(top:0.0,bottom: 0.0,left: 0.0, right: 0.0),
                     child: Container(
                       // height: 100,
@@ -68,9 +107,9 @@ class _MyAppointmentState extends State<MyAppointment> {
                       ),                    
                       child:  Padding(
                         padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
-                        child: *//*Row(
+                        child: *//**//*Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [*//*
+                          children: [*//**//*
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,21 +143,22 @@ class _MyAppointmentState extends State<MyAppointment> {
                               ],
                             ),
 
-                        *//*  ],
-                        ),*//*
+                        *//**//*  ],
+                        ),*//**//*
                       ),
                     ),
-                  ),*/
+                  ),*//*
                   SizedBox(height: size.height * 0.02,),
                   DefaultTabController(
+                     //isScrollable: true,
                       length: 4,
                       initialIndex: 0,
                       child: Column(
                         children: [
-                          TabBar(tabs: [Text('CONFIRMED',style: TextStyle(color: Colors.black)),
-                            Text('REQUESTED',style: TextStyle(color: Colors.black)),
-                            Text('CANCELLED',style: TextStyle(color: Colors.black)),
-                            Text('TREATED',style: TextStyle(color: Colors.black)),
+                          TabBar(tabs: [Text('Confirmed',style: TextStyle(color: Colors.black)),
+                            Text('Requested',style: TextStyle(color: Colors.black)),
+                            Text('Cancelled',style: TextStyle(color: Colors.black)),
+                            Text('Treated',style: TextStyle(color: Colors.black)),
                           ]),
                           //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                           Container(
@@ -132,8 +172,8 @@ class _MyAppointmentState extends State<MyAppointment> {
                                 ],
                               ))],
                       ))
-                /*  SizedBox(height: size.height * 0.02,),*/
-                  /*TabBar(
+                *//*  SizedBox(height: size.height * 0.02,),*//*
+                  *//*TabBar(
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicatorColor: Colors.orangeAccent,
                     isScrollable: false,
@@ -143,21 +183,21 @@ class _MyAppointmentState extends State<MyAppointment> {
                       Tab(text: "STATEMENT",),
                       Tab(text: "REPORTS",),
                     ],
-                  ),*/
-                  /*TabBarView(
+                  ),*//*
+                  *//*TabBarView(
                     children: [
                       rowValue(),
                       rowValue(),
                       rowValue(),
                     ],
-                  ),*/
+                  ),*//*
                 ],
               ),
             ),
           ),
         ),
       ),
-    );
+    );*/
   }
   Widget rowValue() {
     return  Container(
