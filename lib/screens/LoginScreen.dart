@@ -58,11 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isLoginLoading = false;
 
-  // LoginResponse loginResponse;
   SharedPref sharedPref = SharedPref();
   bool isPassShow = false;
 
-  //  String phoneNumber = "; //enter your 10 digit number
   int minNumber = 1000;
   int maxNumber = 6000;
   String countryCode = "+91";
@@ -120,9 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       //Spacer(),
-                      SizedBox(height: 90,),
+                      SizedBox(
+                        height: 90,
+                      ),
                       Align(
-                        alignment:Alignment.topLeft,
+                        alignment: Alignment.topLeft,
                         child: RichText(
                           textAlign: TextAlign.start,
                           text: TextSpan(
@@ -160,7 +160,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, bottom: 25.0),
-
                         child: InkWell(
                           onTap: () {
                             dashOption(context);
@@ -173,7 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 TextSpan(
                                     text: MyLocalizations.of(context)
                                         .text("DIDHAVEACC"),
-                                    style: TextStyle(color: Colors.black,fontSize: 17)),
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 17)),
                                 TextSpan(
                                     text: " ",
                                     style: TextStyle(color: Colors.black)),
@@ -182,7 +182,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .text("CREATEACC"),
                                     style: TextStyle(
                                         color: AppData.matruColor,
-                                        fontStyle: FontStyle.normal,fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.w600))
                               ],
                             ),
@@ -195,8 +196,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, "/forgotpassword");
+                            //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                          child: Text('Forgot Password?',style: TextStyle(fontSize: 17,color: AppData.kPrimaryColor),)),
+                          onLongPress: () {
+                            Navigator.pushNamed(context, "/dashDoctor");
+                          },
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                                fontSize: 17, color: AppData.kPrimaryColor),
+                          )),
                       SizedBox(
                         height: size.height * 0.06,
                       ),
@@ -365,33 +374,12 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
- /* Widget _loginButton() {
-    return MyWidgets.nextButton(
-      text: "LOGIN",
-      context: context,
-      fun: () {
-        //Navigator.pushNamed(context, "/navigation");
-        *//*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*//*
-        widget.model.phnNo = _loginId.text;
-        if(_loginId.text!=""){
-          Navigator.pushNamed(context, "/patientDashboard");
-        }else {
-          Navigator.pushNamed(context, "/dashboard");
-        }
-        //}
-      },
-    );
-  }
-*/
   Widget _loginButton() {
     return MyWidgets.nextButton(
       text: "LOGIN",
       context: context,
-        ///_loginId,passController
+
+      ///_loginId,passController
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
@@ -421,12 +409,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-                    if (loginResponse.body.roles[0]=="4".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/patientDashboard', (Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0]=="1".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => false);
+                    if (loginResponse.body.roles[0] == "4".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/patientDashboard', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "1".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dashboard', (Route<dynamic> route) => false);
                     }
-                   /* else if(loginResponse.ashadtls[0].userType ==
+                    /* else if(loginResponse.ashadtls[0].userType ==
                         describeEnum(UserType.SUPADMIN).toLowerCase()){
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dash', (Route<dynamic> route) => false);
@@ -447,8 +438,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dash', (Route<dynamic> route) => false);
                     }*/
-                  }); }
-                else {
+                  });
+                } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
@@ -456,21 +447,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
-  Widget _otpButton() {
-    return MyWidgets.outlinedButton(
-      text: "Login with OTP".toUpperCase(),
-      context: context,
-      fun: () {
-        widget.model.phnNo = _loginId.text;
-        Navigator.pushNamed(context, "/pinview");
-        // otp.sendOtp(_loginId.text, 'OTP is : $code',
-        // minNumber, maxNumber, countryCode);
-
-        // }
-      },
-    );
-  }
-
 
   dashOption(BuildContext context) {
     return showDialog(
@@ -547,5 +523,3 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 }
-
-

@@ -10,28 +10,22 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
 
-import '../../localization/localizations.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
+import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
 
+
+enum gender{
+  Male,
+  Female,
+}
 // ignore: must_be_immutable
+class DoctorSignUpForm5 extends StatefulWidget {
 
-enum Organization {
-  Doctor,
-  Pharmacist,
-  Pathologist,
-  Receptionist,
-  Hospital,
-  Pharmacy,
-  PathologyLab,
-}
-enum Individual{
-  User,
-}
-class DoctorSignUpForm extends StatefulWidget {
-  final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
   final bool isFromDash;
@@ -39,26 +33,20 @@ class DoctorSignUpForm extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel bloodgroupModel=null;
 
-  DoctorSignUpForm({
+  DoctorSignUpForm5({
     Key key,
-    @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
     this.model,
   }) : super(key: key);
 
   @override
-  DoctorSignUpFormState createState() => DoctorSignUpFormState();
-
+  DoctorSignUpForm5State createState() => DoctorSignUpForm5State();
 }
 
-class DoctorSignUpFormState extends State<DoctorSignUpForm> {
-
-  Organization org = Organization.Doctor;
-  Individual indi = Individual.User;
-
-
+class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -141,22 +129,9 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> genderList = [
-    KeyvalueModel(name: "Male", key: "1"),
-    KeyvalueModel(name: "Female", key: "2"),
-    KeyvalueModel(name: "Transgender", key: "3"),
-  ];
-  List<KeyvalueModel> districtList = [
-    KeyvalueModel(name: "india", key: "1"),
-
-  ];
-
   @override
   void initState() {
     super.initState();
-    DoctorSignUpForm.districtModel = null;
-    DoctorSignUpForm.blockModel = null;
-    DoctorSignUpForm.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -183,10 +158,11 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
           body: Container(
             child: Column(
               children: [
-               Container(
+                Container(
                   color: AppData.kPrimaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only( left:15.0,right: 15.0),
+
                     child: Row(
                       children: [
                         InkWell(
@@ -232,243 +208,46 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 20,
+                                  height: 10,
                                 ),
-                                Form(
+                                Card(
                                   key: _formKey,
-                                  autovalidate: _autovalidate,
+                                  // autovalidate: _autovalidate,
                                   child: Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Row(
+                                        Column(
                                           children: [
-                                            Icon(Icons.supervised_user_circle_rounded),
-                                            Text("Individual",style: TextStyle(fontSize: 20),),
+                                            Text(" Welcome to eHealthSystem",
+                                              style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
                                           ],
                                         ),
-
-                                        Row(
+                                        SizedBox(height: 5,),
+                                        Column(
                                           children: [
-                                            Radio(
-                                              value: Individual.User,
-                                              groupValue: indi,
-                                              onChanged: (Individual indi) {
-                                                setState(() {
-                                                  this.indi = indi;
-                                                });
-                                              },
-                                            ),
-                                            Text("User"),
+                                            Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
+                                                "Your document verification process started now . Verification will be"
+                                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
+                                              style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
                                           ],
-                                        ),
-
-                                        Row(
-                                          children: [
-                                            Icon(Icons.supervised_user_circle),
-                                            Text("  Professional/Organization",style: TextStyle(fontSize: 20),),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Doctor,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Doctor"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pharmacist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pharmacist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pathologist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pathologist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Receptionist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Receptionist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Hospital,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Hospital"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pharmacy,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pharmacy"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.PathologyLab,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("PathologyLab"),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
+                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          child: home(),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
                                       ],
                                     ),
                                   ),
                                 )
                               ],
                             ),
+                            SizedBox(height: 10,),
                           ],),
                       ),
                     ],
@@ -477,20 +256,9 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
               ],
             ),
           ),
-
-
         )
     );
   }
-  Widget gender() {
-    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          DoctorSignUpForm.genderModel = model;
-        });
-  }
-
-
-
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -627,12 +395,10 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
     );
   }
 
-
-
-  Widget nextButton1() {
+  Widget home() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/doctorsignupform2");
+        Navigator.pushNamed(context, "/dashboard");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -648,7 +414,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("NEXT"),
+            MyLocalizations.of(context).text("HOME"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -772,23 +538,22 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
+            //height: 45,
             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            alignment: Alignment.center,
             // width: size.width * 0.8,
             decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                width: 0.3,
+                color: Colors.grey[800],
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
@@ -817,6 +582,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                 setState(() {});
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
+              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
                 hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
                 border: InputBorder.none,
@@ -865,7 +631,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (DoctorSignUpForm.genderModel == null || DoctorSignUpForm.genderModel == "") {
+    } else if (DoctorSignUpForm5.genderModel == null || DoctorSignUpForm5.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -885,9 +651,9 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (DoctorSignUpForm.districtModel == null) {
+    } else if (DoctorSignUpForm5.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (DoctorSignUpForm.blockModel == null) {
+    } else if (DoctorSignUpForm5.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -997,39 +763,5 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
       ),
     );
   }
-
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
-
 
 }
