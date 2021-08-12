@@ -105,7 +105,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                   shrinkWrap: true,
                       children: [
                             Padding(
-                                  padding: const EdgeInsets.only(left:5.0, right: 5.0,),
+                                  padding: const EdgeInsets.only(left:0.0, right: 0.0,),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [    
@@ -114,12 +114,11 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                          shrinkWrap: true,
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
-
                                            Card(
                                              elevation: 5,
                                              child: Container(
                                                  height: 120,
-                                                 width: double.maxFinite,
+                                                 //width: double.maxFinite,
                                                  decoration: BoxDecoration(
                                                      color: Colors.white,
                                                      border: Border.all(
@@ -174,7 +173,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                              elevation: 5,
                                              child: Container(
                                                  height: 120,
-                                                 width: double.maxFinite,
+                                                 //width: double.maxFinite,
                                                  decoration: BoxDecoration(
                                                      color: Colors.white,
                                                      border: Border.all(
@@ -182,7 +181,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                      ),
                                                      borderRadius: BorderRadius.circular(8)),
                                                  child: Padding(
-                                                   padding: const EdgeInsets.all(10.0),
+                                                   padding: const EdgeInsets.all(10),
                                                    child: Row(
                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                      children: [
@@ -226,175 +225,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                            ),
                                          ],
                                        ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Confirmed',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Confirmed',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-                                      Card(
-                                        elevation: 5,
-                                        child: Container(
-                                            height: 120,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border.all(
-                                                  color: Colors.grey[300],
-                                                ),
-                                                borderRadius: BorderRadius.circular(8)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child:  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('Dr.Maya Tulple',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                        SizedBox(height: 5,),
-                                                        Text('Gen Physician' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                        SizedBox(height: 5,),
-                                                        Text("Patient Notes:Lorem ipsum dolor"
-                                                            "Consectetar adipisicing elit" ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-                                                      ],
-                                                    ),),
-                                                  /*new Spacer(),*/
-                                                  Padding(
-                                                    padding: const EdgeInsets.only( top: 15.0,),
-                                                    child: Column(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                                      children: [
-                                                        Text('Confirmed',
-                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                        SizedBox(height: 3,),
-                                                        Text('23-Nov-2020-11:30AM' ,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(),),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ),
-          
-           SizedBox(height: 10,),
-            
-         
-         
-                                 
-                                  ],),
+                                      SizedBox(height: 10,),
+                                    ],),
                                 ),
                               ],
                 ),

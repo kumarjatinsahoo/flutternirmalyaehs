@@ -5,12 +5,20 @@ class ApiFactory {
   static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
  // static String MAIN_URLlocal = "http://192.168.29.108:8062/nirmalyaRest/api/";
 
-  static String STATE_API = MAIN_URL + 'get-country-list';
+  static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
 
-  static String CITY_API = MAIN_URL + 'get-state-list?country=';
+  static String STATE_API = MAIN_URL + 'get-state-list?country=';
+  static String DISTRICT_API = MAIN_URL + 'get-district-list?state=26';
+  static String CITY_API = MAIN_URL + 'get-city-list?district=259';
+  static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
+  static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=17&city=2694';
+  static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=5';
+
+
+
 
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";

@@ -98,13 +98,17 @@ import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
+import 'package:user/screens/labrotry/LabSignUpForm.dart';
+import 'package:user/screens/labrotry/LabSignUpForm2.dart';
+import 'package:user/screens/labrotry/LabSignUpForm3.dart';
+import 'package:user/screens/labrotry/LabSignUpForm4.dart';
+import 'package:user/screens/DoctorconsultationPage.dart';
 import 'package:user/screens/splash.dart';
 import 'package:user/screens/DiscountOffer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'localization/application.dart';
 import 'localization/initialize_i18n.dart';
 import 'localization/localizations.dart';
@@ -472,6 +476,10 @@ class _MyAppState extends State<MyApp> {
               '/printRep': (context) => PrintReportWebView(
                     model: _model,
                   ),
+              '/doctorconsultationPage': (context) =>DoctorconsultationPage(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

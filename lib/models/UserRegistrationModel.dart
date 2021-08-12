@@ -83,7 +83,6 @@ class UserRegistrationModel{
       countryCode,
       stateCode,
       dob,profileImageType;
-
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -137,9 +136,8 @@ class UserRegistrationModel{
       "stateCode": this.stateCode,
       "countryCode": this.countryCode,
       "profileImageType": this.profileImageType,
-      "profileImage":[this.profileImage]
+      "profileImage":[this.profileImage??'']
     };
-
     return param;
   }
   @override
