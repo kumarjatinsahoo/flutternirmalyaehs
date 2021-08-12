@@ -18,6 +18,7 @@
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
   "SELECT_GENDER": "Gender",
+  "UPDATE": "Update",
   "SELECT_MARITAL_STATUS": "Marital status",
   "SELECT_AGE_PROOF_TYPR": "Age proof type",
   "FATHER_HUSBAND_NAME": "Father's/Husband's Name",

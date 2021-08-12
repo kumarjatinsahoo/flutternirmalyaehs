@@ -1,13 +1,27 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/PatientListModel.dart';
+import 'package:user/models/PatientProfileModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
+  final bool isConfirmPage;
 
-  ProfileScreen({Key key, this.model}) : super(key: key);
+
+  ProfileScreen({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -19,16 +33,75 @@ final List<Tab> myTabs = <Tab>[
 ];
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   LoginResponse1 loginResponse1;
+  File pathUsr = null;
+  String today;
+  String comeFrom;
+  bool isDataNotAvail = false;
+  PatientProfileModel patientProfileModel;
+  String base64Img;
+  String valueText = null;
+  File _camImage;
+  String imgValue;
+  String selectDob;
+  final df = new DateFormat('dd/MM/yyyy');
+  DateTime selectedDate = DateTime.now();
+
+  List<TextEditingController> textEditingController = [
+  new TextEditingController(),
+  new TextEditingController(),
+  new TextEditingController(),
+  new TextEditingController(),
+  ];
+
+  List<bool> error = [false, false, false, false, false, false];
+
+  FocusNode fnode1 = new FocusNode();
+  FocusNode fnode2 = new FocusNode();
+  FocusNode fnode3 = new FocusNode();
+  FocusNode fnode4 = new FocusNode();
+  FocusNode fnode5 = new FocusNode();
+
+
+  TextEditingController _fullname = TextEditingController();
+  TextEditingController _dob = TextEditingController();
+  TextEditingController _bloodGroup = TextEditingController();
+  TextEditingController _id = TextEditingController();
+  TextEditingController _gender = TextEditingController();
+  TextEditingController _mobile = TextEditingController();
+  TextEditingController _eName = TextEditingController();
+  TextEditingController _eRelation = TextEditingController();
+  TextEditingController _eMobile = TextEditingController();
+  TextEditingController _fDoctor = TextEditingController();
+  TextEditingController _speciality = TextEditingController();
+  TextEditingController _docMobile = TextEditingController();
+  TextEditingController _profileImage = TextEditingController();
+  //TextEditingController _profileImage = TextEditingController();
+ // TextEditingController _profileImage = TextEditingController();
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loginResponse1=widget.model.loginResponse1;
-  }
+    // comeFrom = widget.model.apntUserType;
+    loginResponse1 = widget.model.loginResponse1;
 
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.PATIENT_PROFILE,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              patientProfileModel = PatientProfileModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +138,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding: const EdgeInsets.only(
                         top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
                     child: Container(
-                      // height: 100,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -76,20 +148,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             left: 20.0, right: 20, top: 10, bottom: 10),
-                        child:
-                            /*Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [*/
-                            Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(height: 30,),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: (){
+                                    _displayTextInputDialog(context);
+                                  },
+                                    child: Icon(Icons.edit,color: Colors.white,)
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
                             Container(
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(55),
-                                  child: Image.asset(
-                                    'assets/images/user.png',
+                                  child: Image.network(
+                                    patientProfileModel
+                                            ?.body?.profileImageName ??
+                                        AppData.defaultImgUrl,
                                     // height: 95,
                                     height: size.height * 0.12,
                                     width: size.width * 0.22,
@@ -99,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: size.height * 0.04,
                             ),
                             Text(
-                              loginResponse1.body.userName,
+                              patientProfileModel?.body?.fullName ?? "N/A",
                               style:
                                   TextStyle(fontSize: 18, color: Colors.white),
                             ),
@@ -108,9 +192,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ],
                         ),
-
-                        /*  ],
-                        ),*/
                       ),
                     ),
                   ),
@@ -156,7 +237,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     )
             ),*/
                   /**/
-
                   DefaultTabController(
                       length: 3,
                       initialIndex: 0,
@@ -182,25 +262,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ))
                         ],
                       ))
-                  /*  SizedBox(height: size.height * 0.02,),*/
-                  /*TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.orangeAccent,
-                    isScrollable: false,
-                    dragStartBehavior:DragStartBehavior.down,
-                    tabs: [
-                      Tab(text: "PROCESS",),
-                      Tab(text: "STATEMENT",),
-                      Tab(text: "REPORTS",),
-                    ],
-                  ),*/
-                  /*TabBarView(
-                    children: [
-                      rowValue(),
-                      rowValue(),
-                      rowValue(),
-                    ],
-                  ),*/
                 ],
               ),
             ),
@@ -221,19 +282,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /*Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                */ /* Image.asset('assets/images/edit.png',
-                  color: Colors.grey[700],
-                )*/ /*
-
-              ],
-            ),
-          ),*/
           Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
             child: Row(
@@ -247,7 +295,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  '30-Jul-2019',
+                  patientProfileModel?.body?.dob ?? "N/A",
                   style: TextStyle(
                       // fontWeight: FontWeight.w500,
                       // color: Colors.black54,
@@ -271,7 +319,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'unknown',
+                  patientProfileModel?.body?.bloodGroup??"N/A",
                   style: TextStyle(
                       //fontWeight: FontWeight.w500,
                       ),
@@ -294,7 +342,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  '009167445576779889',
+                  patientProfileModel?.body?.id ?? "N/A",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     // color: AppData.kPrimaryColor,
@@ -317,10 +365,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Male',
+                  patientProfileModel?.body?.gender ?? "N/A",
                   style: TextStyle(
-                      //fontWeight: FontWeight.w500,
-                      // color: AppData.kPrimaryColor,
                       ),
                 ),
               ],
@@ -340,7 +386,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'N/A',
+                  patientProfileModel?.body?.mobile ?? "N/A",
                   style: TextStyle(
                       //fontWeight: FontWeight.w500,
                       // color: AppData.kPrimaryColor,
@@ -366,19 +412,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /* Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                */ /* Image.asset('assets/images/edit.png',
-                  color: Colors.grey[700],
-                )*/ /*
-
-              ],
-            ),
-          ),*/
           Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
             child: Row(
@@ -392,7 +425,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Mr.abc',
+                  patientProfileModel?.body?.eName ?? "N/A",
                   style: TextStyle(
                       // fontWeight: FontWeight.w500,
                       // color: Colors.black54,
@@ -416,7 +449,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Friend',
+                  patientProfileModel?.body?.eRelation??"N/A",
                   style: TextStyle(
                       //fontWeight: FontWeight.w500,
                       ),
@@ -439,7 +472,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  '2345688999',
+                  patientProfileModel?.body?.eMobile ?? "N/A",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     // color: AppData.kPrimaryColor,
@@ -490,7 +523,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Dr.abc',
+                  patientProfileModel?.body?.fDoctor ?? "N/A",
                   style: TextStyle(
                       // fontWeight: FontWeight.w500,
                       // color: Colors.black54,
@@ -514,7 +547,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Dental Pedodontia',
+                  patientProfileModel?.body?.speciality??"N/A",
                   style: TextStyle(
                       //fontWeight: FontWeight.w500,
                       ),
@@ -537,7 +570,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  '2345688999',
+                  patientProfileModel?.body?.docMobile ?? "N/A",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     // color: AppData.kPrimaryColor,
@@ -550,4 +583,400 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                Future getCerificateImage() async {
+                  var image =
+                  await ImagePicker.pickImage(source: ImageSource.gallery);
+                  var enc = await image.readAsBytes();
+                  String _path = image.path;
+
+                  String _fileName =
+                  _path != null ? _path.split('/').last : '...';
+                  var pos = _fileName.lastIndexOf('.');
+                  String extName =
+                  (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+                  setState(() => _camImage = image);
+                  base64Img = base64Encode(enc);
+                }
+
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 110.0,
+                        child: Center(
+                          child: Container(
+                            height: 110.0,
+                            width: 110.0,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    child: _camImage != null
+                                        ? Image.file(
+                                      _camImage,
+                                      height: 110,
+                                      width: 110,
+                                      fit: BoxFit.cover,
+                                    )
+                                        : Image.network(
+                                        imgValue ?? AppData.defaultImgUrl,
+                                        height: 140)),
+                                Positioned(
+                                  child: InkWell(
+                                    onTap: () {
+                                      //getCameraImage();
+                                      //showDialog();
+                                      //_settingModalBottomSheet(context);
+                                      getCerificateImage();
+                                    },
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.black,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  bottom: 3,
+                                  right: 12,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _fullname,
+                        decoration: InputDecoration(hintText: "First Name"),
+                      ), TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _fullname,
+                        decoration: InputDecoration(hintText: "Last Name"),
+                      ),
+                      dob(),
+
+                      DropDown.networkDropdown("Blood Group", ApiFactory.BLOODGROUP_API,"bloodgroup"),
+
+                      Divider(height: 2,color: Colors.black,),
+                      // TextField(
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       valueText = value;
+                      //     });
+                      //   },
+                      //   controller: _bloodGroup,
+                      //   decoration: InputDecoration(hintText: "Blood Group"),
+                      // ),
+                      DropDown.networkDropdown("Gender", ApiFactory.GENDER_API,"gender"),
+                      Divider(height: 2,color: Colors.black,),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _mobile,
+                        decoration: InputDecoration(hintText: "Mobile No"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _eName,
+                        decoration: InputDecoration(hintText: "Emergency Contact Name"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _eRelation,
+                        decoration: InputDecoration(hintText: "Relation"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _eMobile,
+                        decoration: InputDecoration(hintText: "Emergency Contact NO"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _fDoctor,
+                        decoration: InputDecoration(hintText: "Family Doctor's Name"),
+                      ),
+                      // TextField(
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       valueText = value;
+                      //     });
+                      //   },
+                      //   controller: _speciality,
+                      //   decoration: InputDecoration(hintText: "Speciality"),
+                      // ),
+                      DropDown.networkDropdown("Speciality", ApiFactory.SPECIALITY_API,"speciality"),
+                      Divider(height: 2,color: Colors.black,),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
+                        controller: _docMobile,
+                        decoration: InputDecoration(hintText: " Doctors Mobile No"),
+                      ),
+
+
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text('CANCEL', style: TextStyle(color: Colors.grey)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                onPressed: () {
+                  AppData.showInSnackBar(context, "click");
+                  setState(() {
+                    /*codeDialog = valueText;
+                    Navigator.pop(context);*/
+                    if (_fullname.text == null || _fullname.text == "") {
+                      AppData.showInSnackBar(context, "Please enter name");
+                    } else if (_bloodGroup.text == null || _bloodGroup.text == "") {
+                      AppData.showInSnackBar(context, "Please Blood Group");
+                    } else if (_id.text == null || _id.text == "") {
+                      AppData.showInSnackBar(context, "Please enter eHealthcard Number");
+                    }else if (_gender.text == null || _gender.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Gender");
+                    }else if (_mobile.text == null || _mobile.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Contact Detailsr");
+                    }else if (_eName.text == null || _eName.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Name");
+                    }else if (_eRelation.text == null || _eRelation.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Relation");
+                    }else if (_eMobile.text == null || _eMobile.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Mobile Number");
+                    }else if (_fDoctor.text == null || _fDoctor.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Name");
+                    }else if (_speciality.text == null || _speciality.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Speciality");
+                    }else if (_docMobile.text == null || _docMobile.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Mobile Number");
+                    }else {
+                      //postEdit();
+                    }
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+
+  Widget dob() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: GestureDetector(
+        onTap: () => _selectDate(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 45,
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+              // color: AppData.kPrimaryLightColor,
+              // borderRadius: BorderRadius.circular(29),
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Colors.grey,
+                ),
+                // border: Border.all(color: Colors.black, width: 0.3)
+              ),
+            ),
+            child: TextFormField(
+              focusNode: fnode3,
+             // enabled: !widget.isConfirmPage ? false : true,
+              controller: textEditingController[2],
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              onSaved: (value) {
+                //userPersonalForm.dob = value;
+                selectDob = value;
+              },
+              validator: (value) {
+                if (value.isEmpty) {
+                  error[2] = true;
+                  return null;
+                }
+                error[2] = false;
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                error[2] = false;
+                // print("error>>>" + error[2].toString());
+
+                setState(() {});
+                AppData.fieldFocusChange(context, fnode3, fnode4);
+              },
+              decoration: InputDecoration(
+                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                suffixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: AppData.kPrimaryColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDate: DateTime.now().subtract(Duration(days: 6570)),
+        firstDate: DateTime(1901, 1),
+        lastDate: DateTime.now()
+            .subtract(Duration(days: 6570))); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        error[2] = false;
+        textEditingController[2].value =
+            TextEditingValue(text: df.format(picked));
+      });
+  }
+
+  // void _settingModalBottomSheet(context) {
+  //   showModalBottomSheet(
+  //       context: context,
+  //       builder: (BuildContext bc) {
+  //         return Container(
+  //           child: new Wrap(
+  //             children: <Widget>[
+  //               new ListTile(
+  //                   leading: new Icon(Icons.camera),
+  //                   title: new Text('Camera'),
+  //                   onTap: () => {
+  //                     Navigator.pop(context),
+  //                     getCameraImage(),
+  //                   }),
+  //               new ListTile(
+  //                 leading: new Icon(Icons.folder),
+  //                 title: new Text('Gallery'),
+  //                 onTap: () => {
+  //                   Navigator.pop(context),
+  //                   getGalleryImage(),
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
+  // Future getCameraImage() async {
+  //   var image = await ImagePicker.pickImage(source: ImageSource.camera,imageQuality: 25);
+  //   // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+  //   if (image != null) {
+  //     var enc = await image.readAsBytes();
+  //     String _path = image.path;
+  //     setState(() => pathUsr = File(_path));
+  //
+  //     String _fileName = _path != null ? _path
+  //         .split('/')
+  //         .last : '...';
+  //     var pos = _fileName.lastIndexOf('.');
+  //     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //     print(extName);
+  //
+  //     print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+  //     setState(() {
+  //       // widget.model.patientimg =base64Encode(enc);
+  //       // widget.model.patientimgtype =extName;
+  //       // userModel.profileImage=base64Encode(enc);
+  //       // userModel.profileImageType=extName;
+  //
+  //     });
+  //
+  //   }
+  // }
+  // Future getGalleryImage() async {
+  //   var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+  //   //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
+  //   // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+  //   if (image != null) {
+  //     var enc = await image.readAsBytes();
+  //     String _path = image.path;
+  //     setState(() => pathUsr = File(_path));
+  //
+  //     String _fileName = _path != null ? _path.split('/').last : '...';
+  //     var pos = _fileName.lastIndexOf('.');
+  //     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //     print(extName);
+  //     print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+  //     setState(() {
+  //       // widget.model.patientimg =base64Encode(enc);
+  //       // widget.model.patientimgtype =extName;
+  //       // patientProfileModel.profileImage=base64Encode(enc);
+  //       // patientProfileModel.profileImageType=extName;
+  //
+  //     });
+  //
+  //   }
+  // }
 }
