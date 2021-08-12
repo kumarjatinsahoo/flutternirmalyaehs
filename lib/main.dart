@@ -9,11 +9,19 @@ import 'package:user/screens/ChemistsPage.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
 import 'package:user/screens/DocAponmnttListPage.dart';
-import 'package:user/screens/Doctor/DoctorSignUpForm.dart';
-import 'package:user/screens/Doctor/DoctorSignUpForm2.dart';
-import 'package:user/screens/Doctor/DoctorSignUpForm3.dart';
-import 'package:user/screens/Doctor/DoctorSignUpForm4.dart';
-import 'package:user/screens/Doctor/DoctorSignUpForm5.dart';
+import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
+import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
+import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
+import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
+import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
+import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
+import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm5.dart';
 import 'package:user/screens/DonorApplication.dart';
 import 'package:user/screens/DonorOrganisation.dart';
 import 'package:user/screens/EmergencyHelp.dart';
@@ -86,6 +94,10 @@ import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
 import 'package:user/screens/find.dart';
 import 'package:user/screens/MedipediaPage.dart';
+import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
+import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
+import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
+import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/screens/labrotry/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/LabSignUpForm3.dart';
@@ -438,6 +450,32 @@ class _MyAppState extends State<MyApp> {
               '/walkRegList': (context) => WalkinRegisterListPage(
                     model: _model,
                   ),
+
+              //////////////////DOCTOR USER//////////////////////
+              '/dashDoctor': (context) => DasboardDoctor(
+                    model: _model,
+                  ),
+              '/apntMange': (context) => DocAppointmentMangement(
+                    model: _model,
+                  ),
+              '/apntMange1': (context) => Appointment1(
+                    model: _model,
+                  ),
+              '/showEmr': (context) => ShowEmr(
+                    model: _model,
+                  ),
+              '/docMyProf': (context) => DocMyProfile(
+                    model: _model,
+                  ),
+              '/docWalkInReg': (context) => DocWalkPatient(
+                    model: _model,
+                  ),
+              '/emegencyAc': (context) => EmergencyAccess(
+                    model: _model,
+                  ),
+              '/printRep': (context) => PrintReportWebView(
+                    model: _model,
+                  ),
               '/doctorconsultationPage': (context) =>DoctorconsultationPage(
                 model: _model,
               ),
@@ -459,10 +497,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
-
-
 
 /*class MyApp extends StatelessWidget {
   // This widget is the root of your application.

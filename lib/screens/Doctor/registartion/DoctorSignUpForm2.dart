@@ -9,22 +9,14 @@ import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
+import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
 
-import '../../localization/localizations.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-
-
-enum gender{
-  Male,
-  Female,
-}
 // ignore: must_be_immutable
-class LabSignUpForm2 extends StatefulWidget {
+class DoctorSignUpForm2 extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -33,9 +25,8 @@ class LabSignUpForm2 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel bloodgroupModel=null;
 
-  LabSignUpForm2({
+  DoctorSignUpForm2({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -44,10 +35,10 @@ class LabSignUpForm2 extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  LabSignUpForm2State createState() => LabSignUpForm2State();
+  DoctorSignUpForm2State createState() => DoctorSignUpForm2State();
 }
 
-class LabSignUpForm2State extends State<LabSignUpForm2> {
+class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -130,28 +121,22 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> BloodGroup = [
-    KeyvalueModel(name: "A+", key: "1"),
-    KeyvalueModel(name: "B+", key: "2"),
-    KeyvalueModel(name: "O+", key: "3"),
-    KeyvalueModel(name: "AB+", key: "4"),
-    KeyvalueModel(name: "A-", key: "5"),
-    KeyvalueModel(name: "B-", key: "6"),
-    KeyvalueModel(name: "O-", key: "7"),
-    KeyvalueModel(name: "AB-", key: "8"),
+  List<KeyvalueModel> genderList = [
+    KeyvalueModel(name: "Male", key: "1"),
+    KeyvalueModel(name: "Female", key: "2"),
+    KeyvalueModel(name: "Transgender", key: "3"),
   ];
-  List<KeyvalueModel> Gender=[
-    KeyvalueModel(name: "Male",key: "0"),
-    KeyvalueModel(name: "Female",key: "1"),
-    KeyvalueModel(name: "Transgender",key: "2"),
+  List<KeyvalueModel> districtList = [
+    KeyvalueModel(name: "india", key: "1"),
+
   ];
 
   @override
   void initState() {
     super.initState();
-    LabSignUpForm2.districtModel = null;
-    LabSignUpForm2.blockModel = null;
-    LabSignUpForm2.genderModel = null;
+    DoctorSignUpForm2.districtModel = null;
+    DoctorSignUpForm2.blockModel = null;
+    DoctorSignUpForm2.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -198,12 +183,21 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                           child: Text('SIGN UP',
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
+                        /*Align(
+                alignment: Alignment.center,
+                child: Text('SIGN UP',textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+              ),
+              ),*/
                       ],
                     ),
                   ),
                   height: 55,
                   width: MediaQuery.of(context).size.width,
+                  /*  height:*/
                 ),
+
+                /* ),*/
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,
@@ -233,6 +227,8 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                 SizedBox(
                                   height: 20,
                                 ),
+
+
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
@@ -240,61 +236,14 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
+
                                         Column(
                                           children: [
                                             Text("Fill in personal Information (All fields are mandatory)",
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(8, "Education"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  Role :", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                            Column(
-                                              children: [
-                                                Text("                  Pathologist", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                            height: 11
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  Specialty :",style: TextStyle(fontSize: 20,color: Colors.black),),
-                                            Column(
-                                              children: [
-                                                Text("          Pathologist", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        dob(),
-                                         SizedBox(
-                                           height: 5,
-                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("BLOOD_GROUP"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              LabSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        formField(8, "Organization Name"),
                                         SizedBox(
                                           height: 5,
                                         ),
@@ -302,17 +251,43 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                           padding: const EdgeInsets.symmetric(horizontal: 0),
                                           child: DropDown.staticDropdown3(
                                               MyLocalizations.of(context)
-                                                  .text("GENDER"),
-                                              "Gender",
-                                              Gender, (KeyvalueModel data) {
+                                                  .text("SELECT_TITLE"),
+                                              "genderSignup",
+                                              genderList, (KeyvalueModel data) {
                                             setState(() {
-                                              LabSignUpForm2.genderModel = data;
+                                              DoctorSignUpForm2.genderModel = data;
                                             });
                                           }),
                                         ),
-                                         SizedBox(
-                                           height: 5,
-                                         ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(9, "Professional's Name"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(10, "User Id"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(11, "Password"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(12, "Confirm Password"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+
+                                        Column(
+                                          //crossAxisAlignment: CrossAxisAlignment.start,
+                                          // mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text(" Upload Photo :", style: TextStyle(fontSize: 20, color: Colors.teal),),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
                                         ),
@@ -436,12 +411,12 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       ),
     );
   }*/
-  // Widget gender() {
-  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-  //           (KeyvalueModel model) {
-  //         LabSignUpForm2.genderModel = model;
-  //       });
-  // }
+  Widget gender() {
+    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
+            (KeyvalueModel model) {
+          DoctorSignUpForm2.genderModel = model;
+        });
+  }
 
 
 
@@ -587,7 +562,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/labsignup3");
+        Navigator.pushNamed(context, "/doctorsignupform3");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -727,22 +702,23 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
-            //height: 45,
+            height: 45,
             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            alignment: Alignment.center,
             // width: size.width * 0.8,
             decoration: BoxDecoration(
-               color: Colors.white,
-               borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                width: 0.3,
-                color: Colors.grey[800],
+              // color: AppData.kPrimaryLightColor,
+              // borderRadius: BorderRadius.circular(29),
+              border: Border(
+                bottom: BorderSide(
+                  width: 2.0,
+                  color: Colors.grey,
+                ),
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
@@ -771,7 +747,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                 setState(() {});
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
-              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
                 hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
                 border: InputBorder.none,
@@ -820,7 +795,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (LabSignUpForm2.genderModel == null || LabSignUpForm2.genderModel == "") {
+    } else if (DoctorSignUpForm2.genderModel == null || DoctorSignUpForm2.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -840,9 +815,9 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (LabSignUpForm2.districtModel == null) {
+    } else if (DoctorSignUpForm2.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (LabSignUpForm2.blockModel == null) {
+    } else if (DoctorSignUpForm2.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();

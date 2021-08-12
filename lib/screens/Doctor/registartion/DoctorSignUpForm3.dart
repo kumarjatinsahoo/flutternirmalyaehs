@@ -10,13 +10,13 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
 
-import '../../localization/localizations.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
+import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
 
 
 enum gender{
@@ -24,8 +24,8 @@ enum gender{
   Female,
 }
 // ignore: must_be_immutable
-class LabSignUpForm4 extends StatefulWidget {
-
+class DoctorSignUpForm3 extends StatefulWidget {
+  final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
   final bool isFromDash;
@@ -35,18 +35,19 @@ class LabSignUpForm4 extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel bloodgroupModel=null;
 
-  LabSignUpForm4({
+  DoctorSignUpForm3({
     Key key,
+    @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
     this.model,
   }) : super(key: key);
 
   @override
-  LabSignUpForm4State createState() => LabSignUpForm4State();
+  DoctorSignUpForm3State createState() => DoctorSignUpForm3State();
 }
 
-class LabSignUpForm4State extends State<LabSignUpForm4> {
+class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -129,9 +130,28 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
+  List<KeyvalueModel> BloodGroup = [
+    KeyvalueModel(name: "A+", key: "1"),
+    KeyvalueModel(name: "B+", key: "2"),
+    KeyvalueModel(name: "O+", key: "3"),
+    KeyvalueModel(name: "AB+", key: "4"),
+    KeyvalueModel(name: "A-", key: "5"),
+    KeyvalueModel(name: "B-", key: "6"),
+    KeyvalueModel(name: "O-", key: "7"),
+    KeyvalueModel(name: "AB-", key: "8"),
+  ];
+  List<KeyvalueModel> Gender=[
+    KeyvalueModel(name: "Male",key: "0"),
+    KeyvalueModel(name: "Female",key: "1"),
+    KeyvalueModel(name: "Transgender",key: "2"),
+  ];
+
   @override
   void initState() {
     super.initState();
+    DoctorSignUpForm3.districtModel = null;
+    DoctorSignUpForm3.blockModel = null;
+    DoctorSignUpForm3.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -158,12 +178,15 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
           body: Container(
             child: Column(
               children: [
-               Container(
+                /*  Padding(
+          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
+          child:*/Container(
                   color: AppData.kPrimaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(
+                    child: Row(/*
+            mainAxisAlignment: MainAxisAlignment.start,*/
                       children: [
                         InkWell(
                             onTap: (){
@@ -208,39 +231,185 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 20,
                                 ),
-                                Card(
+                                Form(
                                   key: _formKey,
-                                 // autovalidate: _autovalidate,
+                                  autovalidate: _autovalidate,
                                   child: Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text(" Welcome to eHealthSystem",
-                                              style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5,),
-                                        Column(
-                                          children: [
-                                            Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
-                                                "Your document verification process started now . Verification will be"
-                                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
-                                              style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
+                                            Text("Fill in personal Information (All fields are mandatory)",
+                                              style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
                                         SizedBox(
-                                          height: 10,
+                                          height: 5,
                                         ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: home(),
+                                        formField(8, "Education"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text("  Role :", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                            Column(
+                                              children: [
+                                                Text("             Doctor", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                            height: 11
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                                          child: DropDown.staticDropdown3(
+                                              MyLocalizations.of(context)
+                                                  .text("SPECIALITY"),
+                                              "bloodgroup",
+                                              BloodGroup, (KeyvalueModel data) {
+                                            setState(() {
+                                              DoctorSignUpForm3.bloodgroupModel = data;
+                                            });
+                                          }),
                                         ),
                                         SizedBox(
                                           height: 8,
                                         ),
+                                        dob(),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                                          child: DropDown.staticDropdown3(
+                                              MyLocalizations.of(context)
+                                                  .text("BLOOD_GROUP"),
+                                              "bloodgroup",
+                                              BloodGroup, (KeyvalueModel data) {
+                                            setState(() {
+                                              DoctorSignUpForm3.bloodgroupModel = data;
+                                            });
+                                          }),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                                          child: DropDown.staticDropdown3(
+                                              MyLocalizations.of(context)
+                                                  .text("GENDER"),
+                                              "Gender",
+                                              Gender, (KeyvalueModel data) {
+                                            setState(() {
+                                              DoctorSignUpForm3.genderModel = data;
+                                            });
+                                          }),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          child: nextButton1(),
+                                        ),
+                                        // SizedBox(
+                                        //   height: 10,
+                                        // ),
+                                        // InkWell(
+                                        //     onTap: () {
+                                        //       setState(() {
+                                        //         ispartnercode = !ispartnercode;
+                                        //       });
+                                        //     },
+                                        //     child: Text(
+                                        //       MyLocalizations.of(context)
+                                        //               .text("HAVE_PARTNERCODE") +
+                                        //           "?",
+                                        //       style: TextStyle(color: Colors.blue),
+                                        //     )),
+                                        //
+                                        // SizedBox(
+                                        //   height: 10,
+                                        // ),
+                                        // Visibility(
+                                        //   visible: ispartnercode,
+                                        //   child: Padding(
+                                        //     padding:
+                                        //         const EdgeInsets.symmetric(horizontal: 25),
+                                        //     child: TextFormField(
+                                        //       decoration: InputDecoration(
+                                        //           hintText: MyLocalizations.of(context)
+                                        //               .text("PARTNERCODE"),
+                                        //           hintStyle: TextStyle(color: Colors.grey)),
+                                        //       textInputAction: TextInputAction.next,
+                                        //       keyboardType: TextInputType.text,
+                                        //       //           inputFormatters: [
+                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                        //       //           ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+
+                                        // Padding(
+                                        //   padding:
+                                        //       const EdgeInsets.symmetric(horizontal: 10),
+                                        //   child: Row(
+                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
+                                        //     children: [
+                                        //       Checkbox(
+                                        //         value: _checkbox,
+                                        //         onChanged: (value) {
+                                        //           setState(() {
+                                        //             _checkbox = !_checkbox;
+                                        //           });
+                                        //         },
+                                        //       ),
+                                        //       SizedBox(
+                                        //         height: 10,
+                                        //       ),
+                                        //       RichText(
+                                        //           textAlign: TextAlign.start,
+                                        //           text: TextSpan(
+                                        //             children: [
+                                        //               TextSpan(
+                                        //                 text: 'I agree to NCORDS ',
+                                        //                 /* "Welcome back",*/
+                                        //                 style: TextStyle(
+                                        //                   // fontWeight: FontWeight.w800,
+                                        //                   fontFamily: "Monte",
+                                        //                   // fontSize: 25.0,
+                                        //                   color: Colors.grey,
+                                        //                 ),
+                                        //               ),
+                                        //               TextSpan(
+                                        //                 text: 'Terms and Conditions',
+                                        //                 /* "Welcome back",*/
+                                        //                 style: TextStyle(
+                                        //                   // fontWeight: FontWeight.w500,
+                                        //                   fontFamily: "Monte",
+                                        //                   // fontSize: 25.0,
+                                        //                   color: Colors.indigo,
+                                        //                 ),
+                                        //               )
+                                        //             ],
+                                        //           )),
+                                        //     ],
+                                        //   ),
+                                        // ),
+                                        // Padding(
+                                        //   padding:
+                                        //       const EdgeInsets.symmetric(horizontal: 10),
+                                        //   child: nextButton(),
+                                        // ),
+                                        // SizedBox(
+                                        //   height: 25,
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -248,6 +417,7 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
                               ],
                             ),
                             SizedBox(height: 10,),
+
                           ],),
                       ),
                     ],
@@ -256,9 +426,28 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
               ],
             ),
           ),
+
+
         )
     );
   }
+  /*_
+            ],
+          ),
+        ),
+      ),
+    );
+  }*/
+  // Widget gender() {
+  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
+  //           (KeyvalueModel model) {
+  //         LabSignUpForm2.genderModel = model;
+  //       });
+  // }
+
+
+
+
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -395,10 +584,12 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
     );
   }
 
-  Widget home() {
+
+
+  Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/dashboard");
+        Navigator.pushNamed(context, "/doctorsignupform4");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -414,7 +605,7 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("HOME"),
+            MyLocalizations.of(context).text("NEXT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -631,7 +822,7 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (LabSignUpForm4.genderModel == null || LabSignUpForm4.genderModel == "") {
+    } else if (DoctorSignUpForm3.genderModel == null || DoctorSignUpForm3.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -651,9 +842,9 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (LabSignUpForm4.districtModel == null) {
+    } else if (DoctorSignUpForm3.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (LabSignUpForm4.blockModel == null) {
+    } else if (DoctorSignUpForm3.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -763,5 +954,39 @@ class LabSignUpForm4State extends State<LabSignUpForm4> {
       ),
     );
   }
+
+// Widget formFieldPass(int index, String hint, int obqueTxt) {
+//   return TextFieldContainer(
+//     child: TextFormField(
+//       controller: controller[index],
+//       textInputAction: TextInputAction.done,
+//       obscureText: !isViewList[obqueTxt],
+//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
+//       style: TextStyle(fontSize: 13),
+//       textAlignVertical: TextAlignVertical.center,
+//       decoration: InputDecoration(
+//           hintText: hint,
+//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+//           border: InputBorder.none,
+//           suffixIcon: InkWell(
+//             onTap: () {
+//               setState(() {
+//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
+//               });
+//             },
+//             child: Icon(
+//               isViewList[obqueTxt]
+//                   ? CupertinoIcons.eye_slash_fill
+//                   : CupertinoIcons.eye_fill,
+//               size: 19,
+//               color: Colors.grey,
+//             ),
+//           ),
+//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+//     ),
+//   );
+// }
+//
+
 
 }

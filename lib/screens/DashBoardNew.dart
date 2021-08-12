@@ -161,6 +161,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
+      body: _dashboardnew(context),
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Column(
@@ -394,79 +395,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           ),
         ),
       ),
-      body: _dashboardnew(context),
-      /* bottomNavigationBar: BottomNavigationBar(
-        selectedFontSize: 9,
-        unselectedFontSize: 9,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        iconSize: 40,
-        onTap: _onItemTapped,
-        selectedIconTheme: IconThemeData(color: AppData.matruColor),
-        unselectedIconTheme: IconThemeData(color: Colors.grey),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              //color: Colors.grey,
-              size: 30,
-            ),
-            title: Text(
-              'Home',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ),
-          */ /* BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.child_friendly_outlined,
-                  //color: Colors.grey,
-                  size: 30,
-                ),
-                title: Text(
-                  'Maa Gruha',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),*/ /*
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.support,
-              //color: Colors.grey,
-              size: 30,
-            ),
-            title: Text(
-              'Profile',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_circle_outlined,
-              //color: Colors.grey,
-              size: 30,
-            ),
-            title: Text(
-              'Support',
-              style: TextStyle(color: Colors.grey),
-            ),
-            //backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_circle_outlined,
-              //color: Colors.grey,
-              size: 30,
-            ),
-            title: Text(
-              'Notifications',
-              style: TextStyle(color: Colors.grey),
-            ),
-            //backgroundColor: Colors.blue,
-          ),
-        ],
-      ),*/
     );
   }
 
@@ -487,154 +415,153 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       child: Container(
         color: Colors.white,
         height: double.maxFinite,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Expanded(
-              child: PageView(
-                controller: _controller,
-                children: [
-                  MyPage1Widget(),
-                  MyPage2Widget(),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 560,
+                child: PageView(
+                  controller: _controller,
+                  children: [
+                    MyPage1Widget(),
+                    MyPage2Widget(),
+                  ],
+                ),
               ),
-            ),
-            PageIndicator(
-              length: 2,
-              pageController: _controller,
-              currentColor: Colors.grey,
-              normalColor: Colors.black12,
-              /*colorDot: Colors.grey,
-              sizeDot: 8.0,
-              colorActiveDot: Colors.black,*/
-            ),
+              PageIndicator(
+                length: 2,
+                pageController: _controller,
+                currentColor: Colors.grey,
+                normalColor: Colors.black12,
+              ),
 
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: 210,
-                  autoPlay: true,
-                  pageSnapping: true,
-                  viewportFraction: 1,
-                  scrollDirection: Axis.horizontal,
-                  disableCenter: true,
-                  autoPlayInterval: Duration(seconds: 10),
-                  //autoPlayAnimationDuration: Duration(seconds: 90),
-                  pauseAutoPlayInFiniteScroll: true,
-                  onPageChanged: (index, reason) {
-                    setState(
-                      () {
-                        _currentIndex = index;
-                      },
-                    );
-                  }),
-              items: imageSliders
-                  .map((item) => InkWell(
-                        onTap: () {
-                          int index = imageSliders.indexOf(item);
-                          switch (index) {
-                            case 0:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");
-                              break;
-                            case 1:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                              break;
-                            case 4:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=axzWoVaF4N4");
-                              break;
-                            case 7:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=ckYGlJwCmlg");
-                              break;
-                          }
+              CarouselSlider(
+                options: CarouselOptions(
+                    height: 210,
+                    autoPlay: true,
+                    pageSnapping: true,
+                    viewportFraction: 1,
+                    scrollDirection: Axis.horizontal,
+                    disableCenter: true,
+                    autoPlayInterval: Duration(seconds: 10),
+                    //autoPlayAnimationDuration: Duration(seconds: 90),
+                    pauseAutoPlayInFiniteScroll: true,
+                    onPageChanged: (index, reason) {
+                      setState(
+                        () {
+                          _currentIndex = index;
                         },
-                        child: Container(
+                      );
+                    }),
+                items: imageSliders
+                    .map((item) => InkWell(
+                          onTap: () {
+                            int index = imageSliders.indexOf(item);
+                            switch (index) {
+                              case 0:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");
+                                break;
+                              case 1:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                                break;
+                              case 4:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=axzWoVaF4N4");
+                                break;
+                              case 7:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                                break;
+                            }
+                          },
                           child: Container(
-                            margin: EdgeInsets.all(10),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              child: Stack(
-                                children: [
-                                  Image.asset(
-                                    item,
-                                    fit: BoxFit.fill,
-                                    width: 1000,
-                                    height: double.maxFinite,
-                                    //height: 100,
-                                  ),
-                                  /* Image.network(
-                                       item.bannerImage,
-                                       fit: BoxFit.fill,
-                                       width: 1000,
-                                       height: double.maxFinite,
-                                     ),*/
+                            child: Container(
+                              margin: EdgeInsets.all(10),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                child: Stack(
+                                  children: [
+                                    Image.asset(
+                                      item,
+                                      fit: BoxFit.fill,
+                                      width: 1000,
+                                      height: double.maxFinite,
+                                      //height: 100,
+                                    ),
+                                    /* Image.network(
+                                         item.bannerImage,
+                                         fit: BoxFit.fill,
+                                         width: 1000,
+                                         height: double.maxFinite,
+                                       ),*/
 
-                                  Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Color.fromARGB(200, 0, 0, 0),
-                                            Color.fromARGB(0, 0, 0, 0)
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color.fromARGB(200, 0, 0, 0),
+                                              Color.fromARGB(0, 0, 0, 0)
+                                            ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter,
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              (imageSliders.indexOf(item) + 1)
+                                                      .toString() +
+                                                  "/" +
+                                                  imageSliders.length.toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
                                           ],
-                                          begin: Alignment.bottomCenter,
-                                          end: Alignment.topCenter,
                                         ),
                                       ),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 20.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            (imageSliders.indexOf(item) + 1)
-                                                    .toString() +
-                                                "/" +
-                                                imageSliders.length.toString(),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              fontWeight: FontWeight.w200,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                     ),
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: (imageSliders.indexOf(item) == 4 || imageSliders.indexOf(item) == 7 || imageSliders.indexOf(item) == 0|| imageSliders.indexOf(item) == 1)
-                                        ? Icon(
-                                            Icons.play_circle_fill,
-                                            color: Colors.white,
-                                            size: 45,
-                                          )
-                                        : Container(),
-                                  ),
+                                    Positioned(
+                                      top: 0,
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: (imageSliders.indexOf(item) == 4 || imageSliders.indexOf(item) == 7 || imageSliders.indexOf(item) == 0|| imageSliders.indexOf(item) == 1)
+                                          ? Icon(
+                                              Icons.play_circle_fill,
+                                              color: Colors.white,
+                                              size: 45,
+                                            )
+                                          : Container(),
+                                    ),
 
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                        ))
+                    .toList(),
+              ),
+              SizedBox(
+                height: 15,
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -1014,568 +941,562 @@ class MyPage1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     _width = (MediaQuery.of(context).size.width - 80) / 3;
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/folder.png",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/medicalrecordpage");
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              // ,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "My Medical Record",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/search_icon.png",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/findHealthcareService");
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Find Healthcare Services",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /* Expanded(*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/health_checkup.png",
-                              fun: () {
-                                //chooseAppointment(context);
-                                Navigator.pushNamed(
-                                    context, "/doctorconsultationPage");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Appointment", textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTile1(
-                              //icon: "assets/meditate.png",
-                              icon: Icons.local_offer,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "HELP",
-                              fun: () {
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
-                                Navigator.pushNamed(context, "/emergencyHelp");
-                              },
-                              color: AppData.kPrimaryRedColor,
-                              bordercolor: AppData.kPrimaryRedColor,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Emergency Help", textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          " Emergency Help",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /*Expanded(
-                            child:*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/clock.png",
-                              //icon: Icons.alarm,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Medicine Reminder",
-                              fun: () {
-                                Navigator.pushNamed(
-                                    context, "/medicinereminder");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Medicine Reminder",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Medicine Reminder",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                      /*),*/
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /*  Expanded(*/
-
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/offers.png",
-                              fun: () {
-                                Navigator.pushNamed(context, "/discountoffer");
-                              },
-                              //color: AppData.BG2BLUE,
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              child: Text(
-                                "Discount & Offers",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Health               chat",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      /*Expanded(
-                            child:*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/organ_donner.png",
-                              //icon: Icons.wc_rounded,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Organ  Donation",
-                              fun: () {
-                                Navigator.pushNamed(context, "/organdonation");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Organ Donation", textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Organ     Donation",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /*Expanded(*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/generic_medicine.png",
-                              //icon: Icons.animation,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Generic Medical Stores",
-                              fun: () {
-                                Navigator.pushNamed(context, "/geneicstores");
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Generic Medical Stores",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Generic Medical Stores",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /* Expanded(
-                            child: */
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/govtscheme.png",
-                              //icon: Icons.home_outlined,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Govt Schemes",
-                              fun: () {
-                                Navigator.pushNamed(context, "/govtschemes");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Govternment Schemes",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      /*Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/upload.png",
-                              //icon: Icons.wc_rounded,
-                              //icon: FontAwesomeIcons.accusoft,
-                             // title: "Upload Medical Data",
-                              fun: () {
-                               Navigator.pushNamed(
-                                    context, "/worldwidehospital");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height:35,
-                              */ /* child: Expanded(*/ /*
-                              child: Text(
-                                "Upload Medical Data",textAlign:TextAlign.center ,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            */ /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Organ     Donation",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/ /*
-                          ]),*/
-
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/insurance.png",
-                              //icon: Icons.drive_folder_upload,
-                              //icon: FontAwesomeIcons.accusoft,
-                              title: "Upload Medical Data",
-                              fun: () {
-                                Navigator.pushNamed(context, "/insuranceList");
-
-                                /*  AppData.showSnack(
-                                context, "Coming soon", Colors.green);*/
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Insurance", textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /*Expanded(*/
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/health_care.png",
-                              fun: () {
-                                Navigator.pushNamed(context, "/chemistspage");
-                                // AppData.showSnack(
-                                //   context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              //size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Preventive Health Care",
-                                textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /* Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Generic Medical Stores",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      /* Expanded(
-                            child: */
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/medipedia.png",
-                              fun: () {
-                                Navigator.pushNamed(context, "/medipedia");
-                                // AppData.showSnack(
-                                //     context, "Coming soon", Colors.green);
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              size: (size.width - 130) / 3,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              width: 100,
-                              height: 35,
-                              /* child: Expanded(*/
-                              child: Text(
-                                "Medipedia", textAlign: TextAlign.center,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                          ]),
-                    ],
-                  ),
-                ],
-              ),
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 7),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
             ),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/folder.png",
+                        fun: () {
+                          Navigator.pushNamed(
+                              context, "/medicalrecordpage");
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        // ,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "My Medical Record",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/search_icon.png",
+                        fun: () {
+                          Navigator.pushNamed(
+                              context, "/findHealthcareService");
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Find Healthcare Services",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /* Expanded(*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/health_checkup.png",
+                        fun: () {
+                          //chooseAppointment(context);
+                          /*Navigator.pushNamed(
+                                        context, "/medipedia");*/
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Appointment", textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Govternment Schemes",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+              ],
+            ),
+            SizedBox(height: size.height * 0.01),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTile1(
+                        //icon: "assets/meditate.png",
+                        icon: Icons.local_offer,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "HELP",
+                        fun: () {
+                          // AppData.showSnack(
+                          //   context, "Coming soon", Colors.green);
+                          Navigator.pushNamed(context, "/emergencyHelp");
+                        },
+                        color: AppData.kPrimaryRedColor,
+                        bordercolor: AppData.kPrimaryRedColor,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Emergency Help", textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              " Emergency Help",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /*Expanded(
+                                child:*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/clock.png",
+                        //icon: Icons.alarm,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Medicine Reminder",
+                        fun: () {
+                          Navigator.pushNamed(
+                              context, "/medicinereminder");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Medicine Reminder",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Medicine Reminder",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+                /*),*/
+                SizedBox(
+                  width: 5,
+                ),
+                /*  Expanded(*/
+
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/offers.png",
+                        fun: () {
+                          Navigator.pushNamed(context, "/discountoffer");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text(
+                          "Discount & Offers",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+              ],
+            ),
+            SizedBox(height: size.height * 0.01),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                /*Expanded(
+                                child:*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/organ_donner.png",
+                        //icon: Icons.wc_rounded,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Organ  Donation",
+                        fun: () {
+                          Navigator.pushNamed(context, "/organdonation");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Organ Donation", textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Organ     Donation",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /*Expanded(*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/generic_medicine.png",
+                        //icon: Icons.animation,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Generic Medical Stores",
+                        fun: () {
+                          Navigator.pushNamed(context, "/geneicstores");
+                          // AppData.showSnack(
+                          //   context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Generic Medical Stores",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Generic Medical Stores",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /* Expanded(
+                                child: */
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/govtscheme.png",
+                        //icon: Icons.home_outlined,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Govt Schemes",
+                        fun: () {
+                          Navigator.pushNamed(context, "/govtschemes");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Govternment Schemes",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Govternment Schemes",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+              ],
+            ),
+            SizedBox(height: size.height * 0.01),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                /*Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilered(
+                                  icon: "assets/upload.png",
+                                  //icon: Icons.wc_rounded,
+                                  //icon: FontAwesomeIcons.accusoft,
+                                 // title: "Upload Medical Data",
+                                  fun: () {
+                                   Navigator.pushNamed(
+                                        context, "/worldwidehospital");
+                                    // AppData.showSnack(
+                                    //     context, "Coming soon", Colors.green);
+                                  },
+                                  color: AppData.BG1RED,
+                                  bordercolor: AppData.BG1RED,
+                                  //size: (size.width - 130) / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height:35,
+                                  */ /* child: Expanded(*/ /*
+                                  child: Text(
+                                    "Upload Medical Data",textAlign:TextAlign.center ,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                */ /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Organ     Donation",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/ /*
+                              ]),*/
+
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/insurance.png",
+                        //icon: Icons.drive_folder_upload,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Upload Medical Data",
+                        fun: () {
+                          Navigator.pushNamed(context, "/insuranceList");
+
+                          /*  AppData.showSnack(
+                                    context, "Coming soon", Colors.green);*/
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Insurance", textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /*Expanded(*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/health_care.png",
+                        fun: () {
+                          Navigator.pushNamed(context, "/chemistspage");
+                          // AppData.showSnack(
+                          //   context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        //size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Preventive Health Care",
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Generic Medical Stores",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /* Expanded(
+                                child: */
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/medipedia.png",
+                        fun: () {
+                          Navigator.pushNamed(context, "/medipedia");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: (size.width - 130) / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text(
+                          "Medipedia", textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Govternment Schemes",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                    ]),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
