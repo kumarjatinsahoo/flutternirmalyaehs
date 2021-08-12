@@ -225,7 +225,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           alignment: Alignment.bottomRight,
                                           child: InkWell(
                                             onTap: () {
-                                              _settingModalBottomSheet(context);;
+                                              _settingModalBottomSheet(context);
                                             },
                                             child: Icon(
                                               Icons.camera_alt,

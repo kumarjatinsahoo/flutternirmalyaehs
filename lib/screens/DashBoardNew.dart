@@ -8,8 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/UserDashboardModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 import '../providers/app_data.dart';
@@ -30,6 +32,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   String dateLeft = "0";
   double _height = 75;
   int _selectedDestination = -1;
+  bool isDataNotAvail = false;
+  UserDashboardModel userDashboardModel;
 
   void selectDestination(int index) {
     setState(() {
@@ -61,6 +65,20 @@ LoginResponse1 loginResponse1;
     /*setState(() {
       dateLeft = getDateTimeFormat("2021-01-15");
     });*/
+
+    widget.model.GETMETHODCALL_TOKEN(api: ApiFactory.USER_DASHBOARD,
+        token: widget.model.token,
+        fun:(Map<String, dynamic>map){
+      setState(() {
+        String msg = map[Const.MESSAGE];
+        if (map[Const.CODE] == Const.SUCCESS){
+          userDashboardModel = UserDashboardModel.fromJson(map);
+        }else{
+          isDataNotAvail = true;
+          AppData.showInSnackBar(context, msg);
+        }
+      });
+        });
   }
 
   String getTime(String date) {
@@ -403,7 +421,8 @@ LoginResponse1 loginResponse1;
               style: TextStyle(color: Colors.grey),
             ),
           ),
-          *//* BottomNavigationBarItem(
+          */
+      /* BottomNavigationBarItem(
                 icon: Icon(
                   Icons.child_friendly_outlined,
                   //color: Colors.grey,
@@ -413,7 +432,8 @@ LoginResponse1 loginResponse1;
                   'Maa Gruha',
                   style: TextStyle(color: Colors.grey),
                 ),
-              ),*//*
+              ),*/
+      /*
           BottomNavigationBarItem(
             icon: Icon(
               Icons.support,
@@ -540,12 +560,14 @@ LoginResponse1 loginResponse1;
                                 height: double.maxFinite,
                                 //height: 100,
                               ),
-                              *//* Image.network(
+                              */
+            /* Image.network(
                                                      item.bannerImage,
                                                      fit: BoxFit.fill,
                                                       width: 1000,
                                                     height: double.maxFinite,
-                                                     ),*//*
+                                                     ),*/
+            /*
                               Positioned(
                                 bottom: 0,
                                 left: 0,
@@ -771,12 +793,14 @@ LoginResponse1 loginResponse1;
 
               items: imageSliders
                   .map((item) => InkWell(
-                        *//* onTap: (){
+                        */
+            /* onTap: (){
                           int index=imageSliders.indexOf(item);
                           if(index==1)
                             //AppData.showInSnackDone(context, "Clicked");
                             AppData.launchURL("https://www.youtube.com/watch?v=XBvfeNAh9IY");
-                        },*//*
+                        },*/
+            /*
                         child: Container(
                           child: Container(
                             margin: EdgeInsets.all(10),
@@ -792,12 +816,14 @@ LoginResponse1 loginResponse1;
                                     height: double.maxFinite,
                                     //height: 100,
                                   ),
-                                   *//*Image.network(
+                                   */
+            /*Image.network(
                                                  item.bannerImage,
                                                  fit: BoxFit.fill,
                                                   width: 1000,
                                                 height: double.maxFinite,
-                                                 ),*//*
+                                                 ),*/
+            /*
                                   Positioned(
                                     bottom: 0,
                                     left: 0,
@@ -1312,6 +1338,7 @@ class MyPage1Widget extends StatelessWidget {
                             _buildTileblue(
                               icon: "assets/health_checkup.png",
                               fun: () {
+                                dashOption1(context);
                                 //chooseAppointment(context);
                                 /*Navigator.pushNamed(
                                     context, "/medipedia");*/
@@ -1325,10 +1352,10 @@ class MyPage1Widget extends StatelessWidget {
                             SizedBox(
                               height: 5,
                             ),
+
                             Container(
                               width: 100,
                               height:35,
-                              /* child: Expanded(*/
                               child: Text(
                                 "Appointment",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
@@ -1344,7 +1371,6 @@ class MyPage1Widget extends StatelessWidget {
                                         ),
                                       )),*/
                           ]),
-
                     ],
                   ),
                   SizedBox(height: size.height * 0.01),
@@ -1652,13 +1678,15 @@ class MyPage1Widget extends StatelessWidget {
                             Container(
                               width: 100,
                               height:35,
-                              *//* child: Expanded(*//*
+                              */
+                      /* child: Expanded(*//*
                               child: Text(
                                 "Upload Medical Data",textAlign:TextAlign.center ,
                                 //overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            *//* Align(
+                            */
+                      /* Align(
                                       alignment: Alignment.center,
                                       child: Expanded(
                                         child: Text(
@@ -2153,7 +2181,59 @@ class MyPage1Widget extends StatelessWidget {
       ),
     );
   }
+
+
+
+  dashOption1(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18,bottom: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+
+                        Container(
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(55),
+                              child: Image.asset("assets/logo1.png")
+                          ),
+                        ),
+                        Text("Please Complete Your Profile Data",style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
+                        SizedBox(
+                          height: 12
+                        ),
+                        MaterialButton(
+                          child: Text(
+                            "OK",
+                            style: TextStyle(color: Colors.blue,fontSize: 18),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
 }
+
+
 class MyPage2Widget extends StatelessWidget {
   double _height = 85;
   double _width;
@@ -2467,114 +2547,6 @@ class MyPage2Widget extends StatelessWidget {
         });
   }
 
-  Widget _buildTile1(
-      { IconData icon,
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
-        ///width: (MediaQuery.of(context).size.width - 80) / 3,
-        width: _width,
-        decoration: BoxDecoration(
-          /// borderRadius: BorderRadius.circular(7.0),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.zero,
-            topRight: Radius.circular(10.0),
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.zero,
-          ),
-          color: color,
-
-          /* boxShadow: [
-            BoxShadow(
-              color: bordercolor,
-              blurRadius: 5.0,
-              spreadRadius: 2.0,
-              offset: Offset(2.0, 2.0), // shadow direction: bottom right
-            )
-          ],*/
-        ),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                /*Text(
-                  '12',
-                  style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
-                  ),
-
-                ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
-            )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildTilered(
       {String icon,
@@ -2698,4 +2670,8 @@ class MyPage2Widget extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

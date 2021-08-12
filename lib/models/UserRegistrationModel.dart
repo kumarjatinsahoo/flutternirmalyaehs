@@ -82,7 +82,8 @@ class UserRegistrationModel{
       ageYears,
       countryCode,
       stateCode,
-      dob,profileImageType;
+      dob,
+      profileImageType;
 
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
