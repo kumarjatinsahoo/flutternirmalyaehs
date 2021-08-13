@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
 
@@ -242,8 +243,8 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
+                                            Text("Fill in personal Information (All fields are mandatory)",textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 20, color: Colors.black),),
                                           ],
                                         ),
                                         SizedBox(
@@ -283,33 +284,49 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                          SizedBox(
                                            height: 5,
                                          ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("BLOOD_GROUP"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              LabSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.symmetric(horizontal: 0),
+                                        //   child: DropDown.staticDropdown3(
+                                        //       MyLocalizations.of(context)
+                                        //           .text("BLOOD_GROUP"),
+                                        //       "bloodgroup",
+                                        //       BloodGroup, (KeyvalueModel data) {
+                                        //     setState(() {
+                                        //       LabSignUpForm2.bloodgroupModel = data;
+                                        //     });
+                                        //   }),
+                                        // ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "BLOOD GROUP", ApiFactory.BLOODGROUP_API, "bloodgroup", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.BLOODGROUP_API);
+                                              });
+                                            }),
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("GENDER"),
-                                              "Gender",
-                                              Gender, (KeyvalueModel data) {
-                                            setState(() {
-                                              LabSignUpForm2.genderModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.symmetric(horizontal: 0),
+                                        //   child: DropDown.staticDropdown3(
+                                        //       MyLocalizations.of(context)
+                                        //           .text("GENDER"),
+                                        //       "Gender",
+                                        //       Gender, (KeyvalueModel data) {
+                                        //     setState(() {
+                                        //       LabSignUpForm2.genderModel = data;
+                                        //     });
+                                        //   }),
+                                        // ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Gender", ApiFactory.GENDER_API, "gender", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.GENDER_API);
+                                              });
+                                            }),
                                          SizedBox(
                                            height: 5,
                                          ),

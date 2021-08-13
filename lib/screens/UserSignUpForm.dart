@@ -364,10 +364,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           child: SizedBox(
                                             height: 58,
                                             child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "Gender",
-                                                ApiFactory.GENDER_API,
-                                                "gender",
+                                            DropDown.networkDropdownGetpartUser("Gender", ApiFactory.GENDER_API, "gender",
                                                 Icons.mail,
                                                 23.0, (KeyvalueModel data) {
                                               setState(() {

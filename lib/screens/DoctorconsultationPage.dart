@@ -410,10 +410,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           child: SizedBox(
                             height: 58,
                             child:
-                            DropDown.networkDropdownGetpartUser(
-                                "Speciality",
-                                ApiFactory.SPECIALITY_API,
-                                "speciality",
+                            DropDown.networkDropdownGetpartUser("Speciality", ApiFactory.SPECIALITY_API, "speciality",
                                 Icons.mail,
                                 23.0, (KeyvalueModel data) {
                               setState(() {

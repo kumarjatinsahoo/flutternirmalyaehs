@@ -39,5 +39,11 @@ class PassData extends Model {
   String cnfrmpwd;
 
   String education;
+  //////////////
+String organization;
+String title1;
+String professionalname1;
+// String title;
+// String professionalname;
 
 }
