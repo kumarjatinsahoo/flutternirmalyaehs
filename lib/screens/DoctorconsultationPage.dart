@@ -139,7 +139,31 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           fun: (Map<String, dynamic> map) {
             setState(() {
               //Navigator.of(context).pop();
-
+             /* if (response.statusCode == 200) {
+                // If the call to the server was successful, parse the JSON
+                List<dynamic> values=new List<dynamic>();
+                values = json.decode(response.body);
+                if(values.length>0){
+                  for(int i=0;i<values.length;i++){
+                    if(values[i]!=null){
+                      Map<String,dynamic> map=values[i];
+                      _postList .add(Post.fromJson(map));
+                      debugPrint('Id-------${map['id']}');
+                    }
+                  }
+                }*/
+              List<dynamic> values=new List<dynamic>();
+              values = json.decode( map["body"].toString());
+              if(values.length>0) {
+                for (int i = 0; i < values.length; i++) {
+                  if (values[i] != null) {
+                    Map<String, dynamic> map = values[i];
+                    debugPrint('Id-------${map['fromTime']}');
+                    debugPrint('Id-------${map['toTime']}');
+                    debugPrint('Id-------${map['opdId']}');
+                  }
+                }
+              }
               if (map[Const.CODE] == Const.SUCCESS) {
 
 
