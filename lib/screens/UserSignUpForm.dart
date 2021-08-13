@@ -227,7 +227,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           alignment: Alignment.bottomRight,
                                           child: InkWell(
                                             onTap: () {
-                                              _settingModalBottomSheet(context);;
+                                              _settingModalBottomSheet(context);
                                             },
                                             child: Icon(
                                               Icons.camera_alt,
@@ -1188,6 +1188,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           });
     }
   }
+
   popup(BuildContext context, String message) {
     return Alert(
         context: context,

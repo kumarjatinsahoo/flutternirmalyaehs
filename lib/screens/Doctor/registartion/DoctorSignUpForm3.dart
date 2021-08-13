@@ -53,6 +53,12 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  String organisationname;
+  String title;
+  String professionalname;
+  String userid;
+  String password;
+  String cnfrmpwd;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -149,6 +155,11 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   @override
   void initState() {
     super.initState();
+    organisationname = widget.model.organisationname;
+    professionalname = widget.model.professionalname;
+    userid = widget.model.userid;
+    password = widget.model.password;
+    cnfrmpwd = widget.model.cnfrmpwd;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
     DoctorSignUpForm3.genderModel = null;

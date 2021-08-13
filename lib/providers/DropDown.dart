@@ -125,7 +125,7 @@ class DropDown {
     );
   }
 
-  static networkDropdown(String label, final String API, String callFrom) {
+  static networkDropdown(String label, final String API, String callFrom,Function fun) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -171,7 +171,7 @@ class DropDown {
           //queryParameters: {"filter": filter},
         );
         //var models = response.data;
-        final jsonResponse = response.data;
+        final statejsonResponse = response.data;
         var list;
         // var list = List<KeyvalueModel>.from(jsonResponse.map((i) => KeyvalueModel.fromsJson(i)));
         switch (callFrom) {
@@ -180,6 +180,9 @@ class DropDown {
             break;
           case "block":
             list = KeyvalueModel.fromJsonList(response.data["districtList"]);
+            break;
+          case "relation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "gender":
             List<KeyvalueModel> listS = [];
@@ -196,6 +199,7 @@ class DropDown {
       },
       //itemAsString: (KeyvalueModel u) => u.userAsString(),
       onChanged: (KeyvalueModel data) {
+        fun(data);
         switch (callFrom) {
           case "district":
             selectedKey = data;
@@ -1378,10 +1382,10 @@ class DropDown {
         );
         var list;
         switch (callFrom) {
-          case "state":
+          case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "city":
+          case "state":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
