@@ -98,10 +98,6 @@ import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
-import 'package:user/screens/labrotry/LabSignUpForm.dart';
-import 'package:user/screens/labrotry/LabSignUpForm2.dart';
-import 'package:user/screens/labrotry/LabSignUpForm3.dart';
-import 'package:user/screens/labrotry/LabSignUpForm4.dart';
 import 'package:user/screens/DoctorconsultationPage.dart';
 import 'package:user/screens/splash.dart';
 import 'package:user/screens/DiscountOffer.dart';
@@ -497,26 +493,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-/*class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  MainModel _model = new MainModel();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(
-        model: _model,
-      ),
-      routes: {
-        "/login": (context) => LoginScreen(
-              model: _model,
-            ),
-      },
-    );
-  }
-}*/

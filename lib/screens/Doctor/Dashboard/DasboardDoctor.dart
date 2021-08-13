@@ -230,9 +230,6 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                     ],
                   ),
                   onTap: (){
-                    /*Navigator.push(context,
-                        new MaterialPageRoute(
-                            builder: (context) => new ShowEmr()));*/
                     Navigator.pushNamed(context, "/showEmr");
                   },
                 ),
