@@ -159,15 +159,16 @@ class _ShowEmr extends State<ShowEmr> {
                             height: 50.0,
                             child: new Tab(text: 'PATIENTHISTORY'),
                           ),
-                          new Container(
-                            // width: 80,
-                            height: 50.0,
-                            child: new Tab(text: 'MEDICATION'),
-                          ),
+
                           new Container(
                             //  width: 100,
                             height: 50.0,
                             child: new Tab(text: 'TESTREPORT'),
+                          ),
+                          new Container(
+                            // width: 80,
+                            height: 50.0,
+                            child: new Tab(text: 'MEDICATION'),
                           ),
                           new Container(
                             //  width: 100,
@@ -206,8 +207,8 @@ class _ShowEmr extends State<ShowEmr> {
             children: [
               PatientDetails(),
               patientHistory(),
-              medication(),
               testReport(),
+              medication(),
               lifestyleHistory(),
               familyDetails(),
               immunization(),
@@ -1516,7 +1517,7 @@ class _ShowEmr extends State<ShowEmr> {
                               ),
                             ],
                           ),
-                          SizedBox(width: 5,),
+                          SizedBox(width: 10,),
                           
                         ],
                       ),
@@ -1532,70 +1533,6 @@ class _ShowEmr extends State<ShowEmr> {
     );
   }
 
-  Widget medication() {
-    Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Container(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
-
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ]),
-        ),
-      ),
-    );
-  }
-
   Widget testReport() {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -1603,58 +1540,416 @@ class _ShowEmr extends State<ShowEmr> {
         padding: const EdgeInsets.all(15.0),
         child: Container(
           child: Column(children: [
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "LABS TEST REPORT LIST",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                 return
+                   Card(
+                     color: Color(0xFFD2E4FC),
+                     shape: RoundedRectangleBorder(
+                         borderRadius: BorderRadius.only(
+                           topLeft: Radius.circular(5),
+                           topRight: Radius.circular(5),
+                           bottomRight: Radius.circular(5),
+                           bottomLeft: Radius.circular(5),
+                         ),
+                         side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
 
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
-                  ),
+                     child: Padding(
+                       padding: const EdgeInsets.all(10.0),
+                       child: Column(
+                         children: [
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Patient Id",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "121448674403477",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Patient Name",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "Ipsita Sahoo",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Age",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "25",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Gender",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "Female",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Weight",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "72",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Height",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "5'3",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Test Date",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "11-08-2021",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+                           SizedBox(height: 5),
+
+
+                           Row(
+                             children: [
+                               Container(
+                                 width: 100,
+                                 child: Text(
+                                   "Phc",
+                                   style: TextStyle(color: Colors.black, fontSize: 15),
+                                 ),
+                               ),
+                               Text(
+                                 "   :   ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                               Text(
+                                 "  ",
+                                 style: TextStyle(color: Colors.black, fontSize: 15),
+                               ),
+                             ],
+                           ),
+
+                         ],
+                       ),
+                     ),
+                   );
+                  },
                 ),
               ),
             ),
-          ]),
+          ]
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget medication() {
+    Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Container(
+          child: Column(children: [
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "CURRENT MEDICINES",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    return
+                      Card(
+                        color: Color(0xFFD2E4FC),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
+                            ),
+                            side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
+
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Name",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "Paracetmol",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Type",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "Tablet",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Dosage",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "5 Days From 12-08-2021",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Morning",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Afternoon",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Evening",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      "Doctor",
+                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    "   :   ",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                  Text(
+                                    "Mr.Neraj Desai",
+                                    style: TextStyle(color: Colors.black, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+
+                            ],
+                          ),
+                        ),
+                      );
+
+                  },
+                ),
+              ),
+            ),
+
+     ]),
         ),
       ),
     );
@@ -1667,57 +1962,178 @@ class _ShowEmr extends State<ShowEmr> {
         padding: const EdgeInsets.all(15.0),
         child: Container(
           child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
-
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "LIFE STYLE HISTORY",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 5),
+            Card(
+              color: Color(0xFFD2E4FC),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
+                    bottomRight: Radius.circular(5),
+                    bottomLeft: Radius.circular(5),
                   ),
+                  side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Smoking",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "Very Frequently 25/day",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Alcohol",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "Very Frequently",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Diet",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "veg",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Exercise",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "Twice a Day",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Occupation",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "Software Developer",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Height",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "5'3",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+
+                    Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          child: Text(
+                            "Pets",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          "   :   ",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                        Text(
+                          "Yes",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                  ],
                 ),
               ),
             ),
+
           ]),
         ),
       ),
@@ -1731,57 +2147,98 @@ class _ShowEmr extends State<ShowEmr> {
         padding: const EdgeInsets.all(15.0),
         child: Container(
           child: Column(children: [
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "MAJOR ILLNESS",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
-
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
+              padding: const EdgeInsets.all(8.0),
+              child: Row(children: [
+                Container(
+                  width: 110,
+                  child: Text(
+                    "RELATION",
+                    style: TextStyle(color: Colors.black, fontSize: 15),
                   ),
+                ),
+                SizedBox(width: 5,),
+                Container(
+                  width: 110,
+                  child: Text(
+                    "AGE ",
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  ),
+                ),
+                SizedBox(width: 5,),
+
+                Container(
+                  width: 110,
+                  child: Text(
+                    "BIRTH Date",
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  ),
+                ),
+                SizedBox(width: 5,),
+
+              ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 110,
+                                child: Text(
+                                  "Mother",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 5,),
+                          Container(
+                            width: 110,
+                            child: Text(
+                              "35 ",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(width: 5,),
+                          Container(
+                            width: 110,
+                            child: Text(
+                              "11-08-1987",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
+            SizedBox(height: 5),
           ]),
         ),
       ),
@@ -1795,54 +2252,106 @@ class _ShowEmr extends State<ShowEmr> {
         padding: const EdgeInsets.all(15.0),
         child: Container(
           child: Column(children: [
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "IMMUNIZATION",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
-
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
+              padding: const EdgeInsets.all(8.0),
+              child: Row(children: [
+                Container(
+                  width: 90,
+                  child: Text(
+                    "VACCINE",
+                    style: TextStyle(color: Colors.black, fontSize: 13,fontWeight: FontWeight.bold),
                   ),
+                ),
+                SizedBox(width: 10,),
+                Container(
+                  width: 110,
+                  child: Text(
+                    "PRESCRIBTED ",
+                    style: TextStyle(color: Colors.black, fontSize: 13,fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                Container(
+                  width: 60,
+                  child: Text(
+                    "DATE",
+                    style: TextStyle(color: Colors.black, fontSize: 13,fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  width: 90,
+                  child: Text(
+                    "STATUS",
+                    style: TextStyle(color: Colors.black, fontSize: 13,fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+              ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                child: Text(
+                                  "Hepatitis E virus",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 7,),
+                          Container(
+                            width: 90,
+                            child: Text(
+                              "DR.Dinesh ",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                          ),
+                          Container(
+                            width: 90,
+                            child: Text(
+                              "11-08-1987",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                          ),
+                          Container(
+                            width: 40,
+                            child: Text(
+                              "Done",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -1859,57 +2368,98 @@ class _ShowEmr extends State<ShowEmr> {
         padding: const EdgeInsets.all(15.0),
         child: Container(
           child: Column(children: [
+            SizedBox(height: 5),
+            Center(
+              child: Text(
+                "MAJOR ILLNESS",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blue[400], Colors.blue[200]]),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey[200]),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, right: 20, top: 10, bottom: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Container(
-                                  height: size.height * 0.12,
-                                  width: size.width * 0.22,
-                                  child: Image.asset(
-                                      'assets/images/appointment.png',
-                                      fit: BoxFit.cover))
-                              // height: 95,
-
-                              )),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                      Text(
-                        "Ipsita Sahoo",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.04,
-                      ),
-                    ],
+              padding: const EdgeInsets.all(8.0),
+              child: Row(children: [
+                Container(
+                  width: 110,
+                  child: Text(
+                    "MEDICINE",
+                    style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
                   ),
+                ),
+                SizedBox(width: 5,),
+                Container(
+                  width: 110,
+                  child: Text(
+                    "DOES ",
+                    style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(width: 5,),
+
+                Container(
+                  width: 110,
+                  child: Text(
+                    "DAYS",
+                    style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(width: 5,),
+
+              ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 110,
+                                child: Text(
+                                  "Paracetmol",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 5,),
+                          Container(
+                            width: 110,
+                            child: Text(
+                              "3 ",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(width: 5,),
+                          Container(
+                            width: 110,
+                            child: Text(
+                              "30",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
+            SizedBox(height: 5),
           ]),
         ),
       ),

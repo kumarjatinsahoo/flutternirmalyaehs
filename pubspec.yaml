@@ -20,6 +20,7 @@ dependencies:
   pageview_indicator_plugins: ^0.0.2
   scoped_model: ^1.0.1
   dio: ^3.0.10
+  time_picker_widget: ^1.0.0+10
   shared_preferences: ^2.0.5
   connectivity: ^3.0.6
   path_provider: ^2.0.1
