@@ -39,5 +39,9 @@ class PassData extends Model {
   String cnfrmpwd;
 
   String education;
+  String speciality;
+  String dateofbirth;
+  String bloodgroup;
+  String gender;
 
 }

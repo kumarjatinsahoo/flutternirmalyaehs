@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
@@ -26,6 +28,8 @@ class DoctorSignUpForm2 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel titleModel = null;
+
 
   DoctorSignUpForm2({
     Key key,
@@ -43,6 +47,8 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  UserRegistrationModel userModel = UserRegistrationModel();
+
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   List<TextEditingController> textEditingController = [
@@ -249,16 +255,26 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                           height: 5,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_TITLE"),
-                                              "genderSignup",
-                                              genderList, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm2.genderModel = data;
-                                            });
-                                          }),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "TITLE",
+                                                ApiFactory.TITLE_API,
+                                                "title",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.TITLE_API);
+                                                DoctorSignUpForm2.titleModel =
+                                                    data;
+                                                userModel.title=data.key;
+                                                // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 5,

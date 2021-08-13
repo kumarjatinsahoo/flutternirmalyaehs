@@ -53,6 +53,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  String organisationname;
+  String title;
+  String professionalname;
+  String userid;
+  String password;
+  String cnfrmpwd;
+
+  String education;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),

@@ -1199,33 +1199,33 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     }
   }*/
 
-  popup(BuildContext context, String message) {
-    return Alert(
-        context: context,
-        title: message,
-        type: AlertType.success,
-        onWillPopActive: true,
-        closeIcon: Icon(
-          Icons.info,
-          color: Colors.transparent,
-        ),
-        //image: Image.asset("assets/success.png"),
-        closeFunction: () {},
-        buttons: [
-          DialogButton(
-            child: Text(
-              "OK",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            color: Color.fromRGBO(0, 179, 134, 1.0),
-            radius: BorderRadius.circular(0.0),
-          ),
-        ]).show();
-  }
+  // popup(BuildContext context, String message) {
+  //   return Alert(
+  //       context: context,
+  //       title: message,
+  //       type: AlertType.success,
+  //       onWillPopActive: true,
+  //       closeIcon: Icon(
+  //         Icons.info,
+  //         color: Colors.transparent,
+  //       ),
+  //       //image: Image.asset("assets/success.png"),
+  //       closeFunction: () {},
+  //       buttons: [
+  //         DialogButton(
+  //           child: Text(
+  //             "OK",
+  //             style: TextStyle(color: Colors.white, fontSize: 20),
+  //           ),
+  //           onPressed: () {
+  //             Navigator.pop(context);
+  //             Navigator.pop(context);
+  //           },
+  //           color: Color.fromRGBO(0, 179, 134, 1.0),
+  //           radius: BorderRadius.circular(0.0),
+  //         ),
+  //       ]).show();
+  // }
 
   finalFormSubmit() {
     print("form submit");
