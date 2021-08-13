@@ -37,6 +37,10 @@ class DoctorSignUpForm3 extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel doctorModel = null;
+  static KeyvalueModel hospitalModel = null;
+  static KeyvalueModel specialistModel = null;
+
 
   DoctorSignUpForm3({
     Key key,
@@ -58,6 +62,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   DateTime selectedDate = DateTime.now();
   PatientProfileModel patientProfileModel;
   UserRegistrationModel userModel = UserRegistrationModel();
+  PatientProfileModel userModell = PatientProfileModel();
   String organisationname;
   String title;
   String professionalname;
@@ -162,9 +167,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     super.initState();
     organisationname = widget.model.organisationname;
     professionalname = widget.model.professionalname;
-    userid = widget.model.userid;
-    password = widget.model.password;
-    cnfrmpwd = widget.model.cnfrmpwd;
+    title=widget.model.title;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
     DoctorSignUpForm3.genderModel = null;
@@ -274,7 +277,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                             Text("  Role :", style: TextStyle(fontSize: 20, color: Colors.black),),
                                             Column(
                                               children: [
-                                                Text("             Doctor", style: TextStyle(fontSize: 20, color: Colors.black),),
+                                                Text("    Doctor", style: TextStyle(fontSize: 20, color: Colors.black),),
                                               ],
                                             )
                                           ],
@@ -283,19 +286,25 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                             height: 11
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                                          child: Row(
-                                            children: [
-                                              DropDown.networkDropdown("Speciality", ApiFactory.SPECIALITY_API,"speciality"),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Speciality",
+                                                ApiFactory.SPECIALITY_API,
+                                                "speciality",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.SPECIALITY_API);
+                                                DoctorSignUpForm3.specialistModel= data;
+                                                DoctorSignUpForm3.doctorModel = null;
+                                                // UserSignUpForm.cityModel = null;
 
-                                              SizedBox(width: 10),
-                                              Text(
-                                                patientProfileModel?.body?.speciality??"N/A",
-                                                style: TextStyle(
-                                                  //fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
+                                              });
+                                            }),
                                           ),
                                         ),
                                         SizedBox(
@@ -306,19 +315,25 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                           height: 5,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                                          child: Row(
-                                            children: [
-                                              DropDown.networkDropdown("Blood Group", ApiFactory.BLOODGROUP_API,"bloodgroup"),
-
-                                              SizedBox(width: 10),
-                                              Text(
-                                                patientProfileModel?.body?.bloodGroup??"N/A",
-                                                style: TextStyle(
-                                                  //fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Bloodgroup",
+                                                ApiFactory.TITLE_API,
+                                                "Blood Group",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.BLOODGROUP_API);
+                                                DoctorSignUpForm3.bloodgroupModel =
+                                                    data;
+                                                //userModell.=data.key;
+                                                // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
                                           ),
                                         ),
                                         SizedBox(
@@ -530,27 +545,30 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       if (textEditingController[8].text == null || textEditingController[8].text == "") {
         AppData.showInSnackBar(context, "Please enter education");
       }
-      else if (textEditingController[9].text == null || textEditingController[9].text == "") {
-        AppData.showInSnackBar(context, "Please enter Speciality");
+      else if (DoctorSignUpForm3.specialistModel == null ||
+          DoctorSignUpForm3.specialistModel == "") {
+        AppData.showInSnackBar(context, "Please select Specalist");
       }
       else if (textEditingController[10].text == null || textEditingController[10].text == "") {
         AppData.showInSnackBar(context, "Please enter Date  of birth");
       }
-      else if (textEditingController[11].text == null || textEditingController[11].text == "") {
-        AppData.showInSnackBar(context, "Please enter bloodgroup");
+      else if (DoctorSignUpForm3.bloodgroupModel == null ||
+          DoctorSignUpForm3.bloodgroupModel == "") {
+        AppData.showInSnackBar(context, "Please select bloodgroup");
       }
-      else if (textEditingController[12].text == null || textEditingController[12].text == "") {
-        AppData.showInSnackBar(context, "Please enter gender");
+      else if (DoctorSignUpForm3.genderModel == null ||
+          DoctorSignUpForm3.genderModel == "") {
+        AppData.showInSnackBar(context, "Please select gender");
       }
 
 
 
     else {
       widget.model.education = textEditingController[8].text;
-      widget.model.speciality = textEditingController[9].text;
+      widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
       widget.model.dateofbirth = textEditingController[10].text;
-      widget.model.bloodgroup = textEditingController[11].text;
-      widget.model.gender = textEditingController[12].text;
+      widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;
+      widget.model.gender = DoctorSignUpForm3.genderModel.key;
       Navigator.pushNamed(context, "/doctorsignupform4");
     }
     },

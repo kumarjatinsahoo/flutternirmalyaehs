@@ -34,9 +34,6 @@ class PassData extends Model {
   String organisationname;
   String title;
   String professionalname;
-  String userid;
-  String password;
-  String cnfrmpwd;
 
   String education;
   String speciality;

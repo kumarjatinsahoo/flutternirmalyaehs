@@ -261,7 +261,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                             height: 58,
                                             child:
                                             DropDown.networkDropdownGetpartUser(
-                                                "TITLE",
+                                                "title",
                                                 ApiFactory.TITLE_API,
                                                 "title",
                                                 Icons.mail,
@@ -283,18 +283,18 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        formField(10, "User Id"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(11, "Password"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(12, "Confirm Password"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
+                                        // formField(10, "User Id"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
+                                        // formField(11, "Password"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
+                                        // formField(12, "Confirm Password"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
 
                                         Column(
                                           //crossAxisAlignment: CrossAxisAlignment.start,
@@ -420,38 +420,42 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
         if (textEditingController[8].text== "" || textEditingController[8].text== null) {
           AppData.showInSnackBar(context, "Please enter organization name");
         }
+        else if (DoctorSignUpForm2.titleModel == null ||
+            DoctorSignUpForm2.titleModel == "") {
+          AppData.showInSnackBar(context, "Please select title");
+        }
         else if (textEditingController[9].text== "" || textEditingController[9].text== null) {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         }
         else if (textEditingController[9].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Name ");
+          AppData.showInSnackBar(context, "Please enter Professional Name ");
         }
-        else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
-          AppData.showInSnackBar(context, "Please enter Userid");
-        }
-        else if (textEditingController[10].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Name ");
-        }
-        else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
-          AppData.showInSnackBar(context, "Please enter password");
-        }
-        else if (textEditingController[11].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid password ");
-        }
-        else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
-          AppData.showInSnackBar(context, "Please enter confirm password");
-        }
-        else if (textEditingController[12].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid password ");
-        }
+        // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter Userid");
+        // }
+        // else if (textEditingController[10].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid Name ");
+        // }
+        // else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter password");
+        // }
+        // else if (textEditingController[11].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid password ");
+        // }
+        // else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter confirm password");
+        // }
+        // else if (textEditingController[12].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid password ");
+        // }
 
         else {
-          widget.model.organisationname = textEditingController[0].text;
-          widget.model.title = textEditingController[1].text;
-          widget.model.professionalname = textEditingController[2].text;
-          widget.model.userid = textEditingController[3].text;
-          widget.model.password = textEditingController[4].text;
-          widget.model.cnfrmpwd = textEditingController[5].text;
+          widget.model.organisationname = textEditingController[8].text;
+          widget.model.title = DoctorSignUpForm2.titleModel.key;
+          widget.model.professionalname = textEditingController[9].text;
+          // widget.model.userid = textEditingController[10].text;
+          // widget.model.password = textEditingController[11].text;
+          // widget.model.cnfrmpwd = textEditingController[12].text;
           Navigator.pushNamed(context, "/doctorsignupform3");
         }
       },

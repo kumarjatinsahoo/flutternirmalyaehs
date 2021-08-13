@@ -130,6 +130,7 @@ class Body {
     profileImageType = json['profileImageType'];
     userId = json['userId'];
     countryCode = json['countryCode'];
+    bloodGroup = json['bloodGroup'];
     stateCode = json['stateCode'];
     password = json['password'];
     countryName = json['countryName'];

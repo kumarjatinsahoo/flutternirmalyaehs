@@ -350,8 +350,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 23.0,  (KeyvalueModel data) {
                               setState(() {
                                 DoctorconsultationPage.stateModel = data;
-                                /*userModel.state=data.key;
-                                                userModel.stateCode=data.code;*/
+                                // userModel.state=data.key;
+                                //                 userModel.stateCode=data.code;
                                 DoctorconsultationPage.distrModel = null;
 
                               });
@@ -577,10 +577,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
      if (DoctorconsultationPage.countryModel == null ||
          DoctorconsultationPage.countryModel == "") {
       AppData.showInSnackBar(context, "Please select country");
-    }else if (DoctorconsultationPage.stateModel == null ||
+    }
+     else if (DoctorconsultationPage.stateModel == null ||
          DoctorconsultationPage.stateModel == "") {
       AppData.showInSnackBar(context, "Please select state");
-    } else if (DoctorconsultationPage.distrModel == null ||
+    }
+     else if (DoctorconsultationPage.distrModel == null ||
          DoctorconsultationPage.distrModel == "") {
       AppData.showInSnackBar(context, "Please select Distric");
     }else if (DoctorconsultationPage.cityModel == null ||

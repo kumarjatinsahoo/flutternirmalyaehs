@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
 
@@ -34,6 +36,9 @@ class DoctorSignUpForm4 extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel cityModel = null;
+  static KeyvalueModel countryModel = null;
 
   DoctorSignUpForm4({
     Key key,
@@ -51,16 +56,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  UserRegistrationModel userModel = UserRegistrationModel();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   String organisationname;
   String title;
   String professionalname;
-  String userid;
-  String password;
-  String cnfrmpwd;
 
   String education;
+  String speciality;
+  String dateofbirth;
+  String bloodgroup;
+  String gender;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -160,6 +167,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     DoctorSignUpForm4.districtModel = null;
     DoctorSignUpForm4.blockModel = null;
     DoctorSignUpForm4.genderModel = null;
+    organisationname = widget.model.organisationname;
+    professionalname = widget.model.professionalname;
+    title=widget.model.title;
+    education=widget.model.education;
+    speciality=widget.model.speciality;
+    dateofbirth=widget.model.dateofbirth;
+    bloodgroup=widget.model.bloodgroup;
+    gender=widget.model.bloodgroup;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -259,62 +274,94 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         ),
 
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_COUNTRY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
+                                          padding: const EdgeInsets.only(left: 0, right: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child: DropDown.networkDropdownGetpartUser(
+                                                "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                                23.0,
+                                                    (KeyvalueModel data) {
+                                                  setState(() {
+                                                    print(ApiFactory.COUNTRY_API);
+                                                    DoctorSignUpForm4.countryModel = data;
+                                                     userModel.country=data.key;
+                                                    userModel.countryCode=data.code;
+                                                    DoctorSignUpForm4.stateModel = null;
+                                                  });
+                                                }),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("STATE"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("DISTRICT"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_CITY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        (DoctorSignUpForm4.countryModel != null)
+                                            ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 0, right: 0, bottom: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child: DropDown.networkDropdownGetpartUser(
+                                                "State",
+                                                ApiFactory.STATE_API + DoctorSignUpForm4.countryModel.key,
+                                                "state", Icons.location_on_rounded,
+                                                23.0,  (KeyvalueModel data) {
+                                              setState(() {
+                                                DoctorSignUpForm4.stateModel = data;
+                                                userModel.state=data.key;
+                                                userModel.stateCode=data.code;
+                                                DoctorSignUpForm4.cityModel = null;
+
+                                              });
+                                            }),
+                                          ),
+                                        )
+                                            : Container(),
+                                        (DoctorSignUpForm4.stateModel != null)
+                                            ?Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "District",
+                                                ApiFactory.DISTRICT_API + DoctorSignUpForm4.stateModel.key,
+                                                "district",
+                                                Icons.location_on_rounded,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.DISTRICT_API+ DoctorSignUpForm4.stateModel.key);
+                                                DoctorSignUpForm4.districtModel= data;
+                                                // userModel.district=data.key;
+                                                // userModel.st=data.code;
+                                                // UserSignUpForm.cityModel = null;
+                                                DoctorSignUpForm4.cityModel = null;
+                                              });
+                                            }),
+                                          ),
+                                        ): Container(),
+                                        (DoctorSignUpForm4.districtModel != null)
+                                            ? Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "City",
+                                                ApiFactory.CITY_API+ DoctorSignUpForm4.districtModel.key,
+                                                "city",
+                                                Icons.location_on_rounded,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.CITY_API+ DoctorSignUpForm4.districtModel.key);
+                                                DoctorSignUpForm4.cityModel= data;
+
+                                                DoctorSignUpForm4.cityModel = null;
+                                              });
+                                            }),
+                                          ),
+                                        ):Container(),
                                         SizedBox(
                                           height: 5,
                                         ),
@@ -575,8 +622,56 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/doctorsignupform5");
-      },
+
+        if (textEditingController[8].text== "" || textEditingController[8].text== null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+        }
+        else if (DoctorSignUpForm4.countryModel == null ||
+            DoctorSignUpForm4.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select country");
+        }
+        else if (DoctorSignUpForm4.stateModel == null ||
+            DoctorSignUpForm4.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select state");
+        }
+        else if (DoctorSignUpForm4.districtModel == null ||
+            DoctorSignUpForm4.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select district");
+        }
+        else if (DoctorSignUpForm4.cityModel == null ||
+            DoctorSignUpForm4.cityModel == "") {
+          AppData.showInSnackBar(context, "Please select city");
+        }
+        else if (textEditingController[5].text== "" || textEditingController[5].text== null) {
+          AppData.showInSnackBar(context, "Please enter Zip/pin code");
+        }
+        else if (textEditingController[5].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter Zip/pin code ");
+        }
+        else if (textEditingController[4].text== "" || textEditingController[4].text== null) {
+          AppData.showInSnackBar(context, "Please enter Enterhome phone");
+        }
+        else if (textEditingController[4].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter Enterhome phone ");
+        }
+        else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
+          AppData.showInSnackBar(context, "Please enter office phone");
+        }
+        else if (textEditingController[11].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter office phone");
+        }
+        else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        }
+        else if (textEditingController[12].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter mobile no ");
+        }
+
+        else {
+
+                    Navigator.pushNamed(context, "/doctorsignupform3");
+        }
+        },
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left:180, right: 0),
