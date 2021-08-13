@@ -125,7 +125,7 @@ class DropDown {
     );
   }
 
-  static networkDropdown(String label, final String API, String callFrom) {
+  static networkDropdown(String label, final String API, String callFrom,Function fun) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -181,6 +181,9 @@ class DropDown {
           case "block":
             list = KeyvalueModel.fromJsonList(response.data["districtList"]);
             break;
+          case "relation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -196,6 +199,7 @@ class DropDown {
       },
       //itemAsString: (KeyvalueModel u) => u.userAsString(),
       onChanged: (KeyvalueModel data) {
+        fun(data);
         switch (callFrom) {
           case "district":
             selectedKey = data;

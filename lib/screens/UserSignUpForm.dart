@@ -1188,6 +1188,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           });
     }
   }
+
   popup(BuildContext context, String message) {
     return Alert(
         context: context,

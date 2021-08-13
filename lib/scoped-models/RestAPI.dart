@@ -156,6 +156,47 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
       }
     }
   }
+  POSTMETHOD1(
+      {@required String api,
+        String token,
+        @required Map<String, dynamic> json,
+        @required Function fun}) async {
+    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+        JsonEncoder().convert(json).toString());
+    try {
+      Response response = await dio.post(api,
+          options: Options(
+            headers: {
+              "Authorization": token,
+            },
+          ),data: jsonEncode(json));
+      if (response.statusCode == 200) {
+        try {
+          print("RESPONSE CALL>>>>" +
+              JsonEncoder().convert(response.data).toString());
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(failedMap);
+      }
+    }
+  }
 
   POSTMETHOD_TOKEN(
       {@required String api,
