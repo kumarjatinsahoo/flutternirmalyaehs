@@ -1,4 +1,6 @@
-import 'package:user/models/AppointmentlistModel.dart';
+
+import 'package:user/models/DocterAppointmentlistModel.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -15,7 +17,7 @@ class MyAppointmentCancle extends StatefulWidget {
 
 class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -59,7 +61,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel=AppointmentlistModel.fromJson(map);
+              doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -82,7 +84,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        Body appointmentlist = doctorAppointmment.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return Column(
