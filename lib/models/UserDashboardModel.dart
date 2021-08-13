@@ -1,8 +1,8 @@
 class UserDashboardModel {
   Body body;
-  Null message;
-  Null code;
-  Null total;
+  String message;
+  String code;
+  String total;
 
   UserDashboardModel({this.body, this.message, this.code, this.total});
 
