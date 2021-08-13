@@ -1,12 +1,12 @@
-class PatientProfileModel {
+class ProfileModel {
   Body body;
   String message;
   String code;
   Null total;
 
-  PatientProfileModel({this.body, this.message, this.code, this.total});
+  ProfileModel({this.body, this.message, this.code, this.total});
 
-  PatientProfileModel.fromJson(Map<String, dynamic> json) {
+  ProfileModel.fromJson(Map<String, dynamic> json) {
     body = json['body'] != null ? new Body.fromJson(json['body']) : null;
     message = json['message'];
     code = json['code'];
@@ -98,7 +98,7 @@ class Body {
         this.ageYears});
 
   Body.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['eCardNo'];
     title = json['title'];
     fullName = json['fullName'];
     fName = json['fName'];
@@ -141,7 +141,7 @@ class Body {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['eCardNo'] = this.id;
     data['title'] = this.title;
     data['fullName'] = this.fullName;
     data['fName'] = this.fName;

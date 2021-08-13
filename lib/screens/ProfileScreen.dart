@@ -1,14 +1,18 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/PatientListModel.dart';
-import 'package:user/models/PatientProfileModel.dart';
+import 'package:user/models/ProfileModel.dart';
+import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -38,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String today;
   String comeFrom;
   bool isDataNotAvail = false;
-  PatientProfileModel patientProfileModel;
+  ProfileModel patientProfileModel;
   String base64Img;
   String valueText = null;
   File _camImage;
@@ -48,6 +52,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   DateTime selectedDate = DateTime.now();
 
   List<TextEditingController> textEditingController = [
+  new TextEditingController(),
+  new TextEditingController(),
+  new TextEditingController(),
   new TextEditingController(),
   new TextEditingController(),
   new TextEditingController(),
@@ -63,7 +70,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   FocusNode fnode5 = new FocusNode();
 
 
-  TextEditingController _fullname = TextEditingController();
+  TextEditingController _fname = TextEditingController();
+  TextEditingController _lname = TextEditingController();
   TextEditingController _dob = TextEditingController();
   TextEditingController _bloodGroup = TextEditingController();
   TextEditingController _id = TextEditingController();
@@ -79,6 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   //TextEditingController _profileImage = TextEditingController();
  // TextEditingController _profileImage = TextEditingController();
 
+  UpdateProfileModel updateProfileModel = UpdateProfileModel();
 
   @override
   void initState() {
@@ -92,9 +101,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
+            log("Value>>>"+jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              patientProfileModel = PatientProfileModel.fromJson(map);
+              patientProfileModel = ProfileModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -587,6 +597,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
+    _fname.text=patientProfileModel.body.fName;
+    _lname.text=patientProfileModel.body.lName;
+    _dob.text=patientProfileModel.body.dob;
+    _bloodGroup.text=patientProfileModel.body.bloodGroup;
+    _gender.text=patientProfileModel.body.gender;
+    _eMobile.text=patientProfileModel.body.eMobile;
+    _eName.text=patientProfileModel.body.eName;
+    _eRelation.text=patientProfileModel.body.eRelation;
+    _fDoctor.text=patientProfileModel.body.fDoctor;
+    _speciality.text=patientProfileModel.body.speciality;
+    _docMobile.text=patientProfileModel.body.docMobile;
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -594,134 +616,138 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // title: Text('TextField in Dialog'),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                Future getCerificateImage() async {
-                  var image =
-                  await ImagePicker.pickImage(source: ImageSource.gallery);
-                  var enc = await image.readAsBytes();
-                  String _path = image.path;
-
-                  String _fileName =
-                  _path != null ? _path.split('/').last : '...';
-                  var pos = _fileName.lastIndexOf('.');
-                  String extName =
-                  (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-                  setState(() => _camImage = image);
-                  base64Img = base64Encode(enc);
-                }
-
+                // Future getCerificateImage() async {
+                //   var image =
+                //   await ImagePicker.pickImage(source: ImageSource.gallery);
+                //   var enc = await image.readAsBytes();
+                //   String _path = image.path;
+                //
+                //   String _fileName =
+                //   _path != null ? _path.split('/').last : '...';
+                //   var pos = _fileName.lastIndexOf('.');
+                //   String extName =
+                //   (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+                //   setState(() => _camImage = image);
+                //   base64Img = base64Encode(enc);
+                // }
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                        width: double.infinity,
-                        height: 110.0,
-                        child: Center(
-                          child: Container(
-                            height: 110.0,
-                            width: 110.0,
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(110.0),
-                                    child: _camImage != null
-                                        ? Image.file(
-                                      _camImage,
-                                      height: 110,
-                                      width: 110,
-                                      fit: BoxFit.cover,
-                                    )
-                                        : Image.network(
-                                        imgValue ?? AppData.defaultImgUrl,
-                                        height: 140)),
-                                Positioned(
-                                  child: InkWell(
-                                    onTap: () {
-                                      //getCameraImage();
-                                      //showDialog();
-                                      //_settingModalBottomSheet(context);
-                                      getCerificateImage();
-                                    },
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.black,
-                                      size: 20,
-                                    ),
-                                  ),
-                                  bottom: 3,
-                                  right: 12,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   height: 110.0,
+                      //   child: Center(
+                      //     child: Container(
+                      //       height: 110.0,
+                      //       width: 110.0,
+                      //       child: Stack(
+                      //         children: [
+                      //           // ClipRRect(
+                      //           //     borderRadius: BorderRadius.circular(110.0),
+                      //           //     child: _camImage != null
+                      //           //         ? Image.file(
+                      //           //       _camImage,
+                      //           //       height: 110,
+                      //           //       width: 110,
+                      //           //       fit: BoxFit.cover,
+                      //           //     )
+                      //           //         : Image.network(
+                      //           //         imgValue ?? AppData.defaultImgUrl,
+                      //           //         height: 140)),
+                      //           // Positioned(
+                      //           //   child: InkWell(
+                      //           //     onTap: () {
+                      //           //       //getCameraImage();
+                      //           //       //showDialog();
+                      //           //       //_settingModalBottomSheet(context);
+                      //           //       getCerificateImage();
+                      //           //     },
+                      //           //     child: Icon(
+                      //           //       Icons.camera_alt,
+                      //           //       color: Colors.black,
+                      //           //       size: 20,
+                      //           //     ),
+                      //           //   ),
+                      //           //   bottom: 3,
+                      //           //   right: 12,
+                      //           // )
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
+                      SizedBox(
+                        height: 10
+                      ),
+                      Text("Update Profile",style: TextStyle(color: Colors.black,fontSize: 20),),
+                      SizedBox(
+                        height: 20,
+                      ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+
                           });
                         },
-                        controller: _fullname,
+                        controller: _fname,
                         decoration: InputDecoration(hintText: "First Name"),
-                      ), TextField(
+                      ),
+                      TextField(
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            updateProfileModel.lName=value;
+
                           });
                         },
-                        controller: _fullname,
+                        controller: _lname,
                         decoration: InputDecoration(hintText: "Last Name"),
                       ),
+
                       dob(),
 
-                      DropDown.networkDropdown("Blood Group", ApiFactory.BLOODGROUP_API,"bloodgroup"),
-
+                      DropDown.networkDropdown("Blood Group", ApiFactory.BLOODGROUP_API,"relation",(KeyvalueModel model){
+                        updateProfileModel.bloodGroup=model.key;
+                      }),
                       Divider(height: 2,color: Colors.black,),
+
+                      DropDown.networkDropdown("Gender", ApiFactory.GENDER_API,"gender",(KeyvalueModel model){
+                        updateProfileModel.gender=model.key;
+                      }),
+                      Divider(height: 2,color: Colors.black,),
+
                       // TextField(
                       //   onChanged: (value) {
                       //     setState(() {
                       //       valueText = value;
                       //     });
                       //   },
-                      //   controller: _bloodGroup,
-                      //   decoration: InputDecoration(hintText: "Blood Group"),
+                      //   controller: _mobile,
+                      //   decoration: InputDecoration(hintText: "Mobile No"),
                       // ),
-                      DropDown.networkDropdown("Gender", ApiFactory.GENDER_API,"gender"),
-                      Divider(height: 2,color: Colors.black,),
-
                       TextField(
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
-                          });
-                        },
-                        controller: _mobile,
-                        decoration: InputDecoration(hintText: "Mobile No"),
-                      ),
-                      TextField(
-                        onChanged: (value) {
-                          setState(() {
-                            valueText = value;
+                            updateProfileModel.eName=value;
                           });
                         },
                         controller: _eName,
                         decoration: InputDecoration(hintText: "Emergency Contact Name"),
                       ),
+                      DropDown.networkDropdown("Relation", ApiFactory.RELATION_API, "relation",(KeyvalueModel model){
+                        updateProfileModel.eRelation=model.key;
+                      }),
+                      Divider(height: 2,color: Colors.black),
+
                       TextField(
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
-                          });
-                        },
-                        controller: _eRelation,
-                        decoration: InputDecoration(hintText: "Relation"),
-                      ),
-                      TextField(
-                        onChanged: (value) {
-                          setState(() {
-                            valueText = value;
+                            updateProfileModel.eMobile=value;
                           });
                         },
                         controller: _eMobile,
@@ -731,6 +757,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            updateProfileModel.fName=value;
                           });
                         },
                         controller: _fDoctor,
@@ -745,20 +772,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //   controller: _speciality,
                       //   decoration: InputDecoration(hintText: "Speciality"),
                       // ),
-                      DropDown.networkDropdown("Speciality", ApiFactory.SPECIALITY_API,"speciality"),
+                      DropDown.networkDropdown("Speciality", ApiFactory.SPECIALITY_API,"relation",(KeyvalueModel model){
+updateProfileModel.speciality=model.key;
+                      }),
                       Divider(height: 2,color: Colors.black,),
 
                       TextField(
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            updateProfileModel.docMobile=value;
                           });
                         },
                         controller: _docMobile,
                         decoration: InputDecoration(hintText: " Doctors Mobile No"),
                       ),
-
-
                     ],
                   ),
                 );
@@ -781,20 +809,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: Colors.grey),
                 ),
                 onPressed: () {
-                  AppData.showInSnackBar(context, "click");
+                  //AppData.showInSnackBar(context, "click");
                   setState(() {
                     /*codeDialog = valueText;
                     Navigator.pop(context);*/
-                    if (_fullname.text == null || _fullname.text == "") {
-                      AppData.showInSnackBar(context, "Please enter name");
+                    if (_fname.text == null || _fname.text == "") {
+                      AppData.showInSnackBar(context, "Please enter firstname");
                     } else if (_bloodGroup.text == null || _bloodGroup.text == "") {
-                      AppData.showInSnackBar(context, "Please Blood Group");
-                    } else if (_id.text == null || _id.text == "") {
+                      AppData.showInSnackBar(context, "Please choose Blood Group");
+                    } else if (_dob.text == null || _dob.text == "") {
                       AppData.showInSnackBar(context, "Please enter eHealthcard Number");
                     }else if (_gender.text == null || _gender.text == "") {
                       AppData.showInSnackBar(context, "Please enter Gender");
-                    }else if (_mobile.text == null || _mobile.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Contact Detailsr");
+                    }else if (_docMobile.text == null || _docMobile.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Contact Details");
                     }else if (_eName.text == null || _eName.text == "") {
                       AppData.showInSnackBar(context, "Please enter Name");
                     }else if (_eRelation.text == null || _eRelation.text == "") {
@@ -802,12 +830,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     }else if (_eMobile.text == null || _eMobile.text == "") {
                       AppData.showInSnackBar(context, "Please enter Mobile Number");
                     }else if (_fDoctor.text == null || _fDoctor.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter Doctors Name");
                     }else if (_speciality.text == null || _speciality.text == "") {
                       AppData.showInSnackBar(context, "Please enter Speciality");
-                    }else if (_docMobile.text == null || _docMobile.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Mobile Number");
+                    }
+                    else if (_lname.text == null || _lname.text == "") {
+                      AppData.showInSnackBar(context, "Please enter last name");
                     }else {
+                      updateProfileModel.fName=_fname.text;
+                      updateProfileModel.lName=_lname.text;
+                      updateProfileModel.eCardNo=patientProfileModel.body.id;
+                      updateProfileModel.fDoctor=_fDoctor.text;
+                      updateProfileModel.fDoctor=_fDoctor.text;
+
+
+
+                      updateProfileModel.id=patientProfileModel.body.id;
+                      widget.model.POSTMETHOD_TOKEN(api: ApiFactory.USER_UPDATEPROFILE,
+                          json: updateProfileModel.toJson(),
+                          token: widget.model.token,
+                          fun: (Map<String,dynamic>map){
+                        Navigator.pop(context);
+                        if (map[Const.STATUS] == Const.SUCCESS) {
+                          popup(context, map[Const.MESSAGE]);
+                        }else{
+                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+
+                        }
+                          });
                       //postEdit();
                     }
                   });
@@ -817,6 +867,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         });
   }
+
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
 
 
   Widget dob() {
@@ -899,6 +977,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         error[2] = false;
         textEditingController[2].value =
             TextEditingValue(text: df.format(picked));
+        updateProfileModel.dob=df.format(picked);
+
       });
   }
 

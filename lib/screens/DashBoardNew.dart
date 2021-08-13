@@ -6,8 +6,10 @@ import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/UserDashboardModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 import '../providers/app_data.dart';
@@ -28,6 +30,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   String dateLeft = "0";
   double _height = 75;
   int _selectedDestination = -1;
+  UserDashboardModel userDashboardModel;
+  bool isDataNotAvail = false;
 
   void selectDestination(int index) {
     setState(() {
@@ -62,6 +66,29 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     /*setState(() {
       dateLeft = getDateTimeFormat("2021-01-15");
     });*/
+
+    callApi();
+  }
+
+  callApi() {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.USER_DASHBOARD,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          String msg = map[Const.MESSAGE];
+          if (map[Const.CODE] == Const.SUCCESS) {
+            userDashboardModel = UserDashboardModel.fromJson(map);
+            if (!userDashboardModel.body.isEContactAdded ||
+                !userDashboardModel.body.isEContactAdded) {
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                dashOption1(context);
+              });
+            }
+          } else {
+            isDataNotAvail = true;
+            AppData.showInSnackBar(context, msg);
+          }
+        });
   }
 
   String getTime(String date) {
@@ -102,10 +129,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           backgroundColor: Colors.transparent,
           contentPadding: EdgeInsets.only(left: 1, right: 1),
           insetPadding: EdgeInsets.only(left: 1, right: 1),
-
-          /*shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),*/
-
           content: FittedBox(
             child: Container(
               //alignment: Alignment.center,
@@ -143,6 +166,56 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         );
       },
     );
+  }
+
+  dashOption1(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding:
+                    EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Container(
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(55),
+                              child: Image.asset("assets/logo1.png")),
+                        ),
+                        Text(
+                          "Please Complete Your Profile Data",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 12),
+                        MaterialButton(
+                          child: Text(
+                            "OK",
+                            style: TextStyle(color: Colors.blue, fontSize: 18),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/profile");
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
   }
 
   @override
@@ -434,7 +507,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 currentColor: Colors.grey,
                 normalColor: Colors.black12,
               ),
-
               CarouselSlider(
                 options: CarouselOptions(
                     height: 210,
@@ -523,7 +595,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                               (imageSliders.indexOf(item) + 1)
                                                       .toString() +
                                                   "/" +
-                                                  imageSliders.length.toString(),
+                                                  imageSliders.length
+                                                      .toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 13.0,
@@ -539,7 +612,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       bottom: 0,
                                       left: 0,
                                       right: 0,
-                                      child: (imageSliders.indexOf(item) == 4 || imageSliders.indexOf(item) == 7 || imageSliders.indexOf(item) == 0|| imageSliders.indexOf(item) == 1)
+                                      child: (imageSliders.indexOf(item) == 4 ||
+                                              imageSliders.indexOf(item) == 7 ||
+                                              imageSliders.indexOf(item) == 0 ||
+                                              imageSliders.indexOf(item) == 1)
                                           ? Icon(
                                               Icons.play_circle_fill,
                                               color: Colors.white,
@@ -547,7 +623,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             )
                                           : Container(),
                                     ),
-
                                   ],
                                 ),
                               ),
@@ -559,7 +634,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               SizedBox(
                 height: 15,
               ),
-
             ],
           ),
         ),
@@ -941,561 +1015,559 @@ class MyPage1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     _width = (MediaQuery.of(context).size.width - 80) / 3;
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 7),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/folder.png",
-                        fun: () {
-                          Navigator.pushNamed(
-                              context, "/medicalrecordpage");
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        // ,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 7),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/folder.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/medicalrecordpage");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      // ,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "My Medical Record",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/search_icon.png",
+                      fun: () {
+                        Navigator.pushNamed(
+                            context, "/findHealthcareService");
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Find Healthcare Services",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "My Medical Record",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health_checkup.png",
+                      fun: () {
+                        //chooseAppointment(context);
+                        /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Appointment", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/search_icon.png",
-                        fun: () {
-                          Navigator.pushNamed(
-                              context, "/findHealthcareService");
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTile1(
+                      //icon: "assets/meditate.png",
+                      icon: Icons.local_offer,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "HELP",
+                      fun: () {
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                        Navigator.pushNamed(context, "/emergencyHelp");
+                      },
+                      color: AppData.kPrimaryRedColor,
+                      bordercolor: AppData.kPrimaryRedColor,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Emergency Help", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            " Emergency Help",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(
+                              child:*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/clock.png",
+                      //icon: Icons.alarm,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Medicine Reminder",
+                      fun: () {
+                        Navigator.pushNamed(context, "/medicinereminder");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Medicine Reminder",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Find Healthcare Services",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /* Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/health_checkup.png",
-                        fun: () {
-                          //chooseAppointment(context);
-                          /*Navigator.pushNamed(
-                                        context, "/medipedia");*/
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Appointment", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-              ],
-            ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTile1(
-                        //icon: "assets/meditate.png",
-                        icon: Icons.local_offer,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "HELP",
-                        fun: () {
-                          // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                          Navigator.pushNamed(context, "/emergencyHelp");
-                        },
-                        color: AppData.kPrimaryRedColor,
-                        bordercolor: AppData.kPrimaryRedColor,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Emergency Help", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              " Emergency Help",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(
-                                child:*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/clock.png",
-                        //icon: Icons.alarm,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Medicine Reminder",
-                        fun: () {
-                          Navigator.pushNamed(
-                              context, "/medicinereminder");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Medicine Reminder",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Medicine Reminder",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-                /*),*/
-                SizedBox(
-                  width: 5,
-                ),
-                /*  Expanded(*/
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Medicine Reminder",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              /*),*/
+              SizedBox(
+                width: 5,
+              ),
+              /*  Expanded(*/
 
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/offers.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/discountoffer");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/offers.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/discountoffer");
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        "Discount & Offers",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Health               chat",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              /*Expanded(
+                              child:*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/organ_donner.png",
+                      //icon: Icons.wc_rounded,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Organ  Donation",
+                      fun: () {
+                        Navigator.pushNamed(context, "/organdonation");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Organ Donation", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text(
-                          "Discount & Offers",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
+                    ),
+                    /* Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Organ     Donation",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/generic_medicine.png",
+                      //icon: Icons.animation,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Generic Medical Stores",
+                      fun: () {
+                        Navigator.pushNamed(context, "/geneicstores");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Generic Medical Stores",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-              ],
-            ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                /*Expanded(
-                                child:*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/organ_donner.png",
-                        //icon: Icons.wc_rounded,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Organ  Donation",
-                        fun: () {
-                          Navigator.pushNamed(context, "/organdonation");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: (size.width - 130) / 3,
+                    ),
+                    /* Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Generic Medical Stores",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
+                              child: */
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/govtscheme.png",
+                      //icon: Icons.home_outlined,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Govt Schemes",
+                      fun: () {
+                        Navigator.pushNamed(context, "/govtschemes");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Govternment Schemes",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Organ Donation", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Organ     Donation",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/generic_medicine.png",
-                        //icon: Icons.animation,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Generic Medical Stores",
-                        fun: () {
-                          Navigator.pushNamed(context, "/geneicstores");
-                          // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Generic Medical Stores",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /* Expanded(
-                                child: */
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/govtscheme.png",
-                        //icon: Icons.home_outlined,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Govt Schemes",
-                        fun: () {
-                          Navigator.pushNamed(context, "/govtschemes");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Govternment Schemes",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-              ],
-            ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                /*Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTilered(
-                                  icon: "assets/upload.png",
-                                  //icon: Icons.wc_rounded,
-                                  //icon: FontAwesomeIcons.accusoft,
-                                 // title: "Upload Medical Data",
-                                  fun: () {
-                                   Navigator.pushNamed(
-                                        context, "/worldwidehospital");
-                                    // AppData.showSnack(
-                                    //     context, "Coming soon", Colors.green);
-                                  },
-                                  color: AppData.BG1RED,
-                                  bordercolor: AppData.BG1RED,
-                                  //size: (size.width - 130) / 3,
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              /*Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _buildTilered(
+                                icon: "assets/upload.png",
+                                //icon: Icons.wc_rounded,
+                                //icon: FontAwesomeIcons.accusoft,
+                               // title: "Upload Medical Data",
+                                fun: () {
+                                 Navigator.pushNamed(
+                                      context, "/worldwidehospital");
+                                  // AppData.showSnack(
+                                  //     context, "Coming soon", Colors.green);
+                                },
+                                color: AppData.BG1RED,
+                                bordercolor: AppData.BG1RED,
+                                //size: (size.width - 130) / 3,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                width: 100,
+                                height:35,
+                                */
+              /* child: Expanded(*/ /*
+                                child: Text(
+                                  "Upload Medical Data",textAlign:TextAlign.center ,
+                                  //overflow: TextOverflow.ellipsis,
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  width: 100,
-                                  height:35,
-                                  */ /* child: Expanded(*/ /*
-                                  child: Text(
-                                    "Upload Medical Data",textAlign:TextAlign.center ,
-                                    //overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                */ /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Organ     Donation",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/ /*
-                              ]),*/
+                              ),
+                              */
+              /* Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Organ     Donation",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/ /*
+                            ]),*/
 
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/insurance.png",
-                        //icon: Icons.drive_folder_upload,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Upload Medical Data",
-                        fun: () {
-                          Navigator.pushNamed(context, "/insuranceList");
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/insurance.png",
+                      //icon: Icons.drive_folder_upload,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Upload Medical Data",
+                      fun: () {
+                        Navigator.pushNamed(context, "/insuranceList");
 
-                          /*  AppData.showSnack(
-                                    context, "Coming soon", Colors.green);*/
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+                        /*  AppData.showSnack(
+                                  context, "Coming soon", Colors.green);*/
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Insurance", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health_care.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/chemistspage");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Preventive Health Care",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Insurance", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
+                    ),
+                    /* Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Generic Medical Stores",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
+                              child: */
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/medipedia.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/medipedia");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Medipedia", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/health_care.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/chemistspage");
-                          // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Preventive Health Care",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /* Expanded(
-                                child: */
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/medipedia.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/medipedia");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Medipedia", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-              ],
-            ),
-          ],
-        ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+        ],
       ),
     );
   }
