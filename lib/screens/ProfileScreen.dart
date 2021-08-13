@@ -773,7 +773,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //   decoration: InputDecoration(hintText: "Speciality"),
                       // ),
                       DropDown.networkDropdown("Speciality", ApiFactory.SPECIALITY_API,"relation",(KeyvalueModel model){
-updateProfileModel.speciality=model.key;
+                updateProfileModel.speciality=model.key;
                       }),
                       Divider(height: 2,color: Colors.black,),
 

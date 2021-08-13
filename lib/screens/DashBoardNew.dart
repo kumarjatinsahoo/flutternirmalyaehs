@@ -119,7 +119,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   int daysBetween(DateTime from, DateTime to) {
     from = DateTime(from.year, from.month, from.day);
     to = DateTime(to.year, to.month, to.day);
-    return (to.difference(from).inHours / 24).round();
+    return (to
+        .difference(from)
+        .inHours / 24).round();
   }
 
   Widget dialoggeneratepop(BuildContext context) {
@@ -142,7 +144,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     child: Image.asset(
                       "assets/banner_pop.jpeg",
                       fit: BoxFit.fill,
-                      width: MediaQuery.of(context).size.width * 0.95,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.95,
                     ),
                   ),
                   Positioned(
@@ -178,7 +183,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               return AlertDialog(
                 //title: const Text("Is it your details?"),
                 contentPadding:
-                    EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
@@ -220,7 +225,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -290,9 +297,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/dashboard");
                     // Navigator.pushNamed(context, "/dashboard1");
                   }
-                  // onTap: (){},
+                // onTap: (){},
 
-                  ),
+              ),
               ListTile(
                 leading: Image.asset(
                   "assets/images/myprofile.png",
@@ -483,7 +490,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   }
 
   Widget _dashboardnew(context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -521,114 +530,115 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     pauseAutoPlayInFiniteScroll: true,
                     onPageChanged: (index, reason) {
                       setState(
-                        () {
+                            () {
                           _currentIndex = index;
                         },
                       );
                     }),
                 items: imageSliders
-                    .map((item) => InkWell(
-                          onTap: () {
-                            int index = imageSliders.indexOf(item);
-                            switch (index) {
-                              case 0:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");
-                                break;
-                              case 1:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                                break;
-                              case 4:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=axzWoVaF4N4");
-                                break;
-                              case 7:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=ckYGlJwCmlg");
-                                break;
-                            }
-                          },
-                          child: Container(
-                            child: Container(
-                              margin: EdgeInsets.all(10),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      item,
-                                      fit: BoxFit.fill,
-                                      width: 1000,
-                                      height: double.maxFinite,
-                                      //height: 100,
-                                    ),
-                                    /* Image.network(
+                    .map((item) =>
+                    InkWell(
+                      onTap: () {
+                        int index = imageSliders.indexOf(item);
+                        switch (index) {
+                          case 0:
+                            AppData.launchURL(
+                                "https://www.youtube.com/watch?v=QYcKscyUvuY");
+                            break;
+                          case 1:
+                            AppData.launchURL(
+                                "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                            break;
+                          case 4:
+                            AppData.launchURL(
+                                "https://www.youtube.com/watch?v=axzWoVaF4N4");
+                            break;
+                          case 7:
+                            AppData.launchURL(
+                                "https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                            break;
+                        }
+                      },
+                      child: Container(
+                        child: Container(
+                          margin: EdgeInsets.all(10),
+                          child: ClipRRect(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(5)),
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  item,
+                                  fit: BoxFit.fill,
+                                  width: 1000,
+                                  height: double.maxFinite,
+                                  //height: 100,
+                                ),
+                                /* Image.network(
                                          item.bannerImage,
                                          fit: BoxFit.fill,
                                          width: 1000,
                                          height: double.maxFinite,
                                        ),*/
 
-                                    Positioned(
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color.fromARGB(200, 0, 0, 0),
-                                              Color.fromARGB(0, 0, 0, 0)
-                                            ],
-                                            begin: Alignment.bottomCenter,
-                                            end: Alignment.topCenter,
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10.0, horizontal: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              (imageSliders.indexOf(item) + 1)
-                                                      .toString() +
-                                                  "/" +
-                                                  imageSliders.length.toString(),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13.0,
-                                                fontWeight: FontWeight.w200,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                Positioned(
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color.fromARGB(200, 0, 0, 0),
+                                          Color.fromARGB(0, 0, 0, 0)
+                                        ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
                                       ),
                                     ),
-                                    Positioned(
-                                      top: 0,
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      child: (imageSliders.indexOf(item) == 4 ||
-                                              imageSliders.indexOf(item) == 7 ||
-                                              imageSliders.indexOf(item) == 0 ||
-                                              imageSliders.indexOf(item) == 1)
-                                          ? Icon(
-                                              Icons.play_circle_fill,
-                                              color: Colors.white,
-                                              size: 45,
-                                            )
-                                          : Container(),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10.0, horizontal: 20.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          (imageSliders.indexOf(item) + 1)
+                                              .toString() +
+                                              "/" +
+                                              imageSliders.length.toString(),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13.0,
+                                            fontWeight: FontWeight.w200,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                Positioned(
+                                  top: 0,
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: (imageSliders.indexOf(item) == 4 ||
+                                      imageSliders.indexOf(item) == 7 ||
+                                      imageSliders.indexOf(item) == 0 ||
+                                      imageSliders.indexOf(item) == 1)
+                                      ? Icon(
+                                    Icons.play_circle_fill,
+                                    color: Colors.white,
+                                    size: 45,
+                                  )
+                                      : Container(),
+                                ),
+                              ],
                             ),
                           ),
-                        ))
+                        ),
+                      ),
+                    ))
                     .toList(),
               ),
               SizedBox(
@@ -652,23 +662,25 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     });
   }
 
-  Widget _buildTileblue(
-      {/*String icon,*/ IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTileblue({ /*String icon,*/ IconData icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery.of(context).size.width - 80) / 3,
+        width: (MediaQuery
+            .of(context)
+            .size
+            .width - 80) / 3,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -680,7 +692,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -688,7 +700,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -703,7 +715,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //width: ,
                     height: 60.0,),*/
                     child:
-                        Icon(icon, color: AppData.kPrimaryColor, size: 40.0)),
+                    Icon(icon, color: AppData.kPrimaryColor, size: 40.0)),
 
                 /*Text(
                   '12',
@@ -774,21 +786,24 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 
-  Widget _buildTile1(
-      {icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTile1({icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery.of(context).size.width - 80) / 3,
+        width: (MediaQuery
+            .of(context)
+            .size
+            .width - 80) / 3,
         decoration: BoxDecoration(
+
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -882,23 +897,25 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 
-  Widget _buildTilered(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTilered({IconData icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery.of(context).size.width - 80) / 3,
+        width: (MediaQuery
+            .of(context)
+            .size
+            .width - 80) / 3,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -910,7 +927,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -918,7 +935,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -1012,6 +1029,7 @@ class MyPage1Widget extends StatelessWidget {
   var widget;
   double _height = 85;
   double _width;
+
   chooseAppointment(BuildContext context) {
     return showDialog(
         context: context,
@@ -1031,8 +1049,8 @@ class MyPage1Widget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         _Tilered(
-                         // icon: Icons.calendar_today,
-                          icon:  CupertinoIcons.calendar_today,
+                          // icon: Icons.calendar_today,
+                          icon: CupertinoIcons.calendar_today,
                           title: "Health Screening",
                           fun: () {
                             Navigator.pushNamed(
@@ -1042,7 +1060,7 @@ class MyPage1Widget extends StatelessWidget {
                         Divider(),
                         _Tilered(
                           // icon: Icons.calendar_today,
-                          icon:  CupertinoIcons.calendar_today,
+                          icon: CupertinoIcons.calendar_today,
                           title: "Health Check-up",
                           fun: () {
                             Navigator.pushNamed(
@@ -1052,12 +1070,13 @@ class MyPage1Widget extends StatelessWidget {
                         Divider(),
                         _Tilered(
                           // icon: Icons.calendar_today,
-                          icon:  CupertinoIcons.calendar_today,
+                          icon: CupertinoIcons.calendar_today,
                           title: "Doctor Appointment",
                           fun: () {
-                            Navigator.pushNamed(context, "/doctorconsultationPage");
-                           // Navigator.pushNamed(context, "/doctorconsultationPage");
-                           // Navigator.pop(context);
+                            Navigator.pushNamed(
+                                context, "/doctorconsultationPage");
+                            // Navigator.pushNamed(context, "/doctorconsultationPage");
+                            // Navigator.pop(context);
                           },
                         ),
 
@@ -1122,12 +1141,11 @@ class MyPage1Widget extends StatelessWidget {
             },
           );
         });
-
   }
-  Widget _Tilered(
-      {IconData icon,
-        String title,
-        Function fun}) {
+
+  Widget _Tilered({IconData icon,
+    String title,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1136,17 +1154,17 @@ class MyPage1Widget extends StatelessWidget {
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(icon, color: Colors.grey,size: 35,),
+            Icon(icon, color: Colors.grey, size: 35,),
             SizedBox(
               width: 20,
             ),
-          Text(title,
-          style: TextStyle(/*fontWeight: FontWeight.w300,*/
-              fontSize: 17,
-              color: Colors.black), textAlign: TextAlign.center),
-        //Icon(Icons.search, color: Colors.white),
-        ],
-      ),
+            Text(title,
+                style: TextStyle(/*fontWeight: FontWeight.w300,*/
+                    fontSize: 17,
+                    color: Colors.black), textAlign: TextAlign.center),
+            //Icon(Icons.search, color: Colors.white),
+          ],
+        ),
 
       ),
     );
@@ -1154,8 +1172,13 @@ class MyPage1Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    _width = (MediaQuery.of(context).size.width - 80) / 3;
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    _width = (MediaQuery
+        .of(context)
+        .size
+        .width - 80) / 3;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
@@ -1365,33 +1388,33 @@ class MyPage1Widget extends StatelessWidget {
               ),
               /*  Expanded(*/
 
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/offers.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/discountoffer");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/offers.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/discountoffer");
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        "Discount & Offers",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text(
-                          "Discount & Offers",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
+                    ),
+                    /*Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1400,46 +1423,46 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                    ]),
-              ],
-            ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                /*Expanded(
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              /*Expanded(
                                 child:*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/organ_donner.png",
-                        //icon: Icons.wc_rounded,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Organ  Donation",
-                        fun: () {
-                          Navigator.pushNamed(context, "/organdonation");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: (size.width - 130) / 3,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/organ_donner.png",
+                      //icon: Icons.wc_rounded,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Organ  Donation",
+                      fun: () {
+                        Navigator.pushNamed(context, "/organdonation");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Organ Donation", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Organ Donation", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
+                    ),
+                    /* Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1448,43 +1471,43 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/generic_medicine.png",
-                        //icon: Icons.animation,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Generic Medical Stores",
-                        fun: () {
-                          Navigator.pushNamed(context, "/geneicstores");
-                          // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/generic_medicine.png",
+                      //icon: Icons.animation,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Generic Medical Stores",
+                      fun: () {
+                        Navigator.pushNamed(context, "/geneicstores");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Generic Medical Stores",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Generic Medical Stores",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
+                    ),
+                    /* Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1493,166 +1516,116 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /* Expanded(
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
                                 child: */
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/govtscheme.png",
-                        //icon: Icons.home_outlined,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Govt Schemes",
-                        fun: () {
-                          Navigator.pushNamed(context, "/govtschemes");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/govtscheme.png",
+                      //icon: Icons.home_outlined,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Govt Schemes",
+                      fun: () {
+                        Navigator.pushNamed(context, "/govtschemes");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Govternment Schemes",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Govternment Schemes",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                    ]),
-              ],
-            ),
-            SizedBox(height: size.height * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                /*Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTilered(
-                                  icon: "assets/upload.png",
-                                  //icon: Icons.wc_rounded,
-                                  //icon: FontAwesomeIcons.accusoft,
-                                 // title: "Upload Medical Data",
-                                  fun: () {
-                                   Navigator.pushNamed(
-                                        context, "/worldwidehospital");
-                                    // AppData.showSnack(
-                                    //     context, "Coming soon", Colors.green);
-                                  },
-                                  color: AppData.BG1RED,
-                                  bordercolor: AppData.BG1RED,
-                                  //size: (size.width - 130) / 3,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  width: 100,
-                                  height:35,
-                                  */ /* child: Expanded(*/ /*
-                                  child: Text(
-                                    "Upload Medical Data",textAlign:TextAlign.center ,
-                                    //overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                */ /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Organ     Donation",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/ /*
-                              ]),*/
+                    ),
 
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/insurance.png",
-                        //icon: Icons.drive_folder_upload,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Upload Medical Data",
-                        fun: () {
-                          Navigator.pushNamed(context, "/insuranceList");
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/insurance.png",
+                      //icon: Icons.drive_folder_upload,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Upload Medical Data",
+                      fun: () {
+                        Navigator.pushNamed(context, "/insuranceList");
 
-                          /*  AppData.showSnack(
+                        /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Insurance", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health_care.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/chemistspage");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Preventive Health Care",
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Insurance", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/health_care.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/chemistspage");
-                          // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Preventive Health Care",
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /* Align(
+                    ),
+                    /* Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1661,40 +1634,40 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /* Expanded(
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
                                 child: */
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/medipedia.png",
-                        fun: () {
-                          Navigator.pushNamed(context, "/medipedia");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: (size.width - 130) / 3,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/medipedia.png",
+                      fun: () {
+                        Navigator.pushNamed(context, "/medipedia");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        "Medipedia", textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(
-                          "Medipedia", textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      /*Align(
+                    ),
+                    /*Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1703,23 +1676,21 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                    ]),
-              ],
-            ),
-          ],
-        ),
+                  ],),
+            ],
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildTileblue(
-      {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTileblue({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1729,7 +1700,7 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -1741,7 +1712,7 @@ class MyPage1Widget extends StatelessWidget {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -1749,7 +1720,7 @@ class MyPage1Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -1836,13 +1807,12 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTile1(
-      {icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTile1({icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1853,6 +1823,7 @@ class MyPage1Widget extends StatelessWidget {
         ///width: (MediaQuery.of(context).size.width - 80) / 3,
         width: _width,
         decoration: BoxDecoration(
+
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -1946,14 +1917,13 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTilered(
-      {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTilered({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1964,7 +1934,7 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -1976,7 +1946,7 @@ class MyPage1Widget extends StatelessWidget {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -1984,7 +1954,7 @@ class MyPage1Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -2079,8 +2049,13 @@ class MyPage2Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    _width = (MediaQuery.of(context).size.width - 80) / 3;
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    _width = (MediaQuery
+        .of(context)
+        .size
+        .width - 80) / 3;
     return Column(
       children: <Widget>[
         Expanded(
@@ -2182,14 +2157,13 @@ class MyPage2Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTileblue(
-      {String icon,
-      /* IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTileblue({String icon,
+    /* IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2199,7 +2173,7 @@ class MyPage2Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -2211,7 +2185,7 @@ class MyPage2Widget extends StatelessWidget {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -2219,7 +2193,7 @@ class MyPage2Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -2384,13 +2358,12 @@ class MyPage2Widget extends StatelessWidget {
         });
   }
 
-  Widget _buildTile1(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTile1({IconData icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2401,6 +2374,7 @@ class MyPage2Widget extends StatelessWidget {
         ///width: (MediaQuery.of(context).size.width - 80) / 3,
         width: _width,
         decoration: BoxDecoration(
+
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -2494,13 +2468,12 @@ class MyPage2Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTilered(
-      {String icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+  Widget _buildTilered({String icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2511,7 +2484,7 @@ class MyPage2Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -2523,7 +2496,7 @@ class MyPage2Widget extends StatelessWidget {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -2531,7 +2504,7 @@ class MyPage2Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
