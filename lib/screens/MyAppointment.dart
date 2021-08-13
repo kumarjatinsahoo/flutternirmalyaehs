@@ -11,44 +11,65 @@ import 'MyAppointment_Treated.dart';
 class MyAppointment extends StatefulWidget {
   final MainModel model;
 
- MyAppointment({Key key, this.model}) : super(key: key);
+  MyAppointment({Key key, this.model}) : super(key: key);
 
   @override
   _MyAppointmentState createState() => _MyAppointmentState();
 }
+
 final List<Tab> myTabs = <Tab>[
   Tab(text: 'LEFT'),
   Tab(text: 'RIGHT'),
 ];
-class _MyAppointmentState extends State<MyAppointment> {
 
+class _MyAppointmentState extends State<MyAppointment> {
   @override
   Widget build(BuildContext context) {
-     Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 4,
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          title: const Text('My Appointment'),
+          backgroundColor: AppData.kPrimaryColor,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_box_rounded),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, "/doctorconsultationPage");
+              },
+            ),
+          ],
+          /*appBar: AppBar(
           title: Text("My Appointment"),
           titleSpacing: 0.0,
           backgroundColor: AppData.kPrimaryColor,
-          centerTitle: true,
+          centerTitle: true,*/
           //iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: Colors.orangeAccent,
             isScrollable: true,
-            dragStartBehavior:DragStartBehavior.down,
+            dragStartBehavior: DragStartBehavior.down,
             tabs: [
-              Tab(text: /*"Confirmed"*/"COFIRMED",),
-              Tab(text: /*"Requested"*/"REQUESTED",),
-              Tab(text: /*"Cancelled"*/"CANCELLED",),
-              Tab(text: /*"Treated"*/"TREATED",),
+              Tab(
+                text: /*"Confirmed"*/ "COFIRMED",
+              ),
+              Tab(
+                text: /*"Requested"*/ "REQUESTED",
+              ),
+              Tab(
+                text: /*"Cancelled"*/ "CANCELLED",
+              ),
+              Tab(
+                text: /*"Treated"*/ "TREATED",
+              ),
             ],
           ),
           //title: Text(widget.model.saloonName),
-
         ),
         body: TabBarView(
           children: [
@@ -65,13 +86,13 @@ class _MyAppointmentState extends State<MyAppointment> {
     );
     /*SafeArea(
       child: Scaffold(
-       *//* floatingActionButton: FloatingActionButton(
+       */ /* floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: Icon(Icons.add, color: Colors.white, size: 29,),
           backgroundColor: AppData.kPrimaryColor,
           elevation: 5,
           splashColor: Colors.grey,
-        ),*//*
+        ),*/ /*
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -92,7 +113,7 @@ class _MyAppointmentState extends State<MyAppointment> {
             child: Container(
               child: Column(
                 children: [
-                  *//*Padding(
+                  */ /*Padding(
                     padding: const EdgeInsets.only(top:0.0,bottom: 0.0,left: 0.0, right: 0.0),
                     child: Container(
                       // height: 100,
@@ -104,12 +125,12 @@ class _MyAppointmentState extends State<MyAppointment> {
                             ]),
                              borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.grey[200]),
-                      ),                    
+                      ),
                       child:  Padding(
                         padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
-                        child: *//**//*Row(
+                        child: */ /**/ /*Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [*//**//*
+                          children: [*/ /**/ /*
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,11 +164,11 @@ class _MyAppointmentState extends State<MyAppointment> {
                               ],
                             ),
 
-                        *//**//*  ],
-                        ),*//**//*
+                        */ /**/ /*  ],
+                        ),*/ /**/ /*
                       ),
                     ),
-                  ),*//*
+                  ),*/ /*
                   SizedBox(height: size.height * 0.02,),
                   DefaultTabController(
                      //isScrollable: true,
@@ -172,8 +193,8 @@ class _MyAppointmentState extends State<MyAppointment> {
                                 ],
                               ))],
                       ))
-                *//*  SizedBox(height: size.height * 0.02,),*//*
-                  *//*TabBar(
+                */ /*  SizedBox(height: size.height * 0.02,),*/ /*
+                  */ /*TabBar(
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicatorColor: Colors.orangeAccent,
                     isScrollable: false,
@@ -183,14 +204,14 @@ class _MyAppointmentState extends State<MyAppointment> {
                       Tab(text: "STATEMENT",),
                       Tab(text: "REPORTS",),
                     ],
-                  ),*//*
-                  *//*TabBarView(
+                  ),*/ /*
+                  */ /*TabBarView(
                     children: [
                       rowValue(),
                       rowValue(),
                       rowValue(),
                     ],
-                  ),*//*
+                  ),*/ /*
                 ],
               ),
             ),
@@ -199,11 +220,12 @@ class _MyAppointmentState extends State<MyAppointment> {
       ),
     );*/
   }
+
   Widget rowValue() {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        gradient:
+            LinearGradient(colors: [Colors.blueGrey[50], Colors.blue[50]]),
         borderRadius: BorderRadius.circular(1),
         // border: Border.all(color: Colors.blue[100]),
       ),
@@ -216,9 +238,9 @@ class _MyAppointmentState extends State<MyAppointment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                *//* Image.asset('assets/images/edit.png',
+                */ /* Image.asset('assets/images/edit.png',
                   color: Colors.grey[700],
-                )*//*
+                )*/ /*
 
               ],
             ),
@@ -234,18 +256,20 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   '30-Jul-2019',
                   style: TextStyle(
-                    // fontWeight: FontWeight.w500,
-                    // color: Colors.black54,
-                  ),
+                      // fontWeight: FontWeight.w500,
+                      // color: Colors.black54,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -256,17 +280,19 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'unknown',
                   style: TextStyle(
-                    //fontWeight: FontWeight.w500,
-                  ),
+                      //fontWeight: FontWeight.w500,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height:10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -288,7 +314,7 @@ class _MyAppointmentState extends State<MyAppointment> {
               ],
             ),
           ),
-          SizedBox(height:10),
+          SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -300,13 +326,13 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'Male',
                   style: TextStyle(
-                    //fontWeight: FontWeight.w500,
-                    // color: AppData.kPrimaryColor,
-                  ),
+                      //fontWeight: FontWeight.w500,
+                      // color: AppData.kPrimaryColor,
+                      ),
                 ),
               ],
             ),
@@ -322,13 +348,13 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   '+2345678900',
                   style: TextStyle(
-                    //fontWeight: FontWeight.w500,
-                    // color: AppData.kPrimaryColor,
-                  ),
+                      //fontWeight: FontWeight.w500,
+                      // color: AppData.kPrimaryColor,
+                      ),
                 ),
               ],
             ),
@@ -337,28 +363,28 @@ class _MyAppointmentState extends State<MyAppointment> {
         ],
       ),
     );
-
   }
+
   Widget rowValue1() {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        gradient:
+            LinearGradient(colors: [Colors.blueGrey[50], Colors.blue[50]]),
         borderRadius: BorderRadius.circular(1),
         // border: Border.all(color: Colors.blue[100]),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         /* Padding(
+          /* Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                *//* Image.asset('assets/images/edit.png',
+                */ /* Image.asset('assets/images/edit.png',
                   color: Colors.grey[700],
-                )*//*
+                )*/ /*
 
               ],
             ),
@@ -374,18 +400,20 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'Mr.abc',
                   style: TextStyle(
-                    // fontWeight: FontWeight.w500,
-                    // color: Colors.black54,
-                  ),
+                      // fontWeight: FontWeight.w500,
+                      // color: Colors.black54,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -396,17 +424,19 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'Friend',
                   style: TextStyle(
-                    //fontWeight: FontWeight.w500,
-                  ),
+                      //fontWeight: FontWeight.w500,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height:10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -428,33 +458,31 @@ class _MyAppointmentState extends State<MyAppointment> {
               ],
             ),
           ),
-
         ],
       ),
     );
-
   }
 
   Widget rowValue2() {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blueGrey[50], Colors.blue[50]]),
+        gradient:
+            LinearGradient(colors: [Colors.blueGrey[50], Colors.blue[50]]),
         borderRadius: BorderRadius.circular(1),
         // border: Border.all(color: Colors.blue[100]),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         /* Padding(
+          /* Padding(
             padding: const EdgeInsets.only(left: 20.0, top: 20,right: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                *//* Image.asset('assets/images/edit.png',
+                */ /* Image.asset('assets/images/edit.png',
                   color: Colors.grey[700],
-                )*//*
+                )*/ /*
 
               ],
             ),
@@ -470,18 +498,20 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'Dr.abc',
                   style: TextStyle(
-                    // fontWeight: FontWeight.w500,
-                    // color: Colors.black54,
-                  ),
+                      // fontWeight: FontWeight.w500,
+                      // color: Colors.black54,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -492,17 +522,19 @@ class _MyAppointmentState extends State<MyAppointment> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width:10),
+                SizedBox(width: 10),
                 Text(
                   'Dental Pedodontia',
                   style: TextStyle(
-                    //fontWeight: FontWeight.w500,
-                  ),
+                      //fontWeight: FontWeight.w500,
+                      ),
                 ),
               ],
             ),
           ),
-          SizedBox(height:10,),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
@@ -524,10 +556,8 @@ class _MyAppointmentState extends State<MyAppointment> {
               ],
             ),
           ),
-
         ],
       ),
     );
-
   }
 }

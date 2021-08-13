@@ -171,7 +171,7 @@ class DropDown {
           //queryParameters: {"filter": filter},
         );
         //var models = response.data;
-        final jsonResponse = response.data;
+        final statejsonResponse = response.data;
         var list;
         // var list = List<KeyvalueModel>.from(jsonResponse.map((i) => KeyvalueModel.fromsJson(i)));
         switch (callFrom) {
@@ -1382,10 +1382,10 @@ class DropDown {
         );
         var list;
         switch (callFrom) {
-          case "state":
+          case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "city":
+          case "state":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }

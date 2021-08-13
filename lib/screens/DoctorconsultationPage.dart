@@ -117,7 +117,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   bool eclampsia = false;
   bool bldpressure = false;
   bool anemia = false;
-
+  String opdId;
 
   Future<Null> _selectDate(BuildContext context, String comeFrom) async {
     final DateTime picked = await showDatePicker(
@@ -137,35 +137,13 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           fun: (Map<String, dynamic> map) {
             setState(() {
               //Navigator.of(context).pop();
-             /* if (response.statusCode == 200) {
-                // If the call to the server was successful, parse the JSON
-                List<dynamic> values=new List<dynamic>();
-                values = json.decode(response.body);
-                if(values.length>0){
-                  for(int i=0;i<values.length;i++){
-                    if(values[i]!=null){
-                      Map<String,dynamic> map=values[i];
-                      _postList .add(Post.fromJson(map));
-                      debugPrint('Id-------${map['id']}');
-                    }
-                  }
-                }*/
-              List<dynamic> values=new List<dynamic>();
-              values = json.decode( map["body"].toString());
-              if(values.length>0) {
-                for (int i = 0; i < values.length; i++) {
-                  if (values[i] != null) {
-                    Map<String, dynamic> map = values[i];
-                    debugPrint('Id-------${map['fromTime']}');
-                    debugPrint('Id-------${map['toTime']}');
-                    debugPrint('Id-------${map['opdId']}');
-                  }
-                }
-              }
+
+
               if (map[Const.CODE] == Const.SUCCESS) {
-
-
-                appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
+                String fromTime = map["body"]["fromTime"].toString();
+                String toTime = map["body"]["toTime"].toString();
+                 opdId = map["body"]["opdId"].toString();
+                 appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
 
                 AppData.showInSnackBar(context, map[Const.MESSAGE]);
               } else {
@@ -647,7 +625,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text,
-      "opdid": /*appointmentdate.selectGender.id*/"4",
+      "opdid":  opdId,
       "time": "19:00",//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[0].text,
