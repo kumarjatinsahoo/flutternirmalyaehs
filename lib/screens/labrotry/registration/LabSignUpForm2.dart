@@ -494,13 +494,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     ));
   }
 
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
+
   // Widget gender() {
   //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
   //           (KeyvalueModel model) {
