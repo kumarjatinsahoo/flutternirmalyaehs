@@ -98,7 +98,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -117,15 +117,15 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                    /*Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,

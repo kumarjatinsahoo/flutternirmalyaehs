@@ -100,7 +100,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -119,15 +119,15 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                   /* Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
@@ -153,10 +153,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                                                         showDialog(
                                                           context: context,
                                                           builder: (BuildContext context) =>
-                                                              changeStatus(
-                                                                context,
-
-                                                              ),
+                                                              changeStatus(context,appointmentlist.patname,appointmentlist.doctorName),
                                                         );
                                                       },
                                                     ),
@@ -192,7 +189,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
         )
     );
   }
-  Widget changeStatus(BuildContext context,  ) {
+  Widget changeStatus(BuildContext context, String patname,String doctorName) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
     return AlertDialog(
@@ -215,7 +212,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   ),
                 ),
                 Text(
-                  "Lisa Rani",
+                  /*"Lisa Rani"*/patname,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
@@ -229,13 +226,15 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   leading: Icon(Icons.book),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&appstatus="+"7",
+                        api: ApiFactory.user_APPOINTMENT_status +doctorName+"&appstatus="+"2",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
                               doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
                               // appointModel = lab.LabBookModel.fromJson(map);
                             } else {
                               // isDataNotAvail = true;
@@ -250,17 +249,19 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   height: 2,
                 ),
                 ListTile(
-                  title: Text("Requested"),
+                  title: Text("Cancelled"),
                   leading: Icon(Icons.trending_up),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
+                        api: ApiFactory.user_APPOINTMENT_status +doctorName+"&appstatus="+"4",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
                               doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
                               // appointModel = lab.LabBookModel.fromJson(map);
                             } else {
                               // isDataNotAvail = true;

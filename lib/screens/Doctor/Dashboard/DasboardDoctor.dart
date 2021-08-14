@@ -1,5 +1,9 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
 
@@ -12,6 +16,8 @@ class DasboardDoctor extends StatefulWidget {
   @override
   _DasboardDoctorState createState() => _DasboardDoctorState();
 }
+SharedPref sharedPref = SharedPref();
+
 chooseAppointment(BuildContext context) {
   return showDialog(
       context: context,
@@ -216,9 +222,9 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () {
-                      Navigator.push(context,
+                     /* Navigator.push(context,
                           new MaterialPageRoute(
-                              builder: (context) => new Appointment1()));
+                              builder: (context) => new Appointment1()));*/
                       //Navigator.pushNamed(context, "/apntMange");
                       chooseAppointment(context);
                     }
@@ -627,12 +633,23 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               ),
               title: Text("Logout"),
               onTap: () {
-                Navigator.pop(context);
+               // selectDestination(9);
+                sharedPref.save(Const.IS_LOGIN, false.toString());
+                sharedPref.save(Const.IS_REGISTRATION, false.toString());
+                sharedPref.remove(Const.IS_REGISTRATION);
+                sharedPref.remove(Const.IS_LOGIN);
+                sharedPref.remove(Const.LOGIN_DATA);
+                sharedPref.remove(Const.IS_REG_SERVER);
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+              //  _exitApp();
               },
             ),
           ],
         ),
       ),
     );
+
   }
+
 }
