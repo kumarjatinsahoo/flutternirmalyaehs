@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 
@@ -7,6 +8,7 @@ class DocWalkPatient extends StatefulWidget {
   MainModel model;
 
   DocWalkPatient({Key key, this.model}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _WalkPatient();
 }
@@ -15,6 +17,7 @@ class _WalkPatient extends State<DocWalkPatient> {
   FocusNode _descriptionFocus, _focusNode;
   final _titleController = TextEditingController();
   String _ratingController;
+  final myController = TextEditingController();
 
   @override
   void initState() {
@@ -22,6 +25,11 @@ class _WalkPatient extends State<DocWalkPatient> {
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
   }
+
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +79,13 @@ class _WalkPatient extends State<DocWalkPatient> {
                           "   :   ",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Expanded(
                           child: TextField(
+                            controller: myController,
+                            maxLength: 16,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: ''),
@@ -104,6 +117,7 @@ class _WalkPatient extends State<DocWalkPatient> {
                         ),
                         Expanded(
                           child: TextField(
+                            controller: myController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: ''),
@@ -157,30 +171,40 @@ class _WalkPatient extends State<DocWalkPatient> {
                   color: const Color(0xFF0F6CE1),
                   borderRadius: BorderRadius.circular(10.0),
                   child: InkWell(
-                    child: MaterialButton(
-                      onPressed: () async {},
-                      minWidth: 350,
-                      height: 40.0,
-                      child: GestureDetector(
-                        child: Text(
-                          "Show EMR",
-                          style: TextStyle(color: Colors.white, fontSize: 17.0),
-                        ),
-                          onTap: () async {
-                            Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => new ShowEmr()));
-                          }
+                      child: MaterialButton(
+                        onPressed: () async {},
+                        minWidth: 350,
+                        height: 40.0,
+                        child: GestureDetector(
+                            child: Text(
+                              "Show EMR",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17.0),
+                            ),
+                            onTap: () async {
+                              if (myController.text == "" ||
+                                  myController.text == null) {
+                                AppData.showInSnackBar(context,
+                                    "Please enter patient's eHealthCard No");
+                              } else if (myController.text.length <=
+                                  3) {
+                                AppData.showInSnackBar(
+                                    context, "Please enter patient's eHealthCard No ");
+                              } else {
+                                widget.model.patientseHealthCard = myController.text;
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => new ShowEmr(model:widget.model)));
+                              }
+                            }),
                       ),
-                    ),
-                    onTap: () async {
-                      /*Navigator.push(
+                      onTap: () async {
+                        /*Navigator.push(
                           context,
                           new MaterialPageRoute(
                               builder: (context) => new ShowEmr()));*/
-                    }
-                  ),
+                      }),
                 ),
                 SizedBox(
                   height: 7,

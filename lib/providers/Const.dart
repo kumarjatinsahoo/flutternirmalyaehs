@@ -63,6 +63,7 @@ class Const {
 
   static String DOC_APNT = "DOC_APNT";
   static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
+  static String PATINTDETAILS = "PATINTDETAILS";
   static String HEALTH_CHKUP_APNT = "HEALTH_CHKUP_APNT";
   static const String DEATH_CODE = "B3";
   static const String FUNERAL_CODE = "B5";

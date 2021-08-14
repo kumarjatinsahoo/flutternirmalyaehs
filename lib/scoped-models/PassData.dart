@@ -40,6 +40,8 @@ class PassData extends Model {
   String dateofbirth;
   String bloodgroup;
   String gender;
+
+  String patientseHealthCard ;
   //////////////
   String organization;
   String title1;
