@@ -49,8 +49,7 @@ class ApiFactory {
 
   static String WALK_IN_REG_LIST = MAIN_URL + "get-patient-registration-list?userid=";
 
-  static String HEALTH_CHKUP_LIST =
-      MAIN_URL + 'view-chkupAppointmentlist?appontdt=';
+  static String HEALTH_CHKUP_LIST = MAIN_URL + 'view-chkupAppointmentlist?appontdt=';
 
   static String HEALTH_SCREENING_LIST =MAIN_URL + 'view-labAppointmentlist?appontdt=';
   static String USER_APPOINTMENT_LIST =MAIN_URL + 'get-user-appointment-list?userid=';

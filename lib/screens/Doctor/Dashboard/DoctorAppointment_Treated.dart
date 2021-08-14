@@ -7,16 +7,14 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
-class MyAppointmentRequested extends StatefulWidget {
-
+class DoctorAppointmentTreated extends StatefulWidget {
    MainModel model;
-  MyAppointmentRequested({Key key, this.model}) : super(key: key);
+  DoctorAppointmentTreated({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentRequestedState createState() => _MyAppointmentRequestedState();
+  _DoctorAppointmentTreatedState createState() => _DoctorAppointmentTreatedState();
 }
 
-class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
+class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -56,7 +54,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"7",
+        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -81,7 +79,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                 appointdate(),
 
                 Expanded(
-                  child: ListView.builder(
+                  child: (doctorAppointmment != null)
+                      ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
@@ -142,24 +141,11 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .end,
                                                   children: [
-                                                    GestureDetector(
-                                                      child:  Text(/*'Confirmed'*/appointmentlist.status,
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 15,
-                                                      color: Colors.green),),
-                                                      onTap: () {
-                                                        showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext context) =>
-                                                              changeStatus(
-                                                                context,
-
-                                                              ),
-                                                        );
-                                                      },
-                                                    ),
-
+                                                    Text(/*'Confirmed'*/appointmentlist.status,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 15,
+                                                          color: Colors.green),),
                                                     SizedBox(height: 3,),
                                                     Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
                                                       overflow: TextOverflow.clip,
@@ -179,9 +165,9 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                             ),
                           ],
                         );
-                      }
+                      },itemCount: doctorAppointmment.body.length,
 
-                  ),
+                  ): Container(),
                 ),
               ],
             ),
@@ -189,112 +175,6 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
 
 
         )
-    );
-  }
-  Widget changeStatus(BuildContext context,  ) {
-    //NomineeModel nomineeModel = NomineeModel();
-    //Nomine
-    return AlertDialog(
-      contentPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
-      //title: const Text(''),
-      content: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                //_buildAboutText(),
-                //_buildLogoAttribution(),
-                Text(
-                  "CHANGE STATUS",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Lisa Rani",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ListTile(
-                  title: Text("Confirmed"),
-                  leading: Icon(Icons.book),
-                  onTap: () {
-                    widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          setState(() {
-                            String msg = map[Const.MESSAGE];
-                            if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment=DoctorAppointmment.fromJson(map);
-                              // appointModel = lab.LabBookModel.fromJson(map);
-                            } else {
-                              // isDataNotAvail = true;
-                              AppData.showInSnackBar(context, msg);
-                            }
-                          });
-                        });
-                    //updateApi(userName.id.toString(), "0", i);
-                  },
-                ),
-                Divider(
-                  height: 2,
-                ),
-                ListTile(
-                  title: Text("Requested"),
-                  leading: Icon(Icons.trending_up),
-                  onTap: () {
-                    widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          setState(() {
-                            String msg = map[Const.MESSAGE];
-                            if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment=DoctorAppointmment.fromJson(map);
-                              // appointModel = lab.LabBookModel.fromJson(map);
-                            } else {
-                              // isDataNotAvail = true;
-                              AppData.showInSnackBar(context, msg);
-                            }
-                          });
-                        });
-                    //updateApi(userName.id.toString(), "1", i);
-                  },
-                ),
-                /*Divider(
-                  height: 2,
-                ),*/
-               /* ListTile(
-                  title: Text("COMPLETED"),
-                  leading: Icon(Icons.done_outline_outlined),
-                  onTap: () {
-//                    updateApi(userName.id.toString(), "2", i);
-                  },
-                )*/
-              ],
-            ),
-          );
-        },
-      ),
-
-      actions: <Widget>[
-        new FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          textColor: Colors.grey[900],
-          child: Text("CANCEL"),
-        ),
-      ],
     );
   }
   Widget appointdate() {
@@ -359,5 +239,5 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
     );
   }
 
- // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
+  //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.blue),),
 }

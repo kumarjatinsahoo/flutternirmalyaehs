@@ -78,7 +78,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 appointdate(),
 
                 Expanded(
-                  child: ListView.builder(
+                  child: (appointmentlistModel != null)
+                      ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
@@ -163,9 +164,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                             ),
                           ],
                         );
-                      }
+                      },itemCount: appointmentlistModel.body.length,
 
-                  ),
+                  ): Container(),
                 ),
               ],
             ),

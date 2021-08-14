@@ -8,14 +8,14 @@ import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class MyAppointmentConfirmed extends StatefulWidget {
+class DoctorAppointmentConfirmed extends StatefulWidget {
    MainModel model;
-  MyAppointmentConfirmed({Key key, this.model}) : super(key: key);
+  DoctorAppointmentConfirmed({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentConfirmedState createState() => _MyAppointmentConfirmedState();
+  _DoctorAppointmentConfirmedState createState() => _DoctorAppointmentConfirmedState();
 }
 
-class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
+class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -55,7 +55,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -80,7 +80,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                  appointdate(),
 
                  Expanded(
-                   child: ListView.builder(
+                   child: (doctorAppointmment != null)
+                       ? ListView.builder(
                      shrinkWrap: true,
                physics: NeverScrollableScrollPhysics(),
                itemBuilder: (context, i) {
@@ -165,9 +166,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                       ),
                     ],
                   );
-                }
+                },itemCount: doctorAppointmment.body.length,
 
-                   ),
+                   ): Container(),
                  ),
                ],
              ),
