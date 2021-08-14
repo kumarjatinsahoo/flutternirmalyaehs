@@ -12,6 +12,7 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/PatientListModel.dart';
 import 'package:user/models/ProfileModel.dart';
+import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';

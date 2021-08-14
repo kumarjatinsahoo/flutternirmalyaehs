@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/DoctorRegistrationModel.dart';
+import 'package:user/models/UserRegistrationModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 import '../../../localization/localizations.dart';
@@ -18,11 +26,11 @@ import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
-
-enum gender{
+enum gender {
   Male,
   Female,
 }
+
 // ignore: must_be_immutable
 class DoctorSignUpForm4 extends StatefulWidget {
   final Function(int, bool) updateTab;
@@ -33,7 +41,10 @@ class DoctorSignUpForm4 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel bloodgroupModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel cityModel = null;
+  static KeyvalueModel countryModel = null;
 
   DoctorSignUpForm4({
     Key key,
@@ -51,8 +62,19 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  UserRegistrationModel userModel = UserRegistrationModel();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  String organisationname;
+  String title;
+  String professionalname;
+  String education;
+  String speciality;
+  String dateofbirth;
+  String bloodgroup;
+  String gender;
+  DoctorRegistrationModel doctorModel = DoctorRegistrationModel();
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -77,7 +99,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -140,10 +161,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     KeyvalueModel(name: "O-", key: "7"),
     KeyvalueModel(name: "AB-", key: "8"),
   ];
-  List<KeyvalueModel> Gender=[
-    KeyvalueModel(name: "Male",key: "0"),
-    KeyvalueModel(name: "Female",key: "1"),
-    KeyvalueModel(name: "Transgender",key: "2"),
+  List<KeyvalueModel> Gender = [
+    KeyvalueModel(name: "Male", key: "0"),
+    KeyvalueModel(name: "Female", key: "1"),
+    KeyvalueModel(name: "Transgender", key: "2"),
   ];
 
   @override
@@ -152,6 +173,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     DoctorSignUpForm4.districtModel = null;
     DoctorSignUpForm4.blockModel = null;
     DoctorSignUpForm4.genderModel = null;
+    organisationname = widget.model.organisationname;
+    professionalname = widget.model.professionalname;
+    title = widget.model.title;
+    education = widget.model.education;
+    speciality = widget.model.speciality;
+    dateofbirth = widget.model.dateofbirth;
+     bloodgroup=widget.model.bloodgroup;
+    gender = widget.model.gender;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -175,240 +204,326 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-             Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                    child: Row(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back, color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text(
+                        'SIGN UP',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Fill in personal Information (All fields are mandatory)",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(8, "Address"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 0, right: 0),
+                                      child: SizedBox(
+                                        height: 58,
+                                        child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Country",
+                                                ApiFactory.COUNTRY_API,
+                                                "country",
+                                                Icons.location_on_rounded,
+                                                23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.COUNTRY_API);
+                                            DoctorSignUpForm4.countryModel =
+                                                data;
+                                            userModel.country = data.key;
+                                            userModel.countryCode = data.code;
+                                            DoctorSignUpForm4.stateModel = null;
+                                          });
+                                        }),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    (DoctorSignUpForm4.countryModel != null)
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 0, right: 0, bottom: 0),
+                                            child: SizedBox(
+                                              height: 58,
+                                              child: DropDown
+                                                  .networkDropdownGetpartUser(
+                                                      "State",
+                                                      ApiFactory.STATE_API +
+                                                          DoctorSignUpForm4
+                                                              .countryModel.key,
+                                                      "state",
+                                                      Icons.location_on_rounded,
+                                                      23.0,
+                                                      (KeyvalueModel data) {
+                                                setState(() {
+                                                  DoctorSignUpForm4.stateModel =
+                                                      data;
+                                                  userModel.state = data.key;
+                                                  userModel.stateCode =
+                                                      data.code;
+                                                  DoctorSignUpForm4.cityModel =
+                                                      null;
+                                                });
+                                              }),
+                                            ),
+                                          )
+                                        : Container(),
+                                    (DoctorSignUpForm4.stateModel != null)
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 0),
+                                            child: SizedBox(
+                                              height: 58,
+                                              child: DropDown
+                                                  .networkDropdownGetpartUser(
+                                                      "District",
+                                                      ApiFactory.DISTRICT_API +
+                                                          DoctorSignUpForm4
+                                                              .stateModel.key,
+                                                      "district",
+                                                      Icons.location_on_rounded,
+                                                      23.0,
+                                                      (KeyvalueModel data) {
+                                                setState(() {
+                                                  print(
+                                                      ApiFactory.DISTRICT_API +
+                                                          DoctorSignUpForm4
+                                                              .stateModel.key);
+                                                  DoctorSignUpForm4
+                                                      .districtModel = data;
+                                                  // userModel.district=data.key;
+                                                  // userModel.st=data.code;
+                                                  // UserSignUpForm.cityModel = null;
+                                                  DoctorSignUpForm4.cityModel =
+                                                      null;
+                                                });
+                                              }),
+                                            ),
+                                          )
+                                        : Container(),
+                                    (DoctorSignUpForm4.districtModel != null)
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 0),
+                                            child: SizedBox(
+                                              height: 58,
+                                              child: DropDown
+                                                  .networkDropdownGetpartUser(
+                                                      "City",
+                                                      ApiFactory.CITY_API +
+                                                          DoctorSignUpForm4
+                                                              .districtModel
+                                                              .key,
+                                                      "city",
+                                                      Icons.location_on_rounded,
+                                                      23.0,
+                                                      (KeyvalueModel data) {
+                                                setState(() {
+                                                  print(ApiFactory.CITY_API +
+                                                      DoctorSignUpForm4
+                                                          .districtModel.key);
+                                                  DoctorSignUpForm4.cityModel =
+                                                      data;
+
+                                                  // DoctorSignUpForm4.cityModel =
+                                                  //     null;
+                                                });
+                                              }),
+                                            ),
+                                          )
+                                        : Container(),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(5, "Enter Zip/Pin Code :"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(4, "Enter Home Phone (Optional)"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(
+                                        9, "Enter Office phone (Optional)"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(10, "Mobile Number :"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(11, "Email Id :"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    formField(12, "Alternate Email Id"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Upload Document :",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: Row(
+                                        //  mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Checkbox(
+                                            value: _checkbox,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _checkbox = !_checkbox;
+                                              });
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          RichText(
+                                              textAlign: TextAlign.start,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'I agree to NCORDS ',
+                                                    /* "Welcome back",*/
+                                                    style: TextStyle(
+                                                      // fontWeight: FontWeight.w800,
+                                                      fontFamily: "Monte",
+                                                      // fontSize: 25.0,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        'Terms and Conditions',
+                                                    /* "Welcome back",*/
+                                                    style: TextStyle(
+                                                      // fontWeight: FontWeight.w500,
+                                                      fontFamily: "Monte",
+                                                      // fontSize: 25.0,
+                                                      color: Colors.indigo,
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: nextButton1(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
                   ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5,),
-
-                                        formField(8, "Address"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_COUNTRY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("STATE"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("DISTRICT"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_CITY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm4.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(5, "Enter Zip/Pin Code :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(4, "Enter Home Phone (Optional)"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(9, "Enter Office phone (Optional)"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(10, "Mobile Number :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(11, "Email Id :"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(12, "Alternate Email Id"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text("Upload Document :",style: TextStyle(fontSize: 20,color: Colors.black),),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Row(
-                                            //  mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox = !_checkbox;
-                                                  });
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              RichText(
-                                                  textAlign: TextAlign.start,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'I agree to NCORDS ',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w800,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text: 'Terms and Conditions',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w500,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.indigo,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
-
-                          ],),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-
-
-        )
-    );
+          ],
+        ),
+      ),
+    ));
   }
+
   /*_
             ],
           ),
@@ -422,9 +537,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   //         LabSignUpForm2.genderModel = model;
   //       });
   // }
-
-
-
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -504,7 +616,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -562,16 +674,95 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     );
   }
 
-
-
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/doctorsignupform5");
+        if (textEditingController[8].text == "" ||
+            textEditingController[8].text == null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+        } else if (DoctorSignUpForm4.countryModel == null ||
+            DoctorSignUpForm4.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select country");
+        } else if (DoctorSignUpForm4.stateModel == null ||
+            DoctorSignUpForm4.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select state");
+        } else if (DoctorSignUpForm4.districtModel == null ||
+            DoctorSignUpForm4.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select district");
+        }
+        else if (DoctorSignUpForm4.cityModel == null ||
+            DoctorSignUpForm4.cityModel == "") {
+          AppData.showInSnackBar(context, "Please select city");
+        }
+        else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please enter Zip/pin code");
+        } else if (textEditingController[5].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter Zip/pin code ");
+        } else if (textEditingController[4].text == "" ||
+            textEditingController[4].text == null) {
+          AppData.showInSnackBar(context, "Please enter Enterhome phone");
+        } else if (textEditingController[4].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter Enterhome phone ");
+        } else if (textEditingController[9].text == "" ||
+            textEditingController[9].text == null) {
+          AppData.showInSnackBar(context, "Please enter office phone");
+        } else if (textEditingController[9].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter office phone");
+        } else if (textEditingController[10].text == "" ||
+            textEditingController[10].text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (textEditingController[10].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter mobile no ");
+        } else if (textEditingController[11].text == "" ||
+            textEditingController[11].text == null) {
+          AppData.showInSnackBar(context, "Please enter emailid");
+        } else if (textEditingController[11].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter emailid ");
+        } else if (textEditingController[12].text == "" ||
+            textEditingController[12].text == null) {
+          AppData.showInSnackBar(context, "Please enter Alternate emailid");
+        } else if (textEditingController[12].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter Alternate emailid ");
+        } else {
+          doctorModel.address = textEditingController[8].text;
+          doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
+          doctorModel.stateid = DoctorSignUpForm4.stateModel.key;
+          doctorModel.districtid = DoctorSignUpForm4.districtModel.key;
+          doctorModel.cityid = DoctorSignUpForm4.cityModel.key;
+          doctorModel.pincode = textEditingController[5].text;
+          doctorModel.homephone = textEditingController[4].text;
+          doctorModel.officephone = textEditingController[9].text;
+          doctorModel.mobno = textEditingController[10].text;
+          doctorModel.email = textEditingController[11].text;
+          doctorModel.alteremail = textEditingController[12].text;
+          doctorModel.organizationid = organisationname;
+          doctorModel.docname = professionalname;
+          doctorModel.titleid = title;
+          doctorModel.educationid = education;
+          doctorModel.speciality = speciality;
+          doctorModel.dob = dateofbirth;
+          doctorModel.bloodgroup = bloodgroup;
+          doctorModel.gender = gender;
+          doctorModel.role = "2";
+          log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));
+          MyWidgets.showLoading(context);
+          widget.model.POSTMETHOD(
+              api: ApiFactory.DOCTOR_REGISTRATION,
+              json: doctorModel.toJson(),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+        }
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
+        margin: EdgeInsets.only(left: 180, right: 0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
             borderRadius: BorderRadius.circular(10.0),
@@ -581,7 +772,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SUBMIT"),
             textAlign: TextAlign.center,
@@ -609,7 +800,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -624,7 +815,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -676,7 +867,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (value) {
@@ -800,7 +991,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (DoctorSignUpForm4.genderModel == null || DoctorSignUpForm4.genderModel == "") {
+    } else if (DoctorSignUpForm4.genderModel == null ||
+        DoctorSignUpForm4.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -842,18 +1034,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     }
   }
 
-
-
-
   Widget mobileNumber1(int index, String hint, mobileModel) {
     return Container(
       margin:
-      const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(7),
-          border:
-          Border.all(color: AppData.matruColor, width: 3)),
+          border: Border.all(color: AppData.matruColor, width: 3)),
       child: Row(
         children: <Widget>[
           Padding(
@@ -911,12 +1099,15 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     );
   }
 
-  Widget formField(int index, String hint,) {
+  Widget formField(
+    int index,
+    String hint,
+  ) {
     return TextFieldContainer(
       child: TextFormField(
         controller: textEditingController[index],
-        textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.text,
         /* decoration: BoxDecoration(11
           color: AppData.kPrimaryLightColor,
           //color: Color(0x45283e81),
@@ -933,38 +1124,31 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     );
   }
 
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, "/doctorsignupform5");
 
-
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
 }

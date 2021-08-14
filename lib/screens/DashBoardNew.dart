@@ -1549,7 +1549,7 @@ class MyPage1Widget extends StatelessWidget {
                       height: 35,
                       /* child: Expanded(*/
                       child: Text(
-                        "Government Schemes",
+                        "Govternment Schemes",
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),

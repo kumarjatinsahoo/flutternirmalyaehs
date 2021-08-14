@@ -1262,6 +1262,12 @@ class DropDown {
           case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
 

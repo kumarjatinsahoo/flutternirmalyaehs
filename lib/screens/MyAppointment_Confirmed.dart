@@ -1,4 +1,6 @@
-import 'package:user/models/AppointmentlistModel.dart';
+import 'package:user/models/AppointmentlistModel.dart' as apnt;
+import 'package:user/models/LoginResponse1.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -16,13 +18,16 @@ class MyAppointmentConfirmed extends StatefulWidget {
 
 class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  apnt.AppointmentlistModel appointmentlistModel;
+  LoginResponse1 loginResponse;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -30,8 +35,24 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
       selectedDatestr =  df.format(date).toString();
+      loginResponse=widget.model.loginResponse1;
       //toThis_.text = df.format(date);
-      callAPI(selectedDatestr);
+      //callAPI(selectedDatestr);
+      widget.model.GETMETHODCALL_TOKEN(
+          api: ApiFactory.USER_APPOINTMENT_LIST +/*"5093626841904641"*/loginResponse.body.user+"&date="+selectedDatestr+"&status="+"2",
+          token: widget.model.token,
+          fun: (Map<String, dynamic> map) {
+            setState(() {
+              String msg = map[Const.MESSAGE];
+              if (map[Const.CODE] == Const.SUCCESS) {
+                appointmentlistModel=apnt.AppointmentlistModel.fromJson(map);
+                // appointModel = lab.LabBookModel.fromJson(map);
+              } else {
+                // isDataNotAvail = true;
+                AppData.showInSnackBar(context, msg);
+              }
+            });
+          });
     });
   }
   Future<Null> _selectDate(BuildContext context) async {
@@ -47,14 +68,30 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
         selectedDatestr =  df.format(selectedDate).toString();
-        callAPI(selectedDatestr);
+        widget.model.GETMETHODCALL_TOKEN(
+            api: ApiFactory.USER_APPOINTMENT_LIST +/*"5093626841904641"*/widget.model.user+"&date="+selectedDatestr+"&status="+"2",
+            token: widget.model.token,
+            fun: (Map<String, dynamic> map) {
+              setState(() {
+                String msg = map[Const.MESSAGE];
+                if (map[Const.CODE] == Const.SUCCESS) {
+                  appointmentlistModel=apnt.AppointmentlistModel.fromJson(map);
+                  // appointModel = lab.LabBookModel.fromJson(map);
+                } else {
+                  // isDataNotAvail = true;
+                  AppData.showInSnackBar(context, msg);
+                }
+              });
+            });
+        //callAPI(selectedDatestr);
 
       });
   }
-  callAPI(String today) {
-    /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
+  /*callAPI(String today) {
+    *//*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*//*
+   // print( ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2");
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2",
+        api: ApiFactory.USER_APPOINTMENT_LIST +*//*"5093626841904641"*//*widget.model.user+"&date="+today+"&status="+"2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -68,7 +105,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
             }
           });
         });
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -83,7 +120,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                      shrinkWrap: true,
                physics: NeverScrollableScrollPhysics(),
                itemBuilder: (context, i) {
-                 Body appointmentlist = appointmentlistModel.body[i];
+                 apnt.Body appointmentlist = appointmentlistModel.body[i];
                /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                   return Column(
@@ -116,12 +153,12 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                             crossAxisAlignment: CrossAxisAlignment
                                                 .start,
                                             children: [
-                                              Text(appointmentlist.doctorName,
+                                              Text(appointmentlist.doctorName,/*"",*/
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 18),),
                                               SizedBox(height: 5,),
-                                              Text(appointmentlist.speciality,
+                                              Text(/*appointmentlist.speciality,*/"",
                                                 overflow: TextOverflow.clip,
                                                 style: TextStyle(),),
                                               SizedBox(height: 5,),
