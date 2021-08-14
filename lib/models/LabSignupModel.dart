@@ -15,8 +15,10 @@ class LabSignupModel {
   String pincode;
   String mobno;
   String email;
+  String alteremail;
   String homephone;
   String officephone;
+  String role;
 
   LabSignupModel(
       {this.organizationid,
@@ -35,8 +37,11 @@ class LabSignupModel {
         this.pincode,
         this.mobno,
         this.email,
+        this.alteremail,
         this.homephone,
-        this.officephone});
+        this.officephone,
+        this.role
+      });
 
   LabSignupModel.fromJson(Map<String, dynamic> json) {
     organizationid = json['organizationid'];
@@ -55,8 +60,10 @@ class LabSignupModel {
     pincode = json['pincode'];
     mobno = json['mobno'];
     email = json['email'];
+    alteremail = json['alteremail'];
     homephone = json['homephone'];
     officephone = json['officephone'];
+    role = json['role'];
   }
 
   Map<String, dynamic> toJson() {
@@ -77,8 +84,19 @@ class LabSignupModel {
     data['pincode'] = this.pincode;
     data['mobno'] = this.mobno;
     data['email'] = this.email;
+    data['alteremail'] = this.alteremail;
     data['homephone'] = this.homephone;
     data['officephone'] = this.officephone;
+    data['role'] = this.role;
     return data;
+  }
+  @override
+  String toString() {
+    return 'DoctorRegistrationModel{ organizationid: $organizationid, titleid: $titleid,'
+        ' docname: $docname, educationid: $educationid, speciality: $speciality,'
+        ' dob: $dob, bloodgroup: $bloodgroup, gender: $gender,address: $address, countryid: $countryid,'
+        ' stateid: $stateid, districtid: $districtid, cityid: $cityid,pincode: $pincode,'
+        'homephone: $homephone,officephone: $officephone,mobno: $mobno,email: $email,'
+        'alteremail: $alteremail,role:$role}';
   }
 }
