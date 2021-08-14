@@ -466,7 +466,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].maritalstatus,
+                          patientsDetails.body[0].maritalstatus?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -485,7 +485,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].occupation,
+                          patientsDetails.body[0].occupation?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -524,7 +524,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].address1,
+                          patientsDetails.body[0].address1?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -544,7 +544,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].address2,
+                          patientsDetails.body[0].address2?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -564,7 +564,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].pin ,
+                            patientsDetails.body[0].pin ?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -583,7 +583,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].disctrict,
+                          patientsDetails.body[0].disctrict?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -621,7 +621,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].city,
+                          patientsDetails.body[0].city?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -640,7 +640,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].state,
+                            patientsDetails.body[0].state ?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -659,7 +659,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].country,
+                          patientsDetails.body[0].country?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -876,7 +876,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].weight,
+                            patientsDetails.body[0].weight?? "N/A",
 
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
@@ -897,7 +897,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].bmi,
+                            patientsDetails.body[0].bmi?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -918,7 +918,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].celcius,
+                          patientsDetails.body[0].celcius?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -939,7 +939,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].farenheit,
+                            patientsDetails.body[0].farenheit?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -960,7 +960,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].bldpressure,
+                            patientsDetails.body[0].bldpressure?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -981,7 +981,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].systolic,
+                          patientsDetails.body[0].systolic?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -1002,7 +1002,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].pulse,
+                          patientsDetails.body[0].pulse?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -1023,7 +1023,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          patientsDetails.body[0].bmi,
+                          patientsDetails.body[0].bmi?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -1044,7 +1044,7 @@ String eHealthCardno;
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                            patientsDetails.body[0].oxygen,
+                            patientsDetails.body[0].oxygen?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
