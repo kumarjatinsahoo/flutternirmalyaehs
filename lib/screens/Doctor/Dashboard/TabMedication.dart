@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/madicationlistModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -16,10 +19,32 @@ class _TabMedication extends State<TabMedication> {
   final _titleController = TextEditingController();
   String _ratingController;
   final myController = TextEditingController();
+  String eHealthCardno;
+  madicationlistModel medicationlistmodel=madicationlistModel();
+  bool isDataNotAvail = false;
 
   @override
   void initState() {
     super.initState();
+    eHealthCardno=widget.model.patientseHealthCard;
+    callMEDICATIONAPI(eHealthCardno);
+
+  }
+  callMEDICATIONAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              medicationlistmodel = madicationlistModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
 
   }
 
@@ -60,7 +85,7 @@ class _TabMedication extends State<TabMedication> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     // scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount: medicationlistmodel.body.length,
                     itemBuilder: (BuildContext context, int index) {
                       return
                         Card(
@@ -92,7 +117,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "Paracetmol",
+                                      medicationlistmodel.body[index].medname,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -112,7 +137,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "Tablet",
+                                      medicationlistmodel.body[index].medtype,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -132,7 +157,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "5 Days From 12-08-2021",
+                                      medicationlistmodel.body[index].dosage,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -152,7 +177,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "1",
+                                      medicationlistmodel.body[index].morning,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -172,7 +197,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "1",
+                                      medicationlistmodel.body[index].afternoon,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -193,7 +218,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "1",
+                                      medicationlistmodel.body[index].evening,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
@@ -214,7 +239,7 @@ class _TabMedication extends State<TabMedication> {
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
-                                      "Mr.Neraj Desai",
+                                      medicationlistmodel.body[index].doctor,
                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                     ),
                                   ],
