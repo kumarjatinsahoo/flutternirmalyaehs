@@ -2,17 +2,21 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
 
 //  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.176:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
  // static String MAIN_URLlocal = "http://192.168.29.108:8062/nirmalyaRest/api/";
 
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+  static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
+  static String DOCTOR_REGISTRATION = MAIN_URL + 'doctor-registration-details';
+  static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
+  static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
 
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=5093626841904641';

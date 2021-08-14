@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,7 @@ class DoctorSignUpForm2 extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel titleModel = null;
+  static KeyvalueModel organizationModel = null;
 
 
   DoctorSignUpForm2({
@@ -106,6 +108,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
+  Uint8List bytes;
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -161,6 +164,32 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       isOnline = hasConnection;
     });
   }
+  Future openGallery() async {
+    var _picker;
+
+    _picker = ImagePicker();
+    var pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {}
+    setState(() {
+      final File picture1 = File(pickedFile.path);
+      bytes = picture1.readAsBytesSync();
+    });
+  }
+
+  Future openCamera() async {
+
+    //  print("Start Croping___________________________________________________");
+    var _picker;
+    _picker = ImagePicker();
+    var pickedFile = await _picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {}
+    setState(() {
+      final File picture1 = File(pickedFile.path);
+
+      bytes = picture1.readAsBytesSync();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -250,7 +279,25 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
-                                        formField(8, "Organization Name"),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Organization Name", ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                                23.0,
+                                                    (KeyvalueModel data) {
+                                                  setState(() {
+
+                                                    print(ApiFactory.ORGANISATION_API);
+                                                    DoctorSignUpForm2.organizationModel = data;
+
+                                                  });
+                                                }),
+                                          ),
+                                        ),
                                         SizedBox(
                                           height: 5,
                                         ),
@@ -296,14 +343,49 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                         //   height: 5,
                                         // ),
 
-                                        Column(
-                                          //crossAxisAlignment: CrossAxisAlignment.start,
-                                          // mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text(" Upload Photo :", style: TextStyle(fontSize: 20, color: Colors.teal),),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
+                                        // Column(
+                                        //   //crossAxisAlignment: CrossAxisAlignment.start,
+                                        //   // mainAxisAlignment: MainAxisAlignment.start,
+                                        //   children: [
+                                        //
+                                        //     GestureDetector(
+                                        //         child: Padding(
+                                        //           padding: const EdgeInsets.all(8.0),
+                                        //           child: Card(
+                                        //             child: Container(
+                                        //                 width: 300,
+                                        //                 height: 40,
+                                        //                 color: Colors.white,
+                                        //                 alignment: Alignment.center,
+                                        //                 child: Row(
+                                        //                     mainAxisSize: MainAxisSize.min,
+                                        //                     children: [
+                                        //                       //
+                                        //                       //   Image.memory(bytes),
+                                        //                       SizedBox(width:5),
+                                        //                       Icon(
+                                        //                         Icons.photo,
+                                        //                         color: Colors.red,
+                                        //                       ),
+                                        //                       SizedBox(
+                                        //                         width: 5,
+                                        //                       ),
+                                        //                       Text(' Upload Photo'),
+                                        //                     ]
+                                        //                 )
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         onTap: () {
+                                        //           displayModalBottomSheet(context);
+                                        //
+                                        //           // openGallery();
+                                        //         }
+                                        //     ),
+                                        //     _showImage(),
+                                        //   ],
+                                        // ),
+                                        SizedBox(height: 35),
 
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
@@ -417,10 +499,10 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[8].text== "" || textEditingController[8].text== null) {
-          AppData.showInSnackBar(context, "Please enter organization name");
-        }
-        else if (DoctorSignUpForm2.titleModel == null ||
+         if (DoctorSignUpForm2.organizationModel == null ||
+            DoctorSignUpForm2.organizationModel == "") {
+          AppData.showInSnackBar(context, "Please select organization name");
+        }else if (DoctorSignUpForm2.titleModel == null ||
             DoctorSignUpForm2.titleModel == "") {
           AppData.showInSnackBar(context, "Please select title");
         }
@@ -450,7 +532,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
         // }
 
         else {
-          widget.model.organisationname = textEditingController[8].text;
+          widget.model.organisationname = DoctorSignUpForm2.organizationModel.key;
           widget.model.title = DoctorSignUpForm2.titleModel.key;
           widget.model.professionalname = textEditingController[9].text;
           // widget.model.userid = textEditingController[10].text;
@@ -819,6 +901,146 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
         onChanged: (newValue) {},
+      ),
+    );
+  }
+
+  void displayModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Padding(
+            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 00.0),
+            child: Container(
+              height: 150,
+              // color: Colors.white,
+              child: Center(
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                                child: Container(
+                                    width: 100,
+                                    height: 100,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          //   Image.memory(bytes),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Icon(
+                                            Icons.camera,
+                                            color: Colors.red,
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: Text(' Camera '),
+                                          ),
+                                        ])),
+                                onTap: () {
+                                  openCamera();
+                                  Navigator.pop(context);
+
+                                }),
+                            SizedBox(width: 80),
+                            GestureDetector(
+                                child: Container(
+                                    width: 100,
+                                    height: 100,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          //   Image.memory(bytes),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Icon(
+                                            Icons.camera_alt,
+                                            color: Colors.red,
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: Text('Gallery'),
+                                          ),
+                                        ])),
+                                onTap: () {
+                                  openGallery();
+                                  Navigator.pop(context);
+                                })
+                          ],
+                        ))),
+              ),
+            ),
+          );
+        });
+  }
+
+
+  Widget _showImage() {
+    return Container(
+      child: Center(
+        child: Align(
+          alignment: Alignment.center,
+          child: bytes != null
+              ? Container(
+            padding: EdgeInsets.all(10.00),
+            width: 100,
+            height: 100,
+            decoration: new BoxDecoration(
+              border: Border.all(
+                //color: Colors.red,
+                  width: 0.1
+              ),
+              image: DecorationImage(
+                  image: MemoryImage(bytes),
+                  fit: BoxFit.fill
+              ),
+              borderRadius: BorderRadius.all(
+                  Radius.circular(20.0)
+              ),
+
+              // borderRadius: new BorderRadius.only(
+              //   topLeft: const Radius.circular(100.0),
+              //   topRight: const Radius.circular(100.0),
+              //   bottomLeft: const Radius.circular(100.0),
+              //   bottomRight: const Radius.circular(100.0),
+              // ),
+            ),
+            // child: Image.memory(
+            //   bytes,
+            //   fit: BoxFit.fill,
+            //   width: 400,
+            //   height: 200,
+            // ))
+          )
+              : Container(
+              decoration: new BoxDecoration(
+                border: Border.all(
+                    color: Colors.red,
+                    width: 0.1
+                ),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(20.0)
+                ),
+                // borderRadius: new BorderRadius.only(
+                //   topLeft: const Radius.circular(100.0),
+                //   topRight: const Radius.circular(100.0),
+                //   bottomLeft: const Radius.circular(100.0),
+                //   bottomRight: const Radius.circular(100.0),
+                // ),
+              )
+          ),
+        ),
       ),
     );
   }

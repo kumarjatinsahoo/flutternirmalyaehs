@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:user/models/PatientProfileModel.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -60,9 +59,9 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
-  PatientProfileModel patientProfileModel;
+  // PatientProfileModel patientProfileModel;
   UserRegistrationModel userModel = UserRegistrationModel();
-  PatientProfileModel userModell = PatientProfileModel();
+  // PatientProfileModel userModell = PatientProfileModel();
   String organisationname;
   String title;
   String professionalname;
@@ -321,17 +320,15 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                             height: 58,
                                             child:
                                             DropDown.networkDropdownGetpartUser(
-                                                "Bloodgroup",
-                                                ApiFactory.TITLE_API,
-                                                "Blood Group",
-                                                Icons.mail,
+                                                "BLOOD GROUP",
+                                                ApiFactory.BLOODGROUP_API,
+                                                "bloodgroup",
+                                                Icons.location_on_rounded,
                                                 23.0, (KeyvalueModel data) {
                                               setState(() {
                                                 print(ApiFactory.BLOODGROUP_API);
-                                                DoctorSignUpForm3.bloodgroupModel =
-                                                    data;
-                                                //userModell.=data.key;
-                                                // UserSignUpForm.cityModel = null;
+                                                DoctorSignUpForm3.bloodgroupModel = data;
+
                                               });
                                             }),
                                           ),
@@ -549,7 +546,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
           DoctorSignUpForm3.specialistModel == "") {
         AppData.showInSnackBar(context, "Please select Specalist");
       }
-      else if (textEditingController[10].text == null || textEditingController[10].text == "") {
+      else if (textEditingController[2].text == null || textEditingController[2].text == "") {
         AppData.showInSnackBar(context, "Please enter Date  of birth");
       }
       else if (DoctorSignUpForm3.bloodgroupModel == null ||
@@ -566,7 +563,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     else {
       widget.model.education = textEditingController[8].text;
       widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
-      widget.model.dateofbirth = textEditingController[10].text;
+      widget.model.dateofbirth = textEditingController[2].text;
       widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;
       widget.model.gender = DoctorSignUpForm3.genderModel.key;
       Navigator.pushNamed(context, "/doctorsignupform4");
@@ -574,32 +571,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     },
     );
 
-    // return GestureDetector(
-    //   onTap: () {
-    //
-    //     Navigator.pushNamed(context, "/doctorsignupform4");
-    //   },
-    //   child: Container(
-    //     width: MediaQuery.of(context).size.width,
-    //     margin: EdgeInsets.only(left:180, right: 0),
-    //     decoration: BoxDecoration(
-    //         color: AppData.kPrimaryColor,
-    //         borderRadius: BorderRadius.circular(10.0),
-    //         gradient: LinearGradient(
-    //             begin: Alignment.bottomRight,
-    //             end: Alignment.topLeft,
-    //             colors: [Colors.blue, AppData.kPrimaryColor])),
-    //     child: Padding(
-    //       padding:
-    //       EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-    //       child: Text(
-    //         MyLocalizations.of(context).text("NEXT"),
-    //         textAlign: TextAlign.center,
-    //         style: TextStyle(color: Colors.white, fontSize: 16.0),
-    //       ),
-    //     ),
-    //   ),
-    // );
+
   }
 
   Widget nextButton() {
@@ -943,38 +915,6 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     );
   }
 
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
 
 
 }
