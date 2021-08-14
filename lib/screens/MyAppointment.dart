@@ -73,10 +73,10 @@ class _MyAppointmentState extends State<MyAppointment> {
         ),
         body: TabBarView(
           children: [
-            MyAppointmentConfirmed(),
-            MyAppointmentRequested(),
-            MyAppointmentCancle(),
-            MyAppointmentTreated(),
+            MyAppointmentConfirmed(model: widget.model,),
+            MyAppointmentRequested(model: widget.model,),
+            MyAppointmentCancle(model: widget.model,),
+            MyAppointmentTreated(model: widget.model,),
             /*SalaryProcessPage(model:widget.model,),
             SalaryStatementPage1(model: widget.model,),
             SalaryReportPage(model: widget.model,)*/

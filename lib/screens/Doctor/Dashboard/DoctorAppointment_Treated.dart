@@ -1,6 +1,5 @@
 
 import 'package:user/models/DocterAppointmentlistModel.dart';
-
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -8,14 +7,14 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentCancle extends StatefulWidget {
+class DoctorAppointmentTreated extends StatefulWidget {
    MainModel model;
-  MyAppointmentCancle({Key key, this.model}) : super(key: key);
+  DoctorAppointmentTreated({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentCancleState createState() => _MyAppointmentCancleState();
+  _DoctorAppointmentTreatedState createState() => _DoctorAppointmentTreatedState();
 }
 
-class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
+class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -55,7 +54,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"4",
+        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -80,7 +79,8 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                 appointdate(),
 
                 Expanded(
-                  child: ListView.builder(
+                  child: (doctorAppointmment != null)
+                      ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
@@ -98,7 +98,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -117,15 +117,15 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                    /*Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
@@ -165,9 +165,9 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                             ),
                           ],
                         );
-                      }
+                      },itemCount: doctorAppointmment.body.length,
 
-                  ),
+                  ): Container(),
                 ),
               ],
             ),
@@ -238,7 +238,6 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
       },
     );
   }
- // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
 
-
+  //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.blue),),
 }

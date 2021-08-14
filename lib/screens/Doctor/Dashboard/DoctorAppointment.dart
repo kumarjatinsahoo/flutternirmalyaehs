@@ -3,18 +3,18 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 
-import 'MyAppointment_Cancel.dart';
-import 'MyAppointment_Confirmed.dart';
-import 'MyAppointment_Requested.dart';
-import 'MyAppointment_Treated.dart';
+import 'DoctorAppointment_Requested.dart';
+import 'DoctorAppointment_Confirmed.dart';
+import 'DoctorAppointment_Cancel.dart';
+import 'DoctorAppointment_Treated.dart';
 
-class MyAppointment extends StatefulWidget {
+class DoctorAppointment extends StatefulWidget {
   final MainModel model;
 
-  MyAppointment({Key key, this.model}) : super(key: key);
+  DoctorAppointment({Key key, this.model}) : super(key: key);
 
   @override
-  _MyAppointmentState createState() => _MyAppointmentState();
+  _DoctorAppointmentState createState() => _DoctorAppointmentState();
 }
 
 final List<Tab> myTabs = <Tab>[
@@ -22,7 +22,7 @@ final List<Tab> myTabs = <Tab>[
   Tab(text: 'RIGHT'),
 ];
 
-class _MyAppointmentState extends State<MyAppointment> {
+class _DoctorAppointmentState extends State<DoctorAppointment> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,14 +34,14 @@ class _MyAppointmentState extends State<MyAppointment> {
           title: const Text('My Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
-            IconButton(
+           /* IconButton(
               icon: const Icon(Icons.add_box_rounded),
               tooltip: 'Show Snackbar',
               onPressed: () {
                 Navigator.pushNamed(
                     context, "/doctorconsultationPage");
               },
-            ),
+            ),*/
           ],
           /*appBar: AppBar(
           title: Text("My Appointment"),
@@ -56,10 +56,11 @@ class _MyAppointmentState extends State<MyAppointment> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: /*"Confirmed"*/ "COFIRMED",
+                text: /*"Requested"*/ "REQUESTED",
+
               ),
               Tab(
-                text: /*"Requested"*/ "REQUESTED",
+                text: /*"Confirmed"*/ "COFIRMED",
               ),
               Tab(
                 text: /*"Cancelled"*/ "CANCELLED",
@@ -73,10 +74,10 @@ class _MyAppointmentState extends State<MyAppointment> {
         ),
         body: TabBarView(
           children: [
-            MyAppointmentConfirmed(),
-            MyAppointmentRequested(),
-            MyAppointmentCancle(),
-            MyAppointmentTreated(),
+            DoctorAppointmentRequested(model:widget.model,),
+            DoctorAppointmentConfirmed(model:widget.model,),
+            DoctorAppointmentCancle(model:widget.model,),
+            DoctorAppointmentTreated(model:widget.model,),
             /*SalaryProcessPage(model:widget.model,),
             SalaryStatementPage1(model: widget.model,),
             SalaryReportPage(model: widget.model,)*/

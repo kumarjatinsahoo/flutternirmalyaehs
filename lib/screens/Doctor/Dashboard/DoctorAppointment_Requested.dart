@@ -7,14 +7,16 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentTreated extends StatefulWidget {
+import 'package:intl/intl.dart';
+class DoctorAppointmentRequested extends StatefulWidget {
+
    MainModel model;
-  MyAppointmentTreated({Key key, this.model}) : super(key: key);
+  DoctorAppointmentRequested({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentTreatedState createState() => _MyAppointmentTreatedState();
+  _DoctorAppointmentRequestedState createState() => _DoctorAppointmentRequestedState();
 }
 
-class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
+class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -54,7 +56,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"7",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -79,7 +81,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 appointdate(),
 
                 Expanded(
-                  child: ListView.builder(
+                  child:(doctorAppointmment != null)
+                      ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
@@ -97,7 +100,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -116,15 +119,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                   /* Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
@@ -140,11 +143,21 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .end,
                                                   children: [
-                                                    Text(/*'Confirmed'*/appointmentlist.status,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 15,
-                                                          color: Colors.green),),
+                                                    GestureDetector(
+                                                      child:  Text(/*'Confirmed'*/appointmentlist.status,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15,
+                                                      color: Colors.green),),
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext context) =>
+                                                              changeStatus(context,appointmentlist.patname,appointmentlist.doctorName),
+                                                        );
+                                                      },
+                                                    ),
+
                                                     SizedBox(height: 3,),
                                                     Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
                                                       overflow: TextOverflow.clip,
@@ -164,9 +177,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                             ),
                           ],
                         );
-                      }
+                      },itemCount: doctorAppointmment.body.length,
 
-                  ),
+                  ): Container(),
                 ),
               ],
             ),
@@ -174,6 +187,116 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
 
         )
+    );
+  }
+  Widget changeStatus(BuildContext context, String patname,String doctorName) {
+    //NomineeModel nomineeModel = NomineeModel();
+    //Nomine
+    return AlertDialog(
+      contentPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
+      //title: const Text(''),
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                //_buildAboutText(),
+                //_buildLogoAttribution(),
+                Text(
+                  "CHANGE STATUS",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  /*"Lisa Rani"*/patname,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ListTile(
+                  title: Text("Confirmed"),
+                  leading: Icon(Icons.book),
+                  onTap: () {
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.user_APPOINTMENT_status +doctorName+"&appstatus="+"2",
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          setState(() {
+                            String msg = map[Const.MESSAGE];
+                            if (map[Const.CODE] == Const.SUCCESS) {
+                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
+                              // appointModel = lab.LabBookModel.fromJson(map);
+                            } else {
+                              // isDataNotAvail = true;
+                              AppData.showInSnackBar(context, msg);
+                            }
+                          });
+                        });
+                    //updateApi(userName.id.toString(), "0", i);
+                  },
+                ),
+                Divider(
+                  height: 2,
+                ),
+                ListTile(
+                  title: Text("Cancelled"),
+                  leading: Icon(Icons.trending_up),
+                  onTap: () {
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.user_APPOINTMENT_status +doctorName+"&appstatus="+"4",
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          setState(() {
+                            String msg = map[Const.MESSAGE];
+                            if (map[Const.CODE] == Const.SUCCESS) {
+                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
+                              // appointModel = lab.LabBookModel.fromJson(map);
+                            } else {
+                              // isDataNotAvail = true;
+                              AppData.showInSnackBar(context, msg);
+                            }
+                          });
+                        });
+                    //updateApi(userName.id.toString(), "1", i);
+                  },
+                ),
+                /*Divider(
+                  height: 2,
+                ),*/
+               /* ListTile(
+                  title: Text("COMPLETED"),
+                  leading: Icon(Icons.done_outline_outlined),
+                  onTap: () {
+//                    updateApi(userName.id.toString(), "2", i);
+                  },
+                )*/
+              ],
+            ),
+          );
+        },
+      ),
+
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("CANCEL"),
+        ),
+      ],
     );
   }
   Widget appointdate() {
@@ -238,5 +361,5 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
     );
   }
 
-  //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.blue),),
+ // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
 }
