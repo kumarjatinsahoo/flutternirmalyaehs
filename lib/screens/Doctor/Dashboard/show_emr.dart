@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/PatientsDetailsModel.dart';
+import 'package:user/models/UserlabtestreportModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -23,6 +24,7 @@ class _ShowEmr extends State<ShowEmr> {
 String eHealthCardno;
   String comeFrom;
   PatientsDetailsModel patientsDetails=PatientsDetailsModel();
+  UserlabtestreportModel userlabtestreportModel=UserlabtestreportModel();
   bool isDataNotAvail = false;
 
   @override
@@ -32,10 +34,11 @@ String eHealthCardno;
     _focusNode = FocusNode();
     //eHealthCardno="5093626841904641";
     eHealthCardno=widget.model.patientseHealthCard;
-    callAPI(eHealthCardno);
-
+    callPERSONALAPI(eHealthCardno);
+    callLabtastAPI(eHealthCardno);
+    //callMadicationAPI(eHealthCardno);
   }
-  callAPI(String eHealthCardno) {
+  callPERSONALAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
           token: widget.model.token,
@@ -52,6 +55,40 @@ String eHealthCardno;
           });
 
   }
+  callLabtastAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.IABTEST_REPORTDOCTER + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              userlabtestreportModel = UserlabtestreportModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+
+  }
+/*  callMadicationAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.MEDICATION_DOCTER + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              patientsDetails = PatientsDetailsModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +146,8 @@ String eHealthCardno;
                                 context,
                                 new MaterialPageRoute(
                                     builder: (context) => new WalkPatient()));*/
-                            Navigator.pushNamed(context, "/docWalkInReg");
+                            //Navigator.pushNamed(context, "/docWalkInReg");
+                            Navigator.of(context).pop();
                           },
                         ),
                         SizedBox(
@@ -256,7 +294,8 @@ String eHealthCardno;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Container(
+        child: (userlabtestreportModel != null)
+            ? Container(
           child: Column(
             children: [
               Padding(
@@ -1246,7 +1285,7 @@ String eHealthCardno;
 
             ],
           ),
-        ),
+        ): Container(),
       ),
     );
   }
@@ -1582,7 +1621,8 @@ String eHealthCardno;
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Expanded(
-                child: ListView.builder(
+                child:(userlabtestreportModel != null)
+                    ? ListView.builder(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
                   itemCount: 2,
@@ -1617,7 +1657,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "121448674403477",
+                                 /*"121448674403477"*/userlabtestreportModel.body[0].patientid?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1637,7 +1677,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "Ipsita Sahoo",
+                                 /*"Ipsita Sahoo"*/userlabtestreportModel.body[0].patientname?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1657,7 +1697,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "25",
+                                 userlabtestreportModel.body[0].age?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1677,7 +1717,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "Female",
+                                 userlabtestreportModel.body[0].gender?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1697,7 +1737,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "72",
+                                 userlabtestreportModel.body[0].weight?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1718,7 +1758,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "5'3",
+                                 userlabtestreportModel.body[0].height?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1739,14 +1779,12 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "11-08-2021",
+                                 userlabtestreportModel.body[0].testdate?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
                            ),
                            SizedBox(height: 5),
-
-
                            Row(
                              children: [
                                Container(
@@ -1761,7 +1799,7 @@ String eHealthCardno;
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "  ",
+                                   userlabtestreportModel.body[0].phc?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1772,7 +1810,7 @@ String eHealthCardno;
                      ),
                    );
                   },
-                ),
+                ): Container(),
               ),
             ),
           ]
@@ -2558,3 +2596,19 @@ String eHealthCardno;
     );
   }
 }
+/*
+class MyPage2Widget extends StatelessWidget {
+  double _height = 85;
+  double _width;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    _width = (MediaQuery
+        .of(context)
+        .size
+        .width - 80) / 3;
+    return
+  }}*/

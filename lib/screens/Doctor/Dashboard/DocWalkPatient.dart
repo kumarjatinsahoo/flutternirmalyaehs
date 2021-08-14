@@ -18,6 +18,7 @@ class _WalkPatient extends State<DocWalkPatient> {
   final _titleController = TextEditingController();
   String _ratingController;
   final myController = TextEditingController();
+  final myControllerpass = TextEditingController();
 
   @override
   void initState() {
@@ -117,7 +118,7 @@ class _WalkPatient extends State<DocWalkPatient> {
                         ),
                         Expanded(
                           child: TextField(
-                            controller: myController,
+                            controller: myControllerpass,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 border: InputBorder.none, hintText: ''),
