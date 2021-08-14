@@ -72,7 +72,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_DASHBOARD,
+        api: ApiFactory.USER_DASHBOARD+widget.model.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           String msg = map[Const.MESSAGE];

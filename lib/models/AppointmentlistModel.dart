@@ -55,16 +55,16 @@ class Body {
         this.patname});
 
   Body.fromJson(Map<String, dynamic> json) {
-    userid = json['userid'];
-    doctorName = json['doctorName'];
-    speciality = json['speciality'];
-    appdate = json['appdate'];
-    apptime = json['apptime'];
-    notes = json['notes'];
-    status = json['status'];
-    appmonth = json['appmonth'];
-    appyear = json['appyear'];
-    patname = json['patname'];
+    userid = json['userid'].toString();
+    doctorName = json['doctorName'].toString();
+    speciality = json['speciality'].toString();
+    appdate = json['appdate'].toString();
+    apptime = json['apptime'].toString();
+    notes = json['notes'].toString();
+    status = json['status'].toString();
+    appmonth = json['appmonth'].toString();
+    appyear = json['appyear'].toString();
+    patname = json['patname'].toString();
   }
 
   Map<String, dynamic> toJson() {
