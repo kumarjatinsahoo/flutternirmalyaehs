@@ -1215,13 +1215,6 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
-      /* dropdownSearchDecoration: InputDecoration(
-          hintText: label, *//*labelText: label,*//*
-          disabledBorder: InputBorder.none,
-          contentPadding:
-          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
-        floatingLabelBehavior: FloatingLabelBehavior.never),*/
-
       //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -1260,6 +1253,12 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "bloodgroup":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }

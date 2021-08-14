@@ -35,7 +35,7 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel titleModel = null;
   static KeyvalueModel stateModel = null;
   static KeyvalueModel cityModel = null;
-  //static KeyvalueModel countryModel = null;
+  static KeyvalueModel countryModel = null;
 
   UserSignUpForm({
     Key key,

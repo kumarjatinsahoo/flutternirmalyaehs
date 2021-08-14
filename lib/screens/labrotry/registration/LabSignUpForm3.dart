@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/LabSignupModel.dart';
 import 'package:user/models/PatientSignupModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -174,24 +175,24 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     LabSignUpForm3.blockModel = null;
     LabSignUpForm3.genderModel = null;
 
-
     labid = widget.model.organization;
     labtitleid = widget.model.title1;
     labdname = widget.model.labprofessionalname;
-    labeducation = widget.model.education;
+    labeducation = widget.model.labeducation;
     labdob = widget.model.labdob;
+    labbloodgrp=widget.model.labbloodgroup;
     labgender = widget.model.labgender;
-    labaddress = widget.model.labaddress;
-    labcountryid = widget.model.labcountry;
-    labstateid = widget.model.labstate;
-    labdistid = widget.model.labdistrict;
-    labcityid = widget.model.labcity;
-    labpincode = widget.model.labpin;
-    labhomeph = widget.model.labhomephone;
-    labofficeph = widget.model.labofficephone;
-    labmobile = widget.model.labmobile;
-    labemail = widget.model.labemailid;
-    labalteremail = widget.model.labalteremail;
+    // labaddress = widget.model.labaddress;
+    // labcountryid = widget.model.labcountry;
+    // labstateid = widget.model.labstate;
+    // labdistid = widget.model.labdistrict;
+    // labcityid = widget.model.labcity;
+    // labpincode = widget.model.labpin;
+    // labhomeph = widget.model.labhomephone;
+    // labofficeph = widget.model.labofficephone;
+    // labmobile = widget.model.labmobile;
+    // labemail = widget.model.labemailid;
+    // labalteremail = widget.model.labalteremail;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -728,44 +729,54 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           labSignupModel.titleid = labtitleid;
           labSignupModel.docname = labdname;
           labSignupModel.educationid =  labeducation;
-          labSignupModel.speciality = labspecialty;
+          //labSignupModel.speciality = labspecialty;
           labSignupModel.dob =  labdob;
           labSignupModel.bloodgroup =  labbloodgrp;
           labSignupModel.gender =  labgender;
-          labSignupModel.address = labaddress;
-          labSignupModel.countryid =  labcountryid;
-          labSignupModel.stateid =  labstateid;
-          labSignupModel.districtid =  labdistid;
-          labSignupModel.cityid = labcityid;
-          labSignupModel.pincode = labpincode;
-          labSignupModel.mobno = labmobile;
-          labSignupModel.email = labemail;
-          labSignupModel.homephone = labhomeph;
-          labSignupModel.officephone = labofficeph;
-
+          labSignupModel.address = textEditingController[8].text;
+          labSignupModel.countryid = LabSignUpForm3.countryModel.key;
+          labSignupModel.stateid = LabSignUpForm3.stateModel.key;
+          labSignupModel.districtid = LabSignUpForm3.districtModel.key;
+          labSignupModel.cityid = LabSignUpForm3.citymodel.key;
+          labSignupModel.pincode = textEditingController[5].text;
+          labSignupModel.homephone = textEditingController[4].text;
+          labSignupModel.officephone = textEditingController[6].text;
+          labSignupModel.mobno = textEditingController[10].text;
+          labSignupModel.email = textEditingController[11].text;
+          labSignupModel.alteremail = textEditingController[12].text;
+          labSignupModel.role="8";
+          labSignupModel.speciality="25";
 
           print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ labSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.LAB_SIGNUP,
               json: labSignupModel.toJson(),
-              fun: (Map<String, dynamic> map){
-                String msg = map["message"].toString();
-                String userid = map["body"].toString();
-                if (map["code"] == "success"){
-                  popup(msg, context,userid,labmobile);
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
-                else {
-                  AppData.showInSnackBar(context, msg);
-                }
-              }
-              );
+              });
+              // fun: (Map<String, dynamic> map){
+              //   String msg = map["message"].toString();
+              //   String userid = map["body"].toString();
+              //   if (map["code"] == "success"){
+              //     popup(msg, context,userid,labmobile);
+              //   }
+              //   else {
+              //     AppData.showInSnackBar(context, msg);
+              //   }
+              // }
+              // );
           //Navigator.pushNamed(context, "/labsignup4");
         }
       },
     );
   }
 
-  popup(String msg, BuildContext context,String userid,String mobile) {
+  popup(BuildContext context, String message) {
     return Alert(
         context: context,
         //title: "Success",
@@ -783,36 +794,36 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
             SizedBox(
               height: 5,
             ),
-            Text(
-              msg,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Mobile No.:"+mobile,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "UserId:."+userid,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400),
-              textAlign: TextAlign.center,
-            ),
+            // Text(
+            //   msg,
+            //   style: TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400),
+            //   textAlign: TextAlign.center,
+            // ),
+            // SizedBox(
+            //   height: 5,
+            // ),
+            // Text(
+            //   "Mobile No.:"+mobile,
+            //   style: TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400),
+            //   textAlign: TextAlign.center,
+            // ),
+            // SizedBox(
+            //   height: 5,
+            // ),
+            // Text(
+            //   "UserId:."+userid,
+            //   style: TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400),
+            //   textAlign: TextAlign.center,
+            // ),
           ],
         ),
         closeIcon: Icon(
@@ -829,7 +840,6 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
             onPressed: () {
 
               widget.model.patientName = null;
-
               Navigator.pop(context);
               widget.model.patientphnNo = null;
               widget.model.patientemail = null;
@@ -844,7 +854,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               widget.model.patienStatecode = null;
               widget.model.patienStatekey = null;
               widget.model.patientimgtype = null;
-              Navigator.of(context).pushNamedAndRemoveUntil("/patientDashboard", (Route<dynamic> route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

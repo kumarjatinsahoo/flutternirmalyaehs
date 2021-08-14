@@ -1,21 +1,24 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
 
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+// static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
- //static String MAIN_URLlocal = "http://192.168.29.108:8062/nirmalyaRest/api/";
+ // static String MAIN_URLlocal = "http://192.168.29.108:8062/nirmalyaRest/api/";
 
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+  static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
-  static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
+  static String DOCTOR_REGISTRATION = MAIN_URL + 'doctor-registration-details';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
 
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
-
+  static String RELATION_API = MAIN_URL + 'get-relation-list';
+  static String POST_APPOINTMENT= MAIN_URL + 'post-doctor-appointment';
+  // static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
 
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
 
@@ -38,7 +41,6 @@ class ApiFactory {
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
 
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
-  static String POST_APPOINTMENT= MAIN_URL + 'post-doctor-appointment';
 
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
 
@@ -56,4 +58,3 @@ class ApiFactory {
   static String doctor_APPOINTMENT_LIST =MAIN_URL + 'view-doctor-appointment-list?userid=';
   static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
 }
-//4&appstatus=2
