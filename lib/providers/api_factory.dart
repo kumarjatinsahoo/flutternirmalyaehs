@@ -13,19 +13,25 @@ class ApiFactory {
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
+
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
-  static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=5093626841904641';
+
+
+  static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
+
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
+  static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
 
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
 
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
 
