@@ -25,6 +25,7 @@ class ApiFactory {
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
+  static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
 
 
 
@@ -34,6 +35,7 @@ class ApiFactory {
   }
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
 
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
 

@@ -1362,6 +1362,9 @@ class DropDown {
           case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "organization":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
 

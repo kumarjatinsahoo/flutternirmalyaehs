@@ -121,6 +121,48 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
     }
   }
 
+
+  // postSignUp1(String token, Map<String, dynamic> json, Function fun) async {
+  //   print(ApiFactory.LAB_SIGNUP);
+  //   try {
+  //     //Response response = await dio.post(ApiFactory.POST_SIGNUP+token,data: FormData.fromMap(json));
+  //
+  //     print(jsonEncode(json));
+  //     Response response = await dio.post(ApiFactory.POST_SIGNUP,
+  //         options: Options(
+  //           headers: {
+  //             "Authorization": token,
+  //           },
+  //         ),
+  //         data: jsonEncode(json));
+  //
+  //     if (response.statusCode == 200 || response.statusCode == 201) {
+  //       print("api call>>>>");
+  //       try {
+  //         fun(response.data);
+  //       } catch (e) {
+  //         print("Message is: " + e.toString());
+  //       }
+  //     } else {
+  //       fun(Const.TIMEOUT);
+  //     }
+  //   } on DioError catch (e) {
+  //     if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+  //       fun(Const.TIMEOUT);
+  //     }
+  //     if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+  //       fun(Const.TIMEOUT);
+  //     }
+  //     if (e.type == DioErrorType.DEFAULT) {
+  //       fun(Const.TIMEOUT);
+  //     }
+  //     if (e.type == DioErrorType.RESPONSE) {
+  //       fun(Const.TIMEOUT);
+  //     }
+  //   }
+  // }
+
+
   POSTMETHOD(
       {@required String api,
         @required Map<String, dynamic> json,

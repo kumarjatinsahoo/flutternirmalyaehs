@@ -29,6 +29,7 @@ class LabSignUpForm extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel titlemodel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel organizationModel = null;
 
   LabSignUpForm({
     Key key,
@@ -273,7 +274,20 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    formField(0, "Organization Name"),
+                                    //formField(0, "Organization Name"),
+
+                                    DropDown.networkDropdownGetpartUser1(
+                                        "Organization Name", ApiFactory.ORGANIZATION_API, "organization", Icons.location_on_rounded,
+                                        23.0,
+                                            (KeyvalueModel data) {
+                                          setState(() {
+
+                                            print(ApiFactory.ORGANIZATION_API);
+                                            LabSignUpForm.organizationModel = data;
+
+                                          });
+                                        }),
+
                                     SizedBox(
                                       height: 5,
                                     ),
@@ -296,7 +310,10 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                         23.0,
                                             (KeyvalueModel data) {
                                           setState(() {
+
                                             print(ApiFactory.TITLE_API);
+                                            LabSignUpForm.titlemodel = data;
+
                                           });
                                         }),
 
@@ -628,41 +645,20 @@ class LabSignUpFormState extends State<LabSignUpForm> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[0].text == "" ||
-            textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter organization name");
-        } else if (textEditingController[1].text == "" ||
+        if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         } else if (textEditingController[1].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Professional Name ");
+        }  else if (LabSignUpForm.organizationModel == null ||
+            LabSignUpForm.organizationModel == "") {
+          AppData.showInSnackBar(context, "Please select Organization");
         }
-        // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
-        //   AppData.showInSnackBar(context, "Please enter Userid");
-        // }
-        // else if (textEditingController[10].text.length <= 3) {
-        //   AppData.showInSnackBar(context, "Please enter valid Name ");
-        // }
-        // else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
-        //   AppData.showInSnackBar(context, "Please enter password");
-        // }
-        // else if (textEditingController[11].text.length <= 3) {
-        //   AppData.showInSnackBar(context, "Please enter valid password ");
-        // }
-        // else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
-        //   AppData.showInSnackBar(context, "Please enter confirm password");
-        // }
-        // else if (textEditingController[12].text.length <= 3) {
-        //   AppData.showInSnackBar(context, "Please enter valid password ");
-        // }
         else {
-          // widget.model.organization = textEditingController[0].text;
-          // widget.model.title1 = LabSignUpForm.titlemodel.key;
-          //  widget.model.professionalname1 = textEditingController[1].text;
-          // // widget.model.userid = textEditingController[10].text;
-          // widget.model.password = textEditingController[11].text;
-          // widget.model.cnfrmpwd = textEditingController[12].text;
-          Navigator.pushNamed(context, "/labsignup2");
+          widget.model.organization = LabSignUpForm.organizationModel.key;
+          widget.model.labprofessionalname = textEditingController[1].text;
+           widget.model.title1 = LabSignUpForm.titlemodel.key;
+           Navigator.pushNamed(context, "/labsignup2");
         }
       },
     );

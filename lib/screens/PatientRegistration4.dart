@@ -169,7 +169,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                           color: AppData.kPrimaryColor,
                                         ),
                                       ),
-                                    )*/ /*
+                                    )*/
+                              /*
                                   ],
                                 ),
                               ),
@@ -309,7 +310,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     );
   }
 
-  Widget _submitButton() {
+  Widget  _submitButton() {
     return MyWidgets.nextButton(
       text: "NEXT".toUpperCase(),
       context: context,
@@ -336,14 +337,10 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ patientSignupModel.toJson().toString());
         widget.model.postSignUp(token, patientSignupModel.toJson(),
             (Map<String, dynamic> map) {
-          // Map<String, dynamic> map = jsonDecode(data);
           String msg = map["message"].toString();
           String userid = map["body"].toString();
-          //{"custId":60,"status":"success","message":"Thank For Your Registration !! Now You Can Login & Give Your Request "}
           if (map["code"] == "success") {
-            // popup(msg, context);
             popup(msg, context,userid,patientphnNo);
-            //AppData.showInSnackBar(context, msg);
           } else {
             AppData.showInSnackBar(context, msg);
           }

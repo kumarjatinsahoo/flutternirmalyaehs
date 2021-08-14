@@ -6,9 +6,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/LabSignupModel.dart';
+import 'package:user/models/PatientSignupModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 import '../../../localization/localizations.dart';
@@ -75,15 +79,28 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
-    new TextEditingController(),
   ];
-
+  String token;
+  String user;
+  String labid;
+  String labtitleid;
+  String labdname;
+  String labeducation;
+  String labspecialty;
+  String labdob;
+  String labbloodgrp;
+  String labgender;
+  String labaddress;
+  String labcountryid;
+  String labstateid;
+  String labdistid;
+  String labcityid;
+  String labpincode;
+  String labmobile;
+  String labemail;
+  String labalteremail;
+  String labhomeph;
+  String labofficeph;
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -156,6 +173,25 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     LabSignUpForm3.districtModel = null;
     LabSignUpForm3.blockModel = null;
     LabSignUpForm3.genderModel = null;
+
+
+    labid = widget.model.organization;
+    labtitleid = widget.model.title1;
+    labdname = widget.model.labprofessionalname;
+    labeducation = widget.model.education;
+    labdob = widget.model.labdob;
+    labgender = widget.model.labgender;
+    labaddress = widget.model.labaddress;
+    labcountryid = widget.model.labcountry;
+    labstateid = widget.model.labstate;
+    labdistid = widget.model.labdistrict;
+    labcityid = widget.model.labcity;
+    labpincode = widget.model.labpin;
+    labhomeph = widget.model.labhomephone;
+    labofficeph = widget.model.labofficephone;
+    labmobile = widget.model.labmobile;
+    labemail = widget.model.labemailid;
+    labalteremail = widget.model.labalteremail;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -614,33 +650,208 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     );
   }
 
+  // Widget nextButton1() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       Navigator.pushNamed(context, "/labsignup4");
+  //     },
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       margin: EdgeInsets.only(left: 180, right: 0),
+  //       decoration: BoxDecoration(
+  //           color: AppData.kPrimaryColor,
+  //           borderRadius: BorderRadius.circular(10.0),
+  //           gradient: LinearGradient(
+  //               begin: Alignment.bottomRight,
+  //               end: Alignment.topLeft,
+  //               colors: [Colors.blue, AppData.kPrimaryColor])),
+  //       child: Padding(
+  //         padding:
+  //             EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+  //         child: Text(
+  //           MyLocalizations.of(context).text("SUBMIT"),
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(color: Colors.white, fontSize: 16.0),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+
   Widget nextButton1() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, "/labsignup4");
+    return MyWidgets.nextButton(
+      text: "SUBMIT".toUpperCase(),
+      context: context,
+      fun: () {
+        if (textEditingController[8].text == "" ||
+            textEditingController[8].text == null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+        }
+        else if (LabSignUpForm3.countryModel == null ||
+            LabSignUpForm3.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select country");
+        } else if (LabSignUpForm3.stateModel == null ||
+            LabSignUpForm3.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select state");
+        } else if (LabSignUpForm3.districtModel == null ||
+            LabSignUpForm3.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select District");
+        }else if (LabSignUpForm3.citymodel == null ||
+            LabSignUpForm3.citymodel == "") {
+          AppData.showInSnackBar(context, "Please select city");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please enter Pin");
+        }else if (textEditingController[4].text == "" ||
+            textEditingController[4].text == null) {
+          AppData.showInSnackBar(context, "Please enter home phone");
+        }else if (textEditingController[6].text == "" ||
+            textEditingController[6].text == null) {
+          AppData.showInSnackBar(context, "Please enter office phone");
+        }else if (textEditingController[10].text == "" ||
+            textEditingController[10].text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile number");
+        }else if (textEditingController[11].text == "" ||
+            textEditingController[11].text == null) {
+          AppData.showInSnackBar(context, "Please enter email id");
+        }else if (textEditingController[12].text == "" ||
+            textEditingController[12].text == null) {
+          AppData.showInSnackBar(context, "Please enter alternate email id");
+        }
+
+
+        else {
+          MyWidgets.showLoading(context);
+          LabSignupModel labSignupModel = LabSignupModel();
+          labSignupModel.organizationid = labid;
+          labSignupModel.titleid = labtitleid;
+          labSignupModel.docname = labdname;
+          labSignupModel.educationid =  labeducation;
+          labSignupModel.speciality = labspecialty;
+          labSignupModel.dob =  labdob;
+          labSignupModel.bloodgroup =  labbloodgrp;
+          labSignupModel.gender =  labgender;
+          labSignupModel.address = labaddress;
+          labSignupModel.countryid =  labcountryid;
+          labSignupModel.stateid =  labstateid;
+          labSignupModel.districtid =  labdistid;
+          labSignupModel.cityid = labcityid;
+          labSignupModel.pincode = labpincode;
+          labSignupModel.mobno = labmobile;
+          labSignupModel.email = labemail;
+          labSignupModel.homephone = labhomeph;
+          labSignupModel.officephone = labofficeph;
+
+
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ labSignupModel.toJson().toString());
+          widget.model.POSTMETHOD(
+              api: ApiFactory.LAB_SIGNUP,
+              json: labSignupModel.toJson(),
+              fun: (Map<String, dynamic> map){
+                String msg = map["message"].toString();
+                String userid = map["body"].toString();
+                if (map["code"] == "success"){
+                  popup(msg, context,userid,labmobile);
+                }
+                else {
+                  AppData.showInSnackBar(context, msg);
+                }
+              }
+              );
+          //Navigator.pushNamed(context, "/labsignup4");
+        }
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left: 180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("SUBMIT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
     );
   }
+
+  popup(String msg, BuildContext context,String userid,String mobile) {
+    return Alert(
+        context: context,
+        //title: "Success",
+        title: "Success",
+        //type: AlertType.info,
+        onWillPopActive: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_outline_outlined,
+              size: 140,
+              color: Colors.green,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              msg,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Mobile No.:"+mobile,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "UserId:."+userid,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+
+              widget.model.patientName = null;
+
+              Navigator.pop(context);
+              widget.model.patientphnNo = null;
+              widget.model.patientemail = null;
+              widget.model.patientaadhar = null;
+              widget.model.patientheight = null;
+              widget.model.patientweight = null;
+              widget.model.patientimg = null;
+              widget.model.patientage = null;
+              widget.model.patientgender = null;
+              widget.model.patienCitycode = null;
+              widget.model.patienCitykey = null;
+              widget.model.patienStatecode = null;
+              widget.model.patienStatekey = null;
+              widget.model.patientimgtype = null;
+              Navigator.of(context).pushNamedAndRemoveUntil("/patientDashboard", (Route<dynamic> route) => false);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
 
   Widget nextButton() {
     return GestureDetector(
