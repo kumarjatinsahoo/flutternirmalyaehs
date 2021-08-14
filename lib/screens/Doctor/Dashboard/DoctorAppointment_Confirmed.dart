@@ -1,6 +1,7 @@
 
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -24,6 +25,8 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+  bool _checkbox = false;
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -78,6 +81,13 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
              child: Column(
                children: [
                  appointdate(),
+
+
+                 InkWell(
+                     onTap: (){
+                       _displayTextInputDialog(context);
+                     },
+                     child: Text("edit",style: TextStyle(fontSize: 30),)),
 
                  Expanded(
                    child: (doctorAppointmment != null)
@@ -257,5 +267,289 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
     );
   }
 
+
+
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    // _fname.text=patientProfileModel.body.fName;
+    // _lname.text=patientProfileModel.body.lName;
+    // _dob.text=patientProfileModel.body.dob;
+    // _bloodGroup.text=patientProfileModel.body.bloodGroup;
+    // _gender.text=patientProfileModel.body.gender;
+    // _eMobile.text=patientProfileModel.body.eMobile;
+    // _eName.text=patientProfileModel.body.eName;
+    // _eRelation.text=patientProfileModel.body.eRelation;
+    // _fDoctor.text=patientProfileModel.body.fDoctor;
+    // _speciality.text=patientProfileModel.body.speciality;
+    // _docMobile.text=patientProfileModel.body.docMobile;
+
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                // Future getCerificateImage() async {
+                //   var image =
+                //   await ImagePicker.pickImage(source: ImageSource.gallery);
+                //   var enc = await image.readAsBytes();
+                //   String _path = image.path;
+                //
+                //   String _fileName =
+                //   _path != null ? _path.split('/').last : '...';
+                //   var pos = _fileName.lastIndexOf('.');
+                //   String extName =
+                //   (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+                //   setState(() => _camImage = image);
+                //   base64Img = base64Encode(enc);
+                // }
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Container(
+                      //   width: double.infinity,
+                      //   height: 110.0,
+                      //   child: Center(
+                      //     child: Container(
+                      //       height: 110.0,
+                      //       width: 110.0,
+                      //       child: Stack(
+                      //         children: [
+                      //           // ClipRRect(
+                      //           //     borderRadius: BorderRadius.circular(110.0),
+                      //           //     child: _camImage != null
+                      //           //         ? Image.file(
+                      //           //       _camImage,
+                      //           //       height: 110,
+                      //           //       width: 110,
+                      //           //       fit: BoxFit.cover,
+                      //           //     )
+                      //           //         : Image.network(
+                      //           //         imgValue ?? AppData.defaultImgUrl,
+                      //           //         height: 140)),
+                      //           // Positioned(
+                      //           //   child: InkWell(
+                      //           //     onTap: () {
+                      //           //       //getCameraImage();
+                      //           //       //showDialog();
+                      //           //       //_settingModalBottomSheet(context);
+                      //           //       getCerificateImage();
+                      //           //     },
+                      //           //     child: Icon(
+                      //           //       Icons.camera_alt,
+                      //           //       color: Colors.black,
+                      //           //       size: 20,
+                      //           //     ),
+                      //           //   ),
+                      //           //   bottom: 3,
+                      //           //   right: 12,
+                      //           // )
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+
+                      SizedBox(
+                          height: 10
+                      ),
+                      Text("Update Profile",style: TextStyle(color: Colors.black,fontSize: 20),),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                           // valueText = value;
+
+                          });
+                        },
+                       // controller: _fname,
+                        decoration: InputDecoration(hintText: "Medicine Name"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            // valueText = value;
+                            // updateProfileModel.lName=value;
+
+                          });
+                        },
+                        //controller: _lname,
+                        decoration: InputDecoration(hintText: "Type"),
+                      ),
+                      Divider(height: 2,color: Colors.black,),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+
+                          });
+                        },
+
+                        decoration: InputDecoration(hintText: "From Date"),
+                      ),
+
+                      Divider(height: 2,color: Colors.black),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+
+                          });
+                        },
+                        decoration: InputDecoration(hintText: "To Date"),
+                      ),
+                      Divider(height: 2,color: Colors.black),
+
+
+                      Row(
+                        children: [
+                            Text('Morning ',style: TextStyle(fontSize: 17.0), ),
+                          Checkbox(
+                            checkColor: Colors.white,
+                            activeColor: Colors.blue,
+                            value: this._checkbox,
+                            onChanged: (bool value) {
+                              setState(() {
+                                this._checkbox = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
+
+                      Divider(height: 2,color: Colors.black),
+
+
+                      Row(
+                        children: [
+                          Text('Afternoon ',style: TextStyle(fontSize: 17.0), ),
+                          Checkbox(
+                            checkColor: Colors.white,
+                            activeColor: Colors.blue,
+                            value: this._checkbox,
+                            onChanged: (bool value) {
+                              setState(() {
+                                this._checkbox = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
+
+                      Divider(height: 2,color: Colors.black),
+
+
+                      Row(
+                        children: [
+                          Text('Evening ',style: TextStyle(fontSize: 17.0), ),
+                          Checkbox(
+                            checkColor: Colors.white,
+                            activeColor: Colors.blue,
+                            value: this._checkbox,
+                            onChanged: (bool value) {
+                              setState(() {
+                                this._checkbox = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
+
+                      Divider(height: 2,color: Colors.black,),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                        //controller: _docMobile,
+                        decoration: InputDecoration(hintText: " Remarks"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text('CANCEL', style: TextStyle(color: Colors.grey)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                onPressed: () {
+                  //AppData.showInSnackBar(context, "click");
+                  setState(() {
+                    /*codeDialog = valueText;
+                    Navigator.pop(context);*/
+                    // if (_fname.text == null || _fname.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter firstname");
+                    // } else if (_bloodGroup.text == null || _bloodGroup.text == "") {
+                    //   AppData.showInSnackBar(context, "Please choose Blood Group");
+                    // } else if (_dob.text == null || _dob.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter eHealthcard Number");
+                    // }else if (_gender.text == null || _gender.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Gender");
+                    // }else if (_docMobile.text == null || _docMobile.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Contact Details");
+                    // }else if (_eName.text == null || _eName.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Name");
+                    // }else if (_eRelation.text == null || _eRelation.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Relation");
+                    // }else if (_eMobile.text == null || _eMobile.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Mobile Number");
+                    // }else if (_fDoctor.text == null || _fDoctor.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Doctors Name");
+                    // }else if (_speciality.text == null || _speciality.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter Speciality");
+                    // }
+                    // else if (_lname.text == null || _lname.text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter last name");
+                    // }else {
+                    //   updateProfileModel.fName=_fname.text;
+                    //   updateProfileModel.lName=_lname.text;
+                    //   updateProfileModel.eCardNo=patientProfileModel.body.id;
+                    //   updateProfileModel.fDoctor=_fDoctor.text;
+                    //   updateProfileModel.fDoctor=_fDoctor.text;
+
+
+
+                      // updateProfileModel.id=patientProfileModel.body.id;
+                      // widget.model.POSTMETHOD_TOKEN(api: ApiFactory.USER_UPDATEPROFILE,
+                      //     json: updateProfileModel.toJson(),
+                      //     token: widget.model.token,
+                      //     fun: (Map<String,dynamic>map){
+                      //       Navigator.pop(context);
+                      //       if (map[Const.STATUS] == Const.SUCCESS) {
+                      //         // popup(context, map[Const.MESSAGE]);
+                      //         AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      //       }else{
+                      //         // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      //
+                      //       }
+                      //     });
+                      //postEdit();
+                    }
+                );
+                },
+              ),
+            ],
+          );
+        });
+  }
   
 }
