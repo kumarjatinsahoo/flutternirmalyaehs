@@ -72,7 +72,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_DASHBOARD,
+        api: ApiFactory.USER_DASHBOARD+loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           String msg = map[Const.MESSAGE];
@@ -1074,7 +1074,7 @@ class MyPage1Widget extends StatelessWidget {
                           title: "Doctor Appointment",
                           fun: () {
                             Navigator.pushNamed(
-                                context, "/doctorconsultationPage");
+                                context, "/myAppointment");
                             // Navigator.pushNamed(context, "/doctorconsultationPage");
                             // Navigator.pop(context);
                           },
@@ -1258,7 +1258,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_checkup.png",
                       fun: () {
-                        //chooseAppointment(context);
+
+                        chooseAppointment(context);
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(

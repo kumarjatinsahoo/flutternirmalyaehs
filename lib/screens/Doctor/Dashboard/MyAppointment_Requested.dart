@@ -1,4 +1,5 @@
-import 'package:user/models/AppointmentlistModel.dart';
+
+import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -6,16 +7,18 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentCancle extends StatefulWidget {
+import 'package:intl/intl.dart';
+class MyAppointmentRequested extends StatefulWidget {
+
    MainModel model;
-  MyAppointmentCancle({Key key, this.model}) : super(key: key);
+  MyAppointmentRequested({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentCancleState createState() => _MyAppointmentCancleState();
+  _MyAppointmentRequestedState createState() => _MyAppointmentRequestedState();
 }
 
-class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
+class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -53,13 +56,13 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"4",
+        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"7",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel=AppointmentlistModel.fromJson(map);
+              doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -82,7 +85,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        Body appointmentlist = doctorAppointmment.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return Column(
@@ -139,11 +142,24 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .end,
                                                   children: [
-                                                    Text(/*'Confirmed'*/appointmentlist.status,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 15,
-                                                          color: Colors.green),),
+                                                    GestureDetector(
+                                                      child:  Text(/*'Confirmed'*/appointmentlist.status,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15,
+                                                      color: Colors.green),),
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext context) =>
+                                                              changeStatus(
+                                                                context,
+
+                                                              ),
+                                                        );
+                                                      },
+                                                    ),
+
                                                     SizedBox(height: 3,),
                                                     Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
                                                       overflow: TextOverflow.clip,
@@ -173,6 +189,112 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
 
 
         )
+    );
+  }
+  Widget changeStatus(BuildContext context,  ) {
+    //NomineeModel nomineeModel = NomineeModel();
+    //Nomine
+    return AlertDialog(
+      contentPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
+      //title: const Text(''),
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                //_buildAboutText(),
+                //_buildLogoAttribution(),
+                Text(
+                  "CHANGE STATUS",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  "Lisa Rani",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ListTile(
+                  title: Text("Confirmed"),
+                  leading: Icon(Icons.book),
+                  onTap: () {
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          setState(() {
+                            String msg = map[Const.MESSAGE];
+                            if (map[Const.CODE] == Const.SUCCESS) {
+                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              // appointModel = lab.LabBookModel.fromJson(map);
+                            } else {
+                              // isDataNotAvail = true;
+                              AppData.showInSnackBar(context, msg);
+                            }
+                          });
+                        });
+                    //updateApi(userName.id.toString(), "0", i);
+                  },
+                ),
+                Divider(
+                  height: 2,
+                ),
+                ListTile(
+                  title: Text("Requested"),
+                  leading: Icon(Icons.trending_up),
+                  onTap: () {
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          setState(() {
+                            String msg = map[Const.MESSAGE];
+                            if (map[Const.CODE] == Const.SUCCESS) {
+                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              // appointModel = lab.LabBookModel.fromJson(map);
+                            } else {
+                              // isDataNotAvail = true;
+                              AppData.showInSnackBar(context, msg);
+                            }
+                          });
+                        });
+                    //updateApi(userName.id.toString(), "1", i);
+                  },
+                ),
+                /*Divider(
+                  height: 2,
+                ),*/
+               /* ListTile(
+                  title: Text("COMPLETED"),
+                  leading: Icon(Icons.done_outline_outlined),
+                  onTap: () {
+//                    updateApi(userName.id.toString(), "2", i);
+                  },
+                )*/
+              ],
+            ),
+          );
+        },
+      ),
+
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("CANCEL"),
+        ),
+      ],
     );
   }
   Widget appointdate() {
@@ -236,7 +358,6 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
       },
     );
   }
- // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
 
-
+ // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
 }

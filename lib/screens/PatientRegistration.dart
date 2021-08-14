@@ -215,7 +215,8 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                              decoration:
                              InputDecoration(
                               */ /* prefixIcon: Icon(Icons
-                                   .calendar_today),*/ /*
+                                   .calendar_today),*/
+                                /*
                                border: InputBorder.none,
                                hintText: "Mobile Number",
                                hintStyle: TextStyle(
