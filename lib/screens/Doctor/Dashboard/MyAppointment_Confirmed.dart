@@ -1,4 +1,5 @@
-import 'package:user/models/AppointmentlistModel.dart';
+
+import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -16,7 +17,7 @@ class MyAppointmentConfirmed extends StatefulWidget {
 
 class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -60,7 +61,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel=AppointmentlistModel.fromJson(map);
+              doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -83,7 +84,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                      shrinkWrap: true,
                physics: NeverScrollableScrollPhysics(),
                itemBuilder: (context, i) {
-                 Body appointmentlist = appointmentlistModel.body[i];
+                 Body appointmentlist = doctorAppointmment.body[i];
                /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                   return Column(

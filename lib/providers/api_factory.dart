@@ -27,12 +27,8 @@ class ApiFactory {
   static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
 
-
-
-
   static String LOGIN_PASS(String mob, String pass) {
-    return MAIN_URL + "login?mobileNo=$mob&password=$pass";
-  }
+    return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
@@ -56,6 +52,8 @@ class ApiFactory {
   static String HEALTH_CHKUP_LIST =
       MAIN_URL + 'view-chkupAppointmentlist?appontdt=';
 
-  static String HEALTH_SCREENING_LIST =
-      MAIN_URL + 'view-labAppointmentlist?appontdt=';
+  static String HEALTH_SCREENING_LIST =MAIN_URL + 'view-labAppointmentlist?appontdt=';
+  static String USER_APPOINTMENT_LIST =MAIN_URL + 'get-user-appointment-list?userid=';
+  static String doctor_APPOINTMENT_LIST =MAIN_URL + 'view-doctor-appointment-list?userid=';
+  static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
 }

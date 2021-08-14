@@ -117,7 +117,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   bool eclampsia = false;
   bool bldpressure = false;
   bool anemia = false;
-
+  String opdId;
 
   Future<Null> _selectDate(BuildContext context, String comeFrom) async {
     final DateTime picked = await showDatePicker(
@@ -138,10 +138,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
             setState(() {
               //Navigator.of(context).pop();
 
+
               if (map[Const.CODE] == Const.SUCCESS) {
-
-
-                appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
+                String fromTime = map["body"]["fromTime"].toString();
+                String toTime = map["body"]["toTime"].toString();
+                 opdId = map["body"]["opdId"].toString();
+                 appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
 
                 AppData.showInSnackBar(context, map[Const.MESSAGE]);
               } else {
@@ -620,7 +622,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text,
-      "opdid": /*appointmentdate.selectGender.id*/"4",
+      "opdid":  opdId,
       "time": "19:00",//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[0].text,
