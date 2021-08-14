@@ -21,6 +21,7 @@ class DoctorRegistrationModel{
    String alteremail;
    String userid;
    String password;
+   String role;
   DoctorRegistrationModel();
   DoctorRegistrationModel.fromJson(Map<String, dynamic> json) {
     dctrid = json['dctrid'];
@@ -45,6 +46,7 @@ class DoctorRegistrationModel{
     alteremail = json['alteremail'];
     userid = json['userid'];
     password = json['password'];
+    role = json['role'];
 
   }
 
@@ -73,6 +75,7 @@ class DoctorRegistrationModel{
       "alteremail": this.alteremail,
       "userid": this.userid,
       "password": this.password,
+      "role": this.role,
      // "profileImage":[this.profileImage]
     };
 
@@ -85,7 +88,7 @@ class DoctorRegistrationModel{
         ' dob: $dob, bloodgroup: $bloodgroup, gender: $gender,address: $address, countryid: $countryid,'
         ' stateid: $stateid, districtid: $districtid, cityid: $cityid,pincode: $pincode,'
         'homephone: $homephone,officephone: $officephone,mobno: $mobno,email: $email,'
-        'alteremail: $alteremail,userid: $userid,password: $password,}';
+        'alteremail: $alteremail,userid: $userid,password: $password,role:$role}';
   }
 }
 

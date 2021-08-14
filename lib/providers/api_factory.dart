@@ -17,7 +17,8 @@ class ApiFactory {
 
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
-  static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
+  static String POST_APPOINTMENT= MAIN_URL + 'post-doctor-appointment';
+  // static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
 
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
 

@@ -744,6 +744,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           doctorModel.dob = dateofbirth;
           doctorModel.bloodgroup = bloodgroup;
           doctorModel.gender = gender;
+          doctorModel.role = "2";
           log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));
           MyWidgets.showLoading(context);
           widget.model.POSTMETHOD(
@@ -752,7 +753,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 if (map[Const.STATUS] == Const.SUCCESS) {
-                  Navigator.pushNamed(context, "/doctorsignupform5");
                   popup(context, map[Const.MESSAGE]);
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -1143,9 +1143,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pushNamed(context, "/doctorsignupform5");
+
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
