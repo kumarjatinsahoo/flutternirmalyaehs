@@ -1,4 +1,5 @@
-import 'package:user/models/AppointmentlistModel.dart';
+
+import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -6,16 +7,16 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentTreated extends StatefulWidget {
+class DoctorAppointmentTreated extends StatefulWidget {
    MainModel model;
-  MyAppointmentTreated({Key key, this.model}) : super(key: key);
+  DoctorAppointmentTreated({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentTreatedState createState() => _MyAppointmentTreatedState();
+  _DoctorAppointmentTreatedState createState() => _DoctorAppointmentTreatedState();
 }
 
-class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
+class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -59,7 +60,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel=AppointmentlistModel.fromJson(map);
+              doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -78,12 +79,12 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 appointdate(),
 
                 Expanded(
-                  child: (appointmentlistModel != null)
+                  child: (doctorAppointmment != null)
                       ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        Body appointmentlist = doctorAppointmment.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return Column(
@@ -97,7 +98,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -116,15 +117,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                    /*Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
@@ -164,7 +165,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                             ),
                           ],
                         );
-                      },itemCount: appointmentlistModel.body.length,
+                      },itemCount: doctorAppointmment.body.length,
 
                   ): Container(),
                 ),

@@ -1,12 +1,12 @@
-class AppointmentlistModel {
+class DoctorAppointmment {
   List<Body> body;
   String message;
   String code;
   String total;
 
-  AppointmentlistModel({this.body, this.message, this.code, this.total});
+  DoctorAppointmment({this.body, this.message, this.code, this.total});
 
-  AppointmentlistModel.fromJson(Map<String, dynamic> json) {
+  DoctorAppointmment.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
       body = new List<Body>();
       json['body'].forEach((v) {

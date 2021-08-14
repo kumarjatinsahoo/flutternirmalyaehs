@@ -1,4 +1,8 @@
-import 'package:user/models/AppointmentlistModel.dart';
+import 'dart:convert';
+
+import 'package:user/models/AppointmentlistModel.dart' as apnt;
+import 'package:user/models/LoginResponse1.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -8,32 +12,58 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class MyAppointmentConfirmed extends StatefulWidget {
-   MainModel model;
+  MainModel model;
+
   MyAppointmentConfirmed({Key key, this.model}) : super(key: key);
+
   @override
   _MyAppointmentConfirmedState createState() => _MyAppointmentConfirmedState();
 }
 
 class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  apnt.AppointmentlistModel appointmentlistModel;
+  LoginResponse1 loginResponse;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
-      selectedDatestr =  df.format(date).toString();
-      //toThis_.text = df.format(date);
-      callAPI(selectedDatestr);
+      selectedDatestr = df.format(date).toString();
+      loginResponse = widget.model.loginResponse1;
+      print(">>>>>>>" + jsonEncode(loginResponse.toJson()));
+     /* widget.model.GETMETHODCALL_TOKEN(
+          api: ApiFactory.USER_APPOINTMENT_LIST +
+              loginResponse.body.user +
+              "&date=" +
+              selectedDatestr +
+              "&status=" +
+              "2",
+          token: loginResponse.body.token,
+          //token: widget.model.token,
+          fun: (Map<String, dynamic> map) {
+            setState(() {
+              String msg = map[Const.MESSAGE];
+              if (map[Const.CODE] == Const.SUCCESS) {
+                appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
+                // appointModel = lab.LabBookModel.fromJson(map);
+              } else {
+                // isDataNotAvail = true;
+                AppData.showInSnackBar(context, msg);
+              }
+            });
+          });*/
     });
   }
+
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -41,20 +71,53 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+        /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-        selectedDatestr =  df.format(selectedDate).toString();
+        selectedDatestr = df.format(selectedDate).toString();
+        /*widget.model.GETMETHODCALL_TOKEN(
+            api: ApiFactory.USER_APPOINTMENT_LIST +*/ /*"5093626841904641"*/ /*widget.model.user+"&date="+selectedDatestr+"&status="+"2",
+            token: widget.model.token,
+            fun: (Map<String, dynamic> map) {
+              setState(() {
+                String msg = map[Const.MESSAGE];
+                if (map[Const.CODE] == Const.SUCCESS) {
+                  appointmentlistModel=apnt.AppointmentlistModel.fromJson(map);
+                  // appointModel = lab.LabBookModel.fromJson(map);
+                } else {
+                  // isDataNotAvail = true;
+                  AppData.showInSnackBar(context, msg);
+                }
+              });
+            });*/
         callAPI(selectedDatestr);
-
       });
   }
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2",
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
+              // appointModel = lab.LabBookModel.fromJson(map);
+            } else {
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
+  /*callAPI(String today) {
+    */ /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/ /*
+   // print( ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2");
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.USER_APPOINTMENT_LIST +*/ /*"5093626841904641"*/ /*widget.model.user+"&date="+today+"&status="+"2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -68,154 +131,138 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
             }
           });
         });
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
-           body: Container(
-             child: Column(
-               children: [
-                 appointdate(),
-                 Expanded(
-                   child: ListView(
-                     shrinkWrap: true,
-                     children: [
-                       Padding(
-                         padding: const EdgeInsets.only(left:5.0, right: 5.0,),
-                         child: Column(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             SizedBox(height: 10,),
-                             ListView(
-                               shrinkWrap: true,
-                               physics: NeverScrollableScrollPhysics(),
-                               children: [
-                                 Card(
-                                   elevation: 5,
-                                   child: Container(
-                                       height: 120,
-                                       //width: double.maxFinite,
-                                       decoration: BoxDecoration(
-                                           color: Colors.white,
-                                           border: Border.all(
-                                             color: Colors.grey[300],
-                                           ),
-                                           borderRadius: BorderRadius.circular(8)),
-                                       child: Padding(
-                                         padding: const EdgeInsets.all(10.0),
-                                         child: Row(
-                                           crossAxisAlignment: CrossAxisAlignment.center,
-                                           children: [
-                                             Expanded(
-                                               child:  Column(
-                                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                                 children: [
-                                                   Text('Dr.Maya Tulple',
-                                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                   SizedBox(height: 5,),
-                                                   Text('Gen Physician' ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-                                                   SizedBox(height: 5,),
-                                                   Text("Patient Notes:Lorem ipsum dolor"
-                                                       "Consectetar adipisicing elit" ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-                                                 ],
-                                               ),),
-                                             /*new Spacer(),*/
-                                             Padding(
-                                               padding: const EdgeInsets.only( top: 15.0,),
-                                               child: Column(
-                                                 // mainAxisAlignment: MainAxisAlignment.center,
-                                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                                 children: [
-                                                   Text('Confirmed',
-                                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                   SizedBox(height: 3, ),
-                                                   Text('23-Nov-2020-11:30AM' ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-
-                                                 ],
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )),
-                                 ),
-
-                                 Card(
-                                   elevation: 5,
-                                   child: Container(
-                                       height: 120,
-                                       //width: double.maxFinite,
-                                       decoration: BoxDecoration(
-                                           color: Colors.white,
-                                           border: Border.all(
-                                             color: Colors.grey[300],
-                                           ),
-                                           borderRadius: BorderRadius.circular(8)),
-                                       child: Padding(
-                                         padding: const EdgeInsets.all(10),
-                                         child: Row(
-                                           crossAxisAlignment: CrossAxisAlignment.center,
-                                           children: [
-                                             Expanded(
-                                               child:  Column(
-                                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                                 children: [
-                                                   Text('Dr.Maya Tulple',
-                                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                   SizedBox(height: 5,),
-                                                   Text('Gen Physician' ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-                                                   SizedBox(height: 5,),
-                                                   Text("Patient Notes:Lorem ipsum dolor"
-                                                       "Consectetar adipisicing elit" ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-                                                 ],
-                                               ),),
-                                             /*new Spacer(),*/
-                                             Padding(
-                                               padding: const EdgeInsets.only( top: 15.0,),
-                                               child: Column(
-                                                 // mainAxisAlignment: MainAxisAlignment.center,
-                                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                                 children: [
-                                                   Text('Confirmed',
-                                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.green),),
-                                                   SizedBox(height: 3,),
-                                                   Text('23-Nov-2020-11:30AM' ,
-                                                     overflow: TextOverflow.clip,
-                                                     style: TextStyle(),),
-
-                                                 ],
-                                               ),
-                                             ),
-                                           ],
-                                         ),
-                                       )),
-                                 ),
-                               ],
-                             ),
-                             SizedBox(height: 10,),
-                           ],),
-                       ),
-                     ],
-                   ),
-                 ),
-               ],
-             ),
-           ),
-                      
-                      
-          )  
-    );
+        child: Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            appointdate(),
+            Expanded(
+              child: (appointmentlistModel != null)
+                  ?  ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, i) {
+                    apnt.Body appointmentlist = appointmentlistModel.body[i];
+                    /* itemCount: lists.length,
+                itemBuilder: (context, index) {*/
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 5.0,
+                            right: 5.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: 120,
+                                    //width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  appointmentlist.doctorName,
+                                                  /*"",*/
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  /*appointmentlist.speciality,*/
+                                                  "",
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  "Patient Notes:" +
+                                                      appointmentlist.notes,
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          /*new Spacer(),*/
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 15.0,
+                                            ),
+                                            child: Column(
+                                              // mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  /*'Confirmed'*/
+                                                  appointmentlist.status,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15,
+                                                      color: Colors.green),
+                                                ),
+                                                SizedBox(
+                                                  height: 3,
+                                                ),
+                                                Text(
+                                                  /*'23-Nov-2020-11:30AM'*/
+                                                  appointmentlist.appdate +
+                                                      appointmentlist.apptime,
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  },itemCount: appointmentlistModel.body.length,
+                  ): Container(),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
+
   Widget appointdate() {
     return Container(
       height: 40,
@@ -235,8 +282,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                 controller: fromThis_,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintText: 'From this',
                   //labelText: 'Booking Date',
                   alignLabelWithHint: false,
@@ -245,8 +291,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                       color: Colors.blue,
                     ),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
+                  contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
@@ -258,9 +303,11 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
-   /*else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
+
+  /*else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.HEALTH_CHKUP_LIST + today,
           token: widget.model.token,
@@ -288,12 +335,10 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-      
+
         // Navigator.pushNamed(context, "/otpView");
         //}
       },
     );
   }
-
-  
 }

@@ -58,7 +58,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
   Organization org = Organization.Doctor;
   Individual indi = Individual.User;
 
-
+  File pathUsr = null;
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -219,18 +219,65 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               children: [
+                                // Align(
+                                //   alignment: Alignment.center,
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                //     child: Image.asset(
+                                //       "assets/logo1.png",
+                                //       fit: BoxFit.fitWidth,
+                                //       //width: ,
+                                //       height: 110.0,
+                                //     ),
+                                //   ),
+                                // ),
+
+
                                 Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
+                                  alignment: Alignment.topCenter,
+                                  child: Container(
+                                    height: 83,
+                                    width: 83,
+                                    child: Stack(
+                                      //mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        (pathUsr != null)
+                                            ? Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage:
+                                            FileImage(pathUsr),
+                                          ),
+                                        )
+                                            : Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage: NetworkImage(
+                                                AppData.defaultImgUrl),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: InkWell(
+                                            onTap: () {
+                                              _settingModalBottomSheet(context);
+                                            },
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                              color: AppData.kPrimaryColor,
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
+
+
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -1031,5 +1078,84 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
 // }
 //
 
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getGalleryImage(),
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera,imageQuality: 25);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path
+          .split('/')
+          .last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        // widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimgtype =extName;
+        // labSignupModel.profileImage=base64Encode(enc);
+        // labSignupModel.profileImageType=extName;
+
+      });
+
+    }
+  }
+
+  Future getGalleryImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+    //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        // widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimgtype =extName;
+        // labSignupModel.profileImage=base64Encode(enc);
+        // labSignupModel.profileImageType=extName;
+
+      });
+
+    }
+  }
 
 }

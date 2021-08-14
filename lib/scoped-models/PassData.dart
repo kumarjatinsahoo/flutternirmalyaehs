@@ -34,10 +34,35 @@ class PassData extends Model {
   String organisationname;
   String title;
   String professionalname;
-  String userid;
-  String password;
-  String cnfrmpwd;
 
   String education;
+  String speciality;
+  String dateofbirth;
+  String bloodgroup;
+  String gender;
+
+  String patientseHealthCard ;
+  //////////////
+  String organization;
+  String title1;
+  String labprofessionalname;
+  String labeducation;
+  String labdob;
+  String labbloodgroup;
+  String labgender;
+  String labaddress;
+  String labcountry;
+  String labstate;
+  String labdistrict;
+  String labcity;
+  String labpin;
+  String labhomephone;
+  String labofficephone;
+  String labmobile;
+  String labemailid;
+  String labalteremail;
+
+// String title;
+// String professionalname;
 
 }

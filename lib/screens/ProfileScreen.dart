@@ -12,6 +12,7 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/PatientListModel.dart';
 import 'package:user/models/ProfileModel.dart';
+import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -97,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loginResponse1 = widget.model.loginResponse1;
 
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.PATIENT_PROFILE,
+        api: ApiFactory.PATIENT_PROFILE+loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -852,9 +853,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           fun: (Map<String,dynamic>map){
                         Navigator.pop(context);
                         if (map[Const.STATUS] == Const.SUCCESS) {
-                          popup(context, map[Const.MESSAGE]);
+                         // popup(context, map[Const.MESSAGE]);
+                          AppData.showInSnackDone(context, map[Const.MESSAGE]);
                         }else{
-                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                         // AppData.showInSnackBar(context, map[Const.MESSAGE]);
 
                         }
                           });
@@ -873,7 +875,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context,
         title: message,
         type: AlertType.success,
-        onWillPopActive: true,
+        //onWillPopActive: true,
         closeIcon: Icon(
           Icons.info,
           color: Colors.transparent,

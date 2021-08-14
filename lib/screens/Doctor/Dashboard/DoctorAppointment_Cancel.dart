@@ -1,4 +1,6 @@
-import 'package:user/models/AppointmentlistModel.dart';
+
+import 'package:user/models/DocterAppointmentlistModel.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -6,16 +8,16 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-class MyAppointmentTreated extends StatefulWidget {
+class DoctorAppointmentCancle extends StatefulWidget {
    MainModel model;
-  MyAppointmentTreated({Key key, this.model}) : super(key: key);
+  DoctorAppointmentCancle({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentTreatedState createState() => _MyAppointmentTreatedState();
+  _DoctorAppointmentCancleState createState() => _DoctorAppointmentCancleState();
 }
 
-class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
+class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -53,13 +55,13 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"4",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel=AppointmentlistModel.fromJson(map);
+              doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -78,12 +80,12 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 appointdate(),
 
                 Expanded(
-                  child: (appointmentlistModel != null)
+                  child:(doctorAppointmment != null)
                       ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        Body appointmentlist =doctorAppointmment.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return Column(
@@ -116,15 +118,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.patname,
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
-                                                    SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                    SizedBox(height: 10,),
+                                                    /*Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Patient Notes:"+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
@@ -164,7 +166,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                             ),
                           ],
                         );
-                      },itemCount: appointmentlistModel.body.length,
+                      },itemCount: doctorAppointmment.body.length,
 
                   ): Container(),
                 ),
@@ -237,6 +239,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
       },
     );
   }
+ // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
 
-  //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.blue),),
+
 }

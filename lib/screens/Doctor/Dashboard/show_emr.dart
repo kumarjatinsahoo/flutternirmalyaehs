@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/PatientsDetailsModel.dart';
+import 'package:user/models/UserlabtestreportModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 class ShowEmr extends StatefulWidget {
@@ -16,13 +21,74 @@ class _ShowEmr extends State<ShowEmr> {
   FocusNode _descriptionFocus, _focusNode;
   final _titleController = TextEditingController();
   String _ratingController;
+String eHealthCardno;
+  String comeFrom;
+  PatientsDetailsModel patientsDetails=PatientsDetailsModel();
+  UserlabtestreportModel userlabtestreportModel=UserlabtestreportModel();
+  bool isDataNotAvail = false;
 
   @override
   void initState() {
     super.initState();
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
+    //eHealthCardno="5093626841904641";
+    eHealthCardno=widget.model.patientseHealthCard;
+    callPERSONALAPI(eHealthCardno);
+    callLabtastAPI(eHealthCardno);
+    //callMadicationAPI(eHealthCardno);
   }
+  callPERSONALAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+          api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
+          token: widget.model.token,
+          fun: (Map<String, dynamic> map) {
+            setState(() {
+              String msg = map[Const.MESSAGE];
+              if (map[Const.CODE] == Const.SUCCESS) {
+                patientsDetails = PatientsDetailsModel.fromJson(map);
+              } else {
+                isDataNotAvail = true;
+                AppData.showInSnackBar(context, msg);
+              }
+            });
+          });
+
+  }
+  callLabtastAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.IABTEST_REPORTDOCTER + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              userlabtestreportModel = UserlabtestreportModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+
+  }
+/*  callMadicationAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.MEDICATION_DOCTER + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              patientsDetails = PatientsDetailsModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +120,7 @@ class _ShowEmr extends State<ShowEmr> {
                   Center(
                     child: Text(
                       " Visit On Aug 09,2021",
-                      style: TextStyle(color: Colors.white, fontSize: 14.0),
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
                     ),
                   )
                 ],
@@ -80,7 +146,8 @@ class _ShowEmr extends State<ShowEmr> {
                                 context,
                                 new MaterialPageRoute(
                                     builder: (context) => new WalkPatient()));*/
-                            Navigator.pushNamed(context, "/docWalkInReg");
+                            //Navigator.pushNamed(context, "/docWalkInReg");
+                            Navigator.of(context).pop();
                           },
                         ),
                         SizedBox(
@@ -227,7 +294,8 @@ class _ShowEmr extends State<ShowEmr> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Container(
+        child: (userlabtestreportModel != null)
+            ? Container(
           child: Column(
             children: [
               Padding(
@@ -262,8 +330,7 @@ class _ShowEmr extends State<ShowEmr> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "Ipsita Sahoo",
+                        Text( patientsDetails.body[0].firstname,
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
@@ -303,8 +370,7 @@ class _ShowEmr extends State<ShowEmr> {
                           "   :   ",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
-                        Text(
-                          "Ipsita",
+                        Text(patientsDetails.body[0].firstname,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -324,7 +390,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Sahoo",
+                          patientsDetails.body[0].lastname,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -344,7 +410,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "123456098",
+                          patientsDetails.body[0].uhidcardno,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -363,7 +429,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "O+",
+                          patientsDetails.body[0].bloodgroup,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -382,7 +448,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "2021-07-08",
+                            patientsDetails.body[0].dob,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -401,7 +467,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "24",
+                          patientsDetails.body[0].age,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -420,7 +486,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Female",
+                          patientsDetails.body[0].gender,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -439,7 +505,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Single",
+                          patientsDetails.body[0].maritalstatus?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -458,7 +524,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Software Developer",
+                          patientsDetails.body[0].occupation?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -497,7 +563,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Banguari",
+                          patientsDetails.body[0].address1?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -517,7 +583,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Banguari",
+                          patientsDetails.body[0].address2?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -537,7 +603,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "752101",
+                            patientsDetails.body[0].pin ?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -556,30 +622,30 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "O+",
+                          patientsDetails.body[0].disctrict?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          child: Text(
-                            "Khurda",
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        Text(
-                          "   :   ",
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                        Text(
-                          "2021-07-08",
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       width: 100,
+                    //       child: Text(
+                    //         "Date",
+                    //         style: TextStyle(color: Colors.black, fontSize: 15),
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       "   :   ",
+                    //       style: TextStyle( color: Colors.black, fontSize: 15),
+                    //     ),
+                    //     Text(
+                    //       patientsDetails.body[12].,
+                    //       style: TextStyle(color: Colors.black, fontSize: 15),
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
                       children: [
                         Container(
@@ -594,7 +660,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Bhubaneswar",
+                          patientsDetails.body[0].city?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -613,7 +679,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Odisha",
+                            patientsDetails.body[0].state ?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -632,7 +698,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "India",
+                          patientsDetails.body[0].country?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -671,7 +737,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Birabar Sahoo",
+                          patientsDetails.body[0].emrgncyname ,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -691,7 +757,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Father",
+                          patientsDetails.body[0].emrgncyrelation,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -711,7 +777,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "9338017204",
+                          patientsDetails.body[0].emrgncymob,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -750,7 +816,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Saswat Jena",
+                          patientsDetails.body[0].famdctrname,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -770,7 +836,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Medicine",
+                          patientsDetails.body[0].famdctrsepeciality,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -790,7 +856,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "7205456672",
+                            patientsDetails.body[0].famdctrmob,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -829,7 +895,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "5'3",
+                            patientsDetails.body[0].height,
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -849,7 +915,8 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "70",
+                            patientsDetails.body[0].weight?? "N/A",
+
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -869,7 +936,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "100",
+                            patientsDetails.body[0].bmi?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -890,7 +957,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "92",
+                          patientsDetails.body[0].celcius?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -911,7 +978,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "124",
+                            patientsDetails.body[0].farenheit?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -932,7 +999,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "65",
+                            patientsDetails.body[0].bldpressure?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -953,7 +1020,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "93",
+                          patientsDetails.body[0].systolic?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -974,7 +1041,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "25",
+                          patientsDetails.body[0].pulse?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -995,7 +1062,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "45",
+                          patientsDetails.body[0].bmi?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -1016,7 +1083,7 @@ class _ShowEmr extends State<ShowEmr> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "160",
+                            patientsDetails.body[0].oxygen?? "N/A",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -1218,7 +1285,7 @@ class _ShowEmr extends State<ShowEmr> {
 
             ],
           ),
-        ),
+        ): Container(),
       ),
     );
   }
@@ -1554,7 +1621,8 @@ class _ShowEmr extends State<ShowEmr> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Expanded(
-                child: ListView.builder(
+                child:(userlabtestreportModel != null)
+                    ? ListView.builder(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
                   itemCount: 2,
@@ -1570,7 +1638,6 @@ class _ShowEmr extends State<ShowEmr> {
                            bottomLeft: Radius.circular(5),
                          ),
                          side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
-
                      child: Padding(
                        padding: const EdgeInsets.all(10.0),
                        child: Column(
@@ -1589,7 +1656,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "121448674403477",
+                                 /*"121448674403477"*/userlabtestreportModel.body[0].patientid?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1609,7 +1676,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "Ipsita Sahoo",
+                                 /*"Ipsita Sahoo"*/userlabtestreportModel.body[0].patientname?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1629,7 +1696,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "25",
+                                 userlabtestreportModel.body[0].age?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1649,7 +1716,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "Female",
+                                 userlabtestreportModel.body[0].gender?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1669,7 +1736,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "72",
+                                 userlabtestreportModel.body[0].weight?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1690,7 +1757,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "5'3",
+                                 userlabtestreportModel.body[0].height?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1711,14 +1778,12 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "11-08-2021",
+                                 userlabtestreportModel.body[0].testdate?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
                            ),
                            SizedBox(height: 5),
-
-
                            Row(
                              children: [
                                Container(
@@ -1733,7 +1798,7 @@ class _ShowEmr extends State<ShowEmr> {
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                                Text(
-                                 "  ",
+                                   userlabtestreportModel.body[0].phc?? "N/A",
                                  style: TextStyle(color: Colors.black, fontSize: 15),
                                ),
                              ],
@@ -1744,7 +1809,7 @@ class _ShowEmr extends State<ShowEmr> {
                      ),
                    );
                   },
-                ),
+                ): Container(),
               ),
             ),
           ]
@@ -1756,7 +1821,8 @@ class _ShowEmr extends State<ShowEmr> {
 
   Widget medication() {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
+    return
+      SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
@@ -2530,3 +2596,19 @@ class _ShowEmr extends State<ShowEmr> {
     );
   }
 }
+/*
+class MyPage2Widget extends StatelessWidget {
+  double _height = 85;
+  double _width;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    _width = (MediaQuery
+        .of(context)
+        .size
+        .width - 80) / 3;
+    return
+  }}*/

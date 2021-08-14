@@ -35,7 +35,7 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel titleModel = null;
   static KeyvalueModel stateModel = null;
   static KeyvalueModel cityModel = null;
-  //static KeyvalueModel countryModel = null;
+  static KeyvalueModel countryModel = null;
 
   UserSignUpForm({
     Key key,
@@ -364,10 +364,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           child: SizedBox(
                                             height: 58,
                                             child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "Gender",
-                                                ApiFactory.GENDER_API,
-                                                "gender",
+                                            DropDown.networkDropdownGetpartUser("Gender", ApiFactory.GENDER_API, "gender",
                                                 Icons.mail,
                                                 23.0, (KeyvalueModel data) {
                                               setState(() {

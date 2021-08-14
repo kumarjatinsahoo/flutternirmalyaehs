@@ -1,4 +1,9 @@
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
 
@@ -10,6 +15,143 @@ class DasboardDoctor extends StatefulWidget {
 
   @override
   _DasboardDoctorState createState() => _DasboardDoctorState();
+}
+SharedPref sharedPref = SharedPref();
+
+chooseAppointment(BuildContext context) {
+  return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              //title: const Text("Is it your details?"),
+              contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              //contentPadding: EdgeInsets.only(top: 10.0),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      _Tilered(
+                        // icon: Icons.calendar_today,
+                        icon: CupertinoIcons.calendar_today,
+                        title: "Health Screening",
+                        fun: () {
+                          //Navigator.pushNamed(context, "/medicalrecordpage");
+                        },
+                      ),
+                      Divider(),
+                      _Tilered(
+                        // icon: Icons.calendar_today,
+                        icon: CupertinoIcons.calendar_today,
+                        title: "Health Check-up",
+                        fun: () {
+                         //Navigator.pushNamed(context, "/medicalrecordpage");
+                        },
+                      ),
+                      Divider(),
+                      _Tilered(
+                        // icon: Icons.calendar_today,
+                        icon: CupertinoIcons.calendar_today,
+                        title: "Doctor Appointment",
+                        fun: () {
+                          Navigator.pushNamed(context, "/doctorAppointment");
+                          // Navigator.pushNamed(context, "/doctorconsultationPage");
+                          // Navigator.pop(context);
+                        },
+                      ),
+
+
+                      /* ListTile(
+                          title: Text("Health Screening"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //widget.model.apntUserType =Const.HEALTH_SCREENING_APNT;
+
+                            Navigator.pushNamed(context, "/docApnt");
+                            Navigator.pop(context);
+                            // AppData.showInSnackBar(context,"hi");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Health Check-up"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+                            //widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+
+                            Navigator.pushNamed(context, "/docApnt");
+                            Navigator.pop(context);
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Text("Doctor Appointment"),
+                          leading: Icon(
+                            CupertinoIcons.calendar_today,
+                            size: 40,
+                          ),
+                          onTap: () {
+
+                            //widget.model.apntUserType = Const.DOC_APNT;
+                            Navigator.pushNamed(context, "/doctorconsultationPage");
+                            Navigator.pop(context);
+                          },
+                        ),*/
+                      Divider(),
+                      MaterialButton(
+                        child: Text(
+                          "CANCEL",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      });
+}
+Widget _Tilered({IconData icon,
+  String title,
+  Function fun}) {
+  return InkWell(
+    onTap: fun,
+    child: Container(
+      padding: const EdgeInsets.all(10.0),
+      /* height: MediaQuery.of(context).size.height * 0.23,*/
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(icon, color: Colors.grey, size: 35,),
+          SizedBox(
+            width: 20,
+          ),
+          Text(title,
+              style: TextStyle(/*fontWeight: FontWeight.w300,*/
+                  fontSize: 17,
+                  color: Colors.black), textAlign: TextAlign.center),
+          //Icon(Icons.search, color: Colors.white),
+        ],
+      ),
+
+    ),
+  );
 }
 
 class _DasboardDoctorState extends State<DasboardDoctor> {
@@ -80,10 +222,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () {
-                      Navigator.push(context,
+                     /* Navigator.push(context,
                           new MaterialPageRoute(
-                              builder: (context) => new Appointment1()));
-                      Navigator.pushNamed(context, "/apntMange");
+                              builder: (context) => new Appointment1()));*/
+                      //Navigator.pushNamed(context, "/apntMange");
+                      chooseAppointment(context);
                     }
                 ),
               ),
@@ -487,12 +630,23 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               ),
               title: Text("Logout"),
               onTap: () {
-                Navigator.pop(context);
+               // selectDestination(9);
+                sharedPref.save(Const.IS_LOGIN, false.toString());
+                sharedPref.save(Const.IS_REGISTRATION, false.toString());
+                sharedPref.remove(Const.IS_REGISTRATION);
+                sharedPref.remove(Const.IS_LOGIN);
+                sharedPref.remove(Const.LOGIN_DATA);
+                sharedPref.remove(Const.IS_REG_SERVER);
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+              //  _exitApp();
               },
             ),
           ],
         ),
       ),
     );
+
   }
+
 }

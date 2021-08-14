@@ -101,6 +101,7 @@ import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/screens/DoctorconsultationPage.dart';
 import 'package:user/screens/splash.dart';
 import 'package:user/screens/DiscountOffer.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -473,6 +474,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/doctorconsultationPage': (context) =>DoctorconsultationPage(
+                model: _model,
+              ),
+              '/doctorAppointment': (context) =>DoctorAppointment(
                 model: _model,
               ),
 

@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
@@ -26,6 +29,9 @@ class DoctorSignUpForm2 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel titleModel = null;
+  static KeyvalueModel organizationModel = null;
+
 
   DoctorSignUpForm2({
     Key key,
@@ -43,6 +49,8 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  UserRegistrationModel userModel = UserRegistrationModel();
+
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   List<TextEditingController> textEditingController = [
@@ -100,6 +108,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
+  Uint8List bytes;
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -155,6 +164,32 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       isOnline = hasConnection;
     });
   }
+  Future openGallery() async {
+    var _picker;
+
+    _picker = ImagePicker();
+    var pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {}
+    setState(() {
+      final File picture1 = File(pickedFile.path);
+      bytes = picture1.readAsBytesSync();
+    });
+  }
+
+  Future openCamera() async {
+
+    //  print("Start Croping___________________________________________________");
+    var _picker;
+    _picker = ImagePicker();
+    var pickedFile = await _picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {}
+    setState(() {
+      final File picture1 = File(pickedFile.path);
+
+      bytes = picture1.readAsBytesSync();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -244,21 +279,49 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
-                                        formField(8, "Organization Name"),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "Organization Name", ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                                23.0,
+                                                    (KeyvalueModel data) {
+                                                  setState(() {
+
+                                                    print(ApiFactory.ORGANISATION_API);
+                                                    DoctorSignUpForm2.organizationModel = data;
+
+                                                  });
+                                                }),
+                                          ),
+                                        ),
                                         SizedBox(
                                           height: 5,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_TITLE"),
-                                              "genderSignup",
-                                              genderList, (KeyvalueModel data) {
-                                            setState(() {
-                                              DoctorSignUpForm2.genderModel = data;
-                                            });
-                                          }),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 0),
+                                          child: SizedBox(
+                                            height: 58,
+                                            child:
+                                            DropDown.networkDropdownGetpartUser(
+                                                "title",
+                                                ApiFactory.TITLE_API,
+                                                "title",
+                                                Icons.mail,
+                                                23.0, (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.TITLE_API);
+                                                DoctorSignUpForm2.titleModel =
+                                                    data;
+                                                userModel.title=data.key;
+                                                // UserSignUpForm.cityModel = null;
+                                              });
+                                            }),
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 5,
@@ -267,27 +330,62 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        formField(10, "User Id"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(11, "Password"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(12, "Confirm Password"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
+                                        // formField(10, "User Id"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
+                                        // formField(11, "Password"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
+                                        // formField(12, "Confirm Password"),
+                                        // SizedBox(
+                                        //   height: 5,
+                                        // ),
 
-                                        Column(
-                                          //crossAxisAlignment: CrossAxisAlignment.start,
-                                          // mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text(" Upload Photo :", style: TextStyle(fontSize: 20, color: Colors.teal),),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
+                                        // Column(
+                                        //   //crossAxisAlignment: CrossAxisAlignment.start,
+                                        //   // mainAxisAlignment: MainAxisAlignment.start,
+                                        //   children: [
+                                        //
+                                        //     GestureDetector(
+                                        //         child: Padding(
+                                        //           padding: const EdgeInsets.all(8.0),
+                                        //           child: Card(
+                                        //             child: Container(
+                                        //                 width: 300,
+                                        //                 height: 40,
+                                        //                 color: Colors.white,
+                                        //                 alignment: Alignment.center,
+                                        //                 child: Row(
+                                        //                     mainAxisSize: MainAxisSize.min,
+                                        //                     children: [
+                                        //                       //
+                                        //                       //   Image.memory(bytes),
+                                        //                       SizedBox(width:5),
+                                        //                       Icon(
+                                        //                         Icons.photo,
+                                        //                         color: Colors.red,
+                                        //                       ),
+                                        //                       SizedBox(
+                                        //                         width: 5,
+                                        //                       ),
+                                        //                       Text(' Upload Photo'),
+                                        //                     ]
+                                        //                 )
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //         onTap: () {
+                                        //           displayModalBottomSheet(context);
+                                        //
+                                        //           // openGallery();
+                                        //         }
+                                        //     ),
+                                        //     _showImage(),
+                                        //   ],
+                                        // ),
+                                        SizedBox(height: 35),
 
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
@@ -401,41 +499,45 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[8].text== "" || textEditingController[8].text== null) {
-          AppData.showInSnackBar(context, "Please enter organization name");
+         if (DoctorSignUpForm2.organizationModel == null ||
+            DoctorSignUpForm2.organizationModel == "") {
+          AppData.showInSnackBar(context, "Please select organization name");
+        }else if (DoctorSignUpForm2.titleModel == null ||
+            DoctorSignUpForm2.titleModel == "") {
+          AppData.showInSnackBar(context, "Please select title");
         }
         else if (textEditingController[9].text== "" || textEditingController[9].text== null) {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         }
         else if (textEditingController[9].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Name ");
+          AppData.showInSnackBar(context, "Please enter Professional Name ");
         }
-        else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
-          AppData.showInSnackBar(context, "Please enter Userid");
-        }
-        else if (textEditingController[10].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Name ");
-        }
-        else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
-          AppData.showInSnackBar(context, "Please enter password");
-        }
-        else if (textEditingController[11].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid password ");
-        }
-        else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
-          AppData.showInSnackBar(context, "Please enter confirm password");
-        }
-        else if (textEditingController[12].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid password ");
-        }
+        // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter Userid");
+        // }
+        // else if (textEditingController[10].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid Name ");
+        // }
+        // else if (textEditingController[11].text== "" || textEditingController[11].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter password");
+        // }
+        // else if (textEditingController[11].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid password ");
+        // }
+        // else if (textEditingController[12].text== "" || textEditingController[12].text== null) {
+        //   AppData.showInSnackBar(context, "Please enter confirm password");
+        // }
+        // else if (textEditingController[12].text.length <= 3) {
+        //   AppData.showInSnackBar(context, "Please enter valid password ");
+        // }
 
         else {
-          widget.model.organisationname = textEditingController[0].text;
-          widget.model.title = textEditingController[1].text;
-          widget.model.professionalname = textEditingController[2].text;
-          widget.model.userid = textEditingController[3].text;
-          widget.model.password = textEditingController[4].text;
-          widget.model.cnfrmpwd = textEditingController[5].text;
+          widget.model.organisationname = DoctorSignUpForm2.organizationModel.key;
+          widget.model.title = DoctorSignUpForm2.titleModel.key;
+          widget.model.professionalname = textEditingController[9].text;
+          // widget.model.userid = textEditingController[10].text;
+          // widget.model.password = textEditingController[11].text;
+          // widget.model.cnfrmpwd = textEditingController[12].text;
           Navigator.pushNamed(context, "/doctorsignupform3");
         }
       },
@@ -799,6 +901,146 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
         onChanged: (newValue) {},
+      ),
+    );
+  }
+
+  void displayModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Padding(
+            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 00.0),
+            child: Container(
+              height: 150,
+              // color: Colors.white,
+              child: Center(
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                                child: Container(
+                                    width: 100,
+                                    height: 100,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          //   Image.memory(bytes),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Icon(
+                                            Icons.camera,
+                                            color: Colors.red,
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: Text(' Camera '),
+                                          ),
+                                        ])),
+                                onTap: () {
+                                  openCamera();
+                                  Navigator.pop(context);
+
+                                }),
+                            SizedBox(width: 80),
+                            GestureDetector(
+                                child: Container(
+                                    width: 100,
+                                    height: 100,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          //   Image.memory(bytes),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Icon(
+                                            Icons.camera_alt,
+                                            color: Colors.red,
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: Text('Gallery'),
+                                          ),
+                                        ])),
+                                onTap: () {
+                                  openGallery();
+                                  Navigator.pop(context);
+                                })
+                          ],
+                        ))),
+              ),
+            ),
+          );
+        });
+  }
+
+
+  Widget _showImage() {
+    return Container(
+      child: Center(
+        child: Align(
+          alignment: Alignment.center,
+          child: bytes != null
+              ? Container(
+            padding: EdgeInsets.all(10.00),
+            width: 100,
+            height: 100,
+            decoration: new BoxDecoration(
+              border: Border.all(
+                //color: Colors.red,
+                  width: 0.1
+              ),
+              image: DecorationImage(
+                  image: MemoryImage(bytes),
+                  fit: BoxFit.fill
+              ),
+              borderRadius: BorderRadius.all(
+                  Radius.circular(20.0)
+              ),
+
+              // borderRadius: new BorderRadius.only(
+              //   topLeft: const Radius.circular(100.0),
+              //   topRight: const Radius.circular(100.0),
+              //   bottomLeft: const Radius.circular(100.0),
+              //   bottomRight: const Radius.circular(100.0),
+              // ),
+            ),
+            // child: Image.memory(
+            //   bytes,
+            //   fit: BoxFit.fill,
+            //   width: 400,
+            //   height: 200,
+            // ))
+          )
+              : Container(
+              decoration: new BoxDecoration(
+                border: Border.all(
+                    color: Colors.red,
+                    width: 0.1
+                ),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(20.0)
+                ),
+                // borderRadius: new BorderRadius.only(
+                //   topLeft: const Radius.circular(100.0),
+                //   topRight: const Radius.circular(100.0),
+                //   bottomLeft: const Radius.circular(100.0),
+                //   bottomRight: const Radius.circular(100.0),
+                // ),
+              )
+          ),
+        ),
       ),
     );
   }
