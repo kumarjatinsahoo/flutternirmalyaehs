@@ -231,16 +231,60 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
+                            // Align(
+                            //   alignment: Alignment.center,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.only(
+                            //         left: 60.0, right: 60.0),
+                            //     child: Image.asset(
+                            //       "assets/logo1.png",
+                            //       fit: BoxFit.fitWidth,
+                            //       //width: ,
+                            //       height: 110.0,
+                            //     ),
+                            //   ),
+                            // ),
+
                             Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 60.0, right: 60.0),
-                                child: Image.asset(
-                                  "assets/logo1.png",
-                                  fit: BoxFit.fitWidth,
-                                  //width: ,
-                                  height: 110.0,
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 83,
+                                width: 83,
+                                child: Stack(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    (pathUsr != null)
+                                        ? Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage:
+                                        FileImage(pathUsr),
+                                      ),
+                                    )
+                                        : Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage: NetworkImage(
+                                            AppData.defaultImgUrl),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          _settingModalBottomSheet(context);
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: AppData.kPrimaryColor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -345,11 +389,6 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                       //crossAxisAlignment: CrossAxisAlignment.start,
                                       // mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          " Upload Photo :",
-                                          style: TextStyle(
-                                              fontSize: 20, color: Colors.teal),
-                                        ),
                                         // Padding(
                                         //   padding: const EdgeInsets.only(left: 100),
                                         //   child: InkWell(
@@ -357,54 +396,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                         //       _settingModalBottomSheet(context);
                                         //     },
                                         //       child: Icon(Icons.camera_alt,size: 50,)),
-                                        // )
-
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 80),
-                                          child: Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              height: 83,
-                                              width: 83,
-                                              child: Stack(
-                                                //mainAxisAlignment: MainAxisAlignment.center,
-                                                children: <Widget>[
-                                                  (pathUsr != null)
-                                                      ? Material(
-                                                    elevation: 5.0,
-                                                    shape: CircleBorder(),
-                                                    child: CircleAvatar(
-                                                      radius: 40.0,
-                                                      backgroundImage:
-                                                      FileImage(pathUsr),
-                                                    ),
-                                                  )
-                                                      : Material(
-                                                    elevation: 5.0,
-                                                    shape: CircleBorder(),
-                                                    child: CircleAvatar(
-                                                      radius: 40.0,
-                                                      backgroundImage: NetworkImage(
-                                                          AppData.defaultImgUrl),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment: Alignment.bottomRight,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        _settingModalBottomSheet(context);
-                                                      },
-                                                      child: Icon(
-                                                        Icons.camera_alt,
-                                                        color: AppData.kPrimaryColor,
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        //
                                       ],
                                     ),
                                     SizedBox(height: 5),
