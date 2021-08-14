@@ -12,12 +12,12 @@ class ApiFactory {
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
-  static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=5093626841904641';
+  static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
 
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
 
 
-  static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=5093626841904641';
+  static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
 
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';

@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loginResponse1 = widget.model.loginResponse1;
 
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.PATIENT_PROFILE,
+        api: ApiFactory.PATIENT_PROFILE+loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
