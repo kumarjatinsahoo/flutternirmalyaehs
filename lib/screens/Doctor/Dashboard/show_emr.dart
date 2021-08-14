@@ -1638,7 +1638,6 @@ String eHealthCardno;
                            bottomLeft: Radius.circular(5),
                          ),
                          side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
-
                      child: Padding(
                        padding: const EdgeInsets.all(10.0),
                        child: Column(
