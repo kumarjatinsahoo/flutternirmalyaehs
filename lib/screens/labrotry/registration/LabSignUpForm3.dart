@@ -854,7 +854,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               widget.model.patienStatecode = null;
               widget.model.patienStatekey = null;
               widget.model.patientimgtype = null;
-              Navigator.of(context).pushNamedAndRemoveUntil("/patientDashboard", (Route<dynamic> route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

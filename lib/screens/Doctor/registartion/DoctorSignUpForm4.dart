@@ -1143,7 +1143,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, "/doctorsignupform5");
+              Navigator.pushNamed(context, "/login");
 
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
