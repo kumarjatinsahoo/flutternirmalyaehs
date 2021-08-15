@@ -928,7 +928,7 @@ class MedicationAddScreenState extends State<MedicationAddScreen> {
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 if (map[Const.STATUS] == Const.SUCCESS) {
-                  popup(context, map[Const.MESSAGE],map[Const.BODY]);
+                  popup(context, "Medicine Added Successfully",map[Const.BODY]);
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }

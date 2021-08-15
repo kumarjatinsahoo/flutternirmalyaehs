@@ -45,7 +45,7 @@ class _ShowEmr extends State<ShowEmr> {
 
   callPERSONALAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.PERSONAL_DETAILS + "5093626841904641",
+        api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           log("Personal deatils API>>>" + jsonEncode(map));
@@ -63,7 +63,7 @@ class _ShowEmr extends State<ShowEmr> {
 
   callLabtastAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.IABTEST_REPORTDOCTER + "5093626841904641",
+        api: ApiFactory.IABTEST_REPORTDOCTER + eHealthCardno,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           log("Error in>>>"+jsonEncode(map));
@@ -81,7 +81,7 @@ class _ShowEmr extends State<ShowEmr> {
 
   callMadicationAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.MEDICATION_DOCTER + "5093626841904641",
+        api: ApiFactory.MEDICATION_DOCTER + eHealthCardno,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -452,7 +452,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].bloodgroup,
+                                  (patientsDetails.body[0].bloodgroup!="null")?patientsDetails.body[0].bloodgroup:"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -474,7 +474,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].dob,
+                                  (patientsDetails.body[0].dob!="null")?patientsDetails.body[0].dob:"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -828,7 +828,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].emrgncyname,
+                                  patientsDetails?.body[0]?.emrgncyname??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -851,7 +851,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].emrgncyrelation,
+                                  patientsDetails?.body[0]?.emrgncyrelation??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -874,7 +874,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].emrgncymob,
+                                  patientsDetails?.body[0]?.emrgncymob??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -916,7 +916,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].famdctrname,
+                                  patientsDetails?.body[0]?.famdctrname??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -939,7 +939,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].famdctrsepeciality,
+                                  patientsDetails?.body[0]?.famdctrsepeciality??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -962,7 +962,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].famdctrmob,
+                                  patientsDetails?.body[0]?.famdctrmob??"N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -1004,7 +1004,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  patientsDetails.body[0].height ?? "N/A",
+                                  patientsDetails?.body[0]?.height ?? "N/A",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),

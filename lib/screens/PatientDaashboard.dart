@@ -85,7 +85,8 @@ class _PatientDashboardState extends State<PatientDashboard> {
               //AppData.showInSnackDone(context, map["msg"]);
               sharedPref.save(Const.IS_REG_SERVER, "true");
             } else {
-              AppData.showInSnackBar(context, map["msg"]);
+              //if(map["msg"]!="")
+              //AppData.showInSnackBar(context, map["msg"]??"");
             }
           },
         );

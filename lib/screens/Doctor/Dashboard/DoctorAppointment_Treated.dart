@@ -147,7 +147,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                           fontSize: 15,
                                                           color: Colors.green),),
                                                     SizedBox(height: 3,),
-                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
+                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+" "+appointmentlist.appmonth,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
 
