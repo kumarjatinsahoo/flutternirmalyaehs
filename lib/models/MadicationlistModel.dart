@@ -1,11 +1,11 @@
-class madicationlistModel{
+class MadicationlistModel{
   List<Body> body;
   String message;
   String code;
   Null total;
 
-  madicationlistModel({this.body, this.message, this.code, this.total});
-  madicationlistModel.fromJson(Map<String, dynamic> json) {
+  MadicationlistModel({this.body, this.message, this.code, this.total});
+  MadicationlistModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
       body = new List<Body>();
       json['body'].forEach((v) {
