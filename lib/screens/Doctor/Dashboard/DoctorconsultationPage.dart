@@ -435,12 +435,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             child:
                             DropDown.networkDropdownGetpartUser(
                                 "Doctor",
-                                ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key,
+                                ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+(DoctorconsultationPage?.cityModel?.key??""),
                                 "doctor",
                                 Icons.mail,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
+                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
                                 DoctorconsultationPage.doctorModel= data;
                                 DoctorconsultationPage.hospitalModel = null;
                                 // UserSignUpForm.cityModel = null;
