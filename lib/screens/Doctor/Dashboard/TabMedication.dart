@@ -20,7 +20,7 @@ class _TabMedication extends State<TabMedication> {
   String _ratingController;
   final myController = TextEditingController();
   String eHealthCardno;
-  madicationlistModel medicationlistmodel=madicationlistModel();
+  MadicationlistModel medicationlistmodel=MadicationlistModel();
   bool isDataNotAvail = false;
 
   @override
@@ -38,7 +38,7 @@ class _TabMedication extends State<TabMedication> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              medicationlistmodel = madicationlistModel.fromJson(map);
+              medicationlistmodel = MadicationlistModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);

@@ -14,6 +14,7 @@ import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
@@ -99,7 +100,6 @@ import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
-import 'file:///D:/Lisaranee/office%20project/eHealthSystemUser/lib/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/splash.dart';
 import 'package:user/screens/DiscountOffer.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
@@ -474,16 +474,15 @@ class _MyAppState extends State<MyApp> {
               '/printRep': (context) => PrintReportWebView(
                     model: _model,
                   ),
-              '/doctorconsultationPage': (context) =>DoctorconsultationPage(
-                model: _model,
-              ),
-              '/doctorAppointment': (context) =>DoctorAppointment(
-                model: _model,
-              ),
-              '/medi': (context) =>MedicationAddScreen(
-                model: _model,
-              ),
-
+              '/doctorconsultationPage': (context) => DoctorconsultationPage(
+                    model: _model,
+                  ),
+              '/doctorAppointment': (context) => DoctorAppointment(
+                    model: _model,
+                  ),
+              '/medi': (context) => MedicationAddScreen(
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

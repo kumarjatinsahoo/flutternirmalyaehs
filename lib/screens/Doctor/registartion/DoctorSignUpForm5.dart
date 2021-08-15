@@ -18,22 +18,20 @@ import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
-
-enum gender{
+enum gender {
   Male,
   Female,
 }
+
 // ignore: must_be_immutable
 class DoctorSignUpForm5 extends StatefulWidget {
-
-
   final bool isConfirmPage;
   final bool isFromDash;
   MainModel model;
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel bloodgroupModel = null;
 
   DoctorSignUpForm5({
     Key key,
@@ -76,7 +74,6 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -129,6 +126,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
+
   @override
   void initState() {
     super.initState();
@@ -155,110 +153,137 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                    child: Row(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back, color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text(
+                        'SIGN UP',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Card(
+                              key: _formKey,
+                              // autovalidate: _autovalidate,
+                              child: Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        Text(
+                                          " Welcome to eHealthSystem",
+                                          style: TextStyle(
+                                              fontSize: 27, color: Colors.blue),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
+                                          "Your document verification process started now . Verification will be"
+                                          " completed within 24 hours and confirmation mail will be send to your registered email id.",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: home(),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
                   ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Card(
-                                  key: _formKey,
-                                  // autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text(" Welcome to eHealthSystem",
-                                              style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5,),
-                                        Column(
-                                          children: [
-                                            Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
-                                                "Your document verification process started now . Verification will be"
-                                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
-                                              style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: home(),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
-                          ],),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        )
-    );
+          ],
+        ),
+      ),
+    ));
   }
+
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -337,7 +362,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -402,7 +427,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
+        margin: EdgeInsets.only(left: 180, right: 0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
             borderRadius: BorderRadius.circular(10.0),
@@ -412,7 +437,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("HOME"),
             textAlign: TextAlign.center,
@@ -440,7 +465,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -455,7 +480,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -507,7 +532,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (value) {
@@ -631,7 +656,8 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (DoctorSignUpForm5.genderModel == null || DoctorSignUpForm5.genderModel == "") {
+    } else if (DoctorSignUpForm5.genderModel == null ||
+        DoctorSignUpForm5.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -647,10 +673,6 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_DOB"));
       FocusScope.of(context).requestFocus(fnode3);
-    } else if (error[4] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode7);
     } else if (DoctorSignUpForm5.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
     } else if (DoctorSignUpForm5.blockModel == null) {
@@ -673,18 +695,14 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
     }
   }
 
-
-
-
   Widget mobileNumber1(int index, String hint, mobileModel) {
     return Container(
       margin:
-      const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(7),
-          border:
-          Border.all(color: AppData.matruColor, width: 3)),
+          border: Border.all(color: AppData.matruColor, width: 3)),
       child: Row(
         children: <Widget>[
           Padding(
@@ -742,12 +760,15 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
     );
   }
 
-  Widget formField(int index, String hint,) {
+  Widget formField(
+    int index,
+    String hint,
+  ) {
     return TextFieldContainer(
       child: TextFormField(
         controller: textEditingController[index],
         textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
+        keyboardType: TextInputType.text,
         /* decoration: BoxDecoration(11
           color: AppData.kPrimaryLightColor,
           //color: Color(0x45283e81),
@@ -763,5 +784,4 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
       ),
     );
   }
-
 }
