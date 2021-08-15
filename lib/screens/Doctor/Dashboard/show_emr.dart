@@ -40,7 +40,7 @@ class _ShowEmr extends State<ShowEmr> {
     eHealthCardno = widget.model.patientseHealthCard;
     callPERSONALAPI(eHealthCardno);
     callLabtastAPI(eHealthCardno);
-    //callMadicationAPI(eHealthCardno);
+    callMadicationAPI(eHealthCardno);
   }
 
   callPERSONALAPI(String eHealthCardno) {
@@ -81,7 +81,7 @@ class _ShowEmr extends State<ShowEmr> {
 
   callMadicationAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.MEDICATION_DOCTER + eHealthCardno,
+        api: ApiFactory.MEDICATION_DOCTER + "5093626841904641",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {

@@ -112,8 +112,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     //if (picked != null && picked != selectedDate)
     setState(() {
       isDataNotAvail=false;
-     final df = new DateFormat('yyyy/MM/dd');
-      //final df = new DateFormat('dd/MM/yyyy');
+     //final df = new DateFormat('yyyy/MM/dd');
+      final df = new DateFormat('dd/MM/yyyy');
       today = df.format(picked);
       callAPI(today);
     });
