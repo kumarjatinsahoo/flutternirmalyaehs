@@ -87,7 +87,7 @@ class _ShowEmr extends State<ShowEmr> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              madicationlistModel = MadicationlistModel.fromJson(map);
+              madicationlistModel =apnt.MadicationlistModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -2051,9 +2051,9 @@ class _ShowEmr extends State<ShowEmr> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(0.0),
               child: Expanded(
-                child:(madicationlistModel != null)
+                child:(madicationlistModel != null && madicationlistModel.body!=null && madicationlistModel.body.isNotEmpty)
                     ? ListView.builder(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
@@ -2080,7 +2080,7 @@ class _ShowEmr extends State<ShowEmr> {
                                 Container(
                                   width: 100,
                                   child: Text(
-                                    "Name",
+                                    "Doctor",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15),
                                   ),
@@ -2212,7 +2212,7 @@ class _ShowEmr extends State<ShowEmr> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 5),
+                           /* SizedBox(height: 5),
                             Row(
                               children: [
                                 Container(
@@ -2234,13 +2234,13 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                               ],
-                            ),
+                            ),*/
                             SizedBox(height: 5),
                           ],
                         ),
                       ),
                     );
-                  },
+                  },itemCount: madicationlistModel.body.length,
                 ) : Container(),
               ),
             ),
