@@ -188,6 +188,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   bool isOnline = false;
 
   //LoginResponse1 loginResponse;
+  String formattime;
 
   @override
   void initState() {
@@ -220,6 +221,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
     if (picked != null)
       setState(() {
+        formattime=picked.hour.toString()+":"+picked.minute.toString();
         selectedTime = picked;
         time=formatTimeOfDay(picked);
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
@@ -228,7 +230,31 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           validitytime.text =time;
          // dob.value = TextEditingValue(text: time.format(selectedTime));
           //(isIn)?timelist.intime=time:timelist.outtime=time;
-         /* widget.model.GETMETHODCALL(
+         /* widget.model.GETMETHODCALL_TOKEN(
+              api: ApiFactory.AVAILABLE_TIME_CHKUP +DoctorconsultationPage.doctorModel.key+"&date="+selectedDatestr ,
+              token: widget.model.token,
+              fun: (Map<String, dynamic> map) {
+                setState(() {
+                  //Navigator.of(context).pop();
+
+
+                  if (map[Const.CODE] == Const.SUCCESS) {
+                    String fromTime = map["body"]["fromTime"].toString();
+                    String toTime = map["body"]["toTime"].toString();
+                    opdId = map["body"]["opdId"].toString();
+                    appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
+
+                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  } else {
+                    //Navigator.of(context).pop();
+                    appointmentdate.text=null;
+                    appointmentdate.text="";
+                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+
+                  }
+                });
+              });*/
+          /*widget.model.GETMETHODCALL(
               api:(isIn==true)? ApiFactory.EMP_ADDATTENCE +loginResponse.userData.partnerid +"&stylistId="+attendDetailModel.employeeid+"&entryexittime="+time
                   +"&status=0":ApiFactory.EMP_ADDATTENCE +loginResponse.userData.partnerid +"&stylistId="+attendDetailModel.employeeid+"&entryexittime="+time
                   +"&status=1",
@@ -623,7 +649,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       "userid": widget.model.user,
       "date": appointmentdate.text,
       "opdid":  opdId,
-      "time": "19:00",//validitytime.text,
+      "time": formattime,//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[0].text,
       "hospitalid":DoctorconsultationPage.hospitalModel.key ,

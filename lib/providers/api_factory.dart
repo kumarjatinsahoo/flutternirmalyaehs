@@ -50,6 +50,7 @@ class ApiFactory {
 
   static String CHANGE_STATUS_CHKUP = MAIN_URL + "post-chkupAppointmentStatus";
   static String AVAILABLE_DATE_CHKUP = MAIN_URL + "doctor-available-by-date?doctor=";
+  static String AVAILABLE_TIME_CHKUP = MAIN_URL + "doctor-available-by-time?doctor=";
 
   static String CHANGE_STATUS_SCREENING = MAIN_URL + "post-appointmentStatus";
 
