@@ -699,7 +699,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           AppData.showInSnackBar(context, "Please enter Zip/pin code");
         } else if (textEditingController[5].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Zip/pin code ");
-        } else if (textEditingController[4].text == "" ||
+        } /*else if (textEditingController[4].text == "" ||
             textEditingController[4].text == null) {
           AppData.showInSnackBar(context, "Please enter Enterhome phone");
         } else if (textEditingController[4].text.length <= 3) {
@@ -709,7 +709,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           AppData.showInSnackBar(context, "Please enter office phone");
         } else if (textEditingController[9].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter office phone");
-        } else if (textEditingController[10].text == "" ||
+        }*/ else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (textEditingController[10].text.length <= 3) {
@@ -719,12 +719,12 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           AppData.showInSnackBar(context, "Please enter emailid");
         } else if (textEditingController[11].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter emailid ");
-        } else if (textEditingController[12].text == "" ||
+        } /*else if (textEditingController[12].text == "" ||
             textEditingController[12].text == null) {
           AppData.showInSnackBar(context, "Please enter Alternate emailid");
         } else if (textEditingController[12].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Alternate emailid ");
-        } else {
+        } */else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
           doctorModel.stateid = DoctorSignUpForm4.stateModel.key;
