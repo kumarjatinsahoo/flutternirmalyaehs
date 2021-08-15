@@ -474,16 +474,15 @@ class _MyAppState extends State<MyApp> {
               '/printRep': (context) => PrintReportWebView(
                     model: _model,
                   ),
-              '/doctorconsultationPage': (context) =>DoctorconsultationPage(
-                model: _model,
-              ),
-              '/doctorAppointment': (context) =>DoctorAppointment(
-                model: _model,
-              ),
-              '/medi': (context) =>MedicationAddScreen(
-                model: _model,
-              ),
-
+              '/doctorconsultationPage': (context) => DoctorconsultationPage(
+                    model: _model,
+                  ),
+              '/doctorAppointment': (context) => DoctorAppointment(
+                    model: _model,
+                  ),
+              '/medi': (context) => MedicationAddScreen(
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

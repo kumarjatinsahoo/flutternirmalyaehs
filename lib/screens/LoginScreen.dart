@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -470,7 +471,8 @@ class _LoginScreenState extends State<LoginScreen> {
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
-                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                print("LOGIN RESPONSE>>>>"+jsonEncode(map));
+                //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
@@ -493,28 +495,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }
-                    //Navigator.pushNamed(context, "/dashDoctor");
-                    /* else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.SUPADMIN).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dash', (Route<dynamic> route) => false);
-
-                    }
-                    else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.DMF).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dmfdashboard', (Route<dynamic> route) => false);
-                    }
-                    else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.ACCOUNT).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dmfaccount', (Route<dynamic> route) => false);
-                    }
-
-                    else {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dash', (Route<dynamic> route) => false);
-                    }*/
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);

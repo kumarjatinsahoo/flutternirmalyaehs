@@ -82,12 +82,10 @@ class _PatientDashboardState extends State<PatientDashboard> {
           json: postData,
           fun: (Map<String, dynamic> map) {
             if (map["code"] == 200) {
-              AppData.showInSnackDone(context, map["msg"] ?? "Offline");
-              //if (map["msg"] == "device id added") {
+              //AppData.showInSnackDone(context, map["msg"]);
               sharedPref.save(Const.IS_REG_SERVER, "true");
-              //}
             } else {
-              AppData.showInSnackBar(context, map["msg"] ?? "Offline");
+              AppData.showInSnackBar(context, map["msg"]);
             }
           },
         );
