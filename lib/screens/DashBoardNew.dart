@@ -52,6 +52,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/PramodSawantji.jpg",
     "assets/UddhavThackeryji.jfif",
     "assets/YogiAdityanathji.jpg",
+    "assets/intro/img_coll.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
