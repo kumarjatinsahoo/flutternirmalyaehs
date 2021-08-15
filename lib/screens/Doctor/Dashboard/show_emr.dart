@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:user/models/MadicationlistModel.dart'as apnt;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/PatientsDetailsModel.dart';
 import 'package:user/models/UserlabtestreportModel.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -27,6 +28,7 @@ class _ShowEmr extends State<ShowEmr> {
   String comeFrom;
   PatientsDetailsModel patientsDetails = PatientsDetailsModel();
   UserlabtestreportModel userlabtestreportModel = UserlabtestreportModel();
+  apnt.MadicationlistModel madicationlistModel =apnt.MadicationlistModel();
   bool isDataNotAvail = false;
 
   @override
@@ -77,7 +79,7 @@ class _ShowEmr extends State<ShowEmr> {
         });
   }
 
-/*  callMadicationAPI(String eHealthCardno) {
+  callMadicationAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.MEDICATION_DOCTER + eHealthCardno,
         token: widget.model.token,
@@ -85,7 +87,7 @@ class _ShowEmr extends State<ShowEmr> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              patientsDetails = PatientsDetailsModel.fromJson(map);
+              madicationlistModel = MadicationlistModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -93,7 +95,7 @@ class _ShowEmr extends State<ShowEmr> {
           });
         });
 
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -2051,11 +2053,14 @@ class _ShowEmr extends State<ShowEmr> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Expanded(
-                child: ListView.builder(
+                child:(madicationlistModel != null)
+                    ? ListView.builder(
                   shrinkWrap: true,
                   // scrollDirection: Axis.horizontal,
-                  itemCount: 2,
-                  itemBuilder: (BuildContext context, int index) {
+                 /* itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {*/
+                  itemBuilder: (context, i) {
+                    apnt.Body medition = madicationlistModel.body[i];
                     return Card(
                       color: Color(0xFFD2E4FC),
                       shape: RoundedRectangleBorder(
@@ -2086,7 +2091,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "Paracetmol",
+                                  /*"Paracetmol"*/medition.doctor,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2109,7 +2114,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "Tablet",
+                                  /*"Tablet"*/medition.medname,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2132,7 +2137,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "5 Days From 12-08-2021",
+                                  /*"5 Days From 12-08-2021"*/medition.dosage,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2155,7 +2160,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "1",
+                                  /*"1"*/medition.morning,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2178,7 +2183,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "1",
+                                  medition.afternoon,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2201,7 +2206,7 @@ class _ShowEmr extends State<ShowEmr> {
                                       color: Colors.black, fontSize: 15),
                                 ),
                                 Text(
-                                  "1",
+                                  /*"1"*/ medition.evening,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -2236,7 +2241,7 @@ class _ShowEmr extends State<ShowEmr> {
                       ),
                     );
                   },
-                ),
+                ) : Container(),
               ),
             ),
           ]),
