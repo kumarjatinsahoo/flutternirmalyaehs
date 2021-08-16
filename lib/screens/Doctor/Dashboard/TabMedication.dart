@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:user/models/madicationlistModel.dart';
+import 'package:user/models/MadicationlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -19,7 +19,7 @@ class _TabMedication extends State<TabMedication> {
   String _ratingController;
   final myController = TextEditingController();
   String eHealthCardno;
-  madicationlistModel medicationlistmodel=madicationlistModel();
+  MadicationlistModel medicationlistmodel=MadicationlistModel();
   bool isDataNotAvail = false;
 
   @override
@@ -37,7 +37,7 @@ class _TabMedication extends State<TabMedication> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              medicationlistmodel = madicationlistModel.fromJson(map);
+              medicationlistmodel = MadicationlistModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);

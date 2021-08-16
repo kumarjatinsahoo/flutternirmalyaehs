@@ -171,41 +171,32 @@ class _WalkPatient extends State<DocWalkPatient> {
                   elevation: 5,
                   color: const Color(0xFF0F6CE1),
                   borderRadius: BorderRadius.circular(10.0),
-                  child: InkWell(
-                      child: MaterialButton(
-                        onPressed: () async {},
-                        minWidth: 350,
-                        height: 40.0,
-                        child: GestureDetector(
-                            child: Text(
-                              "Show EMR",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 17.0),
-                            ),
-                            onTap: () async {
-                              if (myController.text == "" ||
-                                  myController.text == null) {
-                                AppData.showInSnackBar(context,
-                                    "Please enter patient's eHealthCard No");
-                              } else if (myController.text.length <=
-                                  3) {
-                                AppData.showInSnackBar(
-                                    context, "Please enter patient's eHealthCard No ");
-                              } else {
-                                widget.model.patientseHealthCard = myController.text;
-                                Navigator.push(
-                                    context,
-                                    new MaterialPageRoute(
-                                        builder: (context) => new ShowEmr(model:widget.model)));
-                              }
-                            }),
-                      ),
-                      onTap: () async {
-                        /*Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => new ShowEmr()));*/
-                      }),
+                  child: MaterialButton(
+                    onPressed: () {
+                      if (myController.text == "" ||
+                          myController.text == null) {
+                        AppData.showInSnackBar(context,
+                            "Please enter patient's eHealthCard No");
+                      } else if (myController.text.length <=
+                          3) {
+                        AppData.showInSnackBar(
+                            context, "Please enter patient's eHealthCard No ");
+                      } else {
+                        widget.model.patientseHealthCard = myController.text;
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) => new ShowEmr(model:widget.model)));
+                      }
+                    },
+                    minWidth: 350,
+                    height: 40.0,
+                    child: Text(
+                      "Show EMR",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 17.0),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 7,

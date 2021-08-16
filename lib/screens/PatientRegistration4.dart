@@ -397,6 +397,16 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                   fontSize: 17,
                   fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
+            ),SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Password is: User@123",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

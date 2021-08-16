@@ -226,7 +226,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                           new MaterialPageRoute(
                               builder: (context) => new Appointment1()));*/
                       //Navigator.pushNamed(context, "/apntMange");
-                      chooseAppointment(context);
+                      Navigator.pushNamed(context, "/doctorAppointment");
+                      //chooseAppointment(context);
                     }
                 ),
               ),
@@ -374,9 +375,6 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                     ],
                   ),
                   onTap: (){
-                    /*Navigator.push(context,
-                        new MaterialPageRoute(
-                            builder: (context) => new ShowEmr()));*/
                     Navigator.pushNamed(context, "/showEmr");
                   },
                 ),

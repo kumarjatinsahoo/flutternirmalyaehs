@@ -52,6 +52,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/PramodSawantji.jpg",
     "assets/UddhavThackeryji.jfif",
     "assets/YogiAdityanathji.jpg",
+    "assets/intro/img_coll.jpg",
+    "assets/images/thumb.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -557,6 +559,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                             AppData.launchURL(
                                 "https://www.youtube.com/watch?v=ckYGlJwCmlg");
                             break;
+
+                            case 9:
+                            AppData.launchURL(
+                                "https://youtu.be/0eV8xuExrA4");
+                            break;
                         }
                       },
                       child: Container(
@@ -993,7 +1000,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           top: -3,
           right: -3,
           child: Container(
-            height: 40,
+            height: 40, AppData.showInSnackBar(context, "Please select State");
             width: 40,
              decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40.0),
@@ -1053,8 +1060,9 @@ class MyPage1Widget extends StatelessWidget {
                           icon: CupertinoIcons.calendar_today,
                           title: "Health Screening",
                           fun: () {
-                            Navigator.pushNamed(
-                                context, "/medicalrecordpage");
+
+                           /* Navigator.pushNamed(
+                                context, "/medicalrecordpage");*/
                           },
                         ),
                         Divider(),
@@ -1196,7 +1204,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
-                        Navigator.pushNamed(context, "/medicalrecordpage");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/medicalrecordpage");
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1226,8 +1235,9 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/search_icon.png",
                       fun: () {
-                        Navigator.pushNamed(
-                            context, "/findHealthcareService");
+                       /* Navigator.pushNamed(
+                            context, "/findHealthcareService");*/
+                        AppData.showInSnackBar(context, "Coming soon");
                       },
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
@@ -1307,9 +1317,10 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "HELP",
                       fun: () {
+                        AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                        Navigator.pushNamed(context, "/emergencyHelp");
+                       // Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryRedColor,
                       bordercolor: AppData.kPrimaryRedColor,
@@ -1352,7 +1363,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                        Navigator.pushNamed(context, "/medicinereminder");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1396,7 +1408,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/offers.png",
                       fun: () {
-                        Navigator.pushNamed(context, "/discountoffer");
+                       // Navigator.pushNamed(context, "/discountoffer");
+                        AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
                       color: AppData.BG1RED,
@@ -1443,7 +1456,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Organ  Donation",
                       fun: () {
-                        Navigator.pushNamed(context, "/organdonation");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/organdonation");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1487,7 +1501,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
                       fun: () {
-                        Navigator.pushNamed(context, "/geneicstores");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/geneicstores");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1533,7 +1548,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Govt Schemes",
                       fun: () {
-                        Navigator.pushNamed(context, "/govtschemes");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/govtschemes");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1572,7 +1588,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Upload Medical Data",
                       fun: () {
-                        Navigator.pushNamed(context, "/insuranceList");
+                        AppData.showInSnackBar(context, "Coming soon");
+                       // Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -1605,7 +1622,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_care.png",
                       fun: () {
-                        Navigator.pushNamed(context, "/chemistspage");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/chemistspage");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1648,7 +1666,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/medipedia.png",
                       fun: () {
-                        Navigator.pushNamed(context, "/medipedia");
+                        AppData.showInSnackBar(context, "Coming soon");
+                        //Navigator.pushNamed(context, "/medipedia");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -2082,7 +2101,8 @@ class MyPage2Widget extends StatelessWidget {
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Health Checkup",
                             fun: () {
-                              Navigator.pushNamed(context, "/healthCheckup");
+                              AppData.showInSnackBar(context, "Coming soon");
+                              //Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG2BLUE,
                             bordercolor: AppData.BG2BLUE,
@@ -2111,7 +2131,8 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/infomatics.png",
                             title: "Discount & Offers",
                             fun: () {
-                              Navigator.pushNamed(context, "/emergencyroom");
+                              AppData.showInSnackBar(context, "Coming soon");
+                              //Navigator.pushNamed(context, "/emergencyroom");
                               // AppData.showSnack(
                               //     context, "Coming soon", Colors.green);
                             },

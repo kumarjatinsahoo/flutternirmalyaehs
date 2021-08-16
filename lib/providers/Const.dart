@@ -53,6 +53,7 @@ class Const {
   static const String STATUS = "code";
   static const String CODE = "code";
   static const String SUCCESS = "success";
+  static const String BODY = "body";
   static const String FAILED = "failed";
   static const String MESSAGE = "message";
   static const String ALREADY_REG = "Already Registered !!";

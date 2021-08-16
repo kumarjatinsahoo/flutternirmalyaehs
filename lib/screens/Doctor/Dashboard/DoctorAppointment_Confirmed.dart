@@ -1,22 +1,26 @@
-
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DoctorAppointmentConfirmed extends StatefulWidget {
-   MainModel model;
+  MainModel model;
+
   DoctorAppointmentConfirmed({Key key, this.model}) : super(key: key);
+
   @override
-  _DoctorAppointmentConfirmedState createState() => _DoctorAppointmentConfirmedState();
+  _DoctorAppointmentConfirmedState createState() =>
+      _DoctorAppointmentConfirmedState();
 }
 
-class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed> {
+class _DoctorAppointmentConfirmedState
+    extends State<DoctorAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -33,11 +37,12 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
     setState(() {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
-      selectedDatestr =  df.format(date).toString();
+      selectedDatestr = df.format(date).toString();
       //toThis_.text = df.format(date);
       callAPI(selectedDatestr);
     });
   }
+
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -45,26 +50,31 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+        /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-        selectedDatestr =  df.format(selectedDate).toString();
+        selectedDatestr = df.format(selectedDate).toString();
         callAPI(selectedDatestr);
-
       });
   }
+
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"2",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +
+            widget.model.user +
+            "&date=" +
+            today +
+            "&status=" +
+            "2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              doctorAppointmment=DoctorAppointmment.fromJson(map);
+              doctorAppointmment = DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -73,121 +83,154 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
           });
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
-           body: Container(
-             child: Column(
-               children: [
-                 appointdate(),
+        child: Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            appointdate(),
 
-
-                 InkWell(
+            /*InkWell(
                      onTap: (){
                        _displayTextInputDialog(context);
                      },
-                     child: Text("edit",style: TextStyle(fontSize: 30),)),
+                     child: Text("edit",style: TextStyle(fontSize: 30),)),*/
+            /* Navigator.push(
+                   context,
+                   new MaterialPageRoute(
+                       builder: (context) => new ShowEmr(model:widget.model)));*/
 
-                 Expanded(
-                   child: (doctorAppointmment != null)
-                       ? ListView.builder(
-                     shrinkWrap: true,
-               physics: NeverScrollableScrollPhysics(),
-               itemBuilder: (context, i) {
-                 Body appointmentlist = doctorAppointmment.body[i];
-               /* itemCount: lists.length,
+            Expanded(
+              child: (doctorAppointmment != null)
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        Body appointmentlist = doctorAppointmment.body[i];
+                        /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 10,),
-                             Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 100,
-                                  //width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .center,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .start,
-                                            children: [
-                                              Text(appointmentlist.patname,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),),
-                                              SizedBox(height: 5,),
-                                              /*Text(appointmentlist.speciality,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-                                              SizedBox(height: 5,),*/
-                                              Text(
-                                                "Patient Notes:"+appointmentlist.notes,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-                                            ],
-                                          ),),
-                                        /*new Spacer(),*/
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 15.0,),
-                                          child: Column(
-                                            // mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .end,
-                                            children: [
-                                              Text(/*'Confirmed'*/appointmentlist.status,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
-                                                    color: Colors.green),),
-                                              SizedBox(height: 3,),
-                                              Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),),
-
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                        return InkWell(
+                          onTap: (){
+                            widget.model.appointmentlist=appointmentlist;
+                            Navigator.pushNamed(context, "/medi");
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 5.0,
+                                  right: 5.0,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                  )),
-                            ),
-
-                          ],
-                        ),
-
-                      ),
-                    ],
-                  );
-                },itemCount: doctorAppointmment.body.length,
-
-                   ): Container(),
-                 ),
-               ],
-             ),
-           ),
-                      
-                      
-          )  
-    );
+                                    Card(
+                                      elevation: 5,
+                                      child: Container(
+                                          height: 100,
+                                          //width: double.maxFinite,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                color: Colors.grey[300],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        appointmentlist.patname,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 18),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      /*Text(appointmentlist.speciality,
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(),),
+                                                SizedBox(height: 5,),*/
+                                                      Text(
+                                                        "Patient Notes:" +
+                                                            appointmentlist.notes,
+                                                        overflow:
+                                                            TextOverflow.clip,
+                                                        style: TextStyle(),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                /*new Spacer(),*/
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                    top: 15.0,
+                                                  ),
+                                                  child: Column(
+                                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      Text(
+                                                        /*'Confirmed'*/
+                                                        appointmentlist.status,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 15,
+                                                            color:
+                                                                Colors.green),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 3,
+                                                      ),
+                                                      Text(
+                                                        /*'23-Nov-2020-11:30AM'*/
+                                                        appointmentlist.appdate+" "+appointmentlist.appmonth,
+                                                        overflow:
+                                                            TextOverflow.clip,
+                                                        style: TextStyle(),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      itemCount: doctorAppointmment.body.length,
+                    )
+                  : Container(),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
+
   Widget appointdate() {
     return Container(
       height: 40,
@@ -207,8 +250,7 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                 controller: fromThis_,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintText: 'From this',
                   //labelText: 'Booking Date',
                   alignLabelWithHint: false,
@@ -217,8 +259,7 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                       color: Colors.blue,
                     ),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
+                  contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
@@ -230,9 +271,11 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
-   /*else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
+
+  /*else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.HEALTH_CHKUP_LIST + today,
           token: widget.model.token,
@@ -260,15 +303,12 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-      
+
         // Navigator.pushNamed(context, "/otpView");
         //}
       },
     );
   }
-
-
-
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
     // _fname.text=patientProfileModel.body.fName;
@@ -352,21 +392,21 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                       //   ),
                       // ),
 
-                      SizedBox(
-                          height: 10
+                      SizedBox(height: 10),
+                      Text(
+                        "Update Profile",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
-                      Text("Update Profile",style: TextStyle(color: Colors.black,fontSize: 20),),
                       SizedBox(
                         height: 20,
                       ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                           // valueText = value;
-
+                            // valueText = value;
                           });
                         },
-                       // controller: _fname,
+                        // controller: _fname,
                         decoration: InputDecoration(hintText: "Medicine Name"),
                       ),
                       TextField(
@@ -374,39 +414,38 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                           setState(() {
                             // valueText = value;
                             // updateProfileModel.lName=value;
-
                           });
                         },
                         //controller: _lname,
                         decoration: InputDecoration(hintText: "Type"),
                       ),
-                      Divider(height: 2,color: Colors.black,),
+                      Divider(
+                        height: 2,
+                        color: Colors.black,
+                      ),
                       TextField(
                         onChanged: (value) {
-                          setState(() {
-
-                          });
+                          setState(() {});
                         },
-
                         decoration: InputDecoration(hintText: "From Date"),
                       ),
 
-                      Divider(height: 2,color: Colors.black),
+                      Divider(height: 2, color: Colors.black),
 
                       TextField(
                         onChanged: (value) {
-                          setState(() {
-
-                          });
+                          setState(() {});
                         },
                         decoration: InputDecoration(hintText: "To Date"),
                       ),
-                      Divider(height: 2,color: Colors.black),
-
+                      Divider(height: 2, color: Colors.black),
 
                       Row(
                         children: [
-                            Text('Morning ',style: TextStyle(fontSize: 17.0), ),
+                          Text(
+                            'Morning ',
+                            style: TextStyle(fontSize: 17.0),
+                          ),
                           Checkbox(
                             checkColor: Colors.white,
                             activeColor: Colors.blue,
@@ -420,13 +459,14 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                         ],
                       ),
 
-
-                      Divider(height: 2,color: Colors.black),
-
+                      Divider(height: 2, color: Colors.black),
 
                       Row(
                         children: [
-                          Text('Afternoon ',style: TextStyle(fontSize: 17.0), ),
+                          Text(
+                            'Afternoon ',
+                            style: TextStyle(fontSize: 17.0),
+                          ),
                           Checkbox(
                             checkColor: Colors.white,
                             activeColor: Colors.blue,
@@ -440,13 +480,14 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                         ],
                       ),
 
-
-                      Divider(height: 2,color: Colors.black),
-
+                      Divider(height: 2, color: Colors.black),
 
                       Row(
                         children: [
-                          Text('Evening ',style: TextStyle(fontSize: 17.0), ),
+                          Text(
+                            'Evening ',
+                            style: TextStyle(fontSize: 17.0),
+                          ),
                           Checkbox(
                             checkColor: Colors.white,
                             activeColor: Colors.blue,
@@ -460,12 +501,13 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                         ],
                       ),
 
-
-                      Divider(height: 2,color: Colors.black,),
+                      Divider(
+                        height: 2,
+                        color: Colors.black,
+                      ),
                       TextField(
                         onChanged: (value) {
-                          setState(() {
-                          });
+                          setState(() {});
                         },
                         //controller: _docMobile,
                         decoration: InputDecoration(hintText: " Remarks"),
@@ -526,30 +568,26 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
                     //   updateProfileModel.fDoctor=_fDoctor.text;
                     //   updateProfileModel.fDoctor=_fDoctor.text;
 
-
-
-                      // updateProfileModel.id=patientProfileModel.body.id;
-                      // widget.model.POSTMETHOD_TOKEN(api: ApiFactory.USER_UPDATEPROFILE,
-                      //     json: updateProfileModel.toJson(),
-                      //     token: widget.model.token,
-                      //     fun: (Map<String,dynamic>map){
-                      //       Navigator.pop(context);
-                      //       if (map[Const.STATUS] == Const.SUCCESS) {
-                      //         // popup(context, map[Const.MESSAGE]);
-                      //         AppData.showInSnackDone(context, map[Const.MESSAGE]);
-                      //       }else{
-                      //         // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                      //
-                      //       }
-                      //     });
-                      //postEdit();
-                    }
-                );
+                    // updateProfileModel.id=patientProfileModel.body.id;
+                    // widget.model.POSTMETHOD_TOKEN(api: ApiFactory.USER_UPDATEPROFILE,
+                    //     json: updateProfileModel.toJson(),
+                    //     token: widget.model.token,
+                    //     fun: (Map<String,dynamic>map){
+                    //       Navigator.pop(context);
+                    //       if (map[Const.STATUS] == Const.SUCCESS) {
+                    //         // popup(context, map[Const.MESSAGE]);
+                    //         AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                    //       }else{
+                    //         // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    //
+                    //       }
+                    //     });
+                    //postEdit();
+                  });
                 },
               ),
             ],
           );
         });
   }
-  
 }

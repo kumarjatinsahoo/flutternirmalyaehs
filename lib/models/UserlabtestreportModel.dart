@@ -53,15 +53,15 @@ class Body {
         this.medtelid});
 
   Body.fromJson(Map<String, dynamic> json) {
-    patientid = json['patientid'].toString();
-    patientname = json['patientname'].toString();
-    age = json['age'].toString();
-    gender = json['gender'].toString();
-    weight = json['weight'].toString();
-    height = json['height'].toString();
-    testdate = json['testdate'].toString();
-    phc = json['phc'].toString();
-    medtelid = json['medtelid'].toString();
+    patientid = json['patientid'];
+    patientname = json['patientname'];
+    age = json['age'];
+    gender = json['gender'];
+    weight = json['weight'];
+    height = json['height'];
+    testdate = json['testdate'];
+    phc = json['phc'];
+    medtelid = json['medtelid'];
   }
 
   Map<String, dynamic> toJson() {

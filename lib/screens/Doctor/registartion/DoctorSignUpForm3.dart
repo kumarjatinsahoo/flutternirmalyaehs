@@ -20,11 +20,11 @@ import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
-
-enum gender{
+enum gender {
   Male,
   Female,
 }
+
 // ignore: must_be_immutable
 class DoctorSignUpForm3 extends StatefulWidget {
   final Function(int, bool) updateTab;
@@ -35,11 +35,10 @@ class DoctorSignUpForm3 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel bloodgroupModel = null;
   static KeyvalueModel doctorModel = null;
   static KeyvalueModel hospitalModel = null;
   static KeyvalueModel specialistModel = null;
-
 
   DoctorSignUpForm3({
     Key key,
@@ -59,8 +58,10 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+
   // PatientProfileModel patientProfileModel;
   UserRegistrationModel userModel = UserRegistrationModel();
+
   // PatientProfileModel userModell = PatientProfileModel();
   String organisationname;
   String title;
@@ -92,7 +93,6 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -155,10 +155,10 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     KeyvalueModel(name: "O-", key: "7"),
     KeyvalueModel(name: "AB-", key: "8"),
   ];
-  List<KeyvalueModel> Gender=[
-    KeyvalueModel(name: "Male",key: "0"),
-    KeyvalueModel(name: "Female",key: "1"),
-    KeyvalueModel(name: "Transgender",key: "2"),
+  List<KeyvalueModel> Gender = [
+    KeyvalueModel(name: "Male", key: "0"),
+    KeyvalueModel(name: "Female", key: "1"),
+    KeyvalueModel(name: "Transgender", key: "2"),
   ];
 
   @override
@@ -166,7 +166,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     super.initState();
     organisationname = widget.model.organisationname;
     professionalname = widget.model.professionalname;
-    title=widget.model.title;
+    title = widget.model.title;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
     DoctorSignUpForm3.genderModel = null;
@@ -193,208 +193,201 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                    child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                      ],
-                    ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: AppData.kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Row(
+                    /*
+              mainAxisAlignment: MainAxisAlignment.start,*/
                     children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.arrow_back, color: Colors.white)),
                       Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(8, "Education"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  Role :", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                            Column(
-                                              children: [
-                                                Text("    Doctor", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                            height: 11
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "Speciality",
-                                                ApiFactory.SPECIALITY_API,
-                                                "speciality",
-                                                Icons.mail,
-                                                23.0, (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.SPECIALITY_API);
-                                                DoctorSignUpForm3.specialistModel= data;
-                                                DoctorSignUpForm3.doctorModel = null;
-                                                // UserSignUpForm.cityModel = null;
-
-                                              });
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        dob(),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "BLOOD GROUP",
-                                                ApiFactory.BLOODGROUP_API,
-                                                "bloodgroup",
-                                                Icons.location_on_rounded,
-                                                23.0, (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.BLOODGROUP_API);
-                                                DoctorSignUpForm3.bloodgroupModel = data;
-
-                                              });
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "GENDER",
-                                                ApiFactory.GENDER_API,
-                                                "gender",
-                                                Icons.mail,
-                                                23.0, (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.GENDER_API);
-                                                DoctorSignUpForm3.genderModel =
-                                                    data;
-                                                userModel.title=data.key;
-                                                // UserSignUpForm.cityModel = null;
-                                              });
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
-
-                          ],),
+                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                        child: Text(
+                          'SIGN UP',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
+                height: 55,
+                width: MediaQuery.of(context).size.width,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                        child: Image.asset(
+                          "assets/logo1.png",
+                          fit: BoxFit.fitWidth,
+                          //width: ,
+                          height: 110.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Form(
+                      key: _formKey,
+                      autovalidate: _autovalidate,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Text(
+                                "Fill in personal Information (All fields are mandatory)",
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          formField(8, "Education"),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "  Role :",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    "    Doctor",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 11),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
+                            child: SizedBox(
+                              height: 58,
+                              child: DropDown.networkDropdownGetpartUser(
+                                  "Speciality",
+                                  ApiFactory.SPECIALITY_API,
+                                  "speciality",
+                                  Icons.mail,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.SPECIALITY_API);
+                                  DoctorSignUpForm3.specialistModel = data;
+                                  DoctorSignUpForm3.doctorModel = null;
+                                  // UserSignUpForm.cityModel = null;
+                                });
+                              }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          dob(),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
+                            child: SizedBox(
+                              height: 58,
+                              child: DropDown.networkDropdownGetpartUser(
+                                  "BLOOD GROUP",
+                                  ApiFactory.BLOODGROUP_API,
+                                  "bloodgroup",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.BLOODGROUP_API);
+                                  DoctorSignUpForm3.bloodgroupModel = data;
+                                });
+                              }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
+                            child: SizedBox(
+                              height: 58,
+                              child: DropDown.networkDropdownGetpartUser(
+                                  "GENDER",
+                                  ApiFactory.GENDER_API,
+                                  "gender",
+                                  Icons.mail,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.GENDER_API);
+                                  DoctorSignUpForm3.genderModel = data;
+                                  userModel.title = data.key;
+                                  // UserSignUpForm.cityModel = null;
+                                });
+                              }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: nextButton1(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-
-
-        )
-    );
+        ),
+      ),
+    ));
   }
+
   // Widget gender() {
   //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
   //           (KeyvalueModel model) {
   //         LabSignUpForm2.genderModel = model;
   //       });
   // }
-
-
-
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -474,7 +467,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -532,46 +525,36 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     );
   }
 
-
-
   Widget nextButton1() {
     return MyWidgets.nextButton(
-        text: "NEXT".toUpperCase(),
-    context: context,
-    fun: () {
-      if (textEditingController[8].text == null || textEditingController[8].text == "") {
-        AppData.showInSnackBar(context, "Please enter education");
-      }
-      else if (DoctorSignUpForm3.specialistModel == null ||
-          DoctorSignUpForm3.specialistModel == "") {
-        AppData.showInSnackBar(context, "Please select Specalist");
-      }
-      else if (textEditingController[2].text == null || textEditingController[2].text == "") {
-        AppData.showInSnackBar(context, "Please enter Date  of birth");
-      }
-      else if (DoctorSignUpForm3.bloodgroupModel == null ||
-          DoctorSignUpForm3.bloodgroupModel == "") {
-        AppData.showInSnackBar(context, "Please select bloodgroup");
-      }
-      else if (DoctorSignUpForm3.genderModel == null ||
-          DoctorSignUpForm3.genderModel == "") {
-        AppData.showInSnackBar(context, "Please select gender");
-      }
-
-
-
-    else {
-      widget.model.education = textEditingController[8].text;
-      widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
-      widget.model.dateofbirth = textEditingController[2].text;
-      widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;
-      widget.model.gender = DoctorSignUpForm3.genderModel.key;
-      Navigator.pushNamed(context, "/doctorsignupform4");
-    }
-    },
+      text: "NEXT".toUpperCase(),
+      context: context,
+      fun: () {
+        if (textEditingController[8].text == null ||
+            textEditingController[8].text == "") {
+          AppData.showInSnackBar(context, "Please enter education");
+        } else if (DoctorSignUpForm3.specialistModel == null ||
+            DoctorSignUpForm3.specialistModel == "") {
+          AppData.showInSnackBar(context, "Please select Specalist");
+        } else if (textEditingController[2].text == null ||
+            textEditingController[2].text == "") {
+          AppData.showInSnackBar(context, "Please enter Date  of birth");
+        } else if (DoctorSignUpForm3.bloodgroupModel == null ||
+            DoctorSignUpForm3.bloodgroupModel == "") {
+          AppData.showInSnackBar(context, "Please select bloodgroup");
+        } else if (DoctorSignUpForm3.genderModel == null ||
+            DoctorSignUpForm3.genderModel == "") {
+          AppData.showInSnackBar(context, "Please select gender");
+        } else {
+          widget.model.education = textEditingController[8].text;
+          widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
+          widget.model.dateofbirth = textEditingController[2].text;
+          widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;
+          widget.model.gender = DoctorSignUpForm3.genderModel.key;
+          Navigator.pushNamed(context, "/doctorsignupform4");
+        }
+      },
     );
-
-
   }
 
   Widget nextButton() {
@@ -591,7 +574,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -606,7 +589,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -658,7 +641,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (value) {
@@ -782,7 +765,8 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (DoctorSignUpForm3.genderModel == null || DoctorSignUpForm3.genderModel == "") {
+    } else if (DoctorSignUpForm3.genderModel == null ||
+        DoctorSignUpForm3.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -824,18 +808,14 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     }
   }
 
-
-
-
   Widget mobileNumber1(int index, String hint, mobileModel) {
     return Container(
       margin:
-      const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(7),
-          border:
-          Border.all(color: AppData.matruColor, width: 3)),
+          border: Border.all(color: AppData.matruColor, width: 3)),
       child: Row(
         children: <Widget>[
           Padding(
@@ -893,12 +873,15 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     );
   }
 
-  Widget formField(int index, String hint,) {
+  Widget formField(
+    int index,
+    String hint,
+  ) {
     return TextFieldContainer(
       child: TextFormField(
         controller: textEditingController[index],
         textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
+        keyboardType: TextInputType.text,
         /* decoration: BoxDecoration(11
           color: AppData.kPrimaryLightColor,
           //color: Color(0x45283e81),
@@ -914,7 +897,4 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       ),
     );
   }
-
-
-
 }

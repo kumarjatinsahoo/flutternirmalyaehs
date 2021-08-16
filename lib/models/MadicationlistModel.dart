@@ -1,11 +1,13 @@
-class madicationlistModel{
+
+class MadicationlistModel {
   List<Body> body;
   String message;
   String code;
-  Null total;
+  String total;
 
-  madicationlistModel({this.body, this.message, this.code, this.total});
-  madicationlistModel.fromJson(Map<String, dynamic> json) {
+  MadicationlistModel({this.body, this.message, this.code, this.total});
+
+  MadicationlistModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
       body = new List<Body>();
       json['body'].forEach((v) {
@@ -37,6 +39,11 @@ class Body {
   String afternoon;
   String evening;
   String doctor;
+  String fromdate;
+  String todate;
+  String userid;
+  String appno;
+  String remarks;
 
   Body(
       {this.medname,
@@ -45,16 +52,26 @@ class Body {
         this.morning,
         this.afternoon,
         this.evening,
-        this.doctor});
+        this.doctor,
+        this.fromdate,
+        this.todate,
+        this.userid,
+        this.appno,
+        this.remarks});
 
   Body.fromJson(Map<String, dynamic> json) {
-    medname = json['medname'];
-    medtype = json['medtype'];
-    dosage = json['dosage'];
-    morning = json['morning'];
-    afternoon = json['afternoon'];
-    evening = json['evening'];
-    doctor = json['doctor'];
+    medname = json['medname'].toString();
+    medtype = json['medtype'].toString();
+    dosage = json['dosage'].toString();
+    morning = json['morning'].toString();
+    afternoon = json['afternoon'].toString();
+    evening = json['evening'].toString();
+    doctor = json['doctor'].toString();
+    fromdate = json['fromdate'].toString();
+    todate = json['todate'].toString();
+    userid = json['userid'].toString();
+    appno = json['appno'].toString();
+    remarks = json['remarks'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -66,6 +83,11 @@ class Body {
     data['afternoon'] = this.afternoon;
     data['evening'] = this.evening;
     data['doctor'] = this.doctor;
+    data['fromdate'] = this.fromdate;
+    data['todate'] = this.todate;
+    data['userid'] = this.userid;
+    data['appno'] = this.appno;
+    data['remarks'] = this.remarks;
     return data;
   }
 }
