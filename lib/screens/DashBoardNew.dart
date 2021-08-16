@@ -80,8 +80,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           String msg = map[Const.MESSAGE];
           if (map[Const.CODE] == Const.SUCCESS) {
             userDashboardModel = UserDashboardModel.fromJson(map);
-            if (!userDashboardModel.body.isEContactAdded ||
-                !userDashboardModel.body.isEContactAdded) {
+            if (!userDashboardModel.body.isEContactAdded ||!userDashboardModel.body.isEContactAdded) {
               WidgetsBinding.instance.addPostFrameCallback((_) async {
                 dashOption1(context);
               });
@@ -801,8 +800,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     Function fun}) {
     return InkWell(
       onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
+      child: Container(padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
         width: (MediaQuery
@@ -1061,6 +1059,7 @@ class MyPage1Widget extends StatelessWidget {
                           title: "Health Screening",
                           fun: () {
 
+                            Navigator.pushNamed(context, "/docApnt");
                            /* Navigator.pushNamed(
                                 context, "/medicalrecordpage");*/
                           },
@@ -1071,8 +1070,9 @@ class MyPage1Widget extends StatelessWidget {
                           icon: CupertinoIcons.calendar_today,
                           title: "Health Check-up",
                           fun: () {
-                            Navigator.pushNamed(
-                                context, "/medicalrecordpage");
+                            // Navigator.pushNamed(
+                            //   context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/docApnt");
                           },
                         ),
                         Divider(),
@@ -1204,8 +1204,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/medicalrecordpage");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/medicalrecordpage");
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
