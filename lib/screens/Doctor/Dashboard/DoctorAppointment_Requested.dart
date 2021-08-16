@@ -1,4 +1,3 @@
-
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -8,15 +7,19 @@ import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl.dart';
-class DoctorAppointmentRequested extends StatefulWidget {
 
-   MainModel model;
+class DoctorAppointmentRequested extends StatefulWidget {
+  MainModel model;
+
   DoctorAppointmentRequested({Key key, this.model}) : super(key: key);
+
   @override
-  _DoctorAppointmentRequestedState createState() => _DoctorAppointmentRequestedState();
+  _DoctorAppointmentRequestedState createState() =>
+      _DoctorAppointmentRequestedState();
 }
 
-class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested> {
+class _DoctorAppointmentRequestedState
+    extends State<DoctorAppointmentRequested> {
   DateTime selectedDate = DateTime.now();
   DoctorAppointmment doctorAppointmment;
   TextEditingController fromThis_ = TextEditingController();
@@ -25,17 +28,19 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
-      selectedDatestr =  df.format(date).toString();
+      selectedDatestr = df.format(date).toString();
       //toThis_.text = df.format(date);
       callAPI(selectedDatestr);
     });
   }
+
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -43,26 +48,31 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+        /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-        selectedDatestr =  df.format(selectedDate).toString();
+        selectedDatestr = df.format(selectedDate).toString();
         callAPI(selectedDatestr);
-
       });
   }
+
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"7",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +
+            widget.model.user +
+            "&date=" +
+            today +
+            "&status=" +
+            "7",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              doctorAppointmment=DoctorAppointmment.fromJson(map);
+              doctorAppointmment = DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -71,101 +81,130 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
           });
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                appointdate(),
-
-                Expanded(
-                  child:(doctorAppointmment != null)
-                      ? ListView.builder(
+      body: Container(
+        child: Column(
+          children: [
+            appointdate(),
+            Expanded(
+              child: (doctorAppointmment != null)
+                  ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         Body appointmentlist = doctorAppointmment.body[i];
-                        /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
+                              padding: const EdgeInsets.only(
+                                left: 5.0,
+                                right: 5.0,
+                              ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        height: 100,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             border: Border.all(
                                               color: Colors.grey[300],
                                             ),
-                                            borderRadius: BorderRadius.circular(8)),
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Row(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Expanded(
                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 18),),
-                                                    SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-                                                    SizedBox(height: 5,),
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      appointmentlist.patname,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    /* Text(appointmentlist.speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
+                                                    SizedBox(height: 5,),*/
+                                                    Text(
+                                                      "Patient Notes:" +
+                                                          appointmentlist.notes,
+                                                      overflow:
+                                                          TextOverflow.clip,
+                                                      style: TextStyle(),
+                                                    ),
                                                   ],
-                                                ),),
+                                                ),
+                                              ),
                                               /*new Spacer(),*/
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                  top: 15.0,),
+                                                  top: 15.0,
+                                                ),
                                                 child: Column(
                                                   // mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
                                                   children: [
                                                     GestureDetector(
-                                                      child:  Text(/*'Confirmed'*/appointmentlist.status,
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 15,
-                                                      color: Colors.green),),
+                                                      child: Text(
+                                                        /*'Confirmed'*/
+                                                        appointmentlist.status,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 15,
+                                                            color:
+                                                                Colors.green),
+                                                      ),
                                                       onTap: () {
                                                         showDialog(
                                                           context: context,
-                                                          builder: (BuildContext context) =>
+                                                          builder: (BuildContext
+                                                                  context) =>
                                                               changeStatus(
-                                                                context,
-
-                                                              ),
+                                                                  context,
+                                                                  appointmentlist
+                                                                      .patname,
+                                                                  appointmentlist
+                                                                      .doctorName),
                                                         );
                                                       },
                                                     ),
-
-                                                    SizedBox(height: 3,),
-                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-
+                                                    SizedBox(
+                                                      height: 3,
+                                                    ),
+                                                    Text(
+                                                      /*'23-Nov-2020-11:30AM'*/
+                                                      appointmentlist.appdate +
+                                                          " " +
+                                                          appointmentlist
+                                                              .appmonth,
+                                                      overflow:
+                                                          TextOverflow.clip,
+                                                      style: TextStyle(),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -173,26 +212,23 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                                           ),
                                         )),
                                   ),
-
                                 ],
                               ),
-
                             ),
                           ],
                         );
-                      },itemCount: doctorAppointmment.body.length,
-
-                  ): Container(),
-                ),
-              ],
+                      },
+                      itemCount: doctorAppointmment.body.length,
+                    )
+                  : Container(),
             ),
-          ),
-
-
-        )
-    );
+          ],
+        ),
+      ),
+    ));
   }
-  Widget changeStatus(BuildContext context,  ) {
+
+  Widget changeStatus(BuildContext context, String patname, String doctorName) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
     return AlertDialog(
@@ -215,7 +251,8 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   ),
                 ),
                 Text(
-                  "Lisa Rani",
+                  /*"Lisa Rani"*/
+                  patname,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
@@ -229,13 +266,19 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   leading: Icon(Icons.book),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&appstatus="+"7",
+                        api: ApiFactory.user_APPOINTMENT_status +
+                            doctorName +
+                            "&appstatus=" +
+                            "2",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              doctorAppointmment =
+                                  DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
                               // appointModel = lab.LabBookModel.fromJson(map);
                             } else {
                               // isDataNotAvail = true;
@@ -250,17 +293,23 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                   height: 2,
                 ),
                 ListTile(
-                  title: Text("Requested"),
+                  title: Text("Cancelled"),
                   leading: Icon(Icons.trending_up),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +widget.model.user+"&appstatus="+"7",
+                        api: ApiFactory.user_APPOINTMENT_status +
+                            doctorName +
+                            "&appstatus=" +
+                            "4",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment=DoctorAppointmment.fromJson(map);
+                              doctorAppointmment =
+                                  DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+                              Navigator.of(context).pop();
                               // appointModel = lab.LabBookModel.fromJson(map);
                             } else {
                               // isDataNotAvail = true;
@@ -274,7 +323,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                 /*Divider(
                   height: 2,
                 ),*/
-               /* ListTile(
+                /* ListTile(
                   title: Text("COMPLETED"),
                   leading: Icon(Icons.done_outline_outlined),
                   onTap: () {
@@ -298,6 +347,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
       ],
     );
   }
+
   Widget appointdate() {
     return Container(
       height: 40,
@@ -317,8 +367,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                 controller: fromThis_,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintText: 'From this',
                   //labelText: 'Booking Date',
                   alignLabelWithHint: false,
@@ -327,8 +376,7 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
                       color: Colors.blue,
                     ),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
+                  contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
@@ -340,8 +388,10 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
+
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
@@ -353,12 +403,12 @@ class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested>
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-      
+
         // Navigator.pushNamed(context, "/otpView");
         //}
       },
     );
   }
 
- // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
+// style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
 }

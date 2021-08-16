@@ -1,6 +1,7 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/models/PatientListModel.dart' as patiet;
+import 'package:user/models/DocterAppointmentlistModel.dart' as doc;
 
 class PassData extends Model {
   String empid;
@@ -40,6 +41,8 @@ class PassData extends Model {
   String dateofbirth;
   String bloodgroup;
   String gender;
+
+  String patientseHealthCard ;
   //////////////
   String organization;
   String title1;
@@ -59,6 +62,8 @@ class PassData extends Model {
   String labmobile;
   String labemailid;
   String labalteremail;
+
+  doc.Body appointmentlist;
 
 // String title;
 // String professionalname;

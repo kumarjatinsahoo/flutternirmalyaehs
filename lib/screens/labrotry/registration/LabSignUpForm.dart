@@ -168,356 +168,322 @@ class LabSignUpFormState extends State<LabSignUpForm> {
     return SafeArea(
         child: Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  /*
-            mainAxisAlignment: MainAxisAlignment.start,*/
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                      child: Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 20,
-                          color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: AppData.kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Row(
+                    /*
+              mainAxisAlignment: MainAxisAlignment.start,*/
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.arrow_back, color: Colors.white)),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                        child: Text(
+                          'SIGN UP',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    /*Align(
-                alignment: Alignment.center,
-                child: Text('SIGN UP',textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+                      /*Align(
+                  alignment: Alignment.center,
+                  child: Text('SIGN UP',textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+                ),
+                ),*/
+                    ],
+                  ),
+                ),
+                height: 55,
+                width: MediaQuery.of(context).size.width,
+                /*  height:*/
               ),
-              ),*/
+
+              /* ),*/
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            height: 83,
+                            width: 83,
+                            child: Stack(
+                              //mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                (pathUsr != null)
+                                    ? Material(
+                                        elevation: 5.0,
+                                        shape: CircleBorder(),
+                                        child: CircleAvatar(
+                                          radius: 40.0,
+                                          backgroundImage: FileImage(pathUsr),
+                                        ),
+                                      )
+                                    : Material(
+                                        elevation: 5.0,
+                                        shape: CircleBorder(),
+                                        child: CircleAvatar(
+                                          radius: 40.0,
+                                          backgroundImage: NetworkImage(
+                                              AppData.defaultImgUrl),
+                                        ),
+                                      ),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      _settingModalBottomSheet(context);
+                                    },
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: AppData.kPrimaryColor,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        Form(
+                          key: _formKey,
+                          autovalidate: _autovalidate,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Column(
+                                children: [
+                                  Text(
+                                    "Fill in personal Information (All fields are mandatory)",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              //formField(0, "Organization Name"),
+
+                              DropDown.networkDropdownGetpartUser1(
+                                  "Organization Name",
+                                  ApiFactory.ORGANIZATION_API,
+                                  "organization",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.ORGANIZATION_API);
+                                  LabSignUpForm.organizationModel = data;
+                                });
+                              }),
+
+                              SizedBox(
+                                height: 5,
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.symmetric(
+                              //       horizontal: 0),
+                              //   child: DropDown.staticDropdown3(
+                              //       MyLocalizations.of(context)
+                              //           .text("SELECT_TITLE"),
+                              //       "genderSignup",
+                              //       genderList, (KeyvalueModel data) {
+                              //     setState(() {
+                              //       LabSignUpForm.genderModel = data;
+                              //     });
+                              //   }),
+                              // ),
+
+                              DropDown.networkDropdownGetpartUser1(
+                                  "Title",
+                                  ApiFactory.TITLE_API,
+                                  "title",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.TITLE_API);
+                                  LabSignUpForm.titlemodel = data;
+                                });
+                              }),
+
+                              SizedBox(
+                                height: 5,
+                              ),
+                              formField(1, "Professional's Name"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              // formField(10, "User Id"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              // formField(11, "Password"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              // formField(12, "Confirm Password"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+
+                              Row(
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(left: 100),
+                                  //   child: InkWell(
+                                  //     onTap: (){
+                                  //       _settingModalBottomSheet(context);
+                                  //     },
+                                  //       child: Icon(Icons.camera_alt,size: 50,)),
+                                  //
+                                ],
+                              ),
+                              SizedBox(height: 5),
+
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: nextButton1(),
+                              ),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
+                              // InkWell(
+                              //     onTap: () {
+                              //       setState(() {
+                              //         ispartnercode = !ispartnercode;
+                              //       });
+                              //     },
+                              //     child: Text(
+                              //       MyLocalizations.of(context)
+                              //               .text("HAVE_PARTNERCODE") +
+                              //           "?",
+                              //       style: TextStyle(color: Colors.blue),
+                              //     )),
+                              //
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
+                              // Visibility(
+                              //   visible: ispartnercode,
+                              //   child: Padding(
+                              //     padding:
+                              //         const EdgeInsets.symmetric(horizontal: 25),
+                              //     child: TextFormField(
+                              //       decoration: InputDecoration(
+                              //           hintText: MyLocalizations.of(context)
+                              //               .text("PARTNERCODE"),
+                              //           hintStyle: TextStyle(color: Colors.grey)),
+                              //       textInputAction: TextInputAction.next,
+                              //       keyboardType: TextInputType.text,
+                              //       //           inputFormatters: [
+                              //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                              //       //           ],
+                              //     ),
+                              //   ),
+                              // ),
+
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.symmetric(horizontal: 10),
+                              //   child: Row(
+                              //     //  mainAxisAlignment: MainAxisAlignment.center,
+                              //     children: [
+                              //       Checkbox(
+                              //         value: _checkbox,
+                              //         onChanged: (value) {
+                              //           setState(() {
+                              //             _checkbox = !_checkbox;
+                              //           });
+                              //         },
+                              //       ),
+                              //       SizedBox(
+                              //         height: 10,
+                              //       ),
+                              //       RichText(
+                              //           textAlign: TextAlign.start,
+                              //           text: TextSpan(
+                              //             children: [
+                              //               TextSpan(
+                              //                 text: 'I agree to NCORDS ',
+                              //                 /* "Welcome back",*/
+                              //                 style: TextStyle(
+                              //                   // fontWeight: FontWeight.w800,
+                              //                   fontFamily: "Monte",
+                              //                   // fontSize: 25.0,
+                              //                   color: Colors.grey,
+                              //                 ),
+                              //               ),
+                              //               TextSpan(
+                              //                 text: 'Terms and Conditions',
+                              //                 /* "Welcome back",*/
+                              //                 style: TextStyle(
+                              //                   // fontWeight: FontWeight.w500,
+                              //                   fontFamily: "Monte",
+                              //                   // fontSize: 25.0,
+                              //                   color: Colors.indigo,
+                              //                 ),
+                              //               )
+                              //             ],
+                              //           )),
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.symmetric(horizontal: 10),
+                              //   child: nextButton(),
+                              // ),
+                              // SizedBox(
+                              //   height: 25,
+                              // ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 ),
               ),
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-              /*  height:*/
-            ),
-
-            /* ),*/
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            // Align(
-                            //   alignment: Alignment.center,
-                            //   child: Padding(
-                            //     padding: const EdgeInsets.only(
-                            //         left: 60.0, right: 60.0),
-                            //     child: Image.asset(
-                            //       "assets/logo1.png",
-                            //       fit: BoxFit.fitWidth,
-                            //       //width: ,
-                            //       height: 110.0,
-                            //     ),
-                            //   ),
-                            // ),
-
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                height: 83,
-                                width: 83,
-                                child: Stack(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    (pathUsr != null)
-                                        ? Material(
-                                      elevation: 5.0,
-                                      shape: CircleBorder(),
-                                      child: CircleAvatar(
-                                        radius: 40.0,
-                                        backgroundImage:
-                                        FileImage(pathUsr),
-                                      ),
-                                    )
-                                        : Material(
-                                      elevation: 5.0,
-                                      shape: CircleBorder(),
-                                      child: CircleAvatar(
-                                        radius: 40.0,
-                                        backgroundImage: NetworkImage(
-                                            AppData.defaultImgUrl),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: InkWell(
-                                        onTap: () {
-                                          _settingModalBottomSheet(context);
-                                        },
-                                        child: Icon(
-                                          Icons.camera_alt,
-                                          color: AppData.kPrimaryColor,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-
-                            //   padding: EdgeInsets.only(
-                            //       left: size.width * 0.20, right: size.width * 0.20),
-                            //   child: Image.asset(
-                            //     "assets/icons/sanju-vector.png",
-                            //   ),
-                            // ),
-
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            Form(
-                              key: _formKey,
-                              autovalidate: _autovalidate,
-                              child: Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Column(
-                                      children: [
-                                        Text(
-                                          "Fill in personal Information (All fields are mandatory)",textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    //formField(0, "Organization Name"),
-
-                                    DropDown.networkDropdownGetpartUser1(
-                                        "Organization Name", ApiFactory.ORGANIZATION_API, "organization", Icons.location_on_rounded,
-                                        23.0,
-                                            (KeyvalueModel data) {
-                                          setState(() {
-
-                                            print(ApiFactory.ORGANIZATION_API);
-                                            LabSignUpForm.organizationModel = data;
-
-                                          });
-                                        }),
-
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.symmetric(
-                                    //       horizontal: 0),
-                                    //   child: DropDown.staticDropdown3(
-                                    //       MyLocalizations.of(context)
-                                    //           .text("SELECT_TITLE"),
-                                    //       "genderSignup",
-                                    //       genderList, (KeyvalueModel data) {
-                                    //     setState(() {
-                                    //       LabSignUpForm.genderModel = data;
-                                    //     });
-                                    //   }),
-                                    // ),
-
-                                    DropDown.networkDropdownGetpartUser1(
-                                        "Title", ApiFactory.TITLE_API, "title", Icons.location_on_rounded,
-                                        23.0,
-                                            (KeyvalueModel data) {
-                                          setState(() {
-
-                                            print(ApiFactory.TITLE_API);
-                                            LabSignUpForm.titlemodel = data;
-
-                                          });
-                                        }),
-
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    formField(1, "Professional's Name"),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    // formField(10, "User Id"),
-                                    // SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // formField(11, "Password"),
-                                    // SizedBox(
-                                    //   height: 5,
-                                    // ),
-                                    // formField(12, "Confirm Password"),
-                                    // SizedBox(
-                                    //   height: 5,
-                                    // ),
-
-                                    Row(
-                                      //crossAxisAlignment: CrossAxisAlignment.start,
-                                      // mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        // Padding(
-                                        //   padding: const EdgeInsets.only(left: 100),
-                                        //   child: InkWell(
-                                        //     onTap: (){
-                                        //       _settingModalBottomSheet(context);
-                                        //     },
-                                        //       child: Icon(Icons.camera_alt,size: 50,)),
-                                        //
-                                      ],
-                                    ),
-                                    SizedBox(height: 5),
-
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: nextButton1(),
-                                    ),
-                                    // SizedBox(
-                                    //   height: 10,
-                                    // ),
-                                    // InkWell(
-                                    //     onTap: () {
-                                    //       setState(() {
-                                    //         ispartnercode = !ispartnercode;
-                                    //       });
-                                    //     },
-                                    //     child: Text(
-                                    //       MyLocalizations.of(context)
-                                    //               .text("HAVE_PARTNERCODE") +
-                                    //           "?",
-                                    //       style: TextStyle(color: Colors.blue),
-                                    //     )),
-                                    //
-                                    // SizedBox(
-                                    //   height: 10,
-                                    // ),
-                                    // Visibility(
-                                    //   visible: ispartnercode,
-                                    //   child: Padding(
-                                    //     padding:
-                                    //         const EdgeInsets.symmetric(horizontal: 25),
-                                    //     child: TextFormField(
-                                    //       decoration: InputDecoration(
-                                    //           hintText: MyLocalizations.of(context)
-                                    //               .text("PARTNERCODE"),
-                                    //           hintStyle: TextStyle(color: Colors.grey)),
-                                    //       textInputAction: TextInputAction.next,
-                                    //       keyboardType: TextInputType.text,
-                                    //       //           inputFormatters: [
-                                    //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                    //       //           ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-
-                                    // Padding(
-                                    //   padding:
-                                    //       const EdgeInsets.symmetric(horizontal: 10),
-                                    //   child: Row(
-                                    //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                    //     children: [
-                                    //       Checkbox(
-                                    //         value: _checkbox,
-                                    //         onChanged: (value) {
-                                    //           setState(() {
-                                    //             _checkbox = !_checkbox;
-                                    //           });
-                                    //         },
-                                    //       ),
-                                    //       SizedBox(
-                                    //         height: 10,
-                                    //       ),
-                                    //       RichText(
-                                    //           textAlign: TextAlign.start,
-                                    //           text: TextSpan(
-                                    //             children: [
-                                    //               TextSpan(
-                                    //                 text: 'I agree to NCORDS ',
-                                    //                 /* "Welcome back",*/
-                                    //                 style: TextStyle(
-                                    //                   // fontWeight: FontWeight.w800,
-                                    //                   fontFamily: "Monte",
-                                    //                   // fontSize: 25.0,
-                                    //                   color: Colors.grey,
-                                    //                 ),
-                                    //               ),
-                                    //               TextSpan(
-                                    //                 text: 'Terms and Conditions',
-                                    //                 /* "Welcome back",*/
-                                    //                 style: TextStyle(
-                                    //                   // fontWeight: FontWeight.w500,
-                                    //                   fontFamily: "Monte",
-                                    //                   // fontSize: 25.0,
-                                    //                   color: Colors.indigo,
-                                    //                 ),
-                                    //               )
-                                    //             ],
-                                    //           )),
-                                    //     ],
-                                    //   ),
-                                    // ),
-                                    // Padding(
-                                    //   padding:
-                                    //       const EdgeInsets.symmetric(horizontal: 10),
-                                    //   child: nextButton(),
-                                    // ),
-                                    // SizedBox(
-                                    //   height: 25,
-                                    // ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ));
   }
+
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
         (KeyvalueModel model) {
@@ -700,20 +666,20 @@ class LabSignUpFormState extends State<LabSignUpForm> {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         } else if (textEditingController[1].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Professional Name ");
-        }  else if (LabSignUpForm.organizationModel == null ||
+        } else if (LabSignUpForm.organizationModel == null ||
             LabSignUpForm.organizationModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
-        }
-        else {
+        } else {
           widget.model.organization = LabSignUpForm.organizationModel.key;
           widget.model.labprofessionalname = textEditingController[1].text;
-           widget.model.title1 = LabSignUpForm.titlemodel.key;
-           Navigator.pushNamed(context, "/labsignup2");
+          widget.model.title1 = LabSignUpForm.titlemodel.key;
+          Navigator.pushNamed(context, "/labsignup2");
         }
       },
     );
   }
-    Widget nextButton() {
+
+  Widget nextButton() {
     return GestureDetector(
       onTap: () {
         validate();
@@ -1065,9 +1031,9 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
                     onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
-                    }),
+                          Navigator.pop(context),
+                          getCameraImage(),
+                        }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
@@ -1081,17 +1047,17 @@ class LabSignUpFormState extends State<LabSignUpForm> {
           );
         });
   }
+
   Future getCameraImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera,imageQuality: 25);
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.camera, imageQuality: 25);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
       setState(() => pathUsr = File(_path));
 
-      String _fileName = _path != null ? _path
-          .split('/')
-          .last : '...';
+      String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
       String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
       print(extName);
@@ -1100,16 +1066,15 @@ class LabSignUpFormState extends State<LabSignUpForm> {
       setState(() {
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
-       // labSignupModel.profileImage=base64Encode(enc);
-       // labSignupModel.profileImageType=extName;
-
+        // labSignupModel.profileImage=base64Encode(enc);
+        // labSignupModel.profileImageType=extName;
       });
-
     }
   }
 
   Future getGalleryImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 25);
     //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
@@ -1127,9 +1092,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
         // widget.model.patientimgtype =extName;
         // labSignupModel.profileImage=base64Encode(enc);
         // labSignupModel.profileImageType=extName;
-
       });
-
     }
   }
 // Widget formFieldPass(int index, String hint, int obqueTxt) {

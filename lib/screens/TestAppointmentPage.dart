@@ -74,8 +74,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
       isOnline = connectionStatus.hasConnection;
     });*/
     comeFrom = widget.model.apntUserType;
-    //final df = new DateFormat('dd/MM/yyyy');
-    final df = new DateFormat('yyyy/MM/dd');
+    final df = new DateFormat('dd/MM/yyyy');
+    //final df = new DateFormat('yyyy/MM/dd');
     today = df.format(DateTime.now());
     callAPI(today);
     //printInterger()
@@ -119,7 +119,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     //if (picked != null && picked != selectedDate)
     setState(() {
       isDataNotAvail=false;
-      final df = new DateFormat('yyyy/MM/dd');
+      final df = new DateFormat('dd/MM/yyyy');
+      //final df = new DateFormat('yyyy/MM/dd');
       today = df.format(picked);
       callAPI(today);
     });

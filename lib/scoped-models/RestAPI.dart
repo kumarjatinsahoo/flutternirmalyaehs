@@ -241,12 +241,9 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
   }
 
   POSTMETHOD_TOKEN(
-      {@required String api,
-      @required Map<String, dynamic> json,
+      {@required String api, json,
       @required Function fun,String token}) async {
-    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
-    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-        JsonEncoder().convert(json).toString());
+   // print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
     try {
       Response response = await dio.post(api,options: Options(
         headers: {

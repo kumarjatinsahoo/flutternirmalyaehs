@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -71,10 +72,27 @@ class _LoginScreenState extends State<LoginScreen> {
   var code;
 
   var pin;
-
+  //VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();
+
+   /* WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _controller = VideoPlayerController.asset(
+        'raw/video_pop.mp4',
+      );
+
+      _controller.addListener(() {
+        setState(() {});
+      });
+      _controller.setLooping(false);
+      _controller.initialize().then((_) => setState(() {
+        _controller.play();
+      }));
+      _controller.play();
+
+      showVideo(context);
+    });*/
   }
 
   @override
@@ -86,6 +104,13 @@ class _LoginScreenState extends State<LoginScreen> {
       body: body(context),
     );
   }
+
+  @override
+  void dispose() {
+    //_controller.dispose();
+    super.dispose();
+  }
+
 
   Widget body(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -400,7 +425,8 @@ class _LoginScreenState extends State<LoginScreen> {
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
-                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                print("LOGIN RESPONSE>>>>"+jsonEncode(map));
+                //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
@@ -409,7 +435,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-                    if (loginResponse.body.roles[0] == "4".toLowerCase()) {
+                    if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
@@ -423,28 +449,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }
-                    //Navigator.pushNamed(context, "/dashDoctor");
-                    /* else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.SUPADMIN).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dash', (Route<dynamic> route) => false);
-
-                    }
-                    else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.DMF).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dmfdashboard', (Route<dynamic> route) => false);
-                    }
-                    else if(loginResponse.ashadtls[0].userType ==
-                        describeEnum(UserType.ACCOUNT).toLowerCase()){
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dmfaccount', (Route<dynamic> route) => false);
-                    }
-
-                    else {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dash', (Route<dynamic> route) => false);
-                    }*/
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);

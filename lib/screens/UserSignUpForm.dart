@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,21 +9,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/UserRegistrationModel.dart';
-import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/SignUpForm.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 import '../localization/localizations.dart';
 import '../models/KeyvalueModel.dart';
 import '../providers/app_data.dart';
 
-// ignore: must_be_immutable
 class UserSignUpForm extends StatefulWidget {
   final Function(int, bool) updateTab;
 
@@ -70,7 +64,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   TypeDob selectDobEn = TypeDob.Age;
 
   List<bool> error = [false, false, false, false, false, false];
-  bool _isSignUpLoading = false;
 
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
@@ -134,689 +127,662 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   File pathUsr = null;
   TextEditingController dob = TextEditingController();
+
   ///UserRegistrationModel userModel;
   UserRegistrationModel userModel = UserRegistrationModel();
+
   @override
   void initState() {
     super.initState();
     UserSignUpForm.genderModel = null;
-    /*setState(() {
-      masterClass = widget.model.masterDataResponse;
-    });
-    ConnectionStatusSingleton connectionStatus =
-        ConnectionStatusSingleton.getInstance();
-    _connectionChangeStream =
-        connectionStatus.connectionChange.listen(connectionChanged);
-    setState(() {
-      isOnline = connectionStatus.hasConnection;
-    });*/
   }
-
 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("SIGN UP"),
-            centerTitle: true,
-            backgroundColor: AppData.kPrimaryColor,
-            iconTheme: IconThemeData(color: Colors.white),
-          ),
-          body: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          right: 10.0,
+      appBar: AppBar(
+        title: Text("SIGN UP"),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        SizedBox(
+                          height: 30,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                SizedBox(
-                                  height: 30,
-                                ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            height: 83,
+                            width: 83,
+                            child: Stack(
+                              //mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                (pathUsr != null)
+                                    ? Material(
+                                        elevation: 5.0,
+                                        shape: CircleBorder(),
+                                        child: CircleAvatar(
+                                          radius: 40.0,
+                                          backgroundImage:
+                                              FileImage(pathUsr),
+                                        ),
+                                      )
+                                    : Material(
+                                        elevation: 5.0,
+                                        shape: CircleBorder(),
+                                        child: CircleAvatar(
+                                          radius: 40.0,
+                                          backgroundImage: NetworkImage(
+                                              AppData.defaultImgUrl),
+                                        ),
+                                      ),
                                 Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Container(
-                                    height: 83,
-                                    width: 83,
-                                    child: Stack(
-                                      //mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        (pathUsr != null)
-                                            ? Material(
-                                          elevation: 5.0,
-                                          shape: CircleBorder(),
-                                          child: CircleAvatar(
-                                            radius: 40.0,
-                                            backgroundImage:
-                                            FileImage(pathUsr),
-                                          ),
-                                        )
-                                            : Material(
-                                          elevation: 5.0,
-                                          shape: CircleBorder(),
-                                          child: CircleAvatar(
-                                            radius: 40.0,
-                                            backgroundImage: NetworkImage(
-                                                AppData.defaultImgUrl),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: InkWell(
-                                            onTap: () {
-                                              _settingModalBottomSheet(context);
-                                            },
-                                            child: Icon(
-                                              Icons.camera_alt,
-                                              color: AppData.kPrimaryColor,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Form(
-                                  key: _formKey,
-                                  // ignore: deprecated_member_use
-                                  autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "TITLE",
-                                                ApiFactory.TITLE_API,
-                                                "title",
-                                                Icons.mail,
-                                                23.0, (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.TITLE_API);
-                                                UserSignUpForm.titleModel =
-                                                    data;
-                                                userModel.title=data.key;
-                                                // UserSignUpForm.cityModel = null;
-                                              });
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Container(
-                                            height: 50,
-                                            padding:
-                                            EdgeInsets.symmetric(horizontal: 5),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color: Colors.black,
-                                                  width: 0.3),
-                                            ),
-                                            child: TextFormField(
-                                              decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                hintText:
-                                                MyLocalizations.of(context)
-                                                    .text("FIRST_NAME") +
-                                                    "*",
-                                                prefixIcon:
-                                                Icon(Icons.person_rounded),
-                                                hintStyle: TextStyle(
-                                                    color: AppData.hintColor,
-                                                    fontSize: 17),
-                                              ),
-                                              textInputAction: TextInputAction
-                                                  .next,
-                                              keyboardType: TextInputType.text,
-                                              controller: textEditingController[0],
-                                              textAlignVertical:
-                                              TextAlignVertical.center,
-                                              inputFormatters: [
-                                                WhitelistingTextInputFormatter(
-                                                    RegExp("[a-zA-Z ]")),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Container(
-                                            height: 50,
-                                            padding:
-                                            EdgeInsets.symmetric(horizontal: 5),
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                BorderRadius.circular(5),
-                                                border: Border.all(
-                                                    color: Colors.black,
-                                                    width: 0.3)),
-                                            child: TextFormField(
-                                              decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                hintText:
-                                                MyLocalizations.of(context)
-                                                    .text("LAST_NAME") +
-                                                    "*",
-                                                prefixIcon:
-                                                Icon(Icons.person_rounded),
-                                                hintStyle: TextStyle(
-                                                    color: AppData.hintColor,
-                                                    fontSize: 17),
-                                              ),
-                                              textInputAction: TextInputAction
-                                                  .next,
-                                              textAlignVertical:
-                                              TextAlignVertical.center,
-                                              controller: textEditingController[1],
-                                              keyboardType: TextInputType.text,
-                                              inputFormatters: [
-                                                WhitelistingTextInputFormatter(
-                                                    RegExp("[a-zA-Z ]")),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child:
-                                            DropDown.networkDropdownGetpartUser("Gender", ApiFactory.GENDER_API, "gender",
-                                                Icons.mail,
-                                                23.0, (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.GENDER_API);
-                                                UserSignUpForm.genderModel =
-                                                    data;
-                                                userModel.gender=data.key;
-                                                // UserSignUpForm.cityModel = null;
-                                              });
-                                            }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 9.0, left: 0),
-                                          child: mobileNoOTPSearch(),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 0, right: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child: DropDown.networkDropdownGetpartUser(
-                                                "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                                                23.0,
-                                                (KeyvalueModel data) {
-                                                  setState(() {
-                                                    print(ApiFactory.COUNTRY_API);
-                                                    UserSignUpForm.stateModel = data;
-                                                   /* userModel.country=data.key;
-                                                    userModel.countryCode=data.code;*/
-                                                    UserSignUpForm.cityModel = null;
-                                                  });
-                                                }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        (UserSignUpForm.stateModel != null)
-                                            ? Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 0, right: 0, bottom: 0),
-                                          child: SizedBox(
-                                            height: 58,
-                                            child: DropDown.networkDropdownGetpartUser(
-                                                "State",
-                                                ApiFactory.STATE_API +
-                                                    UserSignUpForm.stateModel.key,
-                                                "state", Icons.location_on_rounded,
-                                                23.0,  (KeyvalueModel data) {
-                                              setState(() {
-                                                UserSignUpForm.cityModel = data;
-                                                /*userModel.state=data.key;
-                                                userModel.stateCode=data.code;*/
-                                              });
-                                            }),
-                                          ),
-                                        )
-                                            : Container(),
-                                        /*SizedBox(
-                                          height: 58,
-                                          child:
-                                          DropDown.networkDropdownGetpartUser(
-                                              "Country",
-                                              ApiFactory.STATE_API,
-                                              "state",
-                                              Icons.location_on_rounded,
-                                              23.0, (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.STATE_API);
-                                              UserSignUpForm.stateModel = data;
-                                              userModel.country=data.key;
-                                              userModel.countryCode=data.code;
-                                              UserSignUpForm.cityModel = null;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        (UserSignUpForm.stateModel != null)
-                                            ?
-                                        SizedBox(
-                                          height: 58,
-                                          child: DropDown
-                                              .networkDropdownGetpartUser(
-                                              "State",
-                                              ApiFactory.CITY_API +
-                                                  UserSignUpForm.stateModel.key,
-                                              "city",
-                                              Icons.location_on_rounded,
-                                              23.0, (KeyvalueModel data) {
-                                            setState(() {
-                                              UserSignUpForm.cityModel = data;
-                                              userModel.state=data.key;
-                                              userModel.stateCode=data.code;
-                                            });
-                                          }),
-                                        )
-                                            : Container(),*/
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: ListTile(
-                                                title: const Text('Age'),
-                                                leading: Radio(
-                                                  materialTapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
-                                                  value: TypeDob.Age,
-                                                  groupValue: selectDobEn,
-                                                  onChanged: (TypeDob value) {
-                                                    setState(() {
-                                                      selectDobEn = value;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: ListTile(
-                                                title: const Text('DOB'),
-                                                leading: Radio(
-                                                  materialTapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
-                                                  value: TypeDob.DOB,
-                                                  groupValue: selectDobEn,
-                                                  onChanged: (TypeDob value) {
-                                                    setState(() {
-                                                      selectDobEn = value;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        (selectDobEn == TypeDob.Age)
-                                            ? Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              flex: 2,
-                                              child: Padding(
-                                                padding:
-                                                const EdgeInsets.only(
-                                                    left: 8,
-                                                    right: 8,
-                                                    top: 10),
-                                                child: Container(
-                                                  height: 47,
-                                                  padding:
-                                                  EdgeInsets.symmetric(
-                                                    horizontal: 5,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
-                                                    border: Border.all(
-                                                        color: Colors.black,
-                                                        width: 0.3),
-                                                  ),
-                                                  child: TextFormField(
-                                                    controller:
-                                                    textEditingController[
-                                                    3],
-                                                    decoration:
-                                                    InputDecoration(
-                                                      prefixIcon: Icon(Icons
-                                                          .accessibility_outlined),
-                                                      border:
-                                                      InputBorder.none,
-                                                      hintText:
-                                                      MyLocalizations.of(
-                                                          context)
-                                                          .text("AGE"),
-                                                      hintStyle: TextStyle(
-                                                          color: AppData
-                                                              .hintColor,
-                                                          fontSize: 17),
-                                                    ),
-                                                    textAlignVertical:
-                                                    TextAlignVertical
-                                                        .center,
-                                                    textInputAction:
-                                                    TextInputAction.next,
-                                                    keyboardType:
-                                                    TextInputType.number,
-                                                    //maxLength: 2,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 4,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  //_selectDate1(context);
-
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (
-                                                        BuildContext context) {
-                                                      return AlertDialog(
-                                                        title: Text(
-                                                            "Select Year"),
-                                                        content: Container( // Need to use container to add size constraint.
-                                                          width: 300,
-                                                          height: 300,
-                                                          child: YearPicker(
-                                                            firstDate: DateTime(
-                                                                DateTime
-                                                                    .now()
-                                                                    .year - 100,
-                                                                1),
-                                                            lastDate: DateTime
-                                                                .now(),
-                                                            initialDate: DateTime
-                                                                .now(),
-                                                            selectedDate: _selectYear,
-                                                            onChanged: (
-                                                                DateTime dateTime) {
-                                                              // close the dialog when year is selected.
-                                                              Navigator.pop(
-                                                                  context);
-                                                              textEditingController[4]
-                                                                  .value =
-                                                                  TextEditingValue(
-                                                                      text: df1
-                                                                          .format(
-                                                                          dateTime));
-
-                                                              // Do something with the dateTime selected.
-                                                              // Remember that you need to use dateTime.year to get the year
-                                                            },
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.only(
-                                                      left: 8,
-                                                      right: 8,
-                                                      top: 10),
-                                                  child: Container(
-                                                    height: 47,
-                                                    padding:
-                                                    EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(5),
-                                                      border: Border.all(
-                                                          color: Colors.black,
-                                                          width: 0.3),
-                                                    ),
-                                                    child: TextFormField(
-                                                      enabled: false,
-                                                      controller:
-                                                      textEditingController[
-                                                      4],
-                                                      decoration:
-                                                      InputDecoration(
-                                                        prefixIcon: Icon(Icons
-                                                            .calendar_today),
-                                                        border:
-                                                        InputBorder.none,
-                                                        hintText: "Years",
-                                                        hintStyle: TextStyle(
-                                                            color: AppData
-                                                                .hintColor,
-                                                            fontSize: 17),
-                                                      ),
-                                                      textAlignVertical:
-                                                      TextAlignVertical
-                                                          .center,
-                                                      textInputAction:
-                                                      TextInputAction
-                                                          .next,
-                                                      keyboardType:
-                                                      TextInputType
-                                                          .number,
-                                                      //maxLength: 2,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            /*Expanded(
-                                                flex: 4,
-                                                child: DropDown
-                                                    .staticDropdownIcon(
-                                                        "Years",
-                                                        "title",
-                                                        Icons.calendar_today,
-                                                        23.0,
-                                                        titleList,
-                                                        (KeyvalueModel data) {
-                                                  setState(() {
-                                                    UserSignUpForm
-                                                        .titleModel = data;
-                                                  });
-                                                }),
-                                              ),*/
-                                          ],
-                                        )
-                                            : InkWell(
-                                          onTap: () {
-                                            _selectDate(context);
-                                          },
-                                          child: Padding(
-                                            padding:
-                                            const EdgeInsets.symmetric(
-                                                horizontal: 8),
-                                            child: Container(
-                                              height: 50,
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 5),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                BorderRadius.circular(5),
-                                                border: Border.all(
-                                                    color: Colors.black,
-                                                    width: 0.3),
-                                              ),
-
-                                              child: TextFormField(
-                                                controller:
-                                                textEditingController[5],
-                                                enabled: false,
-                                                decoration: InputDecoration(
-                                                  prefixIcon: Icon(
-                                                      Icons.calendar_today),
-                                                  border: InputBorder.none,
-                                                  hintText: "Date of Birth",
-                                                  hintStyle: TextStyle(
-                                                      color:
-                                                      AppData.hintColor,
-                                                      fontSize: 17),
-                                                ),
-                                                textInputAction:
-                                                TextInputAction.next,
-                                                textAlignVertical:
-                                                TextAlignVertical.center,
-                                                keyboardType:
-                                                TextInputType.number,
-                                                //maxLength: 2,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: Row(
-                                            //  mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox = !_checkbox;
-                                                  });
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Expanded(
-                                                child: RichText(
-                                                    textAlign: TextAlign.start,
-                                                    text: TextSpan(
-                                                      children: [
-                                                        TextSpan(
-                                                          text:
-                                                          'I agree to eHealthSystem\'s ',
-                                                          /* "Welcome back",*/
-                                                          style: TextStyle(
-                                                            // fontWeight: FontWeight.w800,
-                                                            fontFamily: "Monte",
-                                                            // fontSize: 25.0,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                        TextSpan(
-                                                          text:
-                                                          'Terms and Conditions',
-                                                          /* "Welcome back",*/
-                                                          style: TextStyle(
-                                                            // fontWeight: FontWeight.w500,
-                                                            fontFamily: "Monte",
-                                                            // fontSize: 25.0,
-                                                            color: AppData
-                                                                .kPrimaryColor,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: nextButton(),
-                                        ),
-                                        SizedBox(
-                                          height: 25,
-                                        ),
-                                      ],
+                                  alignment: Alignment.bottomRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      _settingModalBottomSheet(context);
+                                    },
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: AppData.kPrimaryColor,
                                     ),
                                   ),
                                 )
                               ],
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Form(
+                          key: _formKey,
+                          // ignore: deprecated_member_use
+                          autovalidate: _autovalidate,
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "TITLE",
+                                          ApiFactory.TITLE_API,
+                                          "title",
+                                          Icons.mail,
+                                          23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      UserSignUpForm.titleModel = data;
+                                      userModel.title = data.key;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.3),
+                                  ),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText:
+                                          MyLocalizations.of(context)
+                                                  .text("FIRST_NAME") +
+                                              "*",
+                                      prefixIcon:
+                                          Icon(Icons.person_rounded),
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 17),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    controller: textEditingController[0],
+                                    textAlignVertical:
+                                        TextAlignVertical.center,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-zA-Z ]")),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.circular(5),
+                                      border: Border.all(
+                                          color: Colors.black,
+                                          width: 0.3)),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText:
+                                          MyLocalizations.of(context)
+                                                  .text("LAST_NAME") +
+                                              "*",
+                                      prefixIcon:
+                                          Icon(Icons.person_rounded),
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 17),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    textAlignVertical:
+                                        TextAlignVertical.center,
+                                    controller: textEditingController[1],
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-zA-Z ]")),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "Gender",
+                                          ApiFactory.GENDER_API,
+                                          "gender",
+                                          Icons.mail,
+                                          23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.GENDER_API);
+                                      UserSignUpForm.genderModel = data;
+                                      userModel.gender = data.key;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 9.0, left: 0),
+                                child: mobileNoOTPSearch(),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "Country",
+                                          ApiFactory.COUNTRY_API,
+                                          "country",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      UserSignUpForm.stateModel = data;
+                                      UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              (UserSignUpForm.stateModel != null)
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 0, right: 0, bottom: 0),
+                                      child: SizedBox(
+                                        height: 58,
+                                        child: DropDown
+                                            .networkDropdownGetpartUser(
+                                                "State",
+                                                ApiFactory.STATE_API +
+                                                    UserSignUpForm
+                                                        .stateModel.key,
+                                                "state",
+                                                Icons.location_on_rounded,
+                                                23.0,
+                                                (KeyvalueModel data) {
+                                          setState(() {
+                                            UserSignUpForm.cityModel =
+                                                data;
+                                            /*userModel.state=data.key;
+                                          userModel.stateCode=data.code;*/
+                                          });
+                                        }),
+                                      ),
+                                    )
+                                  : Container(),
+                              /*SizedBox(
+                                    height: 58,
+                                    child:
+                                    DropDown.networkDropdownGetpartUser(
+                                        "Country",
+                                        ApiFactory.STATE_API,
+                                        "state",
+                                        Icons.location_on_rounded,
+                                        23.0, (KeyvalueModel data) {
+                                      setState(() {
+                                        print(ApiFactory.STATE_API);
+                                        UserSignUpForm.stateModel = data;
+                                        userModel.country=data.key;
+                                        userModel.countryCode=data.code;
+                                        UserSignUpForm.cityModel = null;
+                                      });
+                                    }),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  (UserSignUpForm.stateModel != null)
+                                      ?
+                                  SizedBox(
+                                    height: 58,
+                                    child: DropDown
+                                        .networkDropdownGetpartUser(
+                                        "State",
+                                        ApiFactory.CITY_API +
+                                            UserSignUpForm.stateModel.key,
+                                        "city",
+                                        Icons.location_on_rounded,
+                                        23.0, (KeyvalueModel data) {
+                                      setState(() {
+                                        UserSignUpForm.cityModel = data;
+                                        userModel.state=data.key;
+                                        userModel.stateCode=data.code;
+                                      });
+                                    }),
+                                  )
+                                      : Container(),*/
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: ListTile(
+                                      title: const Text('Age'),
+                                      leading: Radio(
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize
+                                                .shrinkWrap,
+                                        value: TypeDob.Age,
+                                        groupValue: selectDobEn,
+                                        onChanged: (TypeDob value) {
+                                          setState(() {
+                                            selectDobEn = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListTile(
+                                      title: const Text('DOB'),
+                                      leading: Radio(
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize
+                                                .shrinkWrap,
+                                        value: TypeDob.DOB,
+                                        groupValue: selectDobEn,
+                                        onChanged: (TypeDob value) {
+                                          setState(() {
+                                            selectDobEn = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              (selectDobEn == TypeDob.Age)
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(
+                                                    left: 8,
+                                                    right: 8,
+                                                    top: 10),
+                                            child: Container(
+                                              height: 47,
+                                              padding:
+                                                  EdgeInsets.symmetric(
+                                                horizontal: 5,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        5),
+                                                border: Border.all(
+                                                    color: Colors.black,
+                                                    width: 0.3),
+                                              ),
+                                              child: TextFormField(
+                                                controller:
+                                                    textEditingController[
+                                                        3],
+                                                decoration:
+                                                    InputDecoration(
+                                                  prefixIcon: Icon(Icons
+                                                      .accessibility_outlined),
+                                                  border:
+                                                      InputBorder.none,
+                                                  hintText:
+                                                      MyLocalizations.of(
+                                                              context)
+                                                          .text("AGE"),
+                                                  hintStyle: TextStyle(
+                                                      color: AppData
+                                                          .hintColor,
+                                                      fontSize: 17),
+                                                ),
+                                                textAlignVertical:
+                                                    TextAlignVertical
+                                                        .center,
+                                                textInputAction:
+                                                    TextInputAction.next,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                //maxLength: 2,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 4,
+                                          child: InkWell(
+                                            onTap: () {
+                                              //_selectDate1(context);
+
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext
+                                                    context) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        "Select Year"),
+                                                    content: Container(
+                                                      // Need to use container to add size constraint.
+                                                      width: 300,
+                                                      height: 300,
+                                                      child: YearPicker(
+                                                        firstDate: DateTime(
+                                                            DateTime.now()
+                                                                    .year -
+                                                                100,
+                                                            1),
+                                                        lastDate: DateTime
+                                                            .now(),
+                                                        initialDate:
+                                                            DateTime
+                                                                .now(),
+                                                        selectedDate:
+                                                            _selectYear,
+                                                        onChanged:
+                                                            (DateTime
+                                                                dateTime) {
+                                                          // close the dialog when year is selected.
+                                                          Navigator.pop(
+                                                              context);
+                                                          textEditingController[
+                                                                      4]
+                                                                  .value =
+                                                              TextEditingValue(
+                                                                  text: df1
+                                                                      .format(dateTime));
+
+                                                          // Do something with the dateTime selected.
+                                                          // Remember that you need to use dateTime.year to get the year
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(
+                                                      left: 8,
+                                                      right: 8,
+                                                      top: 10),
+                                              child: Container(
+                                                height: 47,
+                                                padding:
+                                                    EdgeInsets.symmetric(
+                                                  horizontal: 5,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius
+                                                          .circular(5),
+                                                  border: Border.all(
+                                                      color: Colors.black,
+                                                      width: 0.3),
+                                                ),
+                                                child: TextFormField(
+                                                  enabled: false,
+                                                  controller:
+                                                      textEditingController[
+                                                          4],
+                                                  decoration:
+                                                      InputDecoration(
+                                                    prefixIcon: Icon(Icons
+                                                        .calendar_today),
+                                                    border:
+                                                        InputBorder.none,
+                                                    hintText: "Years",
+                                                    hintStyle: TextStyle(
+                                                        color: AppData
+                                                            .hintColor,
+                                                        fontSize: 17),
+                                                  ),
+                                                  textAlignVertical:
+                                                      TextAlignVertical
+                                                          .center,
+                                                  textInputAction:
+                                                      TextInputAction
+                                                          .next,
+                                                  keyboardType:
+                                                      TextInputType
+                                                          .number,
+                                                  //maxLength: 2,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    )
+                                  : InkWell(
+                                      onTap: () {
+                                        _selectDate(context);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                        child: Container(
+                                          height: 50,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                color: Colors.black,
+                                                width: 0.3),
+                                          ),
+                                          child: TextFormField(
+                                            controller:
+                                                textEditingController[5],
+                                            enabled: false,
+                                            decoration: InputDecoration(
+                                              prefixIcon: Icon(
+                                                  Icons.calendar_today),
+                                              border: InputBorder.none,
+                                              hintText: "Date of Birth",
+                                              hintStyle: TextStyle(
+                                                  color:
+                                                      AppData.hintColor,
+                                                  fontSize: 17),
+                                            ),
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
+                                            keyboardType:
+                                                TextInputType.number,
+                                            //maxLength: 2,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: Row(
+                                  //  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Checkbox(
+                                      value: _checkbox,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _checkbox = !_checkbox;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'I agree to eHealthSystem\'s ',
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Terms and Conditions',
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w500,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData
+                                                    .kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: nextButton(),
+                              ),
+                              SizedBox(
+                                height: 25,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    ));
   }
 
   Widget dobBirth() {
@@ -861,9 +827,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          UserSignUpForm.genderModel = model;
-        });
+        (KeyvalueModel model) {
+      UserSignUpForm.genderModel = model;
+    });
   }
 
   Widget mobileNoOTPSearch() {
@@ -930,7 +896,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -995,10 +961,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         validate();
       },
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 9.0, right: 9.0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
@@ -1009,7 +972,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -1024,7 +987,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -1077,7 +1040,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
                 ),
                 validator: (value) {
@@ -1105,7 +1068,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     );
   }
 
- /* Widget continueButton() {
+  /* Widget continueButton() {
     return InkWell(
       child: Center(
         child: CircleAvatar(
@@ -1126,10 +1089,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   }*/
 
   validate() async {
-    _formKey.currentState.validate(
-    );
-    if (UserSignUpForm.titleModel == null ||
-        UserSignUpForm.titleModel == "") {
+    _formKey.currentState.validate();
+    if (UserSignUpForm.titleModel == null || UserSignUpForm.titleModel == "") {
       AppData.showInSnackBar(context, "Please select Title");
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
@@ -1137,44 +1098,44 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
-    }
-    else if (UserSignUpForm.genderModel == null ||
+    } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select gender");
-    }
-    else if (textEditingController[2].text == "" ||
+    } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Mobile Number");
-    }
-    else if (UserSignUpForm.stateModel == null ||
+    } else if (UserSignUpForm.stateModel == null ||
         UserSignUpForm.stateModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select State");
-    }
-    else if (textEditingController[3].text == "" ||
+    } else if (textEditingController[3].text == "" ||
         textEditingController[3].text == null) {
       AppData.showInSnackBar(context, "Please enter your Age");
     } else if (textEditingController[4].text == "" ||
         textEditingController[4].text == null) {
       AppData.showInSnackBar(context, "Please enter your DOB");
-    }
-    else {
-     // PatientSignupModel patientSignupModel = PatientSignupModel();
+    } else {
+      // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
       userModel.age = textEditingController[3].text;
       userModel.ageYears = textEditingController[4].text;
       userModel.dob = textEditingController[5].text;
-      userModel.country=UserSignUpForm.stateModel.key;
-      userModel.countryCode=UserSignUpForm.stateModel.code;
-      userModel.stateCode=UserSignUpForm.cityModel.code;
-      userModel.state=UserSignUpForm.cityModel.key;
+      userModel.country = UserSignUpForm.stateModel.key;
+      userModel.countryCode = UserSignUpForm.stateModel.code;
+      userModel.stateCode = UserSignUpForm.cityModel.code;
+      userModel.state = UserSignUpForm.cityModel.key;
+
+      print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
+      print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
       MyWidgets.showLoading(context);
-      widget.model.POSTMETHOD(api: ApiFactory.USER_REGISTRATION, json: userModel.toJson(),
+      widget.model.POSTMETHOD(
+          api: ApiFactory.USER_REGISTRATION,
+          json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
             Navigator.pop(context);
             if (map[Const.STATUS] == Const.SUCCESS) {
@@ -1190,6 +1151,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     return Alert(
         context: context,
         title: message,
+        desc:
+            "Now you can login through your mobile no and password is: User@123",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1214,6 +1177,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           ),
         ]).show();
   }
+
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1225,9 +1189,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
                     onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
-                    }),
+                          Navigator.pop(context),
+                          getCameraImage(),
+                        }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
@@ -1241,17 +1205,17 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           );
         });
   }
+
   Future getCameraImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera,imageQuality: 25);
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.camera, imageQuality: 25);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
       setState(() => pathUsr = File(_path));
 
-      String _fileName = _path != null ? _path
-          .split('/')
-          .last : '...';
+      String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
       String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
       print(extName);
@@ -1260,13 +1224,12 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       setState(() {
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
-        userModel.profileImage=base64Encode(enc);
-        userModel.profileImageType=extName;
-
+        userModel.profileImage = base64Encode(enc);
+        userModel.profileImageType = extName;
       });
-
     }
   }
+
   chooseAppointment(BuildContext context) {
     return showDialog(
         context: context,
@@ -1344,8 +1307,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           );
         });
   }
+
   Future getGalleryImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery,imageQuality: 25);
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 25);
     //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
@@ -1361,11 +1326,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       setState(() {
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
-        userModel.profileImage=base64Encode(enc);
-        userModel.profileImageType=extName;
-
+        userModel.profileImage = base64Encode(enc);
+        userModel.profileImageType = extName;
       });
-
     }
   }
 }

@@ -23,7 +23,6 @@ class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen> {
   SharedPref sharedPref = SharedPref();
   bool isFirstTym = true;
@@ -173,7 +172,7 @@ class _SplashScreenState extends State<SplashScreen> {
         widget.model.setLoginData1(loginResponse1);
         widget.model.token = loginResponse1.body.token;
         widget.model.user = loginResponse1.body.user;
-        if (loginResponse1.body.roles[0] == "4".toLowerCase()) {
+        if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/patientDashboard', (Route<dynamic> route) => false);
         } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {

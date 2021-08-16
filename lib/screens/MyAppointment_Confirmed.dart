@@ -40,28 +40,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
       selectedDatestr = df.format(date).toString();
       loginResponse = widget.model.loginResponse1;
       print(">>>>>>>" + jsonEncode(loginResponse.toJson()));
-     /* widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.USER_APPOINTMENT_LIST +
-              loginResponse.body.user +
-              "&date=" +
-              selectedDatestr +
-              "&status=" +
-              "2",
-          token: loginResponse.body.token,
-          //token: widget.model.token,
-          fun: (Map<String, dynamic> map) {
-            setState(() {
-              String msg = map[Const.MESSAGE];
-              if (map[Const.CODE] == Const.SUCCESS) {
-                appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
-                // appointModel = lab.LabBookModel.fromJson(map);
-              } else {
-                // isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
-              }
-            });
-          });*/
+      callAPI(selectedDatestr);
     });
+
   }
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -77,21 +58,6 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
         selectedDatestr = df.format(selectedDate).toString();
-        /*widget.model.GETMETHODCALL_TOKEN(
-            api: ApiFactory.USER_APPOINTMENT_LIST +*/ /*"5093626841904641"*/ /*widget.model.user+"&date="+selectedDatestr+"&status="+"2",
-            token: widget.model.token,
-            fun: (Map<String, dynamic> map) {
-              setState(() {
-                String msg = map[Const.MESSAGE];
-                if (map[Const.CODE] == Const.SUCCESS) {
-                  appointmentlistModel=apnt.AppointmentlistModel.fromJson(map);
-                  // appointModel = lab.LabBookModel.fromJson(map);
-                } else {
-                  // isDataNotAvail = true;
-                  AppData.showInSnackBar(context, msg);
-                }
-              });
-            });*/
         callAPI(selectedDatestr);
       });
   }

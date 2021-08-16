@@ -53,6 +53,7 @@ class Const {
   static const String STATUS = "code";
   static const String CODE = "code";
   static const String SUCCESS = "success";
+  static const String BODY = "body";
   static const String FAILED = "failed";
   static const String MESSAGE = "message";
   static const String ALREADY_REG = "Already Registered !!";
@@ -63,6 +64,7 @@ class Const {
 
   static String DOC_APNT = "DOC_APNT";
   static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
+  static String PATINTDETAILS = "PATINTDETAILS";
   static String HEALTH_CHKUP_APNT = "HEALTH_CHKUP_APNT";
   static const String DEATH_CODE = "B3";
   static const String FUNERAL_CODE = "B5";
