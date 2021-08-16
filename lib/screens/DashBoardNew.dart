@@ -53,6 +53,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/UddhavThackeryji.jfif",
     "assets/YogiAdityanathji.jpg",
     "assets/intro/img_coll.jpg",
+    "assets/images/thumb.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -557,6 +558,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                           case 7:
                             AppData.launchURL(
                                 "https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                            break;
+
+                            case 9:
+                            AppData.launchURL(
+                                "https://youtu.be/0eV8xuExrA4");
                             break;
                         }
                       },
