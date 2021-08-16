@@ -422,8 +422,6 @@ class _DoctorAppointmentConfirmedState extends State<DoctorAppointmentConfirmed>
 
 
                       Divider(height: 2,color: Colors.black),
-
-
                       Row(
                         children: [
                           Text('Afternoon ',style: TextStyle(fontSize: 17.0), ),
