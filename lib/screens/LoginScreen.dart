@@ -13,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -61,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
-  bool isPassShow = false;
+  bool isPassShow = true;
 
   int minNumber = 1000;
   int maxNumber = 6000;
@@ -73,12 +72,12 @@ class _LoginScreenState extends State<LoginScreen> {
   var code;
 
   var pin;
-  VideoPlayerController _controller;
+  //VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+   /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
         'raw/video_pop.mp4',
       );
@@ -93,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _controller.play();
 
       showVideo(context);
-    });
+    });*/
   }
 
   @override
@@ -108,55 +107,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    //_controller.dispose();
     super.dispose();
   }
 
-  showVideo(BuildContext context) {
-    return showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                //title: const Text("Is it your details?"),
-                contentPadding: EdgeInsets.only(top: 0, left: 0, right: 0),
-                insetPadding:
-                EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
-                backgroundColor: AppData.matruColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                //contentPadding: EdgeInsets.only(top: 10.0),
-                content: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: <Widget>[
-                        VideoPlayer(_controller),
-                        //_ControlsOverlay(controller: _controller),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: InkWell(
-                              onTap: (){
-                                Navigator.pop(context);
-                                _controller.pause();
-                              },
-                              child: Icon(Icons.cancel,color: Colors.white,)),
-                        ),
-                        VideoProgressIndicator(_controller,
-                            allowScrubbing: true),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        });
-  }
 
   Widget body(BuildContext context) {
     Size size = MediaQuery.of(context).size;

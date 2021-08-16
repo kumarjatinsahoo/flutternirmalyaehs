@@ -181,347 +181,340 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
     return SafeArea(
         child: Scaffold(
           body: Container(
-            child: Column(
-              children: [
-               Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                    child: Row(
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                      ],
-                    ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                // Align(
-                                //   alignment: Alignment.center,
-                                //   child: Padding(
-                                //     padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                //     child: Image.asset(
-                                //       "assets/logo1.png",
-                                //       fit: BoxFit.fitWidth,
-                                //       //width: ,
-                                //       height: 110.0,
-                                //     ),
-                                //   ),
-                                // ),
-
-
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Container(
-                                    height: 83,
-                                    width: 83,
-                                    child: Stack(
-                                      //mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        (pathUsr != null)
-                                            ? Material(
-                                          elevation: 5.0,
-                                          shape: CircleBorder(),
-                                          child: CircleAvatar(
-                                            radius: 40.0,
-                                            backgroundImage:
-                                            FileImage(pathUsr),
-                                          ),
-                                        )
-                                            : Material(
-                                          elevation: 5.0,
-                                          shape: CircleBorder(),
-                                          child: CircleAvatar(
-                                            radius: 40.0,
-                                            backgroundImage: NetworkImage(
-                                                AppData.defaultImgUrl),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: InkWell(
-                                            onTap: () {
-                                              _settingModalBottomSheet(context);
-                                            },
-                                            child: Icon(
-                                              Icons.camera_alt,
-                                              color: AppData.kPrimaryColor,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.supervised_user_circle_rounded),
-                                            Text("Individual",style: TextStyle(fontSize: 20),),
-                                          ],
-                                        ),
-
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Individual.User,
-                                              groupValue: indi,
-                                              onChanged: (Individual indi) {
-                                                setState(() {
-                                                  this.indi = indi;
-                                                });
-                                              },
-                                            ),
-                                            Text("User"),
-                                          ],
-                                        ),
-
-                                        Row(
-                                          children: [
-                                            Icon(Icons.supervised_user_circle),
-                                            Text("  Professional/Organization",style: TextStyle(fontSize: 20),),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Doctor,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Doctor"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pharmacist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pharmacist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pathologist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pathologist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Receptionist,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Receptionist"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Hospital,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Hospital"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.Pharmacy,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("Pharmacy"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Radio(
-                                              value: Organization.PathologyLab,
-                                              groupValue: org,
-                                              onChanged: (Organization org) {
-                                                setState(() {
-                                                  this.org = org;
-                                                });
-                                              },
-                                            ),
-                                            Text("PathologyLab"),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                 Container(
+                    color: AppData.kPrimaryColor,
+                    child: Padding(
+                      padding: const EdgeInsets.only( left:15.0,right: 15.0),
+                      child: Row(
+                        children: [
+                          InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Icon(Icons.arrow_back,color: Colors.white)),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                            child: Text('SIGN UP',
+                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                    height: 55,
+                    width: MediaQuery.of(context).size.width,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            // Align(
+                            //   alignment: Alignment.center,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                            //     child: Image.asset(
+                            //       "assets/logo1.png",
+                            //       fit: BoxFit.fitWidth,
+                            //       //width: ,
+                            //       height: 110.0,
+                            //     ),
+                            //   ),
+                            // ),
+
+
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 83,
+                                width: 83,
+                                child: Stack(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    (pathUsr != null)
+                                        ? Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage:
+                                        FileImage(pathUsr),
+                                      ),
+                                    )
+                                        : Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage: NetworkImage(
+                                            AppData.defaultImgUrl),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          _settingModalBottomSheet(context);
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: AppData.kPrimaryColor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+
+
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    children: [
+                                      Icon(Icons.supervised_user_circle_rounded),
+                                      Text("Individual",style: TextStyle(fontSize: 20),),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Individual.User,
+                                        groupValue: indi,
+                                        onChanged: (Individual indi) {
+                                          setState(() {
+                                            this.indi = indi;
+                                          });
+                                        },
+                                      ),
+                                      Text("User"),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      Icon(Icons.supervised_user_circle),
+                                      Text("  Professional/Organization",style: TextStyle(fontSize: 20),),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Doctor,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Doctor"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Pharmacist,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Pharmacist"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Pathologist,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Pathologist"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Receptionist,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Receptionist"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Hospital,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Hospital"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.Pharmacy,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("Pharmacy"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: Organization.PathologyLab,
+                                        groupValue: org,
+                                        onChanged: (Organization org) {
+                                          setState(() {
+                                            this.org = org;
+                                          });
+                                        },
+                                      ),
+                                      Text("PathologyLab"),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  // InkWell(
+                                  //     onTap: () {
+                                  //       setState(() {
+                                  //         ispartnercode = !ispartnercode;
+                                  //       });
+                                  //     },
+                                  //     child: Text(
+                                  //       MyLocalizations.of(context)
+                                  //               .text("HAVE_PARTNERCODE") +
+                                  //           "?",
+                                  //       style: TextStyle(color: Colors.blue),
+                                  //     )),
+                                  //
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
+                                  // Visibility(
+                                  //   visible: ispartnercode,
+                                  //   child: Padding(
+                                  //     padding:
+                                  //         const EdgeInsets.symmetric(horizontal: 25),
+                                  //     child: TextFormField(
+                                  //       decoration: InputDecoration(
+                                  //           hintText: MyLocalizations.of(context)
+                                  //               .text("PARTNERCODE"),
+                                  //           hintStyle: TextStyle(color: Colors.grey)),
+                                  //       textInputAction: TextInputAction.next,
+                                  //       keyboardType: TextInputType.text,
+                                  //       //           inputFormatters: [
+                                  //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                  //       //           ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: Row(
+                                  //     //  mainAxisAlignment: MainAxisAlignment.center,
+                                  //     children: [
+                                  //       Checkbox(
+                                  //         value: _checkbox,
+                                  //         onChanged: (value) {
+                                  //           setState(() {
+                                  //             _checkbox = !_checkbox;
+                                  //           });
+                                  //         },
+                                  //       ),
+                                  //       SizedBox(
+                                  //         height: 10,
+                                  //       ),
+                                  //       RichText(
+                                  //           textAlign: TextAlign.start,
+                                  //           text: TextSpan(
+                                  //             children: [
+                                  //               TextSpan(
+                                  //                 text: 'I agree to NCORDS ',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w800,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.grey,
+                                  //                 ),
+                                  //               ),
+                                  //               TextSpan(
+                                  //                 text: 'Terms and Conditions',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w500,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.indigo,
+                                  //                 ),
+                                  //               )
+                                  //             ],
+                                  //           )),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: nextButton(),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 25,
+                                  // ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],),
+                  ),
+                ],
+              ),
             ),
           ),
 

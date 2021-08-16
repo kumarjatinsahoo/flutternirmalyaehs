@@ -53,6 +53,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/UddhavThackeryji.jfif",
     "assets/YogiAdityanathji.jpg",
     "assets/intro/img_coll.jpg",
+    "assets/images/thumb.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -557,6 +558,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                             AppData.launchURL(
                                 "https://www.youtube.com/watch?v=ckYGlJwCmlg");
                             break;
+
+                            case 9:
+                            AppData.launchURL(
+                                "https://youtu.be/0eV8xuExrA4");
+                            break;
                         }
                       },
                       child: Container(
@@ -1053,6 +1059,7 @@ class MyPage1Widget extends StatelessWidget {
                           title: "Health Screening",
                           fun: () {
 
+                            Navigator.pushNamed(context, "/docApnt");
                            /* Navigator.pushNamed(
                                 context, "/medicalrecordpage");*/
                           },
@@ -1063,8 +1070,9 @@ class MyPage1Widget extends StatelessWidget {
                           icon: CupertinoIcons.calendar_today,
                           title: "Health Check-up",
                           fun: () {
-                            Navigator.pushNamed(
-                                context, "/medicalrecordpage");
+                            // Navigator.pushNamed(
+                            //   context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/docApnt");
                           },
                         ),
                         Divider(),
