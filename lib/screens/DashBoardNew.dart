@@ -1061,6 +1061,7 @@ class MyPage1Widget extends StatelessWidget {
                           title: "Health Screening",
                           fun: () {
 
+                            Navigator.pushNamed(context, "/docApnt");
                            /* Navigator.pushNamed(
                                 context, "/medicalrecordpage");*/
                           },
@@ -1071,8 +1072,9 @@ class MyPage1Widget extends StatelessWidget {
                           icon: CupertinoIcons.calendar_today,
                           title: "Health Check-up",
                           fun: () {
-                            Navigator.pushNamed(
-                                context, "/medicalrecordpage");
+                            // Navigator.pushNamed(
+                            //   context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/docApnt");
                           },
                         ),
                         Divider(),
