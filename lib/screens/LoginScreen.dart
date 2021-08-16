@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
-  bool isPassShow = false;
+  bool isPassShow = true;
 
   int minNumber = 1000;
   int maxNumber = 6000;
