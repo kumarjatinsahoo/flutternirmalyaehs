@@ -65,6 +65,9 @@ class PassData extends Model {
 
   doc.Body appointmentlist;
 
+
+  String beneficiary;
+
 // String title;
 // String professionalname;
 

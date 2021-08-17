@@ -1059,7 +1059,7 @@ class MyPage1Widget extends StatelessWidget {
                           title: "Health Screening",
                           fun: () {
 
-                            Navigator.pushNamed(context, "/docApnt");
+                            Navigator.pushNamed(context, "/userApnt");
                            /* Navigator.pushNamed(
                                 context, "/medicalrecordpage");*/
                           },
@@ -1072,7 +1072,7 @@ class MyPage1Widget extends StatelessWidget {
                           fun: () {
                             // Navigator.pushNamed(
                             //   context, "/medicalrecordpage");
-                            Navigator.pushNamed(context, "/docApnt");
+                            Navigator.pushNamed(context, "/userApnt");
                           },
                         ),
                         Divider(),
