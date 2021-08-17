@@ -306,7 +306,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   userModel.country = data.key;
                                   userModel.countryCode = data.code;
                                   DoctorSignUpForm4.stateModel = null;
-                                  _displayzone=null;
 
                                 });
                               }),
@@ -339,7 +338,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                             data.code;
                                         DoctorSignUpForm4.cityModel =
                                             null;
-                                        _displayzone=null;
+
+      //                                  DoctorSignUpForm4.stateModel=data.reset();
+
                                       });
                                     }),
                                   ),

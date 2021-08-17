@@ -65,43 +65,10 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
     //final df = new DateFormat('yyyy/MM/dd');
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
-    beneficiary=widget.model.beneficiary;
+   beneficiary=widget.model.user;
    // callAPI(today);
   }
 
-  // callAPI(String today) {
-  //   if (comeFrom == Const.HEALTH_SCREENING_APNT) {
-  //     widget.model.GETMETHODCALL_TOKEN(
-  //         api: ApiFactory.HEALTH_SCREENING_LIST + today,
-  //         token: widget.model.token,
-  //         fun: (Map<String, dynamic> map) {
-  //           setState(() {
-  //             String msg = map[Const.MESSAGE];
-  //             if (map[Const.CODE] == Const.SUCCESS) {
-  //               appointModel = lab.LabBookModel.fromJson(map);
-  //             } else {
-  //               isDataNotAvail = true;
-  //               AppData.showInSnackBar(context, msg);
-  //             }
-  //           });
-  //         });
-  //   } else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
-  //     widget.model.GETMETHODCALL_TOKEN(
-  //         api: ApiFactory.HEALTH_CHKUP_LIST + today,
-  //         token: widget.model.token,
-  //         fun: (Map<String, dynamic> map) {
-  //           setState(() {
-  //             String msg = map[Const.MESSAGE];
-  //             if (map[Const.CODE] == Const.SUCCESS) {
-  //               appointModel = lab.LabBookModel.fromJson(map);
-  //             } else {
-  //               isDataNotAvail = true;
-  //               AppData.showInSnackBar(context, msg);
-  //             }
-  //           });
-  //         });
-  //   }
-  // }
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -205,14 +172,6 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
                       children: [
                         GestureDetector(
                           child: MyWidgets.toggleButton2("NEW", () {
-                            //Navigator.pushNamed(context, "/qrCode1");
-                            //dialogRegNo(context);
-                            //dialogPopup(context);
-                            // showDialog(
-                            //   context: context,
-                            //   builder: (BuildContext context) =>
-                            //       dialogRegNo(context),
-                            // );
                           }),
                           onTap: (){
                               MyWidgets.showLoading(context);
@@ -221,7 +180,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
                                   token: widget.model.token,
                                   fun: (Map<String, dynamic> map) {
                                     setState(() {
-                                      Navigator.of(context).pop();
+                                     // Navigator.of(context).pop();
                                       //String msg = map[Const.MESSAGE];
                                       if (map[Const.CODE] == Const.SUCCESS) {
                                         UserDetailsModel userModel =

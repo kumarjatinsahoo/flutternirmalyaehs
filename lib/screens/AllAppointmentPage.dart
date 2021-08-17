@@ -452,7 +452,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   Widget dialogRegNo(BuildContext context) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
-    //shiftname_.text="";
+  //  shiftname_.text=widget.model.beneficiary;
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -482,6 +482,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     TextInputType.text,
                     MyLocalizations.of(context).text("NAME"),
                     shiftname_),
+
               ],
             ),
           );
@@ -522,6 +523,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         UserDetailsModel userModel =
                             UserDetailsModel.fromJson(map);
                         widget.model.userModel = userModel;
+   //                     widget.model.beneficiary=shiftname_.text;
+
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
