@@ -59,6 +59,8 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                    Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                      child: TextFormField(
+                       maxLength: 10,
+                       keyboardType: TextInputType.number,
                      decoration: InputDecoration(
                        hintText: 'Mobile Number',                 
                      ),

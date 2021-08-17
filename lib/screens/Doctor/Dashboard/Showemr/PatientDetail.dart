@@ -136,7 +136,8 @@ class _PatientDetail extends State<PatientDetail> {
 
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
+                    child:
+                    Column(
                       children: [
                         Row(
                           children: [
