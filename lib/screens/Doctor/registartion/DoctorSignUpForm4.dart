@@ -63,6 +63,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   UserRegistrationModel userModel = UserRegistrationModel();
+  String _displayzone;
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   String organisationname;
@@ -305,6 +306,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   userModel.country = data.key;
                                   userModel.countryCode = data.code;
                                   DoctorSignUpForm4.stateModel = null;
+                                  _displayzone=null;
+
                                 });
                               }),
                             ),
@@ -336,6 +339,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                             data.code;
                                         DoctorSignUpForm4.cityModel =
                                             null;
+                                        _displayzone=null;
                                       });
                                     }),
                                   ),
