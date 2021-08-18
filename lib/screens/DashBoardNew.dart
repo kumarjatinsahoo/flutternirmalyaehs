@@ -1030,7 +1030,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 }
 
 class MyPage1Widget extends StatelessWidget {
-  MainModel model;
   var widget;
   double _height = 85;
   double _width;
@@ -1053,34 +1052,31 @@ class MyPage1Widget extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        _Tilered(
-                          // icon: Icons.calendar_today,
-                          icon: CupertinoIcons.calendar_today,
-                          title: "Health Screening",
-                          fun: () {
+                        ListTile(
+                          title: Center(child: Text("Health Screening")),
 
+                          onTap: () {
+                           widget. model.apntUserType = Const.HEALTH_SCREENING_APNT;
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, "/userApnt");
-                           /* Navigator.pushNamed(
-                                context, "/medicalrecordpage");*/
+                            // AppData.showInSnackBar(context,"hi");
                           },
                         ),
                         Divider(),
-                        _Tilered(
-                          // icon: Icons.calendar_today,
-                          icon: CupertinoIcons.calendar_today,
-                          title: "Health Check-up",
-                          fun: () {
-                            // Navigator.pushNamed(
-                            //   context, "/medicalrecordpage");
+                        ListTile(
+                          title: Center(child: Text("Health Check-up")),
+
+                          onTap: () {
+                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            Navigator.pop(context);
                             Navigator.pushNamed(context, "/userApnt");
                           },
                         ),
                         Divider(),
-                        _Tilered(
+                        ListTile(
                           // icon: Icons.calendar_today,
-                          icon: CupertinoIcons.calendar_today,
-                          title: "Doctor Appointment",
-                          fun: () {
+                          title:  Center(child: Text("Doctor Appointment")),
+                            onTap: () {
                             Navigator.pushNamed(
                                 context, "/myAppointment");
                             // Navigator.pushNamed(context, "/doctorconsultationPage");
@@ -2303,82 +2299,82 @@ class MyPage2Widget extends StatelessWidget {
     );
   }
 
-  chooseAppointment(BuildContext context) {
-    return showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                //title: const Text("Is it your details?"),
-                contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                //contentPadding: EdgeInsets.only(top: 10.0),
-                content: Container(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          title: Text("Health Screening"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-                            /*  widget.model.apntUserType = Const.HEALTH_SCREENING_APNT;*/
-                            //Navigator.pop(context);
-                            //Navigator.pushNamed(context, "/docApnt");
-                            Navigator.pushNamed(context, "/docApnt");
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Health Check-up"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-                            //widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/docApnt");
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Doctor Visit"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-                            //widget.model.apntUserType = Const.DOC_APNT;
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/docApnt");
-                          },
-                        ),
-                        Divider(),
-                        MaterialButton(
-                          child: Text(
-                            MyLocalizations.of(context).text("CANCEL"),
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        });
-  }
+  // chooseAppointment(BuildContext context) {
+  //   return showDialog(
+  //       context: context,
+  //       barrierDismissible: true,
+  //       builder: (context) {
+  //         return StatefulBuilder(
+  //           builder: (context, setState) {
+  //             return AlertDialog(
+  //               //title: const Text("Is it your details?"),
+  //               contentPadding: EdgeInsets.only(top: 18, left: 18, right: 18),
+  //               shape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
+  //               //contentPadding: EdgeInsets.only(top: 10.0),
+  //               content: Container(
+  //                 child: SingleChildScrollView(
+  //                   child: Column(
+  //                     mainAxisSize: MainAxisSize.min,
+  //                     children: <Widget>[
+  //                       ListTile(
+  //                         title: Text("Health Screening"),
+  //                         leading: Icon(
+  //                           CupertinoIcons.calendar_today,
+  //                           size: 40,
+  //                         ),
+  //                         onTap: () {
+  //                           /*  widget.model.apntUserType = Const.HEALTH_SCREENING_APNT;*/
+  //                           //Navigator.pop(context);
+  //                           //Navigator.pushNamed(context, "/docApnt");
+  //                           Navigator.pushNamed(context, "/docApnt");
+  //                         },
+  //                       ),
+  //                       Divider(),
+  //                       ListTile(
+  //                         title: Text("Health Check-up"),
+  //                         leading: Icon(
+  //                           CupertinoIcons.calendar_today,
+  //                           size: 40,
+  //                         ),
+  //                         onTap: () {
+  //                           //widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+  //                           Navigator.pop(context);
+  //                           Navigator.pushNamed(context, "/docApnt");
+  //                         },
+  //                       ),
+  //                       Divider(),
+  //                       ListTile(
+  //                         title: Text("Doctor Visit"),
+  //                         leading: Icon(
+  //                           CupertinoIcons.calendar_today,
+  //                           size: 40,
+  //                         ),
+  //                         onTap: () {
+  //                           //widget.model.apntUserType = Const.DOC_APNT;
+  //                           Navigator.pop(context);
+  //                           Navigator.pushNamed(context, "/docApnt");
+  //                         },
+  //                       ),
+  //                       Divider(),
+  //                       MaterialButton(
+  //                         child: Text(
+  //                           MyLocalizations.of(context).text("CANCEL"),
+  //                           style: TextStyle(color: Colors.black),
+  //                         ),
+  //                         onPressed: () {
+  //                           Navigator.pop(context);
+  //                         },
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ),
+  //               ),
+  //             );
+  //           },
+  //         );
+  //       });
+  // }
 
   Widget _buildTile1({IconData icon,
     String title,

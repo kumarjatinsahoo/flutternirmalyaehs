@@ -13,10 +13,21 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
- 
-  List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders'];
-  List<String> strOthers = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
+  List<String> strOrders = [
+    'My Orders',
+    'Confirm Orders',
+    'Processed Orders',
+    'Delivered Orders'
+  ];
+  List<String> strOthers = [
+    'Invoices',
+    'Monthly Review',
+    'Offfers and Discount',
+    'Online Chat',
+    'Daily Sales'
+  ];
   int _selectedDestination = -1;
+
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -41,46 +52,45 @@ class _DashboardState extends State<Dashboard> {
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
-              children: [ 
-                             
+              children: [
                 Container(
                   // height: 120,
                   color: AppData.kPrimaryColor,
                   width: double.infinity,
                   child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 20.0,
-                      top: 20.0,
-                      bottom: 20.0
-                    ),
+                    padding:
+                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                         height: size.height * 0.07,
-                         width: size.width * 0.13,
-                         decoration: BoxDecoration(
-                             borderRadius: BorderRadius.circular(55),
-                             border: Border.all(color: Colors.white, width: 0.5),
-                             color: Colors.white),
-                         child: ClipRRect(
-                             borderRadius: BorderRadius.circular(55),
-                             child: Image.asset(
-                               'assets/images/user.png',
-                               height: size.height * 0.07,
-                         width: size.width * 0.13,
-                               fit: BoxFit.cover,
-                             )),
+                          height: size.height * 0.07,
+                          width: size.width * 0.13,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(55),
+                              border:
+                                  Border.all(color: Colors.white, width: 0.5),
+                              color: Colors.white),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(55),
+                              child: Image.asset(
+                                'assets/images/user.png',
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                fit: BoxFit.cover,
+                              )),
                         ),
-                  SizedBox(width: 20,),
-                    Text(
-                      'Dr John',
-                      style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 18,
-                     fontWeight: FontWeight.w600),
-                    ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'Dr John',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ],
                     ),
                   ),
@@ -146,14 +156,13 @@ class _DashboardState extends State<Dashboard> {
                   onTap: () => selectDestination(5),
                 ),
                 ListTile(
-                  leading: Icon(Icons.collections),
-                  title: Text('My Orders'),
-                  selected: _selectedDestination == 6,
-                  onTap: (){
-                    selectDestination(6);
-                     Navigator.pushNamed(context, "/myorder");
-                  } 
-                ),
+                    leading: Icon(Icons.collections),
+                    title: Text('My Orders'),
+                    selected: _selectedDestination == 6,
+                    onTap: () {
+                      selectDestination(6);
+                      Navigator.pushNamed(context, "/myorder");
+                    }),
                 ListTile(
                     leading: Icon(Icons.calendar_today),
                     title: Text('Monthly Overview'),
@@ -163,14 +172,13 @@ class _DashboardState extends State<Dashboard> {
                       Navigator.pushNamed(context, "/monthlyview");
                     }),
                 ListTile(
-                  leading: Icon(Icons.healing),
-                  title: Text('Processed Orders'),
-                  selected: _selectedDestination == 8,
-                  onTap: () {
-                    selectDestination(8);
-                    Navigator.pushNamed(context, "/processedorders");
-                  } 
-                ),
+                    leading: Icon(Icons.healing),
+                    title: Text('Processed Orders'),
+                    selected: _selectedDestination == 8,
+                    onTap: () {
+                      selectDestination(8);
+                      Navigator.pushNamed(context, "/processedorders");
+                    }),
                 ListTile(
                   leading: Icon(Icons.home),
                   title: Text('Set Discount and Offer'),
@@ -193,7 +201,6 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         ),
-     
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(5.0),
@@ -201,148 +208,159 @@ class _DashboardState extends State<Dashboard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left:5.0,top: 10.0,bottom: 10.0),
-                  child: Text('Orders', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),),
+                  padding:
+                      const EdgeInsets.only(left: 5.0, top: 10.0, bottom: 10.0),
+                  child: Text(
+                    'Orders',
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  ),
                 ),
                 Container(
                   // color: Colors.grey,
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                   itemCount: strOrders.length,
-  gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-    // mainAxisExtent: 110,
-    // mainAxisSpacing: 5,
-      crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
-  itemBuilder: (BuildContext context, int index) {
-    return Card(
-      elevation: 2,
-      
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue[600],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, "/deliveredorder");
-                      },
-                      child: Container(
-                        child: new GridTile(      
-      child: 
-                              
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 10,
-                                                              child: new Image.asset(
-                                      "assets/images/dashboard (1).png",
-                                      height: 40,
-                                      fit: BoxFit.cover,
-                                      // color: Colors.blue
-                                    ),
+                    itemCount: strOrders.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        // mainAxisExtent: 110,
+                        // mainAxisSpacing: 5,
+                        crossAxisCount:
+                            (orientation == Orientation.portrait) ? 3 : 4),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue[600],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, bottom: 5.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/deliveredorder");
+                              },
+                              child: Container(
+                                child: new GridTile(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Material(
+                                            color: Colors.transparent,
+                                            elevation: 10,
+                                            child: new Image.asset(
+                                              "assets/images/dashboard (1).png",
+                                              height: 40,
+                                              fit: BoxFit.cover,
+                                              // color: Colors.blue
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      // SizedBox(height: size.height * 0.02,),
+                                      Text(
+                                        strOrders[index].toString(),
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.clip,
+                                        maxLines: 2,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
                             ),
-                            // SizedBox(height: size.height * 0.02,),
-                                              Text(strOrders[index].toString(),
-                                               style: TextStyle( color: Colors.white),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                       ),
-                          ],
-                        ), 
-                        
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ),
-    );
-  },
-),
-                ),
-               Padding(
-                  padding: const EdgeInsets.only(left:5.0,top: 10.0,bottom: 10.0),
-                  child: Text('Others', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 5.0, top: 10.0, bottom: 10.0),
+                  child: Text(
+                    'Others',
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  ),
                 ),
                 Container(
                   // color: Colors.grey,
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-  itemCount: strOthers.length,
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    // mainAxisExtent: 110,
-    // mainAxisSpacing: 5,
-      crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
-  itemBuilder: (BuildContext context, int index) {
-    return Card(
-      elevation: 2,
-      
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue[600],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, "/deliveredorder");
-                      },
-                      child: Container(
-                        child: new GridTile(      
-      child: 
-                              
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 10,
-                                                              child: new Image.asset(
-                                      "assets/images/dashboard (1).png",
-                                      height: 40,
-                                      fit: BoxFit.cover,
-                                      // color: Colors.blue
-                                    ),
+                    itemCount: strOthers.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        // mainAxisExtent: 110,
+                        // mainAxisSpacing: 5,
+                        crossAxisCount:
+                            (orientation == Orientation.portrait) ? 3 : 4),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue[600],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, bottom: 5.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/deliveredorder");
+                              },
+                              child: Container(
+                                child: new GridTile(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Material(
+                                            color: Colors.transparent,
+                                            elevation: 10,
+                                            child: new Image.asset(
+                                              "assets/images/dashboard (1).png",
+                                              height: 40,
+                                              fit: BoxFit.cover,
+                                              // color: Colors.blue
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      // SizedBox(height: size.height * 0.02,),
+                                      Text(
+                                        strOthers[index].toString(),
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.start,
+                                        overflow: TextOverflow.clip,
+                                        maxLines: 2,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
                             ),
-                            // SizedBox(height: size.height * 0.02,),
-                                              Text(strOthers[index].toString(),
-                                               style: TextStyle( color: Colors.white),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                       ),
-                          ],
-                        ), 
-                        
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ),
-    );
-  },
-),
-                ),
-             
               ],
             ),
           ),
@@ -350,6 +368,4 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
-
-
 }
