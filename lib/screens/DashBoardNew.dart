@@ -322,7 +322,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Home'),
                 selected: _selectedDestination == 2,
                 // onTap: () {
-                //   selectDestination(1);
+                //   selectDestination(2);
                 //   Navigator.pushNamed(context, "/profile");
                 // },
               ),
@@ -335,7 +335,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Manage Account'),
                 selected: _selectedDestination == 3,
                 onTap: () {
-                  selectDestination(1);
+                  selectDestination(3);
                   // Navigator.pushNamed(context, "/patientDashboard");
                 },
               ),
@@ -348,7 +348,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('About Us'),
                 selected: _selectedDestination == 4,
                 // onTap: () {
-                //   selectDestination(1);
+                //   selectDestination(4);
                 //   Navigator.pushNamed(context, "/profile");
                 // },
               ),
@@ -373,7 +373,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    Navigator.pushNamed(context, "/share");
+                    //Navigator.pushNamed(context, "/share");
                   }),
               ListTile(
                   leading: Image.asset(
@@ -383,8 +383,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   title: Text('Support'),
                   selected: _selectedDestination == 7,
                   onTap: () {
-                    selectDestination(5);
-                    Navigator.pushNamed(context, "/signUpForm");
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/signUpForm");
                   }),
               ListTile(
                 leading: Image.asset(
@@ -404,7 +404,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-                  Navigator.pushNamed(context, "/patientRegistration");
+                //  Navigator.pushNamed(context, "/patientRegistration");
                 },
               ),
               ListTile(
@@ -413,7 +413,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
-                  Navigator.pushNamed(context, "/help");
+                  //Navigator.pushNamed(context, "/help");
                 },
                 // onTap: () {
                 // },
@@ -424,7 +424,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    Navigator.pushNamed(context, "/myorder");
+                    //Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
                   leading: Icon(Icons.calendar_today),
@@ -432,37 +432,36 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    Navigator.pushNamed(context, "/monthlyview");
+                    //Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
                   leading: Icon(Icons.healing),
                   title: Text('Processed Orders'),
                   selected: _selectedDestination == 8,
                   onTap: () {
-                    selectDestination(7);
-                    Navigator.pushNamed(context, "/processedorders");
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Set Discount and Offer'),
                 selected: _selectedDestination == 9,
                 onTap: () {
-                  selectDestination(8);
-                  Navigator.pushNamed(context, "/setdiscount");
+                  selectDestination(9);
+                  //Navigator.pushNamed(context, "/setdiscount");
                 },
               ),
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Tab Instruction'),
-                selected: _selectedDestination == 9,
+                selected: _selectedDestination == 10,
                 onTap: () {
-                  selectDestination(8);
-                  Navigator.pushNamed(context, "/tabinstruction");
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/tabinstruction");
                 },
               ),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/logout.png",
+                leading: Image.asset("assets/images/logout.png",
                   height: 30,
                 ),
                 title: Text('Logout'),

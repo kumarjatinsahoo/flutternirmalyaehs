@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -61,8 +62,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                      child: TextFormField(
                        maxLength: 10,
                        keyboardType: TextInputType.number,
+                       inputFormatters: [
+                         //UpperCaseTextFormatter(),
+                         // ignore: deprecated_member_use
+                         WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                       ],
                      decoration: InputDecoration(
-                       hintText: 'Mobile Number',                 
+                       hintText: 'Mobile Number',
+
+
                      ),
                  ),
                    ),
@@ -72,7 +80,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
              padding: const EdgeInsets.symmetric(horizontal: 20),
             child: _submitButton(),
           ),
-            SizedBox(height: size.height * 0.03,),
+            SizedBox(height: size.height * 0.09,),
             InkWell(
              onTap: (){
                Navigator.pushNamed(context, "/forgotuserid");
