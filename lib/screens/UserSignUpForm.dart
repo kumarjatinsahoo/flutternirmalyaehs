@@ -1311,7 +1311,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.gallery, imageQuality: 25);
-    //var image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 80);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();

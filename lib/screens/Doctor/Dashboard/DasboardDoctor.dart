@@ -376,7 +376,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                     ],
                   ),
                   onTap: (){
-                    Navigator.pushNamed(context, "/showEmr");
+                   // Navigator.pushNamed(context, "/showEmr");
                   },
                 ),
               ),
@@ -449,11 +449,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                         ),
                       ],
                     ),
-                    onTap: () async {
-                       Navigator.push(context,
-                          new MaterialPageRoute(
-                              builder: (context) => new VitalSigns()));
-                    },
+                    // onTap: () async {
+                    //    Navigator.push(context,
+                    //       new MaterialPageRoute(
+                    //           builder: (context) => new VitalSigns()));
+                    // },
                   ),
                 ]
             ),

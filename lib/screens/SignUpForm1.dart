@@ -146,7 +146,8 @@ class SignUpForm1State extends State<SignUpForm1> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/bg.jpg"),
-                  fit: BoxFit.cover)),
+                  fit: BoxFit.cover)
+          ),
           child: Stack(
             children: <Widget>[
               Container(

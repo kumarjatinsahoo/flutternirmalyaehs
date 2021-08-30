@@ -31,7 +31,7 @@ class _MyProfile extends State<DocMyProfile> {
         appBar: AppBar(
           backgroundColor: Color(0xFF0F6CE1),
           centerTitle: true,
-          title: Text('MyProfile'),
+          title: Text('My Profile'),
         ),
         body:
         Container(
@@ -168,7 +168,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Specialty",
+                            "Speciality",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -264,7 +264,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "IMA no",
+                            "IMA No",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -308,7 +308,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Passport no",
+                            "Passport No",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -330,7 +330,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Aadhar Card No",
+                            "Aadhaar Card No",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -374,7 +374,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "License No",
+                            "Licence No",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),

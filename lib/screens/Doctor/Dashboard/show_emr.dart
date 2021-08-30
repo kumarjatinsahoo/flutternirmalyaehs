@@ -236,17 +236,17 @@ class _ShowEmr extends State<ShowEmr> {
                               //  width: 70,
                               height: 50.0,
                               child: new Tab(
-                                text: 'PATIENTDETAILS',
+                                text: 'PATIENT DETAILS',
                               )),
                           new Container(
                             // width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'PATIENTHISTORY'),
+                            child: new Tab(text: 'PATIENT HISTORY'),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'TESTREPORT'),
+                            child: new Tab(text: 'TEST REPORT'),
                           ),
                           new Container(
                             // width: 80,
@@ -256,12 +256,12 @@ class _ShowEmr extends State<ShowEmr> {
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'LIFESTYLEHISTORY'),
+                            child: new Tab(text: 'LIFESTYLE HISTORY'),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'FAMILYDETAILS'),
+                            child: new Tab(text: 'FAMILY DETAILS'),
                           ),
                           new Container(
                             //  width: 100,
@@ -271,12 +271,12 @@ class _ShowEmr extends State<ShowEmr> {
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'TREATMENTTRACKER'),
+                            child: new Tab(text: 'TREATMENT TRACKER'),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'MEDICALDATAUPLOAD'),
+                            child: new Tab(text: 'MEDICAL DATA UPLOAD'),
                           ),
                         ],
                       ),

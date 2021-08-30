@@ -478,11 +478,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Text("User Registration"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("User Registration")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             //Navigator.pop(context);
                             Navigator.pushNamed(context, "/userSignUpForm");
@@ -491,11 +491,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Doctor Registration"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("Doctor Registration")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             //Navigator.pop(context);
                             Navigator.pushNamed(context, "/doctorsignupform");
@@ -504,11 +504,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Lab Registration"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("Lab Registration")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "/labsignupform");

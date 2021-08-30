@@ -6,31 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LabBookModel.dart' as lab;
+import 'package:user/models/UserAppointmentModel.dart';
 import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/UserAppointmentTest.dart';
 import 'package:user/widgets/MyWidget.dart';
 
 import 'CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
-class AllAppointmentPage extends StatefulWidget {
+class UserAppointmentPage extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
 
-  AllAppointmentPage({
+  UserAppointmentPage({
     Key key,
     this.model,
     this.isConfirmPage = false,
   }) : super(key: key);
 
   @override
-  _AllAppointmentPageState createState() => _AllAppointmentPageState();
+  _UserAppointmentPageState createState() => _UserAppointmentPageState();
 }
 
-class _AllAppointmentPageState extends State<AllAppointmentPage> {
+class _UserAppointmentPageState extends State<UserAppointmentPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   //LoginResponse1 loginResponse;
@@ -55,37 +57,44 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   bool _isSignUpLoading = false;
   String today;
   String comeFrom;
+  // String comeFrom="HEALTH_SCREENING_APNT";
+  // String comeFromm="HEALTH_CHKUP_USER_APNT";
   bool isDataNotAvail = false;
+  String beneficiary;
 
   @override
   void initState() {
     super.initState();
-    comeFrom = widget.model.apntUserType;
-    //final df = new DateFormat('yyyy/MM/dd');
+   // comeFrom = widget.model.apntUserType;
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
+    beneficiary = widget.model.user;
     callAPI(today);
   }
 
   callAPI(String today) {
-    if (comeFrom == Const.HEALTH_SCREENING_APNT) {
-      widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.HEALTH_SCREENING_LIST + today,
-          token: widget.model.token,
-          fun: (Map<String, dynamic> map) {
-            setState(() {
-              String msg = map[Const.MESSAGE];
-              if (map[Const.CODE] == Const.SUCCESS) {
-                appointModel = lab.LabBookModel.fromJson(map);
-              } else {
-                isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
-              }
-            });
+     if (widget.model.apntUserType == Const.HEALTH_SCREENING_APNT) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.HEALTH_APPOINTMENT_SCREENING_LIST +
+            widget.model.user +
+            "&appontdt=" +
+            today,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              appointModel = lab.LabBookModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
           });
-    } else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
+        });
+     }
+     else if (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.HEALTH_CHKUP_LIST + today,
+          api: ApiFactory.HEALTH_APPOINTMENT_CHKUP_LIST +widget.model.user+"&appontdt="+today,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
             setState(() {
@@ -111,11 +120,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
             DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
-      isDataNotAvail=false;
-     //final df = new DateFormat('yyyy/MM/dd');
+      isDataNotAvail = false;
+      //final df = new DateFormat('yyyy/MM/dd');
       final df = new DateFormat('dd/MM/yyyy');
       today = df.format(picked);
-      callAPI(today);
+      //  callAPI(today);
     });
   }
 
@@ -199,16 +208,43 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     ),
                     Row(
                       children: [
-                        MyWidgets.toggleButton("NEW", () {
-                          //Navigator.pushNamed(context, "/qrCode1");
-                          //dialogRegNo(context);
-                          //dialogPopup(context);
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogRegNo(context),
-                          );
-                        }),
+                        GestureDetector(
+                            child: MyWidgets.toggleButton2("NEW", () {}),
+                            onTap: () {
+                              MyWidgets.showLoading(context);
+                              widget.model.GETMETHODCALL_TOKEN(
+                                  api:
+                                      ApiFactory.GET_BENE_DETAILS + beneficiary,
+                                  token: widget.model.token,
+                                  fun: (Map<String, dynamic> map) {
+                                    setState(() {
+                                      // Navigator.of(context).pop();
+                                      //String msg = map[Const.MESSAGE];
+                                      if (map[Const.CODE] == Const.SUCCESS) {
+                                        UserDetailsModel userModel =
+                                            UserDetailsModel.fromJson(map);
+                                        widget.model.userModel = userModel;
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                UserAppointmentTest(
+                                              model: widget.model,
+                                            ),
+                                          ),
+                                        ).then((value) {
+                                          if (value) {
+                                            //callAPI(today);
+                                          }
+                                        });
+                                      } else {
+                                        //Navigator.of(context).pop();
+                                        AppData.showInSnackBar(
+                                            context, map[Const.MESSAGE]);
+                                      }
+                                    });
+                                  });
+                            }),
                         MyWidgets.toggleButton1("REPORTS", () {
                           AppData.showInSnackBar(context, "Reports click");
                         }),
@@ -260,73 +296,39 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 Container(
                   color: AppData.grey,
                   height: 40.0,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 60,
-                        child: Text(
-                          "Reg No",
+                  child: Padding(
+                    padding: const EdgeInsets.all(13.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Seriel No",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          MyLocalizations.of(context).text("NAME"),
+                        Spacer(),
+                        Text(
+                          ("Date"),
                           textAlign: TextAlign.start,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      /*Expanded(
-                        child: Text(
-                          "Age",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),*/
-                      SizedBox(
-                        width: 35,
-                        child: Text(
-                          "Age",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60,
-                        child: Text(
-                          "Gender",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
+                        Spacer(),
+                        Text(
                           "Status",
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 (appointModel != null &&
@@ -342,75 +344,40 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                             children: [
                               Container(
                                 padding: EdgeInsets.symmetric(vertical: 3),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    /*Expanded(
-                                      child: Text(
-                                        appointModel.appointList[index].id,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        width: 60,
+                                        child: Text(
+                                          appointModel.body[index].regNo,
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        appointModel.body[index].appntmntDate,
                                         style: TextStyle(color: Colors.black),
                                         textAlign: TextAlign.start,
                                       ),
-                                    ),*/
-                                    SizedBox(
-                                      width: 60,
-                                      child: Text(
-                                        appointModel.body[index].regNo,
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        appointModel.body[index].patientName,
-                                        style: TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                    /*Expanded(
-                                      child: Text(
-                                        appointModel.appointList[index].age,
-                                        style: TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),*/
-                                    SizedBox(
-                                      width: 35,
-                                      child: Text(
-                                        appointModel.body[index].age.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 60,
-                                      child: Text(
-                                        appointModel.body[index].gender[0],
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                changeStatus(
-                                                    context,
-                                                    appointModel.body[index],
-                                                    index),
-                                          );
-                                        },
+                                      Spacer(),
+                                      InkWell(
+                                        // onTap: () {
+                                        //   showDialog(
+                                        //     context: context,
+                                        //     builder: (BuildContext context) =>
+                                        //         changeStatus(
+                                        //             context,
+                                        //             appointModel.body[index],
+                                        //             index),
+                                        //   );
+                                        // },
                                         child: Container(
                                           child: Text(
                                             appointModel
@@ -423,8 +390,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               Divider(
@@ -452,7 +419,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   Widget dialogRegNo(BuildContext context) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
-  //  shiftname_.text=widget.model.beneficiary;
+    //shiftname_.text="";
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -482,7 +449,6 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     TextInputType.text,
                     MyLocalizations.of(context).text("NAME"),
                     shiftname_),
-
               ],
             ),
           );
@@ -505,46 +471,44 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
           child: const Text('SCAN'),
         ),
         new FlatButton(
-          onPressed: () {
-            if (shiftname_.text == "" || shiftname_.text == null) {
-              AppData.showInSnackBar(context, "Please enter beneficiary no");
-            } else {
-              MyWidgets.showLoading(context);
-              widget.model.GETMETHODCALL_TOKEN(
-                  api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
-                  token: widget.model.token,
-                  fun: (Map<String, dynamic> map) {
-                    setState(() {
-                      Navigator.of(context).pop();
-                      //String msg = map[Const.MESSAGE];
-                      if (map[Const.CODE] == Const.SUCCESS) {
-                        /*Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);*/
-                        UserDetailsModel userModel =
-                            UserDetailsModel.fromJson(map);
-                        widget.model.userModel = userModel;
-   //                     widget.model.beneficiary=shiftname_.text;
-
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CreateAppointmentLab(
-                              model: widget.model,
-                            ),
-                          ),
-                        ).then((value) {
-                          if (value) {
-                            callAPI(today);
-                          }
-                        });
-                      } else {
-                        //Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                      }
-                    });
-                  });
-            }
-          },
+          // onPressed: () {
+          //   if (shiftname_.text == "" || shiftname_.text == null) {
+          //     AppData.showInSnackBar(context, "Please enter beneficiary no");
+          //   } else {
+          //     MyWidgets.showLoading(context);
+          //     widget.model.GETMETHODCALL_TOKEN(
+          //         api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
+          //         token: widget.model.token,
+          //         fun: (Map<String, dynamic> map) {
+          //           setState(() {
+          //             Navigator.of(context).pop();
+          //             //String msg = map[Const.MESSAGE];
+          //             if (map[Const.CODE] == Const.SUCCESS) {
+          //               /*Navigator.of(context).pop();
+          //               AppData.showInSnackBar(context, msg);*/
+          //               UserDetailsModel userModel =
+          //               UserDetailsModel.fromJson(map);
+          //               widget.model.userModel = userModel;
+          //               Navigator.pushReplacement(
+          //                 context,
+          //                 MaterialPageRoute(
+          //                   builder: (context) => CreateAppointmentLab(
+          //                     model: widget.model,
+          //                   ),
+          //                 ),
+          //               ).then((value) {
+          //                 if (value) {
+          //                  // callAPI(today);
+          //                 }
+          //               });
+          //             } else {
+          //               //Navigator.of(context).pop();
+          //               AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          //             }
+          //           });
+          //         });
+          //   }
+          // },
           textColor: Theme.of(context).primaryColor,
           child: const Text('SEARCH'),
         ),

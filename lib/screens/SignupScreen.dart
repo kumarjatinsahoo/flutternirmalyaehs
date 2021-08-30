@@ -13,8 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class SignupScreen extends StatefulWidget {
   final Function(int, bool) updateTab;
 
