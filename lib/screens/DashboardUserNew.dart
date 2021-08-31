@@ -1025,8 +1025,7 @@ class MyPage1Widget extends StatelessWidget {
   double _height = 85;
   double _width;
  /* MainModel model;
-
-  MyPage1Widget({this.model});*/
+MyPage1Widget({this.model});*/
   final MainModel model;
   MyPage1Widget({Key key, this.model}) : super(key: key);
   chooseAppointment(BuildContext context) {
@@ -1050,8 +1049,8 @@ class MyPage1Widget extends StatelessWidget {
                         ListTile(
                           title: Center(child: Text("Health Screening")),
                           onTap: () {
-                            //widget.model.apntUserType = Const.HEALTH_SCREENING_APNT;
-                            widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
+                            widget.model.apntUserType = Const.HEALTH_SCREENING_APNT;
+                           // widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
 
                             Navigator.pushNamed(context, "/userApnt");
                             Navigator.pop(context);
@@ -1062,8 +1061,8 @@ class MyPage1Widget extends StatelessWidget {
                         ListTile(
                           title: Center(child: Text("Health Check-up")),
                           onTap: () {
-                            //widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
-                            widget.model.apntUserType = "Health Check-up";
+                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            //widget.model.apntUserType = "Health Check-up";
                             Navigator.pushNamed(context, "/userApnt");
                             Navigator.pop(context);
                           },

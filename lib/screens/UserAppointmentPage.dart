@@ -73,7 +73,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
   }
 
   callAPI(String today) {
-    if (comeFrom == /*Const.HEALTH_SCREENING_APNT*/"Health Screening")  {
+    if (comeFrom == Const.HEALTH_SCREENING_APNT)  {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.HEALTH_APPOINTMENT_SCREENING_LIST +
             widget.model.user +
@@ -92,7 +92,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
           });
         });
      }
-    else if (comeFrom == /*Const.HEALTH_CHKUP_APNT*/"Health Check-up") {
+    else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.HEALTH_APPOINTMENT_CHKUP_LIST +widget.model.user+"&appontdt="+today,
           token: widget.model.token,
