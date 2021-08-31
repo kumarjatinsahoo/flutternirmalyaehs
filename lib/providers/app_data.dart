@@ -17,6 +17,7 @@ class AppData {
   static int textColor = 00000000;
 
   static Color kPrimaryColor = Color(0xFF2372B6);
+  static Color menublueColor = Color(0xFF014E91);
   static Color hintColor = Color(0xFF666666);
   static Color BG1RED = Color(0xFFFEF7F8);
   static Color BG2BLUE = Color(0xFFF5FAFE);
@@ -350,7 +351,26 @@ class AppData {
       duration: Duration(seconds: 6),
     )..show(context);
   }
+  static void showInSnackBargreen(BuildContext context, String value) {
+    // final scaffold = Scaffold.of(context);
+    // scaffold.showSnackBar(
+    //   SnackBar(
+    //     content: new Text(
+    //       value.toUpperCase(),
+    //       style: TextStyle(color: Colors.white),
+    //     ),
+    //     duration: Duration(seconds: 1),
+    //     backgroundColor: Colors.red,
+    //   ),
+    // );
 
+    Flushbar(
+      //  title:  "Hey SuperHero",
+      message: value,
+      backgroundColor: Colors.green,
+      duration: Duration(seconds: 6),
+    )..show(context);
+  }
   static void showInSnackDone(BuildContext context, String value) {
     Flushbar(
       //  title:  "Hey SuperHero",

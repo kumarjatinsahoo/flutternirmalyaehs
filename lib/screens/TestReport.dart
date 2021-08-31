@@ -23,9 +23,6 @@ class _TestReportState extends State<TestReport> {
   void initState() {
     //loginResponse = widget.model.loginResponse1;
     super.initState();
-    //pdfUrl = widget.model.pdfUrl.replaceAll("http", "https");
-    //pdfUrl = "https://docs.google.com/viewer?url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=OTEyMTk5ODA5NTQxMzMwOQ==";
-    //pdfUrl = "http://docs.google.com/gview?embedded=true&url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=OTEyMTk5ODA5NTQxMzMwOQ==";
     pdfUrl = "https://docs.google.com/viewer?url="+widget.model.pdfUrl;
     print(">>>>>>PDF URL TEST REPORT????>>" + pdfUrl);
   }

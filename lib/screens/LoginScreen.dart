@@ -439,13 +439,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
-                      /*widget.model.token = loginResponse.body.token;
-                      widget.model.user = loginResponse.body.user;*/
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
                     }else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
-                      /*widget.model.token = loginResponse.body.token;
-                      widget.model.user = loginResponse.body.user;*/
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }
