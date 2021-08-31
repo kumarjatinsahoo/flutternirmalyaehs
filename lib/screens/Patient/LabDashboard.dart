@@ -14,16 +14,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class PatientDashboard extends StatefulWidget {
+class LabDashboard extends StatefulWidget {
   final MainModel model;
 
-  const PatientDashboard({Key key, this.model}) : super(key: key);
+  const LabDashboard({Key key, this.model}) : super(key: key);
 
   @override
-  _PatientDashboardState createState() => _PatientDashboardState();
+  _LabDashboardState createState() => _LabDashboardState();
 }
 
-class _PatientDashboardState extends State<PatientDashboard> {
+class _LabDashboardState extends State<LabDashboard> {
   LoginResponse1 loginResponse;
   SharedPref sharedPref = SharedPref();
   File pathUsr = null;

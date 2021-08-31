@@ -54,7 +54,7 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
-import 'package:user/screens/Patient/PatientDaashboard.dart';
+import 'package:user/screens/Patient/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/screens/Patient/PatientRegistration3.dart';
@@ -432,7 +432,7 @@ class _MyAppState extends State<MyApp> {
               '/patientRegistration4': (context) => PatientRegistration4(
                     model: _model,
                   ),
-              '/patientDashboard': (context) => PatientDashboard(
+              '/patientDashboard': (context) => LabDashboard(
                     model: _model,
                   ),
               '/chemistspage': (context) => ChemistsPage(
