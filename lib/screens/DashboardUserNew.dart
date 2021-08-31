@@ -74,13 +74,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_DASHBOARD+loginResponse1.body.user,
+        api: ApiFactory.USER_DASHBOARD + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           String msg = map[Const.MESSAGE];
           if (map[Const.CODE] == Const.SUCCESS) {
             userDashboardModel = UserDashboardModel.fromJson(map);
-            if (!userDashboardModel.body.isEContactAdded ||!userDashboardModel.body.isEContactAdded) {
+            if (!userDashboardModel.body.isEContactAdded ||
+                !userDashboardModel.body.isEContactAdded) {
               WidgetsBinding.instance.addPostFrameCallback((_) async {
                 dashOption1(context);
               });
@@ -120,9 +121,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   int daysBetween(DateTime from, DateTime to) {
     from = DateTime(from.year, from.month, from.day);
     to = DateTime(to.year, to.month, to.day);
-    return (to
-        .difference(from)
-        .inHours / 24).round();
+    return (to.difference(from).inHours / 24).round();
   }
 
   Widget dialoggeneratepop(BuildContext context) {
@@ -145,10 +144,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     child: Image.asset(
                       "assets/banner_pop.jpeg",
                       fit: BoxFit.fill,
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.95,
+                      width: MediaQuery.of(context).size.width * 0.95,
                     ),
                   ),
                   Positioned(
@@ -184,7 +180,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               return AlertDialog(
                 //title: const Text("Is it your details?"),
                 contentPadding:
-                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                    EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
@@ -226,9 +222,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -290,7 +284,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),
               ),
               ListTile(
-                  leading: Icon(Icons.dashboard,color:AppData.menublueColor,size: 27),
+                  leading: Icon(Icons.dashboard,
+                      color: AppData.menublueColor, size: 27),
                   title: Text('Dashboard'),
                   selected: _selectedDestination == 0,
                   onTap: () {
@@ -298,9 +293,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/dashboard");
                     // Navigator.pushNamed(context, "/dashboard1");
                   }
-                // onTap: (){},
+                  // onTap: (){},
 
-              ),
+                  ),
               ListTile(
                 leading: Image.asset(
                   "assets/images/myprofile.png",
@@ -321,9 +316,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('Home'),
                 selected: _selectedDestination == 2,
-                 onTap: () {
-                 selectDestination(2);
-                   //Navigator.pushNamed(context, "/profile");
+                onTap: () {
+                  selectDestination(2);
+                  //Navigator.pushNamed(context, "/profile");
                 },
               ),
               ListTile(
@@ -347,23 +342,22 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('About Us'),
                 selected: _selectedDestination == 4,
-                 onTap: () {
-                   selectDestination(4);
-                // Navigator.pushNamed(context, "/profile");
-                 },
+                onTap: () {
+                  selectDestination(4);
+                  // Navigator.pushNamed(context, "/profile");
+                },
               ),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/share.png",
-                  height: 30,
-                ),
-                title: Text('Share'),
-                selected: _selectedDestination == 5,
-                 onTap: () {
-                   selectDestination(5);
-                  // Navigator.pushNamed(context, "/dashboard1");
-                  }
-              ),
+                  leading: Image.asset(
+                    "assets/images/share.png",
+                    height: 30,
+                  ),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  onTap: () {
+                    selectDestination(5);
+                    // Navigator.pushNamed(context, "/dashboard1");
+                  }),
               ListTile(
                   leading: Image.asset(
                     "assets/images/contact us.png",
@@ -387,28 +381,29 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/signUpForm");
                   }),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/reminder.png",
-                  height: 30,
-                ),
-                title: Text('Reminder'),
-                selected: _selectedDestination == 8,
-                onTap: () {
-                 selectDestination(8);
-                   //Navigator.pushNamed(context, "/share");
-                }
-              ),
+                  leading: Image.asset(
+                    "assets/images/reminder.png",
+                    height: 30,
+                  ),
+                  title: Text('Reminder'),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
               ListTile(
-                leading: Icon(Icons.person,color:AppData.kPrimaryRedColor,size: 30),
+                leading: Icon(Icons.person,
+                    color: AppData.kPrimaryRedColor, size: 30),
                 title: Text('Notifications'),
                 selected: _selectedDestination == 9,
                 onTap: () {
                   selectDestination(9);
-                //   Navigator.pushNamed(context, "/patientRegistration");
+                  //   Navigator.pushNamed(context, "/patientRegistration");
                 },
               ),
               ListTile(
-                leading: Icon(Icons.help_center,color:AppData.menublueColor,size: 27),
+                leading: Icon(Icons.help_center,
+                    color: AppData.menublueColor, size: 27),
                 title: Text('Help'),
                 selected: _selectedDestination == 10,
                 onTap: () {
@@ -419,7 +414,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // },
               ),
               ListTile(
-                  leading: Icon(Icons.collections,color:AppData.kPrimaryRedColor,size: 27),
+                  leading: Icon(Icons.collections,
+                      color: AppData.kPrimaryRedColor, size: 27),
                   title: Text('My Orders'),
                   selected: _selectedDestination == 11,
                   onTap: () {
@@ -427,7 +423,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
-                  leading: Icon(Icons.calendar_today,color:AppData.menublueColor,size: 25),
+                  leading: Icon(Icons.calendar_today,
+                      color: AppData.menublueColor, size: 25),
                   title: Text('Monthly Overview'),
                   selected: _selectedDestination == 12,
                   onTap: () {
@@ -435,7 +432,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
-                  leading: Icon(Icons.healing,color:AppData.kPrimaryRedColor,size: 27),
+                  leading: Icon(Icons.healing,
+                      color: AppData.kPrimaryRedColor, size: 27),
                   title: Text('Processed Orders'),
                   selected: _selectedDestination == 13,
                   onTap: () {
@@ -443,7 +441,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
-                leading: Icon(Icons.home,color:AppData.menublueColor,size: 27),
+                leading:
+                    Icon(Icons.home, color: AppData.menublueColor, size: 27),
                 title: Text('Set Discount and Offer'),
                 selected: _selectedDestination == 14,
                 onTap: () {
@@ -452,7 +451,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.home,color:AppData.kPrimaryRedColor,size: 27),
+                leading:
+                    Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
                 title: Text('Tab Instruction'),
                 selected: _selectedDestination == 15,
                 onTap: () {
@@ -461,7 +461,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
-                leading: Image.asset("assets/images/logout.png",
+                leading: Image.asset(
+                  "assets/images/logout.png",
                   height: 30,
                 ),
                 title: Text('Logout'),
@@ -490,9 +491,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   }
 
   Widget _dashboardnew(context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -505,7 +504,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 child: PageView(
                   controller: _controller,
                   children: [
-                    MyPage1Widget(),
+                    MyPage1Widget(model: widget.model,),
                     MyPage2Widget(),
                   ],
                 ),
@@ -516,7 +515,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 currentColor: Colors.grey,
                 normalColor: Colors.black12,
               ),
-
               CarouselSlider(
                 options: CarouselOptions(
                     height: 210,
@@ -530,120 +528,120 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     pauseAutoPlayInFiniteScroll: true,
                     onPageChanged: (index, reason) {
                       setState(
-                            () {
+                        () {
                           _currentIndex = index;
                         },
                       );
                     }),
                 items: imageSliders
-                    .map((item) =>
-                    InkWell(
-                      onTap: () {
-                        int index = imageSliders.indexOf(item);
-                        switch (index) {
-                          case 0:
-                            AppData.launchURL(
-                                "https://www.youtube.com/watch?v=QYcKscyUvuY");
-                            break;
-                          case 1:
-                            AppData.launchURL(
-                                "https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                            break;
-                          case 4:
-                            AppData.launchURL(
-                                "https://www.youtube.com/watch?v=axzWoVaF4N4");
-                            break;
-                          case 7:
-                            AppData.launchURL(
-                                "https://www.youtube.com/watch?v=ckYGlJwCmlg");
-                            break;
+                    .map((item) => InkWell(
+                          onTap: () {
+                            int index = imageSliders.indexOf(item);
+                            switch (index) {
+                              case 0:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");
+                                break;
+                              case 1:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                                break;
+                              case 4:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=axzWoVaF4N4");
+                                break;
+                              case 7:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                                break;
 
-                            case 9:
-                            AppData.launchURL(
-                                "https://youtu.be/0eV8xuExrA4");
-                            break;
-                        }
-                      },
-                      child: Container(
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          child: ClipRRect(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(5)),
-                            child: Stack(
-                              children: [
-                                Image.asset(
-                                  item,
-                                  fit: BoxFit.fill,
-                                  width: 1000,
-                                  height: double.maxFinite,
-                                  //height: 100,
-                                ),
-                                /* Image.network(
+                              case 9:
+                                AppData.launchURL(
+                                    "https://youtu.be/0eV8xuExrA4");
+                                break;
+                            }
+                          },
+                          child: Container(
+                            child: Container(
+                              margin: EdgeInsets.all(10),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                child: Stack(
+                                  children: [
+                                    Image.asset(
+                                      item,
+                                      fit: BoxFit.fill,
+                                      width: 1000,
+                                      height: double.maxFinite,
+                                      //height: 100,
+                                    ),
+                                    /* Image.network(
                                          item.bannerImage,
                                          fit: BoxFit.fill,
                                          width: 1000,
                                          height: double.maxFinite,
                                        ),*/
 
-                                Positioned(
-                                  bottom: 0,
-                                  left: 0,
-                                  right: 0,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color.fromARGB(200, 0, 0, 0),
-                                          Color.fromARGB(0, 0, 0, 0)
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter,
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 10.0, horizontal: 20.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          (imageSliders.indexOf(item) + 1)
-                                              .toString() +
-                                              "/" +
-                                              imageSliders.length.toString(),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 13.0,
-                                            fontWeight: FontWeight.w200,
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color.fromARGB(200, 0, 0, 0),
+                                              Color.fromARGB(0, 0, 0, 0)
+                                            ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter,
                                           ),
                                         ),
-                                      ],
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              (imageSliders.indexOf(item) + 1)
+                                                      .toString() +
+                                                  "/" +
+                                                  imageSliders.length
+                                                      .toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      top: 0,
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: (imageSliders.indexOf(item) == 4 ||
+                                              imageSliders.indexOf(item) == 7 ||
+                                              imageSliders.indexOf(item) == 0 ||
+                                              imageSliders.indexOf(item) == 1)
+                                          ? Icon(
+                                              Icons.play_circle_fill,
+                                              color: Colors.white,
+                                              size: 45,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ],
                                 ),
-                                Positioned(
-                                  top: 0,
-                                  bottom: 0,
-                                  left: 0,
-                                  right: 0,
-                                  child: (imageSliders.indexOf(item) == 4 ||
-                                      imageSliders.indexOf(item) == 7 ||
-                                      imageSliders.indexOf(item) == 0 ||
-                                      imageSliders.indexOf(item) == 1)
-                                      ? Icon(
-                                    Icons.play_circle_fill,
-                                    color: Colors.white,
-                                    size: 45,
-                                  )
-                                      : Container(),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ))
+                        ))
                     .toList(),
               ),
               SizedBox(
@@ -667,25 +665,23 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     });
   }
 
-  Widget _buildTileblue({ /*String icon,*/ IconData icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTileblue(
+      {/*String icon,*/ IconData icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery
-            .of(context)
-            .size
-            .width - 80) / 3,
+        width: (MediaQuery.of(context).size.width - 80) / 3,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -697,7 +693,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -705,7 +701,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -720,7 +716,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     //width: ,
                     height: 60.0,),*/
                     child:
-                    Icon(icon, color: AppData.kPrimaryColor, size: 40.0)),
+                        Icon(icon, color: AppData.kPrimaryColor, size: 40.0)),
 
                 /*Text(
                   '12',
@@ -791,23 +787,21 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 
-  Widget _buildTile1({icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTile1(
+      {icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
-      child: Container(padding: const EdgeInsets.all(0.0),
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery
-            .of(context)
-            .size
-            .width - 80) / 3,
+        width: (MediaQuery.of(context).size.width - 80) / 3,
         decoration: BoxDecoration(
-
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -901,25 +895,23 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     );
   }
 
-  Widget _buildTilered({IconData icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTilered(
+      {IconData icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
-        width: (MediaQuery
-            .of(context)
-            .size
-            .width - 80) / 3,
+        width: (MediaQuery.of(context).size.width - 80) / 3,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -931,7 +923,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -939,7 +931,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -1032,6 +1024,9 @@ class MyPage1Widget extends StatelessWidget {
   var widget;
   double _height = 85;
   double _width;
+  MainModel model;
+
+  MyPage1Widget({this.model});
 
   chooseAppointment(BuildContext context) {
     return showDialog(
@@ -1053,9 +1048,9 @@ class MyPage1Widget extends StatelessWidget {
                       children: <Widget>[
                         ListTile(
                           title: Center(child: Text("Health Screening")),
-
                           onTap: () {
-                           widget. model.apntUserType = Const.HEALTH_SCREENING_APNT;
+                            model.apntUserType =
+                                Const.HEALTH_SCREENING_APNT;
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "/userApnt");
                             // AppData.showInSnackBar(context,"hi");
@@ -1065,7 +1060,7 @@ class MyPage1Widget extends StatelessWidget {
                         ListTile(
                           title: Center(child: Text("Health Check-up")),
                           onTap: () {
-                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "/userApnt");
                           },
@@ -1073,15 +1068,13 @@ class MyPage1Widget extends StatelessWidget {
                         Divider(),
                         ListTile(
                           // icon: Icons.calendar_today,
-                          title:  Center(child: Text("Doctor Appointment")),
-                            onTap: () {
-                            Navigator.pushNamed(
-                                context, "/myAppointment");
+                          title: Center(child: Text("Doctor Appointment")),
+                          onTap: () {
+                            Navigator.pushNamed(context, "/myAppointment");
                             // Navigator.pushNamed(context, "/doctorconsultationPage");
                             // Navigator.pop(context);
                           },
                         ),
-
 
                         /* ListTile(
                           title: Text("Health Screening"),
@@ -1145,9 +1138,7 @@ class MyPage1Widget extends StatelessWidget {
         });
   }
 
-  Widget _Tilered({IconData icon,
-    String title,
-    Function fun}) {
+  Widget _Tilered({IconData icon, String title, Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1156,31 +1147,31 @@ class MyPage1Widget extends StatelessWidget {
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(icon, color: Colors.grey, size: 35,),
+            Icon(
+              icon,
+              color: Colors.grey,
+              size: 35,
+            ),
             SizedBox(
               width: 20,
             ),
             Text(title,
-                style: TextStyle(/*fontWeight: FontWeight.w300,*/
+                style: TextStyle(
+                    /*fontWeight: FontWeight.w300,*/
                     fontSize: 17,
-                    color: Colors.black), textAlign: TextAlign.center),
+                    color: Colors.black),
+                textAlign: TextAlign.center),
             //Icon(Icons.search, color: Colors.white),
           ],
         ),
-
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
-    _width = (MediaQuery
-        .of(context)
-        .size
-        .width - 80) / 3;
+    Size size = MediaQuery.of(context).size;
+    _width = (MediaQuery.of(context).size.width - 80) / 3;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
@@ -1229,7 +1220,7 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/search_icon.png",
                       fun: () {
-                       /* Navigator.pushNamed(
+                        /* Navigator.pushNamed(
                             context, "/findHealthcareService");*/
                         AppData.showInSnackBar(context, "Coming soon");
                       },
@@ -1262,7 +1253,6 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_checkup.png",
                       fun: () {
-
                         chooseAppointment(context);
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
@@ -1314,7 +1304,7 @@ class MyPage1Widget extends StatelessWidget {
                         AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                       // Navigator.pushNamed(context, "/emergencyHelp");
+                        // Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryRedColor,
                       bordercolor: AppData.kPrimaryRedColor,
@@ -1402,7 +1392,7 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/offers.png",
                       fun: () {
-                       // Navigator.pushNamed(context, "/discountoffer");
+                        // Navigator.pushNamed(context, "/discountoffer");
                         AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
@@ -1564,7 +1554,6 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-
                   ]),
             ],
           ),
@@ -1583,7 +1572,7 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Upload Medical Data",
                       fun: () {
                         AppData.showInSnackBar(context, "Coming soon");
-                       // Navigator.pushNamed(context, "/insuranceList");
+                        // Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -1654,34 +1643,34 @@ class MyPage1Widget extends StatelessWidget {
               /* Expanded(
                                 child: */
               Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilered(
-                      icon: "assets/medipedia.png",
-                      fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/medipedia");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      size: (size.width - 130) / 3,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildTilered(
+                    icon: "assets/medipedia.png",
+                    fun: () {
+                      AppData.showInSnackBar(context, "Coming soon");
+                      //Navigator.pushNamed(context, "/medipedia");
+                      // AppData.showSnack(
+                      //     context, "Coming soon", Colors.green);
+                    },
+                    color: AppData.BG1RED,
+                    bordercolor: AppData.BG1RED,
+                    size: (size.width - 130) / 3,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 35,
+                    /* child: Expanded(*/
+                    child: Text(
+                      "Medipedia", textAlign: TextAlign.center,
+                      //overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        "Medipedia", textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /*Align(
+                  ),
+                  /*Align(
                                           alignment: Alignment.center,
                                           child: Expanded(
                                             child: Text(
@@ -1690,7 +1679,8 @@ class MyPage1Widget extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           )),*/
-                  ],),
+                ],
+              ),
             ],
           ),
         ],
@@ -1698,13 +1688,14 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTileblue({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTileblue(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1714,7 +1705,7 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -1726,7 +1717,7 @@ class MyPage1Widget extends StatelessWidget {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -1734,7 +1725,7 @@ class MyPage1Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -1821,12 +1812,13 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTile1({icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTile1(
+      {icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1837,7 +1829,6 @@ class MyPage1Widget extends StatelessWidget {
         ///width: (MediaQuery.of(context).size.width - 80) / 3,
         width: _width,
         decoration: BoxDecoration(
-
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -1931,13 +1922,14 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTilered({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTilered(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1948,7 +1940,7 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -1960,7 +1952,7 @@ class MyPage1Widget extends StatelessWidget {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -1968,7 +1960,7 @@ class MyPage1Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -2063,13 +2055,8 @@ class MyPage2Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
-    _width = (MediaQuery
-        .of(context)
-        .size
-        .width - 80) / 3;
+    Size size = MediaQuery.of(context).size;
+    _width = (MediaQuery.of(context).size.width - 80) / 3;
     return Column(
       children: <Widget>[
         Expanded(
@@ -2173,13 +2160,14 @@ class MyPage2Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTileblue({String icon,
-    /* IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTileblue(
+      {String icon,
+      /* IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2189,7 +2177,7 @@ class MyPage2Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -2201,7 +2189,7 @@ class MyPage2Widget extends StatelessWidget {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -2209,7 +2197,7 @@ class MyPage2Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -2374,12 +2362,13 @@ class MyPage2Widget extends StatelessWidget {
   //       });
   // }
 
-  Widget _buildTile1({IconData icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTile1(
+      {IconData icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2390,7 +2379,6 @@ class MyPage2Widget extends StatelessWidget {
         ///width: (MediaQuery.of(context).size.width - 80) / 3,
         width: _width,
         decoration: BoxDecoration(
-
           /// borderRadius: BorderRadius.circular(7.0),
           borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
@@ -2484,12 +2472,13 @@ class MyPage2Widget extends StatelessWidget {
     );
   }
 
-  Widget _buildTilered({String icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTilered(
+      {String icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -2500,7 +2489,7 @@ class MyPage2Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -2512,7 +2501,7 @@ class MyPage2Widget extends StatelessWidget {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -2520,7 +2509,7 @@ class MyPage2Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
