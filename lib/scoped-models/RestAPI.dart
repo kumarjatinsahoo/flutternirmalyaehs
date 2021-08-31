@@ -83,10 +83,8 @@ GETMETHODCALL_TOKEN({@required String api, @required Function fun,String token})
 
   postSignUp(String token, Map<String, dynamic> json, Function fun) async {
     print(ApiFactory.POST_SIGNUP);
+    print("TOKEN>>>>Authorization>"+token);
     try {
-      //Response response = await dio.post(ApiFactory.POST_SIGNUP+token,data: FormData.fromMap(json));
-
-      print(jsonEncode(json));
       Response response = await dio.post(ApiFactory.POST_SIGNUP,
           options: Options(
             headers: {

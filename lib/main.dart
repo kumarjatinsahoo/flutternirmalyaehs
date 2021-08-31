@@ -19,6 +19,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
+import 'package:user/screens/Doctor/VitalDoctor.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
@@ -54,7 +55,8 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
-import 'package:user/screens/Patient/PatientDaashboard.dart';
+import 'package:user/screens/TestAppointmentPage1.dart';
+import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/screens/Patient/PatientRegistration3.dart';
@@ -88,6 +90,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TestReport.dart';
+import 'package:user/screens/TestReport1.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
@@ -386,7 +389,7 @@ class _MyAppState extends State<MyApp> {
               '/insuranceDetalis': (context) => InsuranceDetalis(
                     model: _model,
                   ),
-              '/testReport': (context) => TestReport(
+              '/testReport': (context) => TestReport1(
                     model: _model,
                   ),
               '/docApntlist': (context) => DocAponmnttListPage(
@@ -431,7 +434,7 @@ class _MyAppState extends State<MyApp> {
               '/patientRegistration4': (context) => PatientRegistration4(
                     model: _model,
                   ),
-              '/patientDashboard': (context) => PatientDashboard(
+              '/patientDashboard': (context) => LabDashboard(
                     model: _model,
                   ),
               '/chemistspage': (context) => ChemistsPage(
@@ -441,6 +444,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testappointmentpage': (context) => TestAppointmentPage(
+                    model: _model,
+                  ),
+              '/testappointmentpage1': (context) => TestAppointmentPage1(
                     model: _model,
                   ),
               '/pocreportlist': (context) => PocReportListPage(
@@ -485,6 +491,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/medi': (context) => MedicationAddScreen(
+                    model: _model,
+                  ),
+              '/vitalDoctor': (context) => VitalDoctor(
                     model: _model,
                   ),
             },

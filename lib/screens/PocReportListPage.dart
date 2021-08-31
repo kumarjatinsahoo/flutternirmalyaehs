@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/PocReportModel.dart';
 import 'package:user/providers/Const.dart';
@@ -21,11 +22,19 @@ class _PocReportListPageState extends State<PocReportListPage> {
   bool isDataNotAvail = false;
   ScrollController _scrollController = ScrollController();
 
+  static const platform = AppData.channel;
+
   @override
   void initState() {
     super.initState();
     callAPI();
   }
+/*
+  Future<void> callUrl(String data) async {
+    try {
+      final int result = await platform.invokeMethod('callUrl', data);
+    } on PlatformException catch (e) {}
+  }*/
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
@@ -86,12 +95,15 @@ class _PocReportListPageState extends State<PocReportListPage> {
                   child: ListTile(
                     onTap: () {
                       if (patient.reportUrl != null) {
-                        widget.model.pdfUrl = patient.reportUrl;
+                        /*widget.model.pdfUrl = patient.reportUrl;
                         print("URL IMAGE?>>>>>"+patient.reportUrl);
-                        Navigator.pushNamed(context, "/testReport");
+                        Navigator.pushNamed(context, "/testReport");*/
+                        AppData.launchURL("https://docs.google.com/gview?embedded=true&url="+patient.reportUrl);
                       } else {
                         AppData.showInSnackBar(context, "Data Not Available");
                       }
+                      //AppData.launchURL(patient.reportUrl);
+                      //callUrl("");
                     },
 
                     title: Text(
@@ -108,7 +120,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                         (patient.thpId == "")
                             ? Container()
                             : Text(
-                                patient.thpName,
+                                patient.thpName??"",
                                 style: TextStyle(color: Colors.grey),
                                 textAlign: TextAlign.start,
                               ),
@@ -118,22 +130,22 @@ class _PocReportListPageState extends State<PocReportListPage> {
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.mobile,
+                          patient.mobile??"",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.gender,
+                          patient.gender??"",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.age,
+                          patient.age??"",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.screeningDate,
+                          patient.screeningDate??"",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),

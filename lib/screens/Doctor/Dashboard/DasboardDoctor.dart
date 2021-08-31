@@ -6,6 +6,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
+import 'package:user/screens/Doctor/VitalDoctor.dart';
 import 'package:user/screens/VitalSigns.dart';
 
 class DasboardDoctor extends StatefulWidget {
@@ -159,7 +160,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("Dashboard"),backgroundColor:Color(0xFF0F6CE1)),
+      appBar:
+      AppBar(centerTitle: true, title: Text("Dashboard"),backgroundColor:Color(0xFF0F6CE1)),
       body: Center(
         child: Column(children: <Widget>[
           Row(
@@ -347,6 +349,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ),
                     ],
                   ),
+                  onTap: (){
+                    Navigator.push(context,
+                        new MaterialPageRoute(
+                            builder: (context) => new VitalDoctor()));
+                  },
                 ),
               ),
 
