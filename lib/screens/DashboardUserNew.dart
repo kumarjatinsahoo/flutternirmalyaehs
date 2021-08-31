@@ -1065,7 +1065,6 @@ class MyPage1Widget extends StatelessWidget {
                         Divider(),
                         ListTile(
                           title: Center(child: Text("Health Check-up")),
-
                           onTap: () {
                             widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
