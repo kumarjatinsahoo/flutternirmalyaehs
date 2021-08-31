@@ -4,12 +4,14 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/PatientsDetailsModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 class VitalDoctor extends StatefulWidget {
@@ -1200,7 +1202,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(31, "mg/dL")
+                                child: formField(32, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1228,7 +1230,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(32, "mg/dL")
+                                child: formField(33, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1256,7 +1258,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(32, "mg/dL")
+                                child:formField(34, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1285,7 +1287,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(33, "mg/dL")
+                                formField(35, "mg/dL")
                                 //     TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1353,7 +1355,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                           SizedBox(width: 10,),
                           Expanded(
-                            child:formField(34, "mg/dL")
+                            child:formField(36, "mg/dL")
                             // TextField(
                             //   keyboardType: TextInputType.text,
                             //   decoration: InputDecoration(
@@ -1419,7 +1421,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                                 SizedBox(width: 10,),
                                 Expanded(
-                                  child:formField(35, "mg/dL")
+                                  child:formField(37, "mg/dL")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1444,7 +1446,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                                 SizedBox(width: 10,),
                                 Expanded(
-                                  child: formField(35, "mg/dL")
+                                  child: formField(38, "mg/dL")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1470,7 +1472,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                                 SizedBox(width: 10,),
                                 Expanded(
-                                  child:formField(36, "mg/dL")
+                                  child:formField(39, "mg/dL")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1495,7 +1497,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                                 SizedBox(width: 10,),
                                 Expanded(
-                                  child: formField(37, "mg/dL")
+                                  child: formField(40, "mg/dL")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1521,7 +1523,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(width: 10,),
                                 Expanded(
                                   child:
-                                  formField(38, "mg/dL")
+                                  formField(41, "mg/dL")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1589,7 +1591,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(39, "mg/dL")
+                                child:formField(42, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1615,7 +1617,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(40, "mg/dL")
+                                child:formField(43, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1642,7 +1644,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(41, "mg/dL")
+                                child: formField(44, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1668,7 +1670,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(42, "mg/dL")
+                                child: formField(45, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1695,7 +1697,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(43, "mg/dL")
+                                formField(46, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1721,7 +1723,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(44, "mg/dL")
+                                child:formField(47, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1748,7 +1750,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(45, "mg/dL")
+                                formField(48, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1775,7 +1777,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(46, "mg/dL")
+                                formField(49, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1801,7 +1803,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(47, "mg/dL")
+                                formField(50, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1829,7 +1831,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(48, "mg/dL")
+                                formField(51, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1855,7 +1857,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(width: 10,),
                               Expanded(
                                 child:
-                                formField(49, "mg/dL")
+                                formField(52, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1922,7 +1924,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(50, "mg/dL")
+                                child: formField(53, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1948,7 +1950,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(51, "mg/dL")
+                                child: formField(54, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1975,7 +1977,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(52, "mg/dL")
+                                child:formField(55, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2001,7 +2003,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(52, "mg/dL")
+                                child:formField(56, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2027,7 +2029,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(53, "mg/dL")
+                                child: formField(57, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2053,7 +2055,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(54, "mg/dL")
+                                child: formField(58, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2079,7 +2081,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(55, "mg/dL")
+                                child:formField(59, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2105,7 +2107,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(57, "mg/dL")
+                                child: formField(60, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2130,7 +2132,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(58, "mg/dL")
+                                child:formField(61, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2196,7 +2198,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(59, "mg/dL")
+                                child:formField(62, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2222,7 +2224,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(60, "mg/dL")
+                                child: formField(63, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2249,7 +2251,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(61, "mg/dL")
+                                child:formField(64, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2275,7 +2277,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(62, "mg/dL")
+                                child: formField(65, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2301,7 +2303,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(63, "mg/dL")
+                                child: formField(66, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2368,7 +2370,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(64, "mg/dL")
+                                child:formField(67, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2394,7 +2396,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(65, "mg/dL")
+                                child: formField(68, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2421,7 +2423,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(66, "mg/dL")
+                                child: formField(69, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2447,7 +2449,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child: formField(67, "mg/dL")
+                                child: formField(70, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2473,7 +2475,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(68, "mg/dL")
+                                child:formField(71, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2499,7 +2501,7 @@ class _VitalDoctor extends State<VitalDoctor> {
 
                               SizedBox(width: 10,),
                               Expanded(
-                                child:formField(70, "mg/dL")
+                                child:formField(72, "mg/dL")
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -2513,6 +2515,8 @@ class _VitalDoctor extends State<VitalDoctor> {
                     ),
                   ],
                 ),
+
+                submitButton1(),
 
               ]),
             ),
@@ -2546,49 +2550,76 @@ class _VitalDoctor extends State<VitalDoctor> {
     );
   }
 
-  // Widget fromField(int index, String hint, bool enb, inputAct, keyType,
-  //     FocusNode currentfn, FocusNode nextFn, String type) {
-  //   // print(index);
-  //   // print(currentfn);
-  //   return TextFieldContainer(
-  //     //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-  //     child: TextFormField(
-  //       enabled: !enb,
-  //       controller: textEditingController[index],
-  //       focusNode: currentfn,
-  //       textInputAction: inputAct,
-  //       inputFormatters: [
-  //         //UpperCaseTextFormatter(),
-  //         // ignore: deprecated_member_use
-  //         WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-  //       ],
-  //       keyboardType: keyType,
-  //       decoration: InputDecoration(
-  //         border: InputBorder.none,
-  //         hintText: hint,
-  //         hintStyle: TextStyle(color: Colors.grey),
-  //       ),
-  //       validator: (value) {
-  //         if (value.isEmpty) {
-  //           error[index] = true;
-  //           return null;
-  //         } else {
-  //           error[index] = false;
-  //           return null;
-  //         }
-  //       },
-  //       onFieldSubmitted: (value) {
-  //         print("ValueValue" + error[index].toString());
-  //
-  //         setState(() {
-  //           error[index] = false;
-  //         });
-  //         AppData.fieldFocusChange(context, currentfn, nextFn);
-  //       },
-  //       onSaved: (newValue) {
-  //         print("onsave");
-  //       },
-  //     ),
-  //   );
-  // }
+  Widget submitButton1() {
+    return GestureDetector(
+      onTap: ()
+      {
+        if (textEditingController[0].text == "" ||
+            textEditingController[0].text == null) {
+          AppData.showInSnackBar(context, "Please enter mg/dL");
+        } else if (textEditingController[1].text == "" ||
+            textEditingController[1].text == null) {
+          AppData.showInSnackBar(context, "Please enter mg/dL");
+        }
+        else {
+          // doctorModel.address = textEditingController[8].text;
+          // doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
+          // doctorModel.stateid = DoctorSignUpForm4.stateModel.key;
+          // doctorModel.districtid = DoctorSignUpForm4.districtModel.key;
+          // doctorModel.cityid = DoctorSignUpForm4.cityModel.key;
+          // doctorModel.pincode = textEditingController[5].text;
+          // doctorModel.homephone = textEditingController[4].text;
+          // doctorModel.officephone = textEditingController[9].text;
+          // doctorModel.mobno = textEditingController[10].text;
+          // doctorModel.email = textEditingController[11].text;
+          // doctorModel.alteremail = textEditingController[12].text;
+          // doctorModel.organizationid = organisationname;
+          // doctorModel.docname = professionalname;
+          // doctorModel.titleid = title;
+          // doctorModel.educationid = education;
+          // doctorModel.speciality = speciality;
+          // doctorModel.dob = dateofbirth;
+          // doctorModel.bloodgroup = bloodgroup;
+          // doctorModel.gender = gender;
+          // doctorModel.role = "2";
+         // log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));
+          MyWidgets.showLoading(context);
+          widget.model.POSTMETHOD(
+              api: ApiFactory.DOCTOR_REGISTRATION,
+             // json: doctorModel.toJson(),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                //  popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 180, right: 0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            MyLocalizations.of(context).text("SUBMIT"),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+
+  }
+
+
  }
