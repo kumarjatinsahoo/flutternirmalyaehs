@@ -8,6 +8,7 @@ class PassData extends Model {
   String phnNo;
 
   String apntUserType;
+  String apntType;
   UserDetailsModel userModel;
   String slempid;
   String fromdate;
@@ -65,6 +66,7 @@ class PassData extends Model {
   String labalteremail;
 
   doc.Body appointmentlist;
+
 
 // String title;
 // String professionalname;

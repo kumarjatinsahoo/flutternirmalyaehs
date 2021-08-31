@@ -54,11 +54,11 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
-import 'package:user/screens/PatientDaashboard.dart';
-import 'package:user/screens/PatientRegistration.dart';
-import 'package:user/screens/PatientRegistration2.dart';
-import 'package:user/screens/PatientRegistration3.dart';
-import 'package:user/screens/PatientRegistration4.dart';
+import 'package:user/screens/Patient/PatientDaashboard.dart';
+import 'package:user/screens/Patient/PatientRegistration.dart';
+import 'package:user/screens/Patient/PatientRegistration2.dart';
+import 'package:user/screens/Patient/PatientRegistration3.dart';
+import 'package:user/screens/Patient/PatientRegistration4.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
@@ -90,6 +90,7 @@ import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TestReport.dart';
 import 'package:user/screens/TestReport1.dart';
 import 'package:user/screens/TreatmentCenters.dart';
+import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'package:user/screens/VitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
@@ -393,6 +394,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/docApnt': (context) => AllAppointmentPage(
+                    model: _model,
+                  ),
+              '/userApnt': (context) => UserAppointmentPage(
                     model: _model,
                   ),
               '/tabinstruction': (context) => TabInstruction(

@@ -63,6 +63,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   UserRegistrationModel userModel = UserRegistrationModel();
+  String _displayzone;
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   String organisationname;
@@ -201,6 +202,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
 
   @override
   Widget build(BuildContext context) {
+    bool showErrorMessage = false;
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
@@ -305,6 +307,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   userModel.country = data.key;
                                   userModel.countryCode = data.code;
                                   DoctorSignUpForm4.stateModel = null;
+
                                 });
                               }),
                             ),
@@ -336,6 +339,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                             data.code;
                                         DoctorSignUpForm4.cityModel =
                                             null;
+
+      //                                  DoctorSignUpForm4.stateModel=data.reset();
+
                                       });
                                     }),
                                   ),
@@ -444,12 +450,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                             ],
                           ),
                           Padding(
+
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10),
                             child: Row(
                               //  mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Checkbox(
+
                                   value: _checkbox,
                                   onChanged: (value) {
                                     setState(() {
@@ -490,6 +498,19 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               ],
                             ),
                           ),
+                          showErrorMessage ?
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(80.0)
+                              ),
+                              child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Text('Please accept the terms and conditions to proceed...')
+                              )
+                          )
+              :
+
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10),
@@ -663,30 +684,32 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
 
   Widget nextButton1() {
     return GestureDetector(
-      onTap: () {
-        if (textEditingController[8].text == "" ||
-            textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
-        } else if (DoctorSignUpForm4.countryModel == null ||
-            DoctorSignUpForm4.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
-        } else if (DoctorSignUpForm4.stateModel == null ||
-            DoctorSignUpForm4.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
-        } else if (DoctorSignUpForm4.districtModel == null ||
-            DoctorSignUpForm4.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select district");
-        }
-        else if (DoctorSignUpForm4.cityModel == null ||
-            DoctorSignUpForm4.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select city");
-        }
-        else if (textEditingController[5].text == "" ||
-            textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/pin code");
-        } else if (textEditingController[5].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Zip/pin code ");
-        } /*else if (textEditingController[4].text == "" ||
+      onTap: ()
+    {
+      if (textEditingController[8].text == "" ||
+          textEditingController[8].text == null) {
+        AppData.showInSnackBar(context, "Please enter Address");
+      } else if (DoctorSignUpForm4.countryModel == null ||
+          DoctorSignUpForm4.countryModel == "") {
+        AppData.showInSnackBar(context, "Please select country");
+      } else if (DoctorSignUpForm4.stateModel == null ||
+          DoctorSignUpForm4.stateModel == "") {
+        AppData.showInSnackBar(context, "Please select state");
+      } else if (DoctorSignUpForm4.districtModel == null ||
+          DoctorSignUpForm4.districtModel == "") {
+        AppData.showInSnackBar(context, "Please select district");
+      }
+      else if (DoctorSignUpForm4.cityModel == null ||
+          DoctorSignUpForm4.cityModel == "") {
+        AppData.showInSnackBar(context, "Please select city");
+      }
+      else if (textEditingController[5].text == "" ||
+          textEditingController[5].text == null) {
+        AppData.showInSnackBar(context, "Please enter Zip/pin code");
+      } else if (textEditingController[5].text.length <= 3) {
+        AppData.showInSnackBar(context, "Please enter Zip/pin code ");
+      }
+      /*else if (textEditingController[4].text == "" ||
             textEditingController[4].text == null) {
           AppData.showInSnackBar(context, "Please enter Enterhome phone");
         } else if (textEditingController[4].text.length <= 3) {
@@ -697,21 +720,30 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         } else if (textEditingController[9].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter office phone");
         }*/ else if (textEditingController[10].text == "" ||
-            textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (textEditingController[10].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter mobile no ");
-        } else if (textEditingController[11].text == "" ||
-            textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter emailid");
-        } else if (textEditingController[11].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter emailid ");
-        } /*else if (textEditingController[12].text == "" ||
+          textEditingController[10].text == null) {
+        AppData.showInSnackBar(context, "Please enter mobile no");
+      } else if (textEditingController[10].text.length <= 3) {
+        AppData.showInSnackBar(context, "Please enter mobile no ");
+      } else if (textEditingController[11].text == "" ||
+          textEditingController[11].text == null) {
+        AppData.showInSnackBar(context, "Please enter emailid");
+      } else if (textEditingController[11].text.length <= 3) {
+        AppData.showInSnackBar(context, "Please enter emailid ");
+      }
+    //  else if (_checkbox != true) {
+    //     setState(() =>
+    //         AppData.showInSnackBar(context, "Please select Checkbox")
+    //     );
+    //
+    // }
+
+        /*else if (textEditingController[12].text == "" ||
             textEditingController[12].text == null) {
           AppData.showInSnackBar(context, "Please enter Alternate emailid");
         } else if (textEditingController[12].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Alternate emailid ");
-        } */else {
+        } */
+    else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
           doctorModel.stateid = DoctorSignUpForm4.stateModel.key;

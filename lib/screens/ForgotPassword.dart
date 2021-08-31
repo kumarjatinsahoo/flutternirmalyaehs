@@ -59,18 +59,20 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 30),
                      child: TextFormField(
+                       maxLength: 10,
+                       keyboardType: TextInputType.number,
                      decoration: InputDecoration(
                        hintText: 'Mobile Number',                 
                      ),
                  ),
                    ),
                 
-          SizedBox(height: size.height * 0.07,),  
+          SizedBox(height: size.height * 0.05,),
           Padding(
              padding: const EdgeInsets.symmetric(horizontal: 20),
             child: _submitButton(),
           ),
-            SizedBox(height: size.height * 0.01,),  
+            SizedBox(height: size.height * 0.03,),
             InkWell(
              onTap: (){
                Navigator.pushNamed(context, "/forgotuserid");

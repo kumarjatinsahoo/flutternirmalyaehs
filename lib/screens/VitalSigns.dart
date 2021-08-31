@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -18,12 +19,23 @@ class _VitalSignsState extends State<VitalSigns> {
   int count = 0;
   List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
   List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
+  String valueText = null;
 
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
     });
   }
+  TextEditingController _height = TextEditingController();
+  TextEditingController _weight = TextEditingController();
+  TextEditingController _bmi = TextEditingController();
+  TextEditingController _tempreture = TextEditingController();
+  TextEditingController _systolicbloodpressure = TextEditingController();
+  TextEditingController _diastolicbloodpressure = TextEditingController();
+  TextEditingController _pulse = TextEditingController();
+  TextEditingController _respiration = TextEditingController();
+  TextEditingController _oxygensaturation = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +51,24 @@ class _VitalSignsState extends State<VitalSigns> {
           centerTitle: true,
           backgroundColor:AppData.kPrimaryColor,
           iconTheme: IconThemeData(color: AppData.white),
+            actions: <Widget>[
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.00),
+                  child: Icon(
+                    Icons.add_circle,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                ),
+                onTap:() async{
+                  _displayTextInputDialog(context);
+
+
+
+                },
+              ),
+]
         ),
 
         body: SingleChildScrollView(
@@ -222,23 +252,6 @@ class _VitalSignsState extends State<VitalSigns> {
                                                     padding: EdgeInsets.all(3),
                                                     child: Image.asset(choices[index].icon,height: 40,)
                                                 ),
-
-                                               /* Container(
-                                                  *//*count % 2 == 1 ??*//*
-                                                    color:AppData.klightblurColor,
-                                                    padding: EdgeInsets.all(3),
-                                                    child: Image.asset(choices[index].icon,height: 40,)
-                                                ),*/
-                                                /*Material(
-                                                  color: Colors.transparent,
-                                                  elevation: 10,
-                                                  child: new Image.asset(
-                                                    "assets/images/dashboard (1).png",
-                                                    height: 40,
-                                                    fit: BoxFit.cover,
-                                                    // color: Colors.blue
-                                                  ),
-                                                ),*/
                                               ],
                                             ),
                                             SizedBox(height: size.height * 0.02,),
@@ -291,6 +304,182 @@ class _VitalSignsState extends State<VitalSigns> {
       ),
     );
   }
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    _height.text = "161";
+    _weight.text = "63";
+    _bmi.text = "23";
+    _tempreture.text = "38.000c1000.000f";
+    _systolicbloodpressure.text = "213";
+    _diastolicbloodpressure.text = "4";
+    _pulse.text ="120";
+    _respiration.text = "24";
+    _oxygensaturation.text = "50";
+
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            insetPadding: EdgeInsets.symmetric(horizontal: 3),
+            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return SingleChildScrollView(
+                  child: Column(
+                //    mainAxisSize: MainAxisSize.min,
+                    children: [
+
+                      SizedBox(height: 10),
+                      Text(
+                        "Update Vital Sign",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+
+                           // valueText = value;
+                             _height.text=value;
+                          });
+                        },
+                        controller: _height,
+                        decoration: InputDecoration(hintText: "Height"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            //valueText = value;
+                          _weight.text = value;
+                          });
+                        },
+                        controller: _weight,
+                        decoration: InputDecoration(hintText: "Weight"),
+                      ),
+                      Divider(
+                        height: 2,
+                        color: Colors.black,
+                      ),
+
+                      TextField(
+                        // onChanged: (value) {
+                        //   setState(() {
+                        //    //valueText = value;
+                        //    _bmi.text = value;
+                        //   });
+                        // },
+                        controller: _bmi,
+                        decoration:
+                        InputDecoration(hintText: "BMI(KG/m)"),
+                      ),
+                      Divider(height: 2, color: Colors.black),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                           //valueText = value;
+                           _tempreture.text = value;
+                          });
+                        },
+                        controller: _tempreture,
+                        decoration:
+                        InputDecoration(hintText: "Temprature"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                          // valueText = value;
+                           _systolicbloodpressure.text = value;
+                          });
+                        },
+                        controller: _systolicbloodpressure,
+                        decoration:
+                        InputDecoration(hintText: "Systolic Blood Pressure"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                           //valueText = value;
+                           _diastolicbloodpressure.text = value;
+
+                          });
+                        },
+                        controller: _diastolicbloodpressure,
+                        decoration: InputDecoration(hintText: "Diastolic Blood Pressure"),
+                      ),
+                      Divider(
+                        height: 2,
+                        color: Colors.black,
+                      ),
+
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                          // valueText = value;
+                           _pulse.text = value;
+                          });
+                        },
+                        controller: _pulse,
+                        decoration:
+                        InputDecoration(hintText: " Pulse"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                           // valueText = value;
+                           _respiration.text = value;
+                          });
+                        },
+                        controller: _respiration,
+                        decoration:
+                        InputDecoration(hintText: " Respiration"),
+                      ),
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                           valueText = value;
+                           _oxygensaturation.text = value;
+                          });
+                        },
+                        controller: _oxygensaturation,
+                        decoration:
+                        InputDecoration(hintText: " Oxygen Saturation"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text('CANCEL', style: TextStyle(color: Colors.grey)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                onPressed: () {
+                  //AppData.showInSnackBar(context, "click");
+                  setState(() {
+
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
 }
 class Choice {
   const Choice({this.title, this.icon,this.title1,this.color});

@@ -74,6 +74,28 @@ class MyWidgets {
       ),
     );
   }
+  static Widget toggleButton2(name, fun) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        right: 8.0,
+      ),
+      child: Container(
+        padding: EdgeInsets.fromLTRB(10, 2, 9, 2),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Text(
+              name,
+              style: TextStyle(fontSize: 13, color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   static Widget search(fun) {
     return Container(
       height: 47.0,

@@ -815,10 +815,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                       children: <Widget>[
                         ListTile(
                           title: Text("Health Screening"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+
                           onTap: () {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
@@ -830,10 +827,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         Divider(),
                         ListTile(
                           title: Text("Health Check-up"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+
                           onTap: () {
                             widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
@@ -843,10 +837,7 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         Divider(),
                         ListTile(
                           title: Text("Doctor Appointment"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+
                           onTap: () {
                             widget.model.apntUserType = Const.DOC_APNT;
                             Navigator.pop(context);
@@ -892,11 +883,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Text("Health Screening"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("Health Screening")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
@@ -907,11 +898,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Health Check-up"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("Health Check-up")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
@@ -920,11 +911,11 @@ class _PatientDashboardState extends State<PatientDashboard> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Doctor Visit"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
+                          title: Center(child: Text("Doctor Visit")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
                           onTap: () {
                             widget.model.apntUserType = Const.DOC_APNT;
                             Navigator.pop(context);

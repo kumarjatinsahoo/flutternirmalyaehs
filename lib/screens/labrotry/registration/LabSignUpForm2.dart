@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/PatientRegistration2.dart';
+import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
