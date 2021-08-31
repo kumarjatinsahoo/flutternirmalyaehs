@@ -15,6 +15,7 @@ class PassData extends Model {
   String todate;
   patiet.Body model;
   String pdfUrl;
+  String pdfUrlUser;
 
   String token;
   String user;

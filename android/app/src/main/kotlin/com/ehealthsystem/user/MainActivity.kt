@@ -14,7 +14,6 @@ import android.telephony.TelephonyManager
 import android.view.View
 import android.view.Window
 import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -29,6 +28,10 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             if (call.method == "getBatteryLevel") {
 
+            }else if (call.method == "callUrl") {
+                //val intent = Intent(this, WebViewActivity::class.java)
+                //intent.putExtra("key", value)
+                //startActivity(intent)
             } else if (call.method == "deviceId") {
                 var value = getIMEIDeviceId(this@MainActivity)
                 if (value != null)

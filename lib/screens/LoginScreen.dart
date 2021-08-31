@@ -435,7 +435,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-                    if (loginResponse.body.roles[0] == "8".toLowerCase()) {
+                    if (loginResponse.body.roles[0] == "8".toLowerCase()) { //Lab dashboard
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {

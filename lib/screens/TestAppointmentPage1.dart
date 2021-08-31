@@ -15,21 +15,21 @@ import 'package:user/widgets/MyWidget.dart';
 import 'CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
-class TestAppointmentPage extends StatefulWidget {
+class TestAppointmentPage1 extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
 
-  TestAppointmentPage({
+  TestAppointmentPage1({
     Key key,
     this.model,
     this.isConfirmPage = false,
   }) : super(key: key);
 
   @override
-  _TestAppointmentPageState createState() => _TestAppointmentPageState();
+  _TestAppointmentPage1State createState() => _TestAppointmentPage1State();
 }
 
-class _TestAppointmentPageState extends State<TestAppointmentPage>
+class _TestAppointmentPage1State extends State<TestAppointmentPage1>
     with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -395,11 +395,12 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                       width: 80,
                                       child: InkWell(
                                         onTap: () {
-                                          showDialog(
+                                          /*showDialog(
                                               context: context,
                                               builder: (BuildContext context) =>
                                                   dialogRegNo(context,
-                                                      foundUser[index]));
+                                                      foundUser[index]));*/
+                                          Navigator.pushNamed(context, "/vitalDoctor");
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
