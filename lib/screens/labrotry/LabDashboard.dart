@@ -76,7 +76,7 @@ class _LabDashboardState extends State<LabDashboard> {
           "deviceId": identifier,
           "action": "add"
         };
-        print("POST DATA>>>MEDTEL"+jsonEncode(postData).toString());
+        print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
         widget.model.POSTMETHOD(
           api: ApiFactory.REG_DEVICE,
           json: postData,
@@ -117,7 +117,6 @@ class _LabDashboardState extends State<LabDashboard> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 0,
         ),
-
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -349,8 +348,7 @@ class _LabDashboardState extends State<LabDashboard> {
                                 fun: () {
                                   /*Navigator.pushNamed(
                                       context, "/patientRegistration");*/
-                                  Navigator.pushNamed(
-                                      context, "/walkRegList");
+                                  Navigator.pushNamed(context, "/walkRegList");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
@@ -397,160 +395,42 @@ class _LabDashboardState extends State<LabDashboard> {
                               ),
                             ]),
                         Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTile1(
-                                icon: Icons.edit_attributes,
-                                title: "Test",
-                                fun: () {
-                                  //chooseAppointment1(context);
-                                  Navigator.pushNamed(
-                                      context, "/testappointmentpage");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTile1(
+                              icon: Icons.edit_attributes,
+                              title: "Test",
+                              fun: () {
+                                //chooseAppointment1(context);
+                                Navigator.pushNamed(
+                                    context, "/testappointmentpage");
+                              },
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                              // ,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-
-                    /* Container(
-                  // color: Colors.grey,
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                   itemCount: strOrders.length,
-  gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-    // mainAxisExtent: 110,
-    // mainAxisSpacing: 5,
-      crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
-  itemBuilder: (BuildContext context, int index) {
-    return Card(
-      elevation: 2,
-
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue[600],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, "/deliveredorder");
-                      },
-                      child: Container(
-                        child: new GridTile(
-      child:
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 10,
-                                                              child: new Image.asset(
-                                      "assets/images/dashboard (1).png",
-                                      height: 40,
-                                      fit: BoxFit.cover,
-                                      // color: Colors.blue
-                                    ),
-                                ),
-                              ],
-                            ),
-                            // SizedBox(height: size.height * 0.02,),
-                                              Text(strOrders[index].toString(),
-                                               style: TextStyle( color: Colors.white),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                       ),
-                          ],
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildTile2(
+                          //icon: Icons.document_scanner,
+                          icon: CupertinoIcons.settings_solid,
+                          title: "Updation Data",
+                          fun: () {
+                            Navigator.pushNamed(context, "/testappointmentpage1");
+                          },
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          // ,
                         ),
-
-                        ),
-                      ),
+                      ],
                     ),
-                  ),
-                ),
-    );
-  },
-),
-                ),*/
-
-                    /* Container(
-                  // color: Colors.grey,
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-  itemCount: strOthers.length,
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    // mainAxisExtent: 110,
-    // mainAxisSpacing: 5,
-      crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
-  itemBuilder: (BuildContext context, int index) {
-    return Card(
-      elevation: 2,
-
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue[600],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, "/deliveredorder");
-                      },
-                      child: Container(
-                        child: new GridTile(
-      child:
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 10,
-                                                              child: new Image.asset(
-                                      "assets/images/dashboard (1).png",
-                                      height: 40,
-                                      fit: BoxFit.cover,
-                                      // color: Colors.blue
-                                    ),
-                                ),
-                              ],
-                            ),
-                            // SizedBox(height: size.height * 0.02,),
-                                              Text(strOthers[index].toString(),
-                                               style: TextStyle( color: Colors.white),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                       ),
-                          ],
-                        ),
-
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-    );
-  },
-),
-                ),*/
                   ],
                 ),
               ),
@@ -595,7 +475,6 @@ class _LabDashboardState extends State<LabDashboard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-
                 /* Align(
                   alignment: Alignment.center,
                   child: Image.asset(
@@ -655,10 +534,10 @@ class _LabDashboardState extends State<LabDashboard> {
                         '67',
                         style: TextStyle(color: Colors.white, fontSize: 10),
                       ))),
-              *//*Positioned(
+              */ /*Positioned(
             top: 20,
             left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
+            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
               */
             /*Positioned(
             bottom: 20,
@@ -668,7 +547,7 @@ class _LabDashboardState extends State<LabDashboard> {
                 Text('Daily Goal', style: TextStyle(color: Colors.white),),
                  Text('900 kcal', style: TextStyle(color: Colors.white),),
               ],
-            ))*//*
+            ))*/ /*
             )*/
           ],
         ),
@@ -710,7 +589,6 @@ class _LabDashboardState extends State<LabDashboard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-
                 /* Align(
                   alignment: Alignment.center,
                   child: Image.asset(
@@ -776,7 +654,7 @@ class _LabDashboardState extends State<LabDashboard> {
             /*Positioned(
             top: 20,
             left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*//*
+            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
               */
             /*Positioned(
             bottom: 20,
@@ -815,7 +693,6 @@ class _LabDashboardState extends State<LabDashboard> {
                       children: <Widget>[
                         ListTile(
                           title: Text("Health Screening"),
-
                           onTap: () {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
@@ -827,7 +704,6 @@ class _LabDashboardState extends State<LabDashboard> {
                         Divider(),
                         ListTile(
                           title: Text("Health Check-up"),
-
                           onTap: () {
                             widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
@@ -837,7 +713,6 @@ class _LabDashboardState extends State<LabDashboard> {
                         Divider(),
                         ListTile(
                           title: Text("Doctor Appointment"),
-
                           onTap: () {
                             widget.model.apntUserType = Const.DOC_APNT;
                             Navigator.pop(context);

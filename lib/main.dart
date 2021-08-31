@@ -19,6 +19,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
+import 'package:user/screens/Doctor/VitalDoctor.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
@@ -54,6 +55,7 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -444,6 +446,9 @@ class _MyAppState extends State<MyApp> {
               '/testappointmentpage': (context) => TestAppointmentPage(
                     model: _model,
                   ),
+              '/testappointmentpage1': (context) => TestAppointmentPage1(
+                    model: _model,
+                  ),
               '/pocreportlist': (context) => PocReportListPage(
                     model: _model,
                   ),
@@ -486,6 +491,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/medi': (context) => MedicationAddScreen(
+                    model: _model,
+                  ),
+              '/vitalDoctor': (context) => VitalDoctor(
                     model: _model,
                   ),
             },
