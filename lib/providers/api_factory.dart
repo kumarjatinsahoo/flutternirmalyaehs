@@ -64,4 +64,5 @@ class ApiFactory {
   static String USER_APPOINTMENT_LIST =MAIN_URL + 'get-user-appointment-list?userid=';
   static String doctor_APPOINTMENT_LIST =MAIN_URL + 'view-doctor-appointment-list?userid=';
   static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
+
 }

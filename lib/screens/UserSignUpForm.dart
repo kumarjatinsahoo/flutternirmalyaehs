@@ -724,7 +724,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    RichText(
+                                Expanded(
+                                    child:RichText(
                                         textAlign: TextAlign.start,
                                         text: TextSpan(
                                           children: [
@@ -752,7 +753,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               ),
                                             )
                                           ],
-                                        )),
+                                        ))),
                                   ],
                                 ),
                               ),

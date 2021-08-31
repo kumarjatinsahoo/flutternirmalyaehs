@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -51,6 +52,11 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                      decoration: InputDecoration(
                        hintText: 'Email ID',                                                 
                      ),
+                      inputFormatters: [
+                        //UpperCaseTextFormatter(),
+                        // ignore: deprecated_member_use
+                        WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.a-zA-Z0-9.&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+                      ],
                  ),
                   ),
                  SizedBox(height: size.height * 0.02,),
@@ -61,6 +67,11 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                      child: TextFormField(
                        maxLength: 10,
                        keyboardType: TextInputType.number,
+                       inputFormatters: [
+                         //UpperCaseTextFormatter(),
+                         // ignore: deprecated_member_use
+                         WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                       ],
                      decoration: InputDecoration(
                        hintText: 'Mobile Number',                 
                      ),

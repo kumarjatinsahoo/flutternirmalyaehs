@@ -252,7 +252,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 color: AppData.kPrimaryColor,
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -290,7 +290,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),
               ),
               ListTile(
-                  leading: Icon(Icons.dashboard),
+                  leading: Icon(Icons.dashboard,color:AppData.menublueColor,size: 27),
                   title: Text('Dashboard'),
                   selected: _selectedDestination == 0,
                   onTap: () {
@@ -321,10 +321,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('Home'),
                 selected: _selectedDestination == 2,
-                // onTap: () {
-                //   selectDestination(1);
-                //   Navigator.pushNamed(context, "/profile");
-                // },
+                 onTap: () {
+                 selectDestination(2);
+                   //Navigator.pushNamed(context, "/profile");
+                },
               ),
               ListTile(
                 leading: Image.asset(
@@ -335,7 +335,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Manage Account'),
                 selected: _selectedDestination == 3,
                 onTap: () {
-                  selectDestination(1);
+                  selectDestination(3);
                   // Navigator.pushNamed(context, "/patientDashboard");
                 },
               ),
@@ -347,10 +347,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 // leading: Icon(Icons.person),
                 title: Text('About Us'),
                 selected: _selectedDestination == 4,
-                // onTap: () {
-                //   selectDestination(1);
-                //   Navigator.pushNamed(context, "/profile");
-                // },
+                 onTap: () {
+                   selectDestination(4);
+                // Navigator.pushNamed(context, "/profile");
+                 },
               ),
               ListTile(
                 leading: Image.asset(
@@ -359,10 +359,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),
                 title: Text('Share'),
                 selected: _selectedDestination == 5,
-                /* onTap: () {
+                 onTap: () {
                    selectDestination(5);
-                   Navigator.pushNamed(context, "/dashboard1");
-                  }*/
+                  // Navigator.pushNamed(context, "/dashboard1");
+                  }
               ),
               ListTile(
                   leading: Image.asset(
@@ -373,7 +373,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    Navigator.pushNamed(context, "/share");
+                    //Navigator.pushNamed(context, "/share");
                   }),
               ListTile(
                   leading: Image.asset(
@@ -383,8 +383,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   title: Text('Support'),
                   selected: _selectedDestination == 7,
                   onTap: () {
-                    selectDestination(5);
-                    Navigator.pushNamed(context, "/signUpForm");
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/signUpForm");
                   }),
               ListTile(
                 leading: Image.asset(
@@ -393,82 +393,81 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),
                 title: Text('Reminder'),
                 selected: _selectedDestination == 8,
-                // onTap: () {
-                //   selectDestination(5);
-                //   Navigator.pushNamed(context, "/share");
-                // }
+                onTap: () {
+                 selectDestination(8);
+                   //Navigator.pushNamed(context, "/share");
+                }
               ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Icon(Icons.person,color:AppData.kPrimaryRedColor,size: 30),
                 title: Text('Notifications'),
-                selected: _selectedDestination == 2,
+                selected: _selectedDestination == 9,
                 onTap: () {
-                  selectDestination(2);
-                  Navigator.pushNamed(context, "/patientRegistration");
+                  selectDestination(9);
+                //   Navigator.pushNamed(context, "/patientRegistration");
                 },
               ),
               ListTile(
-                leading: Icon(Icons.help_center),
+                leading: Icon(Icons.help_center,color:AppData.menublueColor,size: 27),
                 title: Text('Help'),
-                selected: _selectedDestination == 4,
+                selected: _selectedDestination == 10,
                 onTap: () {
-                  selectDestination(4);
-                  Navigator.pushNamed(context, "/help");
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/help");
                 },
                 // onTap: () {
                 // },
               ),
               ListTile(
-                  leading: Icon(Icons.collections),
+                  leading: Icon(Icons.collections,color:AppData.kPrimaryRedColor,size: 27),
                   title: Text('My Orders'),
-                  selected: _selectedDestination == 6,
+                  selected: _selectedDestination == 11,
                   onTap: () {
-                    selectDestination(6);
-                    Navigator.pushNamed(context, "/myorder");
+                    selectDestination(11);
+                    //Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
-                  leading: Icon(Icons.calendar_today),
+                  leading: Icon(Icons.calendar_today,color:AppData.menublueColor,size: 25),
                   title: Text('Monthly Overview'),
-                  selected: _selectedDestination == 7,
+                  selected: _selectedDestination == 12,
                   onTap: () {
-                    selectDestination(7);
-                    Navigator.pushNamed(context, "/monthlyview");
+                    selectDestination(12);
+                    //Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
-                  leading: Icon(Icons.healing),
+                  leading: Icon(Icons.healing,color:AppData.kPrimaryRedColor,size: 27),
                   title: Text('Processed Orders'),
-                  selected: _selectedDestination == 8,
+                  selected: _selectedDestination == 13,
                   onTap: () {
-                    selectDestination(7);
-                    Navigator.pushNamed(context, "/processedorders");
+                    selectDestination(13);
+                    //Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.home,color:AppData.menublueColor,size: 27),
                 title: Text('Set Discount and Offer'),
-                selected: _selectedDestination == 9,
+                selected: _selectedDestination == 14,
                 onTap: () {
-                  selectDestination(8);
-                  Navigator.pushNamed(context, "/setdiscount");
+                  selectDestination(14);
+                  //Navigator.pushNamed(context, "/setdiscount");
                 },
               ),
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.home,color:AppData.kPrimaryRedColor,size: 27),
                 title: Text('Tab Instruction'),
-                selected: _selectedDestination == 9,
+                selected: _selectedDestination == 15,
                 onTap: () {
-                  selectDestination(8);
-                  Navigator.pushNamed(context, "/tabinstruction");
+                  selectDestination(15);
+                  //Navigator.pushNamed(context, "/tabinstruction");
                 },
               ),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/logout.png",
+                leading: Image.asset("assets/images/logout.png",
                   height: 30,
                 ),
                 title: Text('Logout'),
-                selected: _selectedDestination == 11,
+                selected: _selectedDestination == 16,
                 onTap: () {
-                  selectDestination(9);
+                  selectDestination(16);
                   _exitApp();
                 },
               ),
@@ -1560,7 +1559,7 @@ class MyPage1Widget extends StatelessWidget {
                       height: 35,
                       /* child: Expanded(*/
                       child: Text(
-                        "Govternment Schemes",
+                        "Government Schemes",
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),

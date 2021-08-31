@@ -17,6 +17,7 @@ class AppData {
   static int textColor = 00000000;
 
   static Color kPrimaryColor = Color(0xFF2372B6);
+  static Color menublueColor = Color(0xFF014E91);
   static Color hintColor = Color(0xFF666666);
   static Color BG1RED = Color(0xFFFEF7F8);
   static Color BG2BLUE = Color(0xFFF5FAFE);
