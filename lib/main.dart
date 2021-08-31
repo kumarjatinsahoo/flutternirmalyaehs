@@ -114,7 +114,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'localization/application.dart';
 import 'localization/initialize_i18n.dart';
 import 'localization/localizations.dart';
-import 'screens/DashBoardNew.dart';
+import 'screens/DashboardUserNew.dart';
 
 String selectedLan;
 
