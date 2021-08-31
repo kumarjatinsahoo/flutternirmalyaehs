@@ -65,7 +65,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
   @override
   void initState() {
     super.initState();
-   // comeFrom = widget.model.apntUserType;
+    comeFrom = widget.model.apntUserType;
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
     beneficiary = widget.model.user;
@@ -73,7 +73,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
   }
 
   callAPI(String today) {
-     if (widget.model.apntUserType == Const.HEALTH_SCREENING_APNT) {
+    if (comeFrom == /*Const.HEALTH_SCREENING_APNT*/"Health Screening")  {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.HEALTH_APPOINTMENT_SCREENING_LIST +
             widget.model.user +
@@ -92,7 +92,7 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
           });
         });
      }
-     else if (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT) {
+    else if (comeFrom == /*Const.HEALTH_CHKUP_APNT*/"Health Check-up") {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.HEALTH_APPOINTMENT_CHKUP_LIST +widget.model.user+"&appontdt="+today,
           token: widget.model.token,

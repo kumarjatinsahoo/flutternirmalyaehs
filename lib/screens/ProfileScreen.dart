@@ -25,6 +25,10 @@ import 'package:flutter/material.dart';
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
   final bool isConfirmPage;
+  static KeyvalueModel bloodgroupmodel = null;
+  static KeyvalueModel gendermodel = null;
+  static KeyvalueModel relationmodel = null;
+  static KeyvalueModel specialitymodel = null;
 
   ProfileScreen({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
@@ -565,13 +569,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _fname.text = patientProfileModel.body.fName;
     _lname.text = patientProfileModel.body.lName;
     textEditingController[2].text = patientProfileModel.body.dob;
-    _bloodGroup.text = patientProfileModel.body.bloodGroup;
-    _gender.text = patientProfileModel.body.gender;
+    ProfileScreen.relationmodel  = KeyvalueModel(
+      //  key: issuesDetailsModel.issueToId,
+        name: patientProfileModel.body.eRelation);
+
+    // _bloodGroup.text = patientProfileModel.body.bloodGroup;
+    //_gender.text = patientProfileModel.body.gender;
     _eMobile.text = patientProfileModel.body.eMobile;
     _eName.text = patientProfileModel.body.eName;
-    _eRelation.text = patientProfileModel.body.eRelation;
+    //_eRelation.text = patientProfileModel.body.eRelation;
     _fDoctor.text = patientProfileModel.body.fDoctor;
-    _speciality.text = patientProfileModel.body.speciality;
+    //_speciality.text = patientProfileModel.body.speciality;
     _docMobile.text = patientProfileModel.body.docMobile;
 
     return showDialog(
@@ -684,9 +692,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       dob(),
 
                       DropDown.networkDropdown(
-                          "Blood Group", ApiFactory.BLOODGROUP_API, "relation",
+                          "Blood Group", ApiFactory.BLOODGROUP_API, "bloodgroup",
                           (KeyvalueModel model) {
+                       setState(() {
+
+                           // patientProfileModel.body.bloodGroup= model.key;
+                            patientProfileModel.body.bloodGroup = model.name;
+                            ProfileScreen.bloodgroupmodel = model;
                         updateProfileModel.bloodGroup = model.key;
+                          });
                       }),
                       Divider(
                         height: 2,
@@ -696,7 +710,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       DropDown.networkDropdown(
                           "Gender", ApiFactory.GENDER_API, "gender",
                           (KeyvalueModel model) {
-                        updateProfileModel.gender = model.key;
+                          setState(() {
+
+                            patientProfileModel.body.gender = model.name;
+                            ProfileScreen.gendermodel = model;
+                            updateProfileModel.gender = model.key;
+                         });
                       }),
                       Divider(
                         height: 2,
@@ -730,8 +749,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       DropDown.networkDropdown(
                           "Relation", ApiFactory.RELATION_API, "relation",
                           (KeyvalueModel model) {
+                      setState(() {
+                        patientProfileModel.body.eRelation= model.name;
+                        ProfileScreen.relationmodel = model;
                         updateProfileModel.eRelation = model.key;
-                      }),
+                      });
+                          }),
                       Divider(height: 2, color: Colors.black),
 
                       TextField(
@@ -777,9 +800,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //   decoration: InputDecoration(hintText: "Speciality"),
                       // ),
                       DropDown.networkDropdown(
-                          "Speciality", ApiFactory.SPECIALITY_API, "relation",
+                          "Speciality", ApiFactory.SPECIALITY_API, "speciality",
                           (KeyvalueModel model) {
-                        updateProfileModel.speciality = model.key;
+                        setState(() {
+                           patientProfileModel.body.speciality= model.name;
+                            ProfileScreen.specialitymodel = model;
+                          updateProfileModel.speciality = model.key;
+                       });
                       }),
                       Divider(
                         height: 2,
