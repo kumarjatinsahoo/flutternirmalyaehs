@@ -12,7 +12,6 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-
 import 'CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
@@ -33,7 +32,8 @@ class TestAppointmentPage extends StatefulWidget {
 class _TestAppointmentPageState extends State<TestAppointmentPage>
     with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
- // LoginResponse1 loginResponse;
+
+  // LoginResponse1 loginResponse;
   LabBookModel appointModel;
 
   StreamSubscription _connectionChangeStream;
@@ -59,6 +59,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   String comeFrom;
 
   static const platform = AppData.channel;
+  List<Body> foundUser;
 
   @override
   void initState() {
@@ -80,14 +81,13 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     callAPI(today);
     //printInterger()
   }
+
   bool isDataNotAvail = false;
 
   Future<void> _callLabApp(String data) async {
     try {
       final int result = await platform.invokeMethod('iLab', data);
-
-    } on PlatformException catch (e) {
-    }
+    } on PlatformException catch (e) {}
   }
 
   callAPI(String today) {
@@ -99,6 +99,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               appointModel = LabBookModel.fromJson(map);
+              foundUser = appointModel.body;
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -108,17 +109,16 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   Future<Null> _selectDate(BuildContext context) async {
-
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 30)),
         lastDate:
-        DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
+            DateTime.now().add(Duration(days: 276))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
-      isDataNotAvail=false;
+      isDataNotAvail = false;
       final df = new DateFormat('dd/MM/yyyy');
       //final df = new DateFormat('yyyy/MM/dd');
       today = df.format(picked);
@@ -140,10 +140,26 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     });
   }
 
+  void _runFilter(String enteredKeyword) {
+    List<Body> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = appointModel.body;
+    } else {
+      results = appointModel.body
+          .where((user) => user.patientName
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      foundUser = results;
+    });
+  }
+
+  bool isSearchShow = false;
+
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -157,15 +173,19 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
               MyLocalizations.of(context).text("TESTS"),
               style: TextStyle(color: bgColor),
             ),
-            /*InkWell(
+            InkWell(
               onTap: () {
-                Navigator.pushNamed(context, "/qrCode1");
+                setState(() {
+                  isSearchShow = !isSearchShow;
+                });
               },
               child: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
-                child: Icon(Icons.qr_code),
+                child: Icon(!isSearchShow
+                    ? Icons.search
+                    : Icons.highlight_remove_rounded),
               ),
-            )*/
+            )
           ],
         ),
         titleSpacing: 2,
@@ -175,15 +195,28 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         child: Container(
           color: bgColor,
           margin: EdgeInsets.only(left: 5, right: 5),
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
+          height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 3,
+                ),
+                (isSearchShow)
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Container(
+                          child: TextField(
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: "Search"),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                SizedBox(
+                  height: 8,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -218,61 +251,6 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                         ),
                       ),
                     ),
-                    /*Row(
-                      children: [
-                        MyWidgets.toggleButton("NEW", () {
-                          //Navigator.pushNamed(context, "/qrCode1");
-                          //dialogRegNo(context);
-                          //dialogPopup(context);
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogRegNo(context),
-                          );
-                        }),
-                        MyWidgets.toggleButton1("REPORTS", () {
-                          AppData.showInSnackBar(context, "Reports click");
-                        }),
-                      ],
-                    ),*/
-
-                    /*InkWell(
-                      onTap: () {
-                        setState(() {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogaddShift(context),
-                          );
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 8.0,
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(7, 1, 6, 1),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "NEW",
-                                style: TextStyle(
-                                    fontSize: 13, color: Colors.black),
-                              ),
-                              Text(
-                                "+",
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )*/
                   ],
                 ),
                 SizedBox(
@@ -295,6 +273,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               fontWeight: FontWeight.bold),
                         ),
                       ),
+                      SizedBox(width: 10,),
                       Expanded(
                         child: Text(
                           MyLocalizations.of(context).text("NAME"),
@@ -305,16 +284,6 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      /*Expanded(
-                        child: Text(
-                          "Age",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),*/
                       SizedBox(
                         width: 35,
                         child: Text(
@@ -337,7 +306,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Expanded(
+                      SizedBox(
+                        width: 80,
                         child: Text(
                           "Status",
                           textAlign: TextAlign.start,
@@ -351,127 +321,124 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                   ),
                 ),
                 (appointModel != null &&
-                    appointModel.body != null &&
-                    appointModel.body.length > 0)
+                        appointModel.body != null &&
+                        appointModel.body.length > 0)
                     ? ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                    itemCount: appointModel.body.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: 3),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                /*Expanded(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                        itemCount: foundUser.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 3),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    /*Expanded(
                                       child: Text(
                                         appointModel.appointList[index].id,
                                         style: TextStyle(color: Colors.black),
                                         textAlign: TextAlign.start,
                                       ),
                                     ),*/
-                                SizedBox(
-                                  width: 60,
-                                  child: Text(
-                                    appointModel.body[index].regNo,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
+                                    SizedBox(
+                                      width: 60,
+                                      child: Text(
+                                        foundUser[index].regNo,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    appointModel
-                                        .body[index].patientName,
-                                    style: TextStyle(color: Colors.black),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                                /*Expanded(
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Text(
+                                        foundUser[index].patientName,
+                                        style: TextStyle(color: Colors.black),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                    /*Expanded(
                                       child: Text(
                                         appointModel.appointList[index].age,
                                         style: TextStyle(color: Colors.black),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),*/
-                                SizedBox(
-                                  width: 35,
-                                  child: Text(
-                                    appointModel.body[index].age.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 60,
-                                  child: Text(
-                                    "F",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              dialogRegNo(
-                                                  context,
-                                                  appointModel
-                                                      .body[
-                                                  index]));
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(2.0)),
-                                        border:
-                                        Border.all(color: Colors.black),
-                                      ),
-                                      alignment: Alignment.topLeft,
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 2, horizontal: 3),
+                                    SizedBox(
+                                      width: 35,
                                       child: Text(
-                                        appointModel.body[index]
-                                            .appntmntStatus,
+                                        foundUser[index].age.toString(),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: Colors.green,
-                                            decoration:
-                                            TextDecoration.underline),
-                                        textAlign: TextAlign.start,
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: 60,
+                                      child: Text(
+                                        foundUser[index].gender[0],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 80,
+                                      child: InkWell(
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  dialogRegNo(context,
+                                                      foundUser[index]));
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(2.0)),
+                                            border:
+                                                Border.all(color: Colors.black),
+                                          ),
+                                          alignment: Alignment.topLeft,
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2, horizontal: 3),
+                                          child: Text(
+                                            foundUser[index].appntmntStatus,
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                decoration:
+                                                    TextDecoration.underline),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                              ),
+                            ],
+                          );
+                        })
+                    : (isDataNotAvail)
+                        ? Container(
+                            height: size.height - 100,
+                            child: Center(
+                              child: Text("Data Not Found"),
                             ),
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                          ),
-                        ],
-                      );
-                    })
-                    :  (isDataNotAvail)
-                    ? Container(
-                  height: size.height - 100,
-                  child: Center(
-                    child: Text("Data Not Found"),
-                  ),
-                )
-                    : MyWidgets.loading(context),
+                          )
+                        : MyWidgets.loading(context),
               ],
             ),
           ),
@@ -504,7 +471,12 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(child: Divider(height: 2,), width: 180,),
+                SizedBox(
+                  child: Divider(
+                    height: 2,
+                  ),
+                  width: 180,
+                ),
                 Text(
                   "(" + body.patientName + ")",
                   style: TextStyle(
@@ -546,20 +518,32 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              String mob=(body.mob==null ||body.mob==""||body.mob=="null")?"":body.mob;
-              String mapping=body.regNo+","+body.patientName+","+mob+","+body.gender+","+height.text+","+weight.text+","+body.age.toString();
+              String mob =
+                  (body.mob == null || body.mob == "" || body.mob == "null")
+                      ? ""
+                      : body.mob;
+              String mapping = body.regNo +
+                  "," +
+                  body.patientName +
+                  "," +
+                  mob +
+                  "," +
+                  body.gender +
+                  "," +
+                  height.text +
+                  "," +
+                  weight.text +
+                  "," +
+                  body.age.toString();
               _callLabApp(mapping.trim());
             }
           },
-          textColor: Theme
-              .of(context)
-              .primaryColor,
+          textColor: Theme.of(context).primaryColor,
           child: const Text('SEARCH'),
         ),
       ],
     );
   }
-
 
   String removeFirstandLast(String str1) {
     String str = str1.substring(1, str1.length - 1);
@@ -660,13 +644,11 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.body[i].appntmntStatus =
-                      "In-Progress";
+                      appointModel.body[i].appntmntStatus = "In-Progress";
                       appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.body[i].appntmntStatus =
-                      "Completed";
+                      appointModel.body[i].appntmntStatus = "Completed";
                       appointModel.body[i].appointStatus = 2;
                       break;
                   }
@@ -693,13 +675,11 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       appointModel.body[i].appointStatus = 0;
                       break;
                     case "1":
-                      appointModel.body[i].appntmntStatus =
-                      "In-Progress";
+                      appointModel.body[i].appntmntStatus = "In-Progress";
                       appointModel.body[i].appointStatus = 1;
                       break;
                     case "2":
-                      appointModel.body[i].appntmntStatus =
-                      "Completed";
+                      appointModel.body[i].appntmntStatus = "Completed";
                       appointModel.body[i].appointStatus = 2;
                       break;
                   }

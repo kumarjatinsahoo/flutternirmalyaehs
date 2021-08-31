@@ -95,10 +95,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     // comeFrom = widget.model.apntUserType;
     loginResponse1 = widget.model.loginResponse1;
-callApi();
+    callApi();
   }
 
-  callApi(){
+  callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
         token: widget.model.token,
@@ -212,58 +212,21 @@ callApi();
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-
-                  /* DefaultTabController(
-              length: 3,
-              child: Scaffold(
-                appBar: AppBar(
-                  bottom: TabBar(
-                    tabs: [
-                      Tab(text: 'FIRST'),
-                      Tab(text: 'SECOND',),
-                      Tab(text: 'THIRD'),
-                    ],
-                  ),
-                  title: Text('TABS TITLE TEXT'),
-                ),
-                body: TabBarView(
-                  children: [
-                    rowValue(),
-                    rowValue1(),
-                    rowValue2(),
-                  ],
-                ),
-              ),
-              DefaultTabController(
-      length: myTabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            tabs: myTabs,
-          ),
-        ),
-        body: TabBarView(
-          children: myTabs.map((Tab tab) {
-            return Center(child: Text(tab.text));
-          }).toList(),
-        ),
-      ),
-    )
-            ),*/
-                  /**/
                   DefaultTabController(
                       length: 3,
                       initialIndex: 0,
                       child: Column(
                         children: [
-                          TabBar(tabs: [
-                            Text('DETAILS',
-                                style: TextStyle(color: Colors.black)),
-                            Text('CONTACTS',
-                                style: TextStyle(color: Colors.black)),
-                            Text('FAMILY DOCTORS',
-                                style: TextStyle(color: Colors.black))
-                          ]),
+                          TabBar(
+                            tabs: [
+                              Text('DETAILS',
+                                  style: TextStyle(color: Colors.black)),
+                              Text('CONTACTS',
+                                  style: TextStyle(color: Colors.black)),
+                              Text('FAMILY DOCTORS',
+                                  style: TextStyle(color: Colors.black))
+                            ],
+                          ),
                           //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                           Container(
                               height: 300.0,
@@ -862,31 +825,30 @@ callApi();
                     } else if (_lname.text == null || _lname.text == "") {
                       AppData.showInSnackBar(context, "Please enter last name");
                     } else {*/
-                      updateProfileModel.fName = _fname.text;
-                      updateProfileModel.lName = _lname.text;
-                      updateProfileModel.eCardNo = patientProfileModel.body.id;
-                      updateProfileModel.fDoctor = _fDoctor.text;
-                      updateProfileModel.fDoctor = _fDoctor.text;
+                    updateProfileModel.fName = _fname.text;
+                    updateProfileModel.lName = _lname.text;
+                    updateProfileModel.eCardNo = patientProfileModel.body.id;
+                    updateProfileModel.fDoctor = _fDoctor.text;
+                    updateProfileModel.fDoctor = _fDoctor.text;
 
-                      updateProfileModel.id = patientProfileModel.body.id;
-                      widget.model.POSTMETHOD_TOKEN(
-                          api: ApiFactory.USER_UPDATEPROFILE,
-                          json: updateProfileModel.toJson(),
-                          token: widget.model.token,
-                          fun: (Map<String, dynamic> map) {
-                            Navigator.pop(context);
-                            if (map[Const.STATUS] == Const.SUCCESS) {
-                              // popup(context, map[Const.MESSAGE]);
-                              callApi();
-                              AppData.showInSnackDone(
-                                  context, map[Const.MESSAGE]);
+                    updateProfileModel.id = patientProfileModel.body.id;
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.USER_UPDATEPROFILE,
+                        json: updateProfileModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          if (map[Const.STATUS] == Const.SUCCESS) {
+                            // popup(context, map[Const.MESSAGE]);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
 
-                            } else {
-                              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-
-                            }
-                          });
-                   // }
+                          }
+                        });
+                    // }
                   });
                 },
               ),
