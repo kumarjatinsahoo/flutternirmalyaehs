@@ -679,8 +679,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
-        }
-        else if (LabSignUpForm3.countryModel == null ||
+        }else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
           AppData.showInSnackBar(context, "Please select country");
         } else if (LabSignUpForm3.stateModel == null ||
@@ -695,25 +694,31 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Pin");
-        }else if (textEditingController[4].text == "" ||
-            textEditingController[4].text == null) {
+        }else if (textEditingController[4].text != ""  &&
+            textEditingController[4].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter home phone");
-        }else if (textEditingController[6].text == "" ||
-            textEditingController[6].text == null) {
+        }else if (textEditingController[6].text != "" &&
+            textEditingController[6].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter office phone");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile number");
+        }else if (textEditingController[10].text != "" &&
+            textEditingController[10].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter a valid mobile number");
         }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter email id");
-        }else if (textEditingController[12].text == "" ||
-            textEditingController[12].text == null) {
-          AppData.showInSnackBar(context, "Please enter alternate email id");
+        } else if (textEditingController[11].text != ""&&
+            !AppData.isValidEmail(textEditingController[11].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        }else if (textEditingController[12].text != "" &&
+            !AppData.isValidEmail(textEditingController[12].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+        }else if (_checkbox == false) {
+          AppData.showInSnackBar(context, "Please checked terms and Condition");
         }
-
-
-        else {
+         else {
           MyWidgets.showLoading(context);
           LabSignupModel labSignupModel = LabSignupModel();
           labSignupModel.organizationid = labid;
@@ -1268,10 +1273,10 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           controller: textEditingController[index],
          /* textAlignVertical:
           TextAlignVertical.center,*/
-           inputFormatters: [
+           /*inputFormatters: [
             WhitelistingTextInputFormatter(
                 RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
-          ],
+          ],*/
         ),
       ),
     );
