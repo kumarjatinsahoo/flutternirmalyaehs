@@ -169,7 +169,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     selected: _selectedDestination == 0,
                     onTap: () {
                       selectDestination(0);
-                      Navigator.pushNamed(context, "/dashboard");
+                      Navigator.pushNamed(context, "/patientDashboard");
                     }
                     // onTap: (){},
 
@@ -181,7 +181,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   onTap: () {
                     selectDestination(1);
                     //Navigator.pushNamed(context, "/profile");
-                    Navigator.pushNamed(context, "/profileScreen1");
+                    //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
                 ListTile(
@@ -198,7 +198,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 3,
                   onTap: () {
                     selectDestination(3);
-                    Navigator.pushNamed(context, "/onlinechats");
+                    //Navigator.pushNamed(context, "/onlinechats");
                   },
 
                   title: Text('Online Chat'),
@@ -229,7 +229,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     selected: _selectedDestination == 6,
                     onTap: () {
                       selectDestination(6);
-                      Navigator.pushNamed(context, "/myorder");
+                      //Navigator.pushNamed(context, "/myorder");
                     }),
                 ListTile(
                     leading: Icon(Icons.calendar_today),
@@ -237,7 +237,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     selected: _selectedDestination == 7,
                     onTap: () {
                       selectDestination(7);
-                      Navigator.pushNamed(context, "/monthlyview");
+                      //Navigator.pushNamed(context, "/monthlyview");
                     }),
                 ListTile(
                     leading: Icon(Icons.healing),
@@ -245,7 +245,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     selected: _selectedDestination == 8,
                     onTap: () {
                       selectDestination(8);
-                      Navigator.pushNamed(context, "/processedorders");
+                      //Navigator.pushNamed(context, "/processedorders");
                     }),
                 ListTile(
                   leading: Icon(Icons.home),
@@ -253,7 +253,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 9,
                   onTap: () {
                     selectDestination(9);
-                    Navigator.pushNamed(context, "/setdiscount");
+                    //Navigator.pushNamed(context, "/setdiscount");
                   },
                 ),
                 ListTile(

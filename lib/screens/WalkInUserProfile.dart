@@ -117,14 +117,14 @@ class _WalkInUserProfileState extends State<WalkInUserProfile> {
                                         title: Text(
                                           "PHONE",
                                         ),
-                                        subtitle: Text(model.mobile),
+                                        subtitle: Text(model.mobile??"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.face),
                                         title: Text(
                                           "GENDER",
                                         ),
-                                        subtitle: Text(model.genderName),
+                                        subtitle: Text(model.genderName??"N/A"),
                                       ),
 
                                       ListTile(
@@ -134,7 +134,7 @@ class _WalkInUserProfileState extends State<WalkInUserProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.contact_phone),
-                                        title: Text("AADHAR NO"),
+                                        title: Text("AADHAAR NO"),
                                         subtitle: Text(model.aadhar??"N/A"),
                                       ),
                                       ListTile(
@@ -284,9 +284,9 @@ class _WalkInUserProfileState extends State<WalkInUserProfile> {
                   height: 6.0,
                 ),
                 Text(
-                  "AADHAR NO" +
+                  "AADHAAR NO" +
                       ": " +
-                      model.mobile,
+                      model.aadhar??"N/A",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
