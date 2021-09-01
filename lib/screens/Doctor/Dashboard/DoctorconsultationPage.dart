@@ -145,7 +145,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                  opdId = map["body"]["opdId"].toString();
                  appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
 
-                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                AppData.showInSnackBargreen(context, map[Const.MESSAGE]);
               } else {
                 //Navigator.of(context).pop();
                 appointmentdate.text=null;
@@ -607,7 +607,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       AppData.showInSnackBar(context, "Please select state");
     } else if (DoctorconsultationPage.distrModel == null ||
          DoctorconsultationPage.distrModel == "") {
-      AppData.showInSnackBar(context, "Please select Distric");
+      AppData.showInSnackBar(context, "Please select District");
     }else if (DoctorconsultationPage.cityModel == null ||
       DoctorconsultationPage.cityModel == "") {
      AppData.showInSnackBar(context, "Please select city");

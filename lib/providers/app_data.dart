@@ -351,7 +351,26 @@ class AppData {
       duration: Duration(seconds: 6),
     )..show(context);
   }
+  static void showInSnackBargreen(BuildContext context, String value) {
+    // final scaffold = Scaffold.of(context);
+    // scaffold.showSnackBar(
+    //   SnackBar(
+    //     content: new Text(
+    //       value.toUpperCase(),
+    //       style: TextStyle(color: Colors.white),
+    //     ),
+    //     duration: Duration(seconds: 1),
+    //     backgroundColor: Colors.red,
+    //   ),
+    // );
 
+    Flushbar(
+      //  title:  "Hey SuperHero",
+      message: value,
+      backgroundColor: Colors.green,
+      duration: Duration(seconds: 6),
+    )..show(context);
+  }
   static void showInSnackDone(BuildContext context, String value) {
     Flushbar(
       //  title:  "Hey SuperHero",
