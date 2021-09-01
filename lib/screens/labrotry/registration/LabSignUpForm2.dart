@@ -261,8 +261,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                         "Fill in personal Information (All fields are mandatory)",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black),
+                                            fontSize: 20, color: Colors.black),
                                       ),
                                     ],
                                   ),
@@ -278,8 +277,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       Text(
                                         "  Role :",
                                         style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black),
+                                            fontSize: 20, color: Colors.black),
                                       ),
                                       Column(
                                         children: [
@@ -299,8 +297,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       Text(
                                         "  Specialty :",
                                         style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black),
+                                            fontSize: 20, color: Colors.black),
                                       ),
                                       Column(
                                         children: [
@@ -342,7 +339,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     setState(() {
                                       print(ApiFactory.BLOODGROUP_API);
                                       LabSignUpForm2.bloodgroupModel = data;
-
                                     });
                                   }),
                                   SizedBox(
@@ -369,7 +365,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
                                       LabSignUpForm2.genderModel = data;
-
                                     });
                                   }),
                                   SizedBox(
@@ -492,14 +487,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     ));
   }
 
-
-  // Widget gender() {
-  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-  //           (KeyvalueModel model) {
-  //         LabSignUpForm2.genderModel = model;
-  //       });
-  // }
-
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -514,10 +501,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: Colors.black, width: 0.3)),
-              // decoration: BoxDecoration(
-              //     color: AppData.kPrimaryLightColor,
-              //     borderRadius: BorderRadius.circular(20),
-              //     border: Border.all(color: Colors.black, width: 0.3)),
               child: mobileNumber(),
             ),
           ),
@@ -672,11 +655,10 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Education name");
-        }else if (textEditingController[2].text == "" ||
+        } else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
           AppData.showInSnackBar(context, "Please enter Date of birth");
-        }
-        else if (LabSignUpForm2.bloodgroupModel == null ||
+        } else if (LabSignUpForm2.bloodgroupModel == null ||
             LabSignUpForm2.bloodgroupModel == "") {
           AppData.showInSnackBar(context, "Please select blood group");
         } else if (LabSignUpForm2.genderModel == null ||

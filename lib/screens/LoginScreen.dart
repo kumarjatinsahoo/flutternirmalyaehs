@@ -223,9 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, "/forgotpassword");
                             //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                          onLongPress: () {
+                          /*onLongPress: () {
                             Navigator.pushNamed(context, "/dashDoctor");
-                          },
+                          },*/
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(

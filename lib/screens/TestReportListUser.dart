@@ -2,31 +2,34 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/models/PocReportModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
-class PocReportListPage extends StatefulWidget {
+class TestReportListUser extends StatefulWidget {
   MainModel model;
 
-  PocReportListPage({Key key, this.model}) : super(key: key);
+  TestReportListUser({Key key, this.model}) : super(key: key);
 
   @override
-  _PocReportListPageState createState() => _PocReportListPageState();
+  _TestReportListUserState createState() => _TestReportListUserState();
 }
 
-class _PocReportListPageState extends State<PocReportListPage> {
+class _TestReportListUserState extends State<TestReportListUser> {
   PocReportModel pocReportModel;
   bool isDataNotAvail = false;
   ScrollController _scrollController = ScrollController();
 
   static const platform = AppData.channel;
+  session.LoginResponse1 loginResponse1;
 
   @override
   void initState() {
     super.initState();
+    loginResponse1=widget.model.loginResponse1;
     callAPI();
   }
 /*
@@ -37,8 +40,9 @@ class _PocReportListPageState extends State<PocReportListPage> {
   }*/
 
   callAPI() {
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LIST,
+    widget.model.GETMETHODCALL_TOKEN_FORM(
+        api: ApiFactory.TEST_REPORT_USER,
+        userId: loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -57,7 +61,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "POC Report List",
+          "Test Report List",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
