@@ -400,6 +400,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                               builder: (BuildContext context) =>
                                                   dialogRegNo(context,
                                                       foundUser[index]));*/
+                                          widget.model.bodyUser=foundUser[index];
                                           Navigator.pushNamed(context, "/vitalDoctor");
                                         },
                                         child: Container(

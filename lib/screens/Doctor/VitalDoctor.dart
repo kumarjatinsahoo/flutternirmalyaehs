@@ -3181,10 +3181,10 @@ class _VitalDoctor extends State<VitalDoctor> {
             "medteluniqueid": "WALKIN",
             "thp_id": "WALKIN",
             "thp_name": "WALKIN",
-            "name": widget.model.patientName,
-            "mobile": "WALKIN",
-            "gender": widget.model.gender,
-            "age": widget.model.patientage,
+            "name": widget.model.bodyUser.patientName,
+            "mobile": widget.model.bodyUser.mob??"",
+            "gender": widget.model.bodyUser.gender,
+            "age": widget.model.bodyUser.age.toString(),
             "screening_date": "WALKIN",
             "screening_details": [
               {

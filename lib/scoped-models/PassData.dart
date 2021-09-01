@@ -1,5 +1,6 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/UserDetailsModel.dart';
+import 'package:user/models/LabBookModel.dart'as lab;
 import 'package:user/models/PatientListModel.dart' as patiet;
 import 'package:user/models/DocterAppointmentlistModel.dart' as doc;
 
@@ -16,6 +17,7 @@ class PassData extends Model {
   patiet.Body model;
   String pdfUrl;
   String pdfUrlUser;
+  lab.Body bodyUser;
 
   String token;
   String user;
