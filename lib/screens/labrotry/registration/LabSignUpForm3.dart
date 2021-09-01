@@ -299,7 +299,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          formField(8, "Address"),
+                          formFieldaddress(8, "Address"),
                           SizedBox(
                             height: 5,
                           ),
@@ -397,40 +397,44 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               }),
 
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(5, "Enter Zip/Pin Code :"),
+                          formFieldzip(5, "Enter Zip/Pin Code :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(4, "Enter Home Phone (Optional)"),
+                          formFieldMobile(4, "Enter Home Phone (Optional)"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(
+                          formFieldMobile(
                               6, "Enter Office phone (Optional)"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(10, "Mobile Number :"),
+                          formFieldMobile(10, "Mobile Number :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(11, "Email Id :"),
+                          formFielEmail(11, "Email Id :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(12, "Alternate Email Id"),
+                          formFielEmail(12, "Alternate Email Id"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
                           Column(
                             children: [
-                              Text(
-                                "Upload Document :",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: Text(
+                                  "Upload Document :",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black),
+                                ),
                               ),
                             ],
                           ),
@@ -1190,7 +1194,203 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+  Widget formFieldaddress(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+         /* inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],*/
+        ),
+      ),
+    );
+  }
+  Widget formFielEmail(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+         /* textAlignVertical:
+          TextAlignVertical.center,*/
+           inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget formFieldzip(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+         decoration: BoxDecoration(
+          color: AppData.white,
+          borderRadius: BorderRadius.circular(5),
+      border: Border.all(
+               color: Colors.black,width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText:hint,
+                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
 
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldMobile(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black, width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle: TextStyle(
+                        color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
 //     child: TextFormField(

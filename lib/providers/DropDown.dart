@@ -12,6 +12,10 @@ class DropDown {
   static KeyvalueModel ageProof;
   static KeyvalueModel marital;
   static KeyvalueModel job;
+  static KeyvalueModel bloodgroupmodel ;
+  static KeyvalueModel gendermodel ;
+  static KeyvalueModel relationmodel;
+  static KeyvalueModel specialitymodel;
 
   static KeyvalueModel educatqualfication;
 
@@ -196,6 +200,10 @@ class DropDown {
             case "bloodgroup":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -213,7 +221,6 @@ class DropDown {
       onChanged: (KeyvalueModel data) {
         fun(data);
         switch (callFrom) {
-
           case "district":
             selectedKey = data;
             break;
@@ -225,6 +232,15 @@ class DropDown {
             break;
           case "ageproof":
             ageProof = data;
+            break;
+          case "bloodgroup":
+            bloodgroupmodel = data;
+            break;
+          case "relation":
+            relationmodel = data;
+            break;
+          case "speciality":
+            specialitymodel = data;
             break;
         }
         //selectedKey = data;
