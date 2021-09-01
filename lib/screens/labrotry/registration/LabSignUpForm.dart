@@ -334,11 +334,11 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               }),
 
                               SizedBox(
-                                height: 5,
+                                height: 13,
                               ),
-                              formField(1, "Professional's Name"),
+                              formField1(1, "Professional's Name"),
                               SizedBox(
-                                height: 5,
+                                height: 10,
                               ),
                               // formField(10, "User Id"),
                               // SizedBox(
@@ -1009,6 +1009,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
           //color: Color(0x45283e81),
           borderRadius: BorderRadius.circular(29),
         ),*/
+
         style: TextStyle(fontSize: 13),
         decoration: InputDecoration(
             hintText: hint,
@@ -1016,6 +1017,47 @@ class LabSignUpFormState extends State<LabSignUpForm> {
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
         onChanged: (newValue) {},
+      ),
+    );
+  }
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+           /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
       ),
     );
   }
