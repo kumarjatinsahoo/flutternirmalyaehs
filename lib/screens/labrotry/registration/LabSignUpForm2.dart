@@ -266,11 +266,11 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 13,
                                   ),
-                                  formField(8, "Education"),
+                                  formField1(8, "Education"),
                                   SizedBox(
-                                    height: 5,
+                                    height: 13,
                                   ),
                                   Row(
                                     children: [
@@ -368,7 +368,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     });
                                   }),
                                   SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -1015,6 +1015,48 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       ),
     );
   }
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
+      ),
+    );
+  }
+
 
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
