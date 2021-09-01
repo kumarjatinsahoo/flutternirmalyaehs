@@ -3177,6 +3177,150 @@ class _VitalDoctor extends State<VitalDoctor> {
           String pef = textEditingController[72].text;
           log(" VITAL  MODEL SEND>>>>" + jsonEncode(vitalModel.toJson()));
           MyWidgets.showLoading(context);
+          var sendData = {
+            "medteluniqueid": "WALKIN",
+            "thp_id": "WALKIN",
+            "thp_name": "WALKIN",
+            "name": widget.model.patientName,
+            "mobile": "WALKIN",
+            "gender": widget.model.gender,
+            "age": widget.model.patientage,
+            "screening_date": "WALKIN",
+            "screening_details": [
+              {
+                "pocType": "KFT",
+                "pocResult": {
+                  "creatinine": creatinine,
+                  "urea": urea,
+                  "uric_acid": uricacid,
+                  "bun": bun,
+                  "egfr": egfr
+                }
+              },
+              {
+                "pocType": "LFT",
+                "pocResult": {
+                  "albumin":albumin,
+                  "alkaline": alkaline,
+                  "phosphate": phosphate,
+                  "directbilirubin": directbilirubin,
+                  "indirectbilirubin": indirectbilirubin,
+                  "totalbilirubin": totalbilirubin,
+                  "ast": ast,
+                  "alt": alt,
+                  "TotalProtine": TotalProtine,
+                  "AGRatio": AGRatio,
+                  "Globulin": Globulin
+                }
+              },
+              {
+                "pocType": "LIPIDPROFILE",
+                "pocResult": {
+                  "Cholesterol":Cholesterol,
+                  "hdl": hdl,
+                  "Triglyceride": Triglyceride,
+                  "ldl": ldl,
+                  "ldl_calculative": ldl_calculative,
+                  "vldl": vldl,
+                  "hdlldlratio": hdlldlratio,
+                  "hdlratio": hdlratio
+                }
+              },
+              {
+                "pocType": "ELECTROLYTES",
+                "pocResult": {
+                  "sodium":sodium,
+                  "potassium": potassium,
+                  "chloride": chloride,
+                  "calcium": calcium,
+                  "magnesium": magnesium,
+                  "phosphorus": phosphorus
+                }
+              },
+              {
+                "pocType": "HEMATOLOGY",
+                "pocResult": {
+                  "hemoglobin":hemoglobin,
+                  "rbc": rbc,
+                  "pcv": pcv,
+                  "mcv": mcv,
+                  "mch": mch,
+                  "phosphorus": mchc
+                }
+              },
+              {
+                "pocType":"SUGER",
+                "pocResult":{
+                  "glucose":glucose
+                }
+              },
+              {
+                "pocType": "BASIC",
+                "pocResult": {
+                  "bloodpressure":bloodpressure,
+                  "temperature": temperature,
+                  "spo2": spo2,
+                  "height": height,
+                  "weight": weight
+                }
+              },
+              {
+                "pocType": "BODYANALYSER",
+                "pocResult": {
+                  "protine":protine,
+                  "bmr": bmr,
+                  "bmi": bmi,
+                  "bodyfat": bodyfat,
+                  "fat_free_body": fat_free_body,
+                  "visceral_fat": visceral_fat,
+                  "body_water": body_water,
+                  "subcutaneous_fat": subcutaneous_fat,
+                  "skeletal_muscie": skeletal_muscie,
+                  "muscle_mass": muscle_mass,
+                  "metabolic_age": metabolic_age,
+                }
+              },
+              {
+                "pocType": "RAPIDTEST",
+                "pocResult": {
+                  "urinalysis":urinalysis,
+                  "malaria": malaria,
+                  "pregnancy": pregnancy,
+                  "hba1c": hba1c,
+                  "hepatitis": hepatitis,
+                  "blood_grouping": blood_grouping,
+                  "rh_factor": rh_factor,
+                  "syphilis": syphilis,
+                  "crp": crp,
+                }
+              },
+              {
+                "pocType": "OTOSCOPE",
+                "pocResult": {
+                  "ear":ear,
+                  "nose": nose,
+                  "throat": throat,
+                  "mouth": mouth,
+                  "others": others,
+                }
+              },
+              {
+                "pocType": "PULMONARYFUNCTIONTEST",
+                "pocResult": {
+                  "fev1":fev1,
+                  "fvc": fvc,
+                  "fev1_fcv": fev1_fcv,
+                  "fev6": fev6,
+                  "fef25_75": fef25_75,
+                  "pef": pef,
+                }
+              }
+
+            ]
+          };
+          textEditingController.forEach((element) {
+            if (element.text != "") {}
+          });
           widget.model.POSTMETHOD(
               api: ApiFactory.VITALS_REPORT,
               json: vitalModel.toJson(),
