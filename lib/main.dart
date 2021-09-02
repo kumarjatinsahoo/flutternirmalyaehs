@@ -57,6 +57,7 @@ import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
+import 'package:user/screens/TestReportListUser1.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -500,6 +501,10 @@ class _MyAppState extends State<MyApp> {
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),
+              '/testReportListUser1': (context) => TestReportListUser1(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

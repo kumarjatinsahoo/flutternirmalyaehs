@@ -1349,8 +1349,8 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/medicinereminder");
+                      //  AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
