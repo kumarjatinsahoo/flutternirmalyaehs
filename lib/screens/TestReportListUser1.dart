@@ -245,7 +245,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                   (patient.thpId == "")
                                       ? Container()
                                       : Text(
-                                    patient.thpName??"",
+                                    patient.thpName??"N/A",
                                     style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.start,
                                   ),
