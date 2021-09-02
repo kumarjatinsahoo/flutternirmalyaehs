@@ -344,7 +344,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                 /*AppData.launchURL(
                                     "http://docs.google.com/gview?embedded=true&url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=" +
                                         "");*/
-                                Navigator.pushNamed(context, "/testReportList");
+                                Navigator.pushNamed(context, "/testReportListUser1");
                               },
                               child: Card(
                                 elevation: 5,
