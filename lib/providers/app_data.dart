@@ -81,7 +81,11 @@ class AppData {
     switch (monthNumber) {
       case "01":
         return "JAN";
+      case "1":
+        return "JAN";
       case "02":
+        return "FEB";
+      case "2":
         return "FEB";
       case "03":
         return "MAR";
