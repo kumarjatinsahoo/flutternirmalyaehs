@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -198,6 +199,10 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                                   textInputAction: TextInputAction.next,
                                   maxLength: 10,
                                   keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter(
+                                        RegExp("[0-9 ]")),
+                                  ],
                                   decoration: InputDecoration(
                                     /* suffixIcon: Icon(Icons.phone),*/
                                     border: InputBorder.none,
@@ -239,7 +244,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: formField(8, "Education"),
+                    child: formField(1, "Patient Name"),
                   ),
                   SizedBox(
                     height: size.height * 0.07,
@@ -285,7 +290,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
     String hint,
   ) {
     return Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         child: Container(
           //color: Colors.white,
           height: 47,
@@ -306,17 +311,20 @@ class _PatientRegistrationState extends State<PatientRegistration> {
           ),
           child: TextFormField(
             //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[1],
+            controller: textEditingController[index],
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
            /// maxLength: 10,
             keyboardType: TextInputType.text,
+              inputFormatters: [
+              WhitelistingTextInputFormatter(
+              RegExp("[a-zA-Z ]")),],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
               counterText: "",
-              hintText: "Patient Name",
+              hintText: hint,
               hintStyle: TextStyle(color: Colors.black26, fontSize: 17),
             ),
             onSaved: (value) {

@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
@@ -88,7 +89,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: adharaformField(3, "Aadhar(OPTIONAL)"),
+                      child: adharaformField(3, "Aadhaar(OPTIONAL)"),
                     ),
 
                     /* Padding(
@@ -290,8 +291,12 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-            /* maxLength: 10,*/
+             maxLength: 5,
             keyboardType: TextInputType.number,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[0-9. ]")),
+            ],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
@@ -340,6 +345,10 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             textInputAction: TextInputAction.next,
             maxLength: 12,
             keyboardType: TextInputType.number,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[0-9. ]")),
+            ],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
@@ -370,6 +379,9 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         } else if (textEditingController[2].text != '' &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        } else if (textEditingController[3].text != '' &&
+            textEditingController[3].text.length != 12 ) {
+          AppData.showInSnackBar(context, "Please enter a valid Aadhaar no.");
         }
         else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {

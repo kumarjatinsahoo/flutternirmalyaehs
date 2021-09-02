@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -62,7 +63,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(8, "Age"),
+                      child: formField(0, "Age"),
                     ),
                     //SizedBox(height: size.height * 0.01,),
                     Padding(
@@ -161,12 +162,16 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
           ),
           child: TextFormField(
             //enabled: widget.isConfirmPage ? false : true,
-            controller: textEditingController[0],
+            controller: textEditingController[index],
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
             maxLength: 3,
             keyboardType: TextInputType.number,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[0-9 ]")),
+            ],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
               border: InputBorder.none,
@@ -190,6 +195,8 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
       fun: () {
         if (textEditingController[0].text == "" || textEditingController[0].text== null) {
           AppData.showInSnackBar(context, "Please enter age");
+        } else if (textEditingController[0].text != "" && textEditingController[0].text== "0") {
+            AppData.showInSnackBar(context, "Please enter a valid age");
         }  else {
           widget.model.patientage = textEditingController[0].text;
           Navigator.pushNamed(context, "/patientRegistration3");

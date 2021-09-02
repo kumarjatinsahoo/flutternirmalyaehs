@@ -273,7 +273,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                                   horizontal: 12, vertical: 4),
                               leading: Icon(CupertinoIcons.sportscourt),
                               title: Text(addhar ?? "N/A"),
-                              subtitle: Text("Aadhar"),
+                              subtitle: Text("Aadhaar"),
                             ),
                           ],
                         ),
