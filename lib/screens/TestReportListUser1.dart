@@ -164,6 +164,11 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                             : Container();
                       }
                       Body patient = pocReportModel.body[i];
+                      var string = patient.screeningDate;
+                      List splitedText = string.split("-");
+                      print(splitedText[0]);
+                      print(splitedText[1]);
+                      print(splitedText[2]);
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5 ),
                         padding: EdgeInsets.all(10),
@@ -195,6 +200,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                             //callUrl("");
                           },
 
+
+
                          /* title: Text(
                             *//*(i + 1).toString() + ". " +*//* patient.name + " ",
                             style: TextStyle(
@@ -205,17 +212,17 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                               Column(
                                 children: [
                                   Text(
-                                    'June ',
+                                    /*'June '*/splitedText[1],
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(height: 10,),
                                   Text(
-                                    '23',
+                                   /* '23'*/splitedText[2],
                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,color: Colors.black),
                                   ),
                                   SizedBox(height: 10,),
                                   Text(
-                                    '2016',
+                                    /*'2016'*/splitedText[0],
                                     style: TextStyle(fontSize: 11),
                                   ),
                                 ],
@@ -249,6 +256,11 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                     style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.start,
                                   ),
+                                  /*Text(
+                                    patient.screeningDate??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),*/
                                  /* Text(
                                     patient.patientUniqueid,
                                     style: TextStyle(color: Colors.grey),
