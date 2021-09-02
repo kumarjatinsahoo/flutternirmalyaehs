@@ -21,11 +21,15 @@ class AppData {
   static Color hintColor = Color(0xFF666666);
   static Color BG1RED = Color(0xFFFEF7F8);
   static Color BG2BLUE = Color(0xFFF5FAFE);
-  static Color klightblurColor = Color(0xFFF0F8FF) ;
-  static Color kPrimaryRedColor = Color(0xFFCF3564) ;
-  static Color klightRedColor = Color(0xFFFEF9F6) ;
+  static Color klightblurColor = Color(0xFFF0F8FF);
+
+  static Color kPrimaryRedColor = Color(0xFFCF3564);
+
+  static Color klightRedColor = Color(0xFFFEF9F6);
+
   static Color matruColor = Color(0xFF2372B6);
   static Color kPrimaryLightColor = Color(0xFFe9f7ea);
+
   //static Color kPrimaryLightColor = Color(0xFF92CA91);
   static Color grey = Color(0xFFF2F2F2);
   static Color newColor = Color(0xFF7c48ed);
@@ -33,7 +37,7 @@ class AppData {
   static String currentSelectedValue = "+91";
   static String currentSelectedValue1 = "S/o";
   static String currency = "₹";
-  static const channel=const MethodChannel("com.eHealthSystem/goAnotherApp");
+  static const channel = const MethodChannel("com.eHealthSystem/goAnotherApp");
 
   static Color grey100 = Color(0xFFF4F4F4);
   static Color greyBorder = Color(0xFFD7D7D7);
@@ -42,9 +46,7 @@ class AppData {
   static List<String> phoneFormat = [
     "+91" /*, "+80", "+78"*/
   ];
-  static List<String> catagoryFormat = [
-    "S/o","D/o","W/o"
-  ];
+  static List<String> catagoryFormat = ["S/o", "D/o", "W/o"];
   static String selectedLanguage;
 
   static setSelectedLan(lan) {
@@ -58,7 +60,6 @@ class AppData {
   static getColor(String code) {
     (code == "en") ? selectedLanguage = "English" : selectedLanguage = "ଓଡିଆ";
   }
-
 
   static double properSafeArea(BuildContext context) {
     final availableHeight = MediaQuery.of(context).size.height -
@@ -76,6 +77,20 @@ class AppData {
     }
   }
 
+  static getMonth(String monthNumber) {
+    switch (monthNumber) {
+      case "01":
+        return "JAN";
+      case "02":
+        return "FEB";
+      case "03":
+        return "MAR";
+      case "04":
+        return "APR";
+      case "05":
+        return "MAY";
+    }
+  }
 
   static int getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
@@ -84,8 +99,6 @@ class AppData {
     }
     return int.parse(hexColor, radix: 16);
   }
-
-
 
   static buildDefaultText(String name) {
     return Text(
@@ -114,11 +127,12 @@ class AppData {
   }
 
   static filtterInputType({String format}) {
-    return FilteringTextInputFormatter.allow(RegExp(r'['+format+']'));
+    return FilteringTextInputFormatter.allow(RegExp(r'[' + format + ']'));
   }
+
   static bool isValidEmail(String email) {
     return RegExp(
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
         .hasMatch(email);
   }
 
@@ -231,11 +245,13 @@ class AppData {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(child: CircularProgressIndicator(),);
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         });
   }
 
-  static popup(BuildContext context, String message,Function fun) {
+  static popup(BuildContext context, String message, Function fun) {
     return Alert(
         context: context,
         title: message,
@@ -323,11 +339,11 @@ class AppData {
         false;
   }
 
-  static String getName(String first,String midle,String last){
-    if(midle!=null && midle!=""){
-      return first+" "+midle+" "+last;
-    }else{
-      return first+" "+last;
+  static String getName(String first, String midle, String last) {
+    if (midle != null && midle != "") {
+      return first + " " + midle + " " + last;
+    } else {
+      return first + " " + last;
     }
   }
 
@@ -351,6 +367,7 @@ class AppData {
       duration: Duration(seconds: 6),
     )..show(context);
   }
+
   static void showInSnackBargreen(BuildContext context, String value) {
     // final scaffold = Scaffold.of(context);
     // scaffold.showSnackBar(
@@ -371,6 +388,7 @@ class AppData {
       duration: Duration(seconds: 6),
     )..show(context);
   }
+
   static void showInSnackDone(BuildContext context, String value) {
     Flushbar(
       //  title:  "Hey SuperHero",
@@ -405,7 +423,4 @@ class AppData {
   static String base64Encd(String data) {
     return base64.encode(utf8.encode(data));
   }
-
-
-
 }
