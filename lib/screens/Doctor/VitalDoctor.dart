@@ -113,6 +113,16 @@ class _VitalDoctor extends State<VitalDoctor> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
   ];
   List<bool> error = [false, false, false, false, false, false];
 
@@ -2882,7 +2892,7 @@ class _VitalDoctor extends State<VitalDoctor> {
   Widget submitButton1() {
     return GestureDetector(
       onTap: () {
-        if (textEditingController[0].text == "" ||
+        /*if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
           AppData.showInSnackBar(context, "Please enter creatinine");
         } else if (textEditingController[1].text == "" ||
@@ -3101,7 +3111,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         } else if (textEditingController[72].text == "" ||
             textEditingController[72].text == null) {
           AppData.showInSnackBar(context, "Please enter PEF");
-        } else {
+        } else {*/
           String creatinine = textEditingController[0].text;
           String urea = textEditingController[1].text;
           String uricacid = textEditingController[2].text;
@@ -3185,7 +3195,7 @@ class _VitalDoctor extends State<VitalDoctor> {
             "mobile": widget.model.bodyUser.mob??"",
             "gender": widget.model.bodyUser.gender,
             "age": widget.model.bodyUser.age.toString(),
-            "screening_date": "WALKIN",
+            "screening_date": new DateTime.now().toString(),
             "screening_details": [
               {
                 "pocType": "KFT",
@@ -3323,7 +3333,7 @@ class _VitalDoctor extends State<VitalDoctor> {
           });
           widget.model.POSTMETHOD(
               api: ApiFactory.VITALS_REPORT,
-              json: vitalModel.toJson(),
+              json: sendData,
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 if (map[Const.STATUS] == Const.SUCCESS) {
@@ -3332,7 +3342,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-        }
+        //}
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
