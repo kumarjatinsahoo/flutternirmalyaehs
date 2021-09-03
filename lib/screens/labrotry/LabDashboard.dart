@@ -155,9 +155,9 @@ class _LabDashboardState extends State<LabDashboard> {
                         Text(
                           "Hi " + loginResponse.body.userName,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 18,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w300),
                         ),
                       ],
                     ),

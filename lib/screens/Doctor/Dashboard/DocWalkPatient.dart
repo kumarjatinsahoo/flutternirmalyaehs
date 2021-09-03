@@ -84,12 +84,15 @@ class _WalkPatient extends State<DocWalkPatient> {
                           height: 20,
                         ),
                         Expanded(
-                          child: TextField(
-                            controller: myController,
-                            maxLength: 16,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: ''),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 35),
+                            child: TextField(
+                              controller: myController,
+                              maxLength: 16,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none, hintText: ''),
+                            ),
                           ),
                         ),
                       ],

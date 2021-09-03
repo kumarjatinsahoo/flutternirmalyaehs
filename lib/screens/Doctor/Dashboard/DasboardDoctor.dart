@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -19,6 +20,7 @@ class DasboardDoctor extends StatefulWidget {
   _DasboardDoctorState createState() => _DasboardDoctorState();
 }
 SharedPref sharedPref = SharedPref();
+
 
 chooseAppointment(BuildContext context) {
   return showDialog(
@@ -157,6 +159,13 @@ Widget _Tilered({IconData icon,
 }
 
 class _DasboardDoctorState extends State<DasboardDoctor> {
+  LoginResponse1 loginResponse;
+  @override
+  void initState() {
+    super.initState();
+    loginResponse = widget.model.loginResponse1;
+    // checkApiCallOrNot();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -477,7 +486,13 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text("Ipsita Sahoo",style: TextStyle(color: Colors.black,fontSize:15)),
+                    Text(
+                      "Hi " + loginResponse.body.userName,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
               ),

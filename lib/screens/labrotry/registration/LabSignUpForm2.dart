@@ -1048,10 +1048,10 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
           controller: textEditingController[index],
           textAlignVertical:
           TextAlignVertical.center,
-          inputFormatters: [
+          /*inputFormatters: [
             WhitelistingTextInputFormatter(
                 RegExp("[a-zA-Z ]")),
-          ],
+          ],*/
         ),
       ),
     );
