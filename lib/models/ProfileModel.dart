@@ -158,7 +158,7 @@ class Body {
     data['country'] = this.country;
     data['state'] = this.state;
     data['gender'] = this.gender;
-    data['age'] = this.age;
+    data['age'] = this.age.toString();
     data['height'] = this.height;
     data['weight'] = this.weight;
     data['email'] = this.email;
