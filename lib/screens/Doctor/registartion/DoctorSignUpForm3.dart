@@ -271,7 +271,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          formField(8, "Education"),
+                          formField1(8, "Education"),
                           SizedBox(
                             height: 5,
                           ),
@@ -897,4 +897,46 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       ),
     );
   }
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          /*inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],*/
+        ),
+      ),
+    );
+  }
+
 }

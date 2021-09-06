@@ -284,7 +284,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 5,
                           ),
-                          formField(8, "Address"),
+                          formFieldaddress(8, "Address"),
                           SizedBox(
                             height: 5,
                           ),
@@ -412,40 +412,43 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 )
                               : Container(),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(5, "Enter Zip/Pin Code :"),
+                          formFieldzip(5, "Enter Zip/Pin Code :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(4, "Enter Home Phone (Optional)"),
+                          formFieldMobile(4, "Enter Home Phone (Optional)"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(
+                          formFieldMobile(
                               9, "Enter Office phone (Optional)"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(10, "Mobile Number :"),
+                          formFieldMobile(10, "Mobile Number :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(11, "Email Id :"),
+                          formFielEmail(11, "Email Id :"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
-                          formField(12, "Alternate Email Id"),
+                          formFielEmail(12, "Alternate Email Id"),
                           SizedBox(
-                            height: 5,
+                            height: 13,
                           ),
                           Column(
                             children: [
-                              Text(
-                                "Upload Document :",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Upload Document :",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black),
+                                ),
                               ),
                             ],
                           ),
@@ -698,37 +701,35 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       } else if (DoctorSignUpForm4.districtModel == null ||
           DoctorSignUpForm4.districtModel == "") {
         AppData.showInSnackBar(context, "Please select district");
-      }
-      else if (DoctorSignUpForm4.cityModel == null ||
+      }else if (DoctorSignUpForm4.cityModel == null ||
           DoctorSignUpForm4.cityModel == "") {
         AppData.showInSnackBar(context, "Please select city");
-      }
-      else if (textEditingController[5].text == "" ||
+      }else if (textEditingController[5].text == "" ||
           textEditingController[5].text == null) {
         AppData.showInSnackBar(context, "Please enter Zip/pin code");
-      } else if (textEditingController[5].text.length <= 3) {
-        AppData.showInSnackBar(context, "Please enter Zip/pin code ");
-      }
-      /*else if (textEditingController[4].text == "" ||
-            textEditingController[4].text == null) {
-          AppData.showInSnackBar(context, "Please enter Enterhome phone");
-        } else if (textEditingController[4].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Enterhome phone ");
-        } else if (textEditingController[9].text == "" ||
-            textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter office phone");
-        } else if (textEditingController[9].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter office phone");
-        }*/ else if (textEditingController[10].text == "" ||
+      }else if (textEditingController[4].text != ""  &&
+          textEditingController[4].text.length != 10) {
+        AppData.showInSnackBar(context, "Please enter a valid home phone");
+      }else if (textEditingController[9].text != "" &&
+          textEditingController[9].text.length != 10) {
+        AppData.showInSnackBar(context, "Please enter a valid office phone");
+      }else if (textEditingController[10].text == "" ||
           textEditingController[10].text == null) {
-        AppData.showInSnackBar(context, "Please enter mobile no");
-      } else if (textEditingController[10].text.length <= 3) {
-        AppData.showInSnackBar(context, "Please enter mobile no ");
-      } else if (textEditingController[11].text == "" ||
+        AppData.showInSnackBar(context, "Please enter mobile number");
+      }else if (textEditingController[10].text != "" &&
+          textEditingController[10].text.length != 10) {
+        AppData.showInSnackBar(context, "Please enter a valid mobile number");
+      }else if (textEditingController[11].text == "" ||
           textEditingController[11].text == null) {
-        AppData.showInSnackBar(context, "Please enter emailid");
-      } else if (textEditingController[11].text.length <= 3) {
-        AppData.showInSnackBar(context, "Please enter emailid ");
+        AppData.showInSnackBar(context, "Please enter email id");
+      } else if (textEditingController[11].text != ""&&
+          !AppData.isValidEmail(textEditingController[11].text)) {
+        AppData.showInSnackBar(context, "Please enter a valid E-mail");
+      }else if (textEditingController[12].text != "" &&
+          !AppData.isValidEmail(textEditingController[12].text)) {
+        AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+      }else if (_checkbox == false) {
+        AppData.showInSnackBar(context, "Please checked terms and Condition");
       }
     //  else if (_checkbox != true) {
     //     setState(() =>
@@ -1142,7 +1143,203 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+  Widget formFieldaddress(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          /* inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],*/
+        ),
+      ),
+    );
+  }
+  Widget formFielEmail(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          /* textAlignVertical:
+          TextAlignVertical.center,*/
+          /*inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+          ],*/
+        ),
+      ),
+    );
+  }
+  Widget formFieldzip(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black,width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText:hint,
+                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
 
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldMobile(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black, width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle: TextStyle(
+                        color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   popup(BuildContext context, String message) {
     return Alert(
         context: context,

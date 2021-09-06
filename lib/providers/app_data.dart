@@ -41,6 +41,7 @@ class AppData {
 
   static Color grey100 = Color(0xFFF4F4F4);
   static Color greyBorder = Color(0xFFD7D7D7);
+  static Color lightgreyBorder = Color(0xFF949494);
   static Color greyText = Color(0xFF616267);
   static const Color white = Color(0xFFFFFFFF);
   static List<String> phoneFormat = [
@@ -89,10 +90,38 @@ class AppData {
         return "FEB";
       case "03":
         return "MAR";
+      case "3":
+        return "MAR";
       case "04":
+        return "APR";
+      case "4":
         return "APR";
       case "05":
         return "MAY";
+      case "5":
+        return "MAY";
+      case "06":
+        return "JUN";
+      case "6":
+        return "JUN";
+      case "07":
+        return "JUL";
+      case "7":
+        return "JUL";
+      case "08":
+        return "AUG";
+      case "8":
+        return "AUG";
+      case "09":
+        return "SEP";
+      case "9":
+        return "SEP";
+      case "10":
+        return "OCT";
+      case "11":
+        return "NOV";
+      case "12":
+        return "DEC";
     }
   }
 

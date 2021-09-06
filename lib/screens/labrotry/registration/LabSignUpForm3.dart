@@ -696,10 +696,10 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter Pin");
         }else if (textEditingController[4].text != ""  &&
             textEditingController[4].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter home phone");
+          AppData.showInSnackBar(context, "Please enter a valid home phone");
         }else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter office phone");
+          AppData.showInSnackBar(context, "Please enter a valid office phone");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile number");

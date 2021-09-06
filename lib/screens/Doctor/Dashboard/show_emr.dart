@@ -256,7 +256,7 @@ class _ShowEmr extends State<ShowEmr> {
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'LIFESTYLE HISTORY'),
+                            child: new Tab(text: 'LIFE STYLE HISTORY'),
                           ),
                           new Container(
                             //  width: 100,

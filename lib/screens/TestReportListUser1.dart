@@ -167,11 +167,12 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                       var string = patient.screeningDate;
                       List splitedText = string.split("-");
                       print(splitedText[0]);
+                     String string1 =splitedText[1];
                       print(splitedText[1]);
                       print(splitedText[2]);
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5 ),
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
                           color: Colors.white,
@@ -199,25 +200,17 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                             //AppData.launchURL(patient.reportUrl);
                             //callUrl("");
                           },
-
-
-
-                         /* title: Text(
-                            *//*(i + 1).toString() + ". " +*//* patient.name + " ",
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
-                          ),*/
-                          subtitle: Row(
+                          title:  Row(
                             children: [
                               Column(
                                 children: [
                                   Text(
-                                    /*'June '*/splitedText[1],
+                                    /*'June '*/AppData.getMonth(string1),
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(height: 10,),
                                   Text(
-                                   /* '23'*/splitedText[2],
+                                    /* '23'*/splitedText[2],
                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,color: Colors.black),
                                   ),
                                   SizedBox(height: 10,),
@@ -227,7 +220,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                   ),
                                 ],
                               ),
-
+                              SizedBox(width: 10,),
                               /*Expanded(
                                 child: new Container(
                                     margin: const EdgeInsets.only(left: 10.0, right: 20.0),
@@ -237,22 +230,22 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                     )),
                               ),*/
                               Container(height: 80, child: VerticalDivider(color: Colors.grey)),
+                              SizedBox(width: 10,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                          Text(
-                          patient.name + " ",
-                          style: TextStyle(
-                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
-                        ),
+                                  Text(
+                                    patient.name + " ",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),),
                                   SizedBox(
                                     height: 9,
                                   ),
                                   (patient.thpId == "")
                                       ? Container()
                                       : Text(
-                                    patient.thpName??"",
+                                    patient.thpName??"N/A",
                                     style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.start,
                                   ),
@@ -261,7 +254,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                     style: TextStyle(color: Colors.grey),
                                     textAlign: TextAlign.end,
                                   ),*/
-                                 /* Text(
+                                  /* Text(
                                     patient.patientUniqueid,
                                     style: TextStyle(color: Colors.grey),
                                     textAlign: TextAlign.end,
@@ -289,9 +282,101 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                 ],
                               ),
                             ],
-                          ),
+                          ),/*Text(
+                            (i + 1).toString() + ". " + patient.name + " ",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                          ),*/
+                          /*subtitle: Row(
+
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    *//*'June '*//*AppData.getMonth(string1),
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Text(
+                                   *//* '23'*//*splitedText[2],
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,color: Colors.black),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Text(
+                                    *//*'2016'*//*splitedText[0],
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10,),
+                              *//*Expanded(
+                                child: new Container(
+                                    margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                                    child: Divider(
+                                      color: Colors.black,
+                                      height: 36,
+                                    )),
+                              ),*//*
+                              Container(height: 80, child: VerticalDivider(color: Colors.grey)),
+                              SizedBox(width: 10,),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+
+                          Text(
+                          patient.name + " ",
+                          style: TextStyle(
+                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),),
+                                  SizedBox(
+                                    height: 9,
+                                  ),
+                                  (patient.thpId == "")
+                                      ? Container()
+                                      : Text(
+                                    patient.thpName??"",
+                                    style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  *//*Text(
+                                    patient.screeningDate??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),*//*
+                                 *//* Text(
+                                    patient.patientUniqueid,
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  Text(
+                                    patient.mobile??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  Text(
+                                    patient.gender??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  Text(
+                                    patient.age??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  Text(
+                                    patient.screeningDate??"",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.end,
+                                  ),*//*
+                                ],
+                              ),
+                            ],
+                          ),*/
                           //leading: SizedBox(width:20,child: Text((i+1).toString(),style: TextStyle(color: Colors.black),)),
-                          trailing: Icon(Icons.arrow_right_outlined),
+                          trailing: Column(
+                            children: [
+                              Icon(Icons.arrow_forward_ios_rounded,size: 15,),
+                            ],mainAxisAlignment: MainAxisAlignment.center,
+                          ),
                         ),
                       );
                     },

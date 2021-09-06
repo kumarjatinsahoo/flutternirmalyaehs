@@ -307,9 +307,9 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 13,
                                   ),
-                                  formField(9, "Professional's Name"),
+                                  formField1(1, "Professional's Name"),
                                   SizedBox(
                                     height: 5,
                                   ),
@@ -486,10 +486,10 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
             DoctorSignUpForm2.titleModel == "") {
           AppData.showInSnackBar(context, "Please select title");
         }
-        else if (textEditingController[9].text== "" || textEditingController[9].text== null) {
+        else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
           AppData.showInSnackBar(context, "Please enter Professional's name");
         }
-        else if (textEditingController[9].text.length <= 3) {
+        else if (textEditingController[1].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Professional Name ");
         }
         // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
@@ -884,7 +884,47 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       ),
     );
   }
-
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
+      ),
+    );
+  }
   void displayModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,

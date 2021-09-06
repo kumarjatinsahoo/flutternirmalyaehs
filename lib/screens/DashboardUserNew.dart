@@ -1309,10 +1309,10 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "HELP",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
+                        //AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                        // Navigator.pushNamed(context, "/emergencyHelp");
+                         Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryRedColor,
                       bordercolor: AppData.kPrimaryRedColor,
