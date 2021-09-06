@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-
+import 'package:user/models/EmergencyHelpModel.dart';
+import '../models/LoginResponse1.dart';
+import '../providers/Const.dart';
+import '../providers/api_factory.dart';
 import '../providers/app_data.dart';
 
 class EmergencyHelp extends StatefulWidget {
@@ -15,6 +20,8 @@ class EmergencyHelp extends StatefulWidget {
 }
 
 class _EmergencyHelpState extends State<EmergencyHelp> {
+
+
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -27,6 +34,35 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         return "Transgender";
         break;
     }
+  }
+  LoginResponse1 loginResponse1;
+  EmergencyHelpModel emergencyHelpModel;
+  bool isDataNotAvail = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loginResponse1=widget.model.loginResponse1;
+    callAPI();
+  }
+  callAPI() {
+    print(ApiFactory.EMERGENCY_HELP+loginResponse1.body.user+"\n"+loginResponse1.body.token);
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP+loginResponse1.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>"+JsonEncoder().convert(map));
+
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              emergencyHelpModel= EmergencyHelpModel.fromJson(map);
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
   }
 
   @override
@@ -164,6 +200,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             InkWell(
                                 onTap: () {
                                   // Navigator.pop(context);
+                                  AppData.launchURL("tel://"+emergencyHelpModel.emergency[0].mobile);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
@@ -358,6 +395,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
+
+                                      AppData.launchURL("tel://"+emergencyHelpModel.ambulance);
                                     },
                                     child: Padding(
                                       padding:
@@ -452,6 +491,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
+                                      AppData.launchURL("tel://"+emergencyHelpModel.police);
                                     },
                                     child: Padding(
                                       padding:

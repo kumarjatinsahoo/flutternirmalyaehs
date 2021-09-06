@@ -92,7 +92,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TestReport.dart';
-import 'package:user/screens/TestReport1.dart';
+//import 'package:user/screens/TestReport1.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
@@ -391,9 +391,9 @@ class _MyAppState extends State<MyApp> {
               '/insuranceDetalis': (context) => InsuranceDetalis(
                     model: _model,
                   ),
-              '/testReport': (context) => TestReport1(
-                    model: _model,
-                  ),
+              // '/testReport': (context) => TestReport1(
+              //       model: _model,
+              //     ),
               '/docApntlist': (context) => DocAponmnttListPage(
                     model: _model,
                   ),
