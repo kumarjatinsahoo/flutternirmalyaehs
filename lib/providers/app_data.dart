@@ -41,6 +41,7 @@ class AppData {
 
   static Color grey100 = Color(0xFFF4F4F4);
   static Color greyBorder = Color(0xFFD7D7D7);
+  static Color lightgreyBorder = Color(0xFF949494);
   static Color greyText = Color(0xFF616267);
   static const Color white = Color(0xFFFFFFFF);
   static List<String> phoneFormat = [
