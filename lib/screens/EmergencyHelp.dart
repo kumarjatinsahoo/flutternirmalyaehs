@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -111,7 +112,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),*/
-                  Container(
+                 /* Container(
                     width: size.width,
                     height: size.width,
                     child: Stack(
@@ -172,34 +173,46 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         ),
                       ],
                     ),
+                  ),*/ Container(
+                    width: size.width,
+                    height: size.width,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                ),
+                            child: Lottie.asset('assets/intro/redZone.json'),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 230,
+                            width: size.width - 230,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,),
+                            child: Text(
+                              "HELP",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "MonteMed"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  /* buildTile(
-                      name: "Contact Number",
-                      value: "1800 345 7461",
-                      value1: "011-41182138",
-                      icon: CupertinoIcons.phone_fill),
-                  buildTile(
-                      name: "Address",
-                      value: "District Administration, Sundargarh, Odisha",
-                      icon: Icons.location_on_rounded),
-                  buildTile(
-                      name: "Office hour",
-                      value: "10.00AM to 7.00PM",
-                      icon: Icons.timelapse_outlined),
-                  buildTile(
-                      name: "Chat with us",
-                      //value: "9.00AM to 10.00PM",
-                      fun: (){
-                        AppData.showInSnackDone(context, "Comming soon");
-                      },
-                      icon: Icons.chat),
 
-                  //Text("Follow us",style: Text,),
-                  MyWidgets.subHeader("Follow us", Alignment.center),
-                  SizedBox(height: 10,),*/
 
                   Padding(
                     padding: const EdgeInsets.only(
