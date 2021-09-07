@@ -231,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   new Divider(
                     color: AppData.lightgreyBorder,
                   ),
-                /*  Container(
+                 /* Container(
                     //This is responsible for the background of the tabbar, does the magic
                       decoration: BoxDecoration(
                         //This is for background color
@@ -239,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //This is for bottom border that is needed
                           border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
                       child: TabBar(
-                          controller: _controller,
+                          //controller: _controller,
                           tabs: [
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical:12),
@@ -263,7 +263,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                       height: MediaQuery.of(context).size.height/2.3,
                       child: new TabBarView(
-                        controller: _controller,
+                        //controller: _controller,
                         children: <Widget>[
 
                            rowValue(),
@@ -272,6 +272,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         ],
                       ),
+                  ),*/
+                  /*DefaultTabController(
+                    length: 3,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          constraints: BoxConstraints(maxHeight: 150.0),
+                          child: Material(
+                            color: Colors.indigo,
+                            child: TabBar(
+                              tabs: [
+                                Tab(icon: Icon(Icons.directions_car)),
+                                Tab(icon: Icon(Icons.directions_transit)),
+                                Tab(icon: Icon(Icons.directions_bike)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              rowValue(),
+                              rowValue1(),
+                              rowValue2()
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),*/
                   DefaultTabController(
                       length: 3,
@@ -365,11 +394,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget rowValue() {
     return Card(
-      elevation: 5,
+      elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            decoration: BoxDecoration(
+            /*decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
            color: Colors.grey[300],
@@ -379,16 +408,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
               borderRadius: BorderRadius.circular(5),
 
-    ),
+    ),*/
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
               child: Row(
                 children: [
+                  Icon(Icons.calendar_today,size: 20,),
+                  SizedBox(width: 10),
                 Expanded(flex: 1,
                   child:Text(
+
                     'Date Of Birth',
                     style: TextStyle(fontSize: 15
                       // color: Colors.black54,
@@ -415,9 +447,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Row(
                 children: [
+                  Icon(Icons.date_range_rounded,size: 20,),
+
+                  //Icon(Icons.bloodtype,size: 20),
+                  SizedBox(width: 10),
               Expanded(flex: 1,  child: Text(
                     'Bloood Group',
                     style: TextStyle(fontSize: 15
@@ -442,18 +478,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Row(
+
                 children: [
+                  Icon(Icons.date_range_rounded,size: 20,),
+
+                  SizedBox(width: 10),
               Expanded( flex: 1, child: Text(
-                    'eHealthCard No.',
+                    'UHID ',
                     style: TextStyle(
                         fontSize: 15
                       //fontWeight: FontWeight.w600,
                     ),
                   ),
               ),
-
+                  SizedBox(width: 10),
           Expanded( flex: 1,child:  Text(
                     patientProfileModel?.body?.id ?? "N/A",
                     style: TextStyle(
@@ -468,9 +508,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Row(
                 children: [
+                  Icon(Icons.person,size: 20,),
+                  SizedBox(width: 10),
               Expanded(flex: 1, child: Container(
                 alignment: Alignment.centerLeft,
                 width: 100, child:Text(
@@ -497,9 +539,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child:  Expanded(child:Row(
                 children: [
+                  Icon(Icons.call,size: 20,),
+                  SizedBox(width: 10),
                   Expanded(flex: 1, child:Text(
                     'Contact Details',
                     style: TextStyle(fontSize: 15
@@ -522,6 +566,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             ),
             SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child:  Expanded(child:Row(
+                children: [
+                  Icon(Icons.location_on_rounded,size: 20,),
+                  SizedBox(width: 10),
+                  Expanded(flex: 1, child:Text(
+                    'Address',
+                    style: TextStyle(fontSize: 15
+                      // color: AppData.kPrimaryColor,
+                      //fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(flex: 1, child:Text(
+                   /* patientProfileModel?.body?.mobile ??*/ "N/A",
+                    style: TextStyle(fontSize: 14
+                      //fontWeight: FontWeight.w500,
+                      // color: AppData.kPrimaryColor,
+                    ),
+                  ),
+                  ),
+                ],
+              ),
+              ),
+            ),
+            SizedBox(height: 10),
           ],
 
     ),
@@ -532,11 +604,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget rowValue1() {
     return Card(
-        elevation: 5,
+        elevation: 0,
         child: Padding(
         padding: const EdgeInsets.all(8.0),
     child: Container(
-    decoration: BoxDecoration(
+   /* decoration: BoxDecoration(
     color: Colors.white,
     border: Border.all(
     color: Colors.grey[300],
@@ -546,15 +618,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),
     borderRadius: BorderRadius.circular(5),
 
-    ),
+    ),*/
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.person,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
+
               child:Text(
                   'Name',
                   style: TextStyle(
@@ -581,9 +656,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.people_alt_rounded,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
               child:Text(
                   'Relaton',
@@ -608,9 +685,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.call,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
               child: Text(
                   'Mobile No.',
@@ -641,11 +720,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget rowValue2() {
     return Card(
-        elevation: 5,
+        elevation: 0,
         child: Padding(
         padding: const EdgeInsets.all(8.0),
     child: Container(
-    decoration: BoxDecoration(
+    /*decoration: BoxDecoration(
     color: Colors.white,
     border: Border.all(
     color: Colors.grey[300],
@@ -655,7 +734,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),
     borderRadius: BorderRadius.circular(5),
 
-    ),
+    ),*/
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -673,9 +752,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),*/
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.person,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
               child: Text(
                   'Name',
@@ -704,9 +785,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.person,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
               child:Text(
                   'Specialty ',
@@ -733,9 +816,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: Row(
               children: [
+                Icon(Icons.call,size: 20,),
+                SizedBox(width: 10),
               Expanded(flex: 1,
               child: Text(
                   'Mobile No.',

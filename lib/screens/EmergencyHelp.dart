@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
@@ -69,8 +70,42 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
 
+  showUserList(BuildContext context, dynamic list) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding:
+                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  height: 200,
+                  child: ListView.builder(
+                    itemBuilder: (context, i) {
+                      return ListTile(
+                        //title: Text(list[i].),
+                      );
+                    },
+                    itemCount: list.length,
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         //extendBody: true,
@@ -82,20 +117,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           /*leading: BackButton(
                 color: Colors.white,
               ),*/
-          title: Row(
-            children: [
-              Text(
-                'Emergency Help',
-                style: TextStyle(color: Colors.white),
-              ),
-              Spacer(),
-              InkWell(
-                onTap: (){},
-                  child: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ))
-            ],
+          title: Text(
+            'Emergency Help',
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
@@ -108,9 +132,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 60,
+                    height: 10,
                   ),
-                  Container(
+                  /*Container(
                     width: double.infinity,
                     height: 150.0,
                     child: Center(
@@ -127,34 +151,46 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         ),
                       ),
                     ),
+                  ),*/
+                  Container(
+                    width: size.width,
+                    height: size.width,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                            ),
+                            child: Lottie.asset('assets/intro/redZone.json'),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 230,
+                            width: size.width - 230,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,),
+                            child: Text(
+                              "HELP",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "MonteMed"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
-                  /* buildTile(
-                      name: "Contact Number",
-                      value: "1800 345 7461",
-                      value1: "011-41182138",
-                      icon: CupertinoIcons.phone_fill),
-                  buildTile(
-                      name: "Address",
-                      value: "District Administration, Sundargarh, Odisha",
-                      icon: Icons.location_on_rounded),
-                  buildTile(
-                      name: "Office hour",
-                      value: "10.00AM to 7.00PM",
-                      icon: Icons.timelapse_outlined),
-                  buildTile(
-                      name: "Chat with us",
-                      //value: "9.00AM to 10.00PM",
-                      fun: (){
-                        AppData.showInSnackDone(context, "Comming soon");
-                      },
-                      icon: Icons.chat),
-
-                  //Text("Follow us",style: Text,),
-                  MyWidgets.subHeader("Follow us", Alignment.center),
-                  SizedBox(height: 10,),*/
 
                   Padding(
                     padding: const EdgeInsets.only(
@@ -219,6 +255,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                   // Navigator.pop(context);
                                   AppData.launchURL("tel://" +
                                       emergencyHelpModel.emergency[0].mobile);
+
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
@@ -246,7 +283,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     color: Colors.red,
                                   ),
                                 )),
-                          ]))
+                          ])
+                              )
                         ],
                       ),
                     ),
@@ -382,12 +420,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       // Navigator.pop(context);
                                     },
                                     child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10.0, right: 10.0),
-                                        child: Image.asset(
-                                          "assets/images/callambulance.png",
-                                          height: 30,
-                                        ))),
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Image.asset("assets/images/callambulance.png",height: 30,)
+                                    )),
                                 Container(
                                   width: 2,
                                   child: Divider(
@@ -451,9 +487,11 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),
+
                   SizedBox(
                     height: 30,
                   ),
+
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15.0,
@@ -472,28 +510,26 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         children: [
                           Container(
                               child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.spic,
+                                //mainAxisAlignment: MainAxisAlignment.spic,
                                   children: [
-                                InkWell(
-                                    onTap: () {
-                                      // Navigator.pop(context);
-                                    },
-                                    child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10.0, right: 10.0),
-                                        child: Image.asset(
-                                          "assets/images/Call_police.png",
-                                          height: 30,
-                                        ))),
-                                Container(
-                                  width: 2,
-                                  child: Divider(
-                                    thickness: 21,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                                /* SizedBox(width: 100,),*/
-                              ])),
+                                    InkWell(
+                                        onTap: () {
+                                          // Navigator.pop(context);
+                                        },
+                                        child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Image.asset("assets/images/Call_police.png",height: 30,)
+                                        )),
+                                    Container(
+                                      width: 2,
+                                      child: Divider(
+                                        thickness: 21,
+                                        color:Colors.red,
+                                      ),
+                                    ),
+                                    /* SizedBox(width: 100,),*/
+                                  ])),
                           new Spacer(),
                           /*  Expanded(child:*/
                           Text(
@@ -506,7 +542,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           /* ),*/
                           new Spacer(),
                           Row(
-                              //mainAxisAlignment: MainAxisAlignment.spic,
+                            //mainAxisAlignment: MainAxisAlignment.spic,
                               children: [
                                 InkWell(
                                     onTap: () {

@@ -83,7 +83,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             if (!userDashboardModel.body.isEContactAdded ||
                 !userDashboardModel.body.isEContactAdded) {
               WidgetsBinding.instance.addPostFrameCallback((_) async {
-                dashOption1(context);
+                if (!mounted) dashOption1(context);
               });
             }
           } else {
@@ -504,7 +504,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 child: PageView(
                   controller: _controller,
                   children: [
-                    MyPage1Widget(model: widget.model,),
+                    MyPage1Widget(
+                      model: widget.model,
+                    ),
                     MyPage2Widget(),
                   ],
                 ),
@@ -1024,10 +1026,13 @@ class MyPage1Widget extends StatelessWidget {
   var widget;
   double _height = 85;
   double _width;
- /* MainModel model;
+
+  /* MainModel model;
 MyPage1Widget({this.model});*/
   final MainModel model;
+
   MyPage1Widget({Key key, this.model}) : super(key: key);
+
   chooseAppointment(BuildContext context) {
     return showDialog(
         context: context,
@@ -1049,8 +1054,9 @@ MyPage1Widget({this.model});*/
                         ListTile(
                           title: Center(child: Text("Health Screening")),
                           onTap: () {
-                            widget.model.apntUserType = Const.HEALTH_SCREENING_APNT;
-                           // widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
+                            widget.model.apntUserType =
+                                Const.HEALTH_SCREENING_APNT;
+                            // widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
 
                             Navigator.pushNamed(context, "/userApnt");
                             Navigator.pop(context);
@@ -1306,7 +1312,7 @@ MyPage1Widget({this.model});*/
                         //AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                         Navigator.pushNamed(context, "/emergencyHelp");
+                        Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryRedColor,
                       bordercolor: AppData.kPrimaryRedColor,
@@ -1349,7 +1355,7 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                      //  AppData.showInSnackBar(context, "Coming soon");
+                        //  AppData.showInSnackBar(context, "Coming soon");
                         Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
