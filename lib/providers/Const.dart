@@ -51,6 +51,7 @@ class Const {
   static const String TRANSGENDER_CODE = "3";
   static const String SON_CODE = "7";
   static const String STATUS = "code";
+  static const String STATUS1 = "status";
   static const String CODE = "code";
   static const String SUCCESS = "success";
   static const String BODY = "body";

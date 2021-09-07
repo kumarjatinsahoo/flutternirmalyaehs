@@ -40,8 +40,9 @@ dependencies:
   url_launcher: ^6.0.9
   intro_slider: ^3.0.2
   flutter_webview_plugin: ^0.4.0
-  webview_flutter: ^2.0.12
+  #webview_flutter: ^2.0.12
   unique_identifier: ^0.2.0
+  lottie: ^1.1.0
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
 
@@ -57,4 +58,30 @@ flutter:
     - assets/i18n/
     - assets/images/
     - assets/intro/
+
+  fonts:
+
+    - family:  Monte
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+
+    - family:  MonteMed
+      fonts:
+        - asset: fonts/Montserrat-Medium.ttf
+
+    - family:  DINLight
+      fonts:
+        - asset: fonts/DINNextLTPro-Light.otf
+
+    - family:  DINBold
+      fonts:
+        - asset: fonts/DINNextLTPro-Bold.otf
+
+    - family:  DINMed
+      fonts:
+        - asset: fonts/DINNextLTPro-Medium.otf
+
+    - family:  DINReg
+      fonts:
+        - asset: fonts/DINNextLTPro-Regular.otf
 

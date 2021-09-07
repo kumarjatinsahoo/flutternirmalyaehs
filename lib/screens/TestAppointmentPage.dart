@@ -699,10 +699,17 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
       child: TextFormField(
         autofocus: false,
         controller: controller,
-        inputFormatters: [
+        //textInputAction: TextInputAction.next,
+
+        /*inputFormatters: [
           //UpperCaseTextFormatter(),
+        ],*/
+        maxLength: 5,
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          WhitelistingTextInputFormatter(
+              RegExp("[0-9. ]")),
         ],
-        maxLength: 3,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,

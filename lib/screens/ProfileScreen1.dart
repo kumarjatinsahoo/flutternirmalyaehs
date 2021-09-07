@@ -107,7 +107,7 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
                     ),
                  /* ),*/
                   SizedBox(height: size.height * 0.04,),
-                  TabBar(
+                  /*TabBar(
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicatorColor: Colors.orangeAccent,
                     isScrollable: false,
@@ -117,7 +117,7 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
                       Tab(text: "STATEMENT",),
                       Tab(text: "REPORTS",),
                     ],
-                  ),
+                  ),*/
 
                   
               ],

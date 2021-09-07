@@ -199,7 +199,7 @@ class _MyProfile extends State<DocMyProfile> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Nirmaly lab",
+                          "Nirmalya lab",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -264,7 +264,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "IMA No",
+                            "IMA no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -286,7 +286,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Pan Card No",
+                            "Pan Card no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -308,7 +308,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Passport No",
+                            "Passport no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -330,7 +330,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Aadhaar Card No",
+                            "Aadhaar Card no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -352,7 +352,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Voter Card No",
+                            "Voter Card no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -361,7 +361,7 @@ class _MyProfile extends State<DocMyProfile> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Nirmaly lab",
+                          "Nirmalya lab",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],
@@ -374,7 +374,7 @@ class _MyProfile extends State<DocMyProfile> {
                         Container(
                           width:100,
                           child: Text(
-                            "Licence No",
+                            "Licence no.",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ),
@@ -383,7 +383,7 @@ class _MyProfile extends State<DocMyProfile> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         Text(
-                          "Nirmaly lab",
+                          "Nirmalya lab",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],

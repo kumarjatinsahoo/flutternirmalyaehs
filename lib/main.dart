@@ -57,6 +57,7 @@ import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
+import 'package:user/screens/TestReportListUser1.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -91,7 +92,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TestReport.dart';
-import 'package:user/screens/TestReport1.dart';
+//import 'package:user/screens/TestReport1.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
@@ -168,6 +169,7 @@ class _MyAppState extends State<MyApp> {
       child: ScopedModelDescendant<MainModel>(
         builder: (BuildContext context, Widget child, MainModel model) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             locale: Locale(selectedLan),
             theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Monte'),
             /*home: SplashScreen(
@@ -390,9 +392,9 @@ class _MyAppState extends State<MyApp> {
               '/insuranceDetalis': (context) => InsuranceDetalis(
                     model: _model,
                   ),
-              '/testReport': (context) => TestReport1(
-                    model: _model,
-                  ),
+              // '/testReport': (context) => TestReport1(
+              //       model: _model,
+              //     ),
               '/docApntlist': (context) => DocAponmnttListPage(
                     model: _model,
                   ),
@@ -500,6 +502,10 @@ class _MyAppState extends State<MyApp> {
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),
+              '/testReportListUser1': (context) => TestReportListUser1(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
