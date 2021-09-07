@@ -29,8 +29,42 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     }
   }
 
+  showUserList(BuildContext context, dynamic list) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding:
+                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+                  height: 200,
+                  child: ListView.builder(
+                    itemBuilder: (context, i) {
+                      return ListTile(
+                        //title: Text(list[i].),
+                      );
+                    },
+                    itemCount: list.length,
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         //extendBody: true,
@@ -57,9 +91,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 60,
+                    height: 10,
                   ),
-                  Container(
+                  /*Container(
                     width: double.infinity,
                     height: 150.0,
                     child: Center(
@@ -76,9 +110,71 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         ),
                       ),
                     ),
+                  ),*/
+                  Container(
+                    width: size.width,
+                    height: size.width,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: AppData.green1),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 50,
+                            width: size.width - 50,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: AppData.green2),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 100,
+                            width: size.width - 100,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: AppData.green3),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 150,
+                            width: size.width - 150,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: AppData.green4),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: size.width - 230,
+                            width: size.width - 230,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: AppData.green5),
+                            child: Text(
+                              "HELP",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "MonteMed"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
                   /* buildTile(
                       name: "Contact Number",
@@ -111,7 +207,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       right: 15.0,
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       height: 50,
                       decoration: BoxDecoration(
                         // color: Colors.indigo[50],
@@ -135,7 +234,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
                                       child: Image.asset(
-                                          "assets/images/medical_emergency.png",height: 30,),
+                                        "assets/images/medical_emergency.png",
+                                        height: 30,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -160,39 +261,40 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           ),
                           new Spacer(),
                           Container(
-                              child: Row(children: [
-                            InkWell(
-                                onTap: () {
-                                  // Navigator.pop(context);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: Icon(
-                                    Icons.phone_in_talk,
-                                    color: Colors.red,
-                                  ),
-                                )),
-                            Container(
-                              width: 2,
-                              child: Divider(
-                                thickness: 21,
-                                color: Colors.red,
+                            child: Row(children: [
+                              InkWell(
+                                  onTap: () {
+                                    // Navigator.pop(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 10.0),
+                                    child: Icon(
+                                      Icons.phone_in_talk,
+                                      color: Colors.red,
+                                    ),
+                                  )),
+                              Container(
+                                width: 2,
+                                child: Divider(
+                                  thickness: 21,
+                                  color: Colors.red,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  // Navigator.pop(context);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10.0),
-                                  child: Icon(
-                                    Icons.info,
-                                    color: Colors.red,
-                                  ),
-                                )),
-                          ])
-                              )
+                              InkWell(
+                                  onTap: () {
+                                    // Navigator.pop(context);
+                                    //showUserList(context,)
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0, right: 10.0),
+                                    child: Icon(
+                                      Icons.info,
+                                      color: Colors.red,
+                                    ),
+                                  )),
+                            ],),)
                         ],
                       ),
                     ),
@@ -309,7 +411,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       right: 15.0,
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       height: 50,
                       decoration: BoxDecoration(
                         // color: Colors.indigo[50],
@@ -321,26 +426,28 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         children: [
                           Container(
                               child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.spic,
+                                //mainAxisAlignment: MainAxisAlignment.spic,
                                   children: [
-                                InkWell(
-                                    onTap: () {
-                                      // Navigator.pop(context);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, right: 10.0),
-                                      child: Image.asset("assets/images/callambulance.png",height: 30,)
-                                    )),
-                                Container(
-                                  width: 2,
-                                  child: Divider(
-                                    thickness: 21,
-                                    color: AppData.kPrimaryColor,
-                                  ),
-                                ),
-                                /* SizedBox(width: 100,),*/
-                              ])),
+                                    InkWell(
+                                        onTap: () {
+                                          // Navigator.pop(context);
+                                        },
+                                        child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Image.asset(
+                                              "assets/images/callambulance.png",
+                                              height: 30,
+                                            ))),
+                                    Container(
+                                      width: 2,
+                                      child: Divider(
+                                        thickness: 21,
+                                        color: AppData.kPrimaryColor,
+                                      ),
+                                    ),
+                                    /* SizedBox(width: 100,),*/
+                                  ])),
                           new Spacer(),
                           /*  Expanded(child:*/
                           Text(
@@ -353,7 +460,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           /* ),*/
                           new Spacer(),
                           Row(
-                              //mainAxisAlignment: MainAxisAlignment.spic,
+                            //mainAxisAlignment: MainAxisAlignment.spic,
                               children: [
                                 InkWell(
                                     onTap: () {
@@ -361,7 +468,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     },
                                     child: Padding(
                                       padding:
-                                          const EdgeInsets.only(right: 10.0),
+                                      const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
                                         color: AppData.kPrimaryColor,
@@ -392,18 +499,19 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: 30,
                   ),
-
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15.0,
                       right: 15.0,
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       height: 50,
                       decoration: BoxDecoration(
                         // color: Colors.indigo[50],
@@ -424,13 +532,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                         child: Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 10.0, right: 10.0),
-                                            child: Image.asset("assets/images/Call_police.png",height: 30,)
-                                        )),
+                                            child: Image.asset(
+                                              "assets/images/Call_police.png",
+                                              height: 30,
+                                            ))),
                                     Container(
                                       width: 2,
                                       child: Divider(
                                         thickness: 21,
-                                        color:Colors.red,
+                                        color: Colors.red,
                                       ),
                                     ),
                                     /* SizedBox(width: 100,),*/
@@ -520,14 +630,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           ),
           (value != null)
               ? SizedBox(
-                  height: 3,
-                )
+            height: 3,
+          )
               : Container(),
           (value != null) ? Text(value) : Container(),
           (value1 != null)
               ? SizedBox(
-                  height: 3,
-                )
+            height: 3,
+          )
               : Container(),
           (value1 != null) ? Text(value1) : Container(),
           SizedBox(

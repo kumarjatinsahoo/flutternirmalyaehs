@@ -83,7 +83,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             if (!userDashboardModel.body.isEContactAdded ||
                 !userDashboardModel.body.isEContactAdded) {
               WidgetsBinding.instance.addPostFrameCallback((_) async {
-                dashOption1(context);
+                if (!mounted) dashOption1(context);
               });
             }
           } else {
@@ -1312,7 +1312,7 @@ MyPage1Widget({this.model});*/
                         //AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                         Navigator.pushNamed(context, "/emergencyHelp");
+                        Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryRedColor,
                       bordercolor: AppData.kPrimaryRedColor,

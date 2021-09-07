@@ -57,3 +57,29 @@ flutter:
     - assets/images/
     - assets/intro/
 
+  fonts:
+
+    - family:  Monte
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+
+    - family:  MonteMed
+      fonts:
+        - asset: fonts/Montserrat-Medium.ttf
+
+    - family:  DINLight
+      fonts:
+        - asset: fonts/DINNextLTPro-Light.otf
+
+    - family:  DINBold
+      fonts:
+        - asset: fonts/DINNextLTPro-Bold.otf
+
+    - family:  DINMed
+      fonts:
+        - asset: fonts/DINNextLTPro-Medium.otf
+
+    - family:  DINReg
+      fonts:
+        - asset: fonts/DINNextLTPro-Regular.otf
+
