@@ -171,7 +171,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             locale: Locale(selectedLan),
-            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Monte'),
+            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: ''),
             /*home: SplashScreen(
               model: _model,
             ),*/

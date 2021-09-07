@@ -80,7 +80,7 @@ class _InsuranceListState extends State<InsuranceList> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5))),
                     child: Container(
-                      height: 90,
+                      height: 100,
                       decoration: BoxDecoration(
                           border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
                             width: double.maxFinite,
@@ -139,7 +139,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5))),
                                 child: Container(
-                                    height: 90,
+                                    height: 100,
                                     decoration: BoxDecoration(
                                         border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
                                     width: double.maxFinite,
@@ -196,7 +196,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5))),
                                 child: Container(
-                                    height: 90,
+                                    height: 100,
                                     decoration: BoxDecoration(
                                         border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
                                     width: double.maxFinite,
@@ -254,7 +254,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5))),
                             child: Container(
-                                height: 90,
+                                height: 100,
                                 decoration: BoxDecoration(
                                     border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
                                 width: double.maxFinite,
