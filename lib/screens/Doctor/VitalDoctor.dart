@@ -162,7 +162,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 ),
                                 Spacer(),
                                 Text(
-                                  "Reading(mg/dL)",
+                                  "Reading",
                                   style: TextStyle(
                                       color: Color(0xFF3a3b3f),
                                       fontSize: 15,
@@ -369,7 +369,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -650,7 +650,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(13, "mg/dL")
+                              Expanded(child: formField(13, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -681,7 +681,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(14, "mg/dL")
+                              Expanded(child: formField(14, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -712,7 +712,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(15, "mg/dL")
+                              Expanded(child: formField(15, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -749,7 +749,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -782,7 +782,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(16, "mg/dL")
+                              Expanded(child: formField(16, "  ")
                                   //   TextField(
                                   //     keyboardType: TextInputType.text,
                                   //     decoration: InputDecoration(
@@ -813,7 +813,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(17, "mg/dL")
+                              Expanded(child: formField(17, " ")
                                   //   TextField(
                                   //     keyboardType: TextInputType.text,
                                   //     decoration: InputDecoration(
@@ -844,7 +844,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(18, "mg/dL")
+                              Expanded(child: formField(18, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -875,7 +875,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(19, "mg/dL")
+                              Expanded(child: formField(19, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -906,7 +906,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(20, "mg/dL")
+                              Expanded(child: formField(20, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -937,7 +937,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(21, "mg/dL")
+                              Expanded(child: formField(21, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -968,7 +968,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(22, "mg/dL")
+                              Expanded(child: formField(22, " ")
 
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
@@ -1000,7 +1000,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(23, "mg/dL")
+                              Expanded(child: formField(23, " ")
                                   //     TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1037,7 +1037,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -1070,7 +1070,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(24, "mg/dL")
+                              Expanded(child: formField(24, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1101,7 +1101,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(25, "mg/dL")
+                              Expanded(child: formField(25, "  ")
                                   //  TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1133,7 +1133,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 width: 10,
                               ),
                               Expanded(
-                                child: formField(26, "mg/dL"),
+                                child: formField(26, " "),
                                 // TextField(
                                 //   keyboardType: TextInputType.text,
                                 //   decoration: InputDecoration(
@@ -1164,7 +1164,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(27, "mg/dL")
+                              Expanded(child: formField(27, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1195,7 +1195,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(28, "mg/dL")
+                              Expanded(child: formField(28, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1226,7 +1226,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(29, "mg/dL")
+                              Expanded(child: formField(29, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1262,7 +1262,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -1295,7 +1295,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(30, "mg/dL")
+                              Expanded(child: formField(30, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1326,7 +1326,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(31, "mg/dL")
+                              Expanded(child: formField(31, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1357,7 +1357,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(32, "mg/dL")
+                              Expanded(child: formField(32, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1388,7 +1388,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(33, "mg/dL")
+                              Expanded(child: formField(33, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1419,7 +1419,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(34, "mg/dL")
+                              Expanded(child: formField(34, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1450,7 +1450,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(35, "mg/dL")
+                              Expanded(child: formField(35, " ")
                                   //     TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1491,7 +1491,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -1521,7 +1521,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                           SizedBox(
                             width: 10,
                           ),
-                          Expanded(child: formField(36, "mg/dL")
+                          Expanded(child: formField(36, " ")
                               // TextField(
                               //   keyboardType: TextInputType.text,
                               //   decoration: InputDecoration(
@@ -1557,7 +1557,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 ),
                                 Spacer(),
                                 Text(
-                                  "Reading(mg/dL)",
+                                  "Reading",
                                   style: TextStyle(
                                       color: Color(0xFF3a3b3f),
                                       fontSize: 15,
@@ -1592,7 +1592,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: formField(37, "mg/dL")
+                                Expanded(child: formField(37, "mmHg")
                                     // TextField(
                                     //   keyboardType: TextInputType.text,
                                     //   decoration: InputDecoration(
@@ -1625,7 +1625,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: formField(38, "mg/dL")
+                                Expanded(child: formField(38, " C ")
                                     // TextField(
                                     //   keyboardType: TextInputType.text,
                                     //   decoration: InputDecoration(
@@ -1658,7 +1658,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: formField(39, "mg/dL")
+                                Expanded(child: formField(39, " % ")
                                     // TextField(
                                     //   keyboardType: TextInputType.text,
                                     //   decoration: InputDecoration(
@@ -1691,7 +1691,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: formField(40, "mg/dL")
+                                Expanded(child: formField(40, " cm ")
                                     // TextField(
                                     //   keyboardType: TextInputType.text,
                                     //   decoration: InputDecoration(
@@ -1722,7 +1722,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Expanded(child: formField(41, "mg/dL")
+                                Expanded(child: formField(41, " Kg ")
                                     // TextField(
                                     //   keyboardType: TextInputType.text,
                                     //   decoration: InputDecoration(
@@ -1758,7 +1758,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -1791,7 +1791,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(42, "mg/dL")
+                              Expanded(child: formField(42, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1822,7 +1822,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(43, "mg/dL")
+                              Expanded(child: formField(43, "Kcal")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1853,7 +1853,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(44, "mg/dL")
+                              Expanded(child: formField(44, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1884,7 +1884,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(45, "mg/dL")
+                              Expanded(child: formField(45, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1915,7 +1915,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(46, "mg/dL")
+                              Expanded(child: formField(46, "Kg")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1946,7 +1946,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(47, "mg/dL")
+                              Expanded(child: formField(47, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -1977,7 +1977,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(48, "mg/dL")
+                              Expanded(child: formField(48, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2008,7 +2008,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(49, "mg/dL")
+                              Expanded(child: formField(49, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2039,7 +2039,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(50, "mg/dL")
+                              Expanded(child: formField(50, " % ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2070,7 +2070,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(51, "mg/dL")
+                              Expanded(child: formField(51, " Kg ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2100,7 +2100,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(52, "mg/dL")
+                              Expanded(child: formField(52, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2135,7 +2135,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -2168,7 +2168,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(53, "mg/dL")
+                              Expanded(child: formField(53, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2199,7 +2199,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(54, "mg/dL")
+                              Expanded(child: formField(54, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2230,7 +2230,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(55, "mg/dL")
+                              Expanded(child: formField(55, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2261,7 +2261,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(56, "mg/dL")
+                              Expanded(child: formField(56, "  ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2292,7 +2292,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(57, "mg/dL")
+                              Expanded(child: formField(57, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2323,7 +2323,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(58, "mg/dL")
+                              Expanded(child: formField(58, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2354,7 +2354,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(59, "mg/dL")
+                              Expanded(child: formField(59, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2385,7 +2385,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(60, "mg/dL")
+                              Expanded(child: formField(60, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2416,7 +2416,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(61, "mg/dL")
+                              Expanded(child: formField(61, "")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2450,7 +2450,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -2483,7 +2483,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(62, "mg/dL")
+                              Expanded(child: formField(62, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2514,7 +2514,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(63, "mg/dL")
+                              Expanded(child: formField(63, "")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2545,7 +2545,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(64, "mg/dL")
+                              Expanded(child: formField(64, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2576,7 +2576,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(65, "mg/dL")
+                              Expanded(child: formField(65, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2607,7 +2607,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(66, "mg/dL")
+                              Expanded(child: formField(66, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2642,7 +2642,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               ),
                               Spacer(),
                               Text(
-                                "Reading(mg/dL)",
+                                "Reading",
                                 style: TextStyle(
                                     color: Color(0xFF3a3b3f),
                                     fontSize: 15,
@@ -2675,7 +2675,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(67, "mg/dL")
+                              Expanded(child: formField(67, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2706,7 +2706,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(68, "mg/dL")
+                              Expanded(child: formField(68, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2737,7 +2737,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(69, "mg/dL")
+                              Expanded(child: formField(69, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2768,7 +2768,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(70, "mg/dL")
+                              Expanded(child: formField(70, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2799,7 +2799,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(71, "mg/dL")
+                              Expanded(child: formField(71, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2830,7 +2830,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(72, "mg/dL")
+                              Expanded(child: formField(72, " ")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2871,7 +2871,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         style: TextStyle(fontSize: 13),
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'mg/dL',
+          hintText: ' ',
           hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
         ),
         onChanged: (newValue) {},
@@ -2888,219 +2888,219 @@ class _VitalDoctor extends State<VitalDoctor> {
         } else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please enter urea");
-        } else if (textEditingController[2].text == "" ||
-            textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please enter uric acid");
-        } else if (textEditingController[3].text == "" ||
-            textEditingController[3].text == null) {
-          AppData.showInSnackBar(context, "Please enter BUN");
-        } else if (textEditingController[4].text == "" ||
-            textEditingController[4].text == null) {
-          AppData.showInSnackBar(context, "Please enter EGFR");
-        } else if (textEditingController[5].text == "" ||
-            textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Albumin");
-        } else if (textEditingController[6].text == "" ||
-            textEditingController[6].text == null) {
-          AppData.showInSnackBar(context, "Please enter Alkaline");
-        } else if (textEditingController[7].text == "" ||
-            textEditingController[7].text == null) {
-          AppData.showInSnackBar(context, "Please enter Phosphate");
-        } else if (textEditingController[8].text == "" ||
-            textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Direct Bilirubin");
-        } else if (textEditingController[9].text == "" ||
-            textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter indirect Bilirubin");
-        } else if (textEditingController[10].text == "" ||
-            textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Total Bilirubin");
-        } else if (textEditingController[11].text == "" ||
-            textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter AST(SGOT)");
-        } else if (textEditingController[12].text == "" ||
-            textEditingController[12].text == null) {
-          AppData.showInSnackBar(context, "Please enter ALT(SGPT)");
-        } else if (textEditingController[13].text == "" ||
-            textEditingController[13].text == null) {
-          AppData.showInSnackBar(context, "Please enter TotalProtine");
-        } else if (textEditingController[14].text == "" ||
-            textEditingController[14].text == null) {
-          AppData.showInSnackBar(context, "Please enter AG Ratio");
-        } else if (textEditingController[15].text == "" ||
-            textEditingController[15].text == null) {
-          AppData.showInSnackBar(context, "Please enter Globulin");
-        } else if (textEditingController[16].text == "" ||
-            textEditingController[16].text == null) {
-          AppData.showInSnackBar(context, "Please enter Cholesterol");
-        } else if (textEditingController[17].text == "" ||
-            textEditingController[17].text == null) {
-          AppData.showInSnackBar(context, "Please enter HDL");
-        } else if (textEditingController[18].text == "" ||
-            textEditingController[18].text == null) {
-          AppData.showInSnackBar(context, "Please enter Triglyceride");
-        } else if (textEditingController[19].text == "" ||
-            textEditingController[19].text == null) {
-          AppData.showInSnackBar(context, "Please enter LDL");
-        } else if (textEditingController[20].text == "" ||
-            textEditingController[20].text == null) {
-          AppData.showInSnackBar(context, "Please enter LDL calculative");
-        } else if (textEditingController[21].text == "" ||
-            textEditingController[21].text == null) {
-          AppData.showInSnackBar(context, "Please enter VLDL");
-        } else if (textEditingController[22].text == "" ||
-            textEditingController[22].text == null) {
-          AppData.showInSnackBar(context, "Please enter HDL/LDL Ratio");
-        } else if (textEditingController[23].text == "" ||
-            textEditingController[23].text == null) {
-          AppData.showInSnackBar(context, "Please enter HDL Ratio");
-        } else if (textEditingController[24].text == "" ||
-            textEditingController[24].text == null) {
-          AppData.showInSnackBar(context, "Please enter Sodium");
-        } else if (textEditingController[25].text == "" ||
-            textEditingController[25].text == null) {
-          AppData.showInSnackBar(context, "Please enter Potassium");
-        } else if (textEditingController[26].text == "" ||
-            textEditingController[26].text == null) {
-          AppData.showInSnackBar(context, "Please enter Chloride");
-        } else if (textEditingController[27].text == "" ||
-            textEditingController[27].text == null) {
-          AppData.showInSnackBar(context, "Please enter Calcium");
-        } else if (textEditingController[28].text == "" ||
-            textEditingController[28].text == null) {
-          AppData.showInSnackBar(context, "Please enter Magnesium");
-        } else if (textEditingController[29].text == "" ||
-            textEditingController[29].text == null) {
-          AppData.showInSnackBar(context, "Please enter Phosphorus");
-        } else if (textEditingController[30].text == "" ||
-            textEditingController[30].text == null) {
-          AppData.showInSnackBar(context, "Please enter Hemoglobin");
-        } else if (textEditingController[31].text == "" ||
-            textEditingController[31].text == null) {
-          AppData.showInSnackBar(context, "Please enter RBC");
-        } else if (textEditingController[32].text == "" ||
-            textEditingController[32].text == null) {
-          AppData.showInSnackBar(context, "Please enter PCV");
-        } else if (textEditingController[33].text == "" ||
-            textEditingController[33].text == null) {
-          AppData.showInSnackBar(context, "Please enter MCV");
-        } else if (textEditingController[34].text == "" ||
-            textEditingController[34].text == null) {
-          AppData.showInSnackBar(context, "Please enter MCH");
-        } else if (textEditingController[35].text == "" ||
-            textEditingController[35].text == null) {
-          AppData.showInSnackBar(context, "Please enter MCHC");
-        } else if (textEditingController[36].text == "" ||
-            textEditingController[36].text == null) {
-          AppData.showInSnackBar(context, "Please enter Glucose");
-        } else if (textEditingController[37].text == "" ||
-            textEditingController[37].text == null) {
-          AppData.showInSnackBar(context, "Please enter Blood Pressure");
-        } else if (textEditingController[38].text == "" ||
-            textEditingController[38].text == null) {
-          AppData.showInSnackBar(context, "Please enter Tempreture");
-        } else if (textEditingController[39].text == "" ||
-            textEditingController[39].text == null) {
-          AppData.showInSnackBar(context, "Please enter Spo2");
-        } else if (textEditingController[40].text == "" ||
-            textEditingController[40].text == null) {
-          AppData.showInSnackBar(context, "Please enter Height");
-        } else if (textEditingController[41].text == "" ||
-            textEditingController[41].text == null) {
-          AppData.showInSnackBar(context, "Please enter Weight");
-        } else if (textEditingController[42].text == "" ||
-            textEditingController[42].text == null) {
-          AppData.showInSnackBar(context, "Please enter Protine");
-        } else if (textEditingController[43].text == "" ||
-            textEditingController[43].text == null) {
-          AppData.showInSnackBar(context, "Please enter BMR");
-        } else if (textEditingController[44].text == "" ||
-            textEditingController[44].text == null) {
-          AppData.showInSnackBar(context, "Please enter BMI");
-        } else if (textEditingController[45].text == "" ||
-            textEditingController[45].text == null) {
-          AppData.showInSnackBar(context, "Please enter Body Fat");
-        } else if (textEditingController[46].text == "" ||
-            textEditingController[46].text == null) {
-          AppData.showInSnackBar(context, "Please enter Fat-Free Body");
-        } else if (textEditingController[47].text == "" ||
-            textEditingController[47].text == null) {
-          AppData.showInSnackBar(context, "Please enter visceral Fat");
-        } else if (textEditingController[48].text == "" ||
-            textEditingController[48].text == null) {
-          AppData.showInSnackBar(context, "Please enter Body Water");
-        } else if (textEditingController[49].text == "" ||
-            textEditingController[49].text == null) {
-          AppData.showInSnackBar(context, "Please enter Subcutaneous Fat");
-        } else if (textEditingController[50].text == "" ||
-            textEditingController[50].text == null) {
-          AppData.showInSnackBar(context, "Please enter Skeletal Muscie");
-        } else if (textEditingController[51].text == "" ||
-            textEditingController[51].text == null) {
-          AppData.showInSnackBar(context, "Please enter Muscle Mass");
-        } else if (textEditingController[52].text == "" ||
-            textEditingController[52].text == null) {
-          AppData.showInSnackBar(context, "Please enter Metabolic Age");
-        } else if (textEditingController[53].text == "" ||
-            textEditingController[53].text == null) {
-          AppData.showInSnackBar(context, "Please enter Urinalysis");
-        } else if (textEditingController[54].text == "" ||
-            textEditingController[54].text == null) {
-          AppData.showInSnackBar(context, "Please enter Malaria");
-        } else if (textEditingController[55].text == "" ||
-            textEditingController[55].text == null) {
-          AppData.showInSnackBar(context, "Please enter Pregnancy");
-        } else if (textEditingController[56].text == "" ||
-            textEditingController[56].text == null) {
-          AppData.showInSnackBar(context, "Please enter Hba1c");
-        } else if (textEditingController[57].text == "" ||
-            textEditingController[57].text == null) {
-          AppData.showInSnackBar(context, "Please enter Hepatitis B & C");
-        } else if (textEditingController[58].text == "" ||
-            textEditingController[58].text == null) {
-          AppData.showInSnackBar(context, "Please enter Blood Grouping");
-        } else if (textEditingController[59].text == "" ||
-            textEditingController[59].text == null) {
-          AppData.showInSnackBar(context, "Please enter RH Factor");
-        } else if (textEditingController[60].text == "" ||
-            textEditingController[60].text == null) {
-          AppData.showInSnackBar(context, "Please enter Syphilis(VDRL");
-        } else if (textEditingController[61].text == "" ||
-            textEditingController[61].text == null) {
-          AppData.showInSnackBar(context, "Please enter CRP");
-        } else if (textEditingController[62].text == "" ||
-            textEditingController[62].text == null) {
-          AppData.showInSnackBar(context, "Please enter Ear");
-        } else if (textEditingController[63].text == "" ||
-            textEditingController[63].text == null) {
-          AppData.showInSnackBar(context, "Please enter Nose");
-        } else if (textEditingController[64].text == "" ||
-            textEditingController[64].text == null) {
-          AppData.showInSnackBar(context, "Please enter Throat");
-        } else if (textEditingController[65].text == "" ||
-            textEditingController[65].text == null) {
-          AppData.showInSnackBar(context, "Please enter Mouth");
-        } else if (textEditingController[66].text == "" ||
-            textEditingController[66].text == null) {
-          AppData.showInSnackBar(context, "Please enter Others");
-        } else if (textEditingController[67].text == "" ||
-            textEditingController[67].text == null) {
-          AppData.showInSnackBar(context, "Please enter FEV1");
-        } else if (textEditingController[68].text == "" ||
-            textEditingController[68].text == null) {
-          AppData.showInSnackBar(context, "Please enter FVC");
-        } else if (textEditingController[69].text == "" ||
-            textEditingController[69].text == null) {
-          AppData.showInSnackBar(context, "Please enter FEV1/FVC%");
-        } else if (textEditingController[70].text == "" ||
-            textEditingController[70].text == null) {
-          AppData.showInSnackBar(context, "Please enter FEV6");
-        } else if (textEditingController[71].text == "" ||
-            textEditingController[71].text == null) {
-          AppData.showInSnackBar(context, "Please enter FEF 25-75");
-        } else if (textEditingController[72].text == "" ||
-            textEditingController[72].text == null) {
-          AppData.showInSnackBar(context, "Please enter PEF");
+        // } else if (textEditingController[2].text == "" ||
+        //     textEditingController[2].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter uric acid");
+        // } else if (textEditingController[3].text == "" ||
+        //     textEditingController[3].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter BUN");
+        // } else if (textEditingController[4].text == "" ||
+        //     textEditingController[4].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter EGFR");
+        // } else if (textEditingController[5].text == "" ||
+        //     textEditingController[5].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Albumin");
+        // } else if (textEditingController[6].text == "" ||
+        //     textEditingController[6].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Alkaline");
+        // } else if (textEditingController[7].text == "" ||
+        //     textEditingController[7].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Phosphate");
+        // } else if (textEditingController[8].text == "" ||
+        //     textEditingController[8].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Direct Bilirubin");
+        // } else if (textEditingController[9].text == "" ||
+        //     textEditingController[9].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter indirect Bilirubin");
+        // } else if (textEditingController[10].text == "" ||
+        //     textEditingController[10].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Total Bilirubin");
+        // } else if (textEditingController[11].text == "" ||
+        //     textEditingController[11].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter AST(SGOT)");
+        // } else if (textEditingController[12].text == "" ||
+        //     textEditingController[12].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter ALT(SGPT)");
+        // } else if (textEditingController[13].text == "" ||
+        //     textEditingController[13].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter TotalProtine");
+        // } else if (textEditingController[14].text == "" ||
+        //     textEditingController[14].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter AG Ratio");
+        // } else if (textEditingController[15].text == "" ||
+        //     textEditingController[15].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Globulin");
+        // } else if (textEditingController[16].text == "" ||
+        //     textEditingController[16].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Cholesterol");
+        // } else if (textEditingController[17].text == "" ||
+        //     textEditingController[17].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter HDL");
+        // } else if (textEditingController[18].text == "" ||
+        //     textEditingController[18].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Triglyceride");
+        // } else if (textEditingController[19].text == "" ||
+        //     textEditingController[19].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter LDL");
+        // } else if (textEditingController[20].text == "" ||
+        //     textEditingController[20].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter LDL calculative");
+        // } else if (textEditingController[21].text == "" ||
+        //     textEditingController[21].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter VLDL");
+        // } else if (textEditingController[22].text == "" ||
+        //     textEditingController[22].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter HDL/LDL Ratio");
+        // } else if (textEditingController[23].text == "" ||
+        //     textEditingController[23].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter HDL Ratio");
+        // } else if (textEditingController[24].text == "" ||
+        //     textEditingController[24].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Sodium");
+        // } else if (textEditingController[25].text == "" ||
+        //     textEditingController[25].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Potassium");
+        // } else if (textEditingController[26].text == "" ||
+        //     textEditingController[26].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Chloride");
+        // } else if (textEditingController[27].text == "" ||
+        //     textEditingController[27].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Calcium");
+        // } else if (textEditingController[28].text == "" ||
+        //     textEditingController[28].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Magnesium");
+        // } else if (textEditingController[29].text == "" ||
+        //     textEditingController[29].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Phosphorus");
+        // } else if (textEditingController[30].text == "" ||
+        //     textEditingController[30].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Hemoglobin");
+        // } else if (textEditingController[31].text == "" ||
+        //     textEditingController[31].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter RBC");
+        // } else if (textEditingController[32].text == "" ||
+        //     textEditingController[32].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter PCV");
+        // } else if (textEditingController[33].text == "" ||
+        //     textEditingController[33].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter MCV");
+        // } else if (textEditingController[34].text == "" ||
+        //     textEditingController[34].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter MCH");
+        // } else if (textEditingController[35].text == "" ||
+        //     textEditingController[35].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter MCHC");
+        // } else if (textEditingController[36].text == "" ||
+        //     textEditingController[36].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Glucose");
+        // } else if (textEditingController[37].text == "" ||
+        //     textEditingController[37].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Blood Pressure");
+        // } else if (textEditingController[38].text == "" ||
+        //     textEditingController[38].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Tempreture");
+        // } else if (textEditingController[39].text == "" ||
+        //     textEditingController[39].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Spo2");
+        // } else if (textEditingController[40].text == "" ||
+        //     textEditingController[40].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Height");
+        // } else if (textEditingController[41].text == "" ||
+        //     textEditingController[41].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Weight");
+        // } else if (textEditingController[42].text == "" ||
+        //     textEditingController[42].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Protine");
+        // } else if (textEditingController[43].text == "" ||
+        //     textEditingController[43].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter BMR");
+        // } else if (textEditingController[44].text == "" ||
+        //     textEditingController[44].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter BMI");
+        // } else if (textEditingController[45].text == "" ||
+        //     textEditingController[45].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Body Fat");
+        // } else if (textEditingController[46].text == "" ||
+        //     textEditingController[46].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Fat-Free Body");
+        // } else if (textEditingController[47].text == "" ||
+        //     textEditingController[47].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter visceral Fat");
+        // } else if (textEditingController[48].text == "" ||
+        //     textEditingController[48].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Body Water");
+        // } else if (textEditingController[49].text == "" ||
+        //     textEditingController[49].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Subcutaneous Fat");
+        // } else if (textEditingController[50].text == "" ||
+        //     textEditingController[50].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Skeletal Muscie");
+        // } else if (textEditingController[51].text == "" ||
+        //     textEditingController[51].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Muscle Mass");
+        // } else if (textEditingController[52].text == "" ||
+        //     textEditingController[52].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Metabolic Age");
+        // } else if (textEditingController[53].text == "" ||
+        //     textEditingController[53].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Urinalysis");
+        // } else if (textEditingController[54].text == "" ||
+        //     textEditingController[54].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Malaria");
+        // } else if (textEditingController[55].text == "" ||
+        //     textEditingController[55].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Pregnancy");
+        // } else if (textEditingController[56].text == "" ||
+        //     textEditingController[56].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Hba1c");
+        // } else if (textEditingController[57].text == "" ||
+        //     textEditingController[57].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Hepatitis B & C");
+        // } else if (textEditingController[58].text == "" ||
+        //     textEditingController[58].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Blood Grouping");
+        // } else if (textEditingController[59].text == "" ||
+        //     textEditingController[59].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter RH Factor");
+        // } else if (textEditingController[60].text == "" ||
+        //     textEditingController[60].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Syphilis(VDRL");
+        // } else if (textEditingController[61].text == "" ||
+        //     textEditingController[61].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter CRP");
+        // } else if (textEditingController[62].text == "" ||
+        //     textEditingController[62].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Ear");
+        // } else if (textEditingController[63].text == "" ||
+        //     textEditingController[63].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Nose");
+        // } else if (textEditingController[64].text == "" ||
+        //     textEditingController[64].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Throat");
+        // } else if (textEditingController[65].text == "" ||
+        //     textEditingController[65].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Mouth");
+        // } else if (textEditingController[66].text == "" ||
+        //     textEditingController[66].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter Others");
+        // } else if (textEditingController[67].text == "" ||
+        //     textEditingController[67].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter FEV1");
+        // } else if (textEditingController[68].text == "" ||
+        //     textEditingController[68].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter FVC");
+        // } else if (textEditingController[69].text == "" ||
+        //     textEditingController[69].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter FEV1/FVC%");
+        // } else if (textEditingController[70].text == "" ||
+        //     textEditingController[70].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter FEV6");
+        // } else if (textEditingController[71].text == "" ||
+        //     textEditingController[71].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter FEF 25-75");
+        // } else if (textEditingController[72].text == "" ||
+        //     textEditingController[72].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter PEF");
         } else {
           String creatinine = textEditingController[0].text;
           String urea = textEditingController[1].text;
@@ -3178,14 +3178,14 @@ class _VitalDoctor extends State<VitalDoctor> {
           log(" VITAL  MODEL SEND>>>>" + jsonEncode(vitalModel.toJson()));
           MyWidgets.showLoading(context);
           var sendData = {
-            "medteluniqueid": "WALKIN",
-            "thp_id": "WALKIN",
+            "medteluniqueid":" ",
+            "thp_id": widget.model.bodyUser.id,
             "thp_name": "WALKIN",
             "name": widget.model.bodyUser.patientName,
             "mobile": widget.model.bodyUser.mob??"",
             "gender": widget.model.bodyUser.gender,
             "age": widget.model.bodyUser.age.toString(),
-            "screening_date": "WALKIN",
+            "screening_date": widget.model.bodyUser.appntmntDate,
             "screening_details": [
               {
                 "pocType": "KFT",
