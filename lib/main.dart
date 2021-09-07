@@ -169,6 +169,7 @@ class _MyAppState extends State<MyApp> {
       child: ScopedModelDescendant<MainModel>(
         builder: (BuildContext context, Widget child, MainModel model) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             locale: Locale(selectedLan),
             theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Monte'),
             /*home: SplashScreen(
