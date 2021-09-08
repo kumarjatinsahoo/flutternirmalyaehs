@@ -583,6 +583,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
+
                 ],
               ),
             ),

@@ -318,7 +318,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-                  //Navigator.pushNamed(context, "/profile");
+
                 },
               ),
               ListTile(
@@ -458,6 +458,17 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 onTap: () {
                   selectDestination(15);
                   //Navigator.pushNamed(context, "/tabinstruction");
+                },
+              ),
+              ListTile(
+                leading:
+                    Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
+                title: Text('Setup Contacts'),
+                selected: _selectedDestination == 15,
+                onTap: () {
+                  selectDestination(15);
+                  //Navigator.pushNamed(context, "/tabinstruction");
+                  Navigator.pushNamed(context, "/setupcontacts");
                 },
               ),
               ListTile(
@@ -2120,8 +2131,8 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/infomatics.png",
                             title: "Discount & Offers",
                             fun: () {
-                              AppData.showInSnackBar(context, "Coming soon");
-                              //Navigator.pushNamed(context, "/emergencyroom");
+                             // AppData.showInSnackBar(context, "Coming soon");
+                              Navigator.pushNamed(context, "/emergencyroom");
                               // AppData.showSnack(
                               //     context, "Coming soon", Colors.green);
                             },

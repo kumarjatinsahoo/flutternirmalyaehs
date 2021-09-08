@@ -55,6 +55,7 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
@@ -500,6 +501,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testReportList': (context) => TestReportListUser(
+                    model: _model,
+                  ),
+              '/setupcontacts': (context) => SetupContactsPage(
                     model: _model,
                   ),
               '/testReportListUser1': (context) => TestReportListUser1(
