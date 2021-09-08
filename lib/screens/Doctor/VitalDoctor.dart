@@ -681,7 +681,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Expanded(child: formField(14, " ")
+                              Expanded(child: formField(14, "  mg")
                                   // TextField(
                                   //   keyboardType: TextInputType.text,
                                   //   decoration: InputDecoration(
@@ -2871,7 +2871,8 @@ class _VitalDoctor extends State<VitalDoctor> {
         style: TextStyle(fontSize: 13),
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: ' ',
+          counterText: "",
+          hintText: hint,
           hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
         ),
         onChanged: (newValue) {},
