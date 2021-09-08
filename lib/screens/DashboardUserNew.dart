@@ -88,7 +88,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             }
           } else {
             isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
+            //AppData.showInSnackBar(context, msg);
           }
         });
   }
@@ -318,7 +318,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-
+                  //Navigator.pushNamed(context, "/profile");
                 },
               ),
               ListTile(
@@ -458,17 +458,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 onTap: () {
                   selectDestination(15);
                   //Navigator.pushNamed(context, "/tabinstruction");
-                },
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
-                title: Text('Setup Contacts'),
-                selected: _selectedDestination == 15,
-                onTap: () {
-                  selectDestination(15);
-                  //Navigator.pushNamed(context, "/tabinstruction");
-                  Navigator.pushNamed(context, "/setupcontacts");
                 },
               ),
               ListTile(
@@ -1038,13 +1027,10 @@ class MyPage1Widget extends StatelessWidget {
   double _height = 85;
   double _width;
 
-  /* MainModel model;
-MyPage1Widget({this.model});*/
   final MainModel model;
-
   MyPage1Widget({Key key, this.model}) : super(key: key);
 
-  chooseAppointment(BuildContext context) {
+  chooseAppointment(BuildContext context,model) {
     return showDialog(
         context: context,
         barrierDismissible: true,
@@ -1065,7 +1051,7 @@ MyPage1Widget({this.model});*/
                         ListTile(
                           title: Center(child: Text("Health Screening")),
                           onTap: () {
-                            widget.model.apntUserType =
+                            model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
                             // widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
 
@@ -1078,7 +1064,7 @@ MyPage1Widget({this.model});*/
                         ListTile(
                           title: Center(child: Text("Health Check-up")),
                           onTap: () {
-                            widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                            model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             //widget.model.apntUserType = "Health Check-up";
                             Navigator.pushNamed(context, "/userApnt");
                             Navigator.pop(context);
@@ -1089,7 +1075,7 @@ MyPage1Widget({this.model});*/
                           // icon: Icons.calendar_today,
                           title: Center(child: Text("Doctor Appointment")),
                           onTap: () {
-                            Navigator.pushNamed(context, "/myAppointment");
+                            Navigator.pushNamed(context, "/userAppoint");
                             // Navigator.pushNamed(context, "/doctorconsultationPage");
                             // Navigator.pop(context);
                           },
@@ -1239,9 +1225,9 @@ MyPage1Widget({this.model});*/
                     _buildTilered(
                       icon: "assets/search_icon.png",
                       fun: () {
-                        /* Navigator.pushNamed(
-                            context, "/findHealthcareService");*/
-                        AppData.showInSnackBar(context, "Coming soon");
+                         Navigator.pushNamed(
+                            context, "/findHealthcareService");
+                        //AppData.showInSnackBar(context, "Coming soon");
                       },
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
@@ -1272,7 +1258,7 @@ MyPage1Widget({this.model});*/
                     _buildTileblue(
                       icon: "assets/health_checkup.png",
                       fun: () {
-                        chooseAppointment(context);
+                        chooseAppointment(context,model);
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(
@@ -1411,8 +1397,8 @@ MyPage1Widget({this.model});*/
                     _buildTilered(
                       icon: "assets/offers.png",
                       fun: () {
-                        // Navigator.pushNamed(context, "/discountoffer");
-                        AppData.showInSnackBar(context, "Coming soon");
+                         Navigator.pushNamed(context, "/discountoffer");
+                        //AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
                       color: AppData.BG1RED,
@@ -1459,8 +1445,8 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Organ  Donation",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/organdonation");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/organdonation");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1504,8 +1490,8 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/geneicstores");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/geneicstores");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1551,8 +1537,8 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Govt Schemes",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/govtschemes");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/govtschemes");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1590,8 +1576,8 @@ MyPage1Widget({this.model});*/
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Upload Medical Data",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        // Navigator.pushNamed(context, "/insuranceList");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                         Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -1624,8 +1610,8 @@ MyPage1Widget({this.model});*/
                     _buildTileblue(
                       icon: "assets/health_care.png",
                       fun: () {
-                        AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/chemistspage");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/chemistspage");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1668,8 +1654,8 @@ MyPage1Widget({this.model});*/
                   _buildTilered(
                     icon: "assets/medipedia.png",
                     fun: () {
-                      AppData.showInSnackBar(context, "Coming soon");
-                      //Navigator.pushNamed(context, "/medipedia");
+                      //AppData.showInSnackBar(context, "Coming soon");
+                      Navigator.pushNamed(context, "/medipedia");
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
@@ -2101,8 +2087,8 @@ class MyPage2Widget extends StatelessWidget {
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Health Checkup",
                             fun: () {
-                              AppData.showInSnackBar(context, "Coming soon");
-                              //Navigator.pushNamed(context, "/healthCheckup");
+                              //AppData.showInSnackBar(context, "Coming soon");
+                              Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG2BLUE,
                             bordercolor: AppData.BG2BLUE,
@@ -2131,7 +2117,7 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/infomatics.png",
                             title: "Discount & Offers",
                             fun: () {
-                             // AppData.showInSnackBar(context, "Coming soon");
+                              //AppData.showInSnackBar(context, "Coming soon");
                               Navigator.pushNamed(context, "/emergencyroom");
                               // AppData.showSnack(
                               //     context, "Coming soon", Colors.green);

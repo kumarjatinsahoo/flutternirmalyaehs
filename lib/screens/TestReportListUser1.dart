@@ -76,7 +76,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
         child: Column(
           children: <Widget>[
               Container(
-                height: 140,
+                //height: 140,
                 //color: AppData.kPrimaryColor,
                 width: double.infinity,
                /* decoration: BoxDecoration(
@@ -93,9 +93,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, top: 40.0,),
                   child: Column(
-
                     children: [
-
                       Text(
                          "Visit Summary",
                         style:
@@ -109,8 +107,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            height: size.height * 0.07,
-                            width: size.width * 0.13,
+                            //height: size.height * 0.07,
+                            //width: size.width * 0.13,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(55),
                                 border: Border.all(color: Colors.white, width: 0.5),
@@ -136,22 +134,14 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                   ),
                             ),
                           ),
+
                         ],
                       ),
+                      SizedBox(height: 18,)
                     ],
                   ),
                 ),
               ),
-              /*Container(
-              height: 120.0,
-              decoration: BoxDecoration(
-                color: AppData.matruColor.withOpacity(0.7),
-              ),
-            ),*/
-            //_buildHeader(context)
-           /* ],
-          ),
-*/
                 (pocReportModel != null)
                     ? ListView.builder(
                   physics: NeverScrollableScrollPhysics(),

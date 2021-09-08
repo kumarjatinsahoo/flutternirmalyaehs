@@ -59,6 +59,7 @@ import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
+import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -172,7 +173,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             locale: Locale(selectedLan),
-            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Monte'),
+            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: ''),
             /*home: SplashScreen(
               model: _model,
             ),*/
@@ -507,6 +508,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testReportListUser1': (context) => TestReportListUser1(
+                model: _model,
+              ),
+              '/userAppoint': (context) => UserAppointments(
                 model: _model,
               ),
 
