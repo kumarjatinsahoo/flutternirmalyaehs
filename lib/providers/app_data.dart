@@ -407,6 +407,8 @@ class AppData {
     )..show(context);
   }
 
+
+
   static void showInSnackBargreen(BuildContext context, String value) {
     // final scaffold = Scaffold.of(context);
     // scaffold.showSnackBar(

@@ -88,7 +88,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             }
           } else {
             isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
+            //AppData.showInSnackBar(context, msg);
           }
         });
   }
@@ -1075,7 +1075,7 @@ class MyPage1Widget extends StatelessWidget {
                           // icon: Icons.calendar_today,
                           title: Center(child: Text("Doctor Appointment")),
                           onTap: () {
-                            Navigator.pushNamed(context, "/myAppointment");
+                            Navigator.pushNamed(context, "/userAppoint");
                             // Navigator.pushNamed(context, "/doctorconsultationPage");
                             // Navigator.pop(context);
                           },
