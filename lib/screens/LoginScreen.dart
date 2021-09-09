@@ -72,12 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
   var code;
 
   var pin;
+
   //VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();
 
-   /* WidgetsBinding.instance.addPostFrameCallback((_) async {
+    /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
         'raw/video_pop.mp4',
       );
@@ -110,7 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
     //_controller.dispose();
     super.dispose();
   }
-
 
   Widget body(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -223,9 +223,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, "/forgotpassword");
                             //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                          /*onLongPress: () {
+                          onDoubleTap: () {
+                            //Navigator.pushNamed(context, "/forgotpassword");
                             Navigator.pushNamed(context, "/dashDoctor");
-                          },*/
+                          },
+                          onLongPress: () {
+                            Navigator.pushNamed(context, "/dashboardd");
+                          },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
@@ -425,7 +429,7 @@ class _LoginScreenState extends State<LoginScreen> {
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
-                print("LOGIN RESPONSE>>>>"+jsonEncode(map));
+                print("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
@@ -435,13 +439,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-                    if (loginResponse.body.roles[0] == "8".toLowerCase()) { //Lab dashboard
+                    if (loginResponse.body.roles[0] == "8".toLowerCase()) {
+                      //Lab dashboard
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] ==
+                        "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] ==
+                        "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }

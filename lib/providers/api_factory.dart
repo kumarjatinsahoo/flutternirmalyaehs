@@ -47,6 +47,8 @@ class ApiFactory {
 
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
 
+  static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
+
   static String EMERGENCY_HELP = MAIN_URL + 'view-user-emergency-details-api?userid=';
 
   static String CHANGE_STATUS_CHKUP = MAIN_URL + "post-chkupAppointmentStatus";
@@ -76,4 +78,5 @@ class ApiFactory {
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
+  static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
 }

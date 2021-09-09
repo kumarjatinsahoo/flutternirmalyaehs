@@ -95,7 +95,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -159,7 +159,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -225,7 +225,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -291,7 +291,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -357,7 +357,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -424,7 +424,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
@@ -490,7 +490,7 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
                                               CrossAxisAlignment.center,
                                               children: [
                                                 Image.asset(
-                                                  "assets/medicineshop.jpg",
+                                                  "assets/medicine_reminder.png",
                                                   height: 40,
                                                 ),
                                                 SizedBox(
