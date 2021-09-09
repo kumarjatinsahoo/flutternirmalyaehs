@@ -14,6 +14,7 @@ import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
@@ -503,6 +504,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testReportListUser1': (context) => TestReportListUser1(
+                model: _model,
+              ),
+              '/doctorMedicationTab': (context) => DoctorMedicationTab(
                 model: _model,
               ),
 

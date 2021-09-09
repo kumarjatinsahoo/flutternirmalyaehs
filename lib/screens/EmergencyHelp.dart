@@ -1,13 +1,19 @@
 import 'dart:convert';
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+//import 'package:geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import '../models/LoginResponse1.dart';
 import '../providers/Const.dart';
+
 import '../providers/api_factory.dart';
 import '../providers/app_data.dart';
 
@@ -38,15 +44,46 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   LoginResponse1 loginResponse1;
   EmergencyHelpModel emergencyHelpModel;
   bool isDataNotAvail = false;
-
+  //Position position;
+  String longitude;
+  String latitude;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
+    _getLocationName();
   }
-
+  _getLocationName() async {
+    Position position = await Geolocator
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    debugPrint('location_latitude: ${position.latitude}');
+    print('location_latitude>>>>>>>>>>>>>>>>>>: ${position.latitude}');
+    debugPrint('location_longitude: ${position.longitude}');
+    print('location_longitude>>>>>>>>>>>>>>>>>>: ${position.longitude}');
+    longitude = position.longitude.toString();
+    latitude = position.latitude.toString();
+  }
+  /*_getLocationName() async {
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
+    try {
+      final coordinates =
+      new Coordinates(position.latitude, position.longitude);
+      var addresses =
+      await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      setState(() {
+        cityName = "${first.addressLine}";
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }*/
   callAPI() {
     print(ApiFactory.EMERGENCY_HELP +
         loginResponse1.body.user +
