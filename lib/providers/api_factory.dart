@@ -2,8 +2,7 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
 
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.25:8062/nirmalyaRest/api/";
-
+  static String MAIN_URL = "http://192.168.29.215:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -15,10 +14,8 @@ class ApiFactory {
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
   static String DOCTOR_REGISTRATION = MAIN_URL + 'doctor-registration-details';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
-  static String PERSONAL_DETAILS =
-      MAIN_URL + 'user-personal-information-doctor?userid=';
-  static String IABTEST_REPORTDOCTER =
-      MAIN_URL + 'user-labtest-report-doctor?userid=';
+  static String PERSONAL_DETAILS = MAIN_URL + 'user-personal-information-doctor?userid=';
+  static String IABTEST_REPORTDOCTER = MAIN_URL + 'user-labtest-report-doctor?userid=';
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
@@ -46,6 +43,8 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
 
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
+
+  static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
 
   static String EMERGENCY_HELP = MAIN_URL + 'view-user-emergency-details-api?userid=';
 

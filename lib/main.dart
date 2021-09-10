@@ -14,6 +14,7 @@ import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
@@ -55,6 +56,7 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
@@ -503,10 +505,16 @@ class _MyAppState extends State<MyApp> {
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),
+              '/setupcontacts': (context) => SetupContactsPage(
+                    model: _model,
+                  ),
               '/testReportListUser1': (context) => TestReportListUser1(
                 model: _model,
               ),
               '/userAppoint': (context) => UserAppointments(
+                model: _model,
+              ),
+              '/doctorMedicationTab': (context) => DoctorMedicationTab(
                 model: _model,
               ),
 
