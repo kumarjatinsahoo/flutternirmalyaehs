@@ -169,17 +169,14 @@ class _MedicinReportPageState extends State<MedicinReportPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            /*  MyWidgets.search(() {
-                AppData.showInSnackBar(context, "Hi buddy");
-              }),*/
+            /*MyWidgets.search((){
+              AppData.showInSnackBar(context, "Hi buddy");}),*/
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 4),
                 child: MyWidgets.header("Medicine List", Alignment.topLeft),
               ),
               /*Row(children: [
-                MyWidgets.dateUI("From this", _fromThis,_selectDate(context)),
-
-              ],),*/
+                MyWidgets.dateUI("From this", _fromThis,_selectDate(context)),],),*/
               SizedBox(
                 height: 10,
               ),
@@ -232,7 +229,7 @@ class _MedicinReportPageState extends State<MedicinReportPage> {
                           print("Click done");
                           _selectDate1(context);
                         },
-                        child: AbsorbPointer(
+            child: AbsorbPointer(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 15, right: 15),
                             child: TextFormField(
@@ -359,7 +356,7 @@ class _MedicinReportPageState extends State<MedicinReportPage> {
         ],
         rows: /*issueREportModel.issuereport*/lists
             .asMap()
-            .map((i, data) => MapEntry(
+            .map((i, data) => MapEntry( 
                   i,
                   DataRow(
                     // selected: true,

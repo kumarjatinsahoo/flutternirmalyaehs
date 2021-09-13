@@ -26,7 +26,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
           body: Container(
             child: Column(
               children: [
-                Container(
+              /*  Container(
                   color: AppData.kPrimaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -51,7 +51,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
                   ),
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width,
-                ),
+                ),*/
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,

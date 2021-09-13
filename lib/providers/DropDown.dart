@@ -1395,6 +1395,97 @@ class DropDown {
     );
 
   }
+  static networkDropdownGetpartUserundreline(
+      String label, final String API, String callFrom , Function fun) {
+    return  DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+
+       /* border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),*/
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+
+      ),
+      //label: label,
+      showSearchBox: true,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????"+API);
+        var response = await Dio().get(
+          API,
+        );
+        var list;
+        switch (callFrom) {
+          case "title":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "gender":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "hospital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "doctor":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "medicine":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "healthcareProvider":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+        }
+
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    );
+
+
+  }
   static staticDropdown5(String label, String callFrom,
       List<KeyvalueModel> list,Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
