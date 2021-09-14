@@ -40,6 +40,7 @@ class DoctorconsultationPage extends StatefulWidget {
   static KeyvalueModel  specialistModel = null;
   static KeyvalueModel doctorModel = null;
   static KeyvalueModel hospitalModel = null;
+  static KeyvalueModel timeModel = null;
 
 
 
@@ -112,7 +113,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   FocusNode panchayat_ = new FocusNode();
 
   final df = new DateFormat('dd/MM/yyyy');
-
   bool aph = false;
   bool eclampsia = false;
   bool bldpressure = false;
@@ -506,8 +506,25 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        comultationTime(),
+                        //comultationTime(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child:
+                            DropDown.networkDropdownGetpartUser("Time", ApiFactory.DOCTER_AVAILABLE+ DoctorconsultationPage.doctorModel.key+"&date="+appointmentdate.text.toString(), "time",
+                                Icons.watch_later_outlined,
+                                23.0, (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.DOCTER_AVAILABLE);
+                                    DoctorconsultationPage.hospitalModel= data;
 
+                                    // UserSignUpForm.cityModel = null;
+                                  });
+                                }),
+                          ),
+                        ),
                         fromAddress(
                             1,
                             "Reason for choice of Dr",

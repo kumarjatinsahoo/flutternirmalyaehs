@@ -26,16 +26,42 @@ class _ChemistsPageState extends State<ChemistsPage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
+String longi,lati,city,addr,healthpro,type;
+
+
 
   @override
   void initState() {
     super.initState();
     loginResponse1=widget.model.loginResponse1;
+    longi = widget.model.longi;
+    lati = widget.model.lati;
+    city = widget.model.city;
+    addr = widget.model.addr;
+    healthpro = widget.model.healthpro;
+    type=widget.model.type;
+
     callAPI();
   }
-
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.FIND_HEALTH_PROVIDER(longi,lati,addr,city,healthpro,type),
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+              //foundUser = appointModel.body;
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
+ /* callAPI() {
+    widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.FIND_HEALTH_PROVIDER(),
         fun: (Map<String, dynamic> map)  {
           setState(() {
@@ -49,7 +75,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
           });
         });
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;

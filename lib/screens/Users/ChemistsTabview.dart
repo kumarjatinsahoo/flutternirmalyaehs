@@ -43,7 +43,6 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
             tabs: [
               Tab(
                 text: "Location-wise",
-
               ),
               Tab(
                 text: "City-wise",
