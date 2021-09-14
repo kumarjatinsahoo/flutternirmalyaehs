@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:user/scoped-models/MainModel.dart';
 class IdCardPage extends StatefulWidget {
-  const IdCardPage({Key key}) : super(key: key);
+  final MainModel model;
+  const IdCardPage({Key key,this.model}) : super(key: key);
 
   @override
   _IdCardPageState createState() => _IdCardPageState();
@@ -13,8 +15,16 @@ class _IdCardPageState extends State<IdCardPage> {
       appBar: AppBar(
         title: Text("Id Card"),
       ),
-      body: Center(
-        child: Image.asset("assets/images/healthCard.jpeg"),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/healthCard.jpeg"),
+            Divider(),
+            Image.asset("assets/images/healthCard2.jpeg"),
+          ],
+        ),
       ),
     );
   }

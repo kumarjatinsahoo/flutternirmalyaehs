@@ -635,7 +635,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       child: (imageSliders.indexOf(item) == 4 ||
                                               imageSliders.indexOf(item) == 7 ||
                                               imageSliders.indexOf(item) == 0 ||
-                                              imageSliders.indexOf(item) == 1)
+                                              imageSliders.indexOf(item) == 1||
+                                              imageSliders.indexOf(item) == 9||
+                                              imageSliders.indexOf(item) == 10)
                                           ? Icon(
                                               Icons.play_circle_fill,
                                               color: Colors.white,
