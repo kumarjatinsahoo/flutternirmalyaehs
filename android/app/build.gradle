@@ -38,6 +38,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 8
+        multiDexEnabled true
         versionName "1.0.6"
     }
 

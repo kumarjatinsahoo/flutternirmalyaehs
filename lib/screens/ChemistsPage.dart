@@ -31,24 +31,24 @@ class _ChemistsPageState extends State<ChemistsPage> {
   void initState() {
     super.initState();
     loginResponse1=widget.model.loginResponse1;
-    callAPI();
+   // callAPI();
   }
 
-  callAPI() {
-    widget.model.GETMETHODCALL(
-        api: ApiFactory.FIND_HEALTH_PROVIDER(),
-        fun: (Map<String, dynamic> map)  {
-          setState(() {
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              chemistsLocationWise = ChemistsLocationWise.fromJson(map);
-            } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
-            }
-          });
-        });
-  }
+  // callAPI() {
+  //   widget.model.GETMETHODCALL(
+  //       api: ApiFactory.FIND_HEALTH_PROVIDER(),
+  //       fun: (Map<String, dynamic> map)  {
+  //         setState(() {
+  //           String msg = map[Const.MESSAGE];
+  //           if (map[Const.CODE] == Const.SUCCESS) {
+  //             chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+  //           } else {
+  //             isDataNotAvail = true;
+  //             AppData.showInSnackBar(context, msg);
+  //           }
+  //         });
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
