@@ -2883,7 +2883,7 @@ class _VitalDoctor extends State<VitalDoctor> {
   Widget submitButton1() {
     return GestureDetector(
       onTap: () {
-        if (textEditingController[0].text == "" ||
+       /* if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
           AppData.showInSnackBar(context, "Please enter creatinine");
         } else if (textEditingController[1].text == "" ||
@@ -3102,7 +3102,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         // } else if (textEditingController[72].text == "" ||
         //     textEditingController[72].text == null) {
         //   AppData.showInSnackBar(context, "Please enter PEF");
-        } else {
+        } else {*/
           String creatinine = textEditingController[0].text;
           String urea = textEditingController[1].text;
           String uricacid = textEditingController[2].text;
@@ -3179,14 +3179,16 @@ class _VitalDoctor extends State<VitalDoctor> {
           log(" VITAL  MODEL SEND>>>>" + jsonEncode(vitalModel.toJson()));
           MyWidgets.showLoading(context);
           var sendData = {
-            "medteluniqueid":" ",
-            "thp_id": widget.model.bodyUser.id,
-            "thp_name": "WALKIN",
+            "medteluniqueid":"MANUAL_ENTER",
+            "thp_id": "MANUAL_ENTER",
+            "thp_name": "MANUAL_ENTER",
             "name": widget.model.bodyUser.patientName,
             "mobile": widget.model.bodyUser.mob??"",
             "gender": widget.model.bodyUser.gender,
             "age": widget.model.bodyUser.age.toString(),
             "screening_date": widget.model.bodyUser.appntmntDate,
+            "patient_uniqueid": widget.model.bodyUser.appntmntDate,
+            "report_url": "N/A",
             "screening_details": [
               {
                 "pocType": "KFT",
@@ -3319,12 +3321,10 @@ class _VitalDoctor extends State<VitalDoctor> {
 
             ]
           };
-          textEditingController.forEach((element) {
-            if (element.text != "") {}
-          });
+          log("Value should be"+sendData.toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.VITALS_REPORT,
-              json: vitalModel.toJson(),
+              json: sendData,
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 if (map[Const.STATUS] == Const.SUCCESS) {
@@ -3333,7 +3333,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-        }
+        //}
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -3377,7 +3377,8 @@ class _VitalDoctor extends State<VitalDoctor> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              // Navigator.pushNamed(context, "/login");
+               Navigator.pop(context);
+               Navigator.pop(context);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

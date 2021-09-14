@@ -14,6 +14,7 @@ import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
@@ -56,9 +57,12 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
+import 'package:user/screens/Users/ChemistsTabview.dart';
+import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -172,7 +176,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             locale: Locale(selectedLan),
-            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Monte'),
+            theme: ThemeData(primarySwatch: Colors.blue, fontFamily: ''),
             /*home: SplashScreen(
               model: _model,
             ),*/
@@ -441,7 +445,7 @@ class _MyAppState extends State<MyApp> {
               '/patientDashboard': (context) => LabDashboard(
                     model: _model,
                   ),
-              '/chemistspage': (context) => ChemistsPage(
+              '/chemistspage': (context) => ChemistsTabview(
                     model: _model,
                   ),
               '/emergencyroom': (context) => EmergencyRoom(
@@ -506,7 +510,16 @@ class _MyAppState extends State<MyApp> {
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),
+              '/setupcontacts': (context) => SetupContactsPage(
+                    model: _model,
+                  ),
               '/testReportListUser1': (context) => TestReportListUser1(
+                model: _model,
+              ),
+              '/userAppoint': (context) => UserAppointments(
+                model: _model,
+              ),
+              '/doctorMedicationTab': (context) => DoctorMedicationTab(
                 model: _model,
               ),
 
