@@ -76,4 +76,5 @@ class ApiFactory {
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
+  static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=";
 }

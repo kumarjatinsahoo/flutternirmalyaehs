@@ -16,6 +16,7 @@ import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
+import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -497,6 +498,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/vitalDoctor': (context) => VitalDoctor(
+                    model: _model,
+                  ),
+              '/Healthchart': (context) => HealthChart1(
                     model: _model,
                   ),
               '/testReportList': (context) => TestReportListUser(
