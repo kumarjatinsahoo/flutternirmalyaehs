@@ -92,6 +92,7 @@ class _UserAppointmentsState extends State<UserAppointments> {
                 left: 20.0,
                 top: 40.0,
               ),
+
               child: Column(
                 children: [
                   Text(

@@ -1,16 +1,24 @@
 import 'package:flutter/services.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/GenericStoresList.dart';
+import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
 
+
+
 class FindScreen extends StatefulWidget {
   MainModel model;
+  static KeyvalueModel  specialistModel = null;
+  static KeyvalueModel  healthcareProvider = null;
   FindScreen({Key key, this.model}) : super(key: key);
   @override
   _FindScreenState createState() => _FindScreenState();
@@ -34,6 +42,39 @@ class _FindScreenState extends State<FindScreen> {
     KeyvalueModel(name: "Bhubaneswar", key: "2"),
     KeyvalueModel(name: "Puri", key: "3"),
   ];
+  String longitude;
+  String latitude;
+  String address;
+  Position position;
+  String cityName;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   /* loginResponse1 = widget.model.loginResponse1;
+    callAPI();*/
+    _getLocationName();
+  }
+  _getLocationName() async {
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
+    try {
+      final coordinates =
+      new Coordinates(position.latitude, position.longitude);
+      var addresses =
+      await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      setState(() {
+        address = "${first.addressLine}";
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -89,9 +130,10 @@ class _FindScreenState extends State<FindScreen> {
                       padding:
                       const EdgeInsets.symmetric(horizontal: 5),*/
                       child: TextFormField(
+                        maxLines: 3,
                         decoration: InputDecoration(
                             hintText:
-                            "GoKhale Road,Model Colony Shivaji",
+                            address,
                             hintStyle: TextStyle(color: Colors.black)),
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
@@ -111,21 +153,58 @@ class _FindScreenState extends State<FindScreen> {
                       setState(() {});
                     }),*/
                     SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
-                    DropDown.staticDropdown2(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child:
+                        DropDown.networkDropdownGetpartUserundreline("Select Healthcare Provider", ApiFactory.HEALTHPROVIDER_API, "healthcareProvider",
+                                (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.SPECIALITY_API);
+                                FindScreen.healthcareProvider= data;
+                                //DoctorconsultationPage.doctorModel = null;
+                                // UserSignUpForm.cityModel = null;
+
+                              });
+                            }),
+                      ),
+                    ),
+                    /*DropDown.staticDropdown2(
                         "Select Healthcare Provider", "state", stateList,
                         (KeyvalueModel data) {
                       setState(() {});
-                    }),
+                    }),*/
                     SizedBox(
-                      height: 5,
+                      height: 8,
                     ),
-                    DropDown.staticDropdown2(
+                (FindScreen.specialistModel!=null)?
+                   Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0),
+                      child: (FindScreen.specialistModel.key == "1"&&FindScreen.specialistModel.key == "4")
+                          ?  SizedBox(
+                        height: 58,
+                        child:
+                        DropDown.networkDropdownGetpartUserundreline(" Select Speciality", ApiFactory.SPECIALITY_API, "speciality",
+                            (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.SPECIALITY_API);
+                                FindScreen.specialistModel= data;
+                                //DoctorconsultationPage.doctorModel = null;
+                                // UserSignUpForm.cityModel = null;
+                              });
+                            }),
+                      ) : Container(),
+                    ) : Container(),
+                    /*DropDown.staticDropdown2(
                         "Select Speciality", "state", cityList,
                         (KeyvalueModel data) {
                       setState(() {});
-                    }),
+                    }),*/
                     SizedBox(
                       height: 60,
                     ),
@@ -173,8 +252,8 @@ class _FindScreenState extends State<FindScreen> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-
-        Navigator.pushNamed(context, "/searchScreen");
+        Navigator.pushNamed(context, "/chemistspage");
+        //Navigator.pushNamed(context, "/searchScreen");
         //}
       },
     );
