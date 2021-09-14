@@ -41,9 +41,9 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     healthpro = widget.model.healthpro;
     type=widget.model.type;
 
-    //callAPI();
+    callAPI();
   }
-  callAPI() {
+ /* callAPI() {
 
       Map<String, dynamic> postData = {
         "longi": longi,
@@ -75,10 +75,10 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
         },
       );
 
-  }
- /* callAPI() {
+  }*/
+  callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.FIND_HEALTH_PROVIDER(),
+        api: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=Doctors&location=20.462521%2C85.882988&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE",
         fun: (Map<String, dynamic> map)  {
           setState(() {
             String msg = map[Const.MESSAGE];
@@ -91,7 +91,6 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
           });
         });
   }
-*/
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
