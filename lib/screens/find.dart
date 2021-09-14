@@ -169,7 +169,7 @@ class _FindScreenState extends State<FindScreen> {
                         DropDown.networkDropdownGetpartUserundreline("Select Healthcare Provider", ApiFactory.HEALTHPROVIDER_API, "healthcareProvider",
                                 (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.SPECIALITY_API);
+                                print(ApiFactory.HEALTHPROVIDER_API);
                                 FindScreen.healthcareProvider= data;
                                 //DoctorconsultationPage.doctorModel = null;
                                 // UserSignUpForm.cityModel = null;

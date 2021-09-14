@@ -4,6 +4,8 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/ChemistsPage.dart';
 
+import '../ChemistsOngooglePage.dart';
+
 
 
 class ChemistsTabview extends StatefulWidget {
@@ -42,10 +44,11 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: "Location-wise",
+                text: "Our service",
+
               ),
               Tab(
-                text: "City-wise",
+                text: "On google",
               ),
             ],
           ),
@@ -54,7 +57,7 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
         body: TabBarView(
           children: [
             ChemistsPage(model:widget.model),
-            ChemistsPage(model:widget.model),
+            ChemistsOngooglePage(model:widget.model),
 
           ],
         ),
