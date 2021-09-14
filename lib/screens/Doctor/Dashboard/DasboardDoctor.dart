@@ -7,6 +7,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
+import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
 import 'package:user/screens/Doctor/VitalDoctor.dart';
 import 'package:user/screens/VitalSigns.dart';
 
@@ -465,11 +466,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                         ),
                       ],
                     ),
-                    // onTap: () async {
-                    //    Navigator.push(context,
-                    //       new MaterialPageRoute(
-                    //           builder: (context) => new VitalSigns()));
-                    // },
+                    onTap: () async {
+    Navigator.pushNamed(context, "/Healthchart");
+
+                    },
                   ),
                 ]
             ),

@@ -3,9 +3,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/model.dart';
 import 'package:geolocator/geolocator.dart';
 
-//import 'package:geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -44,9 +46,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   LoginResponse1 loginResponse1;
   EmergencyHelpModel emergencyHelpModel;
   bool isDataNotAvail = false;
-  //Position position;
+  Position position;
   String longitude;
   String latitude;
+  String cityName;
   @override
   void initState() {
     // TODO: implement initState
@@ -55,7 +58,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     callAPI();
     _getLocationName();
   }
-  _getLocationName() async {
+ /* _getLocationName() async {
     Position position = await Geolocator
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     debugPrint('location_latitude: ${position.latitude}');
@@ -64,8 +67,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     print('location_longitude>>>>>>>>>>>>>>>>>>: ${position.longitude}');
     longitude = position.longitude.toString();
     latitude = position.latitude.toString();
-  }
-  /*_getLocationName() async {
+  }*/
+  _getLocationName() async {
     Position position = await Geolocator().getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
@@ -83,7 +86,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     } catch (e) {
       print(e.toString());
     }
-  }*/
+  }
   callAPI() {
     print(ApiFactory.EMERGENCY_HELP +
         loginResponse1.body.user +

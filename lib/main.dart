@@ -17,6 +17,7 @@ import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
+import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -60,6 +61,7 @@ import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
+import 'package:user/screens/Users/ChemistsTabview.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
@@ -444,7 +446,7 @@ class _MyAppState extends State<MyApp> {
               '/patientDashboard': (context) => LabDashboard(
                     model: _model,
                   ),
-              '/chemistspage': (context) => ChemistsPage(
+              '/chemistspage': (context) => ChemistsTabview(
                     model: _model,
                   ),
               '/emergencyroom': (context) => EmergencyRoom(
@@ -501,6 +503,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/vitalDoctor': (context) => VitalDoctor(
+                    model: _model,
+                  ),
+              '/Healthchart': (context) => HealthChart1(
                     model: _model,
                   ),
               '/testReportList': (context) => TestReportListUser(

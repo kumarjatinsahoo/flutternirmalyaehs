@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/HealthChartResponse.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/Const.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,43 @@ class RestAPI extends Model {
   var dio = Dio();
   SharedPref sharedPref = SharedPref();
   LoginResponse1 loginData1;
+  HealthChartResponse healthChartData;
+
 
   Map<String, dynamic> failedMap = {
     Const.STATUS: Const.FAILED,
     Const.MESSAGE: Const.NETWORK_ISSUE,
   };
+
+  GETMETHODCAL({@required String api, @required Function fun}) async {
+    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    try {
+      Response response = await dio.get(api);
+      if (response.statusCode == 200) {
+        try {
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.SEND_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+    }
+  }
+
 
   GETMETHODCALL({@required String api, @required Function fun}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
@@ -373,5 +406,8 @@ class RestAPI extends Model {
         return false;
       }
     }
+  }
+  HealthChartResponse get healthChartResponse {
+    return healthChartData;
   }
 }
