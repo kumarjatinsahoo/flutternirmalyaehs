@@ -38,7 +38,7 @@ class ApiFactory {
     return MAIN_URL + "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";}
 
 
-    static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL +'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL +'post-addLabAppointment';
@@ -60,4 +60,5 @@ class ApiFactory {
   static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
+  static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
 }

@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:convert' show base64, utf8;
 
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:another_flushbar/flushbar.dart';
 
 class AppData {
   static String ODISHA = 'ODISHA';
