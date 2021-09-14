@@ -461,6 +461,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
+                leading:
+                Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
+                title: Text('Setup Contacts'),
+                selected: _selectedDestination == 15,
+                onTap: () {
+                 // selectDestination(15);
+                  Navigator.pushNamed(context, "/setupcontacts");
+                },
+              ),
+              ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",
                   height: 30,

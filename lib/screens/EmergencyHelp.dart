@@ -89,9 +89,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   child: ListView.builder(
                     itemBuilder: (context, i) {
                       return ListTile(
-                        title: Text(list[i].name,style: TextStyle(color: Colors.black),),
-                        subtitle: Text(list[i].relation,style: TextStyle(color: Colors.black),),
-                        trailing: Icon(Icons.call,color: Colors.black),
+                        title: Text(
+                          list[i].name,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        subtitle: Text(
+                          list[i].relation,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        trailing: Icon(Icons.call, color: Colors.black),
                       );
                     },
                     itemCount: list.length,
@@ -117,10 +123,40 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           /*leading: BackButton(
                 color: Colors.white,
               ),*/
-          title: Text(
-            'Emergency Help',
-            style: TextStyle(color: Colors.white),
+          title: Stack(
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Emergency Help',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/setupcontacts");
+                      },
+                      child: Icon(Icons.settings))),
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ))),
+            ],
           ),
+          automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           iconTheme: IconThemeData(color: Colors.white),
@@ -271,11 +307,13 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             ),
                             InkWell(
                                 onTap: () {
-                                  if(emergencyHelpModel!=null && emergencyHelpModel.emergency.isNotEmpty)
-                                  showUserList(
-                                      context, emergencyHelpModel.emergency);
+                                  if (emergencyHelpModel != null &&
+                                      emergencyHelpModel.emergency.isNotEmpty)
+                                    showUserList(
+                                        context, emergencyHelpModel.emergency);
                                   else
-                                    AppData.showInSnackBar(context, "Data not found");
+                                    AppData.showInSnackBar(
+                                        context, "Data not found");
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -589,7 +627,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   SizedBox(
                     height: 30,
                   ),
-
                 ],
               ),
             ),
