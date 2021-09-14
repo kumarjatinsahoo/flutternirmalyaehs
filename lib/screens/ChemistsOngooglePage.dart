@@ -31,6 +31,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
 
 
+
   @override
   void initState() {
     super.initState();
@@ -77,15 +78,15 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
   }*/
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=Doctors&location=20.462521%2C85.882988&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE",
+        api: ApiFactory.GOOGLE_API(lati: lati,longi: longi,healthpro: healthpro),
         fun: (Map<String, dynamic> map)  {
           setState(() {
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+            //String msg = map[Const.MESSAGE];
+            if (map["status"] == "ok") {
+              googlePlaceModel = GooglePlaceModel.fromJson(map);
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, "Google api doesn't work");
             }
           });
         });
