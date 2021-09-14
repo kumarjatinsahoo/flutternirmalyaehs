@@ -8,6 +8,7 @@ class KeyvalueModel {
   dynamic desc;
   dynamic minqty;
 
+
   KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty});
 
   static List<KeyvalueModel> fromJsonList(List list) {
@@ -25,13 +26,15 @@ class KeyvalueModel {
   }
 
   KeyvalueModel.fromsJson(Map<String, dynamic> json) {
-    key = json['key'].toString();
-    name = json['name'].toString();
+    key = json['key'].toString();/*??json['bookstatus'].toString();*/
+    name = json['name'].toString();/*??json['time'].toString();*/
     code = json['code'].toString();
     optional = json['gender_name'].toString();
     itemid = json['itemid'].toString();
     desc = json['desc'].toString();
     minqty = json['minqty'].toString();
+
+
     if (json.containsKey("optional")) {
       optional = json['optional'].toString();
     }

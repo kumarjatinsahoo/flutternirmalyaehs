@@ -66,7 +66,12 @@ class PassData extends Model {
   String labmobile;
   String labemailid;
   String labalteremail;
-
+  String longi;
+  String lati;
+  String city;
+  String addr;
+  String healthpro;
+  String type;
   doc.Body appointmentlist;
 
 
