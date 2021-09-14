@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
+import 'package:user/models/GooglePlacesModel.dart';
 
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -20,7 +21,7 @@ class ChemistsOngooglePage extends StatefulWidget {
 
 class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
   var selectedMinValue;
-  ChemistsLocationWise chemistsLocationWise;
+  GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
   //ScrollController _scrollController = ScrollController();
 
@@ -54,17 +55,15 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
         "type": type
       };
      // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
-      widget.model.POSTMETHOD2(
-        api: ApiFactory.FIND_HEALTH_PROVIDER1,
-        token: widget.model.token,
-        json: postData,
+      widget.model.GETMETHODCALL(
+        api: ApiFactory.GOOGLE_API(lati:lati,longi: longi,healthpro: healthpro,),
         fun: (Map<String, dynamic> map) {
           String msg = map[Const.MESSAGE];
           //String msg = map[Const.MESSAGE];
-          if (map[Const.CODE] == Const.SUCCESS) {
+          if (map["status"] == "ok") {
           setState(() {
             //AppData.showInSnackBar(context, msg);
-            chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
           });
 
             //foundUser = appointModel.body;
@@ -129,18 +128,14 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width,
                 ),*/
-                (chemistsLocationWise != null)
+                (googlePlaceModel != null)
                     ? ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   // controller: _scrollController,
                   shrinkWrap: true,
                   itemBuilder: (context, i) {
-                    if (i == chemistsLocationWise.body.length) {
-                      return (chemistsLocationWise.body.length % 10 == 0)
-                          ? CupertinoActivityIndicator()
-                          : Container();
-                    }
-                    Body patient = chemistsLocationWise.body[i];
+
+                    Results patient = googlePlaceModel.results[i];
                     return Container(
                       child:GestureDetector(
                         // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
@@ -156,12 +151,6 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                             child: Container(
                                 height: tileSize,
                                 width: double.maxFinite,
-                               /* if (position % 2 == 0) {  //  is even
-                              convertView = LayoutInflater.from(getContext()).inflate(R.layout.even_layout, parent, false);
-
-                          } else {    //  is odd
-                      convertView = LayoutInflater.from(getContext()).inflate(R.layout.odd_layout, parent, false);
-                      }*/
                                 decoration:( i % 2 == 0)?BoxDecoration(
                                     border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))):BoxDecoration(
                                     border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
@@ -171,14 +160,14 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.center,
                                     children: [
-                                      (patient.image!= null)
+                                      (patient.icon!= null)
                                           ? Material(
                                         elevation: 5.0,
                                         shape: CircleBorder(),
                                         child: CircleAvatar(
                                           radius: 40.0,
                                           backgroundImage: NetworkImage(
-                                              (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/patient.image)),
+                                              (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/patient.icon)),
                                         ),
                                       )
                                           : SizedBox(
@@ -213,7 +202,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                                 Text(
                                                  /* "No 43,CF Block,Sector III,Bidhannagar\n"
                                                       "Kolkata,West Bengal 700091,India",*/
-                                                  patient.address+  patient.pin??"N/A",
+                                                  patient.formattedAddress,
                                                   style: TextStyle(
                                                       fontSize: 15),
                                                 )
@@ -231,7 +220,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                       ),
                     );
                   },
-                  itemCount: chemistsLocationWise.body.length,
+                  itemCount: googlePlaceModel.results.length,
                 ): Container(),
 
             /* Expanded(
