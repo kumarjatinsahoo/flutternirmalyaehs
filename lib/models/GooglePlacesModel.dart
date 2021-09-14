@@ -49,10 +49,10 @@ class Results {
   String name;
   OpeningHours openingHours;
   String placeId;
-  double rating;
+  String rating;
   String reference;
   List<String> types;
-  int userRatingsTotal;
+  String userRatingsTotal;
   PlusCode plusCode;
   List<Photos> photos;
 
@@ -87,10 +87,10 @@ class Results {
         ? new OpeningHours.fromJson(json['opening_hours'])
         : null;
     placeId = json['place_id'];
-    rating = json['rating'];
+    rating = json['rating'].toString();
     reference = json['reference'];
     types = json['types'].cast<String>();
-    userRatingsTotal = json['user_ratings_total'];
+    userRatingsTotal = json['user_ratings_total'].toString();
     plusCode = json['plus_code'] != null
         ? new PlusCode.fromJson(json['plus_code'])
         : null;
@@ -240,18 +240,18 @@ class PlusCode {
 }
 
 class Photos {
-  int height;
+  String height;
   List<String> htmlAttributions;
   String photoReference;
-  int width;
+  String width;
 
   Photos({this.height, this.htmlAttributions, this.photoReference, this.width});
 
   Photos.fromJson(Map<String, dynamic> json) {
-    height = json['height'];
+    height = json['height'].toString();
     htmlAttributions = json['html_attributions'].cast<String>();
     photoReference = json['photo_reference'];
-    width = json['width'];
+    width = json['width'].toString();
   }
 
   Map<String, dynamic> toJson() {

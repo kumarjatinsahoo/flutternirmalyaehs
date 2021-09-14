@@ -43,6 +43,12 @@ class ApiFactory {
     return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
 
   }
+ static String GOOGLE_PIC(
+     {String ref}){
+    //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+    return "https://maps.googleapis.com/maps/api/place/photo?photo_reference=$ref&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+
+  }
 
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';

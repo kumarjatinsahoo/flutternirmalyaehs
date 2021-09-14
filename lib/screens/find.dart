@@ -251,18 +251,18 @@ class _FindScreenState extends State<FindScreen> {
       text: "search".toUpperCase(),
       context: context,
       fun: () {
-    if (FindScreen.healthcareProvider == null || FindScreen.healthcareProvider == "") {
+   /* if (FindScreen.healthcareProvider == null || FindScreen.healthcareProvider == "") {
     AppData.showInSnackBar(context,"Select healthcare Provider");
-  /*  } else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
+  *//*  } else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
         && FindScreen.specialistModel == "" || FindScreen.specialistModel == null){
-      AppData.showInSnackBar(context,"Select Speciality");*/
-    }else {
+      AppData.showInSnackBar(context,"Select Speciality");*//*
+    }else {*/
       widget.model.longi = longitudes;
       widget.model.lati = latitudes;
       widget.model.addr = address;
       widget.model.city = cityName;
-      widget.model.type = FindScreen.specialistModel.key;
-      widget.model.healthpro = FindScreen.healthcareProvider.key;
+      //widget.model.type = FindScreen.specialistModel.key;
+      widget.model.healthpro = "near me";
 
       //Navigator.pushNamed(context, "/navigation");
       /*if (_loginId.text == "" || _loginId.text == null) {
@@ -277,7 +277,7 @@ class _FindScreenState extends State<FindScreen> {
 
          }
 
-      },
+     // },
     );
   }
 }
