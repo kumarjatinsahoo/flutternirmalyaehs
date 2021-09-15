@@ -25,4 +25,13 @@ class UpdateEmergencyModel {
     data['id'] = this.id;
     return data;
   }
+  Map<String, dynamic> toJson1() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userid'] = this.userid;
+    data['name'] = this.name;
+    data['relation'] = this.relation;
+    data['mobile'] = this.mobile;
+   // data['id'] = this.id;
+    return data;
+  }
 }
