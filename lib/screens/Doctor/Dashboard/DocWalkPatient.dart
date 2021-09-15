@@ -42,7 +42,7 @@ class _WalkPatient extends State<DocWalkPatient> {
         title: Text('Walk in Patient '),
       ),
       body: Container(
-        height: 300,
+        height: 380,
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Card(
@@ -59,47 +59,44 @@ class _WalkPatient extends State<DocWalkPatient> {
             child: Column(
               // mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 120,
-                              child: Text(
-                                "Patient's eHealthCard No",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "   :   ",
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 35),
-                            child: TextField(
-                              controller: myController,
-                              maxLength: 16,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none, hintText: ''),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 120,
+                            child: Text(
+                              "Patient's eHealthCard No",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 15),
                             ),
                           ),
+                        ],
+                      ),
+                      Text(
+                        "   :   ",
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 35),
+                          child: TextField(
+                            controller: myController,
+                            maxLength: 16,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                border: InputBorder.none, hintText: ''),
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 6),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -132,41 +129,39 @@ class _WalkPatient extends State<DocWalkPatient> {
                   ),
                 ),
                 //      SizedBox(height: 6),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 120,
-                          child: Text(
-                            "Appointment",
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        Text(
-                          " : ",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 120,
+                        child: Text(
+                          "Appointment",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
-                        Expanded(
-                          child: DropdownButtonFormField<String>(
-                            value: _ratingController,
-                            items: ["Appointment", "Medication", "EMR"]
-                                .map((label) => DropdownMenuItem(
-                                      child: Text(label.toString()),
-                                      value: label,
-                                    ))
-                                .toList(),
-                            hint: Text('Appointment'),
-                            onChanged: (value) {
-                              setState(() {
-                                _ratingController = value;
-                              });
-                            },
-                          ),
+                      ),
+                      Text(
+                        " : ",
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                      Expanded(
+                        child: DropdownButtonFormField<String>(
+                          value: _ratingController,
+                          items: ["Appointment", "Medication", "EMR"]
+                              .map((label) => DropdownMenuItem(
+                                    child: Text(label.toString()),
+                                    value: label,
+                                  ))
+                              .toList(),
+                          hint: Text('Appointment'),
+                          onChanged: (value) {
+                            setState(() {
+                              _ratingController = value;
+                            });
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 5),

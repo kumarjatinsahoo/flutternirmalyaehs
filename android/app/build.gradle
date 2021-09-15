@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -37,9 +38,9 @@ android {
         applicationId "com.ehealthsystem.user"
         minSdkVersion 19
         targetSdkVersion 30
+        versionCode 8
         multiDexEnabled true
-        versionCode 10
-        versionName "1.0.8"
+        versionName "1.0.6"
     }
 
     buildTypes {

@@ -26,16 +26,72 @@ class _ChemistsPageState extends State<ChemistsPage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
+  String longi,lati,city,addr,healthpro,type;
+
+
 
   @override
   void initState() {
     super.initState();
     loginResponse1=widget.model.loginResponse1;
-    //callAPI();
-  }
+    longi = widget.model.longi;
+    lati = widget.model.lati;
+    city = widget.model.city;
+    addr = widget.model.addr;
+    healthpro = widget.model.healthpro;
+    type=widget.model.type;
 
-  /*callAPI() {
-    widget.model.GETMETHODCALL(
+    callAPI();
+  }
+  callAPI() {
+
+      Map<String, dynamic> postData = {
+        "longi": longi,
+        "lati": lati,
+        "addr": addr,
+        "city": city,
+        "healthpro": healthpro,
+        "type": type
+      };
+     // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
+      widget.model.POSTMETHOD2(
+        api: ApiFactory.FIND_HEALTH_PROVIDER1,
+        token: widget.model.token,
+        json: postData,
+        fun: (Map<String, dynamic> map) {
+          String msg = map[Const.MESSAGE];
+          //String msg = map[Const.MESSAGE];
+          if (map[Const.CODE] == Const.SUCCESS) {
+          setState(() {
+            //AppData.showInSnackBar(context, msg);
+            chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+          });
+
+            //foundUser = appointModel.body;
+          } else {
+            //isDataNotAvail = true;
+            AppData.showInSnackBar(context, msg);
+          }
+        },
+      );
+   /* widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.FIND_HEALTH_PROVIDER(longi,lati,addr,city,healthpro,type),
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              chemistsLocationWise = ChemistsLocationWise.fromJson(map);
+              //foundUser = appointModel.body;
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });*/
+  }
+ /* callAPI() {
+    widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.FIND_HEALTH_PROVIDER(),
         fun: (Map<String, dynamic> map)  {
           setState(() {
@@ -48,8 +104,8 @@ class _ChemistsPageState extends State<ChemistsPage> {
             }
           });
         });
-  }*/
-
+  }
+*/
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
@@ -171,7 +227,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
                                                 Text(
                                                  /* "No 43,CF Block,Sector III,Bidhannagar\n"
                                                       "Kolkata,West Bengal 700091,India",*/
-                                                  patient.address??"N/A",
+                                                  patient.address+  patient.pin??"N/A",
                                                   style: TextStyle(
                                                       fontSize: 15),
                                                 )

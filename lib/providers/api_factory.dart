@@ -30,13 +30,28 @@ class ApiFactory {
   static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
+  static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
+  static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
+
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
 
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
     return MAIN_URL + "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";}
 
+ static String GOOGLE_API(
+     {String longi, String lati, String healthpro, String type}){
+    return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
 
-    static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  }
+ static String GOOGLE_PIC(
+     {String ref}){
+    //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+    return "https://maps.googleapis.com/maps/api/place/photo?photo_reference=$ref&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+
+  }
+
+
+  static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL +'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL +'post-addLabAppointment';
@@ -58,4 +73,5 @@ class ApiFactory {
   static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
+  static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
 }
