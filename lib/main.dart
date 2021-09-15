@@ -505,9 +505,9 @@ class _MyAppState extends State<MyApp> {
               '/vitalDoctor': (context) => VitalDoctor(
                     model: _model,
                   ),
-              '/Healthchart': (context) => HealthChart1(
-                    model: _model,
-                  ),
+              // '/Healthchart': (context) => HealthChart1(
+              //       model: _model,
+              //     ),
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),

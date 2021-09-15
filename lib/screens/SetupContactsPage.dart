@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -29,6 +28,17 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   String valueText = null;
   EmergencyHelpModel emergencyHelpModel;
   bool isDataNotAvail = false;
+
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
+
 
   TextEditingController _fname = TextEditingController();
   TextEditingController _mobile = TextEditingController();
@@ -612,6 +622,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
       BuildContext context, emergencyHelpModel, int index) async {
     _fname.text = emergencyHelpModel.emergency[index].name;
     _mobile.text = emergencyHelpModel.emergency[index].mobile;
+    //SetupContactsPage.relationmodel  = SetupContactsPage.relationmodel.key;
     // textEditingController[2].text = patientProfileModel.body.dob;
     // ProfileScreen.relationmodel  = KeyvalueModel(
     //   //  key: issuesDetailsModel.issueToId,
@@ -770,7 +781,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  'SUBMIT',
+                  'UPDATE',
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
@@ -806,7 +817,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     } else {*/
                    updateEmergencyModel.name = _fname.text;
                    updateEmergencyModel.mobile = _mobile.text;
-                    // updateEmergencyModel.userid = emergencyHelpModel..id;
+                   updateEmergencyModel.id = emergencyHelpModel.emergency[index].id;
+                   updateEmergencyModel.userid= widget.model.user;
+                   SetupContactsPage.relationmodel  = SetupContactsPage.relationmodel.key;
+
+                   //updateEmergencyModel.userid = emergencyHelpModel.userid;
                     // updateProfileModel.fDoctor = _fDoctor.text;
                     // updateProfileModel.fDoctor = _fDoctor.text;
                     // updateEmergencyModel.userid = emergencyHelpModel.Emergency.
@@ -822,9 +837,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
+
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         });
+
                     }
                   );
                 },
@@ -882,6 +899,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            updateEmergencyModel.name= value;
                             //emergencyHelpModel.
                           });
                         },
@@ -895,6 +913,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            updateEmergencyModel.mobile= value;
                             //emergencyHelpModel. = value;
                           });
                         },
@@ -906,6 +925,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         maxLength: 10,
                         decoration: InputDecoration(
                             hintText: "Emergency Contact No.", counterText: ""),
+
+
                       ),
                       DropDown.networkDropdown(
                           "Relation", ApiFactory.RELATION_API, "relation",
@@ -914,6 +935,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           // patientProfileModel.body.eRelation= model.name;
                           // ProfileScreen.relationmodel = model;
                           // updateProfileModel.eRelation = model.key;
+                          SetupContactsPage.relationmodel = model;
+                          updateEmergencyModel.relation = model.key;
                         });
                       }),
                       Divider(height: 2, color: Colors.black),
@@ -943,6 +966,25 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
+
+                    updateEmergencyModel.name = _fname.text;
+                    updateEmergencyModel.mobile = _mobile.text;
+
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
+                        json: updateEmergencyModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          if (map[Const.STATUS] == Const.SUCCESS) {
+                            // popup(context, map[Const.MESSAGE]);
+                            callAPI();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
                     /*codeDialog = valueText;
                     Navigator.pop(context);*/
                   });
@@ -1023,6 +1065,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
+
+
+
                     /*codeDialog = valueText;
                     Navigator.pop(context);*/
                   });

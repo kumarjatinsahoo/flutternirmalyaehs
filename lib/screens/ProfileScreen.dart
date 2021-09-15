@@ -1263,7 +1263,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 context, map[Const.MESSAGE]);
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-
                           }
                         });
                     // }

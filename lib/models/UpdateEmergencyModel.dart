@@ -3,14 +3,17 @@ class UpdateEmergencyModel {
   String name;
   String relation;
   String mobile;
+  String id;
 
-  UpdateEmergencyModel({this.userid, this.name, this.relation, this.mobile});
+  UpdateEmergencyModel(
+      {this.userid, this.name, this.relation, this.mobile, this.id});
 
   UpdateEmergencyModel.fromJson(Map<String, dynamic> json) {
     userid = json['userid'];
     name = json['name'];
     relation = json['relation'];
     mobile = json['mobile'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +22,7 @@ class UpdateEmergencyModel {
     data['name'] = this.name;
     data['relation'] = this.relation;
     data['mobile'] = this.mobile;
+    data['id'] = this.id;
     return data;
   }
 }
