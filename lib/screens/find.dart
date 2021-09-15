@@ -261,7 +261,7 @@ class _FindScreenState extends State<FindScreen> {
       widget.model.lati = latitudes;
       widget.model.addr = address;
       widget.model.city = cityName;
-      //widget.model.type = FindScreen.specialistModel.key;
+      widget.model.type = FindScreen.specialistModel.key;
       widget.model.healthpro = "near me";
 
       //Navigator.pushNamed(context, "/navigation");
