@@ -259,10 +259,12 @@ class _FindScreenState extends State<FindScreen> {
     }else {*/
       widget.model.longi = longitudes;
       widget.model.lati = latitudes;
-      widget.model.addr = address;
       widget.model.city = cityName;
-      widget.model.type = FindScreen.specialistModel.key;
-      widget.model.healthpro = "near me";
+      widget.model.addr = address;
+      //widget.model.type = FindScreen.specialistModel.key;
+      //widget.model.typename = FindScreen.specialistModel.name;
+      //widget.model.healthpro = FindScreen.healthcareProvider.key;
+      widget.model.healthproname = "near me";
 
       //Navigator.pushNamed(context, "/navigation");
       /*if (_loginId.text == "" || _loginId.text == null) {

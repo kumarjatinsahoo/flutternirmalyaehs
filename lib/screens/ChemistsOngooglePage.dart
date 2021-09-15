@@ -27,7 +27,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  String longi,lati,city,addr,healthpro,type;
+  String longi,lati,city,addr,healthpro,type,healthproname;
 
 
 
@@ -41,7 +41,9 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     city = widget.model.city;
     addr = widget.model.addr;
     healthpro = widget.model.healthpro;
+    healthproname = widget.model.healthproname;
     type=widget.model.type;
+
 
     callAPI();
   }
@@ -78,7 +80,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
   }*/
   callAPI() {
     widget.model.GETMETHODCAL(
-        api: ApiFactory.GOOGLE_API(lati: lati,longi: longi,healthpro: healthpro),
+        api: ApiFactory.GOOGLE_API(lati: lati,longi: longi,healthpro: healthproname),
         fun: (Map<String, dynamic> map)  {
           setState(() {
             //String msg = map[Const.MESSAGE];
@@ -112,7 +114,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                     itemBuilder: (context, i) {
 
                       Results patient = googlePlaceModel.results[i];
-                      print("VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>"+i.toString()+((patient.photos!=null && patient.photos.isNotEmpty)?ApiFactory.GOOGLE_PIC(ref: patient.photos[0].photoReference):patient.icon));
+                      print("VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>"+i.toString()+((patient.photos!=null && patient.photos.isNotEmpty)?ApiFactory.GOOGLE_PIC(ref: patient.photos[0].photoReference,width:"1280",height:"853"):patient.icon));
                       return Container(
                         child:Card(
                           shape: RoundedRectangleBorder(

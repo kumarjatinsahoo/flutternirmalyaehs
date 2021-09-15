@@ -1,8 +1,8 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
 
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -44,9 +44,10 @@ class ApiFactory {
 
   }
  static String GOOGLE_PIC(
-     {String ref}){
+     {String ref,String height,String width}){
     //return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
-    return "https://maps.googleapis.com/maps/api/place/photo?photo_reference=$ref&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+    //return "https://maps.googleapis.com/maps/api/place/photo?photo_reference=$ref&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+    return "https://maps.googleapis.com/maps/api/place/photo?photo_reference=$ref&height=$height&width =$width&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
 
   }
 
