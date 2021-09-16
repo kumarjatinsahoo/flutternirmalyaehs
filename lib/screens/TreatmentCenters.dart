@@ -57,7 +57,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
-                                            /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Cancer";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
@@ -96,7 +101,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
 
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Cardiology";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -134,7 +144,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                            ),
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Diabetic";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -171,7 +186,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              ),
                                            ),
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Neurology";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -208,7 +228,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              ),
                                            ),
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Nephrology";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -246,7 +271,12 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                            ),
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Ophthalmology";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(

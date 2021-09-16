@@ -49,6 +49,7 @@ import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
 import 'package:user/screens/MedicalRecordPage.dart';
 import 'package:user/screens/MedicalService.dart';
+import 'package:user/screens/MedicalServiceOngooglePage.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
@@ -521,6 +522,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/doctorMedicationTab': (context) => DoctorMedicationTab(
+                model: _model,
+              ),
+              '/medicalsServiceOngooglePage': (context) => MedicalsServiceOngooglePage(
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(
