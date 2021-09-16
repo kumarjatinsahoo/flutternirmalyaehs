@@ -2883,12 +2883,14 @@ class _VitalDoctor extends State<VitalDoctor> {
   Widget submitButton1() {
     return GestureDetector(
       onTap: () {
-       /* if (textEditingController[0].text == "" ||
-            textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter creatinine");
-        } else if (textEditingController[1].text == "" ||
-            textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter urea");
+        textEditingController.forEach((element) {
+          AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
+        });
+        // if (textEditingController.isEmpty == "" ||
+        //     textEditingController.isEmpty == null) {
+        //   AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
+        // }
+
         // } else if (textEditingController[2].text == "" ||
         //     textEditingController[2].text == null) {
         //   AppData.showInSnackBar(context, "Please enter uric acid");
@@ -3102,7 +3104,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         // } else if (textEditingController[72].text == "" ||
         //     textEditingController[72].text == null) {
         //   AppData.showInSnackBar(context, "Please enter PEF");
-        } else {*/
+        //  else {
           String creatinine = textEditingController[0].text;
           String urea = textEditingController[1].text;
           String uricacid = textEditingController[2].text;
@@ -3187,7 +3189,7 @@ class _VitalDoctor extends State<VitalDoctor> {
             "gender": widget.model.bodyUser.gender,
             "age": widget.model.bodyUser.age.toString(),
             "screening_date": widget.model.bodyUser.appntmntDate,
-            "patient_uniqueid": widget.model.bodyUser.appntmntDate,
+            "patient_uniqueid": widget.model.bodyUser.regNo,
             "report_url": "N/A",
             "screening_details": [
               {
@@ -3333,7 +3335,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-        //}
+      //  }
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
