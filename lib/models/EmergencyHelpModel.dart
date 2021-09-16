@@ -3,10 +3,16 @@ class EmergencyHelpModel {
   List<Emergency> emergency;
   String ambulance;
   String message;
+  String emerMsg;
   String status;
 
   EmergencyHelpModel(
-      {this.police, this.emergency, this.ambulance, this.message, this.status});
+      {this.police,
+        this.emergency,
+        this.ambulance,
+        this.message,
+        this.emerMsg,
+        this.status});
 
   EmergencyHelpModel.fromJson(Map<String, dynamic> json) {
     police = json['police'];
@@ -18,6 +24,7 @@ class EmergencyHelpModel {
     }
     ambulance = json['ambulance'];
     message = json['message'];
+    emerMsg = json['emer_msg'];
     status = json['status'];
   }
 
@@ -29,6 +36,7 @@ class EmergencyHelpModel {
     }
     data['ambulance'] = this.ambulance;
     data['message'] = this.message;
+    data['emer_msg'] = this.emerMsg;
     data['status'] = this.status;
     return data;
   }

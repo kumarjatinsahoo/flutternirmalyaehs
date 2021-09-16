@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
+import 'package:user/models/EmergencyMessageModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UpdateEmergencyModel.dart';
@@ -27,6 +28,7 @@ class SetupContactsPage extends StatefulWidget {
 class _SetupContactsPageState extends State<SetupContactsPage> {
   var selectedMinValue;
   String valueText = null;
+  String emger_ms;
   EmergencyHelpModel emergencyHelpModel;
   bool isDataNotAvail = false;
 
@@ -52,7 +54,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   String value4;
   String value5;
 
+
   UpdateEmergencyModel updateEmergencyModel = UpdateEmergencyModel();
+  EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
 
   @override
   void initState() {
@@ -69,6 +73,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         fun: (Map<String, dynamic> map) {
           //  setState(() {
           String msg = map[Const.MESSAGE];
+          emger_ms = map["emer_msg"];
           if (map[Const.STATUS1] == Const.SUCCESS) {
             setState(() {
               print("VAHUUU>>>" + JsonEncoder().convert(map));
@@ -94,6 +99,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   case 4:
                     value5 = emergencyHelpModel?.emergency[4]?.name ?? null;
                     break;
+
                 }
               }
               //value5=emergencyHelpModel?.emergency[4]?.name??null;
@@ -417,8 +423,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                               BorderRadius.circular(5))),
                                   child: InkWell(
                                     onTap: () {
-                                      /*   _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 3);*/
                                       (value4 != null)
                                           ? _displayTextInputDialog1(
                                               context, emergencyHelpModel, 3)
@@ -558,10 +562,17 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             SizedBox(
                               height: 8,
                             ),
+
+
                             GestureDetector(
                               // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                               child: InkWell(
                                 onTap: () {
+                                  // (emergencyHelpModel != null)
+                                  //     ? _displayTextInputDialog1(
+                                  //     context, emergencyHelpModel, 5)
+                                  //     : _displayTextInputDialog2(
+                                  //     context, emergencyHelpModel);
                                   _displayTextInputDialog2(context);
                                 },
                                 child: Card(
@@ -600,7 +611,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'Emergency Alert ! \n I need help.',
+                                                      // (emergencyHelpModel != null)
+                                                      emger_ms?? "Emergency Alert ! \n I need help.",
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -780,20 +792,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                // Future getCerificateImage() async {
-                //   var image =
-                //   await ImagePicker.pickImage(source: ImageSource.gallery);
-                //   var enc = await image.readAsBytes();
-                //   String _path = image.path;
-                //
-                //   String _fileName =
-                //   _path != null ? _path.split('/').last : '...';
-                //   var pos = _fileName.lastIndexOf('.');
-                //   String extName =
-                //   (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-                //   setState(() => _camImage = image);
-                //   base64Img = base64Encode(enc);
-                // }
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -911,22 +909,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         });
   }
 
-  Future<void> _displayTextInputDialog2(BuildContext context) async {
-    // _fname.text = patientProfileModel.body.fName;
-    // _lname.text = patientProfileModel.body.lName;
-    // textEditingController[2].text = patientProfileModel.body.dob;
-    // ProfileScreen.relationmodel  = KeyvalueModel(
-    //   //  key: issuesDetailsModel.issueToId,
-    //     name: patientProfileModel.body.eRelation);
-    //
-    // // _bloodGroup.text = patientProfileModel.body.bloodGroup;
-    // //_gender.text = patientProfileModel.body.gender;
-    // _eMobile.text = patientProfileModel.body.eMobile;
-    // _eName.text = patientProfileModel.body.eName;
-    // //_eRelation.text = patientProfileModel.body.eRelation;
-    // _fDoctor.text = patientProfileModel.body.fDoctor;
-    // //_speciality.text = patientProfileModel.body.speciality;
-    // _docMobile.text = patientProfileModel.body.docMobile;
+  Future<void> _displayTextInputDialog2(BuildContext context,) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -945,6 +928,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
+                            emergencyMessageModel.msg = value;
                           });
                         },
                         controller: _message,
@@ -980,6 +964,27 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
+                    emergencyMessageModel = EmergencyMessageModel();
+                     emergencyMessageModel.msg = _message.text;
+                     emergencyMessageModel.userid = widget.model.user;
+
+
+                    print("Value json>>"+emergencyMessageModel.toJson().toString());
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.POST_EMERGENCY_MESSAGE,
+                        json: emergencyMessageModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                            // popup(context, map[Const.MESSAGE]);
+                            callAPI();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
                     /*codeDialog = valueText;
                     Navigator.pop(context);*/
                   });
