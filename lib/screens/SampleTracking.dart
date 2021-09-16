@@ -176,7 +176,7 @@ class _SampleTrackingState extends State<SampleTracking> {
                     onStepTapped: (step) => tapped(step),
                     onStepContinue: continued,
                     onStepCancel: cancel,
-                    controlsBuilder:(BuildContext context,
+                    controlsBuilder: (BuildContext context,
                         {VoidCallback onStepContinue,
                         VoidCallback onStepCancel}) {
                       return Stack(
