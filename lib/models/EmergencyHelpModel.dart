@@ -37,13 +37,17 @@ class EmergencyHelpModel {
 class Emergency {
   String name;
   String mobile;
+  String id;
+  String relId;
   String relation;
 
-  Emergency({this.name, this.mobile, this.relation});
+  Emergency({this.name, this.mobile, this.id, this.relId, this.relation});
 
   Emergency.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     mobile = json['mobile'];
+    id = json['id'];
+    relId = json['rel_id'];
     relation = json['relation'];
   }
 
@@ -51,6 +55,8 @@ class Emergency {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['mobile'] = this.mobile;
+    data['id'] = this.id;
+    data['rel_id'] = this.relId;
     data['relation'] = this.relation;
     return data;
   }

@@ -54,6 +54,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/YogiAdityanathji.jpg",
     "assets/intro/img_coll.jpg",
     "assets/images/thumb.jpg",
+    "assets/images/tmc.png"
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -461,6 +462,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),
               ListTile(
+                leading:
+                Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
+                title: Text('Setup Contacts'),
+                selected: _selectedDestination == 15,
+                onTap: () {
+                 // selectDestination(15);
+                  Navigator.pushNamed(context, "/setupcontacts");
+                },
+              ),
+              ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",
                   height: 30,
@@ -561,6 +572,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 AppData.launchURL(
                                     "https://youtu.be/0eV8xuExrA4");
                                 break;
+                              case 10:
+                                AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=3F5Esq71WUQ");
+                                break;
                             }
                           },
                           child: Container(
@@ -630,7 +645,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       child: (imageSliders.indexOf(item) == 4 ||
                                               imageSliders.indexOf(item) == 7 ||
                                               imageSliders.indexOf(item) == 0 ||
-                                              imageSliders.indexOf(item) == 1)
+                                              imageSliders.indexOf(item) == 1||
+                                              imageSliders.indexOf(item) == 9||
+                                              imageSliders.indexOf(item) == 10)
                                           ? Icon(
                                               Icons.play_circle_fill,
                                               color: Colors.white,

@@ -62,6 +62,7 @@ import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
 import 'package:user/screens/Users/ChemistsTabview.dart';
+import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
@@ -504,9 +505,9 @@ class _MyAppState extends State<MyApp> {
               '/vitalDoctor': (context) => VitalDoctor(
                     model: _model,
                   ),
-              '/Healthchart': (context) => HealthChart1(
-                    model: _model,
-                  ),
+              // '/Healthchart': (context) => HealthChart1(
+              //       model: _model,
+              //     ),
               '/testReportList': (context) => TestReportListUser(
                     model: _model,
                   ),
@@ -520,6 +521,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/doctorMedicationTab': (context) => DoctorMedicationTab(
+                model: _model,
+              ),
+              '/idCard': (context) => IdCardPage(
                 model: _model,
               ),
 

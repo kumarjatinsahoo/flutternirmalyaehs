@@ -25,7 +25,8 @@ dependencies:
   connectivity: ^3.0.6
   path_provider: ^2.0.1
   intl: ^0.17.0
-  flushbar: ^1.10.0
+  #flushbar: ^1.10.0
+  another_flushbar: ^1.10.23
   dropdown_search: ^0.6.3
   #dropdown_search: ^0.6.3
   rflutter_alert: ^1.1.0
@@ -43,10 +44,11 @@ dependencies:
   #webview_flutter: ^2.0.12
   unique_identifier: ^0.2.0
   lottie: ^1.1.0
-  fl_chart: ^0.36.2
+  #fl_chart: ^0.40.0
   #image_picker: ^0.8.3
   geolocator: '^5.1.1'
   geocoder: ^0.2.1
+  firebase_messaging: ^10.0.6
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
 
