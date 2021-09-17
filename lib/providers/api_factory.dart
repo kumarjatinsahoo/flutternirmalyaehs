@@ -59,6 +59,7 @@ static String GOOGLE_LOC(
   static String GET_BENE_DETAILS = MAIN_URL +'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL +'post-addLabAppointment';
   static String POST_HEALTH_CHCKUP = MAIN_URL +'post-addchkupAppointment';
+  static String POST_EMERGENCY_MESSAGE = MAIN_URL +'post-user-emergency-message';
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
   static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
   static String EMERGENCY_HELP = MAIN_URL + 'view-user-emergency-details-api?userid=';

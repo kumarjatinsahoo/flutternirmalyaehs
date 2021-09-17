@@ -205,7 +205,13 @@ class _MedicalServiceState extends State<MedicalService> {
 
                                   ),
                                            GestureDetector(
-                                             onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Air Ambulance";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
+                                             //onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
                                              child: Card(
                                                elevation: 5,
                                                child: Container(

@@ -1068,8 +1068,7 @@ class MyPage1Widget extends StatelessWidget {
                         ListTile(
                           title: Center(child: Text("Health Screening")),
                           onTap: () {
-                            model.apntUserType =
-                                Const.HEALTH_SCREENING_APNT;
+                            model.apntUserType = Const.HEALTH_SCREENING_APNT;
                             // widget.model.apntUserType = "Health Screening"/*Const.HEALTH_SCREENING_APNT*/;
 
                             Navigator.pushNamed(context, "/userApnt");
