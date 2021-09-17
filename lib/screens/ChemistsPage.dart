@@ -45,7 +45,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
     callAPI();
   }
   callAPI() {
-
+   // MyWidgets.showLoading(context);
       Map<String, dynamic> postData = {
         "longi": longi,
         "lati": lati,
@@ -54,8 +54,10 @@ class _ChemistsPageState extends State<ChemistsPage> {
         "healthpro": healthpro,
         "type": type
       };
+      //
      // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
       widget.model.POSTMETHOD2(
+
         api: ApiFactory.FIND_HEALTH_PROVIDER1,
         token: widget.model.token,
         json: postData,

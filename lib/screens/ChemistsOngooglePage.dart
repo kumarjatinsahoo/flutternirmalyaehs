@@ -38,7 +38,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     lati = widget.model.lati;
     city = widget.model.city;
     addr = widget.model.addr;
-    healthpro = widget.model.healthpro;
+    healthpro = widget.model.healthproname;
     type = widget.model.type;
 
     callAPI();
@@ -120,6 +120,14 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                         ref: patient.photos[0].photoReference)
                                     : patient.icon));
                         return Container(
+                            child:InkWell(
+                              onTap: () {
+                                //widget.model.model = patient.placeId;
+                               widget.model.placeId = patient.placeId;
+                                Navigator.pushNamed(context, "/googleSearch");
+
+                                // AppData.showInSnackBar(context,"hi");
+                              },
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
@@ -212,6 +220,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                   )),
                             ),
                           ),
+                            )
                         );
                       },
                       itemCount: googlePlaceModel.results.length,
