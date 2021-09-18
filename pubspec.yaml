@@ -49,6 +49,7 @@ dependencies:
   geolocator: '^5.1.1'
   geocoder: ^0.2.1
   firebase_messaging: ^10.0.6
+  webview_flutter: ^2.0.13
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
 
