@@ -62,8 +62,7 @@ class _GoogleSearchState extends State<GoogleSearch> {
         });
   }*/
   callAPI() {
-    print(
-        "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" + ApiFactory.GOOGLE_SEARCH(
+    print("VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" + ApiFactory.GOOGLE_SEARCH(
         place_id: /*placeId*/"ChIJ9UsgSdYJGToRiGHjtrS-JNc"));
         widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_SEARCH(
