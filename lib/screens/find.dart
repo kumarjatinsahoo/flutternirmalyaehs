@@ -263,17 +263,18 @@ class _FindScreenState extends State<FindScreen> {
         && FindScreen.specialistModel == "" || FindScreen.specialistModel == null){
       AppData.showInSnackBar(context,"Select Speciality");*/ /*
     }else {*/
-          if (FindScreen.healthcareProvider == null ||
+          /*if (FindScreen.healthcareProvider == null ||
               FindScreen.healthcareProvider == "") {
             AppData.showInSnackBar(context, "Select healthcare Provider");
-          } else {
+          } else {*/
             widget.model.longi = longitudes;
             widget.model.lati = latitudes;
             widget.model.addr = address;
             widget.model.city = cityName;
-            widget.model.type = FindScreen?.specialistModel?.key ?? "";
-            widget.model.healthpro = FindScreen.healthcareProvider.key;
-            widget.model.healthproname = FindScreen.healthcareProvider.name;
+            //widget.model.type = FindScreen?.specialistModel?.key ?? "";
+           //widget.model.healthpro = FindScreen.healthcareProvider.key;
+            //widget.model.healthproname = FindScreen.healthcareProvider.name;
+            widget.model.healthproname = "Doctor";
 
             //Navigator.pushNamed(context, "/navigation");
             /*if (_loginId.text == "" || _loginId.text == null) {
@@ -284,7 +285,7 @@ class _FindScreenState extends State<FindScreen> {
             Navigator.pushNamed(context, "/chemistspage");
             //Navigator.pushNamed(context, "/searchScreen");
           }
-        }
+       /* }*/
 
         // },
         );

@@ -64,10 +64,10 @@ class _GoogleSearchState extends State<GoogleSearch> {
   callAPI() {
     print(
         "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" + ApiFactory.GOOGLE_SEARCH(
-        place_id: placeId));
+        place_id: /*placeId*/"ChIJ9UsgSdYJGToRiGHjtrS-JNc"));
         widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_SEARCH(
-            place_id: placeId),
+            place_id: /*placeId*/"ChIJ9UsgSdYJGToRiGHjtrS-JNc"),
         fun: (Map<String, dynamic> map) {
           setState(() {
             //String msg = map[Const.MESSAGE];
@@ -96,9 +96,9 @@ class _GoogleSearchState extends State<GoogleSearch> {
     ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
-        child:(googlePlacesSearch != null &&
-            googlePlacesSearch.results != null &&
-            googlePlacesSearch.results .length > 0)
+        child:(googlePlacesSearch != null /*&&
+            googlePlacesSearch.results != null*/
+            /*googlePlacesSearch.results .length > 0*/)
             ? Column(
           children: <Widget>[
               Container(
@@ -195,11 +195,11 @@ class _GoogleSearchState extends State<GoogleSearch> {
                           children: [
                             Text('Dentsspe -'/*googlePlacesSearch.results[0].name*/,
                               style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15,color: Colors.white),),
-                            Text(googlePlacesSearch.results[0].name??"N/A",
+                            Text(/*googlePlacesSearch.results[0].name??"N/A"*/"",
                               style: TextStyle(fontWeight: FontWeight.w200, fontSize: 15,color: Colors.white),),
                           ],
                         ),
-                        Text(/*'5.0 Rating'*/googlePlacesSearch.results[0].rating.toString()??"N/A",
+                        Text('5.0 Rating'/*googlePlacesSearch.results[0].rating.toString()??"N/A"*/,
                           style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15,color: Colors.white),),
                         Text('3 Review',
                           style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15,color: Colors.white),),
@@ -297,12 +297,10 @@ class _GoogleSearchState extends State<GoogleSearch> {
                             child:Column(
                               children: [
                                 Text(
-                            googlePlacesSearch.results[0].formattedAddress??"n/a",
-                                  /*"No 43,CF Block,Sector III,BidhannagarKolkata,West Bengal 700091,India"*/
-
+                            /*googlePlacesSearch.results[0].formattedAddress??"n/a",*/
+                                  "No 43,CF Block,Sector III,BidhannagarKolkata,West Bengal 700091,India",
                                   /*patient.formattedAddress*/
-                                  style:
-                                  TextStyle(fontSize: 15),
+                                  style:TextStyle(fontSize: 15),
                                 )
                               ],
                             )
