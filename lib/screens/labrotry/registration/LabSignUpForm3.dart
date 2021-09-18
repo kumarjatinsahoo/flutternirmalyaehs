@@ -303,27 +303,12 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //       horizontal: 0),
-                          //   child: DropDown.staticDropdown3(
-                          //       MyLocalizations.of(context)
-                          //           .text("SELECT_COUNTRY"),
-                          //       "bloodgroup",
-                          //       BloodGroup, (KeyvalueModel data) {
-                          //     setState(() {
-                          //       LabSignUpForm3.bloodgroupModel = data;
-                          //     });
-                          //   }),
-                          // ),
-
                           DropDown.networkDropdownGetpartUser(
                               "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
                               23.0,
                                   (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.COUNTRY_API);
-
                                   LabSignUpForm3.countryModel = data;
                                   LabSignUpForm3.stateModel = null;
 
@@ -332,19 +317,6 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //       horizontal: 0),
-                          //   child: DropDown.staticDropdown3(
-                          //       MyLocalizations.of(context)
-                          //           .text("STATE"),
-                          //       "bloodgroup",
-                          //       BloodGroup, (KeyvalueModel data) {
-                          //     setState(() {
-                          //       LabSignUpForm3.bloodgroupModel = data;
-                          //     });
-                          //   }),
-                          // ),
                           DropDown.networkDropdownGetpartUser(
                               "State", ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
                               23.0,
@@ -359,19 +331,6 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //       horizontal: 0),
-                          //   child: DropDown.staticDropdown3(
-                          //       MyLocalizations.of(context)
-                          //           .text("DISTRICT"),
-                          //       "bloodgroup",
-                          //       BloodGroup, (KeyvalueModel data) {
-                          //     setState(() {
-                          //       LabSignUpForm3.bloodgroupModel = data;
-                          //     });
-                          //   }),
-                          // ),
                           DropDown.networkDropdownGetpartUser(
                               "District", ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
                               23.0,

@@ -556,11 +556,11 @@ class DropDown {
     );
   }
   static staticDropdown2(
-    String label,
-    String callFrom,
-    List<KeyvalueModel> list,
-    Function fun,
-  ) {
+      String label,
+      String callFrom,
+      List<KeyvalueModel> list,
+      Function fun,
+      ) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -624,7 +624,109 @@ class DropDown {
       },
     );
   }
+  static staticDropdownn(
+      String label, final String API, String callFrom,IconData iconData,
+      double iconSize, Function fun) {
+    return DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        icon: Icon(
+          iconData,
+          size: iconSize,
+        ),
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      //label: label,
+      showSearchBox: true,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????"+API);
+        var response = await Dio().get(
+          API,
+        );
+        var list;
+        switch (callFrom) {
+          case "title":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "gender":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "hospital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "doctor":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "medicine":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "time":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            break;
+        }
 
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    );
+  }
   static staticDropdown3(
       String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
