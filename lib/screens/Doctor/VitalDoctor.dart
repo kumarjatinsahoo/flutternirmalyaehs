@@ -2887,11 +2887,13 @@ class _VitalDoctor extends State<VitalDoctor> {
         //
         //   AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
         // });
-        for (int i = 0; i < 72; i++) {
-          if (textEditingController[i] == null ||
-              textEditingController[i] == null ||
-              textEditingController[i].text.isEmpty ||
-              textEditingController[i].text.isEmpty) {
+        bool isAllBlank=true;
+        textEditingController.forEach((element) {
+          if(element=="")
+            isAllBlank=false;
+        });
+       // for (int i = 0; i < 72; i++) {
+          if (isAllBlank) {
             AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
           }
           else {
@@ -3126,7 +3128,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                   }
                 });
           }
-        }
+
       },
 
       child: Container(
