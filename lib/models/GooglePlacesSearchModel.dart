@@ -94,6 +94,7 @@ class Results {
     reference = json['reference'];
     types = json['types'].cast<String>();
     userRatingsTotal = json['user_ratings_total'];
+
     if (json['photos'] != null) {
       photos = new List<Photos>();
       json['photos'].forEach((v) {
