@@ -514,7 +514,8 @@ class _MedicationlistState
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
@@ -1132,8 +1133,8 @@ class _MedicationlistState
             ),
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.pop(context);
+             /* Navigator.pop(context);
+              Navigator.pop(context);*/
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

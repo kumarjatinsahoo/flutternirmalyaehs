@@ -11,10 +11,6 @@ class DoctorMedicationModel {
       morning,
       afternoon,
       evening;
-
-
-
-
   DoctorMedicationModel();
 
   DoctorMedicationModel.fromJson(Map<String, dynamic> json) {
