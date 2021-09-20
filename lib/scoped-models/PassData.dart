@@ -71,7 +71,11 @@ class PassData extends Model {
   String city;
   String addr;
   String healthpro;
+  String healthproname;
   String type;
+  String typename;
+  String medicallserviceType;
+  String placeId;
   doc.Body appointmentlist;
 
 

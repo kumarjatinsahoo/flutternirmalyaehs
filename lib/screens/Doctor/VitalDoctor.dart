@@ -2883,458 +2883,252 @@ class _VitalDoctor extends State<VitalDoctor> {
   Widget submitButton1() {
     return GestureDetector(
       onTap: () {
-       /* if (textEditingController[0].text == "" ||
-            textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter creatinine");
-        } else if (textEditingController[1].text == "" ||
-            textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter urea");
-        // } else if (textEditingController[2].text == "" ||
-        //     textEditingController[2].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter uric acid");
-        // } else if (textEditingController[3].text == "" ||
-        //     textEditingController[3].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter BUN");
-        // } else if (textEditingController[4].text == "" ||
-        //     textEditingController[4].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter EGFR");
-        // } else if (textEditingController[5].text == "" ||
-        //     textEditingController[5].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Albumin");
-        // } else if (textEditingController[6].text == "" ||
-        //     textEditingController[6].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Alkaline");
-        // } else if (textEditingController[7].text == "" ||
-        //     textEditingController[7].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Phosphate");
-        // } else if (textEditingController[8].text == "" ||
-        //     textEditingController[8].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Direct Bilirubin");
-        // } else if (textEditingController[9].text == "" ||
-        //     textEditingController[9].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter indirect Bilirubin");
-        // } else if (textEditingController[10].text == "" ||
-        //     textEditingController[10].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Total Bilirubin");
-        // } else if (textEditingController[11].text == "" ||
-        //     textEditingController[11].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter AST(SGOT)");
-        // } else if (textEditingController[12].text == "" ||
-        //     textEditingController[12].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter ALT(SGPT)");
-        // } else if (textEditingController[13].text == "" ||
-        //     textEditingController[13].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter TotalProtine");
-        // } else if (textEditingController[14].text == "" ||
-        //     textEditingController[14].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter AG Ratio");
-        // } else if (textEditingController[15].text == "" ||
-        //     textEditingController[15].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Globulin");
-        // } else if (textEditingController[16].text == "" ||
-        //     textEditingController[16].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Cholesterol");
-        // } else if (textEditingController[17].text == "" ||
-        //     textEditingController[17].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter HDL");
-        // } else if (textEditingController[18].text == "" ||
-        //     textEditingController[18].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Triglyceride");
-        // } else if (textEditingController[19].text == "" ||
-        //     textEditingController[19].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter LDL");
-        // } else if (textEditingController[20].text == "" ||
-        //     textEditingController[20].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter LDL calculative");
-        // } else if (textEditingController[21].text == "" ||
-        //     textEditingController[21].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter VLDL");
-        // } else if (textEditingController[22].text == "" ||
-        //     textEditingController[22].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter HDL/LDL Ratio");
-        // } else if (textEditingController[23].text == "" ||
-        //     textEditingController[23].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter HDL Ratio");
-        // } else if (textEditingController[24].text == "" ||
-        //     textEditingController[24].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Sodium");
-        // } else if (textEditingController[25].text == "" ||
-        //     textEditingController[25].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Potassium");
-        // } else if (textEditingController[26].text == "" ||
-        //     textEditingController[26].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Chloride");
-        // } else if (textEditingController[27].text == "" ||
-        //     textEditingController[27].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Calcium");
-        // } else if (textEditingController[28].text == "" ||
-        //     textEditingController[28].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Magnesium");
-        // } else if (textEditingController[29].text == "" ||
-        //     textEditingController[29].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Phosphorus");
-        // } else if (textEditingController[30].text == "" ||
-        //     textEditingController[30].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Hemoglobin");
-        // } else if (textEditingController[31].text == "" ||
-        //     textEditingController[31].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter RBC");
-        // } else if (textEditingController[32].text == "" ||
-        //     textEditingController[32].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter PCV");
-        // } else if (textEditingController[33].text == "" ||
-        //     textEditingController[33].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter MCV");
-        // } else if (textEditingController[34].text == "" ||
-        //     textEditingController[34].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter MCH");
-        // } else if (textEditingController[35].text == "" ||
-        //     textEditingController[35].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter MCHC");
-        // } else if (textEditingController[36].text == "" ||
-        //     textEditingController[36].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Glucose");
-        // } else if (textEditingController[37].text == "" ||
-        //     textEditingController[37].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Blood Pressure");
-        // } else if (textEditingController[38].text == "" ||
-        //     textEditingController[38].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Tempreture");
-        // } else if (textEditingController[39].text == "" ||
-        //     textEditingController[39].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Spo2");
-        // } else if (textEditingController[40].text == "" ||
-        //     textEditingController[40].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Height");
-        // } else if (textEditingController[41].text == "" ||
-        //     textEditingController[41].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Weight");
-        // } else if (textEditingController[42].text == "" ||
-        //     textEditingController[42].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Protine");
-        // } else if (textEditingController[43].text == "" ||
-        //     textEditingController[43].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter BMR");
-        // } else if (textEditingController[44].text == "" ||
-        //     textEditingController[44].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter BMI");
-        // } else if (textEditingController[45].text == "" ||
-        //     textEditingController[45].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Body Fat");
-        // } else if (textEditingController[46].text == "" ||
-        //     textEditingController[46].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Fat-Free Body");
-        // } else if (textEditingController[47].text == "" ||
-        //     textEditingController[47].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter visceral Fat");
-        // } else if (textEditingController[48].text == "" ||
-        //     textEditingController[48].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Body Water");
-        // } else if (textEditingController[49].text == "" ||
-        //     textEditingController[49].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Subcutaneous Fat");
-        // } else if (textEditingController[50].text == "" ||
-        //     textEditingController[50].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Skeletal Muscie");
-        // } else if (textEditingController[51].text == "" ||
-        //     textEditingController[51].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Muscle Mass");
-        // } else if (textEditingController[52].text == "" ||
-        //     textEditingController[52].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Metabolic Age");
-        // } else if (textEditingController[53].text == "" ||
-        //     textEditingController[53].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Urinalysis");
-        // } else if (textEditingController[54].text == "" ||
-        //     textEditingController[54].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Malaria");
-        // } else if (textEditingController[55].text == "" ||
-        //     textEditingController[55].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Pregnancy");
-        // } else if (textEditingController[56].text == "" ||
-        //     textEditingController[56].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Hba1c");
-        // } else if (textEditingController[57].text == "" ||
-        //     textEditingController[57].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Hepatitis B & C");
-        // } else if (textEditingController[58].text == "" ||
-        //     textEditingController[58].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Blood Grouping");
-        // } else if (textEditingController[59].text == "" ||
-        //     textEditingController[59].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter RH Factor");
-        // } else if (textEditingController[60].text == "" ||
-        //     textEditingController[60].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Syphilis(VDRL");
-        // } else if (textEditingController[61].text == "" ||
-        //     textEditingController[61].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter CRP");
-        // } else if (textEditingController[62].text == "" ||
-        //     textEditingController[62].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Ear");
-        // } else if (textEditingController[63].text == "" ||
-        //     textEditingController[63].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Nose");
-        // } else if (textEditingController[64].text == "" ||
-        //     textEditingController[64].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Throat");
-        // } else if (textEditingController[65].text == "" ||
-        //     textEditingController[65].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Mouth");
-        // } else if (textEditingController[66].text == "" ||
-        //     textEditingController[66].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter Others");
-        // } else if (textEditingController[67].text == "" ||
-        //     textEditingController[67].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter FEV1");
-        // } else if (textEditingController[68].text == "" ||
-        //     textEditingController[68].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter FVC");
-        // } else if (textEditingController[69].text == "" ||
-        //     textEditingController[69].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter FEV1/FVC%");
-        // } else if (textEditingController[70].text == "" ||
-        //     textEditingController[70].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter FEV6");
-        // } else if (textEditingController[71].text == "" ||
-        //     textEditingController[71].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter FEF 25-75");
-        // } else if (textEditingController[72].text == "" ||
-        //     textEditingController[72].text == null) {
-        //   AppData.showInSnackBar(context, "Please enter PEF");
-        } else {*/
-          String creatinine = textEditingController[0].text;
-          String urea = textEditingController[1].text;
-          String uricacid = textEditingController[2].text;
-          String bun = textEditingController[3].text;
-          String egfr = textEditingController[4].text;
-          String albumin = textEditingController[5].text;
-          String alkaline = textEditingController[6].text;
-          String phosphate = textEditingController[7].text;
-          String directbilirubin = textEditingController[8].text;
-          String indirectbilirubin = textEditingController[9].text;
-          String totalbilirubin = textEditingController[10].text;
-          String ast = textEditingController[11].text;
-          String alt = textEditingController[12].text;
-          String TotalProtine = textEditingController[13].text;
-          String AGRatio = textEditingController[14].text;
-          String Globulin = textEditingController[15].text;
-          String Cholesterol = textEditingController[16].text;
-          String hdl = textEditingController[17].text;
-          String Triglyceride = textEditingController[18].text;
-          String ldl = textEditingController[19].text;
-          String ldl_calculative = textEditingController[20].text;
-          String vldl = textEditingController[21].text;
-          String hdlldlratio = textEditingController[22].text;
-          String hdlratio = textEditingController[23].text;
-          String sodium = textEditingController[24].text;
-          String potassium = textEditingController[25].text;
-          String chloride = textEditingController[26].text;
-          String calcium = textEditingController[27].text;
-          String magnesium = textEditingController[28].text;
-          String phosphorus = textEditingController[29].text;
-          String hemoglobin = textEditingController[30].text;
-          String rbc = textEditingController[31].text;
-          String pcv = textEditingController[32].text;
-          String mcv = textEditingController[33].text;
-          String mch = textEditingController[34].text;
-          String mchc = textEditingController[35].text;
-          String glucose = textEditingController[36].text;
-          String bloodpressure = textEditingController[37].text;
-          String temperature = textEditingController[38].text;
-          String spo2 = textEditingController[39].text;
-          String height = textEditingController[40].text;
-          String weight = textEditingController[41].text;
-          String protine = textEditingController[42].text;
-          String bmr = textEditingController[43].text;
-          String bmi = textEditingController[44].text;
-          String bodyfat = textEditingController[45].text;
-          String fat_free_body = textEditingController[46].text;
-          String visceral_fat = textEditingController[47].text;
-          String body_water = textEditingController[48].text;
-          String subcutaneous_fat = textEditingController[49].text;
-          String skeletal_muscie = textEditingController[50].text;
-          String muscle_mass = textEditingController[51].text;
-          String metabolic_age = textEditingController[52].text;
-          String urinalysis = textEditingController[53].text;
-          String malaria = textEditingController[54].text;
-          String pregnancy = textEditingController[55].text;
-          String hba1c = textEditingController[56].text;
-          String hepatitis = textEditingController[57].text;
-          String blood_grouping = textEditingController[58].text;
-          String rh_factor = textEditingController[59].text;
-          String syphilis = textEditingController[60].text;
-          String crp = textEditingController[61].text;
-          String ear = textEditingController[62].text;
-          String nose = textEditingController[63].text;
-          String throat = textEditingController[64].text;
-          String mouth = textEditingController[65].text;
-          String others = textEditingController[66].text;
-          String fev1 = textEditingController[67].text;
-          String fvc = textEditingController[68].text;
-          String fev1_fcv = textEditingController[69].text;
-          String fev6 = textEditingController[70].text;
-          String fef25_75 = textEditingController[71].text;
-          String pef = textEditingController[72].text;
-          log(" VITAL  MODEL SEND>>>>" + jsonEncode(vitalModel.toJson()));
-          MyWidgets.showLoading(context);
-          var sendData = {
-            "medteluniqueid":"MANUAL_ENTER",
-            "thp_id": "MANUAL_ENTER",
-            "thp_name": "MANUAL_ENTER",
-            "name": widget.model.bodyUser.patientName,
-            "mobile": widget.model.bodyUser.mob??"",
-            "gender": widget.model.bodyUser.gender,
-            "age": widget.model.bodyUser.age.toString(),
-            "screening_date": widget.model.bodyUser.appntmntDate,
-            "patient_uniqueid": widget.model.bodyUser.appntmntDate,
-            "report_url": "N/A",
-            "screening_details": [
-              {
-                "pocType": "KFT",
-                "pocResult": {
-                  "creatinine": creatinine,
-                  "urea": urea,
-                  "uric_acid": uricacid,
-                  "bun": bun,
-                  "egfr": egfr
+        // textEditingController.forEach((element) {
+        //
+        //   AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
+        // });
+        for (int i = 0; i < 72; i++) {
+          if (textEditingController[i] == null ||
+              textEditingController[i] == null ||
+              textEditingController[i].text.isEmpty ||
+              textEditingController[i].text.isEmpty) {
+            AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
+          }
+          else {
+            String creatinine = textEditingController[0].text;
+            String urea = textEditingController[1].text;
+            String uricacid = textEditingController[2].text;
+            String bun = textEditingController[3].text;
+            String egfr = textEditingController[4].text;
+            String albumin = textEditingController[5].text;
+            String alkaline = textEditingController[6].text;
+            String phosphate = textEditingController[7].text;
+            String directbilirubin = textEditingController[8].text;
+            String indirectbilirubin = textEditingController[9].text;
+            String totalbilirubin = textEditingController[10].text;
+            String ast = textEditingController[11].text;
+            String alt = textEditingController[12].text;
+            String TotalProtine = textEditingController[13].text;
+            String AGRatio = textEditingController[14].text;
+            String Globulin = textEditingController[15].text;
+            String Cholesterol = textEditingController[16].text;
+            String hdl = textEditingController[17].text;
+            String Triglyceride = textEditingController[18].text;
+            String ldl = textEditingController[19].text;
+            String ldl_calculative = textEditingController[20].text;
+            String vldl = textEditingController[21].text;
+            String hdlldlratio = textEditingController[22].text;
+            String hdlratio = textEditingController[23].text;
+            String sodium = textEditingController[24].text;
+            String potassium = textEditingController[25].text;
+            String chloride = textEditingController[26].text;
+            String calcium = textEditingController[27].text;
+            String magnesium = textEditingController[28].text;
+            String phosphorus = textEditingController[29].text;
+            String hemoglobin = textEditingController[30].text;
+            String rbc = textEditingController[31].text;
+            String pcv = textEditingController[32].text;
+            String mcv = textEditingController[33].text;
+            String mch = textEditingController[34].text;
+            String mchc = textEditingController[35].text;
+            String glucose = textEditingController[36].text;
+            String bloodpressure = textEditingController[37].text;
+            String temperature = textEditingController[38].text;
+            String spo2 = textEditingController[39].text;
+            String height = textEditingController[40].text;
+            String weight = textEditingController[41].text;
+            String protine = textEditingController[42].text;
+            String bmr = textEditingController[43].text;
+            String bmi = textEditingController[44].text;
+            String bodyfat = textEditingController[45].text;
+            String fat_free_body = textEditingController[46].text;
+            String visceral_fat = textEditingController[47].text;
+            String body_water = textEditingController[48].text;
+            String subcutaneous_fat = textEditingController[49].text;
+            String skeletal_muscie = textEditingController[50].text;
+            String muscle_mass = textEditingController[51].text;
+            String metabolic_age = textEditingController[52].text;
+            String urinalysis = textEditingController[53].text;
+            String malaria = textEditingController[54].text;
+            String pregnancy = textEditingController[55].text;
+            String hba1c = textEditingController[56].text;
+            String hepatitis = textEditingController[57].text;
+            String blood_grouping = textEditingController[58].text;
+            String rh_factor = textEditingController[59].text;
+            String syphilis = textEditingController[60].text;
+            String crp = textEditingController[61].text;
+            String ear = textEditingController[62].text;
+            String nose = textEditingController[63].text;
+            String throat = textEditingController[64].text;
+            String mouth = textEditingController[65].text;
+            String others = textEditingController[66].text;
+            String fev1 = textEditingController[67].text;
+            String fvc = textEditingController[68].text;
+            String fev1_fcv = textEditingController[69].text;
+            String fev6 = textEditingController[70].text;
+            String fef25_75 = textEditingController[71].text;
+            String pef = textEditingController[72].text;
+            log(" VITAL  MODEL SEND>>>>" + jsonEncode(vitalModel.toJson()));
+            MyWidgets.showLoading(context);
+            var sendData = {
+              "medteluniqueid":"MANUAL_ENTER",
+              "thp_id": "MANUAL_ENTER",
+              "thp_name": "MANUAL_ENTER",
+              "name": widget.model.bodyUser.patientName,
+              "mobile": widget.model.bodyUser.mob??"",
+              "gender": widget.model.bodyUser.gender,
+              "age": widget.model.bodyUser.age.toString(),
+              "screening_date": widget.model.bodyUser.appntmntDate,
+              "patient_uniqueid": widget.model.bodyUser.regNo,
+              "report_url": "N/A",
+              "screening_details": [
+                {
+                  "pocType": "KFT",
+                  "pocResult": {
+                    "creatinine": creatinine,
+                    "urea": urea,
+                    "uric_acid": uricacid,
+                    "bun": bun,
+                    "egfr": egfr
+                  }
+                },
+                {
+                  "pocType": "LFT",
+                  "pocResult": {
+                    "albumin":albumin,
+                    "alkaline": alkaline,
+                    "phosphate": phosphate,
+                    "directbilirubin": directbilirubin,
+                    "indirectbilirubin": indirectbilirubin,
+                    "totalbilirubin": totalbilirubin,
+                    "ast": ast,
+                    "alt": alt,
+                    "TotalProtine": TotalProtine,
+                    "AGRatio": AGRatio,
+                    "Globulin": Globulin
+                  }
+                },
+                {
+                  "pocType": "LIPIDPROFILE",
+                  "pocResult": {
+                    "Cholesterol":Cholesterol,
+                    "hdl": hdl,
+                    "Triglyceride": Triglyceride,
+                    "ldl": ldl,
+                    "ldl_calculative": ldl_calculative,
+                    "vldl": vldl,
+                    "hdlldlratio": hdlldlratio,
+                    "hdlratio": hdlratio
+                  }
+                },
+                {
+                  "pocType": "ELECTROLYTES",
+                  "pocResult": {
+                    "sodium":sodium,
+                    "potassium": potassium,
+                    "chloride": chloride,
+                    "calcium": calcium,
+                    "magnesium": magnesium,
+                    "phosphorus": phosphorus
+                  }
+                },
+                {
+                  "pocType": "HEMATOLOGY",
+                  "pocResult": {
+                    "hemoglobin":hemoglobin,
+                    "rbc": rbc,
+                    "pcv": pcv,
+                    "mcv": mcv,
+                    "mch": mch,
+                    "phosphorus": mchc
+                  }
+                },
+                {
+                  "pocType":"SUGER",
+                  "pocResult":{
+                    "glucose":glucose
+                  }
+                },
+                {
+                  "pocType": "BASIC",
+                  "pocResult": {
+                    "bloodpressure":bloodpressure,
+                    "temperature": temperature,
+                    "spo2": spo2,
+                    "height": height,
+                    "weight": weight
+                  }
+                },
+                {
+                  "pocType": "BODYANALYSER",
+                  "pocResult": {
+                    "protine":protine,
+                    "bmr": bmr,
+                    "bmi": bmi,
+                    "bodyfat": bodyfat,
+                    "fat_free_body": fat_free_body,
+                    "visceral_fat": visceral_fat,
+                    "body_water": body_water,
+                    "subcutaneous_fat": subcutaneous_fat,
+                    "skeletal_muscie": skeletal_muscie,
+                    "muscle_mass": muscle_mass,
+                    "metabolic_age": metabolic_age,
+                  }
+                },
+                {
+                  "pocType": "RAPIDTEST",
+                  "pocResult": {
+                    "urinalysis":urinalysis,
+                    "malaria": malaria,
+                    "pregnancy": pregnancy,
+                    "hba1c": hba1c,
+                    "hepatitis": hepatitis,
+                    "blood_grouping": blood_grouping,
+                    "rh_factor": rh_factor,
+                    "syphilis": syphilis,
+                    "crp": crp,
+                  }
+                },
+                {
+                  "pocType": "OTOSCOPE",
+                  "pocResult": {
+                    "ear":ear,
+                    "nose": nose,
+                    "throat": throat,
+                    "mouth": mouth,
+                    "others": others,
+                  }
+                },
+                {
+                  "pocType": "PULMONARYFUNCTIONTEST",
+                  "pocResult": {
+                    "fev1":fev1,
+                    "fvc": fvc,
+                    "fev1_fcv": fev1_fcv,
+                    "fev6": fev6,
+                    "fef25_75": fef25_75,
+                    "pef": pef,
+                  }
                 }
-              },
-              {
-                "pocType": "LFT",
-                "pocResult": {
-                  "albumin":albumin,
-                  "alkaline": alkaline,
-                  "phosphate": phosphate,
-                  "directbilirubin": directbilirubin,
-                  "indirectbilirubin": indirectbilirubin,
-                  "totalbilirubin": totalbilirubin,
-                  "ast": ast,
-                  "alt": alt,
-                  "TotalProtine": TotalProtine,
-                  "AGRatio": AGRatio,
-                  "Globulin": Globulin
-                }
-              },
-              {
-                "pocType": "LIPIDPROFILE",
-                "pocResult": {
-                  "Cholesterol":Cholesterol,
-                  "hdl": hdl,
-                  "Triglyceride": Triglyceride,
-                  "ldl": ldl,
-                  "ldl_calculative": ldl_calculative,
-                  "vldl": vldl,
-                  "hdlldlratio": hdlldlratio,
-                  "hdlratio": hdlratio
-                }
-              },
-              {
-                "pocType": "ELECTROLYTES",
-                "pocResult": {
-                  "sodium":sodium,
-                  "potassium": potassium,
-                  "chloride": chloride,
-                  "calcium": calcium,
-                  "magnesium": magnesium,
-                  "phosphorus": phosphorus
-                }
-              },
-              {
-                "pocType": "HEMATOLOGY",
-                "pocResult": {
-                  "hemoglobin":hemoglobin,
-                  "rbc": rbc,
-                  "pcv": pcv,
-                  "mcv": mcv,
-                  "mch": mch,
-                  "phosphorus": mchc
-                }
-              },
-              {
-                "pocType":"SUGER",
-                "pocResult":{
-                  "glucose":glucose
-                }
-              },
-              {
-                "pocType": "BASIC",
-                "pocResult": {
-                  "bloodpressure":bloodpressure,
-                  "temperature": temperature,
-                  "spo2": spo2,
-                  "height": height,
-                  "weight": weight
-                }
-              },
-              {
-                "pocType": "BODYANALYSER",
-                "pocResult": {
-                  "protine":protine,
-                  "bmr": bmr,
-                  "bmi": bmi,
-                  "bodyfat": bodyfat,
-                  "fat_free_body": fat_free_body,
-                  "visceral_fat": visceral_fat,
-                  "body_water": body_water,
-                  "subcutaneous_fat": subcutaneous_fat,
-                  "skeletal_muscie": skeletal_muscie,
-                  "muscle_mass": muscle_mass,
-                  "metabolic_age": metabolic_age,
-                }
-              },
-              {
-                "pocType": "RAPIDTEST",
-                "pocResult": {
-                  "urinalysis":urinalysis,
-                  "malaria": malaria,
-                  "pregnancy": pregnancy,
-                  "hba1c": hba1c,
-                  "hepatitis": hepatitis,
-                  "blood_grouping": blood_grouping,
-                  "rh_factor": rh_factor,
-                  "syphilis": syphilis,
-                  "crp": crp,
-                }
-              },
-              {
-                "pocType": "OTOSCOPE",
-                "pocResult": {
-                  "ear":ear,
-                  "nose": nose,
-                  "throat": throat,
-                  "mouth": mouth,
-                  "others": others,
-                }
-              },
-              {
-                "pocType": "PULMONARYFUNCTIONTEST",
-                "pocResult": {
-                  "fev1":fev1,
-                  "fvc": fvc,
-                  "fev1_fcv": fev1_fcv,
-                  "fev6": fev6,
-                  "fef25_75": fef25_75,
-                  "pef": pef,
-                }
-              }
 
-            ]
-          };
-          log("Value should be"+sendData.toString());
-          widget.model.POSTMETHOD(
-              api: ApiFactory.VITALS_REPORT,
-              json: sendData,
-              fun: (Map<String, dynamic> map) {
-                Navigator.pop(context);
-                if (map[Const.STATUS] == Const.SUCCESS) {
-                  popup(context, map[Const.MESSAGE]);
-                } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                }
-              });
-        //}
+              ]
+            };
+            log("Value should be"+sendData.toString());
+            widget.model.POSTMETHOD(
+                api: ApiFactory.VITALS_REPORT,
+                json: sendData,
+                fun: (Map<String, dynamic> map) {
+                  Navigator.pop(context);
+                  if (map[Const.STATUS] == Const.SUCCESS) {
+                    popup(context, map[Const.MESSAGE]);
+                  } else {
+                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  }
+                });
+          }
+        }
       },
+
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 180, right: 0),

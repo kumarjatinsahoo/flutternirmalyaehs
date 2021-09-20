@@ -57,6 +57,12 @@ class _RIPScreenState extends State<RIPScreen> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Book a Hearse Van";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                              elevation: 5,
@@ -96,6 +102,12 @@ class _RIPScreenState extends State<RIPScreen> {
 
 
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Book a Mortuary Freezer";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                                elevation: 5,
@@ -134,6 +146,12 @@ class _RIPScreenState extends State<RIPScreen> {
                                            ),
 
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Book a Priest";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                                elevation: 5,
@@ -171,6 +189,12 @@ class _RIPScreenState extends State<RIPScreen> {
                                              ),
                                            ),
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Book a Rrpatriation";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                                elevation: 5,
@@ -208,6 +232,12 @@ class _RIPScreenState extends State<RIPScreen> {
                                              ),
                                            ),
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "book a Funeral Hall ";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                                elevation: 5,
@@ -246,6 +276,12 @@ class _RIPScreenState extends State<RIPScreen> {
                                            ),
 
                                            GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Dispersal of Ashes & Ums";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                                elevation: 5,

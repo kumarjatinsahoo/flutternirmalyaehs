@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
-import 'package:user/models/medicinModel.dart';
+import 'package:user/models/MedicinModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -29,9 +29,7 @@ List<TextEditingController> textEditingController = [
   new TextEditingController(),
 ];
 
-List<medicinModel> itemModel = [
-
-];
+/*List<MedicinlistModel> itemModel = [ ];*/
 class _MedicationlistState
     extends State<Medicationlist> {
   DateTime selectedDate = DateTime.now();
@@ -42,7 +40,13 @@ class _MedicationlistState
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+ /* List<KeyvalueModel> lists = [
+    KeyvalueModel(),
+    KeyvalueModel(),
+  ];*/
+  List<MedicinlistModel>medicinlistModel = [
 
+  ];
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -54,6 +58,7 @@ class _MedicationlistState
       //callAPI(selectedDatestr);
     });
   }
+
   bool _checkbox1 = false;
   bool _checkbox2 = false;
   bool _checkbox = false;
@@ -78,8 +83,8 @@ class _MedicationlistState
       });
   }
 
-  callAPI(String today) {
-    /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
+  /*callAPI(String today) {
+    *//*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*//*
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.doctor_APPOINTMENT_LIST +
             widget.model.user +
@@ -100,7 +105,7 @@ class _MedicationlistState
             }
           });
         });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -149,30 +154,31 @@ class _MedicationlistState
             SizedBox(
               height: 5,
             ),
-            (itemModel != null)?SingleChildScrollView(
+           /* SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: const EdgeInsets.only(left: 0),
                 child: _dataTable(),
               ),
-            ): Container(),
-            SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child:  _submitButton(),
-            ),
+            ),*/
+            /*(itemModel != null)?SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: _dataTable(),
+              ),
+            ): Container(),*/
             SizedBox(
               height: 16,
             ),
 
+
             /* appointdate(),*/
-            /*(medicinmodel != null)
+            (medicinlistModel != null)
                   ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: medicinmodel.length,
+                      itemCount: medicinlistModel.length,
                       itemBuilder: (BuildContext ctxt, int Index) {
                        //Body medicinmodel = medicinmodel[i];
                         return Column(
@@ -212,7 +218,7 @@ class _MedicationlistState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      medicinmodel[Index].medname,
+                                                      medicinlistModel[Index].medname,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -221,31 +227,31 @@ class _MedicationlistState
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    *//* Text(appointmentlist.speciality,
+                                                    /* Text(medicinlistModel[Index].speciality,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
-                                                    SizedBox(height: 5,),*//*
+                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Duration:" +
-                                                      medicinmodel[Index].duration,
+                                                          medicinlistModel[Index].duration,
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
                                                     ),
-                                                     Text(
-                                                      *//*'Confirmed'*//*
-                                                      medicinmodel[Index].remarks,
+                                                     /*Text(
+                                                      'Confirmed'
+                                                       medicinlistModel[Index].remarks,
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.bold,
                                                           fontSize: 15,
                                                           color:
                                                           Colors.green),
-                                                    ),
+                                                    ),*/
                                                   ],
                                                 ),
                                               ),
-                                              *//*new Spacer(),*//*
+                                              new Spacer(),
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                   top: 15.0,
@@ -258,7 +264,7 @@ class _MedicationlistState
                                                     InkWell(
                                                       onTap: () {
                                                         setState(() {
-                                                          medicinmodel.remove(Index);
+                                                          medicinlistModel.remove(Index);
                                                         });
                                                       },
                                                       child: Icon(
@@ -282,8 +288,14 @@ class _MedicationlistState
                       },
                      // itemCount:medicinmodel.length,
                     )
-                  : Container(),*/
-
+                  : Container(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child:  _submitButton(),
+            ),
+            SizedBox(
+              height: 16,
+            ),
           ],
         ),
       ),
@@ -291,7 +303,7 @@ class _MedicationlistState
   }
 
   Widget dialogaddnomination(BuildContext context) {
-    medicinModel item = medicinModel();
+    MedicinlistModel item = MedicinlistModel();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -332,6 +344,8 @@ class _MedicationlistState
                 ),
                 fromField1(0, "Type", TextInputAction.next,
                     TextInputType.text, "Type"),
+                /*fromField1(0, "Type", TextInputAction.next,
+                    TextInputType.text, firstname_, lastname_, "Type"),*/
                 /* itemNo(
                     "ItemNo ",
                     widget.isConfirmPage,
@@ -468,13 +482,13 @@ class _MedicationlistState
               item.duration = textEditingController[1].text;
               item.remarks = textEditingController[2].text;
               item.doctor = widget.model.user;
-              item.morning = _checkboxstr;
-              item.afternoon = _checkboxstr1;
-              item.evening = _checkboxstr2;
+              item.morning = _checkboxstr.toString();
+              item.afternoon = _checkboxstr1.toString();
+              item.evening = _checkboxstr2.toString();
               //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
 
               setState(() {
-                itemModel.add(item);
+                medicinlistModel.add(item);
               });
             }
             Navigator.of(context).pop();
@@ -487,11 +501,48 @@ class _MedicationlistState
       ],
     );
   }
-  DataTable _dataTable() {
-    /*MaterialStateProperty<Colors> material=[
+ /* DataTable _dataTable() {
+    *//*MaterialStateProperty<Colors> material=[
       Colors.red
-    ];*/
+    ];*//*
     return DataTable(
+      columns: [
+        DataColumn(
+          label:Container(
+            //color: Colors.red,
+            width: 130,
+            child: Center(
+              child: Text(
+                'Medication Name',
+                style:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+
+        ),
+        DataColumn(
+          label: Text("Age"),
+        ),
+        DataColumn(
+          label: Text("Year"),
+        ),
+        DataColumn(
+          label: Text("Year"),
+        ),
+        //DataColumn(label: FlutterLogo())
+      ],
+      rows: lists.map((data) {
+        return DataRow(cells: [
+          DataCell(Text("cvbvbn")),
+          DataCell(Text("sdfgh")),
+          DataCell(Text("dfgh")),
+          DataCell(FlutterLogo())
+        ]);
+      }).toList(),
+    );
+
+    *//*DataTable(
         onSelectAll: (b) {},
         //dataRowHeight: 3,
         columnSpacing: 6,
@@ -502,7 +553,7 @@ class _MedicationlistState
         // sortColumnIndex: 1,
         sortAscending: true,
         columns: <DataColumn>[
-          /*DataColumn(
+          *//**//*DataColumn(
             label: Container(
               //color: Colors.red,
               child: Text(
@@ -511,11 +562,11 @@ class _MedicationlistState
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
-          ),*/
+          ),*//**//*
           DataColumn(
             label: Container(
               //color: Colors.red,
-              width: 80,
+              width: 100,
               child: Center(
                 child: Text(
                   'Medication Name',
@@ -586,7 +637,7 @@ class _MedicationlistState
             // selected: true,
             cells: [
 
-              /*DataCell(
+              *//**//*DataCell(
                 Container(
                   width: 80,
                   child: Center(
@@ -598,12 +649,12 @@ class _MedicationlistState
                 ),
                 // showEditIcon: true,
                 // placeholder: true,
-              ),*/
+              ),*//**//*
               DataCell(
                 Container(
                   width: 80,
                   child: Center(
-                    child: Text(data.medname,
+                    child: Text(*//**//*data.medname*//**//*"name",
                         style: TextStyle(color: Colors.black)),
                   ),
                 ),
@@ -613,7 +664,7 @@ class _MedicationlistState
                 Container(
                   width: 80,
                   child: Center(
-                    child:Text(data.medname,
+                    child:Text(*//**//*data.medname*//**//*"name",
                       style: TextStyle(color: Colors.black),
                       textAlign: TextAlign.center,),
                   ),
@@ -623,7 +674,7 @@ class _MedicationlistState
                 Container(
                   width: 80,
                   child: Center(
-                    child:Text(data.medname,
+                    child:Text(*//**//*data.medname*//**//*"name",
                       style: TextStyle(color: Colors.black),
                       textAlign: TextAlign.center,),
                   ),
@@ -655,9 +706,10 @@ class _MedicationlistState
         ))
 
             .values
-            .toList());
+            .toList());*//*
 
-  }
+
+  }*/
   Widget fromField1(int index, String hint, inputAct, keyType,
 
   String type) {
@@ -675,10 +727,17 @@ class _MedicationlistState
             border: InputBorder.none,
             hintText: hint,
             hintStyle: TextStyle(color: Colors.grey),
-
             // suffixIcon: Icon(Icons.person_rounded),
             //contentPadding: EdgeInsets.symmetric(vertical: 10)
           ),
+         /* decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            hintStyle: TextStyle(color: Colors.grey),
+
+            // suffixIcon: Icon(Icons.person_rounded),
+            //contentPadding: EdgeInsets.symmetric(vertical: 10)
+          ),*/
           textAlignVertical: TextAlignVertical.center,
           onChanged: (newValue) {},
           /*onFieldSubmitted: (value) {
@@ -721,6 +780,37 @@ class _MedicationlistState
          /// AppData.fieldFocusChange(context, currentfn, nextFn);
         },
       ),
+    );
+  }
+  Widget fromfild(int index, String hint, inputAct, keyType,
+      String type) {
+    return  TextFormField(
+        controller: textEditingController[index],
+        //focusNode: currentfn,
+        textInputAction: inputAct,
+        inputFormatters: [
+          //UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+        ],
+        keyboardType: keyType,
+        decoration: InputDecoration(
+         /*border: InputBorder.none,*/
+
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey),
+
+          // suffixIcon: Icon(Icons.person_rounded),
+          //contentPadding: EdgeInsets.symmetric(vertical: 10)
+        ),
+        textAlignVertical: TextAlignVertical.center,
+        onChanged: (newValue) {},
+        onFieldSubmitted: (value) {
+          /* print("ValueValue" + error[index].toString());
+          setState(() {
+            error[index] = false;
+          });*/
+          /// AppData.fieldFocusChange(context, currentfn, nextFn);
+        },
     );
   }
   Widget formFieldMobile(

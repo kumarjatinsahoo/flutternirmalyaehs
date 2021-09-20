@@ -220,8 +220,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: size.height * 0.02,
                             ),
-                            Text(
-                              patientProfileModel?.body?.fullName.replaceFirst("Miss", "") ?? "N/A",
+
+                        Text(
+                              patientProfileModel?.body?.fullName?? "N/A",
+
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,

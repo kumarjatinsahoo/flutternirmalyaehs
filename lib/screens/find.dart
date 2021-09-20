@@ -92,9 +92,12 @@ class _FindScreenState extends State<FindScreen> {
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
+          print("finder>>>>>>>>>" + finder.toJson().toString());
+
           setState(() {
             address = "${finder.formattedAddress}";
-            cityName = finder.addressComponents[5].longName;
+            cityName = finder.addressComponents[4].longName;
+            print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
             longitudes = position.longitude.toString();
             latitudes = position.altitude.toString();
           });
@@ -256,20 +259,22 @@ class _FindScreenState extends State<FindScreen> {
         text: "search".toUpperCase(),
         context: context,
         fun: () {
-          /*  else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
+          /* else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
         && FindScreen.specialistModel == "" || FindScreen.specialistModel == null){
       AppData.showInSnackBar(context,"Select Speciality");*/ /*
     }else {*/
-          if (FindScreen.healthcareProvider == null ||
+          /*if (FindScreen.healthcareProvider == null ||
               FindScreen.healthcareProvider == "") {
             AppData.showInSnackBar(context, "Select healthcare Provider");
-          } else {
+          } else {*/
             widget.model.longi = longitudes;
             widget.model.lati = latitudes;
             widget.model.addr = address;
             widget.model.city = cityName;
-            widget.model.type = FindScreen?.specialistModel?.key ?? "";
-            widget.model.healthpro = FindScreen.healthcareProvider.key;
+            //widget.model.type = FindScreen?.specialistModel?.key ?? "";
+           //widget.model.healthpro = FindScreen.healthcareProvider.key;
+            //widget.model.healthproname = FindScreen.healthcareProvider.name;
+            widget.model.healthproname = "Doctor";
 
             //Navigator.pushNamed(context, "/navigation");
             /*if (_loginId.text == "" || _loginId.text == null) {
@@ -280,7 +285,7 @@ class _FindScreenState extends State<FindScreen> {
             Navigator.pushNamed(context, "/chemistspage");
             //Navigator.pushNamed(context, "/searchScreen");
           }
-        }
+       /* }*/
 
         // },
         );

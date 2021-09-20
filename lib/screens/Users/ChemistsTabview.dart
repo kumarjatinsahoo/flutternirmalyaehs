@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
+import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/ChemistsPage.dart';
@@ -23,6 +24,23 @@ final List<Tab> myTabs = <Tab>[
 ];
 
 class _ChemistsTabviewState extends State<ChemistsTabview> {
+  session.LoginResponse1 loginResponse1;
+  String longi,lati,city,addr,healthpro,type,healthproname,typename;
+  @override
+  void initState() {
+    super.initState();
+    loginResponse1=widget.model.loginResponse1;
+    longi = widget.model.longi;
+    lati = widget.model.lati;
+    city = widget.model.city;
+    addr = widget.model.addr;
+    healthpro = widget.model.healthpro;
+    healthproname = widget.model.healthproname;
+    type=widget.model.type;
+    typename=widget.model.typename;
+
+    //callAPI();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

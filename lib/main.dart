@@ -5,6 +5,7 @@ import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
+import 'package:user/screens/ChemistsOngooglePage.dart';
 import 'package:user/screens/ChemistsPage.dart';
 import 'package:user/screens/ConfirmedOrders.dart';
 import 'package:user/screens/Daashboard.dart';
@@ -49,6 +50,7 @@ import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
 import 'package:user/screens/MedicalRecordPage.dart';
 import 'package:user/screens/MedicalService.dart';
+import 'package:user/screens/MedicalServiceOngooglePage.dart';
 import 'package:user/screens/MedicineReminder.dart';
 import 'package:user/screens/MedicineReminderOther.dart';
 import 'package:user/screens/MonthlyView.dart';
@@ -62,6 +64,7 @@ import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
 import 'package:user/screens/Users/ChemistsTabview.dart';
+import 'package:user/screens/Users/GoogleSearch.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
@@ -521,6 +524,12 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/doctorMedicationTab': (context) => DoctorMedicationTab(
+                model: _model,
+              ),
+              '/medicalsServiceOngooglePage': (context) => MedicalsServiceOngooglePage(
+                model: _model,
+              ),
+              '/googleSearch': (context) => GoogleSearch(
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(

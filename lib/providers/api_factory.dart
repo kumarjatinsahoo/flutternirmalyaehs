@@ -1,5 +1,7 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
+  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.110:8062/nirmalyaRest/api/";
 
   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
@@ -52,13 +54,18 @@ static String GOOGLE_LOC(
      {String lat,String long}){
     return "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
-
+  static String GOOGLE_SEARCH(
+      {String place_id}){
+    return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
+  }
+  //https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=ChIJ9UsgSdYJGToRiGHjtrS-JNc
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL +'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL +'post-addLabAppointment';
   static String POST_HEALTH_CHCKUP = MAIN_URL +'post-addchkupAppointment';
+  static String POST_EMERGENCY_MESSAGE = MAIN_URL +'post-user-emergency-message';
   static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
   static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
   static String EMERGENCY_HELP = MAIN_URL + 'view-user-emergency-details-api?userid=';
