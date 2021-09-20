@@ -115,8 +115,8 @@ class _DoctorAppointmentConfirmedState
                         return InkWell(
                           onTap: (){
                             widget.model.appointmentlist=appointmentlist;
-                            Navigator.pushNamed(context, "/medi");
-                           // Navigator.pushNamed(context, "/doctorMedicationTab");
+                            //Navigator.pushNamed(context, "/medi");
+                            Navigator.pushNamed(context, "/doctorMedicationTab");
                           },
                           child: Column(
                             children: [

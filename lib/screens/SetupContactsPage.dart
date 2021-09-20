@@ -895,6 +895,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               AppData.showInSnackDone(
                                   context, map[Const.MESSAGE]);
                             } else {
+                              AppData.showInSnackDone(
+                                  context, map[Const.MESSAGE]);
                               // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                             }
                           });
