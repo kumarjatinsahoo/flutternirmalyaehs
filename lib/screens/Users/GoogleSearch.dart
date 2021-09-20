@@ -221,24 +221,26 @@ class _GoogleSearchState extends State<GoogleSearch> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              //Navigator.pop(context);
-                               phoneno=googlePlacesSearch.result.formattedPhoneNumber;
-                               _makingPhoneCall();
+                    InkWell(
+                      child: Column(
+                        children: [
 
-                            },
-                child: Container(
-                    width: 25,
-                    height: 25,
-                  child: Image.asset('assets/images/phonegoogle.png',fit: BoxFit.cover))),
-                           // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
-                        SizedBox(height: 10,),
-                        Text("Call",
-                          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15,color: Colors.redAccent,),),
-                      ],
+                 Container(
+                      width: 25,
+                      height: 25,
+                  child: Image.asset('assets/images/phonegoogle.png',fit: BoxFit.cover)),
+                             // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
+                          SizedBox(height: 10,),
+                          Text("Call",
+                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15,color: Colors.redAccent,),),
+                        ],
+                      ),
+                      onTap: (){
+                        //Navigator.pop(context);
+                        phoneno=googlePlacesSearch.result.formattedPhoneNumber;
+                        _makingPhoneCall();
+
+                      },
                     ),
                     Column(
                       children: [

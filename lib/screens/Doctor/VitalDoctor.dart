@@ -2889,7 +2889,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         // });
         bool isAllBlank=true;
         textEditingController.forEach((element) {
-          if(element!="" && element!=null)
+          if(element.text!="")
             isAllBlank=false;
         });
        // for (int i = 0; i < 72; i++) {
@@ -3116,6 +3116,7 @@ class _VitalDoctor extends State<VitalDoctor> {
               ]
             };
             log("Value should be"+sendData.toString());
+            AppData.showInSnackBar(context, "Calling api");
             widget.model.POSTMETHOD(
                 api: ApiFactory.VITALS_REPORT,
                 json: sendData,
@@ -3175,6 +3176,7 @@ class _VitalDoctor extends State<VitalDoctor> {
             onPressed: () {
                Navigator.pop(context);
                Navigator.pop(context);
+
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
