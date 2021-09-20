@@ -2889,7 +2889,7 @@ class _VitalDoctor extends State<VitalDoctor> {
         // });
         bool isAllBlank=true;
         textEditingController.forEach((element) {
-          if(element=="")
+          if(element!="" && element!=null)
             isAllBlank=false;
         });
        // for (int i = 0; i < 72; i++) {
