@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-class medicinModel{
+class MedicinlistModel{
   String userid,
       appno,
       medname, mednaid, duration, remarks, doctor, morning, afternoon, evening;
 
-  medicinModel();
+  MedicinlistModel();
 
-  medicinModel.fromJson(Map<String, dynamic> json) {
+  MedicinlistModel.fromJson(Map<String, dynamic> json) {
     userid = json['userid'];
     appno = json['appno'];
     medname = json['medname'];
