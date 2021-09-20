@@ -70,7 +70,8 @@ class _PatientHistory extends State<PatientHistory> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Expanded(
-                  child: ListView.builder(
+                  child:
+                  ListView.builder(
                     shrinkWrap: true,
                     itemCount: 2,
                     itemBuilder: (BuildContext context, int index) {

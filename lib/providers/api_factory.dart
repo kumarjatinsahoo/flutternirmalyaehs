@@ -31,6 +31,7 @@ class ApiFactory {
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
+
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
 
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){

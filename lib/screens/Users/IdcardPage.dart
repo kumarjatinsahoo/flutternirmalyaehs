@@ -21,7 +21,8 @@ class _IdCardPageState extends State<IdCardPage> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
-        child: WebView(
+        child:
+        WebView(
           initialUrl: 'https://ehealthsystem.com/download-ehealthcard?userid=OTEyMTQ0ODY3NDQwMzQ3Nw==',
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
