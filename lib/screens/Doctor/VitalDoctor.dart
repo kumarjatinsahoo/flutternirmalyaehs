@@ -2891,7 +2891,8 @@ class _VitalDoctor extends State<VitalDoctor> {
           if (textEditingController[i] == null ||
               textEditingController[i] == null ||
               textEditingController[i].text.isEmpty ||
-              textEditingController[i].text.isEmpty) {
+              textEditingController[i].text.isEmpty)
+          {
             AppData.showInSnackBar(context, "Please Fill Up Atleast One Field ");
           }
           else {
