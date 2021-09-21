@@ -507,7 +507,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           height: 10,
                         ),
                         //comultationTime(),
-                        Padding(
+                        (DoctorconsultationPage.doctorModel!=null)? Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 0),
                           child: SizedBox(
@@ -524,7 +524,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   });
                                 }),
                           ),
-                        ),
+                        ):Container(),
                         fromAddress(
                             1,
                             "Reason for choice of Dr",
