@@ -325,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
             prefix:
                 Padding(padding: EdgeInsets.only(top: 10), ),
             //hintText: "Enter number",
-            labelText: MyLocalizations.of(context).text("Mobile No/Email Id/User Id"),
+            labelText: "Mobile No/Email Id/User Id",
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
