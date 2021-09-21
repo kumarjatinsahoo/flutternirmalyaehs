@@ -184,8 +184,10 @@ class _UserAppointmentsState extends State<UserAppointments> {
                         child: ListTile(
                           onTap: () {
                             if(patient.status =="treated"){
-
-
+                              Navigator.pushNamed(context, "/usermedicinelist");
+                            }
+                            else{
+                              AppData.showInSnackBar(context," Go and Checkup ");
                             }
                           },
                           title: Row(
