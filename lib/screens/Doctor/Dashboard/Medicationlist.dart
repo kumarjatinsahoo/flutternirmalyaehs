@@ -1,5 +1,8 @@
 import 'package:flutter/services.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
+import 'package:user/models/DocterMedicationModel.dart';
+import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/providers/Const.dart';
@@ -44,7 +47,7 @@ class _MedicationlistState
     KeyvalueModel(),
     KeyvalueModel(),
   ];*/
-  List<MedicinlistModel>medicinlistModel = [
+  List<MedicinlistModel> medicinlist = [
 
   ];
   void initState() {
@@ -126,7 +129,7 @@ class _MedicationlistState
                       padding: const EdgeInsets.only(
                           left: 4.0, bottom: 4),
                       child: MyWidgets.header(
-                          "  Add Item", Alignment.centerLeft),
+                          "  Add Medicine", Alignment.centerLeft),
                       //child: MyWidgets.header("Attendance", Alignment.topLeft),
                     ),
                     InkWell(
@@ -154,8 +157,7 @@ class _MedicationlistState
             SizedBox(
               height: 5,
             ),
-           /* SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
+           /* SingleChildScrollView(`              scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: const EdgeInsets.only(left: 0),
                 child: _dataTable(),
@@ -174,12 +176,12 @@ class _MedicationlistState
 
 
             /* appointdate(),*/
-            (medicinlistModel != null)
+            (medicinlist != null)
                   ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: medicinlistModel.length,
-                      itemBuilder: (BuildContext ctxt, int Index) {
+                      itemCount: medicinlist.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
                        //Body medicinmodel = medicinmodel[i];
                         return Column(
                           children: [
@@ -197,7 +199,7 @@ class _MedicationlistState
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
+                                       /* height: 100,*/
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -218,7 +220,7 @@ class _MedicationlistState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      medicinlistModel[Index].medname,
+                                                      medicinlist[index].medname,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -227,17 +229,32 @@ class _MedicationlistState
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    /* Text(medicinlistModel[Index].speciality,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-                                                    SizedBox(height: 5,),*/
                                                     Text(
                                                       "Duration:" +
-                                                          medicinlistModel[Index].duration,
+                                                          medicinlist[index].duration+ "Days",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
                                                     ),
+                                                    Text(medicinlist[index].remarks,
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
+                                                    SizedBox(height: 5,),
+                                                    medicinlist[index].morning=="1"?Text("Morning",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(fontWeight:
+                                                      FontWeight.bold,),):Container(),
+                                                    SizedBox(height: 5,),
+                                                     medicinlist[index].afternoon=="1"?Text("Afternoon",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(fontWeight:
+                                                      FontWeight.bold ),):Container(),
+                                                    SizedBox(height: 5,),
+                                                    medicinlist[index].evening=="1"?Text("Evening",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(fontWeight:
+                                                      FontWeight.bold ),):Container(),
+                                                    SizedBox(height: 5,),
                                                      /*Text(
                                                       'Confirmed'
                                                        medicinlistModel[Index].remarks,
@@ -264,7 +281,7 @@ class _MedicationlistState
                                                     InkWell(
                                                       onTap: () {
                                                         setState(() {
-                                                          medicinlistModel.remove(Index);
+                                                          medicinlist.remove(medicinlist[index]);
                                                         });
                                                       },
                                                       child: Icon(
@@ -289,10 +306,10 @@ class _MedicationlistState
                      // itemCount:medicinmodel.length,
                     )
                   : Container(),
-            Padding(
+          /*  Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child:  _submitButton(),
-            ),
+            ),*/
             SizedBox(
               height: 16,
             ),
@@ -303,7 +320,7 @@ class _MedicationlistState
   }
 
   Widget dialogaddnomination(BuildContext context) {
-    MedicinlistModel item = MedicinlistModel();
+    DoctorMedicationlistModel item = DoctorMedicationlistModel();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -344,17 +361,7 @@ class _MedicationlistState
                 ),
                 fromField1(0, "Type", TextInputAction.next,
                     TextInputType.text, "Type"),
-                /*fromField1(0, "Type", TextInputAction.next,
-                    TextInputType.text, firstname_, lastname_, "Type"),*/
-                /* itemNo(
-                    "ItemNo ",
-                    widget.isConfirmPage,
-                    TextInputAction.next,
-                    TextInputType.number,
-                    itemNo_,
-                    itemName_,
-                    "itemNo",0
-                ),*/
+
                 //formFieldMobile(1,"Day Duration"),
                 Padding(
                   padding:
@@ -367,7 +374,18 @@ class _MedicationlistState
                         'Morning: ',
                         style: TextStyle(fontSize: 17.0),
                       ),
-                      Checkbox(
+                  Checkbox(
+                    value: this._checkbox,
+                    onChanged: (bool value) {
+                      setState(() {
+                        this._checkbox = value;
+                        if (value = true) {
+                          _checkboxstr = "1";
+                          //AppData.showInSnackBar(context,_checkboxstr );
+                        }
+                      });
+                    },),
+                    /* Checkbox(
                         checkColor: Colors.white,
                         activeColor: Colors.blue,
                         value: this._checkbox,
@@ -380,7 +398,7 @@ class _MedicationlistState
                             }
                           });
                         },
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -404,7 +422,7 @@ class _MedicationlistState
                         onChanged: (bool value) {
                           setState(() {
                             this._checkbox1 = value;
-                            if (_checkbox1 = true) {
+                            if (value = true) {
                               _checkboxstr1 = "1";
                             }
                           });
@@ -434,7 +452,7 @@ class _MedicationlistState
                         onChanged: (bool value) {
                           setState(() {
                             this._checkbox2 = value;
-                            if (_checkbox2 = true) {
+                            if (value = true) {
                               _checkboxstr2 = "1";
                             }
                           });
@@ -443,8 +461,11 @@ class _MedicationlistState
                     ],
                   ),
                 ),
+                fromfild(1, "Duration",TextInputAction.next,
+                    TextInputType.text,
+                    "remark"),
                 fromAddress(
-                    2,
+                     2,
                     "Remark",
                     TextInputAction.next,
                     TextInputType.text,
@@ -477,19 +498,33 @@ class _MedicationlistState
               //NomineeModel nomineeModel = NomineeModel();
               item.userid = widget.model.appointmentlist.userid;
               item.appno = widget.model.appointmentlist.doctorName;
-              item.mednaid = Medicationlist.medicinModel.key;
-              item.medname = Medicationlist.medicinModel.name;
+              //item.mednaid = Medicationlist.medicinModel.key;
+              item.medname = Medicationlist.medicinModel.key;
               item.duration = textEditingController[1].text;
               item.remarks = textEditingController[2].text;
               item.doctor = widget.model.user;
               item.morning = _checkboxstr.toString();
               item.afternoon = _checkboxstr1.toString();
               item.evening = _checkboxstr2.toString();
+              MyWidgets.showLoading(context);
+              widget.model.POSTMETHOD_TOKEN(
+                  api: ApiFactory.POST_MEDICATION,
+                  json: item.toJson(),
+                  token: widget.model.token,
+                  fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  });
               //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
 
-              setState(() {
-                medicinlistModel.add(item);
-              });
+              /*setState(() {
+                medicinlist.add(item);
+              });*/
             }
             Navigator.of(context).pop();
             /*controller[0].text="";
@@ -723,6 +758,7 @@ class _MedicationlistState
             WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
           ],*/
           keyboardType: keyType,
+
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hint,
@@ -784,33 +820,48 @@ class _MedicationlistState
   }
   Widget fromfild(int index, String hint, inputAct, keyType,
       String type) {
-    return  TextFormField(
-        controller: textEditingController[index],
-        //focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-         /*border: InputBorder.none,*/
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          decoration: BoxDecoration(
+          color: AppData.white,
+          borderRadius: BorderRadius.circular(5),
+      border: Border.all(
+      color: Colors.black,width: 0.3)
+      ),
+      child:Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: TextFormField(
+            controller: textEditingController[index],
+            //focusNode: currentfn,
+            textInputAction: inputAct,
+             maxLength: 3,
+             keyboardType: TextInputType.number,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[0-9 ]")),
+          ],
 
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
+            decoration: InputDecoration(
+             border: InputBorder.none,
 
-          // suffixIcon: Icon(Icons.person_rounded),
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
+              hintText: hint,
+              hintStyle: TextStyle(color: Colors.grey),
+
+              // suffixIcon: Icon(Icons.person_rounded),
+              //contentPadding: EdgeInsets.symmetric(vertical: 10)
+            ),
+            textAlignVertical: TextAlignVertical.center,
+            onChanged: (newValue) {},
+            onFieldSubmitted: (value) {
+              /* print("ValueValue" + error[index].toString());
+              setState(() {
+                error[index] = false;
+              });*/
+              /// AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
         ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {},
-        onFieldSubmitted: (value) {
-          /* print("ValueValue" + error[index].toString());
-          setState(() {
-            error[index] = false;
-          });*/
-          /// AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
+      ),),
     );
   }
   Widget formFieldMobile(
@@ -839,12 +890,14 @@ class _MedicationlistState
                   //focusNode: fnode7,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 4,
+                 /* inputFormatters: [
+                    LengthLimitingTextInputFormatter(10),
+                  ],*/
                   keyboardType: TextInputType.number,
-                  inputFormatters: [
+                 /* inputFormatters: [
                     WhitelistingTextInputFormatter(
                         RegExp("[0-9 ]")),
-                  ],
+                  ],*/
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
@@ -1037,21 +1090,56 @@ class _MedicationlistState
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "search".toUpperCase(),
+      text: "Add".toUpperCase(),
       context: context,
       fun: () {
-        //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
+  /*  medicinlist.item_details = itemModel;
+        print(medicinlist.toString());*/
+    //signupModel.image_path = position.longitude.toString();
+    //MyWidgets.showLoading(context);
+    /*widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.POST_MEDICATION,
+        json: medicinlist.toJson(),
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            popup(context, "Medicine Added Successfully",map[Const.BODY]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
 
-        // Navigator.pushNamed(context, "/otpView");
-        //}
       },
     );
   }
-
+  popup(BuildContext context, String message,String body) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+             /* Navigator.pop(context);
+              Navigator.pop(context);*/
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
 // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
 }

@@ -1,4 +1,5 @@
 class DoctorMedicationModel {
+
   String userid,
       appno,
       medname,
@@ -10,7 +11,6 @@ class DoctorMedicationModel {
       morning,
       afternoon,
       evening;
-
   DoctorMedicationModel();
 
   DoctorMedicationModel.fromJson(Map<String, dynamic> json) {
@@ -25,47 +25,33 @@ class DoctorMedicationModel {
     morning = json['morning'];
     afternoon = json['afternoon'];
     evening = json['evening'];
-    /* stateCode = json['stateCode'];
-    countryCode = json['countryCode'];
-    dob = json['dob'];
-    profileImageType = json['profileImageType'];*/
   }
+  /* Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
 
+
+    if (this.item_details != null) {
+      data['item_details'] =
+          this.item_details.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }*/
   dynamic toJson() {
-    /* final Map<String, dynamic> data = new Map<String, dynamic>();
-   // List<String> img=[this.profileImage];
-    data['fName'] = this.fName;
-    data['mobile'] = this.mobile;
-    data['age'] = this.age;
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['gender'] = this.gender;
-    data['height'] = this.height;
-    data['weight'] = this.weight;
-    data['email'] = this.email;
-    data['aadhar'] = this.aadhar;
-    data['gender'] = this.gender;
-    data['enteredBy'] = this.enteredBy;
-   // data['profileImage'].map =img;
-    data['profileImageType'] = this.profileImageType;
-    data['stateCode']= this.stateCode;
-    data['countryCode'] = this.countryCode;*/
-
     var param =
-      [
-        {
-          "userid": this.userid,
-          "appno": this.appno,
-          "medname": this.medname,
-          "fromdate": this.fromdate,
-          "todate": this.todate,
-          "remarks": this.remarks,
-          "doctor": this.doctor,
-          "morning": this.morning,
-          "afternoon": this.afternoon,
-          "evening": this.evening
-        }
-      ];
+    [
+      {
+        "userid": this.userid,
+        "appno": this.appno,
+        "medname": this.medname,
+        "fromdate": this.fromdate,
+        "todate": this.todate,
+        "remarks": this.remarks,
+        "doctor": this.doctor,
+        "morning": this.morning,
+        "afternoon": this.afternoon,
+        "evening": this.evening
+      }
+    ];
     return param;
   }
 
