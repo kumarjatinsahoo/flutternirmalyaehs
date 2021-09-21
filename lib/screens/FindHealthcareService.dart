@@ -24,7 +24,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppData.kPrimaryColor,
-            title: Text( 'Find Healthcare Service '),
+            title: Text( 'Find Healthcare Service'),
             /* leading: Icon(
             Icons.menu,
           ),*/
@@ -101,7 +101,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
 
                             GestureDetector(
                               onTap: () => Navigator.pushNamed(
-                                  context, "/bookanAppointmentlist"),
+                                  context, "/doctorconsultationPage"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -152,8 +152,14 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                             ),
 
                             GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/myAppointment"),
+                              onTap: () {
+                                /*               Navigator.pushNamed(
+                                    context, "/myAppointment");*/
+
+                                Navigator.pushNamed(
+                                    context, "/userAppoint");
+                                }
+                              ,
                               child: Card(
                                 elevation: 5,
                                 child: Container(
