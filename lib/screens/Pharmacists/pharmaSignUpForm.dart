@@ -917,24 +917,77 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     );
   }
 
-  Widget formField(int index, String hint,) {
-    return TextFieldContainer(
-      child: TextFormField(
-        controller: textEditingController[index],
-        textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
-        /* decoration: BoxDecoration(11
-          color: AppData.kPrimaryLightColor,
-          //color: Color(0x45283e81),
-          borderRadius: BorderRadius.circular(29),
-        ),*/
-        style: TextStyle(fontSize: 13),
-        decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
+  // Widget formField(int index, String hint,) {
+  //   return TextFieldContainer(
+  //     child: Container(
+  //       height: 50,
+  //       padding:
+  //       EdgeInsets.symmetric(horizontal: 5),
+  //       decoration: BoxDecoration(
+  //         color: Colors.white,
+  //         borderRadius:
+  //         BorderRadius.circular(5),
+  //         border: Border.all(
+  //             color: Colors.black, width: 0.3),
+  //       ),
+  //       child: TextFormField(
+  //         controller: textEditingController[index],
+  //         textInputAction: TextInputAction.done,
+  //         keyboardType:TextInputType.text,
+  //         /* decoration: BoxDecoration(11
+  //           color: AppData.kPrimaryLightColor,
+  //           //color: Color(0x45283e81),
+  //           borderRadius: BorderRadius.circular(29),
+  //         ),*/
+  //         style: TextStyle(fontSize: 13),
+  //         decoration: InputDecoration(
+  //             hintText: hint,
+  //             hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
+  //             border: InputBorder.none,
+  //             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+  //         onChanged: (newValue) {},
+  //       ),
+  //     ),
+  //   );
+  // }
+  Widget formField(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-        onChanged: (newValue) {},
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
       ),
     );
   }

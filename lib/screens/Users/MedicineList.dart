@@ -119,10 +119,11 @@ class _MedicineList extends State<MedicineList> {
               child: Column(
                 children: [
                     DropDown.staticDropdown2(
-                        "State",
-                        "state",
+                        "Choose Pharmacy",
+                        "Choose Pharmacy",
                         stateList, (KeyvalueModel data) {
                       setState(() {
+
 
                       });
                     }),
