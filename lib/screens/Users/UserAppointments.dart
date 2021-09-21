@@ -187,7 +187,9 @@ class _UserAppointmentsState extends State<UserAppointments> {
                               Navigator.pushNamed(context, "/usermedicinelist");
                             }
                             else{
-                              AppData.showInSnackBar(context," Go and Checkup ");
+                         //     AppData.showInSnackBar(context," Go and Checkup ");
+                              Navigator.pushNamed(context, "/usermedicinelist");
+
                             }
                           },
                           title: Row(
