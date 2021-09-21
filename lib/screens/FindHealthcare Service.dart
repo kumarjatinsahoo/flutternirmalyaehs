@@ -153,7 +153,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
 
                             GestureDetector(
                               onTap: () => Navigator.pushNamed(
-                                  context, "/myAppointment"),
+                                  context, "/userAppoint"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
