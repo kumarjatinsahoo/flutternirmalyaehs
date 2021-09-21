@@ -33,16 +33,14 @@ class DoctorconsultationPage extends StatefulWidget {
 
   DoctorconsultationPage({Key key, this.model}) : super(key: key);
 
-  static KeyvalueModel countryModel= null;
+  static KeyvalueModel countryModel = null;
   static KeyvalueModel stateModel = null;
   static KeyvalueModel distrModel = null;
   static KeyvalueModel cityModel = null;
-  static KeyvalueModel  specialistModel = null;
+  static KeyvalueModel specialistModel = null;
   static KeyvalueModel doctorModel = null;
   static KeyvalueModel hospitalModel = null;
   static KeyvalueModel timeModel = null;
-
-
 
   static KeyvalueModel selectDistrict = null;
 
@@ -51,8 +49,6 @@ class DoctorconsultationPage extends StatefulWidget {
 }
 
 class DoctorconsultationPageState extends State<DoctorconsultationPage> {
-
-
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
@@ -68,7 +64,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
 
   TextEditingController appointmentdate = TextEditingController();
@@ -84,8 +79,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   FocusNode email_ = new FocusNode();
   FocusNode attendantname_ = new FocusNode();
 
-
-
   List<bool> dropdownError = [false, false, false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
@@ -93,7 +86,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   File _imageCertificate;
   bool selectGallery = false;
 
- /* List<String> sex = ['Male', "Female", "Other"];
+  /* List<String> sex = ['Male', "Female", "Other"];
   String selectedSex = "";*/
   List<String> maritalStatus = ["Married", "Single"];
   String selectedMaritalStatus = "";
@@ -119,52 +112,53 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   bool anemia = false;
   String opdId;
 
-  Future<Null> _selectDate(BuildContext context, String comeFrom) async {
+  Future<Null> _selectDate(
+    BuildContext context,
+  ) async {
+    MyWidgets.showLoading(context);
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
+        lastDate:
+            DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
-      selectedDatestr =  df.format(selectedDate).toString();
+      selectedDatestr = df.format(selectedDate).toString();
       //MyWidgets.showLoading(context);
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.AVAILABLE_DATE_CHKUP +DoctorconsultationPage.doctorModel.key+"&date="+selectedDatestr ,
+          api: ApiFactory.AVAILABLE_DATE_CHKUP +
+              DoctorconsultationPage.doctorModel.key +
+              "&date=" +
+              selectedDatestr,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
+            log("VHHVHVHV>>>>"+jsonEncode(map));
+            Navigator.pop(context);
             setState(() {
-              //Navigator.of(context).pop();
-
-
-              if (map[Const.CODE] == Const.SUCCESS) {
+              if (map[Const.STATUS1] == Const.SUCCESS) {
+                appointmentdate.text = df.format(picked);
+                opdId = map["body"]["opdId"].toString();
                 String fromTime = map["body"]["fromTime"].toString();
                 String toTime = map["body"]["toTime"].toString();
-                 opdId = map["body"]["opdId"].toString();
-                 appointmentdate.value = TextEditingValue(text: df.format(selectedDate));
 
-                AppData.showInSnackBargreen(context, map[Const.MESSAGE]);
+                AppData.showInSnackDone(context, map[Const.MESSAGE]);
               } else {
-                //Navigator.of(context).pop();
-                appointmentdate.text=null;
-                appointmentdate.text="";
+                appointmentdate.text = null;
+                appointmentdate.text = "";
                 AppData.showInSnackBar(context, map[Const.MESSAGE]);
-
               }
             });
           });
     });
   }
 
-
-
   bool isLoginLoading = false;
   int myVerCode;
   bool banner = false;
   KeyvalueModel selectSector;
-
 
   static KeyvalueModel selectconsultationtime;
   List<KeyvalueModel> consultationtime = [
@@ -172,16 +166,14 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     KeyvalueModel(key: "0", name: "2PM-5PM "),
     KeyvalueModel(key: "0", name: "5PM-8PM "),
     KeyvalueModel(key: "0", name: "8PM-10PM "),
-
-
-
   ];
   TimeOfDay selectedTime = TimeOfDay.now();
 
   String time;
 
   bool isActive = true;
- // final dbHelper = DbHelper.instance;
+
+  // final dbHelper = DbHelper.instance;
   StreamSubscription _connectionChangeStream;
   bool isOffline = true;
   String detailDoc = "";
@@ -194,7 +186,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   void initState() {
     super.initState();
     comeFrom = widget.model.apntUserType;
-   // loginResponse = widget.model.loginResponse1;
+    // loginResponse = widget.model.loginResponse1;
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
@@ -212,8 +204,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       isOffline = !hasConnection;
     });
   }
+
   List<int> _availableHours = [1, 4, 6, 8, 12];
-  Future<Null> _selectTime(BuildContext context,bool isIn) async {
+
+  Future<Null> _selectTime(BuildContext context, bool isIn) async {
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
@@ -221,16 +215,16 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
     if (picked != null)
       setState(() {
-        formattime=picked.hour.toString()+":"+picked.minute.toString();
+        formattime = picked.hour.toString() + ":" + picked.minute.toString();
         selectedTime = picked;
-        time=formatTimeOfDay(picked);
+        time = formatTimeOfDay(picked);
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
         setState(() {
           //validitydat.text = picked.format(context);
-          validitytime.text =time;
-         // dob.value = TextEditingValue(text: time.format(selectedTime));
+          validitytime.text = time;
+          // dob.value = TextEditingValue(text: time.format(selectedTime));
           //(isIn)?timelist.intime=time:timelist.outtime=time;
-         /* widget.model.GETMETHODCALL_TOKEN(
+          /* widget.model.GETMETHODCALL_TOKEN(
               api: ApiFactory.AVAILABLE_TIME_CHKUP +DoctorconsultationPage.doctorModel.key+"&date="+selectedDatestr ,
               token: widget.model.token,
               fun: (Map<String, dynamic> map) {
@@ -272,15 +266,17 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         });
       });
   }
+
   String formatTimeOfDay(TimeOfDay tod) {
-    print("Value is>>>>>>\n\n\n\n"+tod.toString());
+    print("Value is>>>>>>\n\n\n\n" + tod.toString());
     final now = new DateTime.now();
     final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
-    final format = DateFormat.jm();  //"6:00 AM"
+    final format = DateFormat.jm(); //"6:00 AM"
     return format.format(dt);
   }
-  Future<Null> _selectTime1(BuildContext context,bool isIn) async {
-   /* showTimePicker(
+
+  Future<Null> _selectTime1(BuildContext context, bool isIn) async {
+    /* showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
         allowedHours: [8,9,10,11,12, 15,16,17],
@@ -299,12 +295,12 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     setState(() => selectedTime = time?.format(context)));
 */
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-        appBar: AppBar(
-
+      appBar: AppBar(
         title: Text(
           "Doctor Consultation",
           style: TextStyle(color: Colors.white),
@@ -349,17 +345,19 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                                23.0,
-                                    (KeyvalueModel data) {
-                                  setState(() {
-                                    print(ApiFactory.COUNTRY_API);
-                                    DoctorconsultationPage.countryModel = data;
-                                    /* userModel.country=data.key;
+                                "Country",
+                                ApiFactory.COUNTRY_API,
+                                "country",
+                                Icons.location_on_rounded,
+                                23.0, (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.COUNTRY_API);
+                                DoctorconsultationPage.countryModel = data;
+                                /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
-                                    DoctorconsultationPage.stateModel = null;
-                                  });
-                                }),
+                                DoctorconsultationPage.stateModel = null;
+                              });
+                            }),
                           ),
                         ),
                         SizedBox(
@@ -367,164 +365,191 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         ),
                         (DoctorconsultationPage.countryModel != null)
                             ? Padding(
-                          padding: const EdgeInsets.only(
-                              left: 0, right: 0, bottom: 0),
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser(
+                                      "State",
+                                      ApiFactory.STATE_API +
+                                          DoctorconsultationPage
+                                              .countryModel.key,
+                                      "state",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      DoctorconsultationPage.stateModel = data;
+                                      /*userModel.state=data.key;
+                                                userModel.stateCode=data.code;*/
+                                      DoctorconsultationPage.distrModel = null;
+                                    });
+                                  }),
+                                ),
+                              )
+                            : Container(),
+                        (DoctorconsultationPage.stateModel != null)
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser(
+                                      "District",
+                                      ApiFactory.DISTRICT_API +
+                                          DoctorconsultationPage.stateModel.key,
+                                      "district",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.DISTRICT_API +
+                                          DoctorconsultationPage
+                                              .stateModel.key);
+                                      DoctorconsultationPage.distrModel = data;
+
+                                      // UserSignUpForm.cityModel = null;
+                                      DoctorconsultationPage.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              )
+                            : Container(),
+                        (DoctorconsultationPage.distrModel != null)
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser(
+                                      "City",
+                                      ApiFactory.CITY_API +
+                                          DoctorconsultationPage.distrModel.key,
+                                      "city",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.CITY_API +
+                                          DoctorconsultationPage
+                                              .distrModel.key);
+                                      DoctorconsultationPage.cityModel = data;
+
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              )
+                            : Container(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "State",
-                                ApiFactory.STATE_API + DoctorconsultationPage.countryModel.key,
-                                "state", Icons.location_on_rounded,
-                                23.0,  (KeyvalueModel data) {
-                              setState(() {
-                                DoctorconsultationPage.stateModel = data;
-                                /*userModel.state=data.key;
-                                                userModel.stateCode=data.code;*/
-                                DoctorconsultationPage.distrModel = null;
-
-                              });
-                            }),
-                          ),
-                        )
-                            : Container(),
-                        (DoctorconsultationPage.stateModel != null)
-                            ?Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser(
-                                "District",
-                                ApiFactory.DISTRICT_API + DoctorconsultationPage.stateModel.key,
-                                "district",
-                                Icons.location_on_rounded,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.DISTRICT_API+ DoctorconsultationPage.stateModel.key);
-                                DoctorconsultationPage.distrModel= data;
-
-                                // UserSignUpForm.cityModel = null;
-                                DoctorconsultationPage.cityModel = null;
-                              });
-                            }),
-                          ),
-                        ): Container(),
-                        (DoctorconsultationPage.distrModel != null)
-                            ? Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser(
-                                "City",
-                                ApiFactory.CITY_API+ DoctorconsultationPage.distrModel.key,
-                                "city",
-                                Icons.location_on_rounded,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.CITY_API+ DoctorconsultationPage.distrModel.key);
-                                DoctorconsultationPage.cityModel= data;
-
-                                // UserSignUpForm.cityModel = null;
-                              });
-                            }),
-                          ),
-                        ):Container(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser("Speciality", ApiFactory.SPECIALITY_API, "speciality",
+                                "Speciality",
+                                ApiFactory.SPECIALITY_API,
+                                "speciality",
                                 Icons.mail,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.SPECIALITY_API);
-                                DoctorconsultationPage.specialistModel= data;
+                                DoctorconsultationPage.specialistModel = data;
                                 DoctorconsultationPage.doctorModel = null;
                                 // UserSignUpForm.cityModel = null;
-
                               });
                             }),
                           ),
                         ),
                         (DoctorconsultationPage.specialistModel != null)
-                            ?
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser(
-                                "Doctor",
-                                ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+(DoctorconsultationPage?.cityModel?.key??""),
-                                "doctor",
-                                Icons.mail,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
-                                DoctorconsultationPage.doctorModel= data;
-                                DoctorconsultationPage.hospitalModel = null;
-                                // UserSignUpForm.cityModel = null;
-
-                              });
-                            }),
-                          ),
-                        ):Container(),
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser(
+                                      "Doctor",
+                                      ApiFactory.DOCTOOR_API +
+                                          DoctorconsultationPage
+                                              .specialistModel.key +
+                                          "&city=" +
+                                          (DoctorconsultationPage
+                                                  ?.cityModel?.key ??
+                                              ""),
+                                      "doctor",
+                                      Icons.mail,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
+                                      DoctorconsultationPage.doctorModel = data;
+                                      DoctorconsultationPage.hospitalModel =
+                                          null;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              )
+                            : Container(),
                         (DoctorconsultationPage.doctorModel != null)
-                            ?
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser(
-                                "Hospital",
-                                ApiFactory.HOSPITAL_API+ DoctorconsultationPage.doctorModel.key,
-                                "hospital",
-                                Icons.home,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.HOSPITAL_API+ DoctorconsultationPage.doctorModel.key,);
-                                DoctorconsultationPage.hospitalModel= data;
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser(
+                                      "Hospital",
+                                      ApiFactory.HOSPITAL_API +
+                                          DoctorconsultationPage
+                                              .doctorModel.key,
+                                      "hospital",
+                                      Icons.home,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(
+                                        ApiFactory.HOSPITAL_API +
+                                            DoctorconsultationPage
+                                                .doctorModel.key,
+                                      );
+                                      DoctorconsultationPage.hospitalModel =
+                                          data;
 
-                                // UserSignUpForm.cityModel = null;
-                              });
-                            }),
-                          ),
-                        ):Container(),
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              )
+                            : Container(),
                         SizedBox(
                           height: 10,
                         ),
                         appointdate(),
-
                         SizedBox(
                           height: 10,
                         ),
                         //comultationTime(),
-                        (DoctorconsultationPage.doctorModel!=null)? Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child:
-                            DropDown.networkDropdownGetpartUser("Time", ApiFactory.DOCTER_AVAILABLE+ DoctorconsultationPage.doctorModel.key+"&date="+appointmentdate.text.toString(), "time",
-                                Icons.watch_later_outlined,
-                                23.0, (KeyvalueModel data) {
-                                  setState(() {
-                                    print(ApiFactory.DOCTER_AVAILABLE);
-                                    DoctorconsultationPage.hospitalModel= data;
+                        (DoctorconsultationPage.doctorModel != null)
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.networkDropdownGetpartUser11(
+                                      "Time",
+                                      ApiFactory.DOCTER_AVAILABLE +
+                                          DoctorconsultationPage
+                                              .doctorModel.key +
+                                          "&date=" +
+                                          selectedDatestr,
+                                      "time2",
+                                      widget.model.token, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.DOCTER_AVAILABLE);
+                                      DoctorconsultationPage.timeModel = data.name;
+                                    });
+                                    if(data.key==1){
+                                      AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
+                                    }
+                                  }, context),
 
-                                    // UserSignUpForm.cityModel = null;
-                                  });
-                                }),
-                          ),
-                        ):Container(),
+                                ),
+                              )
+                            : Container(),
                         fromAddress(
                             1,
                             "Reason for choice of Dr",
@@ -537,8 +562,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           height: 10,
                         ),
 
-
-
                         SizedBox(
                           height: 8,
                         ),
@@ -546,7 +569,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: nextButton(),/*Buttons.nextButton(
+                          child:
+                              nextButton(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
@@ -582,6 +606,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
+
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
@@ -589,10 +614,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         validate();
       },
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 9.0, right: 9.0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
@@ -603,7 +625,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             "Add Appointment",
             textAlign: TextAlign.center,
@@ -613,40 +635,36 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
+
   validate() async {
-    _formKey.currentState.validate(
-    );
-     if (DoctorconsultationPage.countryModel == null ||
-         DoctorconsultationPage.countryModel == "") {
+    _formKey.currentState.validate();
+    if (DoctorconsultationPage.countryModel == null ||
+        DoctorconsultationPage.countryModel == "") {
       AppData.showInSnackBar(context, "Please select country");
-    }else if (DoctorconsultationPage.stateModel == null ||
-         DoctorconsultationPage.stateModel == "") {
+    } else if (DoctorconsultationPage.stateModel == null ||
+        DoctorconsultationPage.stateModel == "") {
       AppData.showInSnackBar(context, "Please select state");
     } else if (DoctorconsultationPage.distrModel == null ||
-         DoctorconsultationPage.distrModel == "") {
+        DoctorconsultationPage.distrModel == "") {
       AppData.showInSnackBar(context, "Please select District");
-    }else if (DoctorconsultationPage.cityModel == null ||
-      DoctorconsultationPage.cityModel == "") {
-     AppData.showInSnackBar(context, "Please select city");
-     }else if (DoctorconsultationPage.specialistModel == null ||
-     DoctorconsultationPage.specialistModel == "") {
-     AppData.showInSnackBar(context, "Please select specialist");
-     }else if (DoctorconsultationPage.doctorModel == null ||
-         DoctorconsultationPage.doctorModel == "") {
-       AppData.showInSnackBar(context, "Please select doctor");
-     }else if (DoctorconsultationPage.hospitalModel == null ||
-         DoctorconsultationPage.hospitalModel == "") {
-       AppData.showInSnackBar(context, "Please select hospital");
-     }else if (appointmentdate.text == "" ||
-         appointmentdate.text == null) {
+    } else if (DoctorconsultationPage.cityModel == null ||
+        DoctorconsultationPage.cityModel == "") {
+      AppData.showInSnackBar(context, "Please select city");
+    } else if (DoctorconsultationPage.specialistModel == null ||
+        DoctorconsultationPage.specialistModel == "") {
+      AppData.showInSnackBar(context, "Please select specialist");
+    } else if (DoctorconsultationPage.doctorModel == null ||
+        DoctorconsultationPage.doctorModel == "") {
+      AppData.showInSnackBar(context, "Please select doctor");
+    } else if (DoctorconsultationPage.hospitalModel == null ||
+        DoctorconsultationPage.hospitalModel == "") {
+      AppData.showInSnackBar(context, "Please select hospital");
+    } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please enter your appointmentdate");
-      } else if (validitytime.text == "" ||
-         validitytime.text == null) {
+    } else if (DoctorconsultationPage.timeModel == null) {
       AppData.showInSnackBar(context, "Please enter your appointmenttime");
-    }
-
-    else {
-       saveDb();
+    } else {
+      saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       /* MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
@@ -660,17 +678,17 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           });*/
     }
   }
+
   saveDb() {
     Map<String, dynamic> map = {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text,
-      "opdid":  opdId,
-      "time": formattime,//validitytime.text,
+      "opdid": opdId,
+      "time": DoctorconsultationPage.timeModel.name, //validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[0].text,
-      "hospitalid":DoctorconsultationPage.hospitalModel.key ,
-
+      "hospitalid": DoctorconsultationPage.hospitalModel.key,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -678,7 +696,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
     // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
     MyWidgets.showLoading(context);
-    widget.model.POSTMETHOD1(api: ApiFactory.POST_APPOINTMENT,
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_APPOINTMENT,
         token: widget.model.token,
         json: map,
         fun: (Map<String, dynamic> map) {
@@ -728,6 +747,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           ),
         ]).show();
   }
+
   otherFormvalidate() {
     showDialog(
         context: _scaffoldKey.currentContext,
@@ -823,7 +843,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         });
   }
 
-
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
@@ -851,6 +870,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
+
   Widget errorMsg(text) {
     return Align(
         alignment: Alignment.topLeft,
@@ -880,7 +900,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
-
 
   Widget fromAddress(int index, String hint, inputAct, keyType,
       FocusNode currentfn, FocusNode nextFn, String type) {
@@ -920,8 +939,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () {
-          _selectTime(context,true);
-         // _selectDate(context, "validity");
+          _selectTime(context, true);
+          // _selectDate(context, "validity");
         },
         child: AbsorbPointer(
           child: Container(
@@ -957,12 +976,15 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
+
   Widget appointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-        onTap: () => _selectDate(context, "appointdate"),
+        onTap: () => _selectDate(
+          context,
+        ),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1001,7 +1023,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
               },
               decoration: InputDecoration(
                 hintText: //"Last Period Date",
-                "Appointment Date",
+                    "Appointment Date",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -1016,9 +1038,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),
     );
   }
-
-
-
 
   Widget updateButton() {
     return Visibility(
@@ -1094,7 +1113,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
       ],
       decoration: InputDecoration(
-
         border: InputBorder.none,
         hintText: hint,
         hintStyle: TextStyle(color: Colors.grey),
@@ -1146,7 +1164,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       keyboardType: TextInputType.text,
       focusNode: currentFn,
       inputFormatters: [
-       // UpperCaseTextFormatter(),
+        // UpperCaseTextFormatter(),
         WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
       ],
       decoration: InputDecoration(
