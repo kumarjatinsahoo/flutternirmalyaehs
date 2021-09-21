@@ -260,6 +260,9 @@ class _MyAppState extends State<MyApp> {
               '/labsignupform': (context) => LabSignUpForm(
                     model: _model,
                   ),
+              '/pharmacists': (context) => PharmaSignUpForm(
+                    model: _model,
+                  ),
               '/monthlyview': (context) => LabSignUpForm(
                     model: _model,
                   ),

@@ -520,6 +520,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         Divider(),
+                        ListTile(
+                          title: Center(child: Text("Pharmacists")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/pharmacists");
+                          },
+                        ),
+                        Divider(),
                         MaterialButton(
                           child: Text(
                             MyLocalizations.of(context).text("CANCEL"),

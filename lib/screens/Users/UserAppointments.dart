@@ -69,42 +69,49 @@ class _UserAppointmentsState extends State<UserAppointments> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('My Appointment'),
+          backgroundColor: AppData.kPrimaryColor,
+          actions: <Widget>[
+          ],
+        ),
         body: SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
           Container(
-            width: double.infinity,
-            /* decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"
-                        ),
-                        fit: BoxFit.cover
-                    )
-                ),*/
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/testbackgroundimg2.jpg"),
-                    fit: BoxFit.cover)),
+            // width: double.infinity,
+            // /* decoration: BoxDecoration(
+            //         image: DecorationImage(
+            //             image: NetworkImage(
+            //                 "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"
+            //             ),
+            //             fit: BoxFit.cover
+            //         )
+            //     ),*/
+            // decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //         image: AssetImage("assets/images/testbackgroundimg2.jpg"),
+            //         fit: BoxFit.cover)),
             child: Padding(
               padding: EdgeInsets.only(
                 left: 20.0,
-                top: 40.0,
+                top: 10.0,
               ),
 
               child: Column(
                 children: [
-                  Text(
-                    "Appointment Details",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.04,
-                  ),
+                  // Text(
+                  //   "Appointment Details",
+                  //   style: TextStyle(
+                  //       fontSize: 18,
+                  //       color: Colors.white,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                  // SizedBox(
+                  //   height: size.height * 0.04,
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,8 +121,8 @@ class _UserAppointmentsState extends State<UserAppointments> {
                         //width: size.width * 0.13,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(55),
-                            border: Border.all(color: Colors.white, width: 0.5),
-                            color: Colors.white),
+                            border: Border.all(color: Colors.black, width: 0.5),
+                            color: Colors.black),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(55),
                             child: Image.asset(
@@ -132,11 +139,16 @@ class _UserAppointmentsState extends State<UserAppointments> {
                         child: Text(
                           loginResponse1.body.userName ?? "N/A",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                           ),
                         ),
                       ),
+Padding(
+  padding: const EdgeInsets.all(20.0),
+  child:   Icon(Icons.add_circle,size: 30,color:AppData.kPrimaryColor),
+),
+
                     ],
                   ),
                   SizedBox(
@@ -187,7 +199,9 @@ class _UserAppointmentsState extends State<UserAppointments> {
                               Navigator.pushNamed(context, "/usermedicinelist");
                             }
                             else{
-                              AppData.showInSnackBar(context," Go and Checkup ");
+                         //     AppData.showInSnackBar(context," Go and Checkup ");
+                              Navigator.pushNamed(context, "/usermedicinelist");
+
                             }
                           },
                           title: Row(
