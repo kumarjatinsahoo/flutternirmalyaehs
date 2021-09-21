@@ -318,14 +318,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextFormField(
         controller: _loginId,
         textInputAction: TextInputAction.done,
-        keyboardType: TextInputType.phone,
+        keyboardType: TextInputType.text,
         autofocus: false,
-        maxLength: 10,
+       // maxLength: 10,
         decoration: InputDecoration(
             prefix:
-                Padding(padding: EdgeInsets.only(top: 10), child: Text('+91 ')),
+                Padding(padding: EdgeInsets.only(top: 10), ),
             //hintText: "Enter number",
-            labelText: MyLocalizations.of(context).text("MOBILENO"),
+            labelText: MyLocalizations.of(context).text("Mobile No/Email Id/User Id"),
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
@@ -412,7 +412,7 @@ class _LoginScreenState extends State<LoginScreen> {
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
+          AppData.showInSnackBar(context, "Please enter Mobile No/Email Id/User Id");
         }
         // else if (_loginId.text.length != 10) {
         //   AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
@@ -443,12 +443,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       //Lab dashboard
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "1".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] == "1".toLowerCase())
+                      //userdashboard
+                    {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "2".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] == "2".toLowerCase())
+                      //doctor dashboard
+                    {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }

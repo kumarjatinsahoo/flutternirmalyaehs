@@ -67,6 +67,7 @@ import 'package:user/screens/Users/ChemistsTabview.dart';
 import 'package:user/screens/Users/GoogleSearch.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
+import 'package:user/screens/Users/UserMedicineList.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -533,6 +534,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(
+                model: _model,
+              ),
+              '/usermedicinelist': (context) => UserMedicineList(
                 model: _model,
               ),
 

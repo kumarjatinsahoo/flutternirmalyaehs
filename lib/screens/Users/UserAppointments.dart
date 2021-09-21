@@ -147,249 +147,258 @@ class _UserAppointmentsState extends State<UserAppointments> {
             ),
           ),
           (appointmentlistModel != null)
-              ? ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  // controller: _scrollController,
-                  shrinkWrap: true,
-                  itemBuilder: (context, i) {
-                    if (i == appointmentlistModel.body.length) {
-                      return (appointmentlistModel.body.length % 10 == 0)
-                          ? CupertinoActivityIndicator()
-                          : Container();
-                    }
-                    apnt.Body patient = appointmentlistModel.body[i];
-                    var string = patient.appdate;
-                    List splitedText = string.split("-");
-                    print(splitedText[0]);
-                    String string1 = splitedText[1];
-                    print(splitedText[1]);
-                    print(splitedText[2]);
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      padding: EdgeInsets.all(0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 2.0,
-                            spreadRadius: 0.0,
-                            offset: Offset(
-                                2.0, 2.0), // shadow direction: bottom right
-                          )
-                        ],
-                      ),
-                      child: ListTile(
-                        onTap: () {},
-                        title: Row(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  AppData.getMonth(string1),
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  /* '23'*/
-                                  splitedText[0],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  /*'2016'*/
-                                  splitedText[2],
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            /*Expanded(
-                                child: new Container(
-                                    margin: const EdgeInsets.only(left: 10.0, right: 20.0),
-                                    child: Divider(
-                                      color: Colors.black,
-                                      height: 36,
-                                    )),
-                              ),*/
-                            Container(
-                                height: 80,
-                                child: VerticalDivider(color: Colors.grey)),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  patient.doctorName + " ",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Text(
-                                  patient.speciality ?? "",
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 13),
-                                  textAlign: TextAlign.end,
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Text(
-                                  patient.status ?? "",
-                                  style: TextStyle(
-                                      color: getColorForStatus(patient.status),
-                                      fontSize: 14),
-                                  textAlign: TextAlign.end,
-                                ),
-                                /* Text(
-                                    patient.patientUniqueid,
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  Text(
-                                    patient.mobile??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  Text(
-                                    patient.gender??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  Text(
-                                    patient.age??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  Text(
-                                    patient.screeningDate??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),*/
-                              ],
-                            ),
+              ? InkWell(
+                child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    // controller: _scrollController,
+                    shrinkWrap: true,
+                    itemBuilder: (context, i) {
+                      if (i == appointmentlistModel.body.length) {
+                        return (appointmentlistModel.body.length % 10 == 0)
+                            ? CupertinoActivityIndicator()
+                            : Container();
+                      }
+                      apnt.Body patient = appointmentlistModel.body[i];
+                      var string = patient.appdate;
+                      List splitedText = string.split("-");
+                      print(splitedText[0]);
+                      String string1 = splitedText[1];
+                      print(splitedText[1]);
+                      print(splitedText[2]);
+                      return Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: EdgeInsets.all(0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 2.0,
+                              spreadRadius: 0.0,
+                              offset: Offset(
+                                  2.0, 2.0), // shadow direction: bottom right
+                            )
                           ],
                         ),
-                        /*Text(
-                            (i + 1).toString() + ". " + patient.name + " ",
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
-                          ),*/
-                        /*subtitle: Row(
-
+                        child: ListTile(
+                          onTap: () {
+                            if(patient.status =="treated"){
+                              Navigator.pushNamed(context, "/usermedicinelist");
+                            }
+                            else{
+                              AppData.showInSnackBar(context," Go and Checkup ");
+                            }
+                          },
+                          title: Row(
                             children: [
                               Column(
                                 children: [
                                   Text(
-                                    */ /*'June '*/ /*AppData.getMonth(string1),
+                                    AppData.getMonth(string1),
                                     style: TextStyle(fontSize: 15),
                                   ),
-                                  SizedBox(height: 10,),
-                                  Text(
-                                   */ /* '23'*/ /*splitedText[2],
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,color: Colors.black),
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                  SizedBox(height: 10,),
                                   Text(
-                                    */ /*'2016'*/ /*splitedText[0],
+                                    /* '23'*/
+                                    splitedText[0],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22,
+                                        color: Colors.black),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    /*'2016'*/
+                                    splitedText[2],
                                     style: TextStyle(fontSize: 11),
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 10,),
-                              */ /*Expanded(
-                                child: new Container(
-                                    margin: const EdgeInsets.only(left: 10.0, right: 20.0),
-                                    child: Divider(
-                                      color: Colors.black,
-                                      height: 36,
-                                    )),
-                              ),*/ /*
-                              Container(height: 80, child: VerticalDivider(color: Colors.grey)),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              /*Expanded(
+                                  child: new Container(
+                                      margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                                      child: Divider(
+                                        color: Colors.black,
+                                        height: 36,
+                                      )),
+                                ),*/
+                              Container(
+                                  height: 80,
+                                  child: VerticalDivider(color: Colors.grey)),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
-                          Text(
-                          patient.name + " ",
-                          style: TextStyle(
-                          color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),),
+                                  Text(
+                                    patient.doctorName + " ",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   SizedBox(
-                                    height: 9,
-                                  ),
-                                  (patient.thpId == "")
-                                      ? Container()
-                                      : Text(
-                                    patient.thpName??"",
-                                    style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  */ /*Text(
-                                    patient.screeningDate??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),*/ /*
-                                 */ /* Text(
-                                    patient.patientUniqueid,
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
+                                    height: 4,
                                   ),
                                   Text(
-                                    patient.mobile??"",
-                                    style: TextStyle(color: Colors.grey),
+                                    patient.speciality ?? "",
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 13),
                                     textAlign: TextAlign.end,
                                   ),
-                                  Text(
-                                    patient.gender??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
+                                  SizedBox(
+                                    height: 4,
                                   ),
                                   Text(
-                                    patient.age??"",
-                                    style: TextStyle(color: Colors.grey),
+                                    patient.status ?? "",
+                                    style: TextStyle(
+                                        color: getColorForStatus(patient.status),
+                                        fontSize: 14),
                                     textAlign: TextAlign.end,
                                   ),
-                                  Text(
-                                    patient.screeningDate??"",
-                                    style: TextStyle(color: Colors.grey),
-                                    textAlign: TextAlign.end,
-                                  ),*/ /*
+                                  /* Text(
+                                      patient.patientUniqueid,
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.mobile??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.gender??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.age??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.screeningDate??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),*/
                                 ],
                               ),
                             ],
-                          ),*/
-                        //leading: SizedBox(width:20,child: Text((i+1).toString(),style: TextStyle(color: Colors.black),)),
-                        trailing: Column(
-                          children: [
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 15,
-                            ),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          ),
+                          /*Text(
+                              (i + 1).toString() + ". " + patient.name + " ",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                            ),*/
+                          /*subtitle: Row(
+
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      */ /*'June '*/ /*AppData.getMonth(string1),
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    SizedBox(height: 10,),
+                                    Text(
+                                     */ /* '23'*/ /*splitedText[2],
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,color: Colors.black),
+                                    ),
+                                    SizedBox(height: 10,),
+                                    Text(
+                                      */ /*'2016'*/ /*splitedText[0],
+                                      style: TextStyle(fontSize: 11),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 10,),
+                                */ /*Expanded(
+                                  child: new Container(
+                                      margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                                      child: Divider(
+                                        color: Colors.black,
+                                        height: 36,
+                                      )),
+                                ),*/ /*
+                                Container(height: 80, child: VerticalDivider(color: Colors.grey)),
+                                SizedBox(width: 10,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                            Text(
+                            patient.name + " ",
+                            style: TextStyle(
+                            color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),),
+                                    SizedBox(
+                                      height: 9,
+                                    ),
+                                    (patient.thpId == "")
+                                        ? Container()
+                                        : Text(
+                                      patient.thpName??"",
+                                      style: TextStyle(color: Colors.black,fontSize: 13, fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    */ /*Text(
+                                      patient.screeningDate??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),*/ /*
+                                   */ /* Text(
+                                      patient.patientUniqueid,
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.mobile??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.gender??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.age??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    Text(
+                                      patient.screeningDate??"",
+                                      style: TextStyle(color: Colors.grey),
+                                      textAlign: TextAlign.end,
+                                    ),*/ /*
+                                  ],
+                                ),
+                              ],
+                            ),*/
+                          //leading: SizedBox(width:20,child: Text((i+1).toString(),style: TextStyle(color: Colors.black),)),
+                          trailing: Column(
+                            children: [
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 15,
+                              ),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.center,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  itemCount: appointmentlistModel.body.length,
-                )
+                      );
+                    },
+                    itemCount: appointmentlistModel.body.length,
+                  ),
+              )
               : Container(),
         ],
       ),
