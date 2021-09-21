@@ -1,9 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:user/models/DocterAppointmentlistModel.dart';
-import 'package:user/models/DocterMedicationModel.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
+
+
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/MedicationlistModel.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -13,7 +14,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
+
 import 'package:user/widgets/text_field_address.dart';
 import 'package:user/widgets/text_field_container.dart';
 
@@ -36,7 +37,7 @@ List<TextEditingController> textEditingController = [
 class _MedicationlistState
     extends State<Medicationlist> {
   DateTime selectedDate = DateTime.now();
-  DoctorAppointmment doctorAppointmment;
+  MedicationlistModel medicationlistModel;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -82,25 +83,18 @@ class _MedicationlistState
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
         selectedDatestr = df.format(selectedDate).toString();
-        //callAPI(selectedDatestr);
+        callAPI();
       });
   }
-
-  /*callAPI(String today) {
-    *//*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*//*
+  callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.doctor_APPOINTMENT_LIST +
-            widget.model.user +
-            "&date=" +
-            today +
-            "&status=" +
-            "7",
+        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS + widget.model.appointmentlist.userid,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              doctorAppointmment = DoctorAppointmment.fromJson(map);
+              medicationlistModel = MedicationlistModel.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -108,7 +102,7 @@ class _MedicationlistState
             }
           });
         });
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,13 +170,14 @@ class _MedicationlistState
 
 
             /* appointdate(),*/
-            (medicinlist != null)
+            (medicationlistModel != null)
                   ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: medicinlist.length,
+                      itemCount: medicationlistModel.body.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                       //Body medicinmodel = medicinmodel[i];
+                        Body medicationlis = medicationlistModel.body[index];
+
                         return Column(
                           children: [
                             Padding(
@@ -220,7 +215,7 @@ class _MedicationlistState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      medicinlist[index].medname,
+                                                      medicationlis.medname,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -231,26 +226,26 @@ class _MedicationlistState
                                                     ),
                                                     Text(
                                                       "Duration:" +
-                                                          medicinlist[index].duration+ "Days",
+                                                          medicationlis.duration+ "Days",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
                                                     ),
-                                                    Text(medicinlist[index].remarks,
+                                                    Text(medicationlis.remarks,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),
-                                                    medicinlist[index].morning=="1"?Text("Morning",
+                                                    medicationlis.morning=="1"?Text("Morning",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(fontWeight:
                                                       FontWeight.bold,),):Container(),
                                                     SizedBox(height: 5,),
-                                                     medicinlist[index].afternoon=="1"?Text("Afternoon",
+                                                    medicationlis.afternoon=="1"?Text("Afternoon",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(fontWeight:
                                                       FontWeight.bold ),):Container(),
                                                     SizedBox(height: 5,),
-                                                    medicinlist[index].evening=="1"?Text("Evening",
+                                                    medicationlis.evening=="1"?Text("Evening",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(fontWeight:
                                                       FontWeight.bold ),):Container(),
@@ -433,7 +428,6 @@ class _MedicationlistState
                 ),
 
                 //Divider(height: 2,color: Colors.black),
-
                 Padding(
                   padding:
                   const EdgeInsets.symmetric(horizontal: 10),
@@ -924,7 +918,7 @@ class _MedicationlistState
       ),
     );
   }
-  Widget changeStatus(BuildContext context, String patname, String doctorName) {
+  /*Widget changeStatus(BuildContext context, String patname, String doctorName) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
     return AlertDialog(
@@ -947,7 +941,7 @@ class _MedicationlistState
                   ),
                 ),
                 Text(
-                  /*"Lisa Rani"*/
+                  *//*"Lisa Rani"*//*
                   patname,
                   style: TextStyle(
                     color: Colors.black,
@@ -1016,16 +1010,16 @@ class _MedicationlistState
                     //updateApi(userName.id.toString(), "1", i);
                   },
                 ),
-                /*Divider(
+                *//*Divider(
                   height: 2,
-                ),*/
-                /* ListTile(
+                ),*//*
+                *//* ListTile(
                   title: Text("COMPLETED"),
                   leading: Icon(Icons.done_outline_outlined),
                   onTap: () {
 //                    updateApi(userName.id.toString(), "2", i);
                   },
-                )*/
+                )*//*
               ],
             ),
           );
@@ -1042,7 +1036,7 @@ class _MedicationlistState
         ),
       ],
     );
-  }
+  }*/
 
   Widget appointdate() {
     return Container(
