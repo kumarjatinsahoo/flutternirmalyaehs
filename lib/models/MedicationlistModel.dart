@@ -46,6 +46,8 @@ class Body {
   String duration;
   Null meddate;
   String qty;
+  String srlNoOne;
+  String srlNoTwo;
 
   Body(
       {this.medname,
@@ -62,7 +64,9 @@ class Body {
         this.remarks,
         this.duration,
         this.meddate,
-        this.qty});
+        this.qty,
+        this.srlNoOne,
+        this.srlNoTwo});
 
   Body.fromJson(Map<String, dynamic> json) {
     medname = json['medname'];
@@ -80,6 +84,8 @@ class Body {
     duration = json['duration'];
     meddate = json['meddate'];
     qty = json['qty'];
+    srlNoOne = json['srlNoOne'];
+    srlNoTwo = json['srlNoTwo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -99,6 +105,8 @@ class Body {
     data['duration'] = this.duration;
     data['meddate'] = this.meddate;
     data['qty'] = this.qty;
+    data['srlNoOne'] = this.srlNoOne;
+    data['srlNoTwo'] = this.srlNoTwo;
     return data;
   }
 }

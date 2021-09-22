@@ -1,7 +1,9 @@
 class KeyvalueModel {
   dynamic name;
   dynamic key;
+  /*dynamic opdid;*/
   dynamic code;
+
   dynamic optional;
   dynamic genderOptional;
   dynamic itemid;
@@ -9,7 +11,7 @@ class KeyvalueModel {
   dynamic minqty;
 
 
-  KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty});
+  KeyvalueModel({this.name, this.key,/*this.opdid,*/this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty});
 
   static List<KeyvalueModel> fromJsonList(List list) {
     if (list == null) return null;
@@ -28,11 +30,12 @@ class KeyvalueModel {
   KeyvalueModel.fromsJson(Map<String, dynamic> json) {
     key = json['key']??json['bookstatus'];
     name = json['name']??json['time'].toString();
-    code = json['code'].toString();
+    code = json['code'].json['opdid'].toString();
     optional = json['gender_name'].toString();
     itemid = json['itemid'].toString();
     desc = json['desc'].toString();
     minqty = json['minqty'].toString();
+    //opdid = json['opdid'].toString();
 
 
     if (json.containsKey("optional")) {
@@ -47,6 +50,7 @@ class KeyvalueModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['key'] = this.key;
+   // data['opdid'] = this.opdid;
     data['code'] = this.code;
     data['gender_name'] = this.optional;
     data['genderOptional'] = this.genderOptional;

@@ -115,7 +115,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   Future<Null> _selectDate(
     BuildContext context,
   ) async {
-    MyWidgets.showLoading(context);
+   // MyWidgets.showLoading(context);
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
@@ -126,9 +126,11 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
-      selectedDatestr = df.format(selectedDate).toString();
+      /*selectedDatestr = df.format(selectedDate).toString();*/
+      appointmentdate.text = df.format(picked);
+      selectedDatestr = appointmentdate.text.toString();
       //MyWidgets.showLoading(context);
-      widget.model.GETMETHODCALL_TOKEN(
+     /* widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.AVAILABLE_DATE_CHKUP +
               DoctorconsultationPage.doctorModel.key +
               "&date=" +
@@ -151,7 +153,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                 AppData.showInSnackBar(context, map[Const.MESSAGE]);
               }
             });
-          });
+          });*/
     });
   }
 
@@ -159,7 +161,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   int myVerCode;
   bool banner = false;
   KeyvalueModel selectSector;
-
   static KeyvalueModel selectconsultationtime;
   List<KeyvalueModel> consultationtime = [
     KeyvalueModel(key: "0", name: "10AM-1PM"),
@@ -523,24 +524,20 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           height: 10,
                         ),
                         //comultationTime(),
-                        (DoctorconsultationPage.doctorModel != null)
+                        (appointmentdate.text.toString() != null||appointmentdate.text.toString()  != "")&&( DoctorconsultationPage.doctorModel!=null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.networkDropdownGetpartUser11(
-                                      "Time",
-                                      ApiFactory.DOCTER_AVAILABLE +
-                                          DoctorconsultationPage
-                                              .doctorModel.key +
-                                          "&date=" +
-                                          selectedDatestr,
+                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key + "&date=" + appointmentdate.text.toString(),
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       DoctorconsultationPage.timeModel = data.name;
+                                      DoctorconsultationPage.timeModel = data.code;
                                     });
                                     if(data.key==1){
                                       AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
@@ -661,8 +658,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       AppData.showInSnackBar(context, "Please select hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please enter your appointmentdate");
-    } else if (DoctorconsultationPage.timeModel == null) {
-      AppData.showInSnackBar(context, "Please enter your appointmenttime");
+    /*} else if (DoctorconsultationPage.timeModel == null||DoctorconsultationPage.timeModel == "") {
+      AppData.showInSnackBar(context, "Please enter your appointmenttime");*/
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -683,11 +680,11 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     Map<String, dynamic> map = {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
-      "date": appointmentdate.text,
-      "opdid": opdId,
-      "time": DoctorconsultationPage.timeModel.name, //validitytime.text,
+      "date": appointmentdate.text.toString(),
+      "time": DoctorconsultationPage.timeModel.name/*"23:10"*/,
+      "opdid":/* DoctorconsultationPage.timeModel.opdid*/"4",//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
-      "notes": textEditingController[0].text,
+      "notes": textEditingController[1].text,
       "hospitalid": DoctorconsultationPage.hospitalModel.key,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
