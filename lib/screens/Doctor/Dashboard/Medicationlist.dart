@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
@@ -92,7 +94,7 @@ class _MedicationlistState extends State<Medicationlist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS +widget.model.appointmentlist.doctorName,
+        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS +widget.model.appointmentlist.doctorName/*"4"*/,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -292,6 +294,27 @@ class _MedicationlistState extends State<Medicationlist> {
                                                           InkWell(
                                                             onTap: () {
                                                               setState(() {
+                                                                widget.model.GETMETHODCALL_TOKEN(
+                                                                    api: ApiFactory.DELETE_MEDICINE_LIST +
+                                                                        widget.model.appointmentlist.doctorName +
+                                                                        "&srlone=" +medicationlis.srlNoOne +
+                                                                        "&srltwo=" + medicationlis.srlNoTwo,
+                                                                    token: widget.model.token,
+                                                                    fun: (Map<String, dynamic> map) {
+                                                                      setState(() {
+                                                                        String msg = map[Const.MESSAGE];
+                                                                        if (map["status"] == "success") {
+                                                                          callAPI();
+                                                                          //medicinlist.removeAt(index);
+                                                                          medicinlist.remove(medicinlist[index]);
+                                                                          AppData.showInSnackBar(context, msg);
+
+                                                                        } else {
+                                                                          // isDataNotAvail = true;
+                                                                          AppData.showInSnackBar(context, msg);
+                                                                        }
+                                                                      });
+                                                                    });
                                                                 //DELETE_MEDICINE_LIST
                                                                /* medicinlist.remove(
                                                                     medicinlist[
@@ -505,7 +528,7 @@ class _MedicationlistState extends State<Medicationlist> {
             } else {
               //NomineeModel nomineeModel = NomineeModel();
               item.userid = widget.model.appointmentlist.userid;
-              item.appno = widget.model.appointmentlist.doctorName;
+              item.appno = widget.model.appointmentlist.doctorName;//appno
               //item.mednaid = Medicationlist.medicinModel.key;
               item.medname = Medicationlist.medicinModel.key;
               item.duration = textEditingController[1].text;
@@ -514,6 +537,8 @@ class _MedicationlistState extends State<Medicationlist> {
               item.morning = _checkboxstr.toString();
               item.afternoon = _checkboxstr1.toString();
               item.evening = _checkboxstr2.toString();
+              print("API NAME>>>>" + ApiFactory.POST_MEDICATION);
+              print("TO POST>>>>" + jsonEncode(item.toJson()));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
                   api: ApiFactory.POST_MEDICATION,
@@ -523,6 +548,7 @@ class _MedicationlistState extends State<Medicationlist> {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      callAPI();
                       //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);

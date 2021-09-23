@@ -72,7 +72,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"5",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {

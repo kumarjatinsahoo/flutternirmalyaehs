@@ -1,7 +1,7 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.106:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -31,7 +31,7 @@ class ApiFactory {
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
-  static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no';
+  static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
