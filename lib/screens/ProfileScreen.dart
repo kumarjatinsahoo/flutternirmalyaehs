@@ -383,7 +383,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Family Docters',
+                                child: Text('Family Doctors',
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 13)),
                               )

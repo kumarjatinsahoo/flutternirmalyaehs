@@ -96,6 +96,8 @@ class RestAPI extends Model {
       );
       if (response.statusCode == 200) {
         try {
+          print("RESPONSE CALL>>>>" +
+              JsonEncoder().convert(response.data).toString());
           fun(response.data);
         } catch (e) {
           print("Message is: " + e.toString());
