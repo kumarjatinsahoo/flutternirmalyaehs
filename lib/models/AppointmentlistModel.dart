@@ -41,6 +41,7 @@ class Body {
   String appmonth;
   String appyear;
   String patname;
+  String appno;
 
   Body(
       {this.userid,
@@ -52,7 +53,9 @@ class Body {
         this.status,
         this.appmonth,
         this.appyear,
-        this.patname});
+        this.patname,
+        this.appno,
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     userid = json['userid'].toString();
@@ -65,6 +68,7 @@ class Body {
     appmonth = json['appmonth'].toString();
     appyear = json['appyear'].toString();
     patname = json['patname'].toString();
+    appno = json['appno'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +83,7 @@ class Body {
     data['appmonth'] = this.appmonth;
     data['appyear'] = this.appyear;
     data['patname'] = this.patname;
+    data['appno'] = this.appno;
     return data;
   }
 }

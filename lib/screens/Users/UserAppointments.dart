@@ -25,12 +25,14 @@ class UserAppointments extends StatefulWidget {
 class _UserAppointmentsState extends State<UserAppointments> {
   //PocReportModel pocReportModel;
   bool isDataNotAvail = false;
-
+String userid;
   //ScrollController _scrollController = ScrollController();
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
   apnt.AppointmentlistModel appointmentlistModel;
+  List<Body> body;
+
 
   @override
   void initState() {
@@ -38,14 +40,6 @@ class _UserAppointmentsState extends State<UserAppointments> {
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
   }
-
-/*
-  Future<void> callUrl(String data) async {
-    try {
-      final int result = await platform.invokeMethod('callUrl', data);
-    } on PlatformException catch (e) {}
-  }*/
-
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.USER_APPOINTMENTS + loginResponse1.body.user,
@@ -58,6 +52,7 @@ class _UserAppointmentsState extends State<UserAppointments> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
               appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
+
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -144,10 +139,10 @@ class _UserAppointmentsState extends State<UserAppointments> {
                           ),
                         ),
                       ),
-Padding(
-  padding: const EdgeInsets.all(20.0),
-  child:   Icon(Icons.add_circle,size: 30,color:AppData.kPrimaryColor),
-),
+// Padding(
+//   padding: const EdgeInsets.all(20.0),
+//   child:   Icon(Icons.add_circle,size: 30,color:AppData.kPrimaryColor),
+// ),
 
                     ],
                   ),
