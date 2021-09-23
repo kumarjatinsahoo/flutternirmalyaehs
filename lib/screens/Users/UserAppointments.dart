@@ -167,7 +167,7 @@ String userid;
                       }
                       apnt.Body patient = appointmentlistModel.body[i];
 
-                     // widget.model.userappointment=patient;
+                      widget.model.userappointment=patient;
                       var string = patient.appdate;
                       List splitedText = string.split("-");
                       print(splitedText[0]);
@@ -191,19 +191,19 @@ String userid;
                           ],
                         ),
                         child: ListTile(
-                          // onTap: () {
-                          //   if(patient.status =="Treated"){
-                          //     widget.model.userappointment=patient;
-                          //     // Print("medicinelist"+$patient);
-                          //     Navigator.pushNamed(context, "/usermedicinelist");
-                          //   }
-                          //   else{
-                          //     // widget.model.userappointment=patient;
-                          //     AppData.showInSnackBar(context," First Consult With Doctor  ");
-                          //     // Navigator.pushNamed(context, "/usermedicinelist");
-                          //
-                          //   }
-                          // },
+                          onTap: () {
+                            if(patient.status =="Treated"){
+                              widget.model.userappointment=patient;
+                              // Print("medicinelist"+$patient);
+                              Navigator.pushNamed(context, "/usermedicinelist");
+                            }
+                            else{
+                              // widget.model.userappointment=patient;
+                              AppData.showInSnackBar(context," First Consult With Doctor  ");
+                              // Navigator.pushNamed(context, "/usermedicinelist");
+
+                            }
+                          },
                           title: Row(
                             children: [
                               Column(

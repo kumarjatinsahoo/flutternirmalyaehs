@@ -87,8 +87,8 @@ String pharmaaddress;
 String pharmaexperience;
 String pharmagender;
 //String appno;
-//pharma.Body userappointment;
-//medicine.Body medicinelist;
+pharma.Body userappointment;
+medicine.Body medicinelist;
 
 
 

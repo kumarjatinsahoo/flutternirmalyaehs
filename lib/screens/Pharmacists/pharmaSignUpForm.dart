@@ -28,7 +28,7 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
- // static KeyvalueModel pharmaorganizationModel = null;
+  static KeyvalueModel pharmacyModel = null;
   static KeyvalueModel titlemodel = null;
 
   PharmaSignUpForm({
@@ -259,19 +259,19 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        // DropDown.networkDropdownGetpartUser1(
-                                        //     "Organization Name",
-                                        //     ApiFactory.PHARMACY_ORGANISATION_API,
-                                        //     "pharmaorganization",
-                                        //     Icons.location_on_rounded,
-                                        //     23.0, (KeyvalueModel data) {
-                                        //   setState(() {
-                                        //     print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                        //     PharmaSignUpForm.pharmaorganizationModel = data;
-                                        //   });
-                                        // }),  SizedBox(
-                                        //   height: 5,
-                                        // ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Organization Name",
+                                            ApiFactory.PHARMACY_ORGANISATION_API,
+                                            "pharmacy",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                            PharmaSignUpForm.pharmacyModel = data;
+                                          });
+                                        }),  SizedBox(
+                                          height: 5,
+                                        ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Title",
                                             ApiFactory.TITLE_API,
@@ -586,13 +586,12 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        //Navigator.pushNamed(context, "/patientRegistration2");
-        // if (PharmaSignUpForm.pharmaorganizationModel == null ||
-        //     PharmaSignUpForm.pharmaorganizationModel == "") {
-        //   AppData.showInSnackBar(context, "Please select Organization");
-        // }
-        // else
-          if (PharmaSignUpForm.titlemodel == null ||
+        Navigator.pushNamed(context, "/patientRegistration2");
+        if (PharmaSignUpForm.pharmacyModel == null ||
+            PharmaSignUpForm.pharmacyModel == "") {
+          AppData.showInSnackBar(context, "Please select Organization");
+        }
+        else if (PharmaSignUpForm.titlemodel == null ||
             PharmaSignUpForm.titlemodel == "") {
           AppData.showInSnackBar(context, "Please select Title");
         }
@@ -613,7 +612,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          //widget.model.pharmaorganisation = PharmaSignUpForm.organizationModel.key;
+          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
           widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
           widget.model.pharmaprofessional = textEditingController[9].text;
           widget.model.pharmaexperience = textEditingController[10].text;

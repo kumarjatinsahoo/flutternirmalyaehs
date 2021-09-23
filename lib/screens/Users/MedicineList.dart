@@ -139,7 +139,7 @@ class _MedicineList extends State<MedicineList> {
                             : Container();
                       }
                       medicine.Body body=medicineListModel.body[i];
-                    //  widget.model.medicinelist=body;
+                      widget.model.medicinelist=body;
                       // Print("mediiiicinie"+$body);
                       return Container(
                         child: GestureDetector(
