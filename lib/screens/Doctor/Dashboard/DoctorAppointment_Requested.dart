@@ -329,10 +329,11 @@ class _DoctorAppointmentRequestedState
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment =
-                                  DoctorAppointmment.fromJson(map);
-                              AppData.showInSnackBar(context, msg);
                               Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                              doctorAppointmment = DoctorAppointmment.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+
                               // appointModel = lab.LabBookModel.fromJson(map);
                             } else {
                               // isDataNotAvail = true;

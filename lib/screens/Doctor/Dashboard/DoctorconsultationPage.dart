@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -222,7 +223,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
         setState(() {
           //validitydat.text = picked.format(context);
-          validitytime.text = time;
+          //validitytime.text = time;
           // dob.value = TextEditingValue(text: time.format(selectedTime));
           //(isIn)?timelist.intime=time:timelist.outtime=time;
           /* widget.model.GETMETHODCALL_TOKEN(
@@ -530,14 +531,15 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser11(
+                                  child: DropDown.networkDropdownGetpartUser12(
                                       "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key + "&date=" + appointmentdate.text.toString(),
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
-                                      DoctorconsultationPage.timeModel = data.name;
-                                      DoctorconsultationPage.timeModel = data.code;
+                                      //DoctorconsultationPage.timeModel = data.time;
+                                        DoctorconsultationPage.timeModel = data.name;
+                                         time = data.name;
                                     });
                                     if(data.key==1){
                                       AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
@@ -681,7 +683,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": DoctorconsultationPage.timeModel.name/*"23:10"*/,
+      "time": /*DoctorconsultationPage.timeModel.*/"23:10"/*time*/,
       "opdid":/* DoctorconsultationPage.timeModel.opdid*/"4",//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[1].text,

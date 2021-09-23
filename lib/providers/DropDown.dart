@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import '../models/KeyvalueModel.dart';
 import 'app_data.dart';
@@ -18,6 +19,7 @@ class DropDown {
   static KeyvalueModel bloodgroupmodel;
 
   static KeyvalueModel gendermodel;
+  static TimeScheduleModel timeModel;
 
   static KeyvalueModel relationmodel;
   static KeyvalueModel specialitymodel;
@@ -1298,6 +1300,14 @@ class DropDown {
         break;
     }
   }
+  static TimeScheduleModel getData1(String callFor) {
+    switch (callFor) {
+      case "district":
+        return timeModel;
+        break;
+
+    }
+  }
 
   static networkDropdownGetpartUser(String label, final String API,
       String callFrom, IconData iconData, double iconSize, Function fun) {
@@ -1355,9 +1365,9 @@ class DropDown {
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "time2":
+         /* case "time2":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
-            break;
+            break;*/
           case "gender":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -1409,6 +1419,91 @@ class DropDown {
 
   static networkDropdownGetpartUser11(
       String label, final String API, String callFrom, token, Function fun,context) {
+    return newContainer(DropdownSearch<TimeScheduleModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        /* icon: Icon(
+          Icons.safety_divider,
+          size: 25,
+        ),*/
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      popupItemBuilder: (context, value, isSucc) {
+        return Container(
+          color: (value.bookstatus==1)?Colors.grey:null,
+          child: Material(
+            type: MaterialType.transparency,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 17),
+              alignment: Alignment.topLeft,
+              //  height: 50,
+                child: Text(
+                  value.time,
+                  style: TextStyle(fontSize: 18,color:(value==1)?Colors.grey:Colors.black),
+                ),
+              ),
+          ),
+        );
+      },
+      showSearchBox: true,
+      selectedItem: getData1(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        var response = await Dio().get(
+          API,
+          options: Options(
+            headers: {
+              "Authorization": token,
+            },
+          ),
+        );
+
+        log("Drop down list>>>>>" + jsonEncode(response.data));
+
+        var list;
+        switch (callFrom) {
+          case "time2":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            break;
+        }
+        return list;
+      },
+      onChanged: (TimeScheduleModel data) {
+        fun(data);
+      },
+    ));
+  }
+  static networkDropdownGetpartUser12(
+      String label, final String API, String callFrom, token, Function fun,context) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -1456,11 +1551,11 @@ class DropDown {
               padding: EdgeInsets.symmetric(horizontal: 24,vertical: 17),
               alignment: Alignment.topLeft,
               //  height: 50,
-                child: Text(
-                  value.name,
-                  style: TextStyle(fontSize: 18,color:(value==1)?Colors.grey:Colors.black),
-                ),
+              child: Text(
+                value.name,
+                style: TextStyle(fontSize: 18,color:(value==1)?Colors.grey:Colors.black),
               ),
+            ),
           ),
         );
       },
