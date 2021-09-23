@@ -28,10 +28,8 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
+  static KeyvalueModel pharmaorganizationModel = null;
   static KeyvalueModel titlemodel = null;
-
-
-
 
   PharmaSignUpForm({
     Key key,
@@ -263,15 +261,15 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Organization Name",
-                                            ApiFactory.ORGANIZATION_API,
-                                            "organization",
+                                            ApiFactory.PHARMACY_ORGANISATION_API,
+                                            "pharmaorganization",
                                             Icons.location_on_rounded,
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
-                                            print(ApiFactory.ORGANIZATION_API);
-                                            PharmaSignUpForm.organizationModel = data;
+                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                            PharmaSignUpForm.pharmaorganizationModel = data;
                                           });
-                                        }),                                        SizedBox(
+                                        }),  SizedBox(
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
@@ -589,8 +587,8 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (PharmaSignUpForm.organizationModel == null ||
-            PharmaSignUpForm.organizationModel == "") {
+        if (PharmaSignUpForm.pharmaorganizationModel == null ||
+            PharmaSignUpForm.pharmaorganizationModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
         else if (PharmaSignUpForm.titlemodel == null ||

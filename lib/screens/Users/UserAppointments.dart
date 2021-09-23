@@ -166,6 +166,8 @@ String userid;
                             : Container();
                       }
                       apnt.Body patient = appointmentlistModel.body[i];
+
+                      widget.model.userappointment=patient;
                       var string = patient.appdate;
                       List splitedText = string.split("-");
                       print(splitedText[0]);
@@ -190,12 +192,15 @@ String userid;
                         ),
                         child: ListTile(
                           onTap: () {
-                            if(patient.status =="treated"){
+                            if(patient.status =="Treated"){
+                              widget.model.userappointment=patient;
+                              // Print("medicinelist"+$patient);
                               Navigator.pushNamed(context, "/usermedicinelist");
                             }
                             else{
-                         //     AppData.showInSnackBar(context," Go and Checkup ");
-                              Navigator.pushNamed(context, "/usermedicinelist");
+                              // widget.model.userappointment=patient;
+                              AppData.showInSnackBar(context," First Consult With Doctor  ");
+                              // Navigator.pushNamed(context, "/usermedicinelist");
 
                             }
                           },
@@ -461,6 +466,8 @@ String userid;
         return Colors.yellow[800];
       case "Requested":
         return Colors.yellow[800];
+        // case "Requested":
+        // return Colors.yellow[800];
       default:
         return Colors.black;
     }

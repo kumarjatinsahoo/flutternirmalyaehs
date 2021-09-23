@@ -1583,6 +1583,9 @@ class DropDown {
           case "organization":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "pharmaorganization":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
         return list;
