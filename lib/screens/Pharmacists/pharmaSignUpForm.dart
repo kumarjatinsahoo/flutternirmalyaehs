@@ -28,10 +28,8 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
+  static KeyvalueModel pharmacyModel = null;
   static KeyvalueModel titlemodel = null;
-
-
-
 
   PharmaSignUpForm({
     Key key,
@@ -263,15 +261,15 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Organization Name",
-                                            ApiFactory.ORGANIZATION_API,
-                                            "organization",
+                                            ApiFactory.PHARMACY_ORGANISATION_API,
+                                            "pharmacy",
                                             Icons.location_on_rounded,
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
-                                            print(ApiFactory.ORGANIZATION_API);
-                                            PharmaSignUpForm.organizationModel = data;
+                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                            PharmaSignUpForm.pharmacyModel = data;
                                           });
-                                        }),                                        SizedBox(
+                                        }),  SizedBox(
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
@@ -588,9 +586,9 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-        //Navigator.pushNamed(context, "/patientRegistration2");
-        if (PharmaSignUpForm.organizationModel == null ||
-            PharmaSignUpForm.organizationModel == "") {
+        Navigator.pushNamed(context, "/patientRegistration2");
+        if (PharmaSignUpForm.pharmacyModel == null ||
+            PharmaSignUpForm.pharmacyModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
         else if (PharmaSignUpForm.titlemodel == null ||
@@ -614,7 +612,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          widget.model.pharmaorganisation = PharmaSignUpForm.organizationModel.key;
+          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
           widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
           widget.model.pharmaprofessional = textEditingController[9].text;
           widget.model.pharmaexperience = textEditingController[10].text;

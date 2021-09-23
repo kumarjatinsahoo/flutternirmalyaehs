@@ -357,6 +357,17 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         SizedBox(
                                           height: 13,
                                         ),
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text("Upload Photo",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
                                         Column(
                                           children: [
                                             Padding(
@@ -644,7 +655,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
         //   pharmaSignupModel.educationid =  pharmaexperience;
         //   pharmaSignupModel.gender =  pharmagender;
         //   pharmaSignupModel.address =  pharmaaddress;
-        //  // pharmaSignupModel.address = textEditingController[8].text;
+        //  // pharmaSignupModel.address = textEditingController[8].t Idext;
         //   pharmaSignupModel.countryid = PharmaSignUpForm3.countryModel.key;
         //   pharmaSignupModel.stateid = PharmaSignUpForm3.stateModel.key;
         //   pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;

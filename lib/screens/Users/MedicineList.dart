@@ -74,8 +74,8 @@ class _MedicineList extends State<MedicineList> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-
-      api: ApiFactory.doctor_MEDICINE_LIST + "4",
+      api: ApiFactory.doctor_MEDICINE_LIST +"4",
+          //widget.model.userappointment.appno,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];
@@ -139,6 +139,8 @@ class _MedicineList extends State<MedicineList> {
                             : Container();
                       }
                       medicine.Body body=medicineListModel.body[i];
+                      widget.model.medicinelist=body;
+                      // Print("mediiiicinie"+$body);
                       return Container(
                         child: GestureDetector(
                           // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
