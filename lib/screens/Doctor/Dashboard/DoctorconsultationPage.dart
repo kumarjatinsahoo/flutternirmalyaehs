@@ -508,8 +508,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                             DoctorconsultationPage
                                                 .doctorModel.key,
                                       );
-                                      DoctorconsultationPage.hospitalModel =
-                                          data;
+                                      DoctorconsultationPage.hospitalModel = data;
 
                                       // UserSignUpForm.cityModel = null;
                                     });
@@ -537,9 +536,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
-                                      //DoctorconsultationPage.timeModel = data.time;
-                                        DoctorconsultationPage.timeModel = data.name;
-                                         time = data.name;
+                                      DoctorconsultationPage.timeModel = data;
+
                                     });
                                     if(data.key==1){
                                       AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
@@ -683,8 +681,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": /*DoctorconsultationPage.timeModel.*/"23:10"/*time*/,
-      "opdid":/* DoctorconsultationPage.timeModel.opdid*/"4",//validitytime.text,
+      "time": DoctorconsultationPage.timeModel.name/*"23:10"*//*time*/,
+      "opdid": DoctorconsultationPage.timeModel.code,//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[1].text,
       "hospitalid": DoctorconsultationPage.hospitalModel.key,
