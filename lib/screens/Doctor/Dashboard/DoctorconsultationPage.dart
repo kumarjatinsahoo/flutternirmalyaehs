@@ -183,6 +183,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   //LoginResponse1 loginResponse;
   String formattime;
+  bool isValidtime=false;
+
 
   @override
   void initState() {
@@ -467,7 +469,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   height: 58,
                                   child: DropDown.networkDropdownGetpartUser(
                                       "Doctor",
-                                      ApiFactory.DOCTOOR_API +
+                                       ApiFactory.DOCTOOR_API +
                                           DoctorconsultationPage
                                               .specialistModel.key +
                                           "&city=" +
@@ -537,7 +539,9 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       DoctorconsultationPage.timeModel = data;
-
+                                      isValidtime=(data.key==1)?false:true;
+                                      if(!isValidtime)
+                                        AppData.showInSnackBar(context, "This time is already booked please select another time");
                                     });
                                     if(data.key==1){
                                       AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
@@ -657,9 +661,11 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         DoctorconsultationPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please enter your appointmentdate");
-    /*} else if (DoctorconsultationPage.timeModel == null||DoctorconsultationPage.timeModel == "") {
-      AppData.showInSnackBar(context, "Please enter your appointmenttime");*/
+      AppData.showInSnackBar(context, "Please select your appointmentdate");
+    } else if ( DoctorconsultationPage.timeModel==null) {
+      AppData.showInSnackBar(context, "Please select time");
+    }  else if (!isValidtime) {
+      AppData.showInSnackBar(context, "Please select valid time");
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
