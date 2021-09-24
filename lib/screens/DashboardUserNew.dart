@@ -320,6 +320,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 onTap: () {
                   selectDestination(2);
                   //Navigator.pushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
               ),
               ListTile(
@@ -421,7 +422,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 11,
                   onTap: () {
                     selectDestination(11);
-                    //Navigator.pushNamed(context, "/myorder");
+                   // Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
                   leading: Icon(Icons.calendar_today,
@@ -1207,7 +1208,7 @@ class MyPage1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildTileblue(
+                     _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");

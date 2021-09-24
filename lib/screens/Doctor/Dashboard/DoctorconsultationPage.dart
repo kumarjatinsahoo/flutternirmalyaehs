@@ -183,6 +183,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   //LoginResponse1 loginResponse;
   String formattime;
+  bool isValidtime=false;
+
 
   @override
   void initState() {
@@ -467,7 +469,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   height: 58,
                                   child: DropDown.networkDropdownGetpartUser(
                                       "Doctor",
-                                      ApiFactory.DOCTOOR_API +
+                                       ApiFactory.DOCTOOR_API +
                                           DoctorconsultationPage
                                               .specialistModel.key +
                                           "&city=" +
@@ -508,8 +510,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                             DoctorconsultationPage
                                                 .doctorModel.key,
                                       );
-                                      DoctorconsultationPage.hospitalModel =
-                                          data;
+                                      DoctorconsultationPage.hospitalModel = data;
 
                                       // UserSignUpForm.cityModel = null;
                                     });
@@ -537,9 +538,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
-                                      //DoctorconsultationPage.timeModel = data.time;
-                                        DoctorconsultationPage.timeModel = data.name;
-                                         time = data.name;
+                                      DoctorconsultationPage.timeModel = data;
+                                      isValidtime=(data.key==1)?false:true;
+                                      if(!isValidtime)
+                                        AppData.showInSnackBar(context, "This time is already booked please select another time");
                                     });
                                     if(data.key==1){
                                       AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
@@ -659,9 +661,11 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         DoctorconsultationPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please enter your appointmentdate");
-    /*} else if (DoctorconsultationPage.timeModel == null||DoctorconsultationPage.timeModel == "") {
-      AppData.showInSnackBar(context, "Please enter your appointmenttime");*/
+      AppData.showInSnackBar(context, "Please select your appointmentdate");
+    } else if ( DoctorconsultationPage.timeModel==null) {
+      AppData.showInSnackBar(context, "Please select time");
+    }  else if (!isValidtime) {
+      AppData.showInSnackBar(context, "Please select valid time");
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -683,8 +687,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": /*DoctorconsultationPage.timeModel.*/"23:10"/*time*/,
-      "opdid":/* DoctorconsultationPage.timeModel.opdid*/"4",//validitytime.text,
+      "time": DoctorconsultationPage.timeModel.name/*"23:10"*//*time*/,
+      "opdid": DoctorconsultationPage.timeModel.code,//validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key,
       "notes": textEditingController[1].text,
       "hospitalid": DoctorconsultationPage.hospitalModel.key,

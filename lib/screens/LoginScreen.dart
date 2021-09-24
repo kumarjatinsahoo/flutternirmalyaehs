@@ -451,9 +451,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (loginResponse.body.roles[0] == "2".toLowerCase())
                       //doctor dashboard
                     {
+                      Navigator.of( context).pushNamedAndRemoveUntil(
+                          '/dashDoctor', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] == "3".toLowerCase())
+                      //doctor dashboard
+                        {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     }
+
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
