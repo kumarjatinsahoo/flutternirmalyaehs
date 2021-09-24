@@ -9,22 +9,14 @@ import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/text_field_container.dart';
+import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
+import '../../../providers/app_data.dart';
 
-import '../../localization/localizations.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-import '../../providers/app_data.dart';
-
-
-enum gender{
-  Male,
-  Female,
-}
 // ignore: must_be_immutable
-class PharmaSignUpForm2 extends StatefulWidget {
+class PharmaSignUpForm extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -33,9 +25,8 @@ class PharmaSignUpForm2 extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel bloodgroupModel=null;
 
-  PharmaSignUpForm2({
+  PharmaSignUpForm({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -44,10 +35,10 @@ class PharmaSignUpForm2 extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  PharmaSignUpForm2State createState() => PharmaSignUpForm2State();
+  PharmaSignUpFormState createState() => PharmaSignUpFormState();
 }
 
-class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
+class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -130,28 +121,22 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> BloodGroup = [
-    KeyvalueModel(name: "A+", key: "1"),
-    KeyvalueModel(name: "B+", key: "2"),
-    KeyvalueModel(name: "O+", key: "3"),
-    KeyvalueModel(name: "AB+", key: "4"),
-    KeyvalueModel(name: "A-", key: "5"),
-    KeyvalueModel(name: "B-", key: "6"),
-    KeyvalueModel(name: "O-", key: "7"),
-    KeyvalueModel(name: "AB-", key: "8"),
+  List<KeyvalueModel> genderList = [
+    KeyvalueModel(name: "Male", key: "1"),
+    KeyvalueModel(name: "Female", key: "2"),
+    KeyvalueModel(name: "Transgender", key: "3"),
   ];
-  List<KeyvalueModel> Gender=[
-    KeyvalueModel(name: "Male",key: "0"),
-    KeyvalueModel(name: "Female",key: "1"),
-    KeyvalueModel(name: "Transgender",key: "2"),
+  List<KeyvalueModel> districtList = [
+    KeyvalueModel(name: "india", key: "1"),
+
   ];
 
   @override
   void initState() {
     super.initState();
-    PharmaSignUpForm2.districtModel = null;
-    PharmaSignUpForm2.blockModel = null;
-    PharmaSignUpForm2.genderModel = null;
+    PharmaSignUpForm.districtModel = null;
+    PharmaSignUpForm.blockModel = null;
+    PharmaSignUpForm.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -198,12 +183,21 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                           child: Text('SIGN UP',
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
+                        /*Align(
+                alignment: Alignment.center,
+                child: Text('SIGN UP',textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+              ),
+              ),*/
                       ],
                     ),
                   ),
                   height: 55,
                   width: MediaQuery.of(context).size.width,
+                  /*  height:*/
                 ),
+
+                /* ),*/
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,
@@ -233,6 +227,17 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                 SizedBox(
                                   height: 20,
                                 ),
+
+                                //   padding: EdgeInsets.only(
+                                //       left: size.width * 0.20, right: size.width * 0.20),
+                                //   child: Image.asset(
+                                //     "assets/icons/sanju-vector.png",
+                                //   ),
+                                // ),
+
+                                // SizedBox(
+                                //   height: 20,
+                                // ),
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
@@ -249,72 +254,51 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        formField(8, "Education"),
+                                        formField(8, "Organization Name"),
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Row(
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                                          child: DropDown.staticDropdown3(
+                                              MyLocalizations.of(context)
+                                                  .text("SELECT_TITLE"),
+                                              "genderSignup",
+                                              genderList, (KeyvalueModel data) {
+                                            setState(() {
+                                              PharmaSignUpForm.genderModel = data;
+                                            });
+                                          }),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(9, "Professional's Name"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(10, "User Id"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(11, "Password"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        formField(12, "Confirm Password"),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+
+                                        Column(
+                                          //crossAxisAlignment: CrossAxisAlignment.start,
+                                          // mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            Text("  Role :", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                            Column(
-                                              children: [
-                                                Text("             Pharmacist", style: TextStyle(fontSize: 20, color: Colors.black),),
-                                              ],
-                                            )
+                                            Text(" Upload Photo :", style: TextStyle(fontSize: 20, color: Colors.teal),),
                                           ],
                                         ),
-                                        SizedBox(
-                                            height: 11
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SPECIALITY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        dob(),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("BLOOD_GROUP"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("GENDER"),
-                                              "Gender",
-                                              Gender, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.genderModel = data;
-                                            });
-                                          }),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
+                                        SizedBox(height: 5),
+
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
                                         ),
@@ -438,12 +422,12 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
       ),
     );
   }*/
-  // Widget gender() {
-  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-  //           (KeyvalueModel model) {
-  //         LabSignUpForm2.genderModel = model;
-  //       });
-  // }
+  Widget gender() {
+    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
+            (KeyvalueModel model) {
+          PharmaSignUpForm.genderModel = model;
+        });
+  }
 
 
 
@@ -589,7 +573,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
   Widget nextButton1() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/pharmasignupform3");
+        Navigator.pushNamed(context, "/pharmasignupform2");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -729,22 +713,23 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
-            //height: 45,
+            height: 45,
             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            alignment: Alignment.center,
             // width: size.width * 0.8,
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                width: 0.3,
-                color: Colors.grey[800],
+              // color: AppData.kPrimaryLightColor,
+              // borderRadius: BorderRadius.circular(29),
+              border: Border(
+                bottom: BorderSide(
+                  width: 2.0,
+                  color: Colors.grey,
+                ),
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
@@ -773,7 +758,6 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                 setState(() {});
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
-              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
                 hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
                 border: InputBorder.none,
@@ -822,7 +806,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (PharmaSignUpForm2.genderModel == null || PharmaSignUpForm2.genderModel == "") {
+    } else if (PharmaSignUpForm.genderModel == null || PharmaSignUpForm.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -842,9 +826,9 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (PharmaSignUpForm2.districtModel == null) {
+    } else if (PharmaSignUpForm.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (PharmaSignUpForm2.blockModel == null) {
+    } else if (PharmaSignUpForm.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -933,24 +917,77 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
     );
   }
 
-  Widget formField(int index, String hint,) {
-    return TextFieldContainer(
-      child: TextFormField(
-        controller: textEditingController[index],
-        textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
-        /* decoration: BoxDecoration(11
-          color: AppData.kPrimaryLightColor,
-          //color: Color(0x45283e81),
-          borderRadius: BorderRadius.circular(29),
-        ),*/
-        style: TextStyle(fontSize: 13),
-        decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
+  // Widget formField(int index, String hint,) {
+  //   return TextFieldContainer(
+  //     child: Container(
+  //       height: 50,
+  //       padding:
+  //       EdgeInsets.symmetric(horizontal: 5),
+  //       decoration: BoxDecoration(
+  //         color: Colors.white,
+  //         borderRadius:
+  //         BorderRadius.circular(5),
+  //         border: Border.all(
+  //             color: Colors.black, width: 0.3),
+  //       ),
+  //       child: TextFormField(
+  //         controller: textEditingController[index],
+  //         textInputAction: TextInputAction.done,
+  //         keyboardType:TextInputType.text,
+  //         /* decoration: BoxDecoration(11
+  //           color: AppData.kPrimaryLightColor,
+  //           //color: Color(0x45283e81),
+  //           borderRadius: BorderRadius.circular(29),
+  //         ),*/
+  //         style: TextStyle(fontSize: 13),
+  //         decoration: InputDecoration(
+  //             hintText: hint,
+  //             hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
+  //             border: InputBorder.none,
+  //             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+  //         onChanged: (newValue) {},
+  //       ),
+  //     ),
+  //   );
+  // }
+  Widget formField(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-        onChanged: (newValue) {},
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
       ),
     );
   }
