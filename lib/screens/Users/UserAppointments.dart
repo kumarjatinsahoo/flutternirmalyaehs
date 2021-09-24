@@ -166,7 +166,6 @@ String userid;
                             : Container();
                       }
                       apnt.Body patient = appointmentlistModel.body[i];
-
                       widget.model.userappointment=patient;
                       var string = patient.appdate;
                       List splitedText = string.split("-");

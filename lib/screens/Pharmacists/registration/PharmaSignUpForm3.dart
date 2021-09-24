@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/PharamacistSignupModel.dart';
+import 'package:user/models/PharmacyRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -647,41 +648,41 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           AppData.showInSnackBar(context, "Please checked terms and Condition");
         }
         else {
-        //   MyWidgets.showLoading(context);
-        //   PharmacistRegistrationModel pharmaSignupModel = PharmacistRegistrationModel();
-        //   pharmaSignupModel.organizationid = pharmaorganisation;
-        //   pharmaSignupModel.titleid = pharmatitle;
-        //   pharmaSignupModel.docname = pharmaprofessional;
-        //   pharmaSignupModel.educationid =  pharmaexperience;
-        //   pharmaSignupModel.gender =  pharmagender;
-        //   pharmaSignupModel.address =  pharmaaddress;
-        //  // pharmaSignupModel.address = textEditingController[8].t Idext;
-        //   pharmaSignupModel.countryid = PharmaSignUpForm3.countryModel.key;
-        //   pharmaSignupModel.stateid = PharmaSignUpForm3.stateModel.key;
-        //   pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
-        //   pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
-        //   pharmaSignupModel.pincode = textEditingController[5].text;
-        // //  pharmaSignupModel.homephone = textEditingController[4].text;
-        //   //pharmaSignupModel.officephone = textEditingController[6].text;
-        //   pharmaSignupModel.mobno = textEditingController[10].text;
-        //   pharmaSignupModel.email = textEditingController[11].text;
-        //   //pharmaSignupModel.alteremail = textEditingController[12].text;
-        //   pharmaSignupModel.role="8";
-        //   //pharmaSignupModel.type="5";
-        //
-        //   print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
-        //   widget.model.POSTMETHOD(
-        //       api: ApiFactory.LAB_SIGNUP,
-        //       json: pharmaSignupModel.toJson(),
-        //       fun: (Map<String, dynamic> map) {
-        //         Navigator.pop(context);
-        //         if (map[Const.STATUS] == Const.SUCCESS) {
-        //           popup(context, map[Const.MESSAGE]);
-        //         } else {
-        //           AppData.showInSnackBar(context, map[Const.MESSAGE]);
-        //         }
-        //       });
-      AppData.showInSnackBar(context, "add Successfully");
+          MyWidgets.showLoading(context);
+          PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
+          pharmaSignupModel.organizationid = pharmaorganisation;
+          pharmaSignupModel.titleid = pharmatitle;
+          pharmaSignupModel.docname = pharmaprofessional;
+          pharmaSignupModel.experience =  pharmaexperience;
+          pharmaSignupModel.gender =  pharmagender;
+          pharmaSignupModel.address =  pharmaaddress;
+         // pharmaSignupModel.address = textEditingController[8].t Idext;
+          pharmaSignupModel.countryid = PharmaSignUpForm3.countryModel.key;
+          pharmaSignupModel.stateid = PharmaSignUpForm3.stateModel.key;
+          pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
+          pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
+          pharmaSignupModel.pincode = textEditingController[5].text;
+        //  pharmaSignupModel.homephone = textEditingController[4].text;
+          //pharmaSignupModel.officephone = textEditingController[6].text;
+          pharmaSignupModel.mobno = textEditingController[10].text;
+          pharmaSignupModel.email = textEditingController[11].text;
+          //pharmaSignupModel.alteremail = textEditingController[12].text;
+          pharmaSignupModel.role="3";
+          pharmaSignupModel.speciality="32";
+
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
+          widget.model.POSTMETHOD(
+              api: ApiFactory.PHARMACY_REGISTRATION,
+              json: pharmaSignupModel.toJson(),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+     // AppData.showInSnackBar(context, "add Successfully");
 
         }
       },
@@ -706,36 +707,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
             SizedBox(
               height: 5,
             ),
-            // Text(
-            //   msg,
-            //   style: TextStyle(
-            //       color: Colors.black,
-            //       fontSize: 17,
-            //       fontWeight: FontWeight.w400),
-            //   textAlign: TextAlign.center,
-            // ),
-            // SizedBox(
-            //   height: 5,
-            // ),
-            // Text(
-            //   "Mobile No.:"+mobile,
-            //   style: TextStyle(
-            //       color: Colors.black,
-            //       fontSize: 17,
-            //       fontWeight: FontWeight.w400),
-            //   textAlign: TextAlign.center,
-            // ),
-            // SizedBox(
-            //   height: 5,
-            // ),
-            // Text(
-            //   "UserId:."+userid,
-            //   style: TextStyle(
-            //       color: Colors.black,
-            //       fontSize: 17,
-            //       fontWeight: FontWeight.w400),
-            //   textAlign: TextAlign.center,
-            // ),
+
           ],
         ),
         closeIcon: Icon(
@@ -751,7 +723,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
             ),
             onPressed: () {
 
-              widget.model.patientName = null;
+           //   widget.model.patientName = null;
               Navigator.pop(context);
               widget.model.patientphnNo = null;
               widget.model.patientemail = null;
