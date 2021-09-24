@@ -7,7 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
@@ -25,6 +27,9 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel organizationModel = null;
+  static KeyvalueModel pharmacyModel = null;
+  static KeyvalueModel titlemodel = null;
 
   PharmaSignUpForm({
     Key key,
@@ -254,50 +259,58 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        formField(8, "Organization Name"),
-                                        SizedBox(
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Organization Name",
+                                            ApiFactory.PHARMACY_ORGANISATION_API,
+                                            "pharmacy",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                            PharmaSignUpForm.pharmacyModel = data;
+                                          });
+                                        }),  SizedBox(
                                           height: 5,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SELECT_TITLE"),
-                                              "genderSignup",
-                                              genderList, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm.genderModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Title",
+                                            ApiFactory.TITLE_API,
+                                            "title",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.TITLE_API);
+                                            PharmaSignUpForm.titlemodel = data;
+                                          });
+                                        }),
                                         SizedBox(
                                           height: 5,
                                         ),
                                         formField(9, "Professional's Name"),
+
+                                        SizedBox(height: 10),
+
+                                        formFieldMobile(10, " Experience(Years)"),
                                         SizedBox(
-                                          height: 5,
+                                          height: 10,
                                         ),
-                                        formField(10, "User Id"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(11, "Password"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(12, "Confirm Password"),
+                                        formField(11, " Address"),
                                         SizedBox(
                                           height: 5,
                                         ),
 
-                                        Column(
-                                          //crossAxisAlignment: CrossAxisAlignment.start,
-                                          // mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text(" Upload Photo :", style: TextStyle(fontSize: 20, color: Colors.teal),),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Gender",
+                                            ApiFactory.GENDER_API,
+                                            "gender",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.GENDER_API);
+                                            PharmaSignUpForm.genderModel = data;
+                                          });
+                                        }),
+                                        SizedBox(height: 15),
 
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
@@ -568,11 +581,55 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     );
   }
 
-
-
   Widget nextButton1() {
+    return MyWidgets.nextButton(
+      text: "NEXT".toUpperCase(),
+      context: context,
+      fun: () {
+        Navigator.pushNamed(context, "/patientRegistration2");
+        if (PharmaSignUpForm.pharmacyModel == null ||
+            PharmaSignUpForm.pharmacyModel == "") {
+          AppData.showInSnackBar(context, "Please select Organization");
+        }
+        else if (PharmaSignUpForm.titlemodel == null ||
+            PharmaSignUpForm.titlemodel == "") {
+          AppData.showInSnackBar(context, "Please select Title");
+        }
+        else if (textEditingController[9].text == "" ||
+            textEditingController[9].text == null) {
+          AppData.showInSnackBar(context, "Please enter Professional's name");
+        }
+        else if (textEditingController[10].text == "" ||
+            textEditingController[10].text == null) {
+          AppData.showInSnackBar(context, "Please enter Experience");
+        }
+        else if (textEditingController[11].text == "" ||
+            textEditingController[11].text == null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+        }
+        else if (PharmaSignUpForm.genderModel == null ||
+            PharmaSignUpForm.genderModel == "") {
+          AppData.showInSnackBar(context, "Please select Gender");
+        }
+        else {
+          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
+          widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
+          widget.model.pharmaprofessional = textEditingController[9].text;
+          widget.model.pharmaexperience = textEditingController[10].text;
+          widget.model.pharmaaddress = textEditingController[11].text;
+          widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
+
+          Navigator.pushNamed(context, "/pharmasignupform3");
+        }
+      },
+    );
+  }
+
+  Widget nextButtonn() {
     return GestureDetector(
       onTap: () {
+
+
         Navigator.pushNamed(context, "/pharmasignupform2");
       },
       child: Container(
@@ -950,6 +1007,64 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   //     ),
   //   );
   // }
+  Widget formFieldMobile(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black, width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle: TextStyle(
+                        color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   Widget formField(
       int index,
       String hint,

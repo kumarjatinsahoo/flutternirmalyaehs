@@ -1,12 +1,12 @@
-class MedicationlistModel {
+class MedicineListModel {
   List<Body> body;
   String message;
   String code;
-  Null total;
+  String total;
 
-  MedicationlistModel({this.body, this.message, this.code, this.total});
+  MedicineListModel({this.body, this.message, this.code, this.total});
 
-  MedicationlistModel.fromJson(Map<String, dynamic> json) {
+  MedicineListModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
       body = new List<Body>();
       json['body'].forEach((v) {
@@ -37,17 +37,15 @@ class Body {
   String morning;
   String afternoon;
   String evening;
-  Null doctor;
-  Null fromdate;
-  Null todate;
+  String doctor;
+  String fromdate;
+  String todate;
   String userid;
-  Null appno;
-  Null remarks;
+  String appno;
+  String remarks;
   String duration;
-  Null meddate;
+  String meddate;
   String qty;
-  String srlNoOne;
-  String srlNoTwo;
 
   Body(
       {this.medname,
@@ -64,9 +62,7 @@ class Body {
         this.remarks,
         this.duration,
         this.meddate,
-        this.qty,
-        this.srlNoOne,
-        this.srlNoTwo});
+        this.qty});
 
   Body.fromJson(Map<String, dynamic> json) {
     medname = json['medname'];
@@ -84,8 +80,6 @@ class Body {
     duration = json['duration'];
     meddate = json['meddate'];
     qty = json['qty'];
-    srlNoOne = json['srlNoOne'];
-    srlNoTwo = json['srlNoTwo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -105,8 +99,6 @@ class Body {
     data['duration'] = this.duration;
     data['meddate'] = this.meddate;
     data['qty'] = this.qty;
-    data['srlNoOne'] = this.srlNoOne;
-    data['srlNoTwo'] = this.srlNoTwo;
     return data;
   }
 }

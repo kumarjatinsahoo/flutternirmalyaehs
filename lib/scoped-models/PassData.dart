@@ -3,6 +3,8 @@ import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/models/LabBookModel.dart'as lab;
 import 'package:user/models/PatientListModel.dart' as patiet;
 import 'package:user/models/DocterAppointmentlistModel.dart' as doc;
+import 'package:user/models/AppointmentlistModel.dart'as pharma;
+import 'package:user/models/MedicineListModel.dart'as medicine;
 
 class PassData extends Model {
   String empid;
@@ -77,6 +79,17 @@ class PassData extends Model {
   String medicallserviceType;
   String placeId;
   doc.Body appointmentlist;
+/////
+String pharmaorganisation;
+String pharmartitle;
+String pharmaprofessional;
+String pharmaaddress;
+String pharmaexperience;
+String pharmagender;
+//String appno;
+pharma.Body userappointment;
+medicine.Body medicinelist;
+
 
 
 // String title;

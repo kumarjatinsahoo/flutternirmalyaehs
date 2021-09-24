@@ -7,7 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 import '../../../localization/localizations.dart';
@@ -34,6 +36,9 @@ class PharmaSignUpForm2 extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel specialistModel = null;
+  static KeyvalueModel doctorModel = null;
+
 
   PharmaSignUpForm2({
     Key key,
@@ -266,18 +271,19 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         SizedBox(
                                             height: 11
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("SPECIALITY"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        DropDown.networkDropdownGetpartUser(
+                                            "Speciality",
+                                            ApiFactory.SPECIALITY_API,
+                                            "speciality",
+                                            Icons.mail,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.SPECIALITY_API);
+                                            PharmaSignUpForm2.specialistModel = data;
+                                            PharmaSignUpForm2.doctorModel = null;
+                                            // UserSignUpForm.cityModel = null;
+                                          });
+                                        }),
                                         SizedBox(
                                           height: 8,
                                         ),
@@ -285,33 +291,31 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("BLOOD_GROUP"),
-                                              "bloodgroup",
-                                              BloodGroup, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.bloodgroupModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "BLOOD GROUP",
+                                            ApiFactory.BLOODGROUP_API,
+                                            "bloodgroup",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.BLOODGROUP_API);
+                                            PharmaSignUpForm2.bloodgroupModel = data;
+                                          });
+                                        }),
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 0),
-                                          child: DropDown.staticDropdown3(
-                                              MyLocalizations.of(context)
-                                                  .text("GENDER"),
-                                              "Gender",
-                                              Gender, (KeyvalueModel data) {
-                                            setState(() {
-                                              PharmaSignUpForm2.genderModel = data;
-                                            });
-                                          }),
-                                        ),
+                                        DropDown.networkDropdownGetpartUser1(
+                                            "Gender",
+                                            ApiFactory.GENDER_API,
+                                            "gender",
+                                            Icons.location_on_rounded,
+                                            23.0, (KeyvalueModel data) {
+                                          setState(() {
+                                            print(ApiFactory.GENDER_API);
+                                            PharmaSignUpForm2.genderModel = data;
+                                          });
+                                        }),
                                         SizedBox(
                                           height: 5,
                                         ),
@@ -583,36 +587,71 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
       ),
     );
   }
-
-
-
   Widget nextButton1() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, "/pharmasignupform3");
+    return MyWidgets.nextButton(
+      text: "NEXT".toUpperCase(),
+      context: context,
+      fun: () {
+        if (textEditingController[8].text == "" ||
+            textEditingController[8].text == null) {
+          AppData.showInSnackBar(context, "Please enter Education name");
+        }
+        else if (PharmaSignUpForm2.specialistModel == null ||
+            PharmaSignUpForm2.specialistModel == "") {
+          AppData.showInSnackBar(context, "Please select Speciality");
+        }
+        else if (textEditingController[2].text == "" ||
+            textEditingController[2].text == null) {
+          AppData.showInSnackBar(context, "Please enter Date of birth");
+        }
+        else if (PharmaSignUpForm2.bloodgroupModel == null ||
+            PharmaSignUpForm2.bloodgroupModel == "") {
+          AppData.showInSnackBar(context, "Please select blood group");
+        }
+        else if (PharmaSignUpForm2.genderModel == null ||
+            PharmaSignUpForm2.genderModel == "") {
+          AppData.showInSnackBar(context, "Please select gender");
+        } else {
+          // widget.model.pharmaeducation = textEditingController[8].text;
+          // widget.model.pharmaspeciality = PharmaSignUpForm2.specialistModel.key;
+          // widget.model.pharmadob = textEditingController[2].text;
+          // widget.model.pharmabloodgroup = PharmaSignUpForm2.bloodgroupModel.key;
+          // widget.model.pharmagender = PharmaSignUpForm2.genderModel.key;
+          Navigator.pushNamed(context, "/pharmasignupform3");
+        }
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("NEXT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
     );
   }
+
+
+  // Widget nextButton1() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //
+  //       Navigator.pushNamed(context, "/pharmasignupform3");
+  //     },
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       margin: EdgeInsets.only(left:180, right: 0),
+  //       decoration: BoxDecoration(
+  //           color: AppData.kPrimaryColor,
+  //           borderRadius: BorderRadius.circular(10.0),
+  //           gradient: LinearGradient(
+  //               begin: Alignment.bottomRight,
+  //               end: Alignment.topLeft,
+  //               colors: [Colors.blue, AppData.kPrimaryColor])),
+  //       child: Padding(
+  //         padding:
+  //         EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+  //         child: Text(
+  //           MyLocalizations.of(context).text("NEXT"),
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(color: Colors.white, fontSize: 16.0),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget nextButton() {
     return GestureDetector(

@@ -11,7 +11,6 @@ class MedicalRecordPage extends StatefulWidget {
   @override
   _MedicalRecordPageState createState() => _MedicalRecordPageState();
 }
-
 class _MedicalRecordPageState extends State<MedicalRecordPage> {
   var selectedMinValue;
 
@@ -23,10 +22,39 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
 
     return SafeArea(
         child: Scaffold(
+
+          appBar: AppBar(
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text( 'Medical Records'),
+            /* leading: Icon(
+            Icons.menu,
+          ),*/
+            actions: <Widget>[
+              /*  Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                      Icons.search,
+                      size: 26.0,
+                    ),
+                  )
+              ),*/
+              /*Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                      Icons.more_vert
+                  ),
+                )
+            ),*/
+            ],
+          ),
       body: Container(
         child: Column(
           children: [
-            Container(
+           /* Container(
               color: AppData.kPrimaryColor,
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -51,7 +79,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
               ),
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width,
-            ),
+            ),*/
             Expanded(
               child: ListView(
                 shrinkWrap: true,
