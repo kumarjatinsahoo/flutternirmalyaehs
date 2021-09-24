@@ -33,7 +33,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                           Navigator.pop(context);
                         },
                         child: Icon(Icons.arrow_back,color: Colors.white )),
-                   Text('Donor Organisation',
+                   Text('Life Style Solution',
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
                         Icon(Icons.search,color: Colors.white ),
                     ],
@@ -57,7 +57,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
-                                            /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Child Caretaker";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
@@ -96,7 +101,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
 
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Developing";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -134,7 +144,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                            ),
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Diagnostics";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -171,7 +186,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              ),
                                            ),
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Gyms";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -208,7 +228,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              ),
                                            ),
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Hair Treatment Center";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
@@ -246,7 +271,12 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                            ),
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Personal";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(

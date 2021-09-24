@@ -18,10 +18,38 @@ class _MedicalServiceState extends State<MedicalService> {
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text( 'Medical Service'),
+              /* leading: Icon(
+            Icons.menu,
+          ),*/
+              actions: <Widget>[
+                /*  Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                      Icons.search,
+                      size: 26.0,
+                    ),
+                  )
+              ),*/
+                /*Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                      Icons.more_vert
+                  ),
+                )
+            ),*/
+              ],
+            ),
            body: Container(
              child: Column(
                children: [
-                  Container(
+                 /* Container(
                color:AppData.kPrimaryColor,
                 child: Padding(
                   padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -41,7 +69,7 @@ class _MedicalServiceState extends State<MedicalService> {
                 ),
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: MediaQuery.of(context).size.width,
-              ),
+              ),*/
               Expanded(
                               child: ListView(
                                 shrinkWrap: true,
@@ -205,7 +233,13 @@ class _MedicalServiceState extends State<MedicalService> {
 
                                   ),
                                            GestureDetector(
-                                             onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Air Ambulance";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
+                                             //onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
                                              child: Card(
                                                elevation: 5,
                                                child: Container(

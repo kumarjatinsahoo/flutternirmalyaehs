@@ -3,19 +3,16 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Doctor/Dashboard/Medicationlist.dart';
+import 'package:user/screens/Users/MedicineList.dart';
 
-import 'DoctorAppointment_Requested.dart';
-import 'DoctorAppointment_Confirmed.dart';
-import 'DoctorAppointment_Cancel.dart';
-import 'DoctorAppointment_Treated.dart';
 
-class DoctorMedicationTab extends StatefulWidget {
+class UserMedicineList extends StatefulWidget {
   final MainModel model;
 
-  DoctorMedicationTab({Key key, this.model}) : super(key: key);
+  UserMedicineList({Key key, this.model}) : super(key: key);
 
   @override
-  _DoctorMedicationTabState createState() => _DoctorMedicationTabState();
+  _UserMedicineList createState() => _UserMedicineList();
 }
 
 final List<Tab> myTabs = <Tab>[
@@ -23,7 +20,7 @@ final List<Tab> myTabs = <Tab>[
   Tab(text: 'RIGHT'),
 ];
 
-class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
+class _UserMedicineList extends State<UserMedicineList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +42,7 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Medication",
+                text:"Medicine",
 
               ),
               Tab(
@@ -57,8 +54,8 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
         ),
         body: TabBarView(
           children: [
-            Medicationlist(model:widget.model,),
-            Medicationlist(model:widget.model,),
+            MedicineList(model:widget.model,),
+            MedicineList(model:widget.model,),
 
           ],
         ),

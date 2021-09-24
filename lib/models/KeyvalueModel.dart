@@ -26,13 +26,14 @@ class KeyvalueModel {
   }
 
   KeyvalueModel.fromsJson(Map<String, dynamic> json) {
-    key = json['key'].toString();/*??json['bookstatus'].toString();*/
-    name = json['name'].toString();/*??json['time'].toString();*/
+    key = json['key']??json['bookstatus'];
+    name = json['name']??json['time'].toString();
     code = json['code'].toString();
     optional = json['gender_name'].toString();
     itemid = json['itemid'].toString();
     desc = json['desc'].toString();
     minqty = json['minqty'].toString();
+
 
 
     if (json.containsKey("optional")) {

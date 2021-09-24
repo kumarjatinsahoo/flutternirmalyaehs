@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 
@@ -8,77 +9,74 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/models/LoginResponse1.dart' as session;
 
-class ChemistsOngooglePage extends StatefulWidget {
+class MedicalsServiceOngooglePage extends StatefulWidget {
   MainModel model;
 
-  ChemistsOngooglePage({Key key, this.model}) : super(key: key);
+  MedicalsServiceOngooglePage({Key key, this.model}) : super(key: key);
 
   @override
-  _ChemistsOngooglePageState createState() => _ChemistsOngooglePageState();
+  _MedicalsServiceOngooglePageState createState() => _MedicalsServiceOngooglePageState();
 }
 
-class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
+class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePage> {
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
-
+  final ScrollController _scrollController = ScrollController();
   //ScrollController _scrollController = ScrollController();
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  String longi, lati, city, addr, healthpro, type;
-
+  Position position;
+  String longi, lati, city, addr, healthpro, type,medicallserviceType
+  ;
+  String medicallserviceTypelow;
   @override
   void initState() {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    longi = widget.model.longi;
-    lati = widget.model.lati;
-    city = widget.model.city;
-    addr = widget.model.addr;
-    healthpro = widget.model.healthproname;
-    type = widget.model.type;
 
-    callAPI();
+    medicallserviceType = widget.model.medicallserviceType;
+    medicallserviceTypelow = widget.model.medicallserviceType.toLowerCase();
+    type = widget.model.type;
+    getLocationName();
+    //callAPI();
+  }
+  getLocationName() async {
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    print(
+        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    callAPI(position.latitude.toString(), position.longitude.toString());
+    /* try {
+      final coordinates =
+          new Coordinates(position.latitude, position.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      print("${first.locality}}");
+      setState(() {
+        address = "${first.addressLine}";
+        cityName = first.locality;
+        longitudes = position.longitude.toString();
+        latitudes = position.altitude.toString();
+      });
+    } catch (e) {
+      print(e.toString());
+    }*/
   }
 
-  /* callAPI() {
-
-      Map<String, dynamic> postData = {
-        "longi": longi,
-        "lati": lati,
-        "addr": addr,
-        "city": city,
-        "healthpro": healthpro,
-        "type": type
-      };
-     // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
-      widget.model.GETMETHODCALL(
-        api: ApiFactory.GOOGLE_API(lati:lati,longi: longi,healthpro: healthpro,),
-        fun: (Map<String, dynamic> map) {
-          String msg = map[Const.MESSAGE];
-          //String msg = map[Const.MESSAGE];
-          if (map["status"] == "ok") {
-          setState(() {
-            //AppData.showInSnackBar(context, msg);
-            googlePlaceModel = GooglePlaceModel.fromJson(map);
-          });
-
-            //foundUser = appointModel.body;
-          } else {
-            //isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
-          }
-        },
-      );
-
-  }*/
-  callAPI() {
+  callAPI(lat, longi) {
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_API(
-            lati: lati, longi: longi, healthpro: healthpro),
+            lati: lat, longi: longi, healthpro: medicallserviceTypelow),
         fun: (Map<String, dynamic> map) {
           setState(() {
             //String msg = map[Const.MESSAGE];
@@ -100,15 +98,67 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
     return SafeArea(
         child: Scaffold(
-      body: Container(
+        appBar: AppBar(
+          backgroundColor: AppData.kPrimaryColor,
+          title: Text(medicallserviceType),
+         /* leading: Icon(
+            Icons.menu,
+          ),*/
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.search,
+                    size: 26.0,
+                  ),
+                )
+            ),
+            /*Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                      Icons.more_vert
+                  ),
+                )
+            ),*/
+          ],
+        ),
+
+    body: Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              (googlePlaceModel != null)
+             /* Container(
+                color: AppData.kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.arrow_back,color: Colors.white, )),
+                      Text(*//*'AYUSH Doctors'*//*medicallserviceType,
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
+                      Icon(Icons.search,color: Colors.white ),
+                    ],
+                  ),
+                ),
+                height: MediaQuery.of(context).size.height * 0.1,
+                width: MediaQuery.of(context).size.width,
+              ),*/
+           /*Expanded(
+             child:*/(googlePlaceModel != null)
                   ? ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      // controller: _scrollController,
-                      shrinkWrap: true,
+
+                  //physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    controller: _scrollController,
                       itemBuilder: (context, i) {
                         Results patient = googlePlaceModel.results[i];
                         print(
@@ -120,14 +170,6 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                         ref: patient.photos[0].photoReference)
                                     : patient.icon));
                         return Container(
-                            child:InkWell(
-                              onTap: () {
-                                //widget.model.model = patient.placeId;
-                               widget.model.placeId = patient.placeId;
-                                Navigator.pushNamed(context, "/googleSearch");
-
-                                // AppData.showInSnackBar(context,"hi");
-                              },
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
@@ -220,7 +262,6 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                   )),
                             ),
                           ),
-                            )
                         );
                       },
                       itemCount: googlePlaceModel.results.length,

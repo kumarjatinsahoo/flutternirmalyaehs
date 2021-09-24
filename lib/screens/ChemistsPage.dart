@@ -26,7 +26,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  String longi,lati,city,addr,healthpro,type;
+  String longi,lati,city,addr,healthpro,type,healthproname;
 
 
 
@@ -39,12 +39,13 @@ class _ChemistsPageState extends State<ChemistsPage> {
     city = widget.model.city;
     addr = widget.model.addr;
     healthpro = widget.model.healthpro;
+    healthproname = widget.model.healthproname;
     type=widget.model.type;
 
     callAPI();
   }
   callAPI() {
-
+   // MyWidgets.showLoading(context);
       Map<String, dynamic> postData = {
         "longi": longi,
         "lati": lati,
@@ -53,8 +54,10 @@ class _ChemistsPageState extends State<ChemistsPage> {
         "healthpro": healthpro,
         "type": type
       };
+      //
      // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
       widget.model.POSTMETHOD2(
+
         api: ApiFactory.FIND_HEALTH_PROVIDER1,
         token: widget.model.token,
         json: postData,
@@ -115,6 +118,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
     return SafeArea(
         child: Scaffold(
           body: Container(
+        child: SingleChildScrollView(
             child: Column(
               children: [
 
@@ -143,8 +147,8 @@ class _ChemistsPageState extends State<ChemistsPage> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5))),
                             child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
+                               /* height: tileSize,
+                                width: double.maxFinite,*/
                                /* if (position % 2 == 0) {  //  is even
                               convertView = LayoutInflater.from(getContext()).inflate(R.layout.even_layout, parent, false);
 
@@ -224,6 +228,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
                 ): Container(),
               ],
             ),
+        ),
           ),
         ));
   }

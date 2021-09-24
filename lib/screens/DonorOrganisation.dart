@@ -57,8 +57,15 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
                                            GestureDetector(
-                                            /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
+
+                                               onTap: () {
+                                                 widget.model.medicallserviceType = "Blood Donation";
+                                                 Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                                 // AppData.showInSnackBar(context,"hi");
+                                               },
+
+                                               child: Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -96,7 +103,12 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
 
 
                                            GestureDetector(
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Bone Marrow Registry";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
                                              child: Card(
                                                elevation: 5,
                                                child: Container(

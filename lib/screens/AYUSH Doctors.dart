@@ -1,3 +1,4 @@
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -56,8 +57,16 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                          shrinkWrap: true,
                                          physics: NeverScrollableScrollPhysics(),
                                          children: [
-                                           GestureDetector(
-                                             onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                                           InkWell(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Ayurvada";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                               // AppData.showInSnackBar(context,"hi");
+                                             },
+
+                                                 /*widget.model.apntUserType = "ayurvada";
+                                                 Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
@@ -93,7 +102,12 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                )),
                                            ),
                                            ),
-                                           Card(
+                                           InkWell(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Homeopathy";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                             },
+                                           child:Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -124,8 +138,13 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                    ],
                                                  ),
                                                )),
-                                           ),
-                                             Card(
+                                           ),),
+                                           InkWell(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Siddha Treatment";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                             },
+                                            child:Card(
                                              elevation: 5,
                                                      child: Container(
                                                height: 100,
@@ -158,8 +177,12 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                    ],
                                                  ),
                                                )),
-                                           ),
+                                           ),),
                                   GestureDetector(
+                                    onTap: () {
+                                      widget.model.medicallserviceType = "Unani";
+                                      Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                    },
                                     //onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
                                     child:Card(
                                              elevation: 5,
@@ -197,7 +220,12 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                            ),
 
                                   ),
-                                           Card(
+                                           GestureDetector(
+                                             onTap: () {
+                                               widget.model.medicallserviceType = "Yoga & Naturopathy";
+                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                             },
+                                           child:Card(
                                              elevation: 5,
                                              child: Container(
                                                  height: 100,
@@ -230,7 +258,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                      ],
                                                    ),
                                                  )),
-                                           ),
+                                           )),
                                          ],
                                        ),
                                      
