@@ -3115,8 +3115,9 @@ class _VitalDoctor extends State<VitalDoctor> {
 
               ]
             };
-            log("Value should be"+sendData.toString());
-            AppData.showInSnackBar(context, "Calling api");
+            log("Value should be"+jsonEncode(sendData));
+            //Navigator.pop(context);
+           // AppData.showInSnackBar(context, "Calling api");
             widget.model.POSTMETHOD(
                 api: ApiFactory.VITALS_REPORT,
                 json: sendData,
@@ -3176,6 +3177,7 @@ class _VitalDoctor extends State<VitalDoctor> {
             onPressed: () {
                Navigator.pop(context);
                Navigator.pop(context);
+             //  Navigator.pop(context);
 
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),

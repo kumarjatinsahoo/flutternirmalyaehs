@@ -17,10 +17,8 @@ class DropDown {
   static KeyvalueModel marital;
   static KeyvalueModel job;
   static KeyvalueModel bloodgroupmodel;
-
   static KeyvalueModel gendermodel;
   static TimeScheduleModel timeModel;
-
   static KeyvalueModel relationmodel;
   static KeyvalueModel specialitymodel;
 
@@ -1300,12 +1298,12 @@ class DropDown {
         break;
     }
   }
+
   static TimeScheduleModel getData1(String callFor) {
     switch (callFor) {
       case "district":
         return timeModel;
         break;
-
     }
   }
 
@@ -1365,7 +1363,7 @@ class DropDown {
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-         /* case "time2":
+          /* case "time2":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;*/
           case "gender":
@@ -1417,8 +1415,8 @@ class DropDown {
     ));
   }
 
-  static networkDropdownGetpartUser11(
-      String label, final String API, String callFrom, token, Function fun,context) {
+  static networkDropdownGetpartUser11(String label, final String API,
+      String callFrom, token, Function fun, context) {
     return newContainer(DropdownSearch<TimeScheduleModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -1459,18 +1457,20 @@ class DropDown {
       ),
       popupItemBuilder: (context, value, isSucc) {
         return Container(
-          color: (value.bookstatus==1)?Colors.grey:null,
+          color: (value.bookstatus == 1) ? Colors.grey : null,
           child: Material(
             type: MaterialType.transparency,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 17),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
               alignment: Alignment.topLeft,
               //  height: 50,
-                child: Text(
-                  value.time,
-                  style: TextStyle(fontSize: 18,color:(value==1)?Colors.grey:Colors.black),
-                ),
+              child: Text(
+                value.time,
+                style: TextStyle(
+                    fontSize: 18,
+                    color: (value == 1) ? Colors.grey : Colors.black),
               ),
+            ),
           ),
         );
       },
@@ -1502,8 +1502,9 @@ class DropDown {
       },
     ));
   }
-  static networkDropdownGetpartUser12(
-      String label, final String API, String callFrom, token, Function fun,context) {
+
+  static networkDropdownGetpartUser12(String label, final String API,
+      String callFrom, token, Function fun, context) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -1544,16 +1545,18 @@ class DropDown {
       ),
       popupItemBuilder: (context, value, isSucc) {
         return Container(
-          color: (value.key==1)?Colors.grey:null,
+          color: (value.key == 1) ? Colors.grey : null,
           child: Material(
             type: MaterialType.transparency,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 17),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
               alignment: Alignment.topLeft,
               //  height: 50,
               child: Text(
                 value.name,
-                style: TextStyle(fontSize: 18,color:(value==1)?Colors.grey:Colors.black),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: (value == 1) ? Colors.grey : Colors.black),
               ),
             ),
           ),
@@ -1681,7 +1684,7 @@ class DropDown {
           case "organization":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "pharmacy":
+          case "pharmacy":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -1772,6 +1775,52 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    );
+  }
+
+  static networkDropdownGetpartUserundrelinee(
+      String label, final String API, String callFrom, Function fun,map) {
+    return DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+
+        /* border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),*/
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+      ),
+      //label: label,
+      showSearchBox: true,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        print("POST DATA?????" + jsonEncode(map));
+        var response = await Dio().post(
+          API,
+          data: jsonEncode(map)
+        );
+        print("Value>>>>>>"+jsonEncode(response.data));
+        var list = KeyvalueModel.fromJsonList(response.data["body"]);
 
         return list;
       },

@@ -59,6 +59,7 @@ import 'package:user/screens/MyAppointment_Requested.dart';
 import 'package:user/screens/MyOrders.dart';
 import 'package:user/screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
@@ -73,9 +74,9 @@ import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/screens/Patient/PatientRegistration3.dart';
 import 'package:user/screens/Patient/PatientRegistration4.dart';
-import 'package:user/screens/Pharmacists/PharmaSignUpForm2.dart';
-import 'package:user/screens/Pharmacists/PharmaSignUpForm3.dart';
-import 'package:user/screens/Pharmacists/pharmaSignUpForm.dart';
+import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm2.dart';
+import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
+import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'package:user/screens/ProcessedOrders.dart';
@@ -537,6 +538,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(
+                model: _model,
+              ),
+              '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
               '/usermedicinelist': (context) => UserMedicineList(
