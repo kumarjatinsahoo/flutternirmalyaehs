@@ -4,6 +4,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Doctor/Dashboard/Medicationlist.dart';
 import 'package:user/screens/Users/MedicineList.dart';
+import 'package:user/screens/Users/TestList.dart';
 
 
 class UserMedicineList extends StatefulWidget {
@@ -55,7 +56,7 @@ class _UserMedicineList extends State<UserMedicineList> {
         body: TabBarView(
           children: [
             MedicineList(model:widget.model,),
-            MedicineList(model:widget.model,),
+            TestList(model:widget.model,),
 
           ],
         ),

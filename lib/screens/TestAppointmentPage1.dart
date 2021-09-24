@@ -148,7 +148,9 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
       results = appointModel.body
           .where((user) => user.patientName
               .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
+              .contains(enteredKeyword.toLowerCase()) ||  user.regNo
+          .toLowerCase()
+          .contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
@@ -329,6 +331,8 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                         padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
+
+                          //String ageFirst=foundUser[index]?.gender[0];
                           return Column(
                             children: [
                               Container(
@@ -383,7 +387,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        foundUser[index].gender[0],
+                                        (foundUser[index]?.gender!=null)?foundUser[index]?.gender[0]:"",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
