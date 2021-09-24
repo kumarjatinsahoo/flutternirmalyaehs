@@ -86,7 +86,7 @@ import 'package:user/screens/RIP.dart';
 import 'package:user/screens/RequestHealthCheakup.dart';
 import 'package:user/screens/SampleTracking.dart';
 import 'package:user/screens/Search.dart';
-import 'package:user/screens/SetDiscount.dart';
+import 'package:user/screens/Pharmacists/Screens/SetDiscount.dart';
 import 'package:user/screens/SetReminder.dart';
 import 'package:user/screens/SetReminderOther.dart';
 import 'package:user/screens/SignUpForm.dart';
