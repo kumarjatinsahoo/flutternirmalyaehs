@@ -52,6 +52,7 @@ dependencies:
   webview_flutter: ^2.0.13
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
+  multi_select_item: ^1.0.3
 
 dev_dependencies:
   flutter_test:

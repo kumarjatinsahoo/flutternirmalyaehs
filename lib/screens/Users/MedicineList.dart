@@ -58,7 +58,7 @@ class _MedicineList extends State<MedicineList> {
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
-  bool valuefirst = false;
+  bool isCheck = false;
 
   String longitudes;
   String latitudes;
@@ -153,7 +153,7 @@ class _MedicineList extends State<MedicineList> {
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
                 DropDown.networkDropdownGetpartUserundrelinee(
@@ -166,7 +166,7 @@ class _MedicineList extends State<MedicineList> {
                   });
                 }, mapK),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 (medicineListModel != null)
                     ? ListView.builder(
@@ -184,6 +184,7 @@ class _MedicineList extends State<MedicineList> {
                           // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
+
                               // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
                               child: Card(
                                 shape: RoundedRectangleBorder(
@@ -192,22 +193,134 @@ class _MedicineList extends State<MedicineList> {
                                 elevation: 5,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                  child: Column(
                                     children: [
-                                      Checkbox(
-                                        value: this.valuefirst,
-                                        onChanged: (bool value) {
-                                          setState(() {
-                                            this.valuefirst = value;
-                                          });
-                                        },
+                                      CheckboxListTile(
+                                          activeColor: Colors.pink[300],
+                                          dense: true,
+                                          //font change
+                                          title: new Text(
+                                            medicineListModel.body[i].medname,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                letterSpacing: 0.5),
+                                          ),
+       //                                   value: medicineListModel.body[i].isCheck,
+                                          secondary: Container(
+                                            height: 50,
+                                            width: 50,
+                                            child: Image.asset(
+                                              medicineListModel.body[i].medtype,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          onChanged: (bool val) {
+                                            //itemChange(val, i);
+                                          }),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                         // (medicineListModel.body.length =="4")?
+                                          Checkbox(
+                                            value: this.isCheck,
+                                            onChanged: (bool value) {
+                                              setState(() {
+                                                this.isCheck = value;
+                                                this.isCheck = false;
+                                              });
+                                            },
+                                          ),
+                                              //:Container(),
+                                          Text(
+                                            body.medname,
+                                            style: TextStyle(
+                                                color: Colors.black, fontSize: 13),
+                                          )
+                                        ],
                                       ),
-                                      Text(
-                                        body.medname,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 13),
-                                      )
+                                      SizedBox(width: 5,),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 13,),
+                                          Text(
+                                            "Dosage :-",
+                                            style: TextStyle(
+                                                color: Colors.black, fontSize: 13),
+                                          ),
+                                          SizedBox(width: 5,),
+                                          Text(
+                                            body.dosage,
+                                            style: TextStyle(
+                                                color: Colors.black, fontSize: 13),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 5,),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 13,),
+                                          Container(
+                                            width:80,
+                                            child: Text(
+                                              "morning",
+                                              style: TextStyle(
+                                                  color: Colors.black, fontSize: 13),
+                                            ),
+                                          ),
+                                         // SizedBox(width: 10,),
+                                          Container(
+                                            width:80,
+                                            child: Text(
+                                              "afternoon",
+                                              style: TextStyle(
+                                                  color: Colors.black, fontSize: 13),
+                                            ),
+                                          ),
+                                        //  SizedBox(width: 10,),
+                                          Container(
+                                            width:80,
+                                            child: Text(
+                                              "evening",
+                                              style: TextStyle(
+                                                  color: Colors.black, fontSize: 13),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: 5,),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 13,),
+                                          (body.morning == "1")?
+                                          Container(
+                                            width:80,
+                                            height: 30,
+                                            child: Image.asset(
+                                              'assets/images/active.png',color: Colors.green,),
+                                          ): Container(),
+                                           SizedBox(width: 1,),
+                                          (body.afternoon != " 2")?
+                                          Container(
+                                            width:80,
+                                            height: 30,
+                                            child: Image.asset(
+                                              'assets/images/active.png',color: Colors.green,),
+                                          ): Container(),
+                                          //  SizedBox(width: 60,),
+                                          (body.evening == "1")?
+                                          Container(
+                                            width:80,
+                                            height: 30,
+                                            child: Image.asset(
+                                              'assets/images/active.png',color: Colors.green,),
+                                          ): Container(),
+                                        ],
+                                      ),
+
                                     ],
                                   ),
                                 ),
@@ -277,4 +390,10 @@ class _MedicineList extends State<MedicineList> {
       ),
     ));
   }
+
+  // void itemChange(bool val, int i) {
+  //   setState(() {
+  //     medicineListModel.body[i].isCheck = val;
+  //   });
+  // }
 }
