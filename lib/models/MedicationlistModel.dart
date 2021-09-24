@@ -2,7 +2,7 @@ class MedicationlistModel {
   List<Body> body;
   String message;
   String code;
-  Null total;
+  String total;
 
   MedicationlistModel({this.body, this.message, this.code, this.total});
 
@@ -37,14 +37,14 @@ class Body {
   String morning;
   String afternoon;
   String evening;
-  Null doctor;
-  Null fromdate;
-  Null todate;
+  String doctor;
+  String fromdate;
+  String todate;
   String userid;
-  Null appno;
-  Null remarks;
+  String appno;
+  String remarks;
   String duration;
-  Null meddate;
+  String meddate;
   String qty;
   String srlNoOne;
   String srlNoTwo;
@@ -87,7 +87,6 @@ class Body {
     srlNoOne = json['srlNoOne'];
     srlNoTwo = json['srlNoTwo'];
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['medname'] = this.medname;

@@ -1208,7 +1208,7 @@ class MyPage1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildTileblue(
+                     _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
