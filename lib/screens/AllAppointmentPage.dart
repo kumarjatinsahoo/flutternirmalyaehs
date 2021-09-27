@@ -380,7 +380,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                     SizedBox(
                                       width: 35,
                                       child: Text(
-                                        appointModel.body[index].age.toString(),
+                                        (appointModel.body[index].age!=null)?appointModel.body[index].age.toString():"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -391,7 +391,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        appointModel.body[index].gender[0],
+                                        (appointModel?.body[index]?.gender!=null)?appointModel?.body[index]?.gender[0]:"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,

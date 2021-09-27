@@ -46,6 +46,7 @@ class Body {
   String duration;
   String meddate;
   String qty;
+  bool isChecked=false;
 
   Body(
       {this.medname,

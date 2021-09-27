@@ -26,7 +26,7 @@ class KeyvalueModel {
   }
 
   KeyvalueModel.fromsJson(Map<String, dynamic> json) {
-    key = json['key']??json['bookstatus'];
+    key = json['key']??json['bookstatus']??json['id'];
     name = json['name'].toString();
     code = json['code'].toString();;
     optional = json['gender_name'].toString();
