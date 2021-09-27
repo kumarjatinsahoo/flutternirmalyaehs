@@ -1957,6 +1957,12 @@ class DropDown {
           case "state":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "districtid":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
         return list;

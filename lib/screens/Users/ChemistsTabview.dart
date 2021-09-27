@@ -3,9 +3,9 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/ChemistsPage.dart';
+import 'ChemistsPage.dart';
 
-import '../ChemistsOngooglePage.dart';
+import 'ChemistsOngooglePage.dart';
 
 
 
