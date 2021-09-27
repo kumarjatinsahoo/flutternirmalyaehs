@@ -514,7 +514,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
         else {
           widget.model.organisationname = DoctorSignUpForm2.organizationModel.key;
           widget.model.title = DoctorSignUpForm2.titleModel.key;
-          widget.model.professionalname = textEditingController[9].text;
+          widget.model.professionalname = textEditingController[1].text;
           // widget.model.userid = textEditingController[10].text;
           // widget.model.password = textEditingController[11].text;
           // widget.model.cnfrmpwd = textEditingController[12].text;
