@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/TimeScheduleModel.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/widgets/MyWidget.dart';
 import '../models/KeyvalueModel.dart';
 import 'app_data.dart';
@@ -1415,7 +1416,7 @@ class DropDown {
     ));
   }
 
-  static doctorDropDown(String label, final String API, postMap, Function fun) {
+  static doctorDropDown(String label,token, postMap, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -1451,9 +1452,12 @@ class DropDown {
       ),
       showSearchBox: true,
       onFind: (String filter) async {
-        print("DROP DOWN API?????" + API);
-        Map<String, dynamic> mapPost = {};
-        var response = await Dio().post(API, data: jsonEncode(mapPost));
+        print("DROP DOWN API?????" + ApiFactory.FIND_HEALTH_PROVIDER1);
+        var response = await Dio().post(ApiFactory.FIND_HEALTH_PROVIDER1,options: Options(
+          headers: {
+            "Authorization": token,
+          },
+        ), data: jsonEncode(postMap));
         var list = KeyvalueModel.fromJsonList(response.data["body"]);
         return list;
       },
@@ -1592,22 +1596,27 @@ class DropDown {
         ),
       ),
       popupItemBuilder: (context, value, isSucc) {
-        return Container(
-          color: (value.key == 1) ? Colors.grey : null,
-          child: Material(
-            type: MaterialType.transparency,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
-              alignment: Alignment.topLeft,
-              //  height: 50,
-              child: Text(
-                value.name,
-                style: TextStyle(
-                    fontSize: 18,
-                    color: (value == 1) ? Colors.grey : Colors.black),
+        return Column(
+          children: [
+            Container(
+              color: (value.key == 1) ? Colors.grey : null,
+              child: Material(
+                type: MaterialType.transparency,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                  alignment: Alignment.topLeft,
+                  //  height: 50,
+                  child: Text(
+                    value.name,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: (value == 1) ? Colors.grey : Colors.black),
+                  ),
+                ),
               ),
             ),
-          ),
+            Divider(height: 1,color: Colors.black,)
+          ],
         );
       },
       showSearchBox: true,

@@ -8,8 +8,6 @@ import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
-import 'screens/Users/ChemistsOngooglePage.dart';
-import 'screens/Users/ChemistsPage.dart';
 import 'package:user/screens/Pharmacists/Screens/MyOrders.dart';
 import 'screens/Pharmacists/Screens/ConfirmedOrders.dart';
 import 'screens/Users/Daashboard.dart';
@@ -22,7 +20,6 @@ import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'screens/Users/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
-import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -71,7 +68,7 @@ import 'package:user/screens/Users/ChemistsTabview.dart';
 import 'package:user/screens/Users/GoogleSearch.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
-import 'package:user/screens/Users/UserMedicineList.dart';
+import 'package:user/screens/Users/UserMedicineTab.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -546,7 +543,7 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
-              '/usermedicinelist': (context) => UserMedicineList(
+              '/usermedicinelist': (context) => UserMedicineTab(
                 model: _model,
               ),
               '/docConsult1': (context) => DoctorConsultPage(

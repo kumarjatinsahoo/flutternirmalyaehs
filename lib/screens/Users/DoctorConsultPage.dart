@@ -167,15 +167,17 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
   Position position;
   String cityName;
 
-  LoginResponse1 loginResponse;
+  //LoginResponse1 loginResponse;
 
   var mapData;
 
   @override
   void initState() {
     super.initState();
+    DoctorConsultPage.specialistModel = null;
+    DoctorConsultPage.doctorModel = null;
     comeFrom = widget.model.apntUserType;
-    loginResponse = widget.model.loginResponse1;
+    //loginResponse = widget.model.loginResponse1;
     _getLocationName();
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
@@ -217,18 +219,17 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
           setState(() {
             address = "${finder.formattedAddress}";
             cityName = finder.addressComponents[4].longName;
-            print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
             longitudes = position.longitude.toString();
             latitudes = position.altitude.toString();
+            mapData = {
+              "longi": longitudes,
+              "lati": latitudes,
+              "addr": address,
+              "city": cityName,
+              "healthpro": "1",
+              "type": "17"
+            };
           });
-          mapData = {
-            "longi": longitudes,
-            "lati": latitudes,
-            "addr": address,
-            "city": cityName,
-            "healthpro": "1",
-            "type": "17"
-          };
         });
   }
 
@@ -267,15 +268,18 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
               "Book Appointment",
               style: TextStyle(color: Colors.white),
             ),
+            Spacer(),
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/doctorconsultationPage");
               },
               child: Text(
                 "Find",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white,fontSize: 15,decoration: TextDecoration.underline,),
+
               ),
             ),
+            SizedBox(width: 5,)
           ],
         ),
         //automaticallyImplyLeading: false,
@@ -331,14 +335,7 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.doctorDropDown(
-                                      "Doctor",
-                                      ApiFactory.DOCTOOR_API +
-                                          DoctorConsultPage
-                                              .specialistModel.key +
-                                          "&city=" +
-                                          (DoctorConsultPage?.cityModel?.key ??
-                                              ""),
+                                  child: DropDown.doctorDropDown("Doctor",widget.model.token,
                                       mapData, (KeyvalueModel data) {
                                     setState(() {
                                       //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
@@ -369,8 +366,6 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                             DoctorConsultPage.doctorModel.key,
                                       );
                                       DoctorConsultPage.hospitalModel = data;
-
-                                      // UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                 ),
@@ -504,20 +499,8 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
   }
 
   validate() async {
-    _formKey.currentState.validate();
-    if (DoctorConsultPage.countryModel == null ||
-        DoctorConsultPage.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select country");
-    } else if (DoctorConsultPage.stateModel == null ||
-        DoctorConsultPage.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select state");
-    } else if (DoctorConsultPage.distrModel == null ||
-        DoctorConsultPage.distrModel == "") {
-      AppData.showInSnackBar(context, "Please select District");
-    } else if (DoctorConsultPage.cityModel == null ||
-        DoctorConsultPage.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select city");
-    } else if (DoctorConsultPage.specialistModel == null ||
+   // _formKey.currentState.validate();
+   if (DoctorConsultPage.specialistModel == null ||
         DoctorConsultPage.specialistModel == "") {
       AppData.showInSnackBar(context, "Please select specialist");
     } else if (DoctorConsultPage.doctorModel == null ||
