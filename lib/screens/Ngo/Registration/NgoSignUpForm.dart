@@ -18,7 +18,7 @@ import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
 // ignore: must_be_immutable
-class PharmaSignUpForm extends StatefulWidget {
+class NgoSignUpForm extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -31,7 +31,7 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel pharmacyModel = null;
   static KeyvalueModel titlemodel = null;
 
-  PharmaSignUpForm({
+  NgoSignUpForm({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -40,10 +40,10 @@ class PharmaSignUpForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  PharmaSignUpFormState createState() => PharmaSignUpFormState();
+  NgoSignUpFormState createState() => NgoSignUpFormState();
 }
 
-class PharmaSignUpFormState extends State<PharmaSignUpForm> {
+class NgoSignUpFormState extends State<NgoSignUpForm> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -139,9 +139,9 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   @override
   void initState() {
     super.initState();
-    PharmaSignUpForm.districtModel = null;
-    PharmaSignUpForm.blockModel = null;
-    PharmaSignUpForm.genderModel = null;
+    NgoSignUpForm.districtModel = null;
+    NgoSignUpForm.blockModel = null;
+    NgoSignUpForm.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -267,7 +267,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
                                             print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            PharmaSignUpForm.pharmacyModel = data;
+                                            NgoSignUpForm.pharmacyModel = data;
                                           });
                                         }),  SizedBox(
                                           height: 5,
@@ -280,7 +280,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
                                             print(ApiFactory.TITLE_API);
-                                            PharmaSignUpForm.titlemodel = data;
+                                            NgoSignUpForm.titlemodel = data;
                                           });
                                         }),
                                         SizedBox(
@@ -307,7 +307,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
                                             print(ApiFactory.GENDER_API);
-                                            PharmaSignUpForm.genderModel = data;
+                                            NgoSignUpForm.genderModel = data;
                                           });
                                         }),
                                         SizedBox(height: 15),
@@ -438,7 +438,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
             (KeyvalueModel model) {
-          PharmaSignUpForm.genderModel = model;
+          NgoSignUpForm.genderModel = model;
         });
   }
 
@@ -586,13 +586,13 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       text: "NEXT".toUpperCase(),
       context: context,
       fun: () {
-       // Navigator.pushNamed(context, "/patientRegistration2");
-        if (PharmaSignUpForm.pharmacyModel == null ||
-            PharmaSignUpForm.pharmacyModel == "") {
+        // Navigator.pushNamed(context, "/patientRegistration2");
+        if (NgoSignUpForm.pharmacyModel == null ||
+            NgoSignUpForm.pharmacyModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
-        else if (PharmaSignUpForm.titlemodel == null ||
-            PharmaSignUpForm.titlemodel == "") {
+        else if (NgoSignUpForm.titlemodel == null ||
+            NgoSignUpForm.titlemodel == "") {
           AppData.showInSnackBar(context, "Please select Title");
         }
         else if (textEditingController[9].text == "" ||
@@ -607,19 +607,19 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
         }
-        else if (PharmaSignUpForm.genderModel == null ||
-            PharmaSignUpForm.genderModel == "") {
+        else if (NgoSignUpForm.genderModel == null ||
+            NgoSignUpForm.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
-          widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
-          widget.model.pharmaprofessional = textEditingController[9].text;
-          widget.model.pharmaexperience = textEditingController[10].text;
-          widget.model.pharmaaddress = textEditingController[11].text;
-          widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
+          widget.model.ngoorganisation = NgoSignUpForm.pharmacyModel.key;
+          widget.model.ngotitle = NgoSignUpForm.titlemodel.key;
+          widget.model.ngoprofessional = textEditingController[9].text;
+          widget.model.ngoexperience = textEditingController[10].text;
+          widget.model.ngoaddress = textEditingController[11].text;
+          widget.model.ngogender = NgoSignUpForm.genderModel.key;
 
-          Navigator.pushNamed(context, "/pharmasignupform3");
+          Navigator.pushNamed(context, "/ambulancesignupform2");
         }
       },
     );
@@ -863,7 +863,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (PharmaSignUpForm.genderModel == null || PharmaSignUpForm.genderModel == "") {
+    } else if (NgoSignUpForm.genderModel == null || NgoSignUpForm.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -883,9 +883,9 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (PharmaSignUpForm.districtModel == null) {
+    } else if (NgoSignUpForm.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (PharmaSignUpForm.blockModel == null) {
+    } else if (NgoSignUpForm.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -1045,7 +1045,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                     counterText: "",
                     hintText: hint,
                     hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
+                        color: AppData.hintColor, fontSize: 17),
                   ),
 
                   onFieldSubmitted: (value) {

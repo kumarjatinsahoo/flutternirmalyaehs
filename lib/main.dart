@@ -5,6 +5,8 @@ import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
 import 'package:user/screens/AllAppointmentPage.dart';
+import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
+import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'screens/Users/ChemistsOngooglePage.dart';
 import 'screens/Users/ChemistsPage.dart';
@@ -548,6 +550,18 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/docConsult1': (context) => DoctorConsultPage(
+                model: _model,
+              ),
+              '/ambulance': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/ngo': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/bloodbank': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
                 model: _model,
               ),
 
