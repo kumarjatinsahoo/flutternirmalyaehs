@@ -48,6 +48,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   String longitude;
   String latitude;
   String cityName;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -56,7 +57,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     callAPI();
     _getLocationName();
   }
- /* _getLocationName() async {
+
+  /* _getLocationName() async {
     Position position = await Geolocator
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     debugPrint('location_latitude: ${position.latitude}');
@@ -67,15 +69,16 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     latitude = position.latitude.toString();
   }*/
   _getLocationName() async {
-    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
     try {
       final coordinates =
-      new Coordinates(position.latitude, position.longitude);
+          new Coordinates(position.latitude, position.longitude);
       var addresses =
-      await Geocoder.local.findAddressesFromCoordinates(coordinates);
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
       var first = addresses.first;
       print("${first.featureName} : ${first.addressLine}");
       setState(() {
@@ -85,6 +88,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
       print(e.toString());
     }
   }
+
   callAPI() {
     print(ApiFactory.EMERGENCY_HELP +
         loginResponse1.body.user +
@@ -102,7 +106,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
