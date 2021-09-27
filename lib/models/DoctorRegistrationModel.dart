@@ -16,6 +16,7 @@ class DoctorRegistrationModel{
    String pincode;
    String homephone;
    String officephone;
+   String experience;
    String mobno;
    String email;
    String alteremail;
@@ -41,6 +42,7 @@ class DoctorRegistrationModel{
     pincode = json['pincode'];
     homephone = json['homephone'];
     officephone = json['officephone'];
+    experience = json['experience'];
     mobno = json['mobno'];
     email = json['email'];
     alteremail = json['alteremail'];
@@ -70,6 +72,7 @@ class DoctorRegistrationModel{
       "pincode": this.pincode,
       "homephone": this.homephone,
       "officephone": this.officephone,
+      "experience": this.experience,
       "mobno": this.mobno,
       "email": this.email,
       "alteremail": this.alteremail,
@@ -88,7 +91,7 @@ class DoctorRegistrationModel{
         ' dob: $dob, bloodgroup: $bloodgroup, gender: $gender,address: $address, countryid: $countryid,'
         ' stateid: $stateid, districtid: $districtid, cityid: $cityid,pincode: $pincode,'
         'homephone: $homephone,officephone: $officephone,mobno: $mobno,email: $email,'
-        'alteremail: $alteremail,userid: $userid,password: $password,role:$role}';
+        'alteremail: $alteremail,userid: $userid,password: $password,role:$role,experience:$experience}';
   }
 }
 

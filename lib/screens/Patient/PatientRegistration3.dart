@@ -150,7 +150,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                         : Container(),
 
                     SizedBox(
-                      height: size.height * 0.07,
+                      height: size.height * 0.01,
                     ),
                     (PatientRegistration3.stateModel != null)
                         ? Padding(
@@ -171,7 +171,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     )
                         : Container(),
                     SizedBox(
-                      height: size.height * 0.07,
+                      height: size.height * 0.01,
                     ),
                     (PatientRegistration3.districtModel != null)
                         ? Padding(
@@ -428,13 +428,20 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             textEditingController[3].text.length != 12 ) {
           AppData.showInSnackBar(context, "Please enter a valid Aadhaar no.");
         }
+        else if (PatientRegistration3.countryModel == null ||
+            PatientRegistration3.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select Country");
+        }
         else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select State");}
+        else if (PatientRegistration3.districtModel == null ||
+            PatientRegistration3.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select Distric");
         }
         else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select City");
        /* } else if (textEditingController[2].text != '' &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
@@ -445,12 +452,13 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           widget.model.patientweight = textEditingController[1].text;
           widget.model.patientemail = textEditingController[2].text;
           widget.model.patientaadhar = textEditingController[3].text;
+          widget.model.patienCountrykey = PatientRegistration3.countryModel.key;
+          widget.model.patienCountrycode = PatientRegistration3.countryModel.code;
           widget.model.patienStatekey = PatientRegistration3.stateModel.key;
           widget.model.patienStatecode = PatientRegistration3.stateModel.code;
+          widget.model.districtid = PatientRegistration3.districtModel.key;
           widget.model.patienCitykey = PatientRegistration3.cityModel.key;
           widget.model.patienCitycode = PatientRegistration3.cityModel.code;
-        /*  widget.model.districtid = PharmaSignUpForm3.districtModel.key;
-          widget.model.cityid = PharmaSignUpForm3.citymodel.key;*/
           Navigator.pushNamed(context, "/patientRegistration4");
         }
       },

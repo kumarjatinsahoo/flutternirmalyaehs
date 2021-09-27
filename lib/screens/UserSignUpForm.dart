@@ -27,9 +27,12 @@ class UserSignUpForm extends StatefulWidget {
   MainModel model;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel titleModel = null;
-  static KeyvalueModel stateModel = null;
-  static KeyvalueModel cityModel = null;
   static KeyvalueModel countryModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel districtModel = null;
+  static KeyvalueModel cityModel = null;
+
+
 
   UserSignUpForm({
     Key key,
@@ -378,8 +381,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
-                                      UserSignUpForm.stateModel = data;
-                                      UserSignUpForm.cityModel = null;
+                                      UserSignUpForm.countryModel = data;
+                                      UserSignUpForm.stateModel = null;
                                     });
                                   }),
                                 ),
@@ -387,7 +390,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                               SizedBox(
                                 height: 5,
                               ),
-                              (UserSignUpForm.stateModel != null)
+                              (UserSignUpForm.countryModel != null)
                                   ? Padding(
                                       padding: const EdgeInsets.only(
                                           left: 0, right: 0, bottom: 0),
@@ -398,14 +401,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 "State",
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
-                                                        .stateModel.key,
+                                                        .countryModel.key,
                                                 "state",
                                                 Icons.location_on_rounded,
                                                 23.0,
                                                 (KeyvalueModel data) {
                                           setState(() {
-                                            UserSignUpForm.cityModel =
-                                                data;
+                                            UserSignUpForm.stateModel = data;
+                                            UserSignUpForm.districtModel = null;
                                             /*userModel.state=data.key;
                                           userModel.stateCode=data.code;*/
                                           });
@@ -413,47 +416,65 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       ),
                                     )
                                   : Container(),
-                              /*SizedBox(
-                                    height: 58,
-                                    child:
-                                    DropDown.networkDropdownGetpartUser(
-                                        "Country",
-                                        ApiFactory.STATE_API,
-                                        "state",
-                                        Icons.location_on_rounded,
-                                        23.0, (KeyvalueModel data) {
-                                      setState(() {
-                                        print(ApiFactory.STATE_API);
-                                        UserSignUpForm.stateModel = data;
-                                        userModel.country=data.key;
-                                        userModel.countryCode=data.code;
-                                        UserSignUpForm.cityModel = null;
-                                      });
-                                    }),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  (UserSignUpForm.stateModel != null)
-                                      ?
-                                  SizedBox(
-                                    height: 58,
-                                    child: DropDown
-                                        .networkDropdownGetpartUser(
-                                        "State",
-                                        ApiFactory.CITY_API +
-                                            UserSignUpForm.stateModel.key,
-                                        "city",
-                                        Icons.location_on_rounded,
-                                        23.0, (KeyvalueModel data) {
-                                      setState(() {
-                                        UserSignUpForm.cityModel = data;
-                                        userModel.state=data.key;
-                                        userModel.stateCode=data.code;
-                                      });
-                                    }),
-                                  )
-                                      : Container(),*/
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              (UserSignUpForm.stateModel != null)
+                                  ?Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      "District",
+                                      ApiFactory.DISTRICT_API +
+                                          UserSignUpForm.stateModel.key,
+                                      "district",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      UserSignUpForm.districtModel = data;
+                                      UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ) : Container(),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              (UserSignUpForm.districtModel != null)
+                                  ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown
+                                      .networkDropdownGetpartUser(
+                                      "City",
+                                      ApiFactory.CITY_API +
+                                          UserSignUpForm
+                                              .districtModel.key,
+                                      "city",
+                                      Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          UserSignUpForm.cityModel =
+                                              data;
+                                          /*userModel.state=data.key;
+                                          userModel.stateCode=data.code;*/
+                                        });
+                                      }),
+                                ),
+                              )
+                                  : Container(),
+
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+
                               Row(
                                 children: [
                                   Expanded(
@@ -1105,15 +1126,21 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Mobile Number");
+    } else if (UserSignUpForm.countryModel == null ||
+        UserSignUpForm.countryModel == "") {
+      AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.stateModel == null ||
         UserSignUpForm.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
+      AppData.showInSnackBar(context, "Please select State");
+    } else if (UserSignUpForm.stateModel == null ||
+        UserSignUpForm.districtModel == "") {
+      AppData.showInSnackBar(context, "Please select District");
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select State");
-    } else if (textEditingController[3].text == "" || textEditingController[3].text == null || selectDobEn==TypeDob.Age) {
+      AppData.showInSnackBar(context, "Please select City");
+    } else if (textEditingController[3].text == "" || textEditingController[3].text == null ) {
       AppData.showInSnackBar(context, "Please enter your Age");
-    } else if (textEditingController[4].text == "" || textEditingController[4].text == null || selectDobEn==TypeDob.Age) {
+    } else if (textEditingController[4].text == "" || textEditingController[4].text == null ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
     } else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -1123,16 +1150,18 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.age = textEditingController[3].text;
       userModel.ageYears = textEditingController[4].text;
       userModel.dob = textEditingController[5].text;
-      userModel.country = UserSignUpForm.stateModel.key;
-      userModel.countryCode = UserSignUpForm.stateModel.code;
-      userModel.stateCode = UserSignUpForm.cityModel.code;
-      userModel.state = UserSignUpForm.cityModel.key;
+      userModel.country = UserSignUpForm.countryModel.key;
+      userModel.countryCode = UserSignUpForm.countryModel.code;
+      userModel.stateCode = UserSignUpForm.stateModel.code;
+      userModel.state = UserSignUpForm.stateModel.key;
+      userModel.districtid = UserSignUpForm.districtModel.key;;
+      userModel.cityid = UserSignUpForm.cityModel.key;;
 
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
       MyWidgets.showLoading(context);
-      /*widget.model.POSTMETHOD(
+      widget.model.POSTMETHOD(
           api: ApiFactory.USER_REGISTRATION,
           json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
@@ -1142,7 +1171,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });*/
+          });
     }
   }
 
@@ -1212,7 +1241,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-      setState(() => pathUsr = File(_path));
+     // setState(() => pathUsr = File(_path));
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1221,6 +1250,49 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
+        pathUsr = File(_path);
+        // widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimgtype =extName;
+        userModel.profileImage = base64Encode(enc);
+        userModel.profileImageType = extName;
+      });
+    }
+  }
+  /*Future getCerificateImage() async {
+    var image = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String fileName = path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? fileName.substring(pos + 1) : fileName;
+    print(extName);
+
+    setState(() {
+      _imageCertificate = image;
+      idproof = _fileName;
+      pregnancyreportModel.ultrasoundrprt = base64Encode(enc);
+    });
+  }*/
+  Future getGalleryImage() async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 25);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      //setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        pathUsr = File(_path);
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
         userModel.profileImage = base64Encode(enc);
@@ -1307,26 +1379,5 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         });
   }
 
-  Future getGalleryImage() async {
-    var image = await ImagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 25);
-    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    if (image != null) {
-      var enc = await image.readAsBytes();
-      String _path = image.path;
-      setState(() => pathUsr = File(_path));
 
-      String _fileName = _path != null ? _path.split('/').last : '...';
-      var pos = _fileName.lastIndexOf('.');
-      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-      print(extName);
-      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-      setState(() {
-        // widget.model.patientimg =base64Encode(enc);
-        // widget.model.patientimgtype =extName;
-        userModel.profileImage = base64Encode(enc);
-        userModel.profileImageType = extName;
-      });
-    }
-  }
 }
