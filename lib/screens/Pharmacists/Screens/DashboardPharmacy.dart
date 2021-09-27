@@ -27,7 +27,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
   LoginResponse1 loginResponse;
 
   double _height = 120;
-  double _width=150;
+  double _width = 150;
   SharedPref sharedPref = SharedPref();
   File pathUsr = null;
   List<String> strOrders = [
@@ -288,7 +288,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
     );
   }
 
-
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -300,7 +299,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
           children: <Widget>[
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, right: 10, left: 10,bottom: 20),
+                padding: const EdgeInsets.only(
+                    top: 20.0, right: 10, left: 10, bottom: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -312,11 +312,10 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTileblue(
-                                icon:"assets/images/orders2.png",
-                                title:"My Order",
+                                icon: "assets/images/orders2.png",
+                                title: "My Order",
                                 fun: () {
-                                  /*Navigator.pushNamed(
-                                      context, "/patientRegistration");*/
+                                  Navigator.pushNamed(context, "/myorder");
                                   //Navigator.pushNamed(context, "/walkRegList");
                                 },
                                 color: AppData.BG2BLUE,
@@ -329,12 +328,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTilered(
-                                icon: "assets/images/orders2.png",
+                                icon: "assets/images/orders.png",
                                 title: "Confirmed Order",
                                 fun: () {
-                                  chooseAppointment(context);
-                                  // Navigator.pushNamed(context, "/medicalrecordpage");
-                                },
+                                  //chooseAppointment(context);
+                                 // Navigator.pushNamed(context, "/monthlyview");
+                                  },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
                                 // ,
@@ -350,12 +349,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildTile2(
+                              _buildTilered(
                                 //icon: Icons.document_scanner,
-                                icon: CupertinoIcons.doc_append,
+                                icon: "assets/trackorder.jpg",
                                 title: "Processed Orders",
                                 fun: () {
-                                 // Navigator.pushNamed(context, "/pocreportlist");
+                                  Navigator.pushNamed(context, "/processedorders");
                                 },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -366,12 +365,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildTile1(
-                              icon: Icons.edit_attributes,
+                            _buildTileblue(
+                              icon: "assets/images/orders.png",
                               title: "Deliverd Order",
                               fun: () {
                                 //chooseAppointment1(context);
-                               // Navigator.pushNamed(context, "/testappointmentpage");
+                                // Navigator.pushNamed(context, "/testappointmentpage");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -389,12 +388,13 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildTile2(
+                              _buildTileblue(
                                 //icon: Icons.document_scanner,
-                                icon: CupertinoIcons.doc_append,
+                                icon: "assets/images/orders.png",
                                 title: "Invoices",
                                 fun: () {
-                                 // Navigator.pushNamed(context, "/pocreportlist");
+
+                                  // Navigator.pushNamed(context, "/pocreportlist");
                                 },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -405,12 +405,13 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildTile1(
-                              icon: Icons.edit_attributes,
+                            _buildTilered(
+                              icon: "assets/images/orders.png",
                               title: "Monthly Overview",
                               fun: () {
-                                //chooseAppointment1(context);
-                               // Navigator.pushNamed(context, "/testappointmentpage");
+
+
+                                 //Navigator.pushNamed(context, "/");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -429,12 +430,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _buildTile2(
+                              _buildTilered(
                                 //icon: Icons.document_scanner,
-                                icon: CupertinoIcons.doc_append,
+                                icon: "assets/images/orders.png",
                                 title: "Discount & Offer",
                                 fun: () {
-                                //  Navigator.pushNamed(context, "/pocreportlist");
+                                  Navigator.pushNamed(context, "/setdiscount");
                                 },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -445,12 +446,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildTile1(
-                              icon: Icons.edit_attributes,
+                            _buildTileblue(
+                              icon: "assets/images/orders.png",
                               title: "Online Chat",
                               fun: () {
                                 //chooseAppointment1(context);
-                              //  Navigator.pushNamed(context, "/testappointmentpage");
+                                //  Navigator.pushNamed(context, "/testappointmentpage");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -480,238 +481,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 ),
               ),
             )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTile1(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 145,
-        width: (MediaQuery.of(context).size.width - 60) / 2,
-        decoration: BoxDecoration(
-
-            /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.zero,
-              topRight: Radius.circular(10.0),
-              bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.zero,
-            ),
-            color: color,
-            border: Border.all(
-              color: AppData.kPrimaryColor,
-              width: 1.0,
-            )),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                /* Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    */ /*"assets/logo1.png"*/ /*icon,
-                    fit: BoxFit.fitWidth,
-                    width: 50,
-                    height: 70.0,
-                  ),),*/
-                Icon(icon, color: AppData.kPrimaryColor, size: 40.0),
-                /*Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Monte",
-                    fontSize: 22.0,
-                  ),
-
-                ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 15.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            /*Positioned(
-              top: 6,
-              right: 6,
-              child: Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    color: Colors.black12,
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        '67',
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ))),
-              */ /*Positioned(
-            top: 20,
-            left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
-              */
-            /*Positioned(
-            bottom: 20,
-            right: 15,
-            child:Column(
-              children: [
-                Text('Daily Goal', style: TextStyle(color: Colors.white),),
-                 Text('900 kcal', style: TextStyle(color: Colors.white),),
-              ],
-            ))*/ /*
-            )*/
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTile2(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 145,
-        width: (MediaQuery.of(context).size.width - 60) / 2,
-        decoration: BoxDecoration(
-
-            /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.zero,
-              bottomLeft: Radius.zero,
-              bottomRight: Radius.circular(10.0),
-            ),
-            color: color,
-            border: Border.all(
-              color: AppData.kPrimaryRedColor,
-              width: 1.0,
-            )),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                /* Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    */
-                /*"assets/logo1.png"*/
-                /*icon,
-                    fit: BoxFit.fitWidth,
-                    width: 50,
-                    height: 70.0,
-                  ),),*/
-                Icon(icon, color: AppData.kPrimaryRedColor, size: 40.0),
-                /*Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Monte",
-                    fontSize: 22.0,
-                  ),
-
-                ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 15.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            /*Positioned(
-              top: 6,
-              right: 6,
-              child: Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    color: Colors.black12,
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        '67',
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ))),
-              */
-            /*Positioned(
-            top: 20,
-            left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
-              */
-            /*Positioned(
-            bottom: 20,
-            right: 15,
-            child:Column(
-              children: [
-                Text('Daily Goal', style: TextStyle(color: Colors.white),),
-                 Text('900 kcal', style: TextStyle(color: Colors.white),),
-              ],
-            ))*/
-            /*
-            )*/
           ],
         ),
       ),
@@ -873,15 +642,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-
   Widget _buildTilered(
       {String icon,
-        /*IconData icon,*/
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -892,7 +660,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -904,7 +672,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -912,7 +680,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -934,11 +702,10 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Text(
                   title,
                   style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Monte",
-                            fontSize: 16,
+                    color: Colors.black,
+                    fontFamily: "Monte",
+                    fontSize: 16,
                   ),
-
                 ),
                 /*Padding(
                       padding: const EdgeInsets.only( top: 10,left: 3,right: 3
@@ -999,15 +766,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
     );
   }
 
-
   Widget _buildTileblue(
       {String icon,
-        /*IconData icon,*/
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1017,7 +783,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         width: _width,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -1029,7 +795,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-          /* boxShadow: [
+            /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -1037,7 +803,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-        ),
+            ),
         child: Stack(
           children: [
             Column(
@@ -1055,16 +821,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     )),
                 //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
 
-                /*Text(
-                  '12',
+                Text(
+                  title,
                   style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
+                    color: Colors.black,
+                    fontFamily: "Monte",
+                    fontSize: 16,
                   ),
-
-                ),*/
+                ),
                 /*Padding(
                       padding: const EdgeInsets.only( top: 10,left: 3,right: 3
                       ),

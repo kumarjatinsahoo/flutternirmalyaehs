@@ -58,8 +58,8 @@ class _MedicineList extends State<MedicineList> {
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
-  bool valuefirst = false;
-
+  //List<bool> _isChecked=false;
+bool _isChecked=true;
   String longitudes;
   String latitudes;
   String address;
@@ -81,6 +81,7 @@ class _MedicineList extends State<MedicineList> {
     setState(() {
       callAPI();
       _getLocationName();
+
     });
   }
 
@@ -95,6 +96,8 @@ class _MedicineList extends State<MedicineList> {
           setState(() {
             //AppData.showInSnackBar(context, msg);
             medicineListModel = MedicineListModel.fromJson(map);
+         //   _isChecked = List<bool>.filled(medicineListModel.body.length, false);
+
           });
 
           //foundUser = appointModel.body;
@@ -153,10 +156,10 @@ class _MedicineList extends State<MedicineList> {
       body: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                DropDown.networkDropdownGetpartUserundrelinee(
+                DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
                     ApiFactory.PHARMACY_LIST ,
                     "choosepharmacy", (KeyvalueModel data) {
@@ -166,7 +169,7 @@ class _MedicineList extends State<MedicineList> {
                   });
                 }, mapK),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 (medicineListModel != null)
                     ? ListView.builder(
@@ -184,6 +187,7 @@ class _MedicineList extends State<MedicineList> {
                           // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
+
                               // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
                               child: Card(
                                 shape: RoundedRectangleBorder(
@@ -192,22 +196,144 @@ class _MedicineList extends State<MedicineList> {
                                 elevation: 5,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                  child: Column(
                                     children: [
-                                      Checkbox(
-                                        value: this.valuefirst,
-                                        onChanged: (bool value) {
+                                  CheckboxListTile(
+                                          activeColor: Colors.blue[300],
+                                          dense: true,
+                                          //font change
+                                          title: new Text(
+                                            medicineListModel.body[i].medname,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                letterSpacing: 0.5),
+                                          ),
+                                        value: _isChecked,
+                                        onChanged: (val) {
                                           setState(() {
-                                            this.valuefirst = value;
+                                            _isChecked = val;
+
                                           });
                                         },
                                       ),
-                                      Text(
-                                        body.medname,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 13),
-                                      )
+/*
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 13,),
+                                         // (medicineListModel.body.length =="4")?
+                                          Text(
+                                            body.medname,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                letterSpacing: 0.5),
+                                          ),
+                                          Spacer(),
+                                          Checkbox(
+                                            value: this.isCheck,
+                                            onChanged: (bool value) {
+                                              setState(() {
+                                                this.isCheck = value;
+                                              });
+                                            },
+                                          ),
+                                              //:Container(),
+
+                                        ],
+                                      ),
+*/
+                                      SizedBox(width: 5,),
+                                      Container(
+                                        height: 30,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(width: 13,),
+                                            Text(
+                                              "Dosage :-",
+                                              style: TextStyle(
+                                                  color: Colors.black, fontSize: 13),
+                                            ),
+                                            SizedBox(width: 5,),
+                                            Text(
+                                              body.dosage,
+                                              style: TextStyle(
+                                                  color: Colors.black, fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(width: 15,),
+                                      Container(
+                                        height: 30,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(width: 13,),
+                                            Container(
+                                              width:80,
+                                              child: Text(
+                                                "morning",
+                                                style: TextStyle(
+                                                    color: Colors.black, fontSize: 13),
+                                              ),
+                                            ),
+                                           // SizedBox(width: 10,),
+                                            Container(
+                                              width:80,
+                                              child: Text(
+                                                "afternoon",
+                                                style: TextStyle(
+                                                    color: Colors.black, fontSize: 13),
+                                              ),
+                                            ),
+                                          //  SizedBox(width: 10,),
+                                            Container(
+                                              width:80,
+                                              child: Text(
+                                                "evening",
+                                                style: TextStyle(
+                                                    color: Colors.black, fontSize: 13),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 30,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(width: 13,),
+                                            (body.morning == "1")?
+                                            Container(
+                                              width:50,
+                                              height: 30,
+                                              child: Image.asset(
+                                                'assets/images/active.png',color: Colors.green,),
+                                            ): Container(),
+                                             SizedBox(width: 1,),
+                                            (body.afternoon == "1")?
+                                            Container(
+                                              width:100,
+                                              height: 30,
+                                              child: Image.asset(
+                                                'assets/images/active.png',color: Colors.green,),
+                                            ): Container(),
+                                            //  SizedBox(width: 60,),
+                                            (body.evening == "1")?
+                                            Container(
+                                              width:80,
+                                              height: 30,
+                                              child: Image.asset(
+                                                'assets/images/active.png',color: Colors.green,),
+                                            ): Container(),
+                                          ],
+                                        ),
+                                      ),
+
                                     ],
                                   ),
                                 ),
@@ -277,4 +403,10 @@ class _MedicineList extends State<MedicineList> {
       ),
     ));
   }
+
+  // void itemChange(bool val) {
+  //   setState(() {
+  //     _isChecked[index] = val;
+  //   });
+  // }
 }

@@ -422,7 +422,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 11,
                   onTap: () {
                     selectDestination(11);
-                   // Navigator.pushNamed(context, "/myorder");
+                    Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
                   leading: Icon(Icons.calendar_today,
@@ -431,7 +431,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 12,
                   onTap: () {
                     selectDestination(12);
-                    //Navigator.pushNamed(context, "/monthlyview");
+                    Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
                   leading: Icon(Icons.healing,
@@ -440,7 +440,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 13,
                   onTap: () {
                     selectDestination(13);
-                    //Navigator.pushNamed(context, "/processedorders");
+                    Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
                 leading:
@@ -449,7 +449,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 14,
                 onTap: () {
                   selectDestination(14);
-                  //Navigator.pushNamed(context, "/setdiscount");
+                  Navigator.pushNamed(context, "/setdiscount");
                 },
               ),
               ListTile(
