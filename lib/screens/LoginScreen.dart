@@ -538,6 +538,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         Divider(),
+                        ListTile(
+                          title: Center(child: Text("Ambulance")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/ambulance");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Center(child: Text("NGO")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/ngo");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Center(child: Text("Blood Bank")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/bloodbank");
+                          },
+                        ),
+                        Divider(),
                         MaterialButton(
                           child: Text(
                             MyLocalizations.of(context).text("CANCEL"),

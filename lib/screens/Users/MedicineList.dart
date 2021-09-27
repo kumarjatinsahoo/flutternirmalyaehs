@@ -187,7 +187,7 @@ bool _isChecked=true;
                           // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
-
+                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
                               // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
                               child: Card(
                                 shape: RoundedRectangleBorder(

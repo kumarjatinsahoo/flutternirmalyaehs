@@ -6,19 +6,31 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/PharamacistSignupModel.dart';
+import 'package:user/models/PharmacyRegistrationModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
+
 import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
+
+enum gender{
+  Male,
+  Female,
+}
 // ignore: must_be_immutable
-class PharmaSignUpForm extends StatefulWidget {
+class BloodBankSignUpForm2 extends StatefulWidget {
   final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
@@ -27,11 +39,13 @@ class PharmaSignUpForm extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel organizationModel = null;
-  static KeyvalueModel pharmacyModel = null;
-  static KeyvalueModel titlemodel = null;
+  static KeyvalueModel bloodgroupModel=null;
+  static KeyvalueModel countryModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel citymodel = null;
 
-  PharmaSignUpForm({
+
+  BloodBankSignUpForm2({
     Key key,
     @required this.updateTab,
     this.isConfirmPage = false,
@@ -40,10 +54,10 @@ class PharmaSignUpForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  PharmaSignUpFormState createState() => PharmaSignUpFormState();
+  BloodBankSignUpForm2State createState() => BloodBankSignUpForm2State();
 }
 
-class PharmaSignUpFormState extends State<PharmaSignUpForm> {
+class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -75,7 +89,27 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     new TextEditingController(),
 
   ];
-
+  String token;
+  String user;
+  String bloodbankorganisation;
+  String bloodbanktitle;
+  String bloodbankprofessional;
+  String bloodbankexperience;
+  String bloodbankspecialty;
+  String bloodbankdob;
+  String bloodbankbloodgrp;
+  String bloodbankgender;
+  String bloodbankaddress;
+  String bloodbankcountryid;
+  String bloodbankstateid;
+  String bloodbankdistid;
+  String bloodbankcityid;
+  String bloodbankpincode;
+  String bloodbankmobile;
+  String bloodbankemail;
+  String labalteremail;
+  String labhomeph;
+  String labofficeph;
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -126,22 +160,34 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> genderList = [
-    KeyvalueModel(name: "Male", key: "1"),
-    KeyvalueModel(name: "Female", key: "2"),
-    KeyvalueModel(name: "Transgender", key: "3"),
+  List<KeyvalueModel> BloodGroup = [
+    KeyvalueModel(name: "A+", key: "1"),
+    KeyvalueModel(name: "B+", key: "2"),
+    KeyvalueModel(name: "O+", key: "3"),
+    KeyvalueModel(name: "AB+", key: "4"),
+    KeyvalueModel(name: "A-", key: "5"),
+    KeyvalueModel(name: "B-", key: "6"),
+    KeyvalueModel(name: "O-", key: "7"),
+    KeyvalueModel(name: "AB-", key: "8"),
   ];
-  List<KeyvalueModel> districtList = [
-    KeyvalueModel(name: "india", key: "1"),
-
+  List<KeyvalueModel> Gender=[
+    KeyvalueModel(name: "Male",key: "0"),
+    KeyvalueModel(name: "Female",key: "1"),
+    KeyvalueModel(name: "Transgender",key: "2"),
   ];
 
   @override
   void initState() {
     super.initState();
-    PharmaSignUpForm.districtModel = null;
-    PharmaSignUpForm.blockModel = null;
-    PharmaSignUpForm.genderModel = null;
+    BloodBankSignUpForm2.districtModel = null;
+    BloodBankSignUpForm2.blockModel = null;
+    BloodBankSignUpForm2.genderModel = null;
+    bloodbankorganisation = widget.model.bloodbankorganisation;
+    bloodbanktitle = widget.model.bloodbanktitle;
+    bloodbankprofessional = widget.model.bloodbankprofessional;
+    bloodbankgender = widget.model.bloodbankgender;
+    bloodbankaddress = widget.model.bloodbankaddress;
+    bloodbankexperience=widget.model.bloodbankexperience;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -168,15 +214,12 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
           body: Container(
             child: Column(
               children: [
-                /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
+                Container(
                   color: AppData.kPrimaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
+                    child: Row(
                       children: [
                         InkWell(
                             onTap: (){
@@ -188,21 +231,12 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                           child: Text('SIGN UP',
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
-                        /*Align(
-                alignment: Alignment.center,
-                child: Text('SIGN UP',textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
-              ),
-              ),*/
                       ],
                     ),
                   ),
                   height: 55,
                   width: MediaQuery.of(context).size.width,
-                  /*  height:*/
                 ),
-
-                /* ),*/
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,
@@ -232,17 +266,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
-
-                                //   padding: EdgeInsets.only(
-                                //       left: size.width * 0.20, right: size.width * 0.20),
-                                //   child: Image.asset(
-                                //     "assets/icons/sanju-vector.png",
-                                //   ),
-                                // ),
-
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
@@ -256,157 +279,158 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            "Organization Name",
-                                            ApiFactory.PHARMACY_ORGANISATION_API,
-                                            "pharmacy",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            PharmaSignUpForm.pharmacyModel = data;
-                                          });
-                                        }),  SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            "Title",
-                                            ApiFactory.TITLE_API,
-                                            "title",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.TITLE_API);
-                                            PharmaSignUpForm.titlemodel = data;
-                                          });
-                                        }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(9, "Professional's Name"),
+                                        SizedBox(height: 5,),
 
-                                        SizedBox(height: 10),
-
-                                        formFieldMobile(10, " Experience(Years)"),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        formField(11, " Address"),
+                                        //  formFieldaddress(8, "Address"),
                                         SizedBox(
                                           height: 5,
                                         ),
 
-                                        DropDown.networkDropdownGetpartUser1(
-                                            "Gender",
-                                            ApiFactory.GENDER_API,
-                                            "gender",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.GENDER_API);
-                                            PharmaSignUpForm.genderModel = data;
-                                          });
-                                        }),
-                                        SizedBox(height: 15),
+                                        DropDown.networkDropdownGetpartUser(
+                                            "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.COUNTRY_API);
+                                                BloodBankSignUpForm2.countryModel = data;
+                                                BloodBankSignUpForm2.stateModel = null;
 
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                              });
+                                            }),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        DropDown.networkDropdownGetpartUser(
+                                            "State", ApiFactory.STATE_API +(BloodBankSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.STATE_API);
+                                                BloodBankSignUpForm2.stateModel = data;
+                                                BloodBankSignUpForm2.districtModel = null;
+                                              });
+                                            }),
+
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        DropDown.networkDropdownGetpartUser(
+                                            "District", ApiFactory.DISTRICT_API +(BloodBankSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.DISTRICT_API);
+                                                BloodBankSignUpForm2.districtModel = data;
+                                                BloodBankSignUpForm2.citymodel = null;
+                                              });
+                                            }),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        DropDown.networkDropdownGetpartUser(
+                                            "City", ApiFactory.CITY_API + (BloodBankSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                            23.0,
+                                                (KeyvalueModel data) {
+                                              setState(() {
+                                                print(ApiFactory.CITY_API);
+                                                BloodBankSignUpForm2.citymodel = data;
+                                                // LabSignUpForm3.districtModel = null;
+                                              });
+                                            }),
+
+                                        SizedBox(
+                                          height: 13,
+                                        ),
+                                        formFieldzip(5, "Enter Zip/Pin Code :"),
+                                        SizedBox(
+                                          height: 13,
+                                        ),
+
+                                        formFieldMobile(10, "Mobile Number :"),
+                                        SizedBox(
+                                          height: 13,
+                                        ),
+                                        formFielEmail(11, "Email Id :"),
+                                        SizedBox(
+                                          height: 13,
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text("Upload Photo",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              child: Text(
+                                                "Upload Document :",
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Row(
+                                            //  mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox = !_checkbox;
+                                                  });
+                                                },
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              RichText(
+                                                  textAlign: TextAlign.start,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: 'I agree to NCORDS ',
+                                                        /* "Welcome back",*/
+                                                        style: TextStyle(
+                                                          // fontWeight: FontWeight.w800,
+                                                          fontFamily: "Monte",
+                                                          // fontSize: 25.0,
+                                                          color: Colors.grey,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                        'Terms and Conditions',
+                                                        /* "Welcome back",*/
+                                                        style: TextStyle(
+                                                          // fontWeight: FontWeight.w500,
+                                                          fontFamily: "Monte",
+                                                          // fontSize: 25.0,
+                                                          color: Colors.indigo,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
                                           child: nextButton1(),
                                         ),
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
-
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
                                       ],
                                     ),
                                   ),
@@ -435,12 +459,12 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }*/
-  Widget gender() {
-    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          PharmaSignUpForm.genderModel = model;
-        });
-  }
+  // Widget gender() {
+  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
+  //           (KeyvalueModel model) {
+  //         LabSignUpForm2.genderModel = model;
+  //       });
+  // }
 
 
 
@@ -583,77 +607,168 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text: "SUBMIT".toUpperCase(),
       context: context,
       fun: () {
-       // Navigator.pushNamed(context, "/patientRegistration2");
-        if (PharmaSignUpForm.pharmacyModel == null ||
-            PharmaSignUpForm.pharmacyModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization");
-        }
-        else if (PharmaSignUpForm.titlemodel == null ||
-            PharmaSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
-        }
-        else if (textEditingController[9].text == "" ||
-            textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
+        if (BloodBankSignUpForm2.countryModel == null ||
+            BloodBankSignUpForm2.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select country");
+        } else if (BloodBankSignUpForm2.stateModel == null ||
+            BloodBankSignUpForm2.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select state");
+        } else if (BloodBankSignUpForm2.districtModel == null ||
+            BloodBankSignUpForm2.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select District");
+        }else if (BloodBankSignUpForm2.citymodel == null ||
+            BloodBankSignUpForm2.citymodel == "") {
+          AppData.showInSnackBar(context, "Please select city");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please enter Pin");
         }
         else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
-        }
-        else if (textEditingController[11].text == "" ||
+          AppData.showInSnackBar(context, "Please enter mobile number");
+        }else if (textEditingController[10].text != "" &&
+            textEditingController[10].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+        }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
+          AppData.showInSnackBar(context, "Please enter email id");
         }
-        else if (PharmaSignUpForm.genderModel == null ||
-            PharmaSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+        else if (textEditingController[11].text != ""&&
+            !AppData.isValidEmail(textEditingController[11].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        }
+        else if (_checkbox == false) {
+          AppData.showInSnackBar(context, "Please checked terms and Condition");
         }
         else {
-          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
-          widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
-          widget.model.pharmaprofessional = textEditingController[9].text;
-          widget.model.pharmaexperience = textEditingController[10].text;
-          widget.model.pharmaaddress = textEditingController[11].text;
-          widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
+          MyWidgets.showLoading(context);
+          PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
+          pharmaSignupModel.organizationid = bloodbankorganisation;
+          pharmaSignupModel.titleid = bloodbanktitle;
+          pharmaSignupModel.docname = bloodbankprofessional;
+          pharmaSignupModel.experience =  bloodbankexperience;
+          pharmaSignupModel.gender =  bloodbankgender;
+          pharmaSignupModel.address =  bloodbankaddress;
+          // pharmaSignupModel.address = textEditingController[8].t Idext;
+          pharmaSignupModel.countryid = BloodBankSignUpForm2.countryModel.key;
+          pharmaSignupModel.stateid = BloodBankSignUpForm2.stateModel.key;
+          pharmaSignupModel.districtid = BloodBankSignUpForm2.districtModel.key;
+          pharmaSignupModel.cityid = BloodBankSignUpForm2.citymodel.key;
+          pharmaSignupModel.pincode = textEditingController[5].text;
+          //  pharmaSignupModel.homephone = textEditingController[4].text;
+          //pharmaSignupModel.officephone = textEditingController[6].text;
+          pharmaSignupModel.mobno = textEditingController[10].text;
+          pharmaSignupModel.email = textEditingController[11].text;
+          //pharmaSignupModel.alteremail = textEditingController[12].text;
+          pharmaSignupModel.role="3";
+          pharmaSignupModel.speciality="32";
 
-          Navigator.pushNamed(context, "/pharmasignupform3");
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
+          widget.model.POSTMETHOD(
+              api: ApiFactory.PHARMACY_REGISTRATION,
+              json: pharmaSignupModel.toJson(),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+          // AppData.showInSnackBar(context, "add Successfully");
+
         }
       },
     );
   }
 
-  Widget nextButtonn() {
-    return GestureDetector(
-      onTap: () {
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        //title: "Success",
+        title: "Success",
+        //type: AlertType.info,
+        onWillPopActive: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_outline_outlined,
+              size: 140,
+              color: Colors.green,
+            ),
+            SizedBox(
+              height: 5,
+            ),
 
-
-        Navigator.pushNamed(context, "/pharmasignupform2");
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("NEXT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
+          ],
         ),
-      ),
-    );
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+
+              //   widget.model.patientName = null;
+              Navigator.pop(context);
+              widget.model.patientphnNo = null;
+              widget.model.patientemail = null;
+              widget.model.patientaadhar = null;
+              widget.model.patientheight = null;
+              widget.model.patientweight = null;
+              widget.model.patientimg = null;
+              widget.model.patientage = null;
+              widget.model.patientgender = null;
+              widget.model.patienCitycode = null;
+              widget.model.patienCitykey = null;
+              widget.model.patienStatecode = null;
+              widget.model.patienStatekey = null;
+              widget.model.patientimgtype = null;
+              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
+
+  // Widget nextButton1() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       Navigator.pushNamed(context, "/pharmasignupform4");
+  //     },
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       margin: EdgeInsets.only(left:180, right: 0),
+  //       decoration: BoxDecoration(
+  //           color: AppData.kPrimaryColor,
+  //           borderRadius: BorderRadius.circular(10.0),
+  //           gradient: LinearGradient(
+  //               begin: Alignment.bottomRight,
+  //               end: Alignment.topLeft,
+  //               colors: [Colors.blue, AppData.kPrimaryColor])),
+  //       child: Padding(
+  //         padding:
+  //         EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+  //         child: Text(
+  //           MyLocalizations.of(context).text("SUBMIT"),
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(color: Colors.white, fontSize: 16.0),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget nextButton() {
     return GestureDetector(
@@ -770,23 +885,22 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
+            //height: 45,
             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            alignment: Alignment.center,
             // width: size.width * 0.8,
             decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                width: 0.3,
+                color: Colors.grey[800],
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
@@ -815,6 +929,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                 setState(() {});
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
+              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
                 hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
                 border: InputBorder.none,
@@ -863,7 +978,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (PharmaSignUpForm.genderModel == null || PharmaSignUpForm.genderModel == "") {
+    } else if (BloodBankSignUpForm2.genderModel == null || BloodBankSignUpForm2.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -883,9 +998,9 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (PharmaSignUpForm.districtModel == null) {
+    } else if (BloodBankSignUpForm2.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (PharmaSignUpForm.blockModel == null) {
+    } else if (BloodBankSignUpForm2.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -973,40 +1088,187 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }
+  Widget formFieldaddress(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          /* inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],*/
+        ),
+      ),
+    );
+  }
+  Widget formField(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 17),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical:
+          TextAlignVertical.center,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],
+        ),
+      ),
+    );
+  }
 
-  // Widget formField(int index, String hint,) {
-  //   return TextFieldContainer(
-  //     child: Container(
-  //       height: 50,
-  //       padding:
-  //       EdgeInsets.symmetric(horizontal: 5),
-  //       decoration: BoxDecoration(
-  //         color: Colors.white,
-  //         borderRadius:
-  //         BorderRadius.circular(5),
-  //         border: Border.all(
-  //             color: Colors.black, width: 0.3),
-  //       ),
-  //       child: TextFormField(
-  //         controller: textEditingController[index],
-  //         textInputAction: TextInputAction.done,
-  //         keyboardType:TextInputType.text,
-  //         /* decoration: BoxDecoration(11
-  //           color: AppData.kPrimaryLightColor,
-  //           //color: Color(0x45283e81),
-  //           borderRadius: BorderRadius.circular(29),
-  //         ),*/
-  //         style: TextStyle(fontSize: 13),
-  //         decoration: InputDecoration(
-  //             hintText: hint,
-  //             hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
-  //             border: InputBorder.none,
-  //             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-  //         onChanged: (newValue) {},
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget formFieldzip(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black,width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText:hint,
+                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFielEmail(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(
+                color: AppData.hintColor,
+                fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          /* textAlignVertical:
+          TextAlignVertical.center,*/
+          /*inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+          ],*/
+        ),
+      ),
+    );
+  }
   Widget formFieldMobile(
       int index,
       String hint,
@@ -1065,48 +1327,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }
-  Widget formField(
-      int index,
-      String hint,
-      ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
-      child: Container(
-        height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
-        ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
-          ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],
-        ),
-      ),
-    );
-  }
-
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
 //     child: TextFormField(

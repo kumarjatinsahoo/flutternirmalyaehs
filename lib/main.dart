@@ -4,6 +4,8 @@ import 'package:user/screens/AYUSH%20Doctors.dart';
 import 'package:user/screens/AddWitness.dart';
 import 'package:user/screens/AirAmbulanceList.dart';
 import 'package:user/screens/AllAppointmentPage.dart';
+import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
+import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
 import 'package:user/screens/ChemistsOngooglePage.dart';
 import 'package:user/screens/ChemistsPage.dart';
@@ -544,6 +546,18 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/usermedicinelist': (context) => UserMedicineList(
+                model: _model,
+              ),
+              '/ambulance': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/ngo': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/bloodbank': (context) => AmbulanceSignUpForm(
+                model: _model,
+              ),
+              '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
                 model: _model,
               ),
 
