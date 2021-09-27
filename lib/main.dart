@@ -1,5 +1,6 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
@@ -54,7 +55,7 @@ import 'package:user/screens/MedicalService.dart';
 import 'screens/Users/MedicalServiceOngooglePage.dart';
 import 'screens/Users/MedicineReminder.dart';
 import 'screens/Users/MedicineReminderOther.dart';
-import 'package:user/screens/MonthlyView.dart';
+import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
 import 'package:user/screens/MyAppointment_Requested.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
@@ -265,6 +266,12 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/monthlyview': (context) => LabSignUpForm(
+                    model: _model,
+                  ),
+              '/monthloveryview': (context) => MonthlyView(
+                    model: _model,
+              ),
+              '/deliverdorder': (context) => DeliverdOrder(
                     model: _model,
                   ),
               '/labsignup2': (context) => LabSignUpForm2(
