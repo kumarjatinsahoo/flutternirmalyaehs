@@ -13,18 +13,18 @@ import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-class FindScreen extends StatefulWidget {
+class FindPage extends StatefulWidget {
   MainModel model;
   static KeyvalueModel specialistModel = null;
   static KeyvalueModel healthcareProvider = null;
 
-  FindScreen({Key key, this.model}) : super(key: key);
+  FindPage({Key key, this.model}) : super(key: key);
 
   @override
-  _FindScreenState createState() => _FindScreenState();
+  _FindPageState createState() => _FindPageState();
 }
 
-class _FindScreenState extends State<FindScreen> {
+class _FindPageState extends State<FindPage> {
   var selectedMinValue;
   List<KeyvalueModel> countryList = [
     KeyvalueModel(name: "India", key: "1"),
@@ -180,7 +180,7 @@ class _FindScreenState extends State<FindScreen> {
                             "healthcareProvider", (KeyvalueModel data) {
                           setState(() {
                             print(ApiFactory.HEALTHPROVIDER_API);
-                            FindScreen.healthcareProvider = data;
+                            FindPage.healthcareProvider = data;
                             //DoctorconsultationPage.doctorModel = null;
                             // UserSignUpForm.cityModel = null;
                           });
@@ -190,11 +190,11 @@ class _FindScreenState extends State<FindScreen> {
                     SizedBox(
                       height: 8,
                     ),
-                    (FindScreen.healthcareProvider != null)
+                    (FindPage.healthcareProvider != null)
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: (FindScreen.healthcareProvider.key == "1" ||
-                                    FindScreen.healthcareProvider.key == "4")
+                            child: (FindPage.healthcareProvider.key == "1" ||
+                                    FindPage.healthcareProvider.key == "4")
                                 ? SizedBox(
                                     height: 58,
                                     child: DropDown
@@ -204,7 +204,7 @@ class _FindScreenState extends State<FindScreen> {
                                             "speciality", (KeyvalueModel data) {
                                       setState(() {
                                         print(ApiFactory.SPECIALITY_API);
-                                        FindScreen.specialistModel = data;
+                                        FindPage.specialistModel = data;
                                         //DoctorconsultationPage.doctorModel = null;
                                         // UserSignUpForm.cityModel = null;
                                       });
@@ -271,9 +271,9 @@ class _FindScreenState extends State<FindScreen> {
             widget.model.lati = latitudes;
             widget.model.addr = address;
             widget.model.city = cityName;
-            widget.model.type = FindScreen?.specialistModel?.key ?? "";
-            widget.model.healthpro = FindScreen.healthcareProvider.key;
-            widget.model.healthproname = FindScreen.healthcareProvider.name;
+            widget.model.type = FindPage?.specialistModel?.key ?? "";
+            widget.model.healthpro = FindPage.healthcareProvider.key;
+            widget.model.healthproname = FindPage.healthcareProvider.name;
             //widget.model.healthproname = "Doctor";
 
             //Navigator.pushNamed(context, "/navigation");

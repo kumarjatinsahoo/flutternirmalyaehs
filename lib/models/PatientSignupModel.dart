@@ -13,7 +13,7 @@ class PatientSignupModel{
       enteredBy,
       profileImageType,
       countryCode,
-      stateCode;
+      stateCode,districtid,cityid;
 
   PatientSignupModel();
   PatientSignupModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +32,8 @@ class PatientSignupModel{
     profileImageType = json['profileImageType'];
     stateCode = json['stateCode'];
     countryCode = json['countryCode'];
+    districtid = json['districtid'];
+    cityid = json['cityid'];
 
   }
 
@@ -71,6 +73,8 @@ class PatientSignupModel{
       "profileImageType": this.profileImageType,
       "stateCode": this.stateCode,
       "countryCode": this.countryCode,
+      "districtid": this.districtid,
+      "cityid": this.cityid,
       "profileImage":[this.profileImage]
     };
 
@@ -78,7 +82,7 @@ class PatientSignupModel{
   }
   @override
   String toString() {
-    return 'PatientSignupModel{fName: $fName, mobile: $mobile, age: $age, country: $country, state: $state, gender: $gender, height: $height, weight: $weight, email: $email, aadhar: $aadhar, enteredBy: $enteredBy, profileImageType: $profileImageType, countryCode: $countryCode, stateCode: $stateCode}';
+    return 'PatientSignupModel{fName: $fName, mobile: $mobile, age: $age, country: $country, state: $state, gender: $gender, height: $height, weight: $weight, email: $email, aadhar: $aadhar, enteredBy: $enteredBy, profileImageType: $profileImageType, countryCode: $countryCode, stateCode: $stateCode,districtid: $districtid,cityid: $cityid}';
   }
 }
 

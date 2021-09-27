@@ -16,6 +16,7 @@ class LabSignupModel {
   String mobno;
   String email;
   String alteremail;
+  String experience;
   String homephone;
   String officephone;
   String role;
@@ -38,6 +39,7 @@ class LabSignupModel {
         this.mobno,
         this.email,
         this.alteremail,
+        this.experience,
         this.homephone,
         this.officephone,
         this.role
@@ -60,6 +62,7 @@ class LabSignupModel {
     pincode = json['pincode'];
     mobno = json['mobno'];
     email = json['email'];
+    experience = json['experience'];
     alteremail = json['alteremail'];
     homephone = json['homephone'];
     officephone = json['officephone'];
@@ -84,6 +87,7 @@ class LabSignupModel {
     data['pincode'] = this.pincode;
     data['mobno'] = this.mobno;
     data['email'] = this.email;
+    data['experience'] = this.experience;
     data['alteremail'] = this.alteremail;
     data['homephone'] = this.homephone;
     data['officephone'] = this.officephone;
@@ -97,6 +101,6 @@ class LabSignupModel {
         ' dob: $dob, bloodgroup: $bloodgroup, gender: $gender,address: $address, countryid: $countryid,'
         ' stateid: $stateid, districtid: $districtid, cityid: $cityid,pincode: $pincode,'
         'homephone: $homephone,officephone: $officephone,mobno: $mobno,email: $email,'
-        'alteremail: $alteremail,role:$role}';
+        'alteremail: $alteremail,role:$role,experience:$experience}';
   }
 }

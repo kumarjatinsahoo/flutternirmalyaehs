@@ -4,6 +4,7 @@ class MedicinlistModel{
   String userid,
       appno,
       medname, mednaid, duration, remarks, doctor, morning, afternoon, evening;
+  bool isSelected=false;
 
   MedicinlistModel();
 

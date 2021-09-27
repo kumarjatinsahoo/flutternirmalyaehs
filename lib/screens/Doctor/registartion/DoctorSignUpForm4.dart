@@ -439,6 +439,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 13,
                           ),
+                          formFieldExperience(13, "Experience"),
+                          SizedBox(
+                            height: 13,
+                          ),
                           Column(
                             children: [
                               Padding(
@@ -728,6 +732,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       }else if (textEditingController[12].text != "" &&
           !AppData.isValidEmail(textEditingController[12].text)) {
         AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+      }else if (textEditingController[13].text == "" ||
+          textEditingController[13].text == null) {
+        AppData.showInSnackBar(context, "Please enter Experience");
       }else if (_checkbox == false) {
         AppData.showInSnackBar(context, "Please checked terms and Condition");
       }
@@ -756,6 +763,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           doctorModel.mobno = textEditingController[10].text;
           doctorModel.email = textEditingController[11].text;
           doctorModel.alteremail = textEditingController[12].text;
+          doctorModel.experience = textEditingController[13].text;
           doctorModel.organizationid = organisationname;
           doctorModel.docname = professionalname;
           doctorModel.titleid = title;
@@ -1252,6 +1260,63 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText:hint,
+                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldExperience(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black,width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 3,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(
