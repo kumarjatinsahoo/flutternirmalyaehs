@@ -457,7 +457,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       //doctor dashboard
                         {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashDoctor', (Route<dynamic> route) => false);
+                          '/dashboardpharmacy', (Route<dynamic> route) => false);
                     }
 
                   });

@@ -1111,11 +1111,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select State");
-    } else if (textEditingController[3].text == "" ||
-        textEditingController[3].text == null) {
+    } else if (textEditingController[3].text == "" || textEditingController[3].text == null || selectDobEn==TypeDob.Age) {
       AppData.showInSnackBar(context, "Please enter your Age");
-    } else if (textEditingController[4].text == "" ||
-        textEditingController[4].text == null) {
+    } else if (textEditingController[4].text == "" || textEditingController[4].text == null || selectDobEn==TypeDob.Age) {
       AppData.showInSnackBar(context, "Please enter your DOB");
     } else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -1134,7 +1132,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
       MyWidgets.showLoading(context);
-      widget.model.POSTMETHOD(
+      /*widget.model.POSTMETHOD(
           api: ApiFactory.USER_REGISTRATION,
           json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
@@ -1144,7 +1142,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });
+          });*/
     }
   }
 

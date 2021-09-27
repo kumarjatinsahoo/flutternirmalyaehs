@@ -14,7 +14,9 @@ import 'package:user/widgets/text_field_container.dart';
 
 class PatientRegistration3 extends StatefulWidget {
   final MainModel model;
+  static KeyvalueModel countryModel = null;
   static KeyvalueModel stateModel = null;
+  static KeyvalueModel districtModel = null;
   static KeyvalueModel cityModel = null;
 
   const PatientRegistration3({Key key, this.model}) : super(key: key);
@@ -119,8 +121,8 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.COUNTRY_API);
-                                PatientRegistration3.stateModel = data;
-                                PatientRegistration3.cityModel = null;
+                                PatientRegistration3.countryModel = data;
+                                PatientRegistration3.stateModel = null;
                               });
                             }),
                       ),
@@ -128,7 +130,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    (PatientRegistration3.stateModel != null)
+                    (PatientRegistration3.countryModel != null)
                         ? Padding(
                             padding: const EdgeInsets.only(
                                 left: 10.0, right: 10.0, bottom: 7.0),
@@ -137,14 +139,57 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                               child: DropDown.networkDropdownGetpart4(
                                   "State",
                                   ApiFactory.STATE_API +
-                                      PatientRegistration3.stateModel.key,
+                                      PatientRegistration3.countryModel.key,
                                   "state", (KeyvalueModel data) {
                                 setState(() {
-                                  PatientRegistration3.cityModel = data;
+                                  PatientRegistration3.stateModel = data;
                                 });
                               }),
                             ),
                           )
+                        : Container(),
+
+                    SizedBox(
+                      height: size.height * 0.07,
+                    ),
+                    (PatientRegistration3.stateModel != null)
+                        ? Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, bottom: 7.0),
+                      child: SizedBox(
+                        height: 55,
+                        child: DropDown.networkDropdownGetpart4(
+                            "District",
+                            ApiFactory.DISTRICT_API +
+                                PatientRegistration3.stateModel.key,
+                            "districtid", (KeyvalueModel data) {
+                          setState(() {
+                            PatientRegistration3.districtModel = data;
+                          });
+                        }),
+                      ),
+                    )
+                        : Container(),
+                    SizedBox(
+                      height: size.height * 0.07,
+                    ),
+                    (PatientRegistration3.districtModel != null)
+                        ? Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, bottom: 7.0),
+                      child: SizedBox(
+                        height: 55,
+                        child: DropDown.networkDropdownGetpart4(
+                            "City",
+                            ApiFactory.CITY_API +
+                                PatientRegistration3.districtModel.key,
+                            "city", (KeyvalueModel data) {
+                          setState(() {
+                            PatientRegistration3.cityModel = data;
+                          });
+                        }),
+                      ),
+                    )
                         : Container(),
                     SizedBox(
                       height: size.height * 0.07,
@@ -404,6 +449,8 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           widget.model.patienStatecode = PatientRegistration3.stateModel.code;
           widget.model.patienCitykey = PatientRegistration3.cityModel.key;
           widget.model.patienCitycode = PatientRegistration3.cityModel.code;
+        /*  widget.model.districtid = PharmaSignUpForm3.districtModel.key;
+          widget.model.cityid = PharmaSignUpForm3.citymodel.key;*/
           Navigator.pushNamed(context, "/patientRegistration4");
         }
       },
