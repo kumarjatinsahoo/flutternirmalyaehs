@@ -29,6 +29,7 @@ class BloodBankSignUpForm extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
   static KeyvalueModel pharmacyModel = null;
+  static KeyvalueModel bloodbankModel = null;
   static KeyvalueModel titlemodel = null;
 
   BloodBankSignUpForm({
@@ -261,13 +262,13 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Organization Name",
-                                            ApiFactory.PHARMACY_ORGANISATION_API,
-                                            "pharmacy",
+                                            ApiFactory.BlOODBANK_ORGANISATION_API,
+                                            "bloodbank",
                                             Icons.location_on_rounded,
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
-                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            BloodBankSignUpForm.pharmacyModel = data;
+                                            print(ApiFactory.BlOODBANK_ORGANISATION_API);
+                                            BloodBankSignUpForm.bloodbankModel = data;
                                           });
                                         }),  SizedBox(
                                           height: 5,
@@ -587,8 +588,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       context: context,
       fun: () {
         // Navigator.pushNamed(context, "/patientRegistration2");
-        if (BloodBankSignUpForm.pharmacyModel == null ||
-            BloodBankSignUpForm.pharmacyModel == "") {
+        if (BloodBankSignUpForm.bloodbankModel == null ||
+            BloodBankSignUpForm.bloodbankModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
         else if (BloodBankSignUpForm.titlemodel == null ||
@@ -612,14 +613,14 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          widget.model.bloodbankorganisation = BloodBankSignUpForm.pharmacyModel.key;
+          widget.model.bloodbankorganisation = BloodBankSignUpForm.bloodbankModel.key;
           widget.model.bloodbanktitle = BloodBankSignUpForm.titlemodel.key;
           widget.model.bloodbankprofessional = textEditingController[9].text;
           widget.model.bloodbankexperience = textEditingController[10].text;
           widget.model.bloodbankaddress = textEditingController[11].text;
           widget.model.bloodbankgender = BloodBankSignUpForm.genderModel.key;
 
-          Navigator.pushNamed(context, "/ambulancesignupform2");
+          Navigator.pushNamed(context, "/bloodbanksignupform2");
         }
       },
     );

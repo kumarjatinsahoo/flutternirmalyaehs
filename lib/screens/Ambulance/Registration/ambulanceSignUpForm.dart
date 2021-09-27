@@ -29,6 +29,7 @@ class AmbulanceSignUpForm extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
   static KeyvalueModel pharmacyModel = null;
+  static KeyvalueModel ambulanceModel = null;
   static KeyvalueModel titlemodel = null;
 
   AmbulanceSignUpForm({
@@ -232,17 +233,6 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
-
-                                //   padding: EdgeInsets.only(
-                                //       left: size.width * 0.20, right: size.width * 0.20),
-                                //   child: Image.asset(
-                                //     "assets/icons/sanju-vector.png",
-                                //   ),
-                                // ),
-
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
@@ -261,13 +251,13 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Organization Name",
-                                            ApiFactory.PHARMACY_ORGANISATION_API,
-                                            "pharmacy",
+                                            ApiFactory.AMBULANCE_ORGANISATION_API,
+                                            "ambulance",
                                             Icons.location_on_rounded,
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
-                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            AmbulanceSignUpForm.pharmacyModel = data;
+                                            print(ApiFactory.AMBULANCE_ORGANISATION_API);
+                                            AmbulanceSignUpForm.ambulanceModel = data;
                                           });
                                         }),  SizedBox(
                                           height: 5,
@@ -315,98 +305,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                         Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: nextButton1(),
                                         ),
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
 
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
                                       ],
                                     ),
                                   ),
@@ -428,21 +327,6 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
         )
     );
   }
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
-  Widget gender() {
-    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          AmbulanceSignUpForm.genderModel = model;
-        });
-  }
-
-
 
 
   Widget mobileNoOTPSearch() {
@@ -587,8 +471,8 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
       context: context,
       fun: () {
        // Navigator.pushNamed(context, "/patientRegistration2");
-        if (AmbulanceSignUpForm.pharmacyModel == null ||
-            AmbulanceSignUpForm.pharmacyModel == "") {
+        if (AmbulanceSignUpForm.ambulanceModel == null ||
+            AmbulanceSignUpForm.ambulanceModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
         else if (AmbulanceSignUpForm.titlemodel == null ||
@@ -612,7 +496,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          widget.model.ambulanceorganisation = AmbulanceSignUpForm.pharmacyModel.key;
+          widget.model.ambulanceorganisation = AmbulanceSignUpForm.ambulanceModel.key;
           widget.model.ambulancetitle = AmbulanceSignUpForm.titlemodel.key;
           widget.model.ambulanceprofessional = textEditingController[9].text;
           widget.model.ambulanceexperience = textEditingController[10].text;
@@ -625,63 +509,6 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
     );
   }
 
-  Widget nextButtonn() {
-    return GestureDetector(
-      onTap: () {
-
-
-        Navigator.pushNamed(context, "/pharmasignupform2");
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("NEXT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget nextButton() {
-    return GestureDetector(
-      onTap: () {
-        validate();
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left: 9.0, right: 9.0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("SIGN_BTN"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget mobileNumber() {
     return Padding(

@@ -6,7 +6,11 @@ class ApiFactory {
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
-  static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
+  static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-org-list';
+  static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
+  static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
+  static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
+
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';

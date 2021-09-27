@@ -1,5 +1,9 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
+import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
+import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
+import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
@@ -551,13 +555,19 @@ class _MyAppState extends State<MyApp> {
               '/ambulance': (context) => AmbulanceSignUpForm(
                 model: _model,
               ),
-              '/ngo': (context) => AmbulanceSignUpForm(
+              '/ngo': (context) => NgoSignUpForm(
                 model: _model,
               ),
-              '/bloodbank': (context) => AmbulanceSignUpForm(
+              '/bloodbank': (context) => BloodBankSignUpForm(
                 model: _model,
               ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
+                model: _model,
+              ),
+              '/ngosignupform2': (context) => NgoSignUpForm2(
+                model: _model,
+              ),
+              '/bloodbanksignupform2': (context) => BloodBankSignUpForm2(
                 model: _model,
               ),
 
