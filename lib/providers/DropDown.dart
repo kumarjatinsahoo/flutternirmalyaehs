@@ -1784,31 +1784,53 @@ class DropDown {
     );
   }
 
-  static networkDropdownGetpartUserundrelinee(
+  static networkDropdownGetpartUserrrr(
       String label, final String API, String callFrom, Function fun,map) {
-    return DropdownSearch<KeyvalueModel>(
+    return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.black),
         contentPadding: EdgeInsets.only(left: 15),
-
-        /* border: OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.green, width: 3.0),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(3.0),
               bottomRight: Radius.circular(3.0),
               topRight: Radius.circular(3.0),
               topLeft: Radius.circular(3.0)),
-        ),*/
+        ),
       ),
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
+        /*   icon: Icon(
+          iconData,
+          size: iconSize,
+        ),*/
         isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
         floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
       ),
+      /* dropdownSearchDecoration: InputDecoration(
+          hintText: label, */ /*labelText: label,*/ /*
+          disabledBorder: InputBorder.none,
+          contentPadding:
+          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+        floatingLabelBehavior: FloatingLabelBehavior.never),*/
+
       //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -1816,8 +1838,8 @@ class DropDown {
         print("DROP DOWN API?????" + API);
         print("POST DATA?????" + jsonEncode(map));
         var response = await Dio().post(
-          API,
-          data: jsonEncode(map)
+            API,
+            data: jsonEncode(map)
         );
         print("Value>>>>>>"+jsonEncode(response.data));
         var list = KeyvalueModel.fromJsonList(response.data["body"]);
@@ -1827,8 +1849,9 @@ class DropDown {
       onChanged: (KeyvalueModel data) {
         fun(data);
       },
+    ),
     );
-  }
+    }
 
   static staticDropdown5(
       String label, String callFrom, List<KeyvalueModel> list, Function fun) {
@@ -1955,6 +1978,12 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "districtid":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }

@@ -667,7 +667,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           pharmaSignupModel.mobno = textEditingController[10].text;
           pharmaSignupModel.email = textEditingController[11].text;
           //pharmaSignupModel.alteremail = textEditingController[12].text;
-          pharmaSignupModel.role="3";
+          pharmaSignupModel.role="7";
           pharmaSignupModel.speciality="32";
 
           print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
