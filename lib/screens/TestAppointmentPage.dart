@@ -372,7 +372,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     SizedBox(
                                       width: 35,
                                       child: Text(
-                                        foundUser[index].age.toString(),
+                                        (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -383,7 +383,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        foundUser[index].gender[0],
+                                        (foundUser[index].gender!=null)?foundUser[index].gender[0]:"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,

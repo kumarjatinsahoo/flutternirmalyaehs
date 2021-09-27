@@ -1,5 +1,6 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
@@ -8,8 +9,6 @@ import 'package:user/screens/AllAppointmentPage.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
-import 'screens/Users/ChemistsOngooglePage.dart';
-import 'screens/Users/ChemistsPage.dart';
 import 'package:user/screens/Pharmacists/Screens/MyOrders.dart';
 import 'screens/Pharmacists/Screens/ConfirmedOrders.dart';
 import 'screens/Users/Daashboard.dart';
@@ -22,7 +21,6 @@ import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
 import 'screens/Users/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
-import 'package:user/screens/Doctor/Dashboard/HealthChart.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -57,7 +55,7 @@ import 'package:user/screens/MedicalService.dart';
 import 'screens/Users/MedicalServiceOngooglePage.dart';
 import 'screens/Users/MedicineReminder.dart';
 import 'screens/Users/MedicineReminderOther.dart';
-import 'package:user/screens/MonthlyView.dart';
+import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
 import 'package:user/screens/MyAppointment_Requested.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
@@ -71,7 +69,7 @@ import 'package:user/screens/Users/ChemistsTabview.dart';
 import 'package:user/screens/Users/GoogleSearch.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
-import 'package:user/screens/Users/UserMedicineList.dart';
+import 'package:user/screens/Users/UserMedicineTab.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
@@ -268,6 +266,12 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/monthlyview': (context) => LabSignUpForm(
+                    model: _model,
+                  ),
+              '/monthloveryview': (context) => MonthlyView(
+                    model: _model,
+              ),
+              '/deliverdorder': (context) => DeliverdOrder(
                     model: _model,
                   ),
               '/labsignup2': (context) => LabSignUpForm2(
@@ -546,7 +550,7 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
-              '/usermedicinelist': (context) => UserMedicineList(
+              '/usermedicinelist': (context) => UserMedicineTab(
                 model: _model,
               ),
               '/docConsult1': (context) => DoctorConsultPage(

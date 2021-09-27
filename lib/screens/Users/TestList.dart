@@ -3,7 +3,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Doctor/Dashboard/Medicationlist.dart';
-import 'package:user/screens/Users/MedicineList.dart';
+import 'package:user/screens/Users/UserMedicineList.dart';
 
 
 class TestList extends StatefulWidget {

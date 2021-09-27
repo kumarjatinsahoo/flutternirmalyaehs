@@ -56,17 +56,17 @@ class _OnlineChatsState extends State<OnlineChats> {
 
   @override
   Widget build(BuildContext context) {
-     Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
             'Online Chat',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: AppData.kPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -78,15 +78,14 @@ class _OnlineChatsState extends State<OnlineChats> {
                       child: Container(
                         decoration: BoxDecoration(
                           //  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.blue[100]),
-                   color: Colors.blue[50],
+                          border: Border.all(color: Colors.blue[100]),
+                          color: Colors.blue[50],
                         ),
-                       
                         child: Column(
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 15.0, bottom: 10),
+                              padding: const EdgeInsets.only(
+                                  top: 10, right: 15.0, bottom: 10),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -121,12 +120,11 @@ class _OnlineChatsState extends State<OnlineChats> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
                                   // width: 170,
-                                  width: size.width *0.44,
+                                  width: size.width * 0.44,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5),
@@ -145,7 +143,7 @@ class _OnlineChatsState extends State<OnlineChats> {
                                   ),
                                 ),
                                 Container(
-                                   width: size.width *0.44,
+                                  width: size.width * 0.44,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5),
@@ -176,7 +174,6 @@ class _OnlineChatsState extends State<OnlineChats> {
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
               ),

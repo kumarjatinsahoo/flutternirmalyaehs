@@ -55,19 +55,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
-    checkApiCallOrNot();
   }
 
-  checkApiCallOrNot() async {
-    String isAlreadyReg = await sharedPref.getKey(Const.IS_REG_SERVER);
-    if (isAlreadyReg != null) {
-      if (isAlreadyReg.replaceAll("\"", "") == "false") {
-        if (Platform.isAndroid) initUniqueIdentifierState();
-      }
-    } else {
-      if (Platform.isAndroid) initUniqueIdentifierState();
-    }
-  }
 
   Future<void> initUniqueIdentifierState() async {
     String identifier;
@@ -156,9 +145,10 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           width: 20,
                         ),
                         Text(
-                          "Hi " + loginResponse.body.userName,
+                          "pharmacy " + loginResponse.body.userName,
+
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w300),
                         ),
@@ -172,11 +162,11 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     selected: _selectedDestination == 0,
                     onTap: () {
                       selectDestination(0);
-                      Navigator.pushNamed(context, "/patientDashboard");
+                      Navigator.pushNamed(context, "/dashboardpharmacy");
                     }
                     // onTap: (){},
-
                     ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.person),
                   title: Text('My Profile'),
@@ -187,15 +177,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Notifications'),
-                  selected: _selectedDestination == 2,
-                  onTap: () {
-                    selectDestination(2);
-                    // Navigator.pushNamed(context, "/Notifications");
-                  },
-                ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.notifications),
                   selected: _selectedDestination == 3,
@@ -203,11 +185,11 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     selectDestination(3);
                     //Navigator.pushNamed(context, "/onlinechats");
                   },
-
-                  title: Text('Online Chat'),
+                  title: Text('Notifications'),
                   // onTap: () {
                   // },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.help_center),
                   selected: _selectedDestination == 4,
@@ -215,51 +197,18 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     selectDestination(4);
                     // Navigator.pushNamed(context, "/onlinechats");
                   },
-
                   title: Text('Help'),
                   // onTap: () {
                   // },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
                   onTap: () => selectDestination(5),
                 ),
-                ListTile(
-                    leading: Icon(Icons.collections),
-                    title: Text('My Orders'),
-                    selected: _selectedDestination == 6,
-                    onTap: () {
-                      selectDestination(6);
-                      Navigator.pushNamed(context, "/myorder");
-                      //Navigator.pushNamed(context, "/myorder");
-                    }),
-                ListTile(
-                    leading: Icon(Icons.calendar_today),
-                    title: Text('Monthly Overview'),
-                    selected: _selectedDestination == 7,
-                    onTap: () {
-                      selectDestination(7);
-                      //Navigator.pushNamed(context, "/monthlyview");
-                    }),
-                ListTile(
-                    leading: Icon(Icons.healing),
-                    title: Text('Processed Orders'),
-                    selected: _selectedDestination == 8,
-                    onTap: () {
-                      selectDestination(8);
-                      //Navigator.pushNamed(context, "/processedorders");
-                    }),
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Set Discount and Offer'),
-                  selected: _selectedDestination == 9,
-                  onTap: () {
-                    selectDestination(9);
-                    //Navigator.pushNamed(context, "/setdiscount");
-                  },
-                ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.logout),
                   title: Text('Logout'),
@@ -312,8 +261,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTileblue(
-                                icon: "assets/images/orders2.png",
-                                title: "My Order",
+                                icon: "assets/Myorder1.png",
+                                title: "My Orders",
                                 fun: () {
                                   Navigator.pushNamed(context, "/myorder");
                                   //Navigator.pushNamed(context, "/walkRegList");
@@ -328,11 +277,11 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _buildTilered(
-                                icon: "assets/images/orders.png",
+                                icon: "assets/ConOrder.png",
                                 title: "Confirmed Order",
                                 fun: () {
                                   //chooseAppointment(context);
-                                 // Navigator.pushNamed(context, "/monthlyview");
+                                  Navigator.pushNamed(context, "/confirmorder");
                                   },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -351,7 +300,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             children: [
                               _buildTilered(
                                 //icon: Icons.document_scanner,
-                                icon: "assets/trackorder.jpg",
+                                icon: "assets/ProcessOrder.png",
                                 title: "Processed Orders",
                                 fun: () {
                                   Navigator.pushNamed(context, "/processedorders");
@@ -366,11 +315,11 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/images/orders.png",
+                              icon: "assets/DeliverdOrder.png",
                               title: "Deliverd Order",
                               fun: () {
                                 //chooseAppointment1(context);
-                                // Navigator.pushNamed(context, "/testappointmentpage");
+                               Navigator.pushNamed(context, "/deliverdorder");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -390,14 +339,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             children: [
                               _buildTileblue(
                                 //icon: Icons.document_scanner,
-                                icon: "assets/images/orders.png",
+                                icon: "assets/Invoices.png",
                                 title: "Invoices",
                                 fun: () {
 
                                   // Navigator.pushNamed(context, "/pocreportlist");
                                 },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
+                                color: AppData.BG2BLUE,
+                                bordercolor: AppData.BG2BLUE,
                                 // ,
                               ),
                             ]),
@@ -406,15 +355,13 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/images/orders.png",
+                              icon: "assets/monthlyoverview2.png",
                               title: "Monthly Overview",
                               fun: () {
-
-
-                                 //Navigator.pushNamed(context, "/");
+                                 Navigator.pushNamed(context, "/monthloveryview");
                               },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
                               // ,
                             ),
                           ],
@@ -432,7 +379,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             children: [
                               _buildTilered(
                                 //icon: Icons.document_scanner,
-                                icon: "assets/images/orders.png",
+                                icon: "assets/Discount.png",
                                 title: "Discount & Offer",
                                 fun: () {
                                   Navigator.pushNamed(context, "/setdiscount");
@@ -447,11 +394,11 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/images/orders.png",
+                              icon: "assets/chat 1.png",
                               title: "Online Chat",
                               fun: () {
                                 //chooseAppointment1(context);
-                                //  Navigator.pushNamed(context, "/testappointmentpage");
+                                  Navigator.pushNamed(context, "/onlinechats");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
