@@ -8,7 +8,7 @@ class ApiFactory {
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
   static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
-  static String SPECIALITY_API = MAIN_URL + 'get-speciality-list';
+  static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
@@ -29,7 +29,8 @@ class ApiFactory {
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
-  static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
+  //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
+  static String SPECIALITY_API2 = MAIN_URL + 'get-doctor-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';

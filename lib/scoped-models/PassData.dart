@@ -90,13 +90,31 @@ String pharmaprofessional;
 String pharmaaddress;
 String pharmaexperience;
 String pharmagender;
-//String appno;
 pharma.Body userappointment;
 medicine.Body medicinelist;
 String pharmacyaddress;
 String pharmacity;
-
-
+////////////
+  String ambulanceorganisation;
+  String ambulancetitle;
+  String ambulanceprofessional;
+  String ambulanceaddress;
+  String ambulanceexperience;
+  String ambulancegender;
+////////////
+  String ngoorganisation;
+  String ngotitle;
+  String ngoprofessional;
+  String ngoaddress;
+  String ngoexperience;
+  String ngogender;
+  //////////////////
+  String bloodbankorganisation;
+  String bloodbanktitle;
+  String bloodbankprofessional;
+  String bloodbankaddress;
+  String bloodbankexperience;
+  String bloodbankgender;
 
 // String title;
 // String professionalname;
