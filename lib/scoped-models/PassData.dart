@@ -37,6 +37,10 @@ class PassData extends Model {
   String patienStatecode;
   String patienCitykey;
   String patienCitycode;
+  String districtid;
+
+  String patienCountrykey;
+  String patienCountrycode;
 
   String organisationname;
   String title;

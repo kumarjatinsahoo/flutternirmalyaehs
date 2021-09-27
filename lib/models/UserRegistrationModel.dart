@@ -10,7 +10,7 @@ class UserRegistrationModel{
       profileImage,
       ageYears,
       countryCode,
-      stateCode,
+      stateCode, districtid,cityid,
       dob,profileImageType;
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +26,8 @@ class UserRegistrationModel{
     ageYears = json['ageYears'];
     stateCode = json['stateCode'];
     countryCode = json['countryCode'];
+    districtid = json['districtid'];
+    cityid = json['cityid'];
     dob = json['dob'];
     profileImageType = json['profileImageType'];
 
@@ -64,6 +66,8 @@ class UserRegistrationModel{
       "ageYears": this.ageYears,
       "stateCode": this.stateCode,
       "countryCode": this.countryCode,
+      "districtid": this.districtid,
+      "cityid": this.cityid,
       "profileImageType": this.profileImageType,
       "profileImage":[this.profileImage??'']
     };
@@ -71,7 +75,7 @@ class UserRegistrationModel{
   }
   @override
   String toString() {
-    return 'UserRegistrationModel{title: $title, fName: $fName, lName: $lName, mobile: $mobile, age: $age, country: $country, state: $state, gender: $gender, profileImage: $profileImage, ageYears: $ageYears, countryCode: $countryCode, stateCode: $stateCode, dob: $dob}';
+    return 'UserRegistrationModel{title: $title, fName: $fName, lName: $lName, mobile: $mobile, age: $age, country: $country, state: $state, gender: $gender, profileImage: $profileImage, ageYears: $ageYears, countryCode: $countryCode, stateCode: $stateCode, dob: $dob.districtid:$districtid,cityid:$cityid}';
   }
 }
 

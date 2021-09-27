@@ -47,13 +47,17 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   String patientphnNo;
   String patientgender;
   String patientgenderSTR;
-  String patienCitycode;
-  String patienCitykey;
+  String patienCountrykey;
+  String patienCountrycode;
   String patienStatecode;
   String patienStatekey;
+  String patienCitycode;
+  String patienCitykey;
+  String districtid;
   String patientimgtype;
   String addhar;
   String email;
+
 
   @override
   void initState() {
@@ -69,15 +73,19 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     patientimg = widget.model.patientimg;
     patientage = widget.model.patientage;
     patientgender = widget.model.patientgender;
+    patienCountrykey = widget.model.patienCountrykey;
+    patienCountrycode = widget.model.patienCountrycode;
     patienCitycode = widget.model.patienCitycode;
     patienCitykey = widget.model.patienCitykey;
     patienStatecode = widget.model.patienStatecode;
     patienStatekey = widget.model.patienStatekey;
+    districtid = widget.model.districtid;
     patientimgtype = widget.model.patientimgtype;
     addhar = widget.model.patientaadhar;
     email = widget.model.patientemail;
     user = widget.model.user;
     token = widget.model.token;
+
     print(patienCitykey);
     print(patienStatecode);
     print(patienStatekey);
@@ -321,18 +329,26 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
         patientSignupModel.fName = patientName;
         patientSignupModel.mobile = patientphnNo;
         patientSignupModel.age = patientage;
-        patientSignupModel.country = patienStatekey;
-        patientSignupModel.state = patienCitykey;
+        patientSignupModel.country = patienCountrykey;
+        patientSignupModel.countryCode = patienCountrycode;
+        patientSignupModel.state = patienStatekey;
+        patientSignupModel.stateCode = patienStatecode;
+        patientSignupModel.districtid = districtid;
+        patientSignupModel.cityid = patienCitykey;
+
+
         patientSignupModel.gender = patientgender;
         patientSignupModel.height = patientheight;
         patientSignupModel.weight = patientweight;
         patientSignupModel.email = patientemail;
         patientSignupModel.aadhar = patientaadhar;
         patientSignupModel.profileImageType = patientimgtype;
-        patientSignupModel.stateCode = patienCitycode;
-        patientSignupModel.countryCode = patienStatecode;
+
         patientSignupModel.profileImage = patientimg;
         patientSignupModel.enteredBy = user;
+
+       /* String patienCitycode;
+        String patienCitykey;*/
 
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ patientSignupModel.toJson().toString());
         widget.model.postSignUp(token, patientSignupModel.toJson(),
