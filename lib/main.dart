@@ -1,5 +1,6 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
@@ -111,7 +112,7 @@ import 'package:user/screens/VitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
 import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
-import 'package:user/screens/find.dart';
+import 'package:user/screens/FindPage.dart';
 import 'screens/Users/MedipediaPage.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
@@ -336,7 +337,7 @@ class _MyAppState extends State<MyApp> {
               '/addWitness': (context) => AddWitness(
                     model: _model,
                   ),
-              '/findScreen': (context) => FindScreen(
+              '/findScreen': (context) => FindPage(
                     model: _model,
                   ),
               '/searchScreen': (context) => SearchScreen(
@@ -544,6 +545,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/usermedicinelist': (context) => UserMedicineList(
+                model: _model,
+              ),
+              '/docConsult1': (context) => DoctorConsultPage(
                 model: _model,
               ),
 
