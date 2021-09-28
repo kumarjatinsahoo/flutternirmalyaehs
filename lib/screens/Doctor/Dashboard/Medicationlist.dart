@@ -533,7 +533,7 @@ class _MedicationlistState extends State<Medicationlist> {
                   ),
                 ),
                 fromfild(1, "Duration", TextInputAction.next,
-                    TextInputType.text, "remark"),
+                    TextInputType.text, "duration"),
                 fromAddress(2, "Remark", TextInputAction.next,
                     TextInputType.text, "remark"),
               ],

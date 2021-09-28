@@ -1249,6 +1249,9 @@ class MyPage1Widget extends StatelessWidget {
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
                       //size: (size.width - 130) / 3,
+                      fun2: (){
+                        Navigator.pushNamed(context, "/covidMobile");
+                      }
                     ),
                     SizedBox(
                       height: 5,
@@ -1951,9 +1954,11 @@ class MyPage1Widget extends StatelessWidget {
       double size,
       Color bordercolor,
       Color color,
-      Function fun}) {
+      Function fun,
+      Function fun2}) {
     return InkWell(
       onTap: fun,
+      onLongPress: fun2,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/

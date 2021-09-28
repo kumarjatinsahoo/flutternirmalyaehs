@@ -116,7 +116,7 @@ String pharmacity;
   String bloodbankexperience;
   String bloodbankgender;
 
-// String title;
-// String professionalname;
+  String txnId;
+
 
 }

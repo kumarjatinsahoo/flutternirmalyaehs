@@ -7,6 +7,9 @@ import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/MyProfile.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
+import 'package:user/screens/cowin/CovidMobilePage.dart';
+import 'package:user/screens/cowin/CovidOtpPage.dart';
+import 'package:user/screens/labrotry/SearchPocReportPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
@@ -564,16 +567,13 @@ class _MyAppState extends State<MyApp> {
               '/ambulance': (context) => AmbulanceSignUpForm(
                 model: _model,
               ),
-              '/ngo': (context) => NgoSignUpForm(
+              '/ngo': (context) => AmbulanceSignUpForm(
                 model: _model,
               ),
-              '/bloodbank': (context) => BloodBankSignUpForm(
+              '/bloodbank': (context) => AmbulanceSignUpForm(
                 model: _model,
               ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
-                model: _model,
-              ),
-              '/profile': (context) => MyProfile(
                 model: _model,
               ),
 

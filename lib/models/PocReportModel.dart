@@ -28,6 +28,14 @@ class PocReportModel {
     data['total'] = this.total;
     return data;
   }
+
+  addMore(Map<String, dynamic> json) {
+    if (json['body'] != null) {
+      json['body'].forEach((v) {
+        body.add(new Body.fromJson(v));
+      });
+    }
+  }
 }
 
 class Body {

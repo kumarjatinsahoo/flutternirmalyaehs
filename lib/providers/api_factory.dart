@@ -1,7 +1,7 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -40,6 +40,7 @@ class ApiFactory {
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
+  static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
@@ -91,5 +92,14 @@ static String GOOGLE_LOC(
   static String PHARMACY_ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
+
+
+  ///COWIN
+  static String COWIN_SERVER = "https://cdn-api.co-vin.in/api";
+  static String GENERATE_OTP = COWIN_SERVER+"/v2/auth/public/generateOTP";
+  static String CONFIRM_OTP = COWIN_SERVER+"/v2/auth/public/confirmOTP";
+
+
+
 
 }

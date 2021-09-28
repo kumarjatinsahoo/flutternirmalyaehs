@@ -28,6 +28,8 @@ class MedicineListModel {
     data['total'] = this.total;
     return data;
   }
+
+
 }
 
 class Body {
@@ -47,6 +49,10 @@ class Body {
   String meddate;
   String qty;
   bool isChecked=false;
+  String srlNoOne;
+  String srlNoTwo;
+  String medid;
+  bool reqstatus=false;
 
   Body(
       {this.medname,
@@ -81,6 +87,11 @@ class Body {
     duration = json['duration'];
     meddate = json['meddate'];
     qty = json['qty'];
+    srlNoOne = json['srlNoOne'];
+    srlNoTwo = json['srlNoTwo'];
+    medid = json['medid'];
+    if(json.containsKey("reqstatus"))
+    reqstatus = json['reqstatus']??false;
   }
 
   Map<String, dynamic> toJson() {
@@ -100,6 +111,20 @@ class Body {
     data['duration'] = this.duration;
     data['meddate'] = this.meddate;
     data['qty'] = this.qty;
+
+    data['srlNoOne'] = this.srlNoOne;
+    data['srlNoTwo'] = this.srlNoTwo;
+    data['medid'] = this.medid;
+    data['reqstatus'] = this.reqstatus;
+    return data;
+  }
+
+
+  Map<String, dynamic> toJson1() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.srlNoOne;
+    data['code'] = this.srlNoTwo;
+    data['key'] = this.medid;
     return data;
   }
 }

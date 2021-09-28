@@ -3,6 +3,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Doctor/Dashboard/Medicationlist.dart';
+import 'package:user/screens/Users/TestList.dart';
 
 import 'DoctorAppointment_Requested.dart';
 import 'DoctorAppointment_Confirmed.dart';
@@ -58,8 +59,7 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
         body: TabBarView(
           children: [
             Medicationlist(model:widget.model,),
-            Medicationlist(model:widget.model,),
-
+            TestList(model:widget.model,),
           ],
         ),
       ),

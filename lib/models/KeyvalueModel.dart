@@ -34,8 +34,6 @@ class KeyvalueModel {
     desc = json['desc'].toString();
     minqty = json['minqty'].toString();
 
-
-
     if (json.containsKey("optional")) {
       optional = json['optional'].toString();
     }
