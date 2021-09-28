@@ -5,23 +5,24 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
 
-class DocMyProfile extends StatefulWidget {
+
+class MyProfile extends StatefulWidget {
   MainModel model;
 
-  DocMyProfile({Key key, this.model}) : super(key: key);
+  MyProfile({Key key, this.model}) : super(key: key);
 
   @override
-  _DocMyProfileState createState() => _DocMyProfileState();
+  _MyProfileState createState() => _MyProfileState();
 }
 
-class _DocMyProfileState extends State<DocMyProfile> {
+class _MyProfileState extends State<MyProfile> {
   String loAd = "Loading..";
-  //Body model;
+ // Body model;
 
   @override
   void initState() {
     super.initState();
-    //model = widget.model.model;
+   // model = widget.model.model;
   }
 
   getGender(String gender) {
@@ -103,67 +104,54 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
-                                  leading: Icon(Icons.calendar_today),
-                                  title: Text("BIRTH DATE"),
-                                  subtitle: Text("01/06/1997"),
+                                  leading: Icon(Icons.person),
+                                  title: Text("NAME"),
+                                  subtitle: Text("Ipsita Sahoo"),
                                 ), ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
                                   leading: Icon(Icons.person),
-                                  title: Text("GENDER"),
-                                  subtitle: Text("Female "),
+                                  title: Text("REGISTRATION NO"),
+                                  subtitle: Text("123456789012"),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.book),
+                                  leading: Icon(Icons.phone),
                                   title: Text(
-                                    "EDUCATION",
+                                    "PHONE",
                                   ),
-                                  subtitle: Text("Mca"),
+                                  subtitle: Text("8249514637"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.face),
                                   title: Text(
-                                    "SPECIALITY",
+                                    "GENDER",
                                   ),
-                                  subtitle: Text("Software"),
+                                  subtitle: Text("Female"),
                                 ),
 
                                 ListTile(
                                   leading: Icon(Icons.email),
-                                  title: Text("ORGANIZATION"),
-                                  subtitle: Text("NIRMALYA"),
+                                  title: Text("EMAIL"),
+                                  subtitle: Text("Sahoo@gmail.com"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.contact_phone),
-                                  title: Text("IMA NO"),
-                                  subtitle: Text("12345652 "),
+                                  title: Text("AADHAAR NO"),
+                                  subtitle: Text("123456789369"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
-                                    "PAN CARD NO",
+                                    "COUNTRY",
                                   ),
-                                  subtitle: Text("123655FCV5"),
+                                  subtitle: Text("India"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
-                                    "PASSPORT NO",
+                                    "STATE",
                                   ),
-                                  subtitle: Text("12365422257425"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.info_outline),
-                                  title: Text(
-                                    "VOTER CARD NO",
-                                  ),
-                                  subtitle: Text("12365422257425"),
-                                ), ListTile(
-                                  leading: Icon(Icons.filter),
-                                  title: Text(
-                                    "LICENCE NO",
-                                  ),
-                                  subtitle: Text("12365422257425"),
+                                  subtitle: Text("Odisha"),
                                 ),
 
                               ],
@@ -184,7 +172,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
             ),
           ),
         )
-
         //     : Center(
         //   child: Text(
         //     loAd,
@@ -194,6 +181,63 @@ class _DocMyProfileState extends State<DocMyProfile> {
     );
   }
 
+  String getHeaderString(int value) {
+    switch (value) {
+      case 1:
+        return "1st Sonography";
+      case 2:
+        return "2nd Sonography";
+      case 3:
+        return "3rd Sonography";
+      case 4:
+        return "4th Sonography";
+      default:
+        return "Sonography";
+    }
+  }
+
+  Widget getRow(String name, String value) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              name,
+              style: TextStyle(color: Colors.black),
+            ),
+            Text(value),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getRow1(String name, String value) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                name,
+                style: TextStyle(color: Colors.black),
+              ),
+              Text(value),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   Container _buildHeader(BuildContext context) {
     return Container(
@@ -245,7 +289,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 Text(
                   "AADHAAR NO" +
                       ": " +
-                      "123456789012",
+                      "123456789666",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
                 ),

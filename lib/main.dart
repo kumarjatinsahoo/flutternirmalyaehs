@@ -5,6 +5,7 @@ import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
+import 'package:user/screens/Pharmacists/Screens/MyProfile.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
@@ -570,6 +571,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
+                model: _model,
+              ),
+              '/profile': (context) => MyProfile(
                 model: _model,
               ),
 

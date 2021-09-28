@@ -1,7 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:user/models/PharmacyorderModel.dart'as oderlist;
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/LoginResponse1.dart';
 
 class MyOrders extends StatefulWidget {
   final MainModel model;
@@ -14,11 +21,40 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   int _selectedDestination = -1;
-
+  LoginResponse1 loginResponse;
+  bool isDataNotAvail = false;
+  oderlist.PharmacyorderModel pharmacyorderModel;
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
     });
+  }
+  @override
+  void initState() {
+    super.initState();
+    loginResponse = widget.model.loginResponse1;
+    callAPI();
+
+  }
+  callAPI() {
+    widget.model.GETMETHODCALL_TOKEN_FORM(
+        api: ApiFactory.PHARMACY_ORDER_LIST + loginResponse.body.user,
+        userId: loginResponse.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              // pocReportModel = PocReportModel.fromJson(map);
+              pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
+
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
   }
 
   @override
@@ -39,12 +75,21 @@ class _MyOrdersState extends State<MyOrders> {
           //leading: Icon(Icons.arrow_back, color: Colors.black),
            iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: ListView.builder(
-            shrinkWrap: true,
-            itemCount: 6,
-            itemBuilder: (BuildContext context, int index) {
+        body:
+        (pharmacyorderModel != null)
+        ?  ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          // controller: _scrollController,
+          shrinkWrap: true,
+          itemBuilder: (context, i) {
+            if (i == pharmacyorderModel.body.length) {
+              return (pharmacyorderModel.body.length % 10 == 0)
+                  ? CupertinoActivityIndicator()
+                  : Container();
+            }
+            oderlist.Body body = pharmacyorderModel.body[i];
               return Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
                 child: Card(
                   child: Container(
                     height: height * 0.27,
@@ -97,7 +142,7 @@ class _MyOrdersState extends State<MyOrders> {
                                               width: 5,
                                             ),
                                             Text(
-                                              '2021-07-06',
+                                              body.date,
                                               textAlign: TextAlign.right,
                                             ),
                                           ],
@@ -116,7 +161,7 @@ class _MyOrdersState extends State<MyOrders> {
                                               width: 5,
                                             ),
                                             Text(
-                                              '19:41:10',
+                                              body.time,
                                               textAlign: TextAlign.right,
                                             ),
                                           ],
@@ -134,7 +179,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           height: 5,
                                         ),
                                         Text(
-                                          'OD67867871941',
+                                          body.orderid,
                                           overflow: TextOverflow.clip,
                                           maxLines: 2,
                                           style: TextStyle(
@@ -156,22 +201,30 @@ class _MyOrdersState extends State<MyOrders> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: Colors.red[900]),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Reject',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
+                                child: InkWell(
+                                  onTap: (){
+                                    String orderid=body.orderid;
+                                    String Status="6";
+                                    rejectApi(orderid,Status);
+                                    callAPI();
+                                  },
+                                  child: Container(
+                                    height: size.height * 0.06,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.black12),
+                                        color: Colors.red[900]),
+                                    child: RaisedButton(
+                                      onPressed: null,
+                                      child: Text(
+                                        'Reject',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      disabledColor: Colors.red[900],
                                     ),
-                                    disabledColor: Colors.red[900],
                                   ),
                                 ),
                               ),
@@ -179,22 +232,31 @@ class _MyOrdersState extends State<MyOrders> {
                                 width: 20,
                               ),
                               Expanded(
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: Colors.blue),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Accept',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
+                                child: InkWell(
+                                  onTap: (){
+                                    String orderid=body.orderid;
+                                    String Status="4";
+                                    acceptApi(orderid,Status);
+                                    callAPI();
+
+                                  },
+                                  child: Container(
+                                    height: size.height * 0.06,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.black12),
+                                        color: Colors.blue),
+                                    child: RaisedButton(
+                                      onPressed: null,
+                                      child: Text(
+                                        'Accept',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      disabledColor: Colors.blue[600],
                                     ),
-                                    disabledColor: Colors.blue[600],
                                   ),
                                 ),
                               ),
@@ -206,8 +268,52 @@ class _MyOrdersState extends State<MyOrders> {
                   ),
                 ),
               );
-            }),
+            },
+          itemCount: pharmacyorderModel.body.length,
+        )
+            : Container(),
       ),
     );
   }
+
+   rejectApi(String orderid, String status) {
+     widget.model.GETMETHODCALL_TOKEN(
+         api: ApiFactory.CHANGE_STATUS +orderid+"&status="+"4",
+         token: widget.model.token,
+         fun: (Map<String, dynamic> map) {
+           setState(() {
+             log("Json Response>>>" + JsonEncoder().convert(map));
+             String msg = map[Const.MESSAGE];
+             if (map[Const.CODE] == Const.SUCCESS) {
+               // pocReportModel = PocReportModel.fromJson(map);
+               //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
+             //  AppData.showInSnackBar(context, msg);
+
+
+             } else {
+               isDataNotAvail = true;
+               AppData.showInSnackBar(context, msg);
+             }
+           });
+         });
+   }
+
+   acceptApi(String orderid, String status) {
+     widget.model.GETMETHODCALL_TOKEN(
+         api: ApiFactory.CHANGE_STATUS +orderid+"&status="+"4",
+         token: widget.model.token,
+         fun: (Map<String, dynamic> map) {
+           setState(() {
+             log("Json Response>>>" + JsonEncoder().convert(map));
+             String msg = map[Const.MESSAGE];
+             if (map[Const.CODE] == Const.SUCCESS) {
+               // pocReportModel = PocReportModel.fromJson(map);
+              // AppData.showInSnackBar(context, msg);
+             } else {
+               isDataNotAvail = true;
+               AppData.showInSnackBar(context, msg);
+             }
+           });
+         });
+   }
 }
