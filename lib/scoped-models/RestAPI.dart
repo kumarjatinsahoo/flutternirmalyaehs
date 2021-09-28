@@ -137,11 +137,13 @@ class RestAPI extends Model {
       if (response.statusCode == 200) {
         try {
           fun(response.data);
+          print("Message is: " + response.data);
         } catch (e) {
           print("Message is: " + e.toString());
         }
       } else {
         fun(failedMap);
+        //print("Message is: " + response.data);
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
