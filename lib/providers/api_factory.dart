@@ -86,4 +86,13 @@ static String GOOGLE_LOC(
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
   static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
 
+
+  ///COWIN
+  static String COWIN_SERVER = "https://cdn-api.co-vin.in/api";
+  static String GENERATE_OTP = COWIN_SERVER+"/v2/auth/public/generateOTP";
+  static String CONFIRM_OTP = COWIN_SERVER+"/v2/auth/public/confirmOTP";
+
+
+
+
 }
