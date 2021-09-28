@@ -31,7 +31,7 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
         children: [
           SizedBox(height: size.height * 0.01,),
           Container(
-            child: Image.asset("assets/trackorder.jpg",fit: BoxFit.cover,),
+            child: Image.asset("assets/Deliverdorder.jpg",fit: BoxFit.cover,),
           ),
           Divider(thickness: 3,color: Colors.blue,),
           Expanded(
@@ -44,69 +44,64 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                       physics: NeverScrollableScrollPhysics(),
                       currentStep: _currentStep,
                       onStepTapped: (step) => tapped(step),
-
+                      onStepCancel: null,
+                      controlsBuilder: (BuildContext context,
+                          {VoidCallback onStepContinue, VoidCallback onStepCancel}){
+                        return Container();
+                      },
+                      onStepContinue: null,
                       steps: <Step>[
                         Step(
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              new Text("Order Placed",style:
+                              TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),),
+                              callButton(),
                             ],
                           ),
                           isActive: _currentStep >= 0,
-                          state: _currentStep >= 0 ?
-                          StepState.complete : StepState.disabled,
+                          state: StepState.complete,
                         ),
- Step(
+                        Step(
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              new Text("Order Confirmed",style:
+                              TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                              Text("Your order has been confirmed",style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
-                          isActive: _currentStep >= 0,
-                          state: _currentStep >= 0 ?
-                          StepState.complete : StepState.disabled,
+                          //isActive: _currentStep >= 0,
+                          state: StepState.complete,
                         ),
- Step(
+                        Step(
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              new Text("Order Processed",style:
+                              TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                              Text("We are preparing your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
-                          isActive: _currentStep >= 0,
+                         // isActive: _currentStep >= 0,
                           state: _currentStep >= 0 ?
                           StepState.complete : StepState.disabled,
                         ),
- Step(
+                       Step(
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              new Text("Ready to Pickup",style:
+                              TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                              Text("Your order is ready to pickup",style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
-                          isActive: _currentStep >= 0,
+                         // isActive: _currentStep >= 0,
                           state: _currentStep >= 0 ?
                           StepState.complete : StepState.disabled,
                         ),
- Step(
-                          content: Text(""),
-                          title: Column(
-                            children: [
-                              new Text("Order Placed",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
-                            ],
-                          ),
-                          isActive: _currentStep >= 0,
-                          state: _currentStep >= 0 ?
-                          StepState.complete : StepState.disabled,
-                        ),
-
 
                       ],
                     )
@@ -134,6 +129,33 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
   cancel(){
     _currentStep > 0 ?
     setState(() => _currentStep -= 1) : null;
+  }
+
+  Widget callButton() {
+    return GestureDetector(
+      onTap: () {
+        // validate();
+      },
+      child: Container(
+        // margin: EdgeInsets.only(left: 9.0, right: 9.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(25.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.black, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 12.0, bottom: 12.0),
+          child: Text(
+            "Call",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
   }
 
 }

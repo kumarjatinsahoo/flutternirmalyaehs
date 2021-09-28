@@ -1741,6 +1741,15 @@ class DropDown {
           case "pharmacy":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "ambulance":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+        case "bloodbank":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "ngo":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
         return list;

@@ -29,6 +29,7 @@ class NgoSignUpForm extends StatefulWidget {
   static KeyvalueModel genderModel = null;
   static KeyvalueModel organizationModel = null;
   static KeyvalueModel pharmacyModel = null;
+  static KeyvalueModel ngoModel = null;
   static KeyvalueModel titlemodel = null;
 
   NgoSignUpForm({
@@ -261,13 +262,13 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
                                             "Organization Name",
-                                            ApiFactory.PHARMACY_ORGANISATION_API,
-                                            "pharmacy",
+                                            ApiFactory.NGO_ORGANISATION_API,
+                                            "ngo",
                                             Icons.location_on_rounded,
                                             23.0, (KeyvalueModel data) {
                                           setState(() {
-                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            NgoSignUpForm.pharmacyModel = data;
+                                            print(ApiFactory.NGO_ORGANISATION_API);
+                                            NgoSignUpForm.ngoModel = data;
                                           });
                                         }),  SizedBox(
                                           height: 5,
@@ -587,8 +588,8 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
       context: context,
       fun: () {
         // Navigator.pushNamed(context, "/patientRegistration2");
-        if (NgoSignUpForm.pharmacyModel == null ||
-            NgoSignUpForm.pharmacyModel == "") {
+        if (NgoSignUpForm.ngoModel == null ||
+            NgoSignUpForm.ngoModel == "") {
           AppData.showInSnackBar(context, "Please select Organization");
         }
         else if (NgoSignUpForm.titlemodel == null ||
@@ -612,14 +613,14 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
           AppData.showInSnackBar(context, "Please select Gender");
         }
         else {
-          widget.model.ngoorganisation = NgoSignUpForm.pharmacyModel.key;
+          widget.model.ngoorganisation = NgoSignUpForm.ngoModel.key;
           widget.model.ngotitle = NgoSignUpForm.titlemodel.key;
           widget.model.ngoprofessional = textEditingController[9].text;
           widget.model.ngoexperience = textEditingController[10].text;
           widget.model.ngoaddress = textEditingController[11].text;
           widget.model.ngogender = NgoSignUpForm.genderModel.key;
 
-          Navigator.pushNamed(context, "/ambulancesignupform2");
+          Navigator.pushNamed(context, "/ngosignupform2");
         }
       },
     );

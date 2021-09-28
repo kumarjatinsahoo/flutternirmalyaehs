@@ -144,13 +144,25 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          "pharmacy " + loginResponse.body.userName,
+                        Column(
+                          children: [
+                            Text(
+                              "pharmacy " ,
 
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                            Text(
+                              loginResponse.body.userName,
+
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -173,7 +185,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                   selected: _selectedDestination == 1,
                   onTap: () {
                     selectDestination(1);
-                    //Navigator.pushNamed(context, "/profile");
+                    Navigator.pushNamed(context, "/profile");
                     //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
@@ -278,7 +290,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             children: [
                               _buildTilered(
                                 icon: "assets/ConOrder.png",
-                                title: "Confirmed Order",
+                                title: " Confirmed Order ",
                                 fun: () {
                                   //chooseAppointment(context);
                                   Navigator.pushNamed(context, "/confirmorder");
@@ -343,7 +355,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                                 title: "Invoices",
                                 fun: () {
 
-                                  // Navigator.pushNamed(context, "/pocreportlist");
+                                  Navigator.pushNamed(context, "/paymentcollection");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,
