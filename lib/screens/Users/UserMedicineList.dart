@@ -12,6 +12,7 @@ import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/models/DocterMedicationModel.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
 import 'package:user/models/MedicineListModel.dart';
@@ -57,6 +58,7 @@ class _MedicineList extends State<UserMedicineList> {
   DateTime date = DateTime.now();
 
   //List<bool> _isChecked=false;
+  LoginResponse1 loginResponse1;
   bool _isChecked = true;
   String longitudes;
   String latitudes;
@@ -72,6 +74,7 @@ class _MedicineList extends State<UserMedicineList> {
     // TODO: implement initState
     super.initState();
     setState(() {
+      loginResponse1 = widget.model.loginResponse1;
       callAPI();
       _getLocationName();
     });
@@ -199,6 +202,12 @@ class _MedicineList extends State<UserMedicineList> {
                                         onChanged: (val) {
                                           setState(() {
                                             body.isChecked = val;
+                                            if(body.isChecked==true)
+                                            {
+                                              print("API NAME>>>>" + body.appno);
+
+                                             //Constants.removeAll(index, k);
+                                            }
                                           });
                                         },
                                       ),
@@ -481,7 +490,10 @@ class _MedicineList extends State<UserMedicineList> {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
 
-              Navigator.of(context).pop();
+             // Navigator.of(context).pop();
+              String userid=loginResponse1.body.user;
+              String pharmacistid=UserMedicineList.pharmacyModel.key;
+              String patientnote=textEditingController[0].text.toString();
               print("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
               print("TO POST>>>>" + jsonEncode(item.toJson()));
               MyWidgets.showLoading(context);
