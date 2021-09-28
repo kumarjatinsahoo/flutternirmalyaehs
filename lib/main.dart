@@ -1,6 +1,7 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
+import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
@@ -221,6 +222,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/processedorders': (context) => ProccesedOrders(
+                    model: _model,
+              ),
+              '/paymentcollection': (context) => PaymentCollection(
                     model: _model,
                   ),
               '/sampletracking': (context) => SampleTracking(
