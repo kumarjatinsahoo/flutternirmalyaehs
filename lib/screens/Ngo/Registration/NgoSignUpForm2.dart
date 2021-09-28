@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/PharamacistSignupModel.dart';
 import 'package:user/models/PharmacyRegistrationModel.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -63,6 +65,19 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  UserRegistrationModel userModel = UserRegistrationModel();
+  String profilePath = null,
+      idproof = null,
+      labReport = null,
+      helathCheckup = null;
+
+  String profileBase64 = null,
+      bankPathBase64 = null,
+      adharPathBase64 = null,
+      ageProofPathBase64 = null,
+      expPathBase64 = null;
+  final ImagePicker _picker = ImagePicker();
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -369,20 +384,74 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                             ],
                                           ),
                                         ),
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              child: Text(
-                                                "Upload Document :",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black),
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Text("Upload Document : ",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
                                               ),
-                                            ),
-                                          ],
+                                              SizedBox(width:5),
+                                              Material(
+                                                elevation: 3,
+                                                color:AppData.kPrimaryColor,
+                                                borderRadius: BorderRadius.circular(5.0),
+                                                child: MaterialButton(
+                                                  onPressed: () {
+                                                    _settingModalBottomSheet(context);
+
+                                                  },
+                                                  minWidth: 150,
+                                                  height: 40.0,
+                                                  child: Text(
+                                                    "Upload",
+                                                    style: TextStyle(
+                                                        color: Colors.white, fontSize: 17.0),
+                                                  ),
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
                                         ),
+                                        SizedBox(height: 10,),
+                                        (idproof != null)
+                                            ? Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+
+                                                  child: Text(
+
+                                                    "Report Path :" + idproof,
+                                                    style: TextStyle(color: Colors.green),
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                child: SizedBox(
+                                                    width: 50.0,
+                                                    child: Icon(Icons.clear)),
+                                                onTap: () {
+                                                  setState(() {
+                                                    idproof = null;
+                                                    // registrationModel.profilePhotoBase64 =
+                                                    null;
+                                                    //registrationModel.profilePhotoExt =
+                                                    null;
+                                                  });
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                            : Container(),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 10),
@@ -499,19 +568,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
     );
   }
 
-  Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
 
-    setState(() {
-      _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
-    });
-  }
 
   Future getImage() async {
     // ignore: deprecated_member_use
@@ -667,8 +724,8 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
           pharmaSignupModel.mobno = textEditingController[10].text;
           pharmaSignupModel.email = textEditingController[11].text;
           //pharmaSignupModel.alteremail = textEditingController[12].text;
-          pharmaSignupModel.role="3";
-          pharmaSignupModel.speciality="32";
+          pharmaSignupModel.role="15";
+          pharmaSignupModel.speciality="0";
 
           print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
@@ -1331,7 +1388,90 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
       ),
     );
   }
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage() async {
+    // File pathUsr=null;
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    try {
+      var image = await ImagePicker.pickImage(
+          source: ImageSource.camera, imageQuality: 50);
+
+      // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+      if (image != null) {
+        var enc = await image.readAsBytes();
+        String _path = image.path;
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          // widget.model.patientimg =base64Encode(enc);
+          // widget.model.patientimgtype =extName;
+          _imageCertificate = image;
+          idproof = _fileName;
+          // Print("pathhh"+idproof);
+          userModel.profileImage = base64Encode(enc);
+        });
+      }
+    } catch (e) {
+      print("Error>>in" + e.toString());
+    }
+  }
+
+  Future getCerificateImage() async {
+    var image = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      _imageCertificate = image;
+      idproof = _fileName;
+      userModel.profileImage = base64Encode(enc);
+    });
+  }// Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
 //     child: TextFormField(
 //       controller: controller[index],

@@ -1,8 +1,16 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
+import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
+import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
+import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
+import 'package:user/screens/Pharmacists/Screens/MyProfile.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
+import 'package:user/screens/cowin/CovidMobilePage.dart';
+import 'package:user/screens/cowin/CovidOtpPage.dart';
+import 'package:user/screens/labrotry/SearchPocReportPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';

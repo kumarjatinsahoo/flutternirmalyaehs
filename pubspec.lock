@@ -100,7 +100,7 @@ packages:
     source: hosted
     version: "2.7.1+2"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       url: "https://pub.dartlang.org"

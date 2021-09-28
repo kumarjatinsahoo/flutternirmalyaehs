@@ -1,10 +1,7 @@
 name: user
 description: A new Flutter project.
-
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
 version: 1.0.0+1
-
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
@@ -32,7 +29,7 @@ dependencies:
   #dropdown_search: ^0.6.3
   rflutter_alert: ^1.1.0
   file_picker:
-  #image_picker: ^0.6.7+6
+
   image_picker: ^0.6.5+2
   date_format: ^2.0.2
   convex_bottom_bar: ^2.7.1
@@ -55,6 +52,7 @@ dependencies:
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
   multi_select_item: ^1.0.3
+  crypto: ^3.0.1
 
 dev_dependencies:
   flutter_test:

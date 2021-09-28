@@ -880,25 +880,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     );
   }
 
-  Future getImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    //var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    var enc = await image.readAsBytes();
-
-    print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-    if (50000 < enc.length) {
-      /*AppData.showToastMessage(
-          "Please select image with maximum size 50 KB ", Colors.red);*/
-      return;
-    }
-
-    setState(() {
-      _image = image;
-
-      print('Image Path $_image');
-    });
-  }
 
   Widget errorMsg(text) {
     return Align(
@@ -1241,7 +1222,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-     // setState(() => pathUsr = File(_path));
+     setState(() => pathUsr = File(_path));
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1250,7 +1231,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
-        pathUsr = File(_path);
+        //pathUsr = File(_path);
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
         userModel.profileImage = base64Encode(enc);
@@ -1284,7 +1265,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-      //setState(() => pathUsr = File(_path));
+      setState(() =>pathUsr = File(image.path));/*File(_path));*/
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1292,7 +1273,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       print(extName);
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
-        pathUsr = File(_path);
+        ///pathUsr = image/*File(_path)*/;
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
         userModel.profileImage = base64Encode(enc);
