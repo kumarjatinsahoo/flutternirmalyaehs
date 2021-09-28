@@ -188,7 +188,6 @@ String userid;
                           onTap: () {
                             if(patient.status =="Treated"){
                               widget.model.userappointment=patient;
-                              // Print("medicinelist"+$patient);
                               Navigator.pushNamed(context, "/usermedicinelist");
                             }
                             else{
