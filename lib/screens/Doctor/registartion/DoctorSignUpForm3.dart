@@ -307,7 +307,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                 setState(() {
                                   print(ApiFactory.SPECIALITY_API);
                                   DoctorSignUpForm3.specialistModel = data;
-                                  DoctorSignUpForm3.doctorModel = null;
+                                  //DoctorSignUpForm3.doctorModel = null;
                                   // UserSignUpForm.cityModel = null;
                                 });
                               }),

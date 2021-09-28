@@ -373,8 +373,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         // userModel.district=data.key;
                                         // userModel.st=data.code;
                                         // UserSignUpForm.cityModel = null;
-                                        DoctorSignUpForm4.cityModel =
-                                            null;
+                                        DoctorSignUpForm4.cityModel = null;
                                       });
                                     }),
                                   ),
@@ -734,7 +733,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         AppData.showInSnackBar(context, "Please enter a valid alternate email id");
       }else if (textEditingController[13].text == "" ||
           textEditingController[13].text == null) {
-        AppData.showInSnackBar(context, "Please enter Experience");
+        AppData.showInSnackBar(context, "Please enter experience");
       }else if (_checkbox == false) {
         AppData.showInSnackBar(context, "Please checked terms and Condition");
       }

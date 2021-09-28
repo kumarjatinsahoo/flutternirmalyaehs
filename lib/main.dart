@@ -4,6 +4,7 @@ import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
+import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
@@ -58,7 +59,7 @@ import 'package:user/screens/MedicalService.dart';
 import 'screens/Users/MedicalServiceOngooglePage.dart';
 import 'screens/Users/MedicineReminder.dart';
 import 'screens/Users/MedicineReminderOther.dart';
-import 'package:user/screens/MonthlyView.dart';
+import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
 import 'package:user/screens/MyAppointment_Requested.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
@@ -269,6 +270,12 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/monthlyview': (context) => LabSignUpForm(
+                    model: _model,
+                  ),
+              '/monthloveryview': (context) => MonthlyView(
+                    model: _model,
+              ),
+              '/deliverdorder': (context) => DeliverdOrder(
                     model: _model,
                   ),
               '/labsignup2': (context) => LabSignUpForm2(
