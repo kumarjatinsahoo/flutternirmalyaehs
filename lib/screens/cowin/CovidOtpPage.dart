@@ -1,3 +1,8 @@
+
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/providers/Const.dart';
@@ -6,37 +11,44 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class CovidMobilePage extends StatefulWidget {
+class CovidOtpPage extends StatefulWidget {
   final MainModel model;
 
-  const CovidMobilePage({Key key, this.model}) : super(key: key);
+  const CovidOtpPage({Key key, this.model}) : super(key: key);
 
   @override
-  _CovidMobilePageState createState() => _CovidMobilePageState();
+  _CovidOtpPageState createState() => _CovidOtpPageState();
 }
 
-class _CovidMobilePageState extends State<CovidMobilePage> {
+class _CovidOtpPageState extends State<CovidOtpPage> {
   List<TextEditingController> controller = [
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
   ];
 
-  String txnId;
+  //String txtId;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   callApi() {
-    Map<String,dynamic> postData = {"mobile": controller[1].text};
+    var bytes1 = utf8.encode(controller[1].text);         // data being hashed
+    var digest1 = sha256.convert(bytes1);         // Hashing Process
+    print("Digest as bytes: ${digest1.bytes}");   // Print Bytes
+    print("Digest as hex string: $digest1");
+    Map<String,dynamic> postData = {"otp": digest1.toString(), "txnId": widget.model.txnId};
+    log("Post Data>>>>>"+jsonEncode(postData));
     widget.model.POSTMETHOD(
-        api: ApiFactory.GENERATE_OTP,
+        api: ApiFactory.CONFIRM_OTP,
         json: postData,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
-          if (map.containsKey("txnId")) {
-            setState(() {
-              txnId = map["txnId"];
-              widget.model.txnId = txnId;
-              Navigator.pushNamed(context, "/covidOtp");
-            });
+          if (map.containsKey("token")) {
+            log("Token>>>>>"+map["token"].toString());
           } else {
             AppData.showInSnackBar(context, "Something went wrong");
           }
@@ -59,7 +71,7 @@ class _CovidMobilePageState extends State<CovidMobilePage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [mobileNumber("Mobile No", 1)],
+        children: [mobileNumber("OTP", 1)],
       ),
     );
   }
@@ -87,33 +99,6 @@ class _CovidMobilePageState extends State<CovidMobilePage> {
               border: Border.all(color: Colors.grey[400], width: 1)),
           child: Row(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: AppData.currentSelectedValue,
-                    isDense: true,
-                    onChanged: (newValue) {
-                      setState(() {
-                        AppData.currentSelectedValue = newValue;
-                      });
-                      print(AppData.currentSelectedValue);
-                    },
-                    items: AppData.phoneFormat.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-              Container(
-                height: 35.0,
-                width: 1.0,
-                color: Colors.grey.withOpacity(0.5),
-                margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-              ),
               new Expanded(
                 child: TextFormField(
                   // enabled: widget.isConfirmPage ? false : true,
@@ -124,7 +109,7 @@ class _CovidMobilePageState extends State<CovidMobilePage> {
                   style: TextStyle(fontSize: 13),
                   keyboardType: TextInputType.number,
                   //textAlignVertical: TextAlignVertical.center,
-                  onFieldSubmitted: (value){
+                  onFieldSubmitted: (v){
                     MyWidgets.showLoading(context);
                     callApi();
                   },

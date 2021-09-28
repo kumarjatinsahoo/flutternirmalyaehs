@@ -23,12 +23,21 @@ class _PocReportListPageState extends State<PocReportListPage> {
   ScrollController _scrollController = ScrollController();
 
   static const platform = AppData.channel;
+  int currentMax = 1;
 
   @override
   void initState() {
     super.initState();
-    callAPI();
+    callAPI(currentMax);
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        if (pocReportModel.body.length % 20 == 0) callAPI(++currentMax);
+      }
+    });
   }
+
 /*
   Future<void> callUrl(String data) async {
     try {
@@ -36,18 +45,23 @@ class _PocReportListPageState extends State<PocReportListPage> {
     } on PlatformException catch (e) {}
   }*/
 
-  callAPI() {
+  callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LIST,
+        api: ApiFactory.POC_REPORT_LIST + "?page=" + i.toString(),
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              pocReportModel = PocReportModel.fromJson(map);
+              if (i == 1) {
+                pocReportModel = PocReportModel.fromJson(map);
+                //Navigator.pop(context);
+              } else {
+                pocReportModel.addMore(map);
+              }
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -56,9 +70,25 @@ class _PocReportListPageState extends State<PocReportListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "POC Report List",
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          children: [
+            Text(
+              "POC Report List",
+              style: TextStyle(color: Colors.white),
+            ),
+            Spacer(),
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, "/searchPoc");
+              },
+                child: Icon(
+              Icons.search,
+              color: Colors.white,
+            )),
+            SizedBox(
+              width: 15,
+            )
+          ],
         ),
         centerTitle: true,
         titleSpacing: 5,
@@ -71,7 +101,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
               controller: _scrollController,
               itemBuilder: (context, i) {
                 if (i == pocReportModel.body.length) {
-                  return (pocReportModel.body.length % 10 == 0)
+                  return (pocReportModel.body.length % 20 == 0)
                       ? CupertinoActivityIndicator()
                       : Container();
                 }
@@ -98,8 +128,11 @@ class _PocReportListPageState extends State<PocReportListPage> {
                         /*widget.model.pdfUrl = patient.reportUrl;
                         print("URL IMAGE?>>>>>"+patient.reportUrl);
                         Navigator.pushNamed(context, "/testReport");*/
-                        print(">>>>>>PDF URL TEST REPORT????>>" + patient.reportUrl);
-                        AppData.launchURL("https://docs.google.com/gview?embedded=true&url="+patient.reportUrl);
+                        print(">>>>>>PDF URL TEST REPORT????>>" +
+                            patient.reportUrl);
+                        AppData.launchURL(
+                            "https://docs.google.com/gview?embedded=true&url=" +
+                                patient.reportUrl);
                       } else {
                         AppData.showInSnackBar(context, "Data Not Available");
                       }
@@ -121,7 +154,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                         (patient.thpId == "")
                             ? Container()
                             : Text(
-                                patient.thpName??"",
+                                patient.thpName ?? "",
                                 style: TextStyle(color: Colors.grey),
                                 textAlign: TextAlign.start,
                               ),
@@ -131,22 +164,22 @@ class _PocReportListPageState extends State<PocReportListPage> {
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.mobile??"",
+                          patient.mobile ?? "",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.gender??"",
+                          patient.gender ?? "",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.age??"",
+                          patient.age ?? "",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
                         Text(
-                          patient.screeningDate??"",
+                          patient.screeningDate ?? "",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
@@ -157,7 +190,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                   ),
                 );
               },
-              itemCount: pocReportModel.body.length,
+              itemCount: pocReportModel.body.length + 1,
             )
           : Container(),
     );
