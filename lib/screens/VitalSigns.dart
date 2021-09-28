@@ -2,6 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/UserVitalsignsModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -17,6 +20,7 @@ class VitalSigns extends StatefulWidget {
 class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
   int count = 0;
+  VitalsignsModel vitalsignsModel;
   List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
   List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
   String valueText = null;
@@ -35,8 +39,33 @@ class _VitalSignsState extends State<VitalSigns> {
   TextEditingController _pulse = TextEditingController();
   TextEditingController _respiration = TextEditingController();
   TextEditingController _oxygensaturation = TextEditingController();
+ // VITAL_SIGN_DETAIS
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
 
-
+      callAPI();
+    });
+  }
+  callAPI() {
+    /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.VITAL_SIGN_DETAIS + widget.model.user ,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              vitalsignsModel = VitalsignsModel.fromJson(map);
+              // appointModel = lab.LabBookModel.fromJson(map);
+            } else {
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -78,7 +107,7 @@ class _VitalSignsState extends State<VitalSigns> {
               children: [
                 Container(
                   height: 90,
-                  child: ListView(
+                  child: vitalsignsModel==null??ListView(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -95,7 +124,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '161',
+                                  /*'161',*/vitalsignsModel.body[0].height,
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
