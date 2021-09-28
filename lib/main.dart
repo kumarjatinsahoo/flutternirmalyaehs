@@ -1,6 +1,7 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
+import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
@@ -580,7 +581,9 @@ class _MyAppState extends State<MyApp> {
               '/searchPoc': (context) => SearchPocReportPage(
                 model: _model,
               ),
-
+              '/allergicListList': (context) => AllergicListList(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
