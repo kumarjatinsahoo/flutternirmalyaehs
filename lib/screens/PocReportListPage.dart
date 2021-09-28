@@ -47,7 +47,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LIST + "?page=" + i.toString(),
+        api: ApiFactory.POC_REPORT_LIST + "?page=" + i.toString()+"&search=",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
