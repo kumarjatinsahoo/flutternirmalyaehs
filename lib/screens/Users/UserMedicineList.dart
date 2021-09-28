@@ -202,12 +202,12 @@ class _MedicineList extends State<UserMedicineList> {
                                         onChanged: (val) {
                                           setState(() {
                                             body.isChecked = val;
-                                            if(body.isChecked==true)
+                                          /*  if(val==true)
                                             {
                                               print("API NAME>>>>" + body.appno);
 
                                              //Constants.removeAll(index, k);
-                                            }
+                                            }*/
                                           });
                                         },
                                       ),
