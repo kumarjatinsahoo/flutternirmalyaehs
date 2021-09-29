@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/models/PharmacyorderModel.dart'as cnfrm;
 import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/models/LabBookModel.dart'as lab;
 import 'package:user/models/PatientListModel.dart' as patiet;
@@ -94,6 +95,9 @@ pharma.Body userappointment;
 medicine.Body medicinelist;
 String pharmacyaddress;
 String pharmacity;
+String pharamctorderid;
+cnfrm.Body pharmacyorderModel;
+
 ////////////
   String ambulanceorganisation;
   String ambulancetitle;

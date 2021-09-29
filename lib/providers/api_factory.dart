@@ -96,6 +96,7 @@ static String GOOGLE_LOC(
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
   static String PHARMACY_ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+  static String PHARMACY_CNFRM_ORDER_LIST = MAIN_URL + 'view-requested-medicine-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
