@@ -5,6 +5,8 @@ class ApiFactory {
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+  static String NAME_API = MAIN_URL + 'get-allergy-name-list';
+  static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
   static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-org-list';
   static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
@@ -18,6 +20,7 @@ class ApiFactory {
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
   static String DOCTOR_REGISTRATION = MAIN_URL + 'doctor-registration-details';
   static String PHARMACY_REGISTRATION = MAIN_URL + 'post-pharmacy-registration';
+  static String ALLERGIC_POST = MAIN_URL + 'post-allergies-api';
   static String PHARMACY_LIST = MAIN_URL + 'get-pharmacy-list-by-location';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
   static String PERSONAL_DETAILS = MAIN_URL + 'user-personal-information-doctor?userid=';
@@ -93,6 +96,7 @@ static String GOOGLE_LOC(
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
   static String PHARMACY_ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+  static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
 
