@@ -1056,7 +1056,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
 
                       dob(),
-
                       DropDown.networkDropdown(
                           "Blood Group",
                           ApiFactory.BLOODGROUP_API,
