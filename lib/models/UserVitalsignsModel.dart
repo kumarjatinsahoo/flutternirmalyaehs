@@ -31,10 +31,10 @@ class VitalsignsModel {
 }
 
 class Body {
-  int height;
-  int weight;
-  int bmi;
-  int tempcel;
+  double height;
+  double weight;
+  double bmi;
+  double tempcel;
   double tempfar;
   int sysbp;
   int diabp;
