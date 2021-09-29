@@ -189,8 +189,8 @@ class _DoctorAppointmentConfirmedState
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
-                                        //width: double.maxFinite,
+                                        //height: 100,
+                                        width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             border: Border.all(

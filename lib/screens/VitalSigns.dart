@@ -1,14 +1,23 @@
 
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/UserVitalsignsModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class VitalSigns extends StatefulWidget {
   final MainModel model;
-  final Choice choice;
-  const VitalSigns({Key key, this.model,this.choice}) : super(key: key);
+  final bool isConfirmPage;
+ // final Choice choice;
+  const VitalSigns({Key key, this.model,this.isConfirmPage= false}) : super(key: key);
 
   @override
   _VitalSignsState createState() => _VitalSignsState();
@@ -17,6 +26,7 @@ class VitalSigns extends StatefulWidget {
 class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
   int count = 0;
+  VitalsignsModel vitalsignsModel;
   List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
   List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
   String valueText = null;
@@ -26,6 +36,26 @@ class _VitalSignsState extends State<VitalSigns> {
       _selectedDestination = index;
     });
   }
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
   TextEditingController _height = TextEditingController();
   TextEditingController _weight = TextEditingController();
   TextEditingController _bmi = TextEditingController();
@@ -35,8 +65,32 @@ class _VitalSignsState extends State<VitalSigns> {
   TextEditingController _pulse = TextEditingController();
   TextEditingController _respiration = TextEditingController();
   TextEditingController _oxygensaturation = TextEditingController();
+ // VITAL_SIGN_DETAIS
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
 
-
+      callAPI();
+    });
+  }
+  callAPI() {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.VITAL_SIGN_DETAIS + widget.model.user ,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              vitalsignsModel = VitalsignsModel.fromJson(map);
+              // appointModel = lab.LabBookModel.fromJson(map);
+            } else {
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,7 +116,11 @@ class _VitalSignsState extends State<VitalSigns> {
                   ),
                 ),
                 onTap:() async{
-                  _displayTextInputDialog(context);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => dialogaddnomination(context),
+                  );
+                 // dialogaddnomination(context);
 
 
 
@@ -71,12 +129,12 @@ class _VitalSignsState extends State<VitalSigns> {
 ]
         ),
 
-        body: SingleChildScrollView(
+        body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
             child: Column(
               children: [
-                Container(
+                 Container(
                   height: 90,
                   child: ListView(
                     shrinkWrap: true,
@@ -95,7 +153,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '161',
+                                   (vitalsignsModel != null)
+                                    ? vitalsignsModel.body[0].height.toString() : "N/A",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -134,7 +193,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '63',
+                                 (vitalsignsModel != null)
+                                ? vitalsignsModel.body[0].weight.toString() : "N/A",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -172,7 +232,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '24',
+                                 (vitalsignsModel != null)
+                                    ? vitalsignsModel.body[0].bmi.toString() : "N/A",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -194,109 +255,135 @@ class _VitalSignsState extends State<VitalSigns> {
                         ),
                       ),
                     ],
-                  ),
+                  ),/*:Container(),*/
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 SingleChildScrollView(
-                  child: Column(
-//                  shrinkWrap: true,
-                    children: [
-                      Container(
-                        color: Colors.black12,
+                  child: Container(
+                    color: AppData.greyBorder,
                     child: Padding(
-                      padding: const EdgeInsets.all(5),
-                        child: GridView.count(
-                          shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 4.0,
-                          mainAxisSpacing: 8.0,
-                          /*    itemCount: strOrders.length,
-                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                            // mainAxisExtent: 110,
-                            // mainAxisSpacing: 5,
-                              crossAxisCount: (orientation == Orientation.portrait) ? 2:5 ),
-                          itemBuilder: (BuildContext context, int index) {*/
-                          children: List.generate(choices.length, (index) {
-                            return
-                             Card(
-                              elevation: 2,
+                      padding: const EdgeInsets.only(top: 10.0, right: 5,left: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
 
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppData.grey100,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                                  child: InkWell(
-                                    onTap: (){
-                                      Navigator.pushNamed(context, "/deliveredorder");
-                                    },
-                                    child: Container(
-                                      child: new GridTile(
-                                        child:
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Container(),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                
-                                                Container(
-                                            /*count % 2 == 1 ??*/
-                                                    color:choices[index].color,
-                                                    padding: EdgeInsets.all(3),
-                                                    child: Image.asset(choices[index].icon,height: 40,)
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: size.height * 0.02,),
-                                            Text( choices[index].title.toString(),
-                                              style: TextStyle( color: Colors.black,fontSize: 15),
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                              maxLines: 2,
-                                            ),
-                                            SizedBox(height: size.height * 0.01,),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                  bottom: BorderSide(
-                                                    color: Color(0xFFD8ABAF),
-                                                    width: 1.0, // Underline thickness
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: size.height * 0.02,),
-                                            Text( choices[index].title1.toString(),
-                                              style: TextStyle( color: Colors.grey,fontSize: 12),
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                              maxLines: 2,
-                                            ),
-                                          ],
-                                        ),
-
-                                      ),
+                                    _buildTile1(
+                                      icon: "assets/temperatuer.png",
+                                      title: (vitalsignsModel != null)
+                          ? vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(): "N/A",
+                                      subtitle: "Temperature",
+                                      fun: () {
+                                        /*Navigator.pushNamed(
+                                        context, "/patientRegistration");*/
+                                       // Navigator.pushNamed(context, "/walkRegList");
+                                      },
+                                      color:Color(0xFFCF3564),
+                                      bordercolor: AppData.grey100,
+                                      // ,
                                     ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                                  ]),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      icon: "assets/bloodp.png",
+                                      title:(vitalsignsModel != null)
+                                          ? vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(): "N/A",
+                                      subtitle: "Systolic Diastolic Blood Pressure",
+                                      fun: () {
+                                       // chooseAppointment(context);
+                                        // Navigator.pushNamed(context, "/medicalrecordpage");
+                                      },
+                                      color: Color(0xFF2372B6),
+                                      bordercolor: AppData.BG1RED,
+                                      // ,
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                          SizedBox(height: 7),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      //icon: Icons.document_scanner,
+                                      icon: "assets/pulse.png",
+                                      title: (vitalsignsModel != null)
+                                          ? vitalsignsModel.body[0].pulse.toString() : "N/A",
+                                      subtitle: "Pulse",
+                                      fun: () {
+                                        /*Navigator.pushNamed(
+                                            context, "/pocreportlist");*/
+                                      },
+                                      color: Color(0xFF2372B6),
+                                      bordercolor: AppData.BG1RED,
+                                      // ,
+                                    ),
+                                  ]),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildTile1(
+                                    icon: "assets/respiration.png",
+                                    title: (vitalsignsModel != null)
+                                        ? vitalsignsModel.body[0].respiartion.toString(): "N/A",
+                                    subtitle: "Respiration",
+                                    fun: () {
+                                      //chooseAppointment1(context);
+                                     /* Navigator.pushNamed(
+                                          context, "/testappointmentpage");*/
+                                    },
+                                    color: Color(0xFFCF3564),
 
-                    ),
-                    ),
+                                    bordercolor: AppData.BG2BLUE,
+                                    // ,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 7),
+                          Padding(
+                            padding: const EdgeInsets.only( right: 5,left: 5,bottom: 10),
+                            child: Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                _buildTile1(
+                                  //icon: Icons.document_scanner,
+                                  icon:"assets/oxygen.png",
+                                  title:  (vitalsignsModel != null)
+                                      ? vitalsignsModel.body[0].oxygen.toString(): "N/A",
+                                  subtitle: "Oxygen Saturation",
+                                  fun: () {
+                                   /* Navigator.pushNamed(context, "/testappointmentpage1");*/
+                                  },
+                                  color: Color(0xFFCF3564),
+                                  bordercolor: AppData.BG1RED,
+                                  // ,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-  ]
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -304,16 +391,438 @@ class _VitalSignsState extends State<VitalSigns> {
       ),
     );
   }
+  Widget _buildTile1(
+      {String icon,
+        String title,
+        String subtitle,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
+    return InkWell(
+      onTap: fun,
+        child: Card(
+        elevation: 2,
+        child:Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 155,
+        width: (MediaQuery.of(context).size.width - 50) / 2,
+        decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(1.0),
+              topRight: Radius.circular(1.0),
+              bottomLeft: Radius.circular(1.0),
+              bottomRight: Radius.circular(1.0),
+            ),
+           //color: AppData.grey100,
+           color: AppData.white,
+
+           /* border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 1.0,
+            )*/),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Material(
+                      color:color,
+                      elevation: 10,
+                      child: new Image.asset(
+                        icon,
+                        height: 40,
+                        fit: BoxFit.cover,
+                        // color: Colors.blue
+                      ),
+                    ),
+  ]
+        ),
+                /* Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    icon,
+                    fit: BoxFit.fitWidth,
+                    width: 50,
+                    height: 70.0, color:color
+                  ),),*/
+               // Icon(icon, color:color, size: 40.0),                                                Material(
+                /*Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Monte",
+                    fontSize: 22.0,
+                  ),
+
+                ),*/
+                SizedBox(height: 10.0),
+                Text(title,
+                  style: TextStyle( color: Colors.black,fontSize: 15),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.clip,
+                  maxLines: 2,
+                ),
+                SizedBox(height:5.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFFD8ABAF),
+                          width: 1.0, // Underline thickness
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5.0),
+                Text( subtitle,
+                  style: TextStyle( color: Colors.grey,fontSize: 12),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.clip,
+                  maxLines: 2,
+                ),
+
+              ],
+            ),
+
+          ],
+        ),
+      ),
+      /*  Card(
+          elevation: 2,
+
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppData.grey100,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
+              child: InkWell(
+                onTap: (){
+                  // Navigator.pushNamed(context, "/deliveredorder");
+                },
+                child: Container(
+                  child: new GridTile(
+                    child:
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+
+                            Container(
+                              *//* count % 2 == 1 ??*//*
+                                color:choices[index].color,
+                                padding: EdgeInsets.all(3),
+                                child: Image.asset(choices[index].icon,height: 40,)
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: size.height * 0.02,),
+                        Text( choices[index].title.toString(),
+                          style: TextStyle( color: Colors.black,fontSize: 15),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.clip,
+                          maxLines: 2,
+                        ),
+                        SizedBox(height: size.height * 0.01,),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Color(0xFFD8ABAF),
+                                width: 1.0, // Underline thickness
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: size.height * 0.02,),
+                        Text( choices[index].title1.toString(),
+                          style: TextStyle( color: Colors.grey,fontSize: 12),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.clip,
+                          maxLines: 2,
+                        ),
+                      ],
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );*/
+        ),
+    );
+  }
+  Widget dialogaddnomination(BuildContext context) {
+   // DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    textEditingController[0].text=vitalsignsModel.body[0].height.toString();
+    textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
+    textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
+    textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
+    textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
+    textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
+    textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
+    textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
+    textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();
+    //Nomine
+    return AlertDialog(
+      contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+      insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+      //title: const Text(''),
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            width: MediaQuery.of(context).size.width * 0.86,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //_buildAboutText(),
+                  //_buildLogoAttribution(),
+                  Text(
+                    "Update Vital Sign",
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  formFieldMobile(0, "Height :"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(1, "Weight:"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(2, "BMI(KG/m):"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(3, "Temprature :"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(4, "Systolic Blood Prssure:"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(5, "Diastolic Blood Prssure:"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(6, "Pulse:"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(7, "Respiration:"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  formFieldMobile(8, "Oxygen Saturation:"),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+           // textEditingController[0].text = "";
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Cancel'),
+        ),
+        new FlatButton(
+          onPressed: () {
+           /* if (textEditingController[0].text == null ||
+                textEditingController[0].text == "") {
+              AppData.showInSnackBar(context, "Please enter Height ");
+            }else if (textEditingController[1].text == null ||
+                textEditingController[1].text == "") {
+              AppData.showInSnackBar(context, "Please enter Weight ");
+            }else if (textEditingController[2].text == null ||
+                textEditingController[2].text == "") {
+              AppData.showInSnackBar(context, "Please enter BMK(KG/m) ");
+            }else if (textEditingController[3].text == null ||
+                textEditingController[3].text == "") {
+              AppData.showInSnackBar(context, "Please enter Temprature");
+            }else if (textEditingController[4].text == null ||
+                textEditingController[4].text == "") {
+              AppData.showInSnackBar(context, "Please enter Systolic Blood Prssure");
+            }else if (textEditingController[5].text == null ||
+                textEditingController[5].text == "") {
+              AppData.showInSnackBar(context, "Please enter Diastolic Blood Prssure");
+            }else if (textEditingController[6].text == null ||
+                textEditingController[6].text == "") {
+              AppData.showInSnackBar(context, "Pulse");
+            }else if (textEditingController[7].text == null ||
+                textEditingController[7].text == "") {
+              AppData.showInSnackBar(context, "Respiration");
+            }else if (textEditingController[8].text == null ||
+                textEditingController[8].text == "") {
+              AppData.showInSnackBar(context, "Oxygen Saturation");
+            } else {*/
+              var sendData =
+                [
+                  {
+                    "key": "4",
+                    "code": textEditingController[0].text.toString(),
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "5",
+                    "code": textEditingController[1].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "6",
+                    "code": textEditingController[2].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "1",
+                    "code": textEditingController[3].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "4001",
+                    "code": textEditingController[4].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "6005",
+                    "code": textEditingController[5].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "2001",
+                    "code": textEditingController[6].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "2",
+                    "code": textEditingController[7].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "3",
+                    "code": textEditingController[8].text,
+                    "name": widget.model.user
+                  }
+
+                  ];
+
+              log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
+              log("TO POST>>>>" + jsonEncode(sendData));
+              MyWidgets.showLoading(context);
+              widget.model.POSTMETHOD_TOKEN(
+                  api: ApiFactory.UPDATE_VITAL_SIGN,
+                  json: sendData,
+                  token: widget.model.token,
+                  fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      callAPI();
+                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  });
+           /* }*/
+             callAPI();
+            Navigator.of(context).pop();
+           // textEditingController[0].text = "";
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Update'),
+        ),
+      ],
+    );
+  }
+  Widget formFieldMobile(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black, width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 .]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle: TextStyle(
+                        color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    //error[4] = false;
+                    setState(() {});
+                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    _height.text = "161";
-    _weight.text = "63";
-    _bmi.text = "23";
-    _tempreture.text = "38.000c1000.000f";
-    _systolicbloodpressure.text = "213";
-    _diastolicbloodpressure.text = "4";
-    _pulse.text ="120";
-    _respiration.text = "24";
-    _oxygensaturation.text = "50";
+
 
     return showDialog(
         context: context,
@@ -455,7 +964,7 @@ class _VitalSignsState extends State<VitalSigns> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL', style: TextStyle(color: Colors.grey)),
+                child: Text('CANCEL', style: TextStyle(color: Color(0xFF2372B6))),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -466,7 +975,7 @@ class _VitalSignsState extends State<VitalSigns> {
                 //textColor: Colors.grey,
                 child: Text(
                   'OK',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Color(0xFF2372B6)),
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
@@ -481,110 +990,5 @@ class _VitalSignsState extends State<VitalSigns> {
   }
 
 }
-class Choice {
-  const Choice({this.title, this.icon,this.title1,this.color});
-  final String title;
-  final String icon;
-  final Color color;
-  final String title1;
-}
-const List<Choice> choices = const <Choice>[
-  //const Choice(title: 'Home', icon: Icons.home,title1: '12345'),
-  const Choice(title: '38.000C 1000.000F', icon: "assets/temperatuer.png",color:Color(0xFFCF3564),title1: 'Temperature'),
-  const Choice(title: '213/4 mmHg', icon: "assets/bloodp.png",color:Color(0xFF2372B6), title1: 'Systolic Diastolic Blood Pressure'),
-  const Choice(title: '120/min',icon: "assets/pulse.png",color:Color(0xFF2372B6),title1: 'Pulse'),
-  const Choice(title: '24 bpm',icon: "assets/respiration.png",color:Color(0xFFCF3564),title1: 'Respiration'),
-  const Choice(title: '50 % ',icon: "assets/oxygen.png",color:Color(0xFFCF3564),title1: 'Oxygen Saturation'),
-];
-class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.choice}) : super(key: key);
-  final Choice choice;
 
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
-    return  Card(
-                              elevation: 2,
 
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppData.grey100,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
-                                  child: InkWell(
-                                    onTap: (){
-                                      Navigator.pushNamed(context, "/deliveredorder");
-                                    },
-                                    child: Container(
-                                      child: new GridTile(
-                                        child:
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Container(),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Material(
-                                                  color: Colors.transparent,
-                                                  elevation: 10,
-                                                  child: new Image.asset(
-                                                    "assets/images/dashboard (1).png",
-                                                    height: 40,
-                                                    fit: BoxFit.cover,
-                                                    // color: Colors.blue
-                                                  ),
-                                                ),
-                                              ],
-
-                                            ),
-                                            SizedBox(height: size.height * 0.02,),
-                                            Text( choice.title,
-                                              style: TextStyle( color: Colors.black,fontSize: 15),
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                              maxLines: 2,
-                                            ),
-                                            SizedBox(height: size.height * 0.01,),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                  bottom: BorderSide(
-                                                    color: Color(0xFFD8ABAF),
-                                                    width: 1.0, // Underline thickness
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(height: size.height * 0.02,),
-                                            Text( choice.title1,
-                                              style: TextStyle( color: Colors.grey,fontSize: 12),
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                              maxLines: 2,
-                                            ),
-                                          ],
-                                        ),
-
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-    /*Card(
-        color: Colors.orange,
-        child: Center(child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(child: Icon(choice.icon, size:50.0, color: textStyle.color)),
-              Text(choice.title, style: textStyle),
-            ]
-        ),
-        )
-    );*/
-  }
-}

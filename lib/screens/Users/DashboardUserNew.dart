@@ -301,6 +301,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 leading: Image.asset(
                   "assets/images/myprofile.png",
                   height: 30,
+                  color: Colors.grey,
                 ),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
@@ -394,29 +395,29 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(8);
                     //Navigator.pushNamed(context, "/share");
                   }),
-              ListTile(
-                leading: Icon(Icons.person,
-                    color: AppData.kPrimaryRedColor, size: 30),
-                title: Text('Notifications'),
-                selected: _selectedDestination == 9,
-                onTap: () {
-                  selectDestination(9);
-                  //   Navigator.pushNamed(context, "/patientRegistration");
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.help_center,
-                    color: AppData.menublueColor, size: 27),
-                title: Text('Help'),
-                selected: _selectedDestination == 10,
-                onTap: () {
-                  selectDestination(10);
-                  //Navigator.pushNamed(context, "/help");
-                },
-                // onTap: () {
-                // },
-              ),
-              ListTile(
+              // ListTile(
+              //   leading: Icon(Icons.person,
+              //       color: AppData.kPrimaryRedColor, size: 30),
+              //   title: Text('Notifications'),
+              //   selected: _selectedDestination == 9,
+              //   onTap: () {
+              //     selectDestination(9);
+              //     //   Navigator.pushNamed(context, "/patientRegistration");
+              //   },
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.help_center,
+              //       color: AppData.menublueColor, size: 27),
+              //   title: Text('Help'),
+              //   selected: _selectedDestination == 10,
+              //   onTap: () {
+              //     selectDestination(10);
+              //     //Navigator.pushNamed(context, "/help");
+              //   },
+              //   // onTap: () {
+              //   // },
+              // ),
+             /* ListTile(
                   leading: Icon(Icons.collections,
                       color: AppData.kPrimaryRedColor, size: 27),
                   title: Text('My Orders'),
@@ -424,8 +425,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(11);
                     Navigator.pushNamed(context, "/myorder");
-                  }),
-              ListTile(
+                  }),*/
+              /*ListTile(
                   leading: Icon(Icons.calendar_today,
                       color: AppData.menublueColor, size: 25),
                   title: Text('Monthly Overview'),
@@ -442,37 +443,37 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(13);
                     Navigator.pushNamed(context, "/processedorders");
-                  }),
-              ListTile(
-                leading:
-                    Icon(Icons.home, color: AppData.menublueColor, size: 27),
-                title: Text('Set Discount and Offer'),
-                selected: _selectedDestination == 14,
-                onTap: () {
-                  selectDestination(14);
-                  Navigator.pushNamed(context, "/setdiscount");
-                },
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
-                title: Text('Tab Instruction'),
-                selected: _selectedDestination == 15,
-                onTap: () {
-                  selectDestination(15);
-                  //Navigator.pushNamed(context, "/tabinstruction");
-                },
-              ),
-              ListTile(
-                leading:
-                Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
-                title: Text('Setup Contacts'),
-                selected: _selectedDestination == 15,
-                onTap: () {
-                 // selectDestination(15);
-                  Navigator.pushNamed(context, "/setupcontacts");
-                },
-              ),
+                  }),*/
+              // ListTile(
+              //   leading:
+              //       Icon(Icons.home, color: AppData.menublueColor, size: 27),
+              //   title: Text('Set Discount and Offer'),
+              //   selected: _selectedDestination == 14,
+              //   onTap: () {
+              //     selectDestination(14);
+              //     Navigator.pushNamed(context, "/setdiscount");
+              //   },
+              // ),
+              // ListTile(
+              //   leading:
+              //       Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
+              //   title: Text('Tab Instruction'),
+              //   selected: _selectedDestination == 15,
+              //   onTap: () {
+              //     selectDestination(15);
+              //     //Navigator.pushNamed(context, "/tabinstruction");
+              //   },
+              // ),
+              // ListTile(
+              //   leading:
+              //   Icon(Icons.home, color: AppData.kPrimaryRedColor, size: 27),
+              //   title: Text('Setup Contacts'),
+              //   selected: _selectedDestination == 15,
+              //   onTap: () {
+              //    // selectDestination(15);
+              //     Navigator.pushNamed(context, "/setupcontacts");
+              //   },
+              // ),
               ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",

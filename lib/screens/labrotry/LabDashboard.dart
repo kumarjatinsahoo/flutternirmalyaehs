@@ -180,7 +180,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 1,
                   onTap: () {
                     selectDestination(1);
-                    //Navigator.pushNamed(context, "/profile");
+                    Navigator.pushNamed(context, "/labprofile");
                     //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),

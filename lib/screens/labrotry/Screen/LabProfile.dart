@@ -1,30 +1,61 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/ProfileModel1.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
 
 
-class MyProfile extends StatefulWidget {
+class LabProfile extends StatefulWidget {
   MainModel model;
 
-  MyProfile({Key key, this.model}) : super(key: key);
+  LabProfile({Key key, this.model}) : super(key: key);
 
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _LabProfileState createState() => _LabProfileState();
 }
 
-class _MyProfileState extends State<MyProfile> {
+class _LabProfileState extends State<LabProfile> {
   String loAd = "Loading..";
- // Body model;
+  // Body model;
+  LoginResponse1 loginResponse;
+  bool isDataNotAvail = false;
+  ProfileModel1 profileModel1;
 
   @override
   void initState() {
     super.initState();
-   // model = widget.model.model;
+    loginResponse = widget.model.loginResponse1;
+    callAPI();
+    // model = widget.model.model;
   }
+  callAPI() {
+    widget.model.GETMETHODCALL_TOKEN_FORM(
+        api: ApiFactory.USER_PROFILE + loginResponse.body.user,
+        userId: loginResponse.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              // pocReportModel = PocReportModel.fromJson(map);
+              profileModel1 = ProfileModel1.fromJson(map);
 
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -58,9 +89,8 @@ class _MyProfileState extends State<MyProfile> {
           ),
         ),
         body:
-        // (model != null)
-        //     ?
-        Container(
+         (profileModel1 != null)
+             ?Container(
           height: double.maxFinite,
           child: SingleChildScrollView(
             child: Column(
@@ -78,10 +108,10 @@ class _MyProfileState extends State<MyProfile> {
                 ),
                 const SizedBox(height: 10.0),
                 Container(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
+                  padding: const EdgeInsets.only(left: 20.0, bottom: 4.0),
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    MyLocalizations.of(context).text("USER_INFORMATION"),
+                  child: Text("User Information",
+                    //MyLocalizations.of(context).text("USER_INFORMATION").toUpperCase(),
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.w500,
@@ -106,52 +136,52 @@ class _MyProfileState extends State<MyProfile> {
                                       horizontal: 12, vertical: 4),
                                   leading: Icon(Icons.person),
                                   title: Text("NAME"),
-                                  subtitle: Text("Ipsita Sahoo"),
+                                  subtitle: Text(profileModel1.body.name??"N/A"),
                                 ), ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
                                   leading: Icon(Icons.person),
                                   title: Text("REGISTRATION NO"),
-                                  subtitle: Text("123456789012"),
+                                  subtitle: Text(profileModel1.body.useraccount??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.phone),
                                   title: Text(
                                     "PHONE",
                                   ),
-                                  subtitle: Text("8249514637"),
+                                  subtitle: Text(profileModel1.body.mobile??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.face),
                                   title: Text(
                                     "GENDER",
                                   ),
-                                  subtitle: Text("Female"),
+                                  subtitle: Text(profileModel1.body.gender??"N/A"),
                                 ),
 
                                 ListTile(
                                   leading: Icon(Icons.email),
                                   title: Text("EMAIL"),
-                                  subtitle: Text("Sahoo@gmail.com"),
+                                  subtitle: Text(profileModel1.body.email??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.contact_phone),
                                   title: Text("AADHAAR NO"),
-                                  subtitle: Text("123456789369"),
+                                  subtitle: Text(profileModel1.body.aadhaar??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
                                     "COUNTRY",
                                   ),
-                                  subtitle: Text("India"),
+                                  subtitle: Text(profileModel1.body.country??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
                                     "STATE",
                                   ),
-                                  subtitle: Text("Odisha"),
+                                  subtitle: Text(profileModel1.body.state??"N/A"),
                                 ),
 
                               ],
@@ -171,71 +201,13 @@ class _MyProfileState extends State<MyProfile> {
               ],
             ),
           ),
-        )
-        //     : Center(
-        //   child: Text(
-        //     loAd,
-        //     style: TextStyle(color: Colors.black, fontSize: 23),
-        //   ),
-        // )
-    );
-  }
-
-  String getHeaderString(int value) {
-    switch (value) {
-      case 1:
-        return "1st Sonography";
-      case 2:
-        return "2nd Sonography";
-      case 3:
-        return "3rd Sonography";
-      case 4:
-        return "4th Sonography";
-      default:
-        return "Sonography";
-    }
-  }
-
-  Widget getRow(String name, String value) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              name,
-              style: TextStyle(color: Colors.black),
-            ),
-            Text(value),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget getRow1(String name, String value) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                name,
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(value),
-            ],
-          ),
-        ],
-      ),
+         )
+             : Center(
+           child: Text(
+             loAd,
+             style: TextStyle(color: Colors.black, fontSize: 23),
+           ),
+         )
     );
   }
 
@@ -276,7 +248,7 @@ class _MyProfileState extends State<MyProfile> {
                   height: 45.0,
                 ),*/
                 Text(
-                  "Ipsita Sahoo",
+                  profileModel1.body.name??"N/A",
                   style: Theme.of(context)
                       .textTheme
                       .title
@@ -289,7 +261,7 @@ class _MyProfileState extends State<MyProfile> {
                 Text(
                   "AADHAAR NO" +
                       ": " +
-                      "123456789666",
+                      profileModel1.body.aadhaar??"N/A",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
                 ),

@@ -45,6 +45,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
         userId: loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
+
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {

@@ -12,28 +12,28 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
 
-class DocMyProfile extends StatefulWidget {
+
+class PharmaMyProfile extends StatefulWidget {
   MainModel model;
 
-  DocMyProfile({Key key, this.model}) : super(key: key);
+  PharmaMyProfile({Key key, this.model}) : super(key: key);
 
   @override
-  _DocMyProfileState createState() => _DocMyProfileState();
+  _PharmaMyProfileState createState() => _PharmaMyProfileState();
 }
 
-class _DocMyProfileState extends State<DocMyProfile> {
+class _PharmaMyProfileState extends State<PharmaMyProfile> {
   String loAd = "Loading..";
-  //Body model;
+ // Body model;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   ProfileModel1 profileModel1;
-
   @override
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
     callAPI();
-    //model = widget.model.model;
+   // model = widget.model.model;
   }
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
@@ -134,67 +134,54 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
-                                  leading: Icon(Icons.calendar_today),
-                                  title: Text("BIRTH DATE"),
-                                  subtitle: Text(profileModel1.body.birthdate??"N/A"),
+                                  leading: Icon(Icons.person),
+                                  title: Text("NAME"),
+                                  subtitle: Text(profileModel1.body.name??"N/A"),
                                 ), ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
                                   leading: Icon(Icons.person),
-                                  title: Text("GENDER"),
-                                  subtitle: Text( profileModel1.body.gender??"N/A"),
+                                  title: Text("REGISTRATION NO"),
+                                  subtitle: Text(profileModel1.body.useraccount??"N/A"),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.book),
+                                  leading: Icon(Icons.phone),
                                   title: Text(
-                                    "EDUCATION",
+                                    "PHONE",
                                   ),
-                                  subtitle: Text(profileModel1.body.education??"N/A"),
+                                  subtitle: Text(profileModel1.body.mobile??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.face),
                                   title: Text(
-                                    "SPECIALITY",
+                                    "GENDER",
                                   ),
-                                  subtitle: Text(profileModel1.body.speciality??"N/A"),
+                                  subtitle: Text(profileModel1.body.gender??"N/A"),
                                 ),
 
                                 ListTile(
                                   leading: Icon(Icons.email),
-                                  title: Text("ORGANIZATION"),
-                                  subtitle: Text("NIRMALYA"),
+                                  title: Text("EMAIL"),
+                                  subtitle: Text(profileModel1.body.email??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.contact_phone),
-                                  title: Text("IMA NO"),
-                                  subtitle: Text( profileModel1.body.imano??"N/A"),
+                                  title: Text("AADHAAR NO"),
+                                  subtitle: Text(profileModel1.body.aadhaar??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
-                                    "PAN CARD NO",
+                                    "COUNTRY",
                                   ),
-                                  subtitle: Text(profileModel1.body.pancardno),
+                                  subtitle: Text(profileModel1.body.country??"N/A"),
                                 ),
                                 ListTile(
                                   leading: Icon(Icons.info_outline),
                                   title: Text(
-                                    "PASSPORT NO",
+                                    "STATE",
                                   ),
-                                  subtitle: Text(profileModel1.body.passportno??"N/A"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.info_outline),
-                                  title: Text(
-                                    "VOTER CARD NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.votercardno??"N/A"),
-                                ), ListTile(
-                                  leading: Icon(Icons.filter),
-                                  title: Text(
-                                    "LICENCE NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.licenceno??"N/A"),
+                                  subtitle: Text(profileModel1.body.state??"N/A"),
                                 ),
 
                               ],
@@ -223,7 +210,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
         )
     );
   }
-
 
   Container _buildHeader(BuildContext context) {
     return Container(

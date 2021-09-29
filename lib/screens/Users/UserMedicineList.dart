@@ -192,7 +192,7 @@ class _MedicineList extends State<UserMedicineList> {
                                               //font change
                                               title: new Text(
                                                 medicineListModel
-                                                    .body[i].medname,
+                                                    .body[i].medname??"N/A",
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -210,7 +210,14 @@ class _MedicineList extends State<UserMedicineList> {
                                                 });
                                               },
                                             )
-                                          : Container(),
+                                          : /*Container(),*/Text(
+                                        medicineListModel
+                                            .body[i].medname??"N/A",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
                                       SizedBox(
                                         width: 5,
                                       ),
