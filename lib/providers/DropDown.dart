@@ -1750,10 +1750,93 @@ class DropDown {
             case "ngo":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "typelist":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "namelist":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
         return list;
       },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    ));
+  }
+static networkDrop(
+    String label,
+    String callFrom,
+    List<KeyvalueModel> list,
+    Function fun,
+    ) {
+    return newContainer(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        /*   icon: Icon(
+          iconData,
+          size: iconSize,
+        ),*/
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      /* dropdownSearchDecoration: InputDecoration(
+          hintText: label, */ /*labelText: label,*/ /*
+          disabledBorder: InputBorder.none,
+          contentPadding:
+          EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
+        floatingLabelBehavior: FloatingLabelBehavior.never),*/
+
+      //label: label,
+      label: label,
+      showSearchBox: true,
+      //items: maritalStatus,
+      selectedItem: getData(callFrom),
+      items: list,
+      // onFind: (String filter) async {
+      //   print("DROP DOWN API?????" + API);
+      //   var response = await Dio().get(
+      //     API,
+      //   );
+      //   var list;
+      //   switch (callFrom) {
+      //     case "title":
+      //       list = KeyvalueModel.fromJsonList(response.data["body"]);
+      //       break;
+      //
+      //   }
+      //
+      //   return list;
+      // },
       onChanged: (KeyvalueModel data) {
         fun(data);
       },
