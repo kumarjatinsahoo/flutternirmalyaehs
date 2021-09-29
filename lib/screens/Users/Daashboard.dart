@@ -54,7 +54,7 @@ class _DashboardState extends State<Dashboard> {
             child: Column(
               children: [
                 Container(
-                  // height: 120,
+                  //height: 120,
                   color: AppData.kPrimaryColor,
                   width: double.infinity,
                   child: Padding(
@@ -144,7 +144,6 @@ class _DashboardState extends State<Dashboard> {
                     selectDestination(4);
                     // Navigator.pushNamed(context, "/onlinechats");
                   },
-
                   title: Text('Help'),
                   // onTap: () {
                   // },

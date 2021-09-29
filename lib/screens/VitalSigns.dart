@@ -752,8 +752,7 @@ class _VitalSignsState extends State<VitalSigns> {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   });
-           /* }*/
-             callAPI();
+              callAPI();
             Navigator.of(context).pop();
            // textEditingController[0].text = "";
           },
