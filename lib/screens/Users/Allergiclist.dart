@@ -111,7 +111,7 @@ class _AllergicListListState extends State<AllergicListList> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5))),
                     child: Container(
-                      height: 100,
+                      /*height: 100,*/
                       decoration: BoxDecoration(
                           border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
                             width: double.maxFinite,
@@ -119,268 +119,90 @@ class _AllergicListListState extends State<AllergicListList> {
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Row(
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
                                                   children: [
                                                     Container(
-                                                      //width:100,
+                                                      width:100,
                                                       child: Text(
                                                         "Name",
-                                                        style: TextStyle(color: Colors.black, fontSize: 15),
+                                                        style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
                                                       ),
                                                     ),
                                                     Text(
                                                       "Grains",
                                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                                     ),
+
                                                   ],
                                                 ),
-                                              ),
-                                              SizedBox(height: 5,),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width:100,
-                                                    child: Text(
+                                                SizedBox(height: 5,),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width:100,
+                                                      child: Text(
 
-                                                      "Allergen",
-                                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                                        "Allergen",
+                                                        style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                                                      ),
                                                     ),
-                                                  ),
 
-                                                  Text(
-                                                    "Alternaria",
-                                                    style: TextStyle(color: Colors.black, fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5,),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width:100,
-                                                    child: Text(
-                                                      "Severity",
+                                                    Text(
+                                                      "Alternaria",
                                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    "Low",
-                                                    style: TextStyle(color: Colors.black, fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width:100,
-                                                    child: Text(
-                                                      "Updated by",
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5,),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width:100,
+                                                      child: Text(
+                                                        "Severity",
+                                                        style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "Low",
                                                       style: TextStyle(color: Colors.black, fontSize: 15),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    "Dr.Aman",
-                                                    style: TextStyle(color: Colors.black, fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                  ],
+                                                ),
+                                                SizedBox(height: 5,),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width:100,
+                                                      child: Text(
+                                                        "Updated by",
+                                                        style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "Dr.Aman",
+                                                      style: TextStyle(color: Colors.black, fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                        Image.asset(
-                                          "assets/forwardarrow.png",
-                                          fit: BoxFit.fitWidth,
-                                          /*width: 50,*/
-                                          height: 30,
-
                                         ),
                                         SizedBox(width: 10,),
                                       ],
                                     )),
-                               /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                              ),*/
+
                             ),),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              shadowColor: Colors.grey,
-                              elevation: 10,
-                              child: ClipPath(
-                                clipper: ShapeBorderClipper(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
-                                child: Container(
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                        border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
-                                    width: double.maxFinite,
-                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('ICIC Prudential Pvt.Ltd',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('25000.00',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('Premium Amount' ,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(color: Colors.grey),),
-                                              ],
-                                            ),
-                                          ),
-                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                          Image.asset(
-                                            "assets/forwardarrow.png",
-                                            fit: BoxFit.fitWidth,
-                                            /*width: 50,*/
-                                            height: 30,
-
-                                          ),
-                                          SizedBox(width: 10,),
-                                        ],
-                                      ),
-                                    )),
-                                /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                              ),*/
-                              ),),
-                           /* ),*/
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              shadowColor: Colors.grey,
-                              elevation: 10,
-                              child: ClipPath(
-                                clipper: ShapeBorderClipper(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
-                                child: Container(
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                        border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
-                                    width: double.maxFinite,
-                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('ICIC Prudential Pvt.Ltd',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('25000.00',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('Premium Amount' ,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(color: Colors.grey),),
-                                              ],
-                                            ),
-                                          ),
-                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                          Image.asset(
-                                            "assets/forwardarrow.png",
-                                            fit: BoxFit.fitWidth,
-                                            /*width: 50,*/
-                                            height: 30,
-
-                                          ),
-                                          SizedBox(width: 10,),
-                                        ],
-                                      ),
-                                    )),
-                                /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                              ),*/
-                              ),),
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          shadowColor: Colors.grey,
-                          elevation: 10,
-                          child: ClipPath(
-                            clipper: ShapeBorderClipper(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5))),
-                            child: Container(
-                                height: 100,
-                                decoration: BoxDecoration(
-                                    border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
-                                width: double.maxFinite,
-                                /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('ICIC Prudential Pvt.Ltd',
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                            SizedBox(height: 5,),
-                                            Text('25000.00',
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                            SizedBox(height: 5,),
-                                            Text('Premium Amount' ,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(color: Colors.grey),),
-                                          ],
-                                        ),
-                                      ),
-                                      //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                      Image.asset(
-                                        "assets/forwardarrow.png",
-                                        fit: BoxFit.fitWidth,
-                                        /*width: 50,*/
-                                        height: 30,
-
-                                      ),
-                                      SizedBox(width: 10,),
-                                    ],
-                                  ),
-                                )),
-                            /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                              ),*/
-                          ),),
-
                       ],
                     ),
                   ),
