@@ -2,9 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/Doctor/Dashboard/Medicationlist.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorMedicationlist.dart';
 import 'package:user/screens/Users/UserMedicineList.dart';
 import 'package:user/screens/Users/TestList.dart';
+import 'package:user/screens/Users/UserTestList.dart';
 
 
 class UserMedicineTab extends StatefulWidget {
@@ -56,7 +57,7 @@ class _UserMedicineList extends State<UserMedicineTab> {
         body: TabBarView(
           children: [
             UserMedicineList(model:widget.model,),
-            TestList(model:widget.model,),
+            UserTestList(model:widget.model,),
           ],
         ),
       ),

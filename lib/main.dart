@@ -3,6 +3,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/BiomediImplants.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorTestlist.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
@@ -607,6 +608,7 @@ class _MyAppState extends State<MyApp> {
               '/allergicListList': (context) => AllergicListList(
                 model: _model,
               ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

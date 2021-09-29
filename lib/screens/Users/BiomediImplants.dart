@@ -28,6 +28,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   bio.BiomedicalModel biomedicalModel;
   bool isDataNotAvail = false;
 
+
+  TextEditingController _date = TextEditingController();
+  TextEditingController _reason = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
