@@ -6,11 +6,12 @@ import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
-import 'package:user/screens/Pharmacists/Screens/MyProfile.dart';
+import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/DoctorConsultPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
+import 'package:user/screens/labrotry/Screen/LabProfile.dart';
 import 'package:user/screens/labrotry/SearchPocReportPage.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
@@ -225,6 +226,12 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/profile': (context) => ProfileScreen(
+                    model: _model,
+                  ),
+              '/pharmaprofile': (context) => PharmaMyProfile(
+                    model: _model,
+                  ),
+              '/labprofile': (context) => LabProfile(
                     model: _model,
                   ),
               '/laborders': (context) => LabOrders(
