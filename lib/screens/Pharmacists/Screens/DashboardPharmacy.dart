@@ -426,7 +426,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                                 title: "Invoices",
                                 fun: () {
 
-                                  Navigator.pushNamed(context, "/paymentcollection");
+                                //  Navigator.pushNamed(context, "/paymentcollection");
                                 },
                                 color: AppData.BG2BLUE,
                                 bordercolor: AppData.BG2BLUE,

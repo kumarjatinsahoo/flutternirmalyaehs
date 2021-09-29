@@ -12,8 +12,10 @@ class ApiFactory {
   static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
   static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
+  static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
 
   static String GENDER_API = MAIN_URL + 'get-gender-list';
+  static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
@@ -45,6 +47,7 @@ class ApiFactory {
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
   static String VITAL_SIGN_DETAIS= MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String UPDATE_VITAL_SIGN= MAIN_URL + 'update-vital-signs';
   static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';
   static String ALERGY_LIST= MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';

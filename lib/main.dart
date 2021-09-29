@@ -1,5 +1,6 @@
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/BiomediImplants.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
@@ -355,6 +356,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/userSignUpForm': (context) => UserSignUpForm(
+                    model: _model,
+              ),
+              '/biomedicalimplants': (context) => BiomediImplants(
                     model: _model,
                   ),
               '/donorApplication': (context) => DonorApplication(
