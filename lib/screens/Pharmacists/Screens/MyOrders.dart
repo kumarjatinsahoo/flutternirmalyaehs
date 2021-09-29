@@ -29,6 +29,7 @@ class _MyOrdersState extends State<MyOrders> {
       _selectedDestination = index;
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -92,7 +93,7 @@ class _MyOrdersState extends State<MyOrders> {
                 padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
                 child: Card(
                   child: Container(
-                    height: height * 0.27,
+                    height: height * 0.28,
                     // color: Colors.grey[200],
                     child: Column(
                       children: [
@@ -107,6 +108,7 @@ class _MyOrdersState extends State<MyOrders> {
                                 left: 5.0, right: 5.0, top: 5, bottom: 5),
                             child: InkWell(
                               onTap: () {
+                                widget.model.pharmacyorderModel=body;
                                 Navigator.pushNamed(context, "/confirmorder");
                               },
                               child: Row(
@@ -167,7 +169,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           ],
                                         ),
                                         SizedBox(
-                                          height: size.height * 0.02,
+                                          height: size.height * 0.01,
                                         ),
                                         Text(
                                           'Order ID: ',
@@ -180,6 +182,25 @@ class _MyOrdersState extends State<MyOrders> {
                                         ),
                                         Text(
                                           body.orderid,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(
+                                          'Address: ',
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          body.address,
                                           overflow: TextOverflow.clip,
                                           maxLines: 2,
                                           style: TextStyle(

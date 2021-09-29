@@ -12,8 +12,10 @@ class ApiFactory {
   static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
   static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
+  static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
 
   static String GENDER_API = MAIN_URL + 'get-gender-list';
+  static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
@@ -97,6 +99,7 @@ static String GOOGLE_LOC(
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';
   static String PHARMACY_ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+  static String PHARMACY_CNFRM_ORDER_LIST = MAIN_URL + 'view-requested-medicine-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART = "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
