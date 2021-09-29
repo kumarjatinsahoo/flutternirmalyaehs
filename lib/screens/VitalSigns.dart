@@ -571,6 +571,15 @@ class _VitalSignsState extends State<VitalSigns> {
   }
   Widget dialogaddnomination(BuildContext context) {
    // DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    textEditingController[0].text=vitalsignsModel.body[0].height.toString();
+    textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
+    textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
+    textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
+    textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
+    textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
+    textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
+    textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
+    textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -648,52 +657,90 @@ class _VitalSignsState extends State<VitalSigns> {
         ),
         new FlatButton(
           onPressed: () {
-            if (textEditingController[0].text == null ||
+           /* if (textEditingController[0].text == null ||
                 textEditingController[0].text == "") {
               AppData.showInSnackBar(context, "Please enter Height ");
             }else if (textEditingController[1].text == null ||
-             textEditingController[1].text == "") {
-               AppData.showInSnackBar(context, "Please enter Weight ");
+                textEditingController[1].text == "") {
+              AppData.showInSnackBar(context, "Please enter Weight ");
             }else if (textEditingController[2].text == null ||
                 textEditingController[2].text == "") {
-              AppData.showInSnackBar(context, "Please enter Weight ");
+              AppData.showInSnackBar(context, "Please enter BMK(KG/m) ");
             }else if (textEditingController[3].text == null ||
                 textEditingController[3].text == "") {
-              AppData.showInSnackBar(context, "Please enter BMK(KG/m) ");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
               AppData.showInSnackBar(context, "Please enter Temprature");
             }else if (textEditingController[4].text == null ||
                 textEditingController[4].text == "") {
               AppData.showInSnackBar(context, "Please enter Systolic Blood Prssure");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
+            }else if (textEditingController[5].text == null ||
+                textEditingController[5].text == "") {
               AppData.showInSnackBar(context, "Please enter Diastolic Blood Prssure");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
-              AppData.showInSnackBar(context, "Please enter Diastolic Blood Prssure");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
+            }else if (textEditingController[6].text == null ||
+                textEditingController[6].text == "") {
               AppData.showInSnackBar(context, "Pulse");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
+            }else if (textEditingController[7].text == null ||
+                textEditingController[7].text == "") {
               AppData.showInSnackBar(context, "Respiration");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
+            }else if (textEditingController[8].text == null ||
+                textEditingController[8].text == "") {
               AppData.showInSnackBar(context, "Oxygen Saturation");
-            } else {
-              // Navigator.of(context).pop();
-              /*String userid = loginResponse1.body.user;
-              String pharmacistid = UserMedicineList.pharmacyModel.key;
-              String patientnote = textEditingController[0].text.toString();
-              Map<String, dynamic> map = fromJsonListData(selectedMedicine);*/
+            } else {*/
+              var sendData =
+                [
+                  {
+                    "key": "4",
+                    "code": textEditingController[0].text.toString(),
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "5",
+                    "code": textEditingController[1].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "6",
+                    "code": textEditingController[2].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "1",
+                    "code": textEditingController[3].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "4001",
+                    "code": textEditingController[4].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "6005",
+                    "code": textEditingController[5].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "2001",
+                    "code": textEditingController[6].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "2",
+                    "code": textEditingController[7].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "3",
+                    "code": textEditingController[8].text,
+                    "name": widget.model.user
+                  }
 
-              log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
-              //log("TO POST>>>>" + jsonEncode(map));
+                  ];
+
+              log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
+              log("TO POST>>>>" + jsonEncode(sendData));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.POST_PHARMACY_REQUST,
-                  //json: map,
+                  api: ApiFactory.UPDATE_VITAL_SIGN,
+                  json: sendData,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
@@ -705,7 +752,8 @@ class _VitalSignsState extends State<VitalSigns> {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   });
-            }
+           /* }*/
+             callAPI();
             Navigator.of(context).pop();
            // textEditingController[0].text = "";
           },

@@ -42,6 +42,7 @@ class ApiFactory {
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
   static String VITAL_SIGN_DETAIS= MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String UPDATE_VITAL_SIGN= MAIN_URL + 'update-vital-signs';
   static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';
   static String ALERGY_LIST= MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
