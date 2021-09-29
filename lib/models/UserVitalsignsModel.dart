@@ -31,7 +31,7 @@ class VitalsignsModel {
 }
 
 class Body {
-  String height;
+  int height;
   int weight;
   int bmi;
   int tempcel;
@@ -55,7 +55,7 @@ class Body {
         this.oxygen});
 
   Body.fromJson(Map<String, dynamic> json) {
-    height = json['height'].toString();
+    height = json['height'];
     weight = json['weight'];
     bmi = json['bmi'];
     tempcel = json['tempcel'];
