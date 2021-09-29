@@ -28,7 +28,7 @@ class _PaymentCollectionState extends State<PaymentCollection> {
             ),
           ),
           //Divider(height: 20),
-          Container(height: 50,color: Colors.blue,
+          Container(height: 50,
             child: Image.asset("assets/UPI.jpg"),
           ),
         ],
