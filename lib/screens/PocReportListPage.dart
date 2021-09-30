@@ -22,8 +22,8 @@ class _PocReportListPageState extends State<PocReportListPage> {
   bool isDataNotAvail = false;
   ScrollController _scrollController = ScrollController();
 
-  static const platform = AppData.channel;
   int currentMax = 1;
+  static const platform = AppData.channel;
 
   @override
   void initState() {
@@ -130,9 +130,10 @@ class _PocReportListPageState extends State<PocReportListPage> {
                         Navigator.pushNamed(context, "/testReport");*/
                         print(">>>>>>PDF URL TEST REPORT????>>" +
                             patient.reportUrl);
-                        AppData.launchURL(
+                        /*AppData.launchURL(
                             "https://docs.google.com/gview?embedded=true&url=" +
-                                patient.reportUrl);
+                                patient.reportUrl);*/
+                        AppData.launchURL(patient.reportUrl);
                       } else {
                         AppData.showInSnackBar(context, "Data Not Available");
                       }
