@@ -374,16 +374,19 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   child: SizedBox(
                     height: 58,
                     child: DropDown.networkDropdownGetpartUser(
-                        "Medicine",
-                        ApiFactory.MEDICINE_API,
-                        "medicine",
+                        "Test",
+                        ApiFactory.TESTNAME_LIST,
+                        "test",
                         Icons.fiber_manual_record,
                         23.0, (KeyvalueModel data) {
                       setState(() {
                         print(ApiFactory.MEDICINE_API);
                         DoctorTestlist.medicinModel = data;
                         textEditingController[0].text =
-                            DoctorTestlist.medicinModel.code;
+                            DoctorTestlist.medicinModel.key;
+                        textEditingController[1].text =
+                            DoctorTestlist.medicinModel.code ;
+
 
                         /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
@@ -391,7 +394,9 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     }),
                   ),
                 ),
-                fromField1(0, "Type", TextInputAction.next, TextInputType.text,
+                fromField1(0, "Test Groop", TextInputAction.next, TextInputType.text,
+                    "Type"),
+                fromField1(1, "Test Name", TextInputAction.next, TextInputType.text,
                     "Type"),
                 fromAddress(2, "Remark", TextInputAction.next,
                     TextInputType.text, "remark"),

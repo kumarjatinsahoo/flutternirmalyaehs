@@ -1412,6 +1412,10 @@ class DropDown {
           case "time":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
+          case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
         }
 
         return list;
@@ -1994,7 +1998,6 @@ static networkDrop(
           var response = await Dio().post(API, data: jsonEncode(map));
           print("Value>>>>>>" + jsonEncode(response.data));
           var list = KeyvalueModel.fromJsonList(response.data["body"]);
-
           return list;
         },
         onChanged: (KeyvalueModel data) {

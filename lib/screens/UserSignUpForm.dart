@@ -1119,18 +1119,23 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (textEditingController[3].text == "" || textEditingController[3].text == null ) {
+    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text == " " || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
-    } else if (textEditingController[4].text == "" || textEditingController[4].text == null ) {
+    }
+    else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == " " || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
-    } else {
+    }
+    else if (_checkbox == false) {
+      AppData.showInSnackBar(context, "Please checked terms and Condition");
+    }
+    else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
-      userModel.age = textEditingController[3].text;
+      userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
       userModel.ageYears = textEditingController[4].text;
-      userModel.dob = textEditingController[5].text;
+      userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
       userModel.country = UserSignUpForm.countryModel.key;
       userModel.countryCode = UserSignUpForm.countryModel.code;
       userModel.stateCode = UserSignUpForm.stateModel.code;

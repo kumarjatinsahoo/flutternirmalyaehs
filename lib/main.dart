@@ -575,6 +575,9 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
+              /*'/dashboardpharmacy': (context) => DashboardPharmacy(
+                model: _model,
+              ),*/
               '/usermedicinelist': (context) => UserMedicineTab(
                 model: _model,
               ),
