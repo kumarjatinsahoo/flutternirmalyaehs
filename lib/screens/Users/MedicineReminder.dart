@@ -1,7 +1,9 @@
+
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
+
 
 class MedicineReminder extends StatefulWidget {
   MainModel model;
@@ -11,7 +13,7 @@ class MedicineReminder extends StatefulWidget {
 }
 
 class _MedicineReminderState extends State<MedicineReminder> {
-  var selectedMinValue;
+   var selectedMinValue;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,6 +45,36 @@ class _MedicineReminderState extends State<MedicineReminder> {
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: MediaQuery.of(context).size.width,
               ),
+                
+                /* Column(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: <Widget>[
+                     DatePicker(
+                       DateTime.now(),
+                       initialSelectedDate: DateTime.now(),
+                       selectionColor: Colors.black,
+                       selectedTextColor: Colors.white,
+                       onDateChange: (date) {
+                         // New date selected
+                         setState(() {
+                           _selectedValue = date;
+                         });
+                       },
+                     ),
+                   ],
+                 )*/
+                /* Container(
+                     child: CalendarStrip(
+                       startDate: startDate,
+                       endDate: endDate,
+                       onDateSelected: onSelect,
+                       dateTileBuilder: dateTileBuilder,
+                       iconColor: Colors.black87,
+                       //monthNameWidget: _monthNameWidget,
+                       markedDates: markedDates,
+                       containerDecoration: BoxDecoration(color: Colors.black12),
+                     )),*/
+
               Expanded(
                               child: SingleChildScrollView(
                                 child: Padding(
@@ -265,3 +297,4 @@ class _MedicineReminderState extends State<MedicineReminder> {
 
   
 }
+

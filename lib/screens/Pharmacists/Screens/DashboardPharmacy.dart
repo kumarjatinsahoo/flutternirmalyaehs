@@ -193,7 +193,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                   },
                 ),
                 Divider(),
-                ListTile(
+             /*   ListTile(
                   leading: Image.asset(
                     "assets/images/home.png",
                     height: 30,
@@ -207,7 +207,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     //Navigator.pushNamed(context, "/profile");
                     Navigator.pushNamed(context, "/dashboardpharmacy");
                   },
-                ),
+                ),*/
                 Divider(),
                 ListTile(
                   leading: Image.asset(

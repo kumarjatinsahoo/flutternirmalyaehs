@@ -11,7 +11,8 @@ class UserRegistrationModel{
       ageYears,
       countryCode,
       stateCode, districtid,cityid,
-      dob,profileImageType;
+      dob,
+      profileImageType;
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];

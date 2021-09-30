@@ -63,7 +63,7 @@ import 'package:user/screens/LabOrders.dart';
 import 'package:user/screens/LifeStyleSolution.dart';
 import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
-import 'package:user/screens/MedicalRecordPage.dart';
+import 'package:user/screens/Users/MedicalRecordPage.dart';
 import 'package:user/screens/MedicalService.dart';
 import 'screens/Users/MedicalServiceOngooglePage.dart';
 import 'screens/Users/MedicineReminder.dart';
@@ -575,6 +575,9 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
+              /*'/dashboardpharmacy': (context) => DashboardPharmacy(
+                model: _model,
+              ),*/
               '/usermedicinelist': (context) => UserMedicineTab(
                 model: _model,
               ),
