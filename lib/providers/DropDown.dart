@@ -1406,6 +1406,10 @@ class DropDown {
           case "time":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
+          case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
         }
 
         return list;
