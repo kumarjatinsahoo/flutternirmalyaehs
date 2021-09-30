@@ -4,12 +4,6 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationlist.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorTestlist.dart';
-import 'package:user/screens/Users/TestList.dart';
-
-import 'DoctorAppointment_Requested.dart';
-import 'DoctorAppointment_Confirmed.dart';
-import 'DoctorAppointment_Cancel.dart';
-import 'DoctorAppointment_Treated.dart';
 
 class DoctorMedicationTab extends StatefulWidget {
   final MainModel model;

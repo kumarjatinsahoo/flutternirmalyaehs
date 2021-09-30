@@ -153,7 +153,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                   ),
                                 ],
                               ),
-                              Icon(Icons.more_vert)
+                              /*Icon(Icons.more_vert)*/
                             ],
                           ),
                         ),

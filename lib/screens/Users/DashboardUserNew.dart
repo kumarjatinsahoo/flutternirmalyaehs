@@ -310,7 +310,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
-              ListTile(
+             /* ListTile(
                 leading: Image.asset(
                   "assets/images/home.png",
                   height: 30,
@@ -321,9 +321,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 onTap: () {
                   selectDestination(2);
                   //Navigator.pushNamed(context, "/profile");
-                  Navigator.pushNamed(context, "/dashboardpharmacy");
+                 // Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
-              ),
+              ),*/
               ListTile(
                 leading: Image.asset(
                   "assets/images/account.png",
