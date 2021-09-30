@@ -310,7 +310,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
-              ListTile(
+             /* ListTile(
                 leading: Image.asset(
                   "assets/images/home.png",
                   height: 30,
@@ -323,7 +323,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   //Navigator.pushNamed(context, "/profile");
                  // Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
-              ),
+              ),*/
               ListTile(
                 leading: Image.asset(
                   "assets/images/account.png",

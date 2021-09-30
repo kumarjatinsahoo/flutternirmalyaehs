@@ -1988,7 +1988,6 @@ static networkDrop(
           var response = await Dio().post(API, data: jsonEncode(map));
           print("Value>>>>>>" + jsonEncode(response.data));
           var list = KeyvalueModel.fromJsonList(response.data["body"]);
-
           return list;
         },
         onChanged: (KeyvalueModel data) {

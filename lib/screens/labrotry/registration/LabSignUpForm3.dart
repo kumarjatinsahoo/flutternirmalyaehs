@@ -680,7 +680,8 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter a valid alternate email id");
         }else if (textEditingController[13].text == "" || textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
-        }else if (_checkbox == false) {
+        }
+        else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please checked terms and Condition");
         }
          else {

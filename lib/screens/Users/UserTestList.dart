@@ -383,9 +383,9 @@ class _MedicineList extends State<UserTestList> {
                     child: SizedBox(
                       height: 58,
                       child: DropDown.networkDropdownGetpartUserrrr(
-                          "Choose Pharmacy",
-                          ApiFactory.PHARMACY_LIST,
-                          "choosepharmacy", (KeyvalueModel data) {
+                          "Choose Lab",
+                          ApiFactory.LAB_LIST,
+                          "choose lab", (KeyvalueModel data) {
                         setState(() {
                           UserTestList.pharmacyModel = data;
                         });
