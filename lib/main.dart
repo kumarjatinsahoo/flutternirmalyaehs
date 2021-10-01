@@ -638,6 +638,9 @@ class _MyAppState extends State<MyApp> {
               '/allergicListList': (context) => AllergicListList(
                 model: _model,
               ),
+              '/showemr': (context) => ShowEmr(
+                model: _model,
+              ),
 
             },
             localizationsDelegates: [

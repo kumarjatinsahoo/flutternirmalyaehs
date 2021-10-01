@@ -289,8 +289,9 @@ class _AllergicListListState extends State<AllergicListList> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
-    // DoctorMedicationlistModel item = DoctorMedicationlistModel();
-    //Nomine
+  textEditingController[1].text="";
+  textEditingController[2].text="";
+
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),

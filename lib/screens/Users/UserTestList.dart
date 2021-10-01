@@ -13,8 +13,9 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
-import 'package:user/models/MedicineListModel.dart';
 import 'package:user/models/ResultsServer.dart';
+import 'package:user/models/UserListModel.dart' as test;
+import 'package:user/models/UserListModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -27,7 +28,7 @@ import 'package:user/widgets/text_field_address.dart';
 
 class UserTestList extends StatefulWidget {
   MainModel model;
-  static KeyvalueModel pharmacyModel = null;
+  static KeyvalueModel labModel = null;
   final bool isConfirmPage;
   static KeyvalueModel medicinModel = null;
 
@@ -46,7 +47,7 @@ List<TextEditingController> textEditingController = [
 /*List<MedicinlistModel> itemModel = [ ];*/
 class _MedicineList extends State<UserTestList> {
   DateTime selectedDate = DateTime.now();
-  medicine.MedicineListModel medicineListModel;
+  test.UserListModel userListModel;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -64,25 +65,25 @@ class _MedicineList extends State<UserTestList> {
   Position position;
   String cityName;
 
-  List<MedicinlistModel> medicinlist = [];
-  List<medicine.Body> selectedMedicine = [];
+  List<UserListModel> testlist = [];
+  List<test.Body> selectedTest = [];
 
   Map<String, dynamic> mapK = {};
 
   void initState() {
     // TODO: implement initState
     super.initState();
-    UserTestList.pharmacyModel = null;
+    UserTestList.labModel = null;
     setState(() {
       loginResponse1 = widget.model.loginResponse1;
-      callAPI();
       _getLocationName();
+      callAPI();
     });
   }
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.doctor_MEDICINE_LIST + widget.model.userappointment.appno,
+      api: ApiFactory.doctor_TEST_LIST + widget.model.userappointment.appno,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];
@@ -90,7 +91,7 @@ class _MedicineList extends State<UserTestList> {
         if (map[Const.CODE] == Const.SUCCESS) {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
-            medicineListModel = MedicineListModel.fromJson(map);
+            userListModel = UserListModel.fromJson(map);
           });
         } else {
           //isDataNotAvail = true;
@@ -109,7 +110,6 @@ class _MedicineList extends State<UserTestList> {
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     geocodeFetch(position.latitude.toString(), position.longitude.toString());
   }
-
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
     MyWidgets.showLoading(context);
@@ -133,7 +133,6 @@ class _MedicineList extends State<UserTestList> {
           });
         });
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -156,19 +155,19 @@ class _MedicineList extends State<UserTestList> {
                 SizedBox(
                   height: 15,
                 ),*/
-                (medicineListModel != null)
+                (userListModel != null)
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         // controller: _scrollController,
                         shrinkWrap: true,
                         itemBuilder: (context, i) {
-                          if (i == medicineListModel.body.length) {
-                            return (medicineListModel.body.length % 10 == 0)
+                          if (i == userListModel.body.length) {
+                            return (userListModel.body.length % 10 == 0)
                                 ? CupertinoActivityIndicator()
                                 : Container();
                           }
-                          medicine.Body body = medicineListModel.body[i];
-                          widget.model.medicinelist = body;
+                          test.Body body = userListModel.body[i];
+                          widget.model.testList = body;
                           // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
@@ -191,8 +190,8 @@ class _MedicineList extends State<UserTestList> {
                                               dense: true,
                                               //font change
                                               title: new Text(
-                                                medicineListModel
-                                                    .body[i].medname??"N/A",
+                                                userListModel
+                                                    .body[i].testname??"N/A",
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -203,16 +202,15 @@ class _MedicineList extends State<UserTestList> {
                                                 setState(() {
                                                   body.isChecked = val;
                                                   if (val)
-                                                    selectedMedicine.add(body);
+                                                    selectedTest.add(body);
                                                   else
-                                                    selectedMedicine
-                                                        .remove(body);
+                                                    selectedTest.remove(body);
                                                 });
                                               },
                                             )
                                           : /*Container(),*/Text(
-                                        medicineListModel
-                                            .body[i].medname??"N/A",
+                                        userListModel
+                                            .body[i].testname??"N/A",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
@@ -221,6 +219,32 @@ class _MedicineList extends State<UserTestList> {
 
                                       SizedBox(
                                         width: 10,
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 5),
+                                        child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Appoint no: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.appno ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13),
+                                              ),
+                                            ],
+
+                                        ),
                                       ),
                                       Container(
                                         padding: EdgeInsets.symmetric(
@@ -239,7 +263,7 @@ class _MedicineList extends State<UserTestList> {
                                                 height: 5,
                                               ),
                                               Text(
-                                                body.dosage ?? "",
+                                                body.testgroup ?? "N/A",
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13),
@@ -252,7 +276,7 @@ class _MedicineList extends State<UserTestList> {
                                       Container(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 15, vertical: 5 ),
-                                        child: Column(
+                                        child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
@@ -266,7 +290,7 @@ class _MedicineList extends State<UserTestList> {
                                               height: 5,
                                             ),
                                             Text(
-                                              body.dosage ?? "",
+                                              body.remarks ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13),
@@ -281,13 +305,13 @@ class _MedicineList extends State<UserTestList> {
                             ),
                           );
                         },
-                        itemCount: medicineListModel.body.length,
+                        itemCount: userListModel.body.length,
                       )
                     : Container(),
                 SizedBox(
                   height: 10,
                 ),
-                (selectedMedicine != null && selectedMedicine.length > 0)
+                (selectedTest != null && selectedTest.length > 0)
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: nextButton(),
@@ -387,7 +411,7 @@ class _MedicineList extends State<UserTestList> {
                           ApiFactory.LAB_LIST,
                           "choose lab", (KeyvalueModel data) {
                         setState(() {
-                          UserTestList.pharmacyModel = data;
+                          UserTestList.labModel = data;
                         });
                       }, mapK),
                     ),
@@ -412,15 +436,15 @@ class _MedicineList extends State<UserTestList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserTestList.pharmacyModel == null ||
-                UserTestList.pharmacyModel == "") {
-              AppData.showInSnackBar(context, "Please select Pharmacy ");
+            if (UserTestList.labModel == null ||
+                UserTestList.labModel == "") {
+              AppData.showInSnackBar(context, "Please select lab ");
             } else {
-              // Navigator.of(context).pop();
+               Navigator.of(context).pop();
               /*String userid = loginResponse1.body.user;
               String pharmacistid = UserMedicineList.pharmacyModel.key;
               String patientnote = textEditingController[0].text.toString();*/
-              Map<String, dynamic> map = fromJsonListData(selectedMedicine);
+             /* Map<String, dynamic> map = fromJsonListData(selectedTest);
 
               log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
               log("TO POST>>>>" + jsonEncode(map));
@@ -438,7 +462,7 @@ class _MedicineList extends State<UserTestList> {
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
-                  });
+                  });*/
             }
             Navigator.of(context).pop();
             textEditingController[0].text = "";
@@ -450,15 +474,15 @@ class _MedicineList extends State<UserTestList> {
     );
   }
 
-  Map<String, dynamic> fromJsonListData(List list) {
+ /* Map<String, dynamic> fromJsonListData(List list) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
-    data['pharmacistid'] = UserTestList.pharmacyModel.key;
+    data['pharmacistid'] = UserTestList.labModel.key;
     data['patientnote'] = textEditingController[0].text;
-    data['meddetails'] = this.selectedMedicine.map((v) => v.toJson1()).toList();
+    data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
     return data;
   }
-
+*/
   Widget fromAddress(int index, String hint, inputAct, keyType, String type) {
     return TextFieldAddress(
       child: TextFormField(

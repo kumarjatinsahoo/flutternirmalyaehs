@@ -75,8 +75,8 @@ class _MedicineList extends State<UserMedicineList> {
     UserMedicineList.pharmacyModel = null;
     setState(() {
       loginResponse1 = widget.model.loginResponse1;
-      callAPI();
       _getLocationName();
+      callAPI();
     });
   }
 
