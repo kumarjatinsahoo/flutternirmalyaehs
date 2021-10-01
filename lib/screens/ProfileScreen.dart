@@ -934,21 +934,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    _fname.text = patientProfileModel.body.fName;
-    _lname.text = patientProfileModel.body.lName;
-    textEditingController[2].text = patientProfileModel.body.dob;
-    ProfileScreen.relationmodel = KeyvalueModel(
-        //  key: issuesDetailsModel.issueToId,
-        name: patientProfileModel.body.eRelation);
-
+    _fname.text = "";
+    _lname.text = "";
+    textEditingController[2].text = "";
     // _bloodGroup.text = patientProfileModel.body.bloodGroup;
     //_gender.text = patientProfileModel.body.gender;
-    _eMobile.text = patientProfileModel.body.eMobile;
-    _eName.text = patientProfileModel.body.eName;
-    //_eRelation.text = patientProfileModel.body.eRelation;
-    _fDoctor.text = patientProfileModel.body.fDoctor;
-    //_speciality.text = patientProfileModel.body.speciality;
-    _docMobile.text = patientProfileModel.body.docMobile;
+    _eMobile.text = "";
+    _eName.text ="";_fDoctor.text = "";
+    _docMobile.text = "";
 
     return showDialog(
         context: context,
