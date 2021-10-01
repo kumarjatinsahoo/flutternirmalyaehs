@@ -46,13 +46,15 @@ class Body {
   String duration;
   String meddate;
   String qty;
+  bool isChecked=false;
   String srlNoOne;
   String srlNoTwo;
   String medid;
-  bool reqstatus;
+  bool reqstatus=false;
   String status;
   String testgroup;
   String testname;
+
 
   Body(
       {this.medname,
@@ -127,6 +129,14 @@ class Body {
     data['status'] = this.status;
     data['testgroup'] = this.testgroup;
     data['testname'] = this.testname;
+    return data;
+  }
+
+  Map<String, dynamic> toJson1() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.srlNoOne;
+    data['code'] = this.srlNoTwo;
+    data['key'] = this.medid;
     return data;
   }
 }

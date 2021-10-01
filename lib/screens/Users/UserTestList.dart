@@ -13,8 +13,9 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
-import 'package:user/models/MedicineListModel.dart';
 import 'package:user/models/ResultsServer.dart';
+import 'package:user/models/UserListModel.dart' as test;
+import 'package:user/models/UserListModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -46,7 +47,7 @@ List<TextEditingController> textEditingController = [
 /*List<MedicinlistModel> itemModel = [ ];*/
 class _MedicineList extends State<UserTestList> {
   DateTime selectedDate = DateTime.now();
-  medicine.MedicineListModel medicineListModel;
+  test.UserListModel userListModel;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -64,8 +65,8 @@ class _MedicineList extends State<UserTestList> {
   Position position;
   String cityName;
 
-  List<MedicinlistModel> medicinlist = [];
-  List<medicine.Body> selectedMedicine = [];
+  List<UserListModel> testlist = [];
+  List<test.Body> selectedTest = [];
 
   Map<String, dynamic> mapK = {};
 
@@ -90,7 +91,7 @@ class _MedicineList extends State<UserTestList> {
         if (map[Const.CODE] == Const.SUCCESS) {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
-            medicineListModel = MedicineListModel.fromJson(map);
+            userListModel = UserListModel.fromJson(map);
           });
         } else {
           //isDataNotAvail = true;
@@ -156,19 +157,19 @@ class _MedicineList extends State<UserTestList> {
                 SizedBox(
                   height: 15,
                 ),*/
-                (medicineListModel != null)
+                (userListModel != null)
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         // controller: _scrollController,
                         shrinkWrap: true,
                         itemBuilder: (context, i) {
-                          if (i == medicineListModel.body.length) {
-                            return (medicineListModel.body.length % 10 == 0)
+                          if (i == userListModel.body.length) {
+                            return (userListModel.body.length % 10 == 0)
                                 ? CupertinoActivityIndicator()
                                 : Container();
                           }
-                          medicine.Body body = medicineListModel.body[i];
-                          widget.model.medicinelist = body;
+                          test.Body body = userListModel.body[i];
+                          widget.model.testList = body;
                           // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
@@ -191,7 +192,7 @@ class _MedicineList extends State<UserTestList> {
                                               dense: true,
                                               //font change
                                               title: new Text(
-                                                medicineListModel
+                                                userListModel
                                                     .body[i].medname??"N/A",
                                                 style: TextStyle(
                                                     fontSize: 14,
@@ -203,15 +204,14 @@ class _MedicineList extends State<UserTestList> {
                                                 setState(() {
                                                   body.isChecked = val;
                                                   if (val)
-                                                    selectedMedicine.add(body);
+                                                    selectedTest.add(body);
                                                   else
-                                                    selectedMedicine
-                                                        .remove(body);
+                                                    selectedTest.remove(body);
                                                 });
                                               },
                                             )
                                           : /*Container(),*/Text(
-                                        medicineListModel
+                                        userListModel
                                             .body[i].medname??"N/A",
                                         style: TextStyle(
                                             fontSize: 14,
@@ -281,13 +281,13 @@ class _MedicineList extends State<UserTestList> {
                             ),
                           );
                         },
-                        itemCount: medicineListModel.body.length,
+                        itemCount: userListModel.body.length,
                       )
                     : Container(),
                 SizedBox(
                   height: 10,
                 ),
-                (selectedMedicine != null && selectedMedicine.length > 0)
+                (selectedTest != null && selectedTest.length > 0)
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: nextButton(),
@@ -420,7 +420,7 @@ class _MedicineList extends State<UserTestList> {
               /*String userid = loginResponse1.body.user;
               String pharmacistid = UserMedicineList.pharmacyModel.key;
               String patientnote = textEditingController[0].text.toString();*/
-              Map<String, dynamic> map = fromJsonListData(selectedMedicine);
+              Map<String, dynamic> map = fromJsonListData(selectedTest);
 
               log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
               log("TO POST>>>>" + jsonEncode(map));
@@ -455,7 +455,7 @@ class _MedicineList extends State<UserTestList> {
     data['userid'] = loginResponse1.body.user;
     data['pharmacistid'] = UserTestList.pharmacyModel.key;
     data['patientnote'] = textEditingController[0].text;
-    data['meddetails'] = this.selectedMedicine.map((v) => v.toJson1()).toList();
+    data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
     return data;
   }
 
