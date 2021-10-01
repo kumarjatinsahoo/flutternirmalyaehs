@@ -1,7 +1,7 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  ///static String MAIN_URL = "http://192.168.29.108:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.108:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -49,6 +49,7 @@ class ApiFactory {
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
   static String VITAL_SIGN_DETAIS= MAIN_URL + 'view-user-vital-sign-details?userid=';
   static String UPDATE_VITAL_SIGN= MAIN_URL + 'update-vital-signs';
+  static String VIEW_USER_TEST_DETALIS= MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';
   static String ADD_BIOMEDICAL_IMPLANTS= MAIN_URL + 'post-biomedical-implants-api';
 
