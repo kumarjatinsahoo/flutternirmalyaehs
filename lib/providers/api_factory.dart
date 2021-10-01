@@ -24,7 +24,7 @@ class ApiFactory {
   static String PHARMACY_REGISTRATION = MAIN_URL + 'post-pharmacy-registration';
   static String ALLERGIC_POST = MAIN_URL + 'post-allergies-api';
   static String PHARMACY_LIST = MAIN_URL + 'get-pharmacy-list-by-location';
-  static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location';
+  static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location' ;
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
   static String PERSONAL_DETAILS = MAIN_URL + 'user-personal-information-doctor?userid=';
   static String IABTEST_REPORTDOCTER = MAIN_URL + 'user-labtest-report-doctor?userid=';
