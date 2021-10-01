@@ -1763,6 +1763,9 @@ class DropDown {
             case "typelist":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "admequipment":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
             case "namelist":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
