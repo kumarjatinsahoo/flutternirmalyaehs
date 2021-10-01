@@ -41,6 +41,7 @@ class ApiFactory {
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
+  static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';
   static String SPECIALITY_API2 = MAIN_URL + 'get-doctor-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
@@ -53,6 +54,7 @@ class ApiFactory {
   static String ALERGY_LIST= MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
+  static String ADD_BIOMEDICAL_IMPLANTS= MAIN_URL + 'post-biomedical-implants-api';
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
     return MAIN_URL + "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";}
     static String GOOGLE_API(
