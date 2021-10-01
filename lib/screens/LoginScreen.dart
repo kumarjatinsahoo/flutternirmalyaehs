@@ -1,5 +1,7 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -68,16 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isotpVisible = false;
   bool ispassVisible = true;
   bool isloginButton = true;
-  var rng = new Random();
+  var rng = new math.Random();
   var code;
 
   var pin;
+  String token="";
 
-  //VideoPlayerController _controller;
   @override
   void initState() {
     super.initState();
-
     /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
         'raw/video_pop.mp4',
@@ -94,11 +95,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
       showVideo(context);
     });*/
+    tokenCall();
+  }
+
+  tokenCall(){
+    FirebaseMessaging.instance.onTokenRefresh.listen((event){
+      setState(() {
+        token=event;
+        log(">>>>>>>>Token>>>>>>>"+token);
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
+    log(token??"jj");
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: true,

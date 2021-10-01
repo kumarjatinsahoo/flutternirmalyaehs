@@ -74,7 +74,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
           json: postData,
           fun: (Map<String, dynamic> map) {
             if (map["code"] == 200) {
-              //AppData.showInSnackDone(context, map["msg"]);
               sharedPref.save(Const.IS_REG_SERVER, "true");
             } else {
               //if(map["msg"]!="")
