@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ final List<Tab> myTabs = <Tab>[
 ];
 
 class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
+  LoginResponse1 loginResponse;
+  String userid;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +32,18 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Medication'),
+          title: Row(
+            children: [
+               Text('Medication'),
+              Spacer(),
+              InkWell(
+                  onTap: (){
+                     //userid=loginResponse.body.user;
+                    Navigator.pushNamed(context, "/showemr");
+                  },
+                  child: Text('Show Emr',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)),
+            ],
+          ),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 

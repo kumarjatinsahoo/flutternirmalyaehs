@@ -82,7 +82,7 @@ class _MedicineList extends State<UserTestList> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.doctor_MEDICINE_LIST + widget.model.userappointment.appno,
+      api: ApiFactory.doctor_TEST_LIST + widget.model.userappointment.appno,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];

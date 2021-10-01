@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -19,9 +20,11 @@ class _WalkPatient extends State<DocWalkPatient> {
   String _ratingController;
   final myController = TextEditingController();
   final myControllerpass = TextEditingController();
+  LoginResponse1 loginResponse;
 
   @override
   void initState() {
+
     super.initState();
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
@@ -181,10 +184,13 @@ class _WalkPatient extends State<DocWalkPatient> {
                             context, "Please enter patient's eHealthCard No ");
                       } else {
                         widget.model.patientseHealthCard = myController.text;
-                        Navigator.push(
+                        Navigator.pushNamed(context, "/showemr");
+
+
+                        /* Navigator.push(
                             context,
                             new MaterialPageRoute(
-                                builder: (context) => new ShowEmr(model:widget.model)));
+                                builder: (context) => new ShowEmr(model:widget.model)));*/
                       }
                     },
                     minWidth: 350,
