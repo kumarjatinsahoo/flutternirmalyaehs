@@ -210,6 +210,9 @@ class DropDown {
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "admequipment":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -423,6 +426,9 @@ class DropDown {
             break;
           case "city":
             list = KeyvalueModel.fromJsonList(response.data["districtList"]);
+            break;
+          case "admequipment":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
         return list;
