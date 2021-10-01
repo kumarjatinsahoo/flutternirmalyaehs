@@ -94,7 +94,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS +widget.model.appointmentlist.doctorName/*"4"*/,
+        api: ApiFactory.VITAL_SIGN_DETAIS +widget.model.appointmentlist.doctorName/*"4"*/,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
