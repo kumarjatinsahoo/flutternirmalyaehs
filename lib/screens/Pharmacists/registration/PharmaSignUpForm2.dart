@@ -27,7 +27,6 @@ enum gender{
 }
 // ignore: must_be_immutable
 class PharmaSignUpForm2 extends StatefulWidget {
-  final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
   final bool isFromDash;
@@ -42,7 +41,6 @@ class PharmaSignUpForm2 extends StatefulWidget {
 
   PharmaSignUpForm2({
     Key key,
-    @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
     this.model,
