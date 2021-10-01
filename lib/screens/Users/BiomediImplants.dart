@@ -38,6 +38,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
 
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
+  TextEditingController _name = TextEditingController();
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -94,7 +95,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               Spacer(),
               InkWell(
                   onTap: () {
-                    _displayTextInputDialog(context);
+                    displayTextInputDialog(context);
                   },
                   child: Icon(Icons.add_circle_outline)),
             ],
@@ -209,15 +210,14 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         ));
   }
 
-  Future<void> _displayTextInputDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
+  displayTextInputDialog(BuildContext context) {
+    _date.text="";
+    _reason.text="";
+    showDialog(
         builder: (context) {
           return AlertDialog(
             contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
             insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
-            //insetPadding: EdgeInsets.symmetric(horizontal: 3),
-            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
@@ -264,16 +264,13 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             BiomediImplants.admequipmentmodel = data;
                           });
                         }),
-                        Divider(
-                          height: 2,
-                          color: Colors.black,
-                        ),
+                        SizedBox(height: 5),
                          dob(),
                         SizedBox(height: 5),
+
                         formField(1, "  Reason"),
 
                         // TextField(
-                        //
                         //   controller: _reason,
                         //   inputFormatters: [
                         //     WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
@@ -355,33 +352,25 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               ),
             ],
           );
-        });
+        }, context: context);
   }
 
   Widget dob() {
     return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () => _selectDate(context),
         child: AbsorbPointer(
           child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            // width: size.width * 0.8,
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 1.0,
-                  color: Colors.grey,
-                ),
-                // border: Border.all(color: Colors.black, width: 0.3)
-              ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: Colors.black, width: 0.3),
             ),
             child: TextFormField(
+
               focusNode: fnode3,
               // enabled: !widget.isConfirmPage ? false : true,
               controller: _date,
@@ -467,7 +456,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
-          controller: textEditingController[index],
+          controller: _reason,
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
             WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
