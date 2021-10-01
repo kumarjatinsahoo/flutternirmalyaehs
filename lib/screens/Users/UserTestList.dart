@@ -76,8 +76,8 @@ class _MedicineList extends State<UserTestList> {
     UserTestList.labModel = null;
     setState(() {
       loginResponse1 = widget.model.loginResponse1;
+      _getLocationName();
       callAPI();
-       _getLocationName();
     });
   }
 
