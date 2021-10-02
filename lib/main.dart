@@ -77,7 +77,7 @@ import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
 import 'package:user/screens/Users/ChemistsTabview.dart';
-import 'package:user/screens/Users/GoogleSearch.dart';
+import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/Users/UserMedicineTab.dart';
@@ -596,7 +596,7 @@ class _MyAppState extends State<MyApp> {
               '/medicalsServiceOngooglePage': (context) => MedicalsServiceOngooglePage(
                 model: _model,
               ),
-              '/googleSearch': (context) => GoogleSearch(
+              '/googleSearch': (context) => GoogleSearchDetails(
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(
