@@ -48,6 +48,7 @@ class _CountDownPageState extends State<CountDownPage>
         isComplete = true;
       });
     });
+    //_controller.
   }
   sentToServer(){
    // widget.model.POSTMETHOD(api: api, json: json, fun: fun)

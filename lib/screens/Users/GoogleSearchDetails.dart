@@ -216,7 +216,8 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                     ],
                                   ),
                                   Text(
-                                    googlePlacesSearch?.result?.rating??"0" +
+                                    (googlePlacesSearch?.result?.rating.toString()=="null")?"0" +
+                                        " Ratings":googlePlacesSearch?.result?.rating.toString() +
                                         " Ratings",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w100,
@@ -224,9 +225,10 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                         color: Colors.white),
                                   ),
                                   Text(
-                                    googlePlacesSearch
-                                            ?.result?.reviews?.length ??
-                                        "0".toString() + " Reviews ",
+                                    (googlePlacesSearch
+                                            ?.result?.reviews?.length.toString()=="null") ?
+                                        "0".toString() + " Reviews ":googlePlacesSearch
+                                        ?.result?.reviews?.length.toString()+ " Reviews",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 15,
