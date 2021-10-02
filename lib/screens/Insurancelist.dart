@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 
 class InsuranceList extends StatefulWidget {
   MainModel model;
+
   InsuranceList({Key key, this.model}) : super(key: key);
+
   @override
   _InsuranceListState createState() => _InsuranceListState();
 }
 
 class _InsuranceListState extends State<InsuranceList> {
   var selectedMinValue;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,15 +35,16 @@ class _InsuranceListState extends State<InsuranceList> {
                         },
                         child: Icon(
                           Icons.arrow_back,
-                          color: AppData.white,)),
+                          color: AppData.white,
+                        )),
                     Text(
                       'Insurance ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: AppData.white),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
+                          color: AppData.white),
                     ),
-                    Icon(
-                      Icons.search,color: AppData.white
-                    ),
+                    Icon(Icons.search, color: AppData.white),
                   ],
                 ),
               ),
@@ -69,119 +73,85 @@ class _InsuranceListState extends State<InsuranceList> {
                             GestureDetector(
                               onTap: () => Navigator.pushNamed(
                                   context, "/insuranceDetalis"),
-                              child:  Card(
-                        shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        ),
-                      shadowColor: Colors.grey,
-                               elevation: 10,
-                        child: ClipPath(
-                    clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
-                    child: Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                          border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
-                            width: double.maxFinite,
-                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('ICIC Prudential Pvt.Ltd',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('25000.00',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('Premium Amount' ,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(color: Colors.grey),),
-                                              ],
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                shadowColor: Colors.grey,
+                                elevation: 10,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.matruColor,
+                                                  width: 5))),
+                                      width: double.maxFinite,
+                                      /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'ICIC Prudential Pvt.Ltd',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    '25000.00',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Premium Amount',
+                                                    overflow: TextOverflow.clip,
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                          Image.asset(
-                                            "assets/forwardarrow.png",
-                                            fit: BoxFit.fitWidth,
-                                            /*width: 50,*/
-                                            height: 30,
-
-                                          ),
-                                          SizedBox(width: 10,),
-                                        ],
-                                      ),
-                                    )),
-                               /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
+                                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                            Image.asset(
+                                              "assets/forwardarrow.png",
+                                              fit: BoxFit.fitWidth,
+                                              /*width: 50,*/
+                                              height: 30,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                  /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
                               ),*/
-                            ),),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-
-
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                ),
                               ),
-                              shadowColor: Colors.grey,
-                              elevation: 10,
-                              child: ClipPath(
-                                clipper: ShapeBorderClipper(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
-                                child: Container(
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                        border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
-                                    width: double.maxFinite,
-                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('ICIC Prudential Pvt.Ltd',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('25000.00',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('Premium Amount' ,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(color: Colors.grey),),
-                                              ],
-                                            ),
-                                          ),
-                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                          Image.asset(
-                                            "assets/forwardarrow.png",
-                                            fit: BoxFit.fitWidth,
-                                            /*width: 50,*/
-                                            height: 30,
-
-                                          ),
-                                          SizedBox(width: 10,),
-                                        ],
-                                      ),
-                                    )),
-                                /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                              ),*/
-                              ),),
-                           /* ),*/
+                            ),
                             SizedBox(
                               height: 10,
                             ),
@@ -194,31 +164,54 @@ class _InsuranceListState extends State<InsuranceList> {
                               child: ClipPath(
                                 clipper: ShapeBorderClipper(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
+                                        borderRadius:
+                                            BorderRadius.circular(5))),
                                 child: Container(
                                     height: 100,
                                     decoration: BoxDecoration(
-                                        border: Border(left: BorderSide(color: AppData.matruColor, width: 5))),
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryRedColor,
+                                                width: 5))),
                                     width: double.maxFinite,
                                     /*  margin: const EdgeInsets.only(top: 6.0),*/
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Expanded(
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Text('ICIC Prudential Pvt.Ltd',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('25000.00',
-                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                                SizedBox(height: 5,),
-                                                Text('Premium Amount' ,
+                                                Text(
+                                                  'ICIC Prudential Pvt.Ltd',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  '25000.00',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Premium Amount',
                                                   overflow: TextOverflow.clip,
-                                                  style: TextStyle(color: Colors.grey),),
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -228,16 +221,100 @@ class _InsuranceListState extends State<InsuranceList> {
                                             fit: BoxFit.fitWidth,
                                             /*width: 50,*/
                                             height: 30,
-
                                           ),
-                                          SizedBox(width: 10,),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
                                         ],
                                       ),
                                     )),
                                 /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
                               ),*/
-                              ),),
+                              ),
+                            ),
+                            /* ),*/
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              shadowColor: Colors.grey,
+                              elevation: 10,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5))),
+                                child: Container(
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.matruColor,
+                                                width: 5))),
+                                    width: double.maxFinite,
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'ICIC Prudential Pvt.Ltd',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  '25000.00',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Premium Amount',
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                          Image.asset(
+                                            "assets/forwardarrow.png",
+                                            fit: BoxFit.fitWidth,
+                                            /*width: 50,*/
+                                            height: 30,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                                /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
+                              ),*/
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -256,27 +333,47 @@ class _InsuranceListState extends State<InsuranceList> {
                             child: Container(
                                 height: 100,
                                 decoration: BoxDecoration(
-                                    border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryRedColor,
+                                            width: 5))),
                                 width: double.maxFinite,
                                 /*  margin: const EdgeInsets.only(top: 6.0),*/
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Expanded(
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text('ICIC Prudential Pvt.Ltd',
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                            SizedBox(height: 5,),
-                                            Text('25000.00',
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                                            SizedBox(height: 5,),
-                                            Text('Premium Amount' ,
+                                            Text(
+                                              'ICIC Prudential Pvt.Ltd',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              '25000.00',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Premium Amount',
                                               overflow: TextOverflow.clip,
-                                              style: TextStyle(color: Colors.grey),),
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -286,17 +383,18 @@ class _InsuranceListState extends State<InsuranceList> {
                                         fit: BoxFit.fitWidth,
                                         /*width: 50,*/
                                         height: 30,
-
                                       ),
-                                      SizedBox(width: 10,),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
                                     ],
                                   ),
                                 )),
                             /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
                               ),*/
-                          ),),
-
+                          ),
+                        ),
                       ],
                     ),
                   ),
