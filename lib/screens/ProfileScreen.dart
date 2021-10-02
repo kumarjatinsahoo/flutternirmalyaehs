@@ -220,10 +220,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: size.height * 0.02,
                             ),
-
-                        Text(
-                              patientProfileModel?.body?.fullName?? "N/A",
-
+                            Text(
+                              patientProfileModel?.body?.fullName ?? "N/A",
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,
@@ -481,7 +479,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.date_range_rounded,
+                      Icons.bloodtype_outlined,
                       size: 20,
                     ),
 
@@ -517,7 +515,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.date_range_rounded,
+                      Icons.credit_card_outlined,
                       size: 20,
                     ),
                     SizedBox(width: 10),
@@ -816,9 +814,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Personal Details',style: TextStyle(fontWeight: FontWeight.bold),),
-                */ /* Image.asset('assets/images/edit.png',
+                */
+              /* Image.asset('assets/images/edit.png',
                   color: Colors.grey[700],
-                )*/ /*
+                )*/
+              /*
 
               ],
             ),
@@ -940,7 +940,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // _bloodGroup.text = patientProfileModel.body.bloodGroup;
     //_gender.text = patientProfileModel.body.gender;
     _eMobile.text = "";
-    _eName.text ="";_fDoctor.text = "";
+    _eName.text = "";
+    _fDoctor.text = "";
     _docMobile.text = "";
 
     return showDialog(
@@ -1122,12 +1123,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                         keyboardType: TextInputType.number,
                         controller: _eMobile,
+
                         inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                          WhitelistingTextInputFormatter(RegExp("[0-9]"),),
                         ],
+
                         maxLength: 10,
                         decoration:
-                            InputDecoration(hintText: "Emergency Contact No."),
+                          new InputDecoration(hintText: "Emergency Contact No.",
+                          counterText: "",
+                          ),
+
                       ),
 
                       TextField(
@@ -1181,7 +1187,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                         ],
                         decoration:
-                            InputDecoration(hintText: " Doctors Mobile No"),
+                           new InputDecoration(hintText: " Doctors Mobile No",
+                           counterText: "",
+                           ),
                       ),
                     ],
                   ),

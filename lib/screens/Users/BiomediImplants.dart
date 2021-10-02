@@ -434,8 +434,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   Widget formField(
       int index,
       String hint,
-      )
-  {
+      ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
