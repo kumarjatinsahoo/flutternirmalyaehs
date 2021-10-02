@@ -5,8 +5,9 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 
 import 'package:user/models/KeyvalueModel.dart';
-import 'package:user/models/MedicationlistModel.dart';
+
 import 'package:user/models/MedicinModel.dart';
+import 'package:user/models/TestListModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -39,7 +40,7 @@ List<TextEditingController> textEditingController = [
 /*List<MedicinlistModel> itemModel = [ ];*/
 class _DoctorTestlistState extends State<DoctorTestlist> {
   DateTime selectedDate = DateTime.now();
-  MedicationlistModel medicationlistModel;
+  UserListModel userListModel;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
@@ -94,14 +95,14 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.VITAL_SIGN_DETAIS +widget.model.appointmentlist.doctorName/*"4"*/,
+        api: ApiFactory.doctor_TEST_LIST +widget.model.appointmentlist.doctorName/*"4"*/,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map["code"] == Const.SUCCESS) {
               setState(() {
-                medicationlistModel = MedicationlistModel.fromJson(map);
+                userListModel = UserListModel.fromJson(map);
               });
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
@@ -162,18 +163,18 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    (medicationlistModel != null)
+                    (userListModel != null)
                         ? ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: medicationlistModel.body.length,
+                            itemCount: userListModel.body.length,
                             itemBuilder: (BuildContext ctxt, int index) {
-                              Body medicationlis = medicationlistModel.body[index];
+                              Body medicationlis = userListModel.body[index];
 
                               return  Dismissible(
 
                                 //key: Key(item1),
-                                key: Key( medicationlistModel.body[index].toString()),
+                                key: Key( userListModel.body[index].toString()),
                                 direction: DismissDirection.startToEnd,
                                   child:Column(
                                   children: [
@@ -211,7 +212,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                             CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
-                                                            medicationlis.medname,
+                                                            medicationlis.testname??"N/A",
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight.bold,
@@ -223,7 +224,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                           Text(
                                                             "Type:" +
                                                                 medicationlis
-                                                                    .duration,
+                                                                    .testgroup??"N/A",
                                                             overflow:
                                                                 TextOverflow.clip,
                                                             style: TextStyle(),
@@ -258,8 +259,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                               onTap: () {
                                                                 setState(() {
                                                                   widget.model.GETMETHODCALL_TOKEN(
-                                                                      api: ApiFactory.DELETE_MEDICINE_LIST +
-                                                                          widget.model.appointmentlist.doctorName +
+                                                                      api: ApiFactory.DELETE_TEST_LIST +
+                                                                          widget.model.appointmentlist.doctorName /*"4"*/+
                                                                           "&srlone=" +medicationlis.srlNoOne +
                                                                           "&srltwo=" + medicationlis.srlNoTwo,
                                                                       token: widget.model.token,
@@ -267,7 +268,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                                         String msg = map[Const.MESSAGE];
                                                                         if (map["status"] == "success") {
                                                                           setState(() {
-                                                                            medicationlistModel.body.removeAt(index);
+                                                                            userListModel.body.removeAt(index);
                                                                             //medicationlis.remove(index);
                                                                             //AppData.showInSnackBar(context, "hii");
                                                                             //medicinlist.remove(medicinlist[index]);
@@ -325,7 +326,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                   ),
                                 onDismissed: (direction) {
                                 setState(() {
-                                  medicationlistModel.body.removeAt(index);
+                                  userListModel.body.removeAt(index);
                                 });
                               },
                               );
@@ -351,7 +352,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
-    DoctorMedicationlistModel item = DoctorMedicationlistModel();
+   /// DoctorMedicationlistModel item = DoctorMedicationlistModel();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -426,23 +427,23 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             } else if (textEditingController[2].text == '') {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
-              //NomineeModel nomineeModel = NomineeModel();
-              item.userid = widget.model.appointmentlist.userid;
-              item.appno = widget.model.appointmentlist.doctorName;//appno
-              //item.mednaid = Medicationlist.medicinModel.key;
-              item.medname = DoctorTestlist.medicinModel.key;
-              item.duration = textEditingController[1].text;
-              item.remarks = textEditingController[2].text;
-              item.doctor = widget.model.user;
-              item.morning = _checkboxstr.toString();
-              item.afternoon = _checkboxstr1.toString();
-              item.evening = _checkboxstr2.toString();
-              print("API NAME>>>>" + ApiFactory.POST_MEDICATION);
-              print("TO POST>>>>" + jsonEncode(item.toJson()));
+              var param =
+              [
+                {
+                  "userid": widget.model.appointmentlist.userid,
+                  "appno":  widget.model.appointmentlist.doctorName,//appno"4",
+                  "remarks": textEditingController[2].text ,
+                  "doctor": widget.model.user,
+                  "testgroup": textEditingController[0].text,
+                  "testname": textEditingController[1].text
+                }
+              ];
+
+              print("TO POST>>>>" + jsonEncode(param));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.POST_MEDICATION,
-                  json: item.toJson(),
+                  api: ApiFactory.POST_TEST,
+                  json: param,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);

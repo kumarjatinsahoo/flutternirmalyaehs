@@ -99,6 +99,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
+        /*initialDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(Duration(days: 100)),
+        lastDate: DateTime.now(),*/ 
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
         lastDate: DateTime.now()
