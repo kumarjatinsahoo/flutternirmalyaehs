@@ -75,6 +75,11 @@ static String GOOGLE_LOC(
       {String place_id}){
     return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
   }
+  static String GOOGLE_MAP_IMG(
+      {String lat,String long}){
+    return "https://maps.google.com/maps/api/staticmap?zoom=16&size=1200x400&maptype=hybrid&sensor=false&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&markers=$lat,$long";
+    //return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
+  }
   //https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=ChIJ9UsgSdYJGToRiGHjtrS-JNc
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
@@ -98,6 +103,7 @@ static String GOOGLE_LOC(
   static String USER_APPOINTMENT_LIST =MAIN_URL + 'get-user-appointment-list?userid=';
   static String doctor_APPOINTMENT_LIST =MAIN_URL + 'view-doctor-appointment-list?userid=';
   static String doctor_MEDICINE_LIST =MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
+  static String doctor_TEST_LIST =MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =MAIN_URL + 'change-user-appointment-status?appid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS = MAIN_URL + 'get-user-appointment-list?userid=';

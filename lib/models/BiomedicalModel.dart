@@ -8,7 +8,7 @@ class BiomedicalModel {
 
   BiomedicalModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
-      body = new List<Body>();
+      body = [];
       json['body'].forEach((v) {
         body.add(new Body.fromJson(v));
       });
