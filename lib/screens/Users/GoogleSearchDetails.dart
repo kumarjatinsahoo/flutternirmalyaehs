@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/models/PocReportModel.dart';
@@ -14,7 +12,6 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class GoogleSearchDetails extends StatefulWidget {
   MainModel model;
@@ -40,7 +37,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
   OpeningHours openingHours;
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  Completer<WebViewController> _controller = Completer<WebViewController>();
+  //Completer<WebViewController> _controller = Completer<WebViewController>();
   String phoneno;
 
   @override

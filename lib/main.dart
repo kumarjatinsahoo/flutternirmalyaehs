@@ -10,6 +10,7 @@ import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
 import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/BookAppointmentPage.dart';
+import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -640,6 +641,9 @@ class _MyAppState extends State<MyApp> {
               ),
               '/showemr': (context) => ShowEmr(
                 model: _model,
+              ),
+              '/countDown': (context) => CountDownPage(
+                //model: _model,
               ),
 
             },
