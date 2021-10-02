@@ -5,11 +5,9 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geocoder/model.dart';
 import 'package:geolocator/geolocator.dart';
 
-import 'package:geolocator/geolocator.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/widgets/MyWidget.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import '../../models/LoginResponse1.dart';
 import '../../providers/Const.dart';
@@ -167,17 +165,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               ),*/
           title: Stack(
             children: [
-              Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Emergency Help',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Emergency Help',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -230,42 +226,61 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),*/
-                  Container(
-                    width: size.width,
-                    height: size.width,
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            height: size.width,
-                            width: size.width,
-                            decoration: BoxDecoration(),
-                            child: Lottie.asset('assets/intro/redZone.json'),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            height: size.width - 230,
-                            width: size.width - 230,
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, "/countDown");
+                    },
+                    child: Container(
+                      width: size.width,
+                      height: size.width,
+                      child: Stack(
+                        children: [
+                          Align(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              "HELP",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "MonteMed"),
+                            child: Container(
+                              height: size.width,
+                              width: size.width,
+                              decoration: BoxDecoration(),
+                              child: Lottie.asset('assets/intro/redZone.json'),
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: size.width - 230,
+                              width: size.width - 230,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                "HELP",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "MonteMed"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                 /* RichText(
+                    text: TextSpan(
+                      text: 'Hello ',
+                      style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(text: 'bold', style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: ' world!'),
+                      ],
+                    ),
+                  ),*/
+                  /*AnimatedDefaultTextStyle(
+                    child: Text("3"),
+                    style: TextStyle(color: Colors.red), duration: Duration(seconds: 6),
+                  ),*/
                   SizedBox(
                     height: 10,
                   ),
