@@ -92,7 +92,7 @@ import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
-import 'package:user/screens/ProfileScreen.dart';
+import 'package:user/screens/Users/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
 import 'package:user/screens/RIP.dart';
 import 'package:user/screens/RequestHealthCheakup.dart';
