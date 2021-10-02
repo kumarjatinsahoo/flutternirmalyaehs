@@ -13,6 +13,7 @@ class ApiFactory {
   static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
   static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
+  static String SMS_TO_EMERGENCY= MAIN_URL + 'sms-to-emergency-contact-users?userid=';
 
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
