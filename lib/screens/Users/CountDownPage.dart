@@ -49,7 +49,9 @@ class _CountDownPageState extends State<CountDownPage>
       });
     });
   }
-
+  sentToServer(){
+   // widget.model.POSTMETHOD(api: api, json: json, fun: fun)
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
