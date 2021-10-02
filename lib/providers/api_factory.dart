@@ -33,6 +33,7 @@ class ApiFactory {
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_MEDICATION = MAIN_URL + 'post-user-medication-doctor';
+  static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
   static String USER_PROFILE = MAIN_URL + 'other-user-profile?userid=';
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
@@ -48,6 +49,7 @@ class ApiFactory {
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
+  static String DELETE_TEST_LIST= MAIN_URL + 'delete-test-by-app-no?appno=';
   static String VITAL_SIGN_DETAIS= MAIN_URL + 'view-user-vital-sign-details?userid=';
   static String UPDATE_VITAL_SIGN= MAIN_URL + 'update-vital-signs';
   static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';

@@ -77,7 +77,7 @@ import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
-import 'package:user/screens/Users/ChemistsTabview.dart';
+import 'package:user/screens/Users/HealthProviderTabview.dart';
 import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
@@ -93,7 +93,7 @@ import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
-import 'package:user/screens/ProfileScreen.dart';
+import 'package:user/screens/Users/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
 import 'package:user/screens/RIP.dart';
 import 'package:user/screens/RequestHealthCheakup.dart';
@@ -117,11 +117,11 @@ import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
-import 'package:user/screens/VitalSigns.dart';
+import 'screens/Users/UserVitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
 import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
-import 'package:user/screens/FindPage.dart';
+import 'screens/Users/FindPage.dart';
 import 'screens/Users/MedipediaPage.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
@@ -606,7 +606,7 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
-              /*'/dashboardpharmacy': (context) => DashboardPharmacy(
+           /*'/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),*/
               '/usermedicinelist': (context) => UserMedicineTab(
