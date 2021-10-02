@@ -368,7 +368,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: TextFormField(
         controller: passController,
         textInputAction: TextInputAction.done,
-        keyboardType: TextInputType.name,
+        keyboardType: TextInputType.text,
         autofocus: false,
         //maxLength: 7,
         decoration: InputDecoration(

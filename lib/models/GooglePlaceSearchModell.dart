@@ -46,13 +46,13 @@ class Result {
   List<Photos> photos;
   String placeId;
   PlusCode plusCode;
-  int rating;
+  num rating;
   String reference;
   List<Reviews> reviews;
   List<String> types;
   String url;
-  int userRatingsTotal;
-  int utcOffset;
+  num userRatingsTotal;
+  num utcOffset;
   String vicinity;
 
   Result(
@@ -317,7 +317,7 @@ class Periods {
 }
 
 class Close {
-  int day;
+  num day;
   String time;
 
   Close({this.day, this.time});
@@ -336,10 +336,10 @@ class Close {
 }
 
 class Photos {
-  int height;
+  num height;
   List<String> htmlAttributions;
   String photoReference;
-  int width;
+  num width;
 
   Photos({this.height, this.htmlAttributions, this.photoReference, this.width});
 
@@ -384,10 +384,10 @@ class Reviews {
   String authorUrl;
   String language;
   String profilePhotoUrl;
-  int rating;
+  String rating;
   String relativeTimeDescription;
   String text;
-  int time;
+  num time;
 
   Reviews(
       {this.authorName,
@@ -404,7 +404,7 @@ class Reviews {
     authorUrl = json['author_url'];
     language = json['language'];
     profilePhotoUrl = json['profile_photo_url'];
-    rating = json['rating'];
+    rating = json['rating'].toString();
     relativeTimeDescription = json['relative_time_description'];
     text = json['text'];
     time = json['time'];

@@ -272,6 +272,13 @@ String userid;
                                         fontSize: 14),
                                     textAlign: TextAlign.end,
                                   ),
+                                  Text(
+                                    patient.apptime ?? "",
+                                    style: TextStyle(
+                                        color: getColorForStatus(patient.status),
+                                        fontSize: 14),
+                                    textAlign: TextAlign.end,
+                                  ),
                                   /* Text(
                                       patient.patientUniqueid,
                                       style: TextStyle(color: Colors.grey),

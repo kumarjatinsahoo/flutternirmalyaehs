@@ -32,10 +32,10 @@ import 'package:user/widgets/text_field_address.dart';
 import '../../models/KeyvalueModel.dart';
 import '../../providers/app_data.dart';
 
-class DoctorConsultPage extends StatefulWidget {
+class BookAppointmentPage extends StatefulWidget {
   MainModel model;
 
-  DoctorConsultPage({Key key, this.model}) : super(key: key);
+  BookAppointmentPage({Key key, this.model}) : super(key: key);
 
   static KeyvalueModel countryModel = null;
   static KeyvalueModel stateModel = null;
@@ -49,10 +49,10 @@ class DoctorConsultPage extends StatefulWidget {
   static KeyvalueModel selectDistrict = null;
 
   @override
-  DoctorConsultPageState createState() => DoctorConsultPageState();
+  BookAppointmentPageState createState() => BookAppointmentPageState();
 }
 
-class DoctorConsultPageState extends State<DoctorConsultPage> {
+class BookAppointmentPageState extends State<BookAppointmentPage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
@@ -174,8 +174,8 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
   @override
   void initState() {
     super.initState();
-    DoctorConsultPage.specialistModel = null;
-    DoctorConsultPage.doctorModel = null;
+    BookAppointmentPage.specialistModel = null;
+    BookAppointmentPage.doctorModel = null;
     comeFrom = widget.model.apntUserType;
     //loginResponse = widget.model.loginResponse1;
     _getLocationName();
@@ -322,14 +322,14 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.SPECIALITY_API);
-                                DoctorConsultPage.specialistModel = data;
-                                DoctorConsultPage.doctorModel = null;
+                                BookAppointmentPage.specialistModel = data;
+                                BookAppointmentPage.doctorModel = null;
                                 // UserSignUpForm.cityModel = null;
                               });
                             }),
                           ),
                         ),
-                        (DoctorConsultPage.specialistModel != null)
+                        (BookAppointmentPage.specialistModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
@@ -339,15 +339,15 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                       mapData, (KeyvalueModel data) {
                                     setState(() {
                                       //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
-                                      DoctorConsultPage.doctorModel = data;
-                                      DoctorConsultPage.hospitalModel = null;
+                                      BookAppointmentPage.doctorModel = data;
+                                      BookAppointmentPage.hospitalModel = null;
                                       // UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                 ),
                               )
                             : Container(),
-                        (DoctorConsultPage.doctorModel != null)
+                        (BookAppointmentPage.doctorModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
@@ -356,16 +356,16 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                   child: DropDown.networkDropdownGetpartUser(
                                       "Hospital",
                                       ApiFactory.HOSPITAL_API +
-                                          DoctorConsultPage.doctorModel.key,
+                                          BookAppointmentPage.doctorModel.key,
                                       "hospital",
                                       Icons.home,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(
                                         ApiFactory.HOSPITAL_API +
-                                            DoctorConsultPage.doctorModel.key,
+                                            BookAppointmentPage.doctorModel.key,
                                       );
-                                      DoctorConsultPage.hospitalModel = data;
+                                      BookAppointmentPage.hospitalModel = data;
                                     });
                                   }),
                                 ),
@@ -381,7 +381,7 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                         //comultationTime(),
                         (appointmentdate.text.toString() != null ||
                                     appointmentdate.text.toString() != "") &&
-                                (DoctorConsultPage.doctorModel != null)
+                                (BookAppointmentPage.doctorModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
@@ -390,14 +390,14 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
                                   child: DropDown.networkDropdownGetpartUser12(
                                       "Time",
                                       ApiFactory.DOCTER_AVAILABLE +
-                                          DoctorConsultPage.doctorModel.key +
+                                          BookAppointmentPage.doctorModel.key +
                                           "&date=" +
                                           appointmentdate.text.toString(),
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
-                                      DoctorConsultPage.timeModel = data;
+                                      BookAppointmentPage.timeModel = data;
                                       isValidtime =
                                           (data.key == 1) ? false : true;
                                       if (!isValidtime)
@@ -500,18 +500,18 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
 
   validate() async {
    // _formKey.currentState.validate();
-   if (DoctorConsultPage.specialistModel == null ||
-        DoctorConsultPage.specialistModel == "") {
+   if (BookAppointmentPage.specialistModel == null ||
+        BookAppointmentPage.specialistModel == "") {
       AppData.showInSnackBar(context, "Please select specialist");
-    } else if (DoctorConsultPage.doctorModel == null ||
-        DoctorConsultPage.doctorModel == "") {
+    } else if (BookAppointmentPage.doctorModel == null ||
+        BookAppointmentPage.doctorModel == "") {
       AppData.showInSnackBar(context, "Please select doctor");
-    } else if (DoctorConsultPage.hospitalModel == null ||
-        DoctorConsultPage.hospitalModel == "") {
+    } else if (BookAppointmentPage.hospitalModel == null ||
+        BookAppointmentPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select your appointmentdate");
-    } else if (DoctorConsultPage.timeModel == null) {
+    } else if (BookAppointmentPage.timeModel == null) {
       AppData.showInSnackBar(context, "Please select time");
     } else if (!isValidtime) {
       AppData.showInSnackBar(context, "Please select valid time");
@@ -536,11 +536,11 @@ class DoctorConsultPageState extends State<DoctorConsultPage> {
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": DoctorConsultPage.timeModel.name /*"23:10"*/ /*time*/,
-      "opdid": DoctorConsultPage.timeModel.code, //validitytime.text,
-      "doctor": DoctorConsultPage.doctorModel.key,
+      "time": BookAppointmentPage.timeModel.name /*"23:10"*/ /*time*/,
+      "opdid": BookAppointmentPage.timeModel.code, //validitytime.text,
+      "doctor": BookAppointmentPage.doctorModel.key,
       "notes": textEditingController[1].text,
-      "hospitalid": DoctorConsultPage.hospitalModel.key,
+      "hospitalid": BookAppointmentPage.hospitalModel.key,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
