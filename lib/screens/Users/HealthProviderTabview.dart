@@ -3,9 +3,9 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'ChemistsPage.dart';
+import 'HealthProviderOurService.dart';
 
-import 'ChemistsOngooglePage.dart';
+import 'HealthProviderOngooglePage.dart';
 
 
 
@@ -49,7 +49,7 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Chemists'),
+          title: Text(widget.model.healthproname),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 
