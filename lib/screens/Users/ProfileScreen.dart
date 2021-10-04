@@ -488,7 +488,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Bloood Group',
+                        'Blood Group',
                         style: TextStyle(fontSize: 15
                             //fontWeight: FontWeight.w600,
                             ),
@@ -727,7 +727,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Relaton',
+                        'Relation',
                         style: TextStyle(fontSize: 15
                             //fontWeight: FontWeight.w600,
                             ),
