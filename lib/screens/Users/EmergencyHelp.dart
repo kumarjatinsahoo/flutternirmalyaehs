@@ -228,6 +228,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   ),*/
                   InkWell(
                     onTap: (){
+
+                      widget.model.longi = latitude;
+                      widget.model.lati = longitude;
+                      widget.model.city = cityName;
                       Navigator.pushNamed(context, "/countDown");
                     },
                     child: Container(

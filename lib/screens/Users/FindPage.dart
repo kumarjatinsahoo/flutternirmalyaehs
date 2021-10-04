@@ -1,14 +1,12 @@
 import 'package:flutter/services.dart';
-import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/GenericStoresList.dart';
+
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';

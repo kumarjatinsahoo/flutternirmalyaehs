@@ -1,7 +1,7 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
+ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.108:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -12,6 +12,10 @@ class ApiFactory {
   static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
   static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
+  static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
+  static String DELETE_TEST_LIST= MAIN_URL + 'delete-test-by-app-no?appno=';
+
+
   static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
 
   static String GENDER_API = MAIN_URL + 'get-gender-list';
@@ -33,7 +37,6 @@ class ApiFactory {
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_MEDICATION = MAIN_URL + 'post-user-medication-doctor';
-  static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
   static String USER_PROFILE = MAIN_URL + 'other-user-profile?userid=';
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
@@ -49,7 +52,6 @@ class ApiFactory {
   static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
-  static String DELETE_TEST_LIST= MAIN_URL + 'delete-test-by-app-no?appno=';
   static String VITAL_SIGN_DETAIS= MAIN_URL + 'view-user-vital-sign-details?userid=';
   static String UPDATE_VITAL_SIGN= MAIN_URL + 'update-vital-signs';
   static String POST_PHARMACY_REQUST= MAIN_URL + 'post-pharmacy-request-api';
@@ -57,6 +59,7 @@ class ApiFactory {
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
   static String ADD_BIOMEDICAL_IMPLANTS= MAIN_URL + 'post-biomedical-implants-api';
+  static String SMS_TO_EMERGENCY= MAIN_URL + 'sms-to-emergency-contact-users?userid=';
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
     return MAIN_URL + "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";}
     static String GOOGLE_API(
@@ -77,12 +80,12 @@ static String GOOGLE_LOC(
       {String place_id}){
     return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
   }
+  //https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=ChIJ9UsgSdYJGToRiGHjtrS-JNc
   static String GOOGLE_MAP_IMG(
       {String lat,String long}){
     return "https://maps.google.com/maps/api/staticmap?zoom=16&size=1200x400&maptype=hybrid&sensor=false&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&markers=$lat,$long";
     //return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
   }
-  //https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=ChIJ9UsgSdYJGToRiGHjtrS-JNc
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';

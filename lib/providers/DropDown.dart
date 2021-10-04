@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -22,6 +23,7 @@ class DropDown {
   static TimeScheduleModel timeModel;
   static KeyvalueModel relationmodel;
   static KeyvalueModel specialitymodel;
+  static DoctorModel doctoreModel;
 
   static KeyvalueModel educatqualfication;
 
@@ -1369,6 +1371,14 @@ class DropDown {
         break;
     }
   }
+  static DoctorModel getData2(String callFor) {
+    switch (callFor) {
+      case "doctor":
+        return doctoreModel;
+        break;
+
+    }
+  }
 
   static TimeScheduleModel getData1(String callFor) {
     switch (callFor) {
@@ -1426,13 +1436,14 @@ class DropDown {
       selectedItem: getData(callFrom),
       onFind: (String filter) async {
         print("DROP DOWN API?????" + API);
+        var list;
         var response = await Dio().get(
           API,
         );
 
-        log("Drop down list>>>>>" + jsonEncode(response.data));
+        //log("Drop down list>>>>>" + jsonEncode(response.data));
 
-        var list;
+
         switch (callFrom) {
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
@@ -1453,6 +1464,7 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "doctor":
+            log("LLLL>>>>"+jsonEncode(response.data));
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "city":
@@ -1488,6 +1500,68 @@ class DropDown {
         return list;
       },
       onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    ));
+  }
+  static networkDropdownGetpartUser3(String label, final String API,
+      String callFrom, IconData iconData, double iconSize, Function fun) {
+    return newContainer(DropdownSearch<DoctorModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        icon: Icon(
+          iconData,
+          size: iconSize,
+        ),
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      //label: label,
+      showSearchBox: true,
+      selectedItem: getData2(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        var response = await Dio().get(
+          API,
+        );
+
+        log("Drop down list>>>>>" + jsonEncode(response.data));
+
+
+        //var list;
+
+        var list = DoctorModel.fromJsonList(response.data["body"]);
+        return list;
+      },
+      onChanged: (DoctorModel data) {
         fun(data);
       },
     ));
@@ -1798,7 +1872,7 @@ class DropDown {
         return Column(
           children: [
             Container(
-              color: (value.key == 1) ? Colors.grey : null,
+              color: (value.code) ? Colors.grey : null,
               child: Material(
                 type: MaterialType.transparency,
                 child: Container(
@@ -1836,7 +1910,7 @@ class DropDown {
         var list;
         switch (callFrom) {
           case "time2":
-            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
         return list;

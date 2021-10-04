@@ -32,6 +32,8 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel districtModel = null;
   static KeyvalueModel cityModel = null;
 
+
+
   UserSignUpForm({
     Key key,
     @required this.updateTab,
@@ -99,7 +101,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         locale: Locale("en"),
         /*initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
-        lastDate: DateTime.now(),*/
+        lastDate: DateTime.now(),*/ 
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
         lastDate: DateTime.now()
@@ -194,7 +196,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         shape: CircleBorder(),
                                         child: CircleAvatar(
                                           radius: 40.0,
-                                          backgroundImage: FileImage(pathUsr),
+                                          backgroundImage:
+                                              FileImage(pathUsr),
                                         ),
                                       )
                                     : Material(
@@ -232,16 +235,17 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                           child: Column(
                             children: <Widget>[
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      "TITLE",
-                                      ApiFactory.TITLE_API,
-                                      "title",
-                                      Icons.mail,
-                                      23.0, (KeyvalueModel data) {
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "TITLE",
+                                          ApiFactory.TITLE_API,
+                                          "title",
+                                          Icons.mail,
+                                          23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.TITLE_API);
                                       UserSignUpForm.titleModel = data;
@@ -254,24 +258,28 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
                                 child: Container(
                                   height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius:
+                                        BorderRadius.circular(5),
                                     border: Border.all(
                                         color: Colors.black, width: 0.3),
                                   ),
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: MyLocalizations.of(context)
-                                              .text("FIRST_NAME") +
-                                          "*",
-                                      prefixIcon: Icon(Icons.person_rounded),
+                                      hintText:
+                                          MyLocalizations.of(context)
+                                                  .text("FIRST_NAME") +
+                                              "*",
+                                      prefixIcon:
+                                          Icon(Icons.person_rounded),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
                                           fontSize: 17),
@@ -279,7 +287,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
                                     controller: textEditingController[0],
-                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlignVertical:
+                                        TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
                                           RegExp("[a-zA-Z ]")),
@@ -291,29 +300,35 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
                                 child: Container(
                                   height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
+                                      borderRadius:
+                                          BorderRadius.circular(5),
                                       border: Border.all(
-                                          color: Colors.black, width: 0.3)),
+                                          color: Colors.black,
+                                          width: 0.3)),
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: MyLocalizations.of(context)
-                                              .text("LAST_NAME") +
-                                          "*",
-                                      prefixIcon: Icon(Icons.person_rounded),
+                                      hintText:
+                                          MyLocalizations.of(context)
+                                                  .text("LAST_NAME") +
+                                              "*",
+                                      prefixIcon:
+                                          Icon(Icons.person_rounded),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
                                           fontSize: 17),
                                     ),
                                     textInputAction: TextInputAction.next,
-                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlignVertical:
+                                        TextAlignVertical.center,
                                     controller: textEditingController[1],
                                     keyboardType: TextInputType.text,
                                     inputFormatters: [
@@ -324,16 +339,17 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      "Gender",
-                                      ApiFactory.GENDER_API,
-                                      "gender",
-                                      Icons.mail,
-                                      23.0, (KeyvalueModel data) {
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "Gender",
+                                          ApiFactory.GENDER_API,
+                                          "gender",
+                                          Icons.mail,
+                                          23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
                                       UserSignUpForm.genderModel = data;
@@ -347,24 +363,25 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 9.0, left: 0),
+                                padding: const EdgeInsets.only(
+                                    right: 9.0, left: 0),
                                 child: mobileNoOTPSearch(),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 0, right: 0),
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      "Country",
-                                      ApiFactory.COUNTRY_API,
-                                      "country",
-                                      Icons.location_on_rounded,
-                                      23.0, (KeyvalueModel data) {
+                                  child:
+                                      DropDown.networkDropdownGetpartUser(
+                                          "Country",
+                                          ApiFactory.COUNTRY_API,
+                                          "country",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
                                       UserSignUpForm.countryModel = data;
@@ -382,15 +399,16 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           left: 0, right: 0, bottom: 0),
                                       child: SizedBox(
                                         height: 58,
-                                        child:
-                                            DropDown.networkDropdownGetpartUser(
+                                        child: DropDown
+                                            .networkDropdownGetpartUser(
                                                 "State",
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
                                                         .countryModel.key,
                                                 "state",
                                                 Icons.location_on_rounded,
-                                                23.0, (KeyvalueModel data) {
+                                                23.0,
+                                                (KeyvalueModel data) {
                                           setState(() {
                                             UserSignUpForm.stateModel = data;
                                             UserSignUpForm.districtModel = null;
@@ -405,59 +423,60 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: size.height * 0.01,
                               ),
                               (UserSignUpForm.stateModel != null)
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 0, right: 0),
-                                      child: SizedBox(
-                                        height: 58,
-                                        child:
-                                            DropDown.networkDropdownGetpartUser(
-                                                "District",
-                                                ApiFactory.DISTRICT_API +
-                                                    UserSignUpForm
-                                                        .stateModel.key,
-                                                "district",
-                                                Icons.location_on_rounded,
-                                                23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.COUNTRY_API);
-                                            UserSignUpForm.districtModel = data;
-                                            UserSignUpForm.cityModel = null;
-                                          });
-                                        }),
-                                      ),
-                                    )
-                                  : Container(),
+                                  ?Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      "District",
+                                      ApiFactory.DISTRICT_API +
+                                          UserSignUpForm.stateModel.key,
+                                      "district",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      UserSignUpForm.districtModel = data;
+                                      UserSignUpForm.cityModel = (null? "no data found":null) as KeyvalueModel ;
+                                    });
+                                  }),
+                                ),
+                              ) : Container(),
                               SizedBox(
                                 height: 5,
                               ),
                               (UserSignUpForm.districtModel != null)
                                   ? Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 0, right: 0, bottom: 0),
-                                      child: SizedBox(
-                                        height: 58,
-                                        child:
-                                            DropDown.apiCallDropDown(
-                                                "City",
-                                                ApiFactory.CITY_API +
-                                                    UserSignUpForm
-                                                        .districtModel.key,
-                                                "city",
-                                                Icons.location_on_rounded,
-                                                23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            UserSignUpForm.cityModel = data;
-                                            /*userModel.state=data.key;
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown
+                                      .networkDropdownGetpartUser(
+                                      "City",
+                                      ApiFactory.CITY_API +
+                                          UserSignUpForm
+                                              .districtModel.key,
+                                      "city",
+                                      Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          UserSignUpForm.cityModel = data;
+                                          /*userModel.state=data.key;
                                           userModel.stateCode=data.code;*/
-                                          });
-                                        },context),
-                                      ),
-                                    )
+                                        });
+                                      }),
+                                ),
+                              )
                                   : Container(),
+
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
+
                               Row(
                                 children: [
                                   Expanded(
@@ -465,7 +484,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       title: const Text('Age'),
                                       leading: Radio(
                                         materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
+                                            MaterialTapTargetSize
+                                                .shrinkWrap,
                                         value: TypeDob.Age,
                                         groupValue: selectDobEn,
                                         onChanged: (TypeDob value) {
@@ -481,7 +501,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       title: const Text('DOB'),
                                       leading: Radio(
                                         materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
+                                            MaterialTapTargetSize
+                                                .shrinkWrap,
                                         value: TypeDob.DOB,
                                         groupValue: selectDobEn,
                                         onChanged: (TypeDob value) {
@@ -502,37 +523,48 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         Expanded(
                                           flex: 2,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8, right: 8, top: 10),
+                                            padding:
+                                                const EdgeInsets.only(
+                                                    left: 8,
+                                                    right: 8,
+                                                    top: 10),
                                             child: Container(
                                               height: 47,
-                                              padding: EdgeInsets.symmetric(
+                                              padding:
+                                                  EdgeInsets.symmetric(
                                                 horizontal: 5,
                                               ),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius:
-                                                    BorderRadius.circular(5),
+                                                    BorderRadius.circular(
+                                                        5),
                                                 border: Border.all(
                                                     color: Colors.black,
                                                     width: 0.3),
                                               ),
                                               child: TextFormField(
                                                 controller:
-                                                    textEditingController[3],
-                                                decoration: InputDecoration(
+                                                    textEditingController[
+                                                        3],
+                                                decoration:
+                                                    InputDecoration(
                                                   prefixIcon: Icon(Icons
                                                       .accessibility_outlined),
-                                                  border: InputBorder.none,
-                                                  hintText: MyLocalizations.of(
-                                                          context)
-                                                      .text("AGE"),
+                                                  border:
+                                                      InputBorder.none,
+                                                  hintText:
+                                                      MyLocalizations.of(
+                                                              context)
+                                                          .text("AGE"),
                                                   hintStyle: TextStyle(
-                                                      color: AppData.hintColor,
+                                                      color: AppData
+                                                          .hintColor,
                                                       fontSize: 17),
                                                 ),
                                                 textAlignVertical:
-                                                    TextAlignVertical.center,
+                                                    TextAlignVertical
+                                                        .center,
                                                 textInputAction:
                                                     TextInputAction.next,
                                                 keyboardType:
@@ -550,10 +582,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
                                               showDialog(
                                                 context: context,
-                                                builder:
-                                                    (BuildContext context) {
+                                                builder: (BuildContext
+                                                    context) {
                                                   return AlertDialog(
-                                                    title: Text("Select Year"),
+                                                    title: Text(
+                                                        "Select Year"),
                                                     content: Container(
                                                       // Need to use container to add size constraint.
                                                       width: 300,
@@ -564,14 +597,16 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                                     .year -
                                                                 100,
                                                             1),
-                                                        lastDate:
-                                                            DateTime.now(),
+                                                        lastDate: DateTime
+                                                            .now(),
                                                         initialDate:
-                                                            DateTime.now(),
+                                                            DateTime
+                                                                .now(),
                                                         selectedDate:
                                                             _selectYear,
-                                                        onChanged: (DateTime
-                                                            dateTime) {
+                                                        onChanged:
+                                                            (DateTime
+                                                                dateTime) {
                                                           // close the dialog when year is selected.
                                                           Navigator.pop(
                                                               context);
@@ -579,8 +614,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                                       4]
                                                                   .value =
                                                               TextEditingValue(
-                                                                  text: df1.format(
-                                                                      dateTime));
+                                                                  text: df1
+                                                                      .format(dateTime));
 
                                                           // Do something with the dateTime selected.
                                                           // Remember that you need to use dateTime.year to get the year
@@ -592,17 +627,22 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               );
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8, right: 8, top: 10),
+                                              padding:
+                                                  const EdgeInsets.only(
+                                                      left: 8,
+                                                      right: 8,
+                                                      top: 10),
                                               child: Container(
                                                 height: 47,
-                                                padding: EdgeInsets.symmetric(
+                                                padding:
+                                                    EdgeInsets.symmetric(
                                                   horizontal: 5,
                                                 ),
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                      BorderRadius.circular(5),
+                                                      BorderRadius
+                                                          .circular(5),
                                                   border: Border.all(
                                                       color: Colors.black,
                                                       width: 0.3),
@@ -610,29 +650,36 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 child: TextFormField(
                                                   enabled: false,
                                                   controller:
-                                                      textEditingController[4],
-                                                  decoration: InputDecoration(
-                                                    prefixIcon: Icon(
-                                                        Icons.calendar_today),
-                                                    border: InputBorder.none,
+                                                      textEditingController[
+                                                          4],
+                                                  decoration:
+                                                      InputDecoration(
+                                                    prefixIcon: Icon(Icons
+                                                        .calendar_today),
+                                                    border:
+                                                        InputBorder.none,
                                                     hintText: "Years",
                                                     hintStyle: TextStyle(
-                                                        color:
-                                                            AppData.hintColor,
+                                                        color: AppData
+                                                            .hintColor,
                                                         fontSize: 17),
                                                   ),
                                                   textAlignVertical:
-                                                      TextAlignVertical.center,
+                                                      TextAlignVertical
+                                                          .center,
                                                   textInputAction:
-                                                      TextInputAction.next,
+                                                      TextInputAction
+                                                          .next,
                                                   keyboardType:
-                                                      TextInputType.number,
+                                                      TextInputType
+                                                          .number,
                                                   //maxLength: 2,
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
+
                                       ],
                                     )
                                   : InkWell(
@@ -640,8 +687,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         _selectDate(context);
                                       },
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8),
+                                        padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8),
                                         child: Container(
                                           height: 50,
                                           padding: EdgeInsets.symmetric(
@@ -659,19 +707,21 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 textEditingController[5],
                                             enabled: false,
                                             decoration: InputDecoration(
-                                              prefixIcon:
-                                                  Icon(Icons.calendar_today),
+                                              prefixIcon: Icon(
+                                                  Icons.calendar_today),
                                               border: InputBorder.none,
                                               hintText: "Date of Birth",
                                               hintStyle: TextStyle(
-                                                  color: AppData.hintColor,
+                                                  color:
+                                                      AppData.hintColor,
                                                   fontSize: 17),
                                             ),
                                             textInputAction:
                                                 TextInputAction.next,
                                             textAlignVertical:
                                                 TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
+                                            keyboardType:
+                                                TextInputType.number,
                                             //maxLength: 2,
                                           ),
                                         ),
@@ -681,8 +731,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
                                 child: Row(
                                   //  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -697,35 +747,36 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    Expanded(
-                                        child: RichText(
-                                            textAlign: TextAlign.start,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text:
-                                                      'I agree to eHealthSystem\'s ',
-                                                  /* "Welcome back",*/
-                                                  style: TextStyle(
-                                                    // fontWeight: FontWeight.w800,
-                                                    fontFamily: "Monte",
-                                                    // fontSize: 25.0,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: 'Terms and Conditions',
-                                                  /* "Welcome back",*/
-                                                  style: TextStyle(
-                                                    // fontWeight: FontWeight.w500,
-                                                    fontFamily: "Monte",
-                                                    // fontSize: 25.0,
-                                                    color:
-                                                        AppData.kPrimaryColor,
-                                                  ),
-                                                )
-                                              ],
-                                            ))),
+                                Expanded(
+                                    child:RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'I agree to eHealthSystem\'s ',
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Terms and Conditions',
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w500,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData
+                                                    .kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
                                   ],
                                 ),
                               ),
@@ -733,8 +784,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 height: 20,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
                                 child: nextButton(),
                               ),
                               SizedBox(
@@ -830,6 +881,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       ],
     );
   }
+
 
   Widget errorMsg(text) {
     return Align(
@@ -1069,36 +1121,29 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (selectDobEn == TypeDob.Age &&
-        (textEditingController[3].text == " " ||
-            textEditingController[3].text == null)) {
+    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text == " " || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
-    } else if (selectDobEn == TypeDob.DOB &&
-        (textEditingController[5].text == " " ||
-            textEditingController[5].text == null)) {
+    }
+    else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == " " || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
-    } else if (_checkbox == false) {
+    }
+    else if (_checkbox == false) {
       AppData.showInSnackBar(context, "Please checked terms and Condition");
-    } else {
+    }
+    else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
-      userModel.age = (textEditingController[3].text == "")
-          ? null
-          : textEditingController[3].text;
+      userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
       userModel.ageYears = textEditingController[4].text;
-      userModel.dob = (textEditingController[5].text == "")
-          ? null
-          : textEditingController[5].text;
+      userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
       userModel.country = UserSignUpForm.countryModel.key;
       userModel.countryCode = UserSignUpForm.countryModel.code;
       userModel.stateCode = UserSignUpForm.stateModel.code;
       userModel.state = UserSignUpForm.stateModel.key;
-      userModel.districtid = UserSignUpForm.districtModel.key;
-      ;
-      userModel.cityid = UserSignUpForm.cityModel.key;
-      ;
+      userModel.districtid = UserSignUpForm.districtModel.key;;
+      userModel.cityid = UserSignUpForm.cityModel.key;;
 
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
@@ -1184,7 +1229,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-      setState(() => pathUsr = File(_path));
+     setState(() => pathUsr = File(_path));
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1201,7 +1246,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       });
     }
   }
-
   /*Future getCerificateImage() async {
     var image = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -1228,7 +1272,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-      setState(() => pathUsr = File(image.path)); /*File(_path));*/
+      setState(() =>pathUsr = File(image.path));/*File(_path));*/
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1322,4 +1366,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           );
         });
   }
+
+
 }
