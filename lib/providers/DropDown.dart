@@ -169,7 +169,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
-
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -294,7 +296,9 @@ class DropDown {
       ),
 
       label: label,
-      showSearchBox: true,
+      showSearchBox: true, errorBuilder: (cg,value,v){
+      return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+    },
       //items: maritalStatus,
       selectedItem: getData(callFrom),
       onFind: (String filter) async {
@@ -407,7 +411,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
-
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -475,6 +481,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -528,6 +537,21 @@ class DropDown {
   }
 
   static Widget newContainer(child) {
+    return Padding(
+      padding:
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
+        child: child,
+      ),
+    );
+  }
+
+  static Widget newCon(child,context) {
     return Padding(
       padding:
           const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
@@ -608,6 +632,9 @@ class DropDown {
             borderSide: BorderSide(width: 0, color: Colors.black),
           ),
         ),*/
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -679,6 +706,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -776,6 +806,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -827,6 +860,9 @@ class DropDown {
                 topLeft: Radius.circular(3.0)),
           ),
         ),
+        errorBuilder: (cg,value,v){
+          return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+        },
         dropdownSearchDecoration: InputDecoration(
             // filled: true,
             icon: Icon(
@@ -902,6 +938,9 @@ class DropDown {
                 topLeft: Radius.circular(3.0)),
           ),
         ),
+        errorBuilder: (cg,value,v){
+          return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+        },
         dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
@@ -953,6 +992,9 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppData.kPrimaryColor, width: 2),
@@ -985,6 +1027,9 @@ class DropDown {
               EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.always),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.grey),
@@ -1023,6 +1068,9 @@ class DropDown {
               EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 7),
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.always),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.grey),
@@ -1066,6 +1114,9 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           labelText: label,
@@ -1131,6 +1182,7 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           //labelText: label,
@@ -1140,6 +1192,9 @@ class DropDown {
       //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       onFind: (String filter) async {
         var response = await Dio().get(
           API,
@@ -1175,6 +1230,9 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           labelText: label,
@@ -1214,6 +1272,9 @@ class DropDown {
       String label, String callFrom, List<KeyvalueModel> list, Function fun) {
     return DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           //alignLabelWithHint: true,
@@ -1265,6 +1326,9 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -1332,6 +1396,9 @@ class DropDown {
         ),
       ),
       hint: label,
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         icon: Icon(
@@ -1426,6 +1493,119 @@ class DropDown {
     ));
   }
 
+
+  static apiCallDropDown(String label, final String API,
+      String callFrom, IconData iconData, double iconSize, Function fun,cg) {
+    return newCon(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        icon: Icon(
+          iconData,
+          size: iconSize,
+        ),
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      //label: label,
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
+      showSearchBox: true,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        var response = await Dio().get(
+          API,
+        );
+
+        log("Drop down list>>>>>" + jsonEncode(response.data));
+
+        var list;
+        switch (callFrom) {
+          case "title":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "gender":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "hospital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "doctor":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "medicine":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "time":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            break;
+          case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+        }
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    ),cg);
+  }
+
   static doctorDropDown(String label,token, postMap, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
@@ -1460,6 +1640,9 @@ class DropDown {
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       showSearchBox: true,
       onFind: (String filter) async {
         print("DROP DOWN API?????" + ApiFactory.FIND_HEALTH_PROVIDER1);
@@ -1495,6 +1678,9 @@ class DropDown {
         ),
       ),
       hint: label,
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         /* icon: Icon(
@@ -1583,6 +1769,9 @@ class DropDown {
         ),
       ),
       hint: label,
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         /* icon: Icon(
@@ -1675,6 +1864,9 @@ class DropDown {
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -1799,6 +1991,9 @@ static networkDrop(
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -1874,6 +2069,9 @@ static networkDrop(
               topLeft: Radius.circular(3.0)),
         ),*/
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -1961,6 +2159,9 @@ static networkDrop(
                 topLeft: Radius.circular(3.0)),
           ),
         ),
+        errorBuilder: (cg,value,v){
+          return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+        },
         hint: label,
         dropdownSearchDecoration: InputDecoration(
           // filled: true,
@@ -2027,6 +2228,9 @@ static networkDrop(
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -2095,6 +2299,9 @@ static networkDrop(
               topLeft: Radius.circular(3.0)),
         ),
       ),
+      errorBuilder: (cg,value,v){
+        return Material(child: Container(alignment: Alignment.center,child: Text("No Data Found",style: TextStyle(color: Colors.black),)));
+      },
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
