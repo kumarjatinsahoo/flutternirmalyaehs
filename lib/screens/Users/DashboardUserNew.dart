@@ -554,9 +554,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                           onTap: () {
                             int index = imageSliders.indexOf(item);
                             //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
-                            AppData.launchURL(
-                                "https://www.youtube.com/embed/R0tHEJl_Y8E?start=68");
-                            /*switch (index) {
+                            switch (index) {
                               case 0:
                                 AppData.launchURL(
                                     "https://www.youtube.com/watch?v=QYcKscyUvuY");
@@ -582,7 +580,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 AppData.launchURL(
                                     "https://www.youtube.com/watch?v=3F5Esq71WUQ");
                                 break;
-                            }*/
+                            }
                           },
                           child: Container(
                             child: Container(
