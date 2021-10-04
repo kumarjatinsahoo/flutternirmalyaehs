@@ -271,7 +271,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
               "Book Appointment",
               style: TextStyle(color: Colors.white),
             ),
-            Spacer(),
+           /* Spacer(),
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/doctorconsultationPage");
@@ -282,7 +282,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
               ),
             ),
-            SizedBox(width: 5,)
+            SizedBox(width: 5,)*/
           ],
         ),
         //automaticallyImplyLeading: false,
