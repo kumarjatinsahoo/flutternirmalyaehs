@@ -95,7 +95,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                     'Which Organ?',
                                     // 'What is Organ Donation?',
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,fontWeight: FontWeight.w600,
                                     ),
                                     overflow: TextOverflow.clip,
                                     maxLines: 2,
@@ -137,7 +137,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                 Expanded(
                                   child: Text(
                                     'Who Can Do?',
-                                    style: TextStyle(
+                                    style: TextStyle(fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                     overflow: TextOverflow.clip,
@@ -179,7 +179,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                 Expanded(
                                   child: Text(
                                     'Which Organs?',
-                                    style: TextStyle(
+                                    style: TextStyle(fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                     overflow: TextOverflow.clip,
@@ -222,7 +222,7 @@ class _OrganDonationState extends State<OrganDonation> {
                                 Expanded(
                                   child: Text(
                                     'How to Donate?',
-                                    style: TextStyle(
+                                    style: TextStyle(fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                     overflow: TextOverflow.clip,
