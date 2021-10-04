@@ -36,48 +36,62 @@ class _SupportScreenState extends State<SupportScreen> {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         //extendBody: true,
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        // ),
+        appBar: AppBar(
+          title: const Text('Support'),
+          elevation: 0,
+        ),
         body: SafeArea(
           child: Container(
             height: double.maxFinite,
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  Image.asset(
-                    "assets/chat-banner.jpg",
-                    fit: BoxFit.fitWidth,
+                  Container(
+                    color: Colors.blueGrey,
+                    child: Image.asset(
+                      "assets/chat-banner.jpg",
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
+                  Divider(thickness: 3,color: AppData.kPrimaryColor,),
                   //Icon(Icons.mobile_friendly),
                   SizedBox(
                     height: 20,
                   ),
-                  buildTile(
-                      name: "Contact Number",
-                      value: "1800 345 7461",
-                      value1: "011-41182138",
-                      icon: CupertinoIcons.phone_fill),
-                  buildTile(
-                      name: "Address",
-                      value: "District Administration, Sundargarh, Odisha",
-                      icon: Icons.location_on_rounded),
-                  buildTile(
-                      name: "Office hour",
-                      value: "10.00AM to 7.00PM",
-                      icon: Icons.timelapse_outlined),
-                  buildTile(
-                      name: "Chat with us",
-                      //value: "9.00AM to 10.00PM",
-                      fun: (){
-                        AppData.showInSnackDone(context, "Comming soon");
-                      },
-                      icon: Icons.chat),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                        children: <Widget>[
+                          buildTile(
+                          name: "Contact Number".toUpperCase(),
+                          value: "1800 345 7461",
+                          value1: "011-41182138",
+                          icon: CupertinoIcons.phone_fill),
+                          SizedBox(height: 5,),
+                          buildTile(
+                              name: "Address".toUpperCase(),
+                              value: "District Administration, Sundargarh, Odisha",
+                              icon: Icons.location_on_rounded),
+                          SizedBox(height: 5,),
+                          buildTile(
+                              name: "Office hour".toUpperCase(),
+                              value: "10.00AM to 7.00PM",
+                              icon: Icons.timelapse_outlined),
+                          SizedBox(height: 5,),
+                          buildTile(
+                              name: "Chat with us".toUpperCase(),
+                              //value: "9.00AM to 10.00PM",
+                              fun: (){
+                                AppData.showInSnackDone(context, "Comming soon");
+                              },
+                              icon: Icons.chat),
 
-                  //Text("Follow us",style: Text,),
-                  MyWidgets.subHeader("Follow us", Alignment.center),
-                  SizedBox(height: 10,),
+                          //Text("Follow us",style: Text,),
+                          MyWidgets.subHeader("Follow us", Alignment.center),
+                          SizedBox(height: 10,),
+                    ]),
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
@@ -23,6 +25,7 @@ class DonorApplication extends StatefulWidget {
   final bool isFromDash;
   MainModel model;
   static KeyvalueModel districtModel = null;
+  static KeyvalueModel bloodgroupModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
 
@@ -45,6 +48,7 @@ class DonorApplicationState extends State<DonorApplication> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
+  bool isChecked = false;
   DateTime selectedDate = DateTime.now();
   PayMode1 payMode1 = PayMode1.cash;
   List<TextEditingController> textEditingController = [
@@ -53,7 +57,15 @@ class DonorApplicationState extends State<DonorApplication> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController()
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -236,8 +248,9 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[0],
                                         decoration: InputDecoration(
-                                            hintText: "PO",
+                                            hintText: "Person Name",
                                             hintStyle:
                                                 TextStyle(color: Colors.grey)),
                                         textInputAction: TextInputAction.next,
@@ -263,6 +276,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[2],
                                         decoration: InputDecoration(
                                             hintText: "Date Of Birth",
                                             hintStyle:
@@ -282,6 +296,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[3],
                                         decoration: InputDecoration(
                                             hintText: "Age:Years",
                                             hintStyle:
@@ -294,17 +309,22 @@ class DonorApplicationState extends State<DonorApplication> {
                                         ],
                                       ),
                                     ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
-                                      child: DropDown.staticDropdown2(
-                                          "Select Blood Group",
-                                          "genderSignup",
-                                          genderList, (KeyvalueModel data) {
-                                        setState(() {
-                                          DonorApplication.genderModel = data;
-                                        });
-                                      }),
+                                      child:
+                                      DropDown.networkDropdownGetpartUserundreline(
+                                          "Blood Group", ApiFactory.BLOODGROUP_API , "bloodgroup",
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.BLOODGROUP_API);
+                                              DonorApplication.bloodgroupModel = data;
+                                              DonorApplication.bloodgroupModel = null;
+                                            });
+                                          }),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -313,6 +333,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[5],
                                         decoration: InputDecoration(
                                             hintText: "Mobile Number",
                                             hintStyle:
@@ -332,10 +353,9 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[6],
                                         decoration: InputDecoration(
-                                            hintText:
-                                                MyLocalizations.of(context)
-                                                    .text("Email ID(optional)"),
+                                            hintText: "Email ID(optional)",
                                             hintStyle:
                                                 TextStyle(color: Colors.grey)),
                                         textInputAction: TextInputAction.next,
@@ -350,6 +370,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: TextFormField(
+                                        controller: textEditingController[7],
                                         decoration: InputDecoration(
                                             hintText: "Address",
                                             hintStyle:
@@ -411,6 +432,20 @@ class DonorApplicationState extends State<DonorApplication> {
                                                   onChanged: (value) {
                                                     setState(() {
                                                       _checkbox = !_checkbox;
+                                                     /* if(_checkbox=true){
+                                                      _checkbox2=true;
+                                                      _checkbox4=true;
+                                                      _checkbox6=true;
+                                                      _checkbox8=true;
+                                                      }
+                                                      else {
+                                                        _checkbox2=false;
+                                                        _checkbox4=false;
+                                                        _checkbox6=false;
+                                                        _checkbox8=false;
+
+                                                      }*/
+
                                                     });
                                                   },
                                                 ),
@@ -431,6 +466,12 @@ class DonorApplicationState extends State<DonorApplication> {
                                                     onChanged: (value) {
                                                       setState(() {
                                                         _checkbox0 = !_checkbox0;
+                                                        /*_checkbox3=true;
+                                                        _checkbox5=true;
+                                                        _checkbox7=true;
+                                                        _checkbox9=true;
+*/
+
                                                       });
                                                     },
                                                   ),
@@ -447,19 +488,199 @@ class DonorApplicationState extends State<DonorApplication> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
+                                        left: 5, ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                              child: Column(
+                                                  children: [
+                                                   /* (medicineListModel != null)
+                                                        ?*/
+                                                    ListView.builder(
+                                                      physics: NeverScrollableScrollPhysics(),
+                                                      // controller: _scrollController,
+                                                      shrinkWrap: true,
+                                                      itemBuilder: (context, i) {
+                                                       /* if (i == medicineListModel.body.length) {
+                                                          return (medicineListModel.body.length % 10 == 0)
+                                                              ? CupertinoActivityIndicator()
+                                                              : Container();
+                                                        }*/
+                                                       /* medicine.Body body = medicineListModel.body[i];
+                                                        widget.model.medicinelist = body;*/
+                                                        // Print("mediiiicinie"+$body);
+                                                        return Container(
+                                                          child: GestureDetector(
+                                                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                                                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.all(10.0),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment.start,
+                                                                children: [
+                                                                  /*(!body.reqstatus)
+                                                                      ? */
+                                                                  CheckboxListTile(
+                                                                    activeColor: Colors.blue[300],
+                                                                    dense: true,
+                                                                    //font change
+                                                                    title: new Text("LIVER",
+                                                                      /*medicineListModel
+                                                                          .body[i].medname??"N/A",*/
+                                                                      style: TextStyle(
+                                                                          fontSize: 14,
+                                                                          fontWeight: FontWeight.w600,
+                                                                          letterSpacing: 0.5),
+                                                                    ),
+                                                                    value:isChecked,
+                                                                    //value: body.isChecked,
+                                                                    onChanged: (val) {
+                                                                      setState(() {
+                                                                       // body.isChecked = val;
+                                                                        isChecked = val;
+                                                                        /*if (val)
+                                                                         // selectedMedicine.add(body);
+                                                                        else
+                                                                         // selectedMedicine
+                                                                              .remove(body);*/
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                  /*    :
+                                                                  *//*Container(),*//*Text("LIVER",
+                                                                    *//*medicineListModel
+                                                                        .body[i].medname??"N/A",*//*
+                                                                    style: TextStyle(
+                                                                        fontSize: 14,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        letterSpacing: 0.5),
+                                                                  ),*/
+                                                                  SizedBox(
+                                                                    width: 5,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 15,
+                                                                  ),
+
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                      itemCount: 4,
+                                                     // itemCount: medicineListModel.body.length,
+                                                    )
+                                                       // : Container(),
+
+                                                  ])),
+                                          Expanded(
+                                              child: Column(
+                                                  children: [
+                                                    /* (medicineListModel != null)
+                                                        ?*/
+                                                    ListView.builder(
+                                                      physics: NeverScrollableScrollPhysics(),
+                                                      // controller: _scrollController,
+                                                      shrinkWrap: true,
+                                                      itemBuilder: (context, i) {
+                                                        /* if (i == medicineListModel.body.length) {
+                                                          return (medicineListModel.body.length % 10 == 0)
+                                                              ? CupertinoActivityIndicator()
+                                                              : Container();
+                                                        }*/
+                                                        /* medicine.Body body = medicineListModel.body[i];
+                                                        widget.model.medicinelist = body;*/
+                                                        // Print("mediiiicinie"+$body);
+                                                        return Container(
+                                                          child: GestureDetector(
+                                                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                                                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.all(10.0),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment.start,
+                                                                children: [
+                                                                  /*(!body.reqstatus)
+                                                                      ? */
+                                                                  CheckboxListTile(
+                                                                    activeColor: Colors.blue[300],
+                                                                    dense: true,
+                                                                    //font change
+                                                                    title: new Text("LIVER",
+                                                                      /*medicineListModel
+                                                                          .body[i].medname??"N/A",*/
+                                                                      style: TextStyle(
+                                                                          fontSize: 14,
+                                                                          fontWeight: FontWeight.w600,
+                                                                          letterSpacing: 0.5),
+                                                                    ),
+                                                                    value:isChecked,
+                                                                    //value: body.isChecked,
+                                                                    onChanged: (val) {
+                                                                      setState(() {
+                                                                        // body.isChecked = val;
+                                                                        isChecked = val;
+                                                                        /*if (val)
+                                                                         // selectedMedicine.add(body);
+                                                                        else
+                                                                         // selectedMedicine
+                                                                              .remove(body);*/
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                  /*    :
+                                                                  *//*Container(),*//*Text("LIVER",
+                                                                    *//*medicineListModel
+                                                                        .body[i].medname??"N/A",*//*
+                                                                    style: TextStyle(
+                                                                        fontSize: 14,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        letterSpacing: 0.5),
+                                                                  ),*/
+                                                                  SizedBox(
+                                                                    width: 5,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 15,
+                                                                  ),
+
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                      itemCount: 4,
+                                                      // itemCount: medicineListModel.body.length,
+                                                    )
+                                                    // : Container(),
+
+                                                  ])),
+                                        ],
+                                      ),
+                                    ),
+
+
+                                   /* Padding(
+                                      padding: const EdgeInsets.only(
                                         left: 10, ),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Expanded(
                                               child: Row(
-                                                /* ,*/
+                                                *//* ,*//*
                                                   children: [
                                                     Checkbox(
                                                       value: _checkbox2,
                                                       onChanged: (value) {
                                                         setState(() {
                                                           _checkbox2 = !_checkbox2;
+
                                                         });
                                                       },
                                                     ),
@@ -472,8 +693,8 @@ class DonorApplicationState extends State<DonorApplication> {
                                                   ])),
                                           Expanded(
                                             child: Row(
-                                              /*  mainAxisAlignment:
-                                                    MainAxisAlignment.center,*/
+                                              *//*  mainAxisAlignment:
+                                                    MainAxisAlignment.center,*//*
                                                 children: [
                                                   Checkbox(
                                                     value: _checkbox3,
@@ -502,7 +723,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                         children: [
                                           Expanded(
                                               child: Row(
-                                                /* ,*/
+                                                *//* ,*//*
                                                   children: [
                                                     Checkbox(
                                                       value: _checkbox4,
@@ -521,8 +742,8 @@ class DonorApplicationState extends State<DonorApplication> {
                                                   ])),
                                           Expanded(
                                             child: Row(
-                                              /*  mainAxisAlignment:
-                                                    MainAxisAlignment.center,*/
+                                              *//*  mainAxisAlignment:
+                                                    MainAxisAlignment.center,*//*
                                                 children: [
                                                   Checkbox(
                                                     value: _checkbox5,
@@ -551,7 +772,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                         children: [
                                           Expanded(
                                               child: Row(
-                                                /* ,*/
+                                                *//* ,*//*
                                                   children: [
                                                     Checkbox(
                                                       value: _checkbox6,
@@ -570,8 +791,8 @@ class DonorApplicationState extends State<DonorApplication> {
                                                   ])),
                                           Expanded(
                                             child: Row(
-                                              /*  mainAxisAlignment:
-                                                    MainAxisAlignment.center,*/
+                                              *//*  mainAxisAlignment:
+                                                    MainAxisAlignment.center,*//*
                                                 children: [
                                                   Checkbox(
                                                     value: _checkbox7,
@@ -600,7 +821,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                         children: [
                                           Expanded(
                                               child: Row(
-                                                /* ,*/
+                                                *//* ,*//*
                                                   children: [
                                                     Checkbox(
                                                       value: _checkbox8,
@@ -619,8 +840,8 @@ class DonorApplicationState extends State<DonorApplication> {
                                                   ])),
                                           Expanded(
                                             child: Row(
-                                              /*  mainAxisAlignment:
-                                                    MainAxisAlignment.center,*/
+                                              *//*  mainAxisAlignment:
+                                                    MainAxisAlignment.center,*//*
                                                 children: [
                                                   Checkbox(
                                                     value: _checkbox9,
@@ -640,7 +861,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                           ),
                                         ],
                                       ),
-                                    ),
+                                    ),*/
                                     SizedBox(
                                       height: 5,
                                     ),
@@ -867,6 +1088,76 @@ class DonorApplicationState extends State<DonorApplication> {
       text: "Next".toUpperCase(),
       context: context,
       fun: () {
+        if (textEditingController[0].text == "" ||
+            textEditingController[0].text == null) {
+          AppData.showInSnackBar(context, "Please enter Person Name");
+        }else if (textEditingController[1].text != "" &&
+            textEditingController[1].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
+        }else if (textEditingController[2].text != "" &&
+            textEditingController[2].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter Dob");
+        }else if (textEditingController[3].text == "" ||
+            textEditingController[3].text == null) {
+          AppData.showInSnackBar(context, "Please enter Age:Years");
+        }else if (DonorApplication.bloodgroupModel == null ||
+        DonorApplication.bloodgroupModel == "") {
+          AppData.showInSnackBar(context, "Please select blood group");
+        }else if (textEditingController[5].text != ""&&
+            textEditingController[5].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        }
+        else if (textEditingController[6].text != ""&&
+            textEditingController[6].text == null) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        }else if (textEditingController[7].text != ""&&
+            textEditingController[7].text == null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+        }
+
+        else {
+          Navigator.pushNamed(context, "/addWitness");
+
+          /* MyWidgets.showLoading(context);
+          PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
+          pharmaSignupModel.organizationid = pharmaorganisation;
+          pharmaSignupModel.titleid = pharmatitle;
+          pharmaSignupModel.docname = pharmaprofessional;
+          pharmaSignupModel.experience =  pharmaexperience;
+          pharmaSignupModel.gender =  pharmagender;
+          pharmaSignupModel.address =  pharmaaddress;
+          // pharmaSignupModel.address = textEditingController[8].t Idext;
+          pharmaSignupModel.countryid = PharmaSignUpForm3.countryModel.key;
+          pharmaSignupModel.stateid = PharmaSignUpForm3.stateModel.key;
+          pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
+          pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
+          pharmaSignupModel.pincode = textEditingController[5].text;
+          //  pharmaSignupModel.homephone = textEditingController[4].text;
+          //pharmaSignupModel.officephone = textEditingController[6].text;
+          pharmaSignupModel.mobno = textEditingController[10].text;
+          pharmaSignupModel.email = textEditingController[11].text;
+          //pharmaSignupModel.alteremail = textEditingController[12].text;
+          pharmaSignupModel.role="7";
+          pharmaSignupModel.speciality="32";*/
+          /*  print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
+          widget.model.POSTMETHOD(
+              api: ApiFactory.PHARMACY_REGISTRATION,
+              json: pharmaSignupModel.toJson(),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                if (map[Const.STATUS] == Const.SUCCESS) {
+                  //popup(context, map[Const.MESSAGE]);
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });*/
+          // AppData.showInSnackBar(context, "add Successfully");
+
+        }
+      },
+    );
+  }
+
         //Navigator.pushNamed(context, "/navigation");
         /*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
@@ -874,11 +1165,11 @@ class DonorApplicationState extends State<DonorApplication> {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
 
-        Navigator.pushNamed(context, "/addWitness");
-        //}
-      },
-    );
-  }
+  //       Navigator.pushNamed(context, "/addWitness");
+  //       //}
+  //     },
+  //   );
+  // }
 
   Widget nextButton() {
     return GestureDetector(
@@ -954,7 +1245,7 @@ class DonorApplicationState extends State<DonorApplication> {
             new Expanded(
               child: TextFormField(
                 enabled: widget.isConfirmPage ? false : true,
-                controller: textEditingController[4],
+                controller: textEditingController[1],
                 focusNode: fnode7,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
