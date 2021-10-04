@@ -64,8 +64,8 @@ class _SupportScreenState extends State<SupportScreen> {
                         children: <Widget>[
                           buildTile(
                           name: "Contact Number".toUpperCase(),
-                          value: "1800 345 7461",
-                          value1: "011-41182138",
+                          value: " 20 2565 6552",
+                          /*value1: "011-41182138",*/
                           icon: CupertinoIcons.phone_fill),
                           SizedBox(height: 5,),
                           buildTile(
