@@ -331,6 +331,34 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                         ),
                         (BookAppointmentPage.specialistModel != null)
                             ? Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child: DropDown.networkDropdownGetpartUser(
+                                "Doctor",
+                                ApiFactory.DOCTOOR_API +
+                                    BookAppointmentPage
+                                        .specialistModel.key ,/*+
+                                          "&city=" +
+                                          (DoctorconsultationPage
+                                                  ?.cityModel?.key ??
+                                              ""),*/
+                                "doctor",
+                                Icons.mail,
+                                23.0, (KeyvalueModel data) {
+                              setState(() {
+                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
+                                BookAppointmentPage.doctorModel = data;
+                                BookAppointmentPage.hospitalModel = null;
+                                // UserSignUpForm.cityModel = null;
+                              });
+                            }),
+                          ),
+                        )
+                            : Container(),
+                        /*(BookAppointmentPage.specialistModel != null)
+                            ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
@@ -346,8 +374,8 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                   }),
                                 ),
                               )
-                            : Container(),
-                        (BookAppointmentPage.doctorModel != null)
+                            : Container(),*/
+                        /*(BookAppointmentPage.doctorModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
@@ -373,7 +401,9 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                             : Container(),
                         SizedBox(
                           height: 10,
-                        ),
+                        ),*/
+                    SizedBox(
+                      height: 10,),
                         appointdate(),
                         SizedBox(
                           height: 10,
@@ -387,19 +417,16 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser12(
-                                      "Time",
-                                      ApiFactory.DOCTER_AVAILABLE +
-                                          BookAppointmentPage.doctorModel.key +
-                                          "&date=" +
-                                          appointmentdate.text.toString(),
-                                      "time2",
+                                  child:
+                                  DropDown.networkDropdownGetpartUser12(
+                                        "Time", ApiFactory.DOCTER_AVAILABLE +BookAppointmentPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+BookAppointmentPage.doctorModel.code.toString(),
+                                        "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       BookAppointmentPage.timeModel = data;
                                       isValidtime =
-                                          (data.key == 1) ? false : true;
+                                          (data.code) ? false : true;
                                       if (!isValidtime)
                                         AppData.showInSnackBar(context,
                                             "This time is already booked please select another time");
@@ -506,9 +533,9 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     } else if (BookAppointmentPage.doctorModel == null ||
         BookAppointmentPage.doctorModel == "") {
       AppData.showInSnackBar(context, "Please select doctor");
-    } else if (BookAppointmentPage.hospitalModel == null ||
+    /*} else if (BookAppointmentPage.hospitalModel == null ||
         BookAppointmentPage.hospitalModel == "") {
-      AppData.showInSnackBar(context, "Please select hospital");
+      AppData.showInSnackBar(context, "Please select hospital");*/
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select your appointmentdate");
     } else if (BookAppointmentPage.timeModel == null) {
@@ -533,15 +560,24 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
   saveDb() {
     Map<String, dynamic> map = {
+      "userid" : widget.model.user,
+      "date" : appointmentdate.text.toString(),
+      "opdid" :BookAppointmentPage.timeModel.key,
+      "time" : BookAppointmentPage.timeModel.name,
+      "doctor": BookAppointmentPage.doctorModel.key,
+      "notes" :  textEditingController[1].text,
+      "hospitalid" :BookAppointmentPage.doctorModel.code
+
+    };/*{
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": BookAppointmentPage.timeModel.name /*"23:10"*/ /*time*/,
+      "time": BookAppointmentPage.timeModel.name //"23:10" time,
       "opdid": BookAppointmentPage.timeModel.code, //validitytime.text,
       "doctor": BookAppointmentPage.doctorModel.key,
       "notes": textEditingController[1].text,
       "hospitalid": BookAppointmentPage.hospitalModel.key,
-    };
+    };*/
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
     // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30

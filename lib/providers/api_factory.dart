@@ -1,7 +1,9 @@
 class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL1 = "https://1331.co.in/api/Doc/";
   //static String MAIN_URL = "http://192.168.29.105:8062/nirmalyaRest/api/";
+  //GetDocSlotInfo?doctor=253&appointdate=04-Oct-2021&hospitalid=1
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -40,14 +42,16 @@ class ApiFactory {
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
-  static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
+  //static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
+  static String DOCTOOR_API = MAIN_URL1 + 'GetDocList?speciality=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';
   static String SPECIALITY_API2 = MAIN_URL + 'get-doctor-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
-  static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
+  //static String DOCTER_AVAILABLE = MAIN_URL + 'doctor-available-by-date?doctor=';
+  static String DOCTER_AVAILABLE = MAIN_URL1 + 'GetDocSlotInfo?doctor=';
   static String FIND_HEALTH_PROVIDER1 = MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST= MAIN_URL + 'delete-medicine-by-app-no?appno=';
   static String DELETE_TEST_LIST= MAIN_URL + 'delete-test-by-app-no?appno=';
