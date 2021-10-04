@@ -59,6 +59,7 @@ class ApiFactory {
   static String VIEW_USER_MEDICINE_DETAILS = MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String LOGIN_PASS(String mob, String pass) {return MAIN_URL + "login?mobileNo=$mob&password=$pass";}
   static String ADD_BIOMEDICAL_IMPLANTS= MAIN_URL + 'post-biomedical-implants-api';
+  static String SMS_TO_EMERGENCY= MAIN_URL + 'sms-to-emergency-contact-users?userid=';
   static String FIND_HEALTH_PROVIDER(String longi, String lati,String addr,String city,String healthpro,String type){
     return MAIN_URL + "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";}
     static String GOOGLE_API(
