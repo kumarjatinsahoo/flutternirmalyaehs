@@ -5,16 +5,12 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/BiomediImplants.dart';
-import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
-import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
-import 'package:user/screens/Doctor/Dashboard/DoctorTestlist.dart';
-import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
-import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
 import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/Allergiclist.dart';
-import 'package:user/screens/Users/DoctorConsultPage.dart';
+import 'package:user/screens/Users/BookAppointmentPage.dart';
+import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -74,7 +70,6 @@ import 'screens/Users/MedicineReminder.dart';
 import 'screens/Users/MedicineReminderOther.dart';
 import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
-import 'package:user/screens/MyAppointment_Requested.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
@@ -82,8 +77,8 @@ import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'package:user/screens/TestReportListUser1.dart';
-import 'package:user/screens/Users/ChemistsTabview.dart';
-import 'package:user/screens/Users/GoogleSearch.dart';
+import 'package:user/screens/Users/HealthProviderTabview.dart';
+import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
 import 'package:user/screens/Users/UserAppointments.dart';
 import 'package:user/screens/Users/UserMedicineTab.dart';
@@ -98,7 +93,7 @@ import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
-import 'package:user/screens/ProfileScreen.dart';
+import 'package:user/screens/Users/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
 import 'package:user/screens/RIP.dart';
 import 'package:user/screens/RequestHealthCheakup.dart';
@@ -107,7 +102,6 @@ import 'package:user/screens/Search.dart';
 import 'package:user/screens/Pharmacists/Screens/SetDiscount.dart';
 import 'package:user/screens/SetReminder.dart';
 import 'package:user/screens/SetReminderOther.dart';
-import 'package:user/screens/SignUpForm.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
 import 'package:user/screens/SupportScreen.dart';
@@ -120,16 +114,14 @@ import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'package:user/screens/TermsandConditions.dart';
 import 'package:user/screens/TestAppointmentPage.dart';
-import 'package:user/screens/TestReport.dart';
-//import 'package:user/screens/TestReport1.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
-import 'package:user/screens/VitalSigns.dart';
+import 'screens/Users/UserVitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
 import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
-import 'package:user/screens/FindPage.dart';
+import 'screens/Users/FindPage.dart';
 import 'screens/Users/MedipediaPage.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
@@ -605,7 +597,7 @@ class _MyAppState extends State<MyApp> {
               '/medicalsServiceOngooglePage': (context) => MedicalsServiceOngooglePage(
                 model: _model,
               ),
-              '/googleSearch': (context) => GoogleSearch(
+              '/googleSearch': (context) => GoogleSearchDetails(
                 model: _model,
               ),
               '/idCard': (context) => IdCardPage(
@@ -614,13 +606,13 @@ class _MyAppState extends State<MyApp> {
               '/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),
-              /*'/dashboardpharmacy': (context) => DashboardPharmacy(
+           /*'/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),*/
               '/usermedicinelist': (context) => UserMedicineTab(
                 model: _model,
               ),
-              '/docConsult1': (context) => DoctorConsultPage(
+              '/docConsult1': (context) => BookAppointmentPage(
                 model: _model,
               ),
               '/ambulance': (context) => AmbulanceSignUpForm(
@@ -649,6 +641,9 @@ class _MyAppState extends State<MyApp> {
               ),
               '/showemr': (context) => ShowEmr(
                 model: _model,
+              ),
+              '/countDown': (context) => CountDownPage(
+                //model: _model,
               ),
 
             },

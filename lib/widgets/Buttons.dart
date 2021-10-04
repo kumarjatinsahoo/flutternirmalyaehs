@@ -65,10 +65,10 @@ class Buttons {
       onTap: function,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left: 9.0, right: 9.0),
+        margin: EdgeInsets.only(left: 9.0, right: 9.0,bottom: 10),
         decoration: BoxDecoration(
           color: AppData.kPrimaryColor,
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(10.0),
           /*gradient: LinearGradient(
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,

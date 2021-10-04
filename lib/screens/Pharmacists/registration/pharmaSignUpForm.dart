@@ -19,7 +19,6 @@ import '../../../providers/app_data.dart';
 
 // ignore: must_be_immutable
 class PharmaSignUpForm extends StatefulWidget {
-  final Function(int, bool) updateTab;
 
   final bool isConfirmPage;
   final bool isFromDash;
@@ -33,7 +32,6 @@ class PharmaSignUpForm extends StatefulWidget {
 
   PharmaSignUpForm({
     Key key,
-    @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
     this.model,
