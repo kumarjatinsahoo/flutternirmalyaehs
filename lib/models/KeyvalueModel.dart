@@ -7,6 +7,10 @@ class KeyvalueModel {
   dynamic itemid;
   dynamic desc;
   dynamic minqty;
+  dynamic address;
+  dynamic image;
+  dynamic hospitalid;
+  dynamic type;
 
 
   KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty});
@@ -33,6 +37,10 @@ class KeyvalueModel {
     itemid = json['itemid']??['pin'];
     desc = json['desc']??['image'];
     minqty = json['minqty']??['type'];
+    address = json['address'];
+    hospitalid = json['hospitalid'].toString();
+    image = json['image'];
+    type = json['type'];
 
     if (json.containsKey("optional")) {
       optional = json['optional'].toString();

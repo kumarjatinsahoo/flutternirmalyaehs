@@ -108,6 +108,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   FocusNode panchayat_ = new FocusNode();
 
   final df = new DateFormat('dd/MM/yyyy');
+  final df1 = new DateFormat('dd-MMM-yyyy');
   bool aph = false;
   bool eclampsia = false;
   bool bldpressure = false;
@@ -130,6 +131,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       selectedDate = picked;
       /*selectedDatestr = df.format(selectedDate).toString();*/
       appointmentdate.text = df.format(picked);
+      formattedDate = df1.format(picked);
       selectedDatestr = appointmentdate.text.toString();
     });
   }
@@ -158,7 +160,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   String formattime;
   bool isValidtime=false;
-
+String formattedDate;
 
   @override
   void initState() {
@@ -443,8 +445,9 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser12(
-                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+DoctorconsultationPage.doctorModel.code.toString(),
+                                  child: DropDown.timeSlot(
+                                      //"Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+DoctorconsultationPage.doctorModel.code.toString(),
+                                      "Time", ApiFactory.TIME_SLOT(DoctorconsultationPage.doctorModel.key.toString(),formattedDate,DoctorconsultationPage.doctorModel.hospitalid.toString()),
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {

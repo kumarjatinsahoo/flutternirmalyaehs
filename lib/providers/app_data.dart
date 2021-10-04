@@ -128,6 +128,8 @@ class AppData {
         return "NOV";
       case "12":
         return "DEC";
+      default:
+        return "";
     }
   }
 

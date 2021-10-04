@@ -110,6 +110,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   FocusNode panchayat_ = new FocusNode();
 
   final df = new DateFormat('dd/MM/yyyy');
+  final df1 = new DateFormat('dd-MMM-yyyy');
   bool aph = false;
   bool eclampsia = false;
   bool bldpressure = false;
@@ -132,6 +133,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
       selectedDate = picked;
       /*selectedDatestr = df.format(selectedDate).toString();*/
       appointmentdate.text = df.format(picked);
+      formattedDate = df1.format(picked);
       selectedDatestr = appointmentdate.text.toString();
     });
   }
@@ -170,6 +172,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   //LoginResponse1 loginResponse;
 
   var mapData;
+  String formattedDate;
 
   @override
   void initState() {
@@ -178,7 +181,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     BookAppointmentPage.doctorModel = null;
     comeFrom = widget.model.apntUserType;
     //loginResponse = widget.model.loginResponse1;
-    _getLocationName();
+    //_getLocationName();
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
@@ -303,13 +306,13 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                     autovalidate: _autovalidate,
                     child: Column(
                       children: <Widget>[
-                        (address != null)
+                       /* (address != null)
                             ? Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8.0, vertical: 10),
                                 child: Text(address ?? ""),
                               )
-                            : Container(),
+                            : Container(),*/
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 0),
                           child: SizedBox(
@@ -329,7 +332,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                             }),
                           ),
                         ),
-                        (BookAppointmentPage.specialistModel != null)
+                      /*  (BookAppointmentPage.specialistModel != null)
                             ? Padding(
                           padding:
                           const EdgeInsets.symmetric(horizontal: 0),
@@ -339,7 +342,37 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                 "Doctor",
                                 ApiFactory.DOCTOOR_API +
                                     BookAppointmentPage
-                                        .specialistModel.key ,/*+
+                                        .specialistModel.key ,*//*+
+                                          "&city=" +
+                                          (DoctorconsultationPage
+                                                  ?.cityModel?.key ??
+                                              ""),*//*
+                                "doctor",
+                                Icons.mail,
+                                23.0, (KeyvalueModel data) {
+                              setState(() {
+                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
+                                BookAppointmentPage.doctorModel = data;
+                                BookAppointmentPage.hospitalModel = null;
+                                // UserSignUpForm.cityModel = null;
+                              });
+                            }),
+                          ),
+                        )
+                            : Container(),  */
+
+                        //////DEMO DOCTOR
+                        (BookAppointmentPage.specialistModel != null)
+                            ? Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child: DropDown.docList(
+                                "Doctor",
+                                ApiFactory.DOC_LIST +
+                                    BookAppointmentPage
+                                        .specialistModel.key,/*+
                                           "&city=" +
                                           (DoctorconsultationPage
                                                   ?.cityModel?.key ??
@@ -357,51 +390,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                           ),
                         )
                             : Container(),
-                        /*(BookAppointmentPage.specialistModel != null)
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
-                                child: SizedBox(
-                                  height: 58,
-                                  child: DropDown.doctorDropDown("Doctor",widget.model.token,
-                                      mapData, (KeyvalueModel data) {
-                                    setState(() {
-                                      //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
-                                      BookAppointmentPage.doctorModel = data;
-                                      BookAppointmentPage.hospitalModel = null;
-                                      // UserSignUpForm.cityModel = null;
-                                    });
-                                  }),
-                                ),
-                              )
-                            : Container(),*/
-                        /*(BookAppointmentPage.doctorModel != null)
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
-                                child: SizedBox(
-                                  height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      "Hospital",
-                                      ApiFactory.HOSPITAL_API +
-                                          BookAppointmentPage.doctorModel.key,
-                                      "hospital",
-                                      Icons.home,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(
-                                        ApiFactory.HOSPITAL_API +
-                                            BookAppointmentPage.doctorModel.key,
-                                      );
-                                      BookAppointmentPage.hospitalModel = data;
-                                    });
-                                  }),
-                                ),
-                              )
-                            : Container(),
-                        SizedBox(
-                          height: 10,
-                        ),*/
+
                     SizedBox(
                       height: 10,),
                         appointdate(),
@@ -418,8 +407,8 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                  DropDown.networkDropdownGetpartUser12(
-                                        "Time", ApiFactory.DOCTER_AVAILABLE +BookAppointmentPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+BookAppointmentPage.doctorModel.code.toString(),
+                                  DropDown.timeSlot(
+                                        "Time", ApiFactory.TIME_SLOT(BookAppointmentPage.doctorModel.key.toString(),formattedDate,BookAppointmentPage.doctorModel.hospitalid.toString()),
                                         "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
@@ -441,7 +430,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                             : Container(),
                         fromAddress(
                             1,
-                            "Reason for choice of Dr",
+                            "Notes",
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -543,7 +532,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     } else if (!isValidtime) {
       AppData.showInSnackBar(context, "Please select valid time");
     } else {
-      saveDb();
+      sendServer();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       /* MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
@@ -558,53 +547,57 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     }
   }
 
-  saveDb() {
-    Map<String, dynamic> map = {
+  sendServer() {
+    Map<String, dynamic> postmap = {
       "userid" : widget.model.user,
-      "date" : appointmentdate.text.toString(),
-      "opdid" :BookAppointmentPage.timeModel.key,
+      "date" : formattedDate,
+      "opdid" :BookAppointmentPage.timeModel.key.toString(),
       "time" : BookAppointmentPage.timeModel.name,
-      "doctor": BookAppointmentPage.doctorModel.key,
+      "doctor": BookAppointmentPage.doctorModel.key.toString(),
       "notes" :  textEditingController[1].text,
-      "hospitalid" :BookAppointmentPage.doctorModel.code
+      "hospitalid" :int.tryParse(BookAppointmentPage.doctorModel.hospitalid)
+    };
 
-    };/*{
-      //"regNo": loginRes.ashadtls[0].id,
-      "userid": widget.model.user,
-      "date": appointmentdate.text.toString(),
-      "time": BookAppointmentPage.timeModel.name //"23:10" time,
-      "opdid": BookAppointmentPage.timeModel.code, //validitytime.text,
-      "doctor": BookAppointmentPage.doctorModel.key,
-      "notes": textEditingController[1].text,
-      "hospitalid": BookAppointmentPage.hospitalModel.key,
-    };*/
-    // http://localhost/matrujyoti/api/post-childsRegistration?
-    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
-    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
-    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
-    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
+    log("Print data>>>>"+jsonEncode(postmap));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
-        api: ApiFactory.POST_APPOINTMENT,
+        //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.TAKE_APNTMENT,
+        token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Json Response chenai>>"+jsonEncode(map));
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, "Chenai server hela");
+            postmap["appointid"]=map["aptid"];
+            sendLocalServer(postmap);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+
+  }
+
+  sendLocalServer(map) {
+
+    log("Print data>>>>"+jsonEncode(map));
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        //api: ApiFactory.POST_APPOINTMENT,
+        api: "http://192.168.43.248:8062/nirmalyaRest/api/geo-post-doctor-appointment",
         token: widget.model.token,
         json: map,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           if (map[Const.STATUS] == Const.SUCCESS) {
             popup(context, map[Const.MESSAGE]);
+
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });
-    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
-        json: map,
-        fun: (Map<String, dynamic> map) {
-          if (map[Const.STATUS] == Const.SUCCESS) {
-            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-          } else {
-            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-          }
-        });*/
+
   }
 
   popup(BuildContext context, String message) {
