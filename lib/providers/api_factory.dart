@@ -16,7 +16,6 @@ class ApiFactory {
   static String DELETE_TEST_LIST= MAIN_URL + 'delete-test-by-app-no?appno=';
 
 
-
   static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
 
   static String GENDER_API = MAIN_URL + 'get-gender-list';

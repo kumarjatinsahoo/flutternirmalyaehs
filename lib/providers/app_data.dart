@@ -51,8 +51,7 @@ class AppData {
   static Color greyText = Color(0xFF616267);
   static const Color white = Color(0xFFFFFFFF);
   static List<String> phoneFormat = [
-    "+91" /*, "+80", "+78"*/
-  ];
+    "+91","+60" /*, "+80", "+78"*/];
   static List<String> catagoryFormat = ["S/o", "D/o", "W/o"];
   static String selectedLanguage;
 
