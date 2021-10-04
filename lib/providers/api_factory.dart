@@ -169,6 +169,7 @@ class ApiFactory {
   static String APPOINT_LIST = MAIN_URL1 + "/Doc/GetAptList?userid=";
   static String DOC_LIST = MAIN_URL1 + "/Doc/GetDocList?speciality=";
   static String TAKE_APNTMENT = MAIN_URL1 + "/Doc";
+  static String POST_DOC_API = MAIN_URL + "geo-post-doctor-appointment";
 
   static String TIME_SLOT(
       String doctor, String appointdate, String hospitalid) {

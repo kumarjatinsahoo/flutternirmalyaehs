@@ -569,7 +569,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
           Navigator.pop(context);
           log("Json Response chenai>>"+jsonEncode(map));
           if (map[Const.STATUS] == Const.SUCCESS) {
-            AppData.showInSnackBar(context, "Chenai server hela");
+            //AppData.showInSnackBar(context, "Chenai server hela");
             postmap["appointid"]=map["aptid"];
             sendLocalServer(postmap);
           } else {
@@ -585,7 +585,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
         //api: ApiFactory.POST_APPOINTMENT,
-        api: "http://192.168.43.248:8062/nirmalyaRest/api/geo-post-doctor-appointment",
+        api: ApiFactory.POST_DOC_API,
         token: widget.model.token,
         json: map,
         fun: (Map<String, dynamic> map) {
