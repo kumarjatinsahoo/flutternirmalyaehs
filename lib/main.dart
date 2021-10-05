@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/FindPage1.dart';
@@ -19,6 +22,8 @@ import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
 import 'package:user/screens/labrotry/SearchPocReportPage.dart';
+import 'notification/TokenMonitor.dart';
+import 'notification/local_notification_service.dart';
 import 'screens/Users/AYUSH Doctors.dart';
 import 'screens/Users/AddWitness.dart';
 import 'screens/Users/AirAmbulanceList.dart';
@@ -147,12 +152,13 @@ String selectedLan;
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print('Handling a background message ${message.messageId}');
+  log('Handling a background message ${message.messageId}');
+  //print('Handling a background message ${message.messageId}');
+  //LocalNotificationService.initialize(context);
 }
 
- AndroidNotificationChannel channel;
- FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
+AndroidNotificationChannel channel;
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -167,11 +173,13 @@ void main() async {
       'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
+
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
+
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       alert: true,
@@ -180,7 +188,6 @@ void main() async {
     );
   }
   /////////////////////////////////////////////////
-
 
   Map<String, Map<String, String>> localizedValues = await initializeI18n();
   SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -205,6 +212,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   MyLocalizationsDelegate myLocalizationsDelegate;
+  String _token;
 
   @override
   void initState() {
@@ -212,6 +220,76 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     myLocalizationsDelegate = MyLocalizationsDelegate(widget.localizedValues);
     application.onLocaleChanged = onLocaleChange;
+    ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
+
+   /* FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage message) {
+      if (message != null) {
+        Navigator.pushNamed(context, '/aboutus');
+      }
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && android != null && !kIsWeb) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channel.description,
+                // TODO add a proper drawable resource to android, for now using
+                //      one that already exists in example app.
+                icon: 'launch_background',
+              ),
+            ));
+        //popup("View one",context);
+
+        Navigator.pushNamed(context, '/emergencydetails');
+        //AppData.showInSnackBar(context, "Dataa");
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      Navigator.pushNamed(context, '/aboutus');
+    });*/
+
+  }
+
+  popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 
   void onLocaleChange(String locale) {
@@ -261,7 +339,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/dashboardd': (context) => Dashboard(
                     model: _model,
-              ),
+                  ),
               '/emergencydetails': (context) => EmergencyDetails(
                     model: _model,
                   ),
@@ -279,7 +357,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/processedorders': (context) => ProccesedOrders(
                     model: _model,
-              ),
+                  ),
               '/paymentcollection': (context) => PaymentCollection(
                     model: _model,
                   ),
@@ -330,7 +408,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/monthloveryview': (context) => MonthlyView(
                     model: _model,
-              ),
+                  ),
               '/deliverdorder': (context) => DeliverdOrder(
                     model: _model,
                   ),
@@ -396,7 +474,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/userSignUpForm': (context) => UserSignUpForm(
                     model: _model,
-              ),
+                  ),
               '/biomedicalimplants': (context) => BiomediImplants(
                     model: _model,
                   ),
@@ -593,72 +671,75 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/testReportListUser1': (context) => TestReportListUser1(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/userAppoint': (context) => UserAppointments(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/doctorMedicationTab': (context) => DoctorMedicationTab(
-                model: _model,
-              ),
-              '/medicalsServiceOngooglePage': (context) => MedicalsServiceOngooglePage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/medicalsServiceOngooglePage': (context) =>
+                  MedicalsServiceOngooglePage(
+                    model: _model,
+                  ),
               '/googleSearch': (context) => GoogleSearchDetails(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/idCard': (context) => IdCardPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/dashboardpharmacy': (context) => DashboardPharmacy(
-                model: _model,
-              ),
-           /*'/dashboardpharmacy': (context) => DashboardPharmacy(
+                    model: _model,
+                  ),
+              /*'/dashboardpharmacy': (context) => DashboardPharmacy(
                 model: _model,
               ),*/
               '/usermedicinelist': (context) => UserMedicineTab(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/docConsult1': (context) => BookAppointmentPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ambulance': (context) => AmbulanceSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ngo': (context) => AmbulanceSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bloodbank': (context) => AmbulanceSignUpForm(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/covidMobile': (context) => CovidMobilePage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/covidOtp': (context) => CovidOtpPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/searchPoc': (context) => SearchPocReportPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/allergicListList': (context) => AllergicListList(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/showemr': (context) => ShowEmr(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/countDown': (context) => CountDownPage(
-                //model: _model,
-              ),
+                  //model: _model,
+                  ),
               '/support': (context) => SupportScreen(
-                //model: _model,
-              ),
+                  //model: _model,
+                  ),
               '/aboutus': (context) => AboutUs(
-                //model: _model,
-              ),
+                  //model: _model,
+                  ),
               '/videos': (context) => VideosPage(
+                  //model: _model,
+                  ),
                 //model: _model,
               ),
               '/findPage1': (context) => FindPage1(
