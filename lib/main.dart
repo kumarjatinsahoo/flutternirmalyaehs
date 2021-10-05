@@ -12,6 +12,7 @@ import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
+import 'package:user/screens/Users/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/EmergencyDetails.dart';
 import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
@@ -277,6 +278,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/processedorders': (context) => ProccesedOrders(
+                    model: _model,
+              ),
+              '/discountofferdetails': (context) => DiscountOffersDetails(
                     model: _model,
               ),
               '/paymentcollection': (context) => PaymentCollection(
