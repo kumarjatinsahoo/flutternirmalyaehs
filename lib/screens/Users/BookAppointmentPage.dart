@@ -505,7 +505,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "Add Appointment",
+            "Take Appointment",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -548,11 +548,17 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   sendServer() {
+    var string = BookAppointmentPage.timeModel.name;
+    List splitedText = string.split("To");
+    print(splitedText[0]);
+    String timestring0 = splitedText[0];
+    print(splitedText[1]);
+
     Map<String, dynamic> postmap = {
       "userid" : widget.model.user,
       "date" : formattedDate,
       "opdid" :BookAppointmentPage.timeModel.key.toString(),
-      "time" : BookAppointmentPage.timeModel.name,
+      "time" : /*BookAppointmentPage.timeModel.name*/timestring0,
       "doctor": BookAppointmentPage.doctorModel.key.toString(),
       "notes" :  textEditingController[1].text,
       "hospitalid" :int.tryParse(BookAppointmentPage.doctorModel.hospitalid)
@@ -567,7 +573,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
         json: postmap,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
-          //log("Json Response chenai>>"+jsonEncode(map));
+          log("Json Response chenai>>"+jsonEncode(map));
           if (map[Const.STATUS] == Const.SUCCESS) {
             //AppData.showInSnackBar(context, "Chenai server hela");
             postmap["appointid"]=map["aptid"];
@@ -591,6 +597,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
           Navigator.pop(context);
           if (map[Const.STATUS] == Const.SUCCESS) {
             popup(context, map[Const.MESSAGE]);
+
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
