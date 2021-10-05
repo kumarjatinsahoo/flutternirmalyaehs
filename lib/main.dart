@@ -741,7 +741,6 @@ class _MyAppState extends State<MyApp> {
                   //model: _model,
                   ),
                 //model: _model,
-              ),
               '/findPage1': (context) => FindPage1(
                 //model: _model,
               ),

@@ -107,7 +107,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   callApi() {
-    MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
         token: widget.model.token,
