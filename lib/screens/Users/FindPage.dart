@@ -61,7 +61,10 @@ class _FindPageState extends State<FindPage> {
     debugPrint('location: ${position.latitude}');
     print(
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    latitudes=position.latitude.toString();
+    longitudes=position.longitude.toString();
     callApi(position.latitude.toString(), position.longitude.toString());
+
     /* try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
