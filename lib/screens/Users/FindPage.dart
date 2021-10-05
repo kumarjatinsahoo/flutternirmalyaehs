@@ -385,7 +385,7 @@ class _FindPageState extends State<FindPage> {
         padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
         child: Container(
           //color: Colors.white,
-          height: 80,
+          /*height: 80,*/
           padding: EdgeInsets.symmetric(
             horizontal: 5,
           ),
