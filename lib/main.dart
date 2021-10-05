@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Users/AboutUs.dart';
 import 'package:user/screens/Users/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
@@ -658,6 +659,9 @@ class _MyAppState extends State<MyApp> {
                 //model: _model,
               ),
               '/videos': (context) => VideosPage(
+                //model: _model,
+              ),
+              '/findPage1': (context) => FindPage1(
                 //model: _model,
               ),
 

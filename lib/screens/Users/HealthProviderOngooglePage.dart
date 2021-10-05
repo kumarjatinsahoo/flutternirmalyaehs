@@ -97,7 +97,6 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
           });
         });
   }
-
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;

@@ -421,7 +421,37 @@ class MyWidgets {
                 colors: [AppData.kPrimaryColor, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(text,textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
+  static Widget nextButton3({String text, context, Function fun}) {
+    return GestureDetector(
+      onTap: fun,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 100.0, right: 100.0),
+        /*decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(25.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.black, AppData.matruColor])),*/
+        decoration: BoxDecoration(
+            color: AppData.bluLightColor1,
+            borderRadius: BorderRadius.circular(5.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [AppData.bluLightColor1, AppData.bluLightColor1])),
+        child: Padding(
+          padding:
+          EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
           child: Text(text,textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
