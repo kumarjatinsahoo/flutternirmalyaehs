@@ -177,3 +177,5 @@ class ApiFactory {
         "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
   }
 }
+/*
+https://1331.co.in/api/Doc/GetDocList?speciality=*/

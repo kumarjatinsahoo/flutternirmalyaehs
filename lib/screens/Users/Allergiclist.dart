@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AllergicModel.dart' as allergic;
 import 'package:user/models/AllergicPostModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -97,6 +98,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
+                    callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -434,14 +436,17 @@ class _AllergicListListState extends State<AllergicListList> {
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      Navigator.pushNamed(context, "/allergicListList");
-                      // callAPI();
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   });
-              AppData.showInSnackBar(context, "add Successfully");
+              //AppData.showInSnackBar(context, "add Successfully");
             }
+            Navigator.of(context).pop();
+            callAPI();
+
             // Navigator.of(context).pop();
             // AllergicListList.nameModel.key="";
             // AllergicListList.typeModel.key="";
@@ -489,4 +494,36 @@ class _AllergicListListState extends State<AllergicListList> {
       ),
     );
   }
+
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              callAPI();
+              //  Navigator.pop(context);
+
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+
+}
 }
