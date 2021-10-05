@@ -567,7 +567,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
         json: postmap,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
-          log("Json Response chenai>>"+jsonEncode(map));
+          //log("Json Response chenai>>"+jsonEncode(map));
           if (map[Const.STATUS] == Const.SUCCESS) {
             //AppData.showInSnackBar(context, "Chenai server hela");
             postmap["appointid"]=map["aptid"];
@@ -579,25 +579,22 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
   }
 
-  sendLocalServer(map) {
-
-    log("Print data>>>>"+jsonEncode(map));
+  sendLocalServer(postData) {
+    log("Print data>>>>"+jsonEncode(postData));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
         //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.POST_DOC_API,
         token: widget.model.token,
-        json: map,
+        json: postData,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           if (map[Const.STATUS] == Const.SUCCESS) {
             popup(context, map[Const.MESSAGE]);
-
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });
-
   }
 
   popup(BuildContext context, String message) {
