@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
 import 'package:user/providers/Const.dart';
@@ -107,6 +108,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   FocusNode panchayat_ = new FocusNode();
 
   final df = new DateFormat('dd/MM/yyyy');
+  final df1 = new DateFormat('dd-MMM-yyyy');
   bool aph = false;
   bool eclampsia = false;
   bool bldpressure = false;
@@ -129,6 +131,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       selectedDate = picked;
       /*selectedDatestr = df.format(selectedDate).toString();*/
       appointmentdate.text = df.format(picked);
+      formattedDate = df1.format(picked);
       selectedDatestr = appointmentdate.text.toString();
     });
   }
@@ -157,7 +160,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   String formattime;
   bool isValidtime=false;
-
+String formattedDate;
 
   @override
   void initState() {
@@ -382,26 +385,25 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       "Doctor",
                                        ApiFactory.DOCTOOR_API +
                                           DoctorconsultationPage
-                                              .specialistModel.key +
+                                              .specialistModel.key ,/*+
                                           "&city=" +
                                           (DoctorconsultationPage
                                                   ?.cityModel?.key ??
-                                              ""),
+                                              ""),*/
                                       "doctor",
                                       Icons.mail,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
                                       DoctorconsultationPage.doctorModel = data;
-                                      DoctorconsultationPage.hospitalModel =
-                                          null;
+                                      DoctorconsultationPage.hospitalModel = null;
                                       // UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                 ),
                               )
                             : Container(),
-                        (DoctorconsultationPage.doctorModel != null)
+                        /*(DoctorconsultationPage.doctorModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
@@ -411,7 +413,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       "Hospital",
                                       ApiFactory.HOSPITAL_API +
                                           DoctorconsultationPage
-                                              .doctorModel.key,
+                                              .doctorModel.code.toString(),
                                       "hospital",
                                       Icons.home,
                                       23.0, (KeyvalueModel data) {
@@ -419,7 +421,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       print(
                                         ApiFactory.HOSPITAL_API +
                                             DoctorconsultationPage
-                                                .doctorModel.key,
+                                                .doctorModel.code.toString(),
                                       );
                                       DoctorconsultationPage.hospitalModel = data;
 
@@ -428,7 +430,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   }),
                                 ),
                               )
-                            : Container(),
+                            : Container(),*/
                         SizedBox(
                           height: 10,
                         ),
@@ -443,8 +445,9 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser12(
-                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key + "&date=" + appointmentdate.text.toString(),
+                                  child: DropDown.timeSlot(
+                                      //"Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+DoctorconsultationPage.doctorModel.code.toString(),
+                                      "Time", ApiFactory.TIME_SLOT(DoctorconsultationPage.doctorModel.key.toString(),formattedDate,DoctorconsultationPage.doctorModel.hospitalid.toString()),
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
@@ -600,7 +603,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       "date": appointmentdate.text.toString(),
       "time": DoctorconsultationPage.timeModel.name/*"23:10"*//*time*/,
       "opdid": DoctorconsultationPage.timeModel.code,//validitytime.text,
-      "doctor": DoctorconsultationPage.doctorModel.key,
+      "doctor": DoctorconsultationPage.doctorModel.key.toString(),
       "notes": textEditingController[1].text,
       "hospitalid": DoctorconsultationPage.hospitalModel.key,
     };

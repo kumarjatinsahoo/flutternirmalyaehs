@@ -73,9 +73,6 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
         });
   }*/
   callAPI() {
-    print("VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
-        ApiFactory.GOOGLE_SEARCH(
-            place_id: /*placeId*/ "ChIJ9UsgSdYJGToRiGHjtrS-JNc"));
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_SEARCH(
             place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
@@ -403,7 +400,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                           ),
                           width: double.infinity,
                         ),
-                        (googlePlacesSearch?.result?.openingHours?.weekdayText?.length??null!=null)?  Column(
+                        (googlePlacesSearch?.result?.openingHours?.weekdayText?.length!=null)?  Column(
                           children: [
                             Divider(
                               thickness: 1,

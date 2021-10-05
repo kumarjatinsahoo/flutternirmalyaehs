@@ -59,7 +59,7 @@ class Body {
 
   Body.fromJson(Map<String, dynamic> json) {
     userid = json['userid'].toString();
-    doctorName = json['doctorName'].toString();
+    doctorName = (json.containsKey("doctorname"))?json['doctorname'].toString():json['doctorName'].toString();
     speciality = json['speciality'].toString();
     appdate = json['appdate'].toString();
     apptime = json['apptime'].toString();

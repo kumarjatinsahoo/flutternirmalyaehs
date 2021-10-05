@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'HealthProviderOurService.dart';
 
 import 'HealthProviderOngooglePage.dart';
-
-
-
 class ChemistsTabview extends StatefulWidget {
   final MainModel model;
 
@@ -62,20 +59,21 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: "Our service",
-
+                text: "Location Wise",
               ),
               Tab(
-                text: "On google",
+                text: "City Wise",
+
               ),
+
             ],
           ),
           //title: Text(widget.model.saloonName),
         ),
         body: TabBarView(
           children: [
-            ChemistsPage(model:widget.model),
             ChemistsOngooglePage(model:widget.model),
+            ChemistsPage(model:widget.model),
 
           ],
         ),

@@ -324,7 +324,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                  // Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
               ),*/
-              ListTile(
+             /* ListTile(
                 leading: Image.asset(
                   "assets/images/account.png",
                   height: 30,
@@ -336,9 +336,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selectDestination(3);
                   // Navigator.pushNamed(context, "/patientDashboard");
                 },
-              ),
+              ),*/
               ListTile(
-                leading: Image.asset(
+                leading:
+                Image.asset(
                   "assets/images/aboutus.png",
                   height: 30,
                 ),
@@ -347,8 +348,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
-                  // Navigator.pushNamed(context, "/profile");
-                   Navigator.pushNamed(context, "/emergencydetails");
+                  Navigator.pushNamed(context, "/aboutus");
+                   //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
               ),
               ListTile(
@@ -371,7 +372,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    //Navigator.pushNamed(context, "/share");
+                    Navigator.pushNamed(context, "/support");
                   }),
               ListTile(
                   leading: Image.asset(
@@ -382,9 +383,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    //Navigator.pushNamed(context, "/signUpForm");
+                    Navigator.pushNamed(context, "/support");
                   }),
-              ListTile(
+            /*  ListTile(
                   leading: Image.asset(
                     "assets/images/reminder.png",
                     height: 30,
@@ -394,7 +395,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(8);
                     //Navigator.pushNamed(context, "/share");
-                  }),
+                  }),*/
               // ListTile(
               //   leading: Icon(Icons.person,
               //       color: AppData.kPrimaryRedColor, size: 30),

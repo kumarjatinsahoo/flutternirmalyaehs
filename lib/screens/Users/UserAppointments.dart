@@ -42,7 +42,8 @@ String userid;
   }
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.USER_APPOINTMENTS + loginResponse1.body.user,
+        //api: ApiFactory.USER_APPOINTMENTS + loginResponse1.body.user,
+        api: ApiFactory.APPOINT_LIST +loginResponse1.body.user+"&hospitalid=1",
         userId: loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -166,7 +167,7 @@ String userid;
                       List splitedText = string.split("-");
                       print(splitedText[0]);
                       String string1 = splitedText[1];
-                      print(splitedText[1]);
+                      print("Print KAruchii>>>>"+string1);
                       print(splitedText[2]);
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -202,7 +203,8 @@ String userid;
                               Column(
                                 children: [
                                   Text(
-                                    AppData.getMonth(string1),
+                              string1,
+                                    //AppData.getMonth(string1),
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(

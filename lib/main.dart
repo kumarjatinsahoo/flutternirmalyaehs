@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/AboutUs.dart';
 import 'package:user/screens/Users/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
@@ -647,6 +648,12 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/countDown': (context) => CountDownPage(
+                //model: _model,
+              ),
+              '/support': (context) => SupportScreen(
+                //model: _model,
+              ),
+              '/aboutus': (context) => AboutUs(
                 //model: _model,
               ),
 

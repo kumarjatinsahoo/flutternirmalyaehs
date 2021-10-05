@@ -7,6 +7,10 @@ class KeyvalueModel {
   dynamic itemid;
   dynamic desc;
   dynamic minqty;
+  dynamic address;
+  dynamic image;
+  dynamic hospitalid;
+  dynamic type;
 
 
   KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty});
@@ -28,11 +32,15 @@ class KeyvalueModel {
   KeyvalueModel.fromsJson(Map<String, dynamic> json) {
     key = json['key']??json['bookstatus']??json['id'];
     name = json['name'].toString();
-    code = json['code'].toString();;
-    optional = json['gender_name'].toString();
-    itemid = json['itemid'].toString();
-    desc = json['desc'].toString();
-    minqty = json['minqty'].toString();
+    code = json['code']??json['hospitalid']??json['isbooked'];
+    optional = json['gender_name']??['address'];
+    itemid = json['itemid']??['pin'];
+    desc = json['desc']??['image'];
+    minqty = json['minqty']??['type'];
+    address = json['address'];
+    hospitalid = json['hospitalid'].toString();
+    image = json['image'];
+    type = json['type'];
 
     if (json.containsKey("optional")) {
       optional = json['optional'].toString();

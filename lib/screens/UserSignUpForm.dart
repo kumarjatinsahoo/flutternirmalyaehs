@@ -439,7 +439,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
                                       UserSignUpForm.districtModel = data;
-                                      UserSignUpForm.cityModel = null;
+                                      UserSignUpForm.cityModel = (null? "no data found":null) as KeyvalueModel ;
                                     });
                                   }),
                                 ),
@@ -464,8 +464,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       23.0,
                                           (KeyvalueModel data) {
                                         setState(() {
-                                          UserSignUpForm.cityModel =
-                                              data;
+                                          UserSignUpForm.cityModel = data;
                                           /*userModel.state=data.key;
                                           userModel.stateCode=data.code;*/
                                         });

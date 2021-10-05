@@ -629,8 +629,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Pin");
-        }
-    else if (textEditingController[10].text == "" ||
+        } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile number");
         }else if (textEditingController[10].text != "" &&
