@@ -338,7 +338,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             child: Text(
                               'Call Emergency ',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w100,
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                   color: Colors.black),
                             ),
@@ -540,7 +540,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           Text(
                             'Call Ambulance ',
                             style: TextStyle(
-                                fontWeight: FontWeight.w100,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 15,
                                 color: Colors.black),
                           ),
@@ -637,7 +637,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           Text(
                             'Call Police ',
                             style: TextStyle(
-                                fontWeight: FontWeight.w100,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 15,
                                 color: Colors.black),
                           ),

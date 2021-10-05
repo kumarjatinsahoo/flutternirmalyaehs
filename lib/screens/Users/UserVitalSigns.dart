@@ -135,7 +135,8 @@ class _VitalSignsState extends State<VitalSigns> {
             child: Column(
               children: [
                  Container(
-                  height: 90,
+                  height: 100,
+                  //color: Colors.,
                   child: ListView(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -262,6 +263,7 @@ class _VitalSignsState extends State<VitalSigns> {
                 ),
                 SingleChildScrollView(
                   child: Container(
+                    height: 600,
                     color: AppData.greyBorder,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10.0, right: 5,left: 5),

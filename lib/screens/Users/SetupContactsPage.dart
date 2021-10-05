@@ -12,7 +12,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
-import 'Doctor/Dashboard/DasboardDoctor.dart';
+import '../Doctor/Dashboard/DasboardDoctor.dart';
 
 class SetupContactsPage extends StatefulWidget {
   MainModel model;

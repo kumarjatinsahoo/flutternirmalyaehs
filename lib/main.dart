@@ -13,6 +13,7 @@ import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/EmergencyDetails.dart';
+import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -66,7 +67,7 @@ import 'package:user/screens/LifeStyleSolution.dart';
 import 'package:user/screens/LoginScreen.dart';
 import 'package:user/screens/LoginwithOTP.dart';
 import 'package:user/screens/Users/MedicalRecordPage.dart';
-import 'package:user/screens/MedicalService.dart';
+import 'screens/Users/MedicalService.dart';
 import 'screens/Users/MedicalServiceOngooglePage.dart';
 import 'screens/Users/MedicineReminder.dart';
 import 'screens/Users/MedicineReminderOther.dart';
@@ -75,14 +76,14 @@ import 'package:user/screens/MyAppointment.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
-import 'package:user/screens/SetupContactsPage.dart';
+import 'screens/Users/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
-import 'package:user/screens/TestReportListUser1.dart';
+import 'screens/Users/TestReportListUser.dart';
 import 'package:user/screens/Users/HealthProviderTabview.dart';
 import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/IdcardPage.dart';
-import 'package:user/screens/Users/UserAppointments.dart';
+import 'package:user/screens/Users/UserMyAppointments.dart';
 import 'package:user/screens/Users/UserMedicineTab.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
@@ -97,16 +98,16 @@ import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
 import 'package:user/screens/Users/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
-import 'package:user/screens/RIP.dart';
+import 'screens/Users/RIP.dart';
 import 'package:user/screens/RequestHealthCheakup.dart';
 import 'package:user/screens/SampleTracking.dart';
 import 'package:user/screens/Search.dart';
 import 'package:user/screens/Pharmacists/Screens/SetDiscount.dart';
-import 'package:user/screens/SetReminder.dart';
+import 'screens/Users/SetReminder.dart';
 import 'package:user/screens/SetReminderOther.dart';
 import 'package:user/screens/SignUpForm1.dart';
 import 'package:user/screens/SignupScreen.dart';
-import 'package:user/screens/SupportScreen.dart';
+import 'screens/Users/SupportScreen.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction2.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction3.dart';
@@ -114,7 +115,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction4.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction5.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
-import 'package:user/screens/TermsandConditions.dart';
+import 'screens/Users/TermsandConditions.dart';
 import 'package:user/screens/TestAppointmentPage.dart';
 import 'package:user/screens/TreatmentCenters.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
@@ -130,7 +131,7 @@ import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/screens/splash.dart';
-import 'package:user/screens/DiscountOffer.dart';
+import 'screens/Users/DiscountOffer.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -654,6 +655,9 @@ class _MyAppState extends State<MyApp> {
                 //model: _model,
               ),
               '/aboutus': (context) => AboutUs(
+                //model: _model,
+              ),
+              '/videos': (context) => VideosPage(
                 //model: _model,
               ),
 

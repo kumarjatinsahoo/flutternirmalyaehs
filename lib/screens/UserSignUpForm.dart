@@ -244,7 +244,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           "TITLE",
                                           ApiFactory.TITLE_API,
                                           "title",
-                                          Icons.mail,
+                                          Icons.person_rounded,
                                           23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.TITLE_API);
@@ -291,7 +291,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-zA-Z ]")),
+                                          RegExp("[a-zA-Z]")),
                                     ],
                                   ),
                                 ),
@@ -333,7 +333,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     keyboardType: TextInputType.text,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-zA-Z ]")),
+                                          RegExp("[a-zA-Z]")),
                                     ],
                                   ),
                                 ),
@@ -348,7 +348,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           "Gender",
                                           ApiFactory.GENDER_API,
                                           "gender",
-                                          Icons.mail,
+                                          Icons.person_rounded,
                                           23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
@@ -439,7 +439,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
                                       UserSignUpForm.districtModel = data;
-                                      UserSignUpForm.cityModel = (null? "no data found":null) as KeyvalueModel ;
+                                      UserSignUpForm.cityModel = null ;
                                     });
                                   }),
                                 ),
@@ -567,8 +567,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                         .center,
                                                 textInputAction:
                                                     TextInputAction.next,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                maxLength: 3,
+                                                inputFormatters: <TextInputFormatter>[
+                                                  FilteringTextInputFormatter.digitsOnly
+                                                ],
                                                 //maxLength: 2,
                                               ),
                                             ),
@@ -1038,6 +1041,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 focusNode: fnode7,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
+                //inputFormatters:[1,2,3,4,5,6,7,8,9],
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ], // Only numbers can be entered
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -1106,7 +1113,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select gender");
-    } else if (textEditingController[2].text == "" ||
+    } else if (textEditingController[2].text.length != 10 ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Mobile Number");
     } else if (UserSignUpForm.countryModel == null ||
@@ -1121,7 +1128,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text == " " || textEditingController[3].text == null) ) {
+    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text.length !=3 || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == " " || textEditingController[5].text == null) ) {

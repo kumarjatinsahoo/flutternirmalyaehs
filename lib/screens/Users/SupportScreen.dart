@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import '../providers/app_data.dart';
+import '../../providers/app_data.dart';
 
 class SupportScreen extends StatefulWidget {
   MainModel model;
