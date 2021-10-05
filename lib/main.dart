@@ -12,6 +12,7 @@ import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
+import 'package:user/screens/Users/EmergencyDetails.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -72,7 +73,7 @@ import 'screens/Users/MedicineReminderOther.dart';
 import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
-import 'package:user/screens/OrganDonation.dart';
+import 'package:user/screens/Users/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'package:user/screens/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
@@ -257,6 +258,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/dashboardd': (context) => Dashboard(
+                    model: _model,
+              ),
+              '/emergencydetails': (context) => EmergencyDetails(
                     model: _model,
                   ),
               '/profile': (context) => ProfileScreen(
