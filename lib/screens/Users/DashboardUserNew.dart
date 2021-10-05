@@ -360,7 +360,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 5,
                   onTap: () {
                     selectDestination(5);
-                    // Navigator.pushNamed(context, "/dashboard1");
+                     //Navigator.pushNamed(context, "/dashboard1");
+                     Navigator.pushNamed(context, "/emergencydetails");
                   }),
               ListTile(
                   leading: Image.asset(
