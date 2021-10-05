@@ -38,6 +38,8 @@ class AppData {
 
   static Color matruColor = Color(0xFF2372B6);
   static Color kPrimaryLightColor = Color(0xFFe9f7ea);
+  static Color bluLightColor = Color(0xFF80daff);
+  static Color bluLightColor1 = Color(0xFF01B1D6);
 
   //static Color kPrimaryLightColor = Color(0xFF92CA91);
   static Color grey = Color(0xFFF2F2F2);
@@ -478,6 +480,8 @@ class AppData {
   static String base64Encd(String data) {
     return base64.encode(utf8.encode(data));
   }
+  static String address= "Address: 1073, Bhosale Mystiqa,Gokhale Road,\n"
+      "Model Colony,Pune - 411016, (MH) INDIA";
   static String aboutus="Together, we’re on a path to wellness for body, mind, and spirit. Now anyone can take charge of their health and transform their life using our easy-to-use, yet powerful, healthcare technologies & tools.\n The eHealthSystem supports WHO eHealth Strategy (WHA 58:28) eHealth stressing that eHealth is the cost-effective and secure use of information and communications technologies in support of health and health-related services. \n"
       "eHealthSystem works as a LiveWire of Connectivity connecting different healthcare stakeholders that include clinics, pharmacies, blood banks, hospitals, ambulances, organ donors, laboratories and patients on a single platform."
       "We are a digital healthcare solutions provider. We dedicate ourselves to improving the existing Electronic Health Record technology further, by providing users the power to carry their health records globally in a portable, user-friendly and secure manner.";

@@ -21,6 +21,7 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
@@ -208,15 +209,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Container(
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(60),
-                                  child: Image.network(
-                                    patientProfileModel
-                                            ?.body?.profileImageName ??
-                                        AppData.defaultImgUrl,
-                                    // height: 95,
-                                    height: size.height * 0.15,
-                                    width: size.width * 0.25,
+                                  child: Column(
+                                    children: [
+                                      Image.network(
+                                        patientProfileModel
+                                                ?.body?.profileImageName ??
+                                            AppData.defaultImgUrl,
+                                        // height: 95,
+                                        height: size.height * 0.15,
+                                        width: size.width * 0.25,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: InkWell(
+                                          onTap: () {
+                                            //_settingModalBottomSheet(context);
+                                          },
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: AppData.kPrimaryColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   )),
                             ),
+                            /*Align(
+                              alignment: Alignment.bottomRight,
+                              child: InkWell(
+                                onTap: () {
+                                  //_settingModalBottomSheet(context);
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  color: AppData.kPrimaryColor,
+                                ),
+                              ),
+                            ),*/
                             SizedBox(
                               height: size.height * 0.02,
                             ),
@@ -934,15 +963,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    _fname.text = "";
-    _lname.text = "";
-    textEditingController[2].text = "";
-    // _bloodGroup.text = patientProfileModel.body.bloodGroup;
-    //_gender.text = patientProfileModel.body.gender;
-    _eMobile.text = "";
-    _eName.text = "";
-    _fDoctor.text = "";
-    _docMobile.text = "";
+    _fname.text =patientProfileModel.body.fName.toString() ;
+    _lname.text = patientProfileModel.body.lName.toString();
+    textEditingController[2].text = patientProfileModel.body.dob.toString();
+    //ProfileScreen.bloodgroupmodel.name=patientProfileModel.body.bloodGroup.toString();
+    //ProfileScreen.gendermodel.key=patientProfileModel.body.gender.toString();
+    _eName.text = patientProfileModel.body.eName.toString();
+    //ProfileScreen.relationmodel.key=patientProfileModel.body.eRelation.toString();
+    _eMobile.text = patientProfileModel.body.mobile.toString();
+    _fDoctor.text = patientProfileModel.body.fDoctor.toString();
+    //ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString();
+    _docMobile.text=patientProfileModel.body.docMobile.toString();
 
     return showDialog(
         context: context,

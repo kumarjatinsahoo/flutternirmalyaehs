@@ -154,10 +154,10 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                   (vitalsignsModel != null)
-                                    ? vitalsignsModel.body[0].height.toString() : "N/A",
+                                   (vitalsignsModel.body != null&& vitalsignsModel.body[0].height.toString()=="0.0")
+                                    ?"N/A": vitalsignsModel.body[0].height.toString() ,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
@@ -194,10 +194,10 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                 (vitalsignsModel != null)
-                                ? vitalsignsModel.body[0].weight.toString() : "N/A",
+                                 (vitalsignsModel.body != null&& vitalsignsModel.body[0].weight.toString()=="0.0")
+                                ? "N/A":vitalsignsModel.body[0].weight.toString(),
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
@@ -233,10 +233,10 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                 (vitalsignsModel != null)
-                                    ? vitalsignsModel.body[0].bmi.toString() : "N/A",
+                                 (vitalsignsModel.body != null&& vitalsignsModel.body[0].bmi.toString()=="0.0")
+                                    ? "N/A":vitalsignsModel.body[0].bmi.toString() ,
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
@@ -280,8 +280,8 @@ class _VitalSignsState extends State<VitalSigns> {
 
                                     _buildTile1(
                                       icon: "assets/temperatuer.png",
-                                      title: (vitalsignsModel != null)
-                          ? vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(): "N/A",
+                                      title: (vitalsignsModel.body != null&& vitalsignsModel.body[0].tempcel.toString()=="0.0")
+                          ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
                                       subtitle: "Temperature",
                                       fun: () {
                                         /*Navigator.pushNamed(
@@ -299,8 +299,8 @@ class _VitalSignsState extends State<VitalSigns> {
                                   children: [
                                     _buildTile1(
                                       icon: "assets/bloodp.png",
-                                      title:(vitalsignsModel != null)
-                                          ? vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(): "N/A",
+                                      title:(vitalsignsModel.body != null&& vitalsignsModel.body[0].respiartion.toString()=="0")
+                                          ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
                                       subtitle: "Systolic Diastolic Blood Pressure",
                                       fun: () {
                                        // chooseAppointment(context);
@@ -324,8 +324,8 @@ class _VitalSignsState extends State<VitalSigns> {
                                     _buildTile1(
                                       //icon: Icons.document_scanner,
                                       icon: "assets/pulse.png",
-                                      title: (vitalsignsModel != null)
-                                          ? vitalsignsModel.body[0].pulse.toString() : "N/A",
+                                      title: (vitalsignsModel.body != null&& vitalsignsModel.body[0].pulse.toString()=="0")
+                                          ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
                                       subtitle: "Pulse",
                                       fun: () {
                                         /*Navigator.pushNamed(
@@ -342,8 +342,8 @@ class _VitalSignsState extends State<VitalSigns> {
                                 children: [
                                   _buildTile1(
                                     icon: "assets/respiration.png",
-                                    title: (vitalsignsModel != null)
-                                        ? vitalsignsModel.body[0].respiartion.toString(): "N/A",
+                                    title: (vitalsignsModel.body != null && vitalsignsModel.body[0].respiartion.toString()=="0")
+                                        ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
                                     subtitle: "Respiration",
                                     fun: () {
                                       //chooseAppointment1(context);
@@ -368,8 +368,8 @@ class _VitalSignsState extends State<VitalSigns> {
                                 _buildTile1(
                                   //icon: Icons.document_scanner,
                                   icon:"assets/oxygen.png",
-                                  title:  (vitalsignsModel != null)
-                                      ? vitalsignsModel.body[0].oxygen.toString(): "N/A",
+                                  title:  (vitalsignsModel.body != null&& vitalsignsModel.body[0].oxygen.toString()=="0")
+                                      ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
                                   subtitle: "Oxygen Saturation",
                                   fun: () {
                                    /* Navigator.pushNamed(context, "/testappointmentpage1");*/
@@ -573,15 +573,15 @@ class _VitalSignsState extends State<VitalSigns> {
   }
   Widget dialogaddnomination(BuildContext context) {
    // DoctorMedicationlistModel item = DoctorMedicationlistModel();
-    textEditingController[0].text=vitalsignsModel.body[0].height.toString();
-    textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
-    textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
-    textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
-    textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
-    textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
-    textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
-    textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
-    textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();
+    vitalsignsModel.body[0].height.toString()=="0.0"?"N/A":textEditingController[0].text=vitalsignsModel.body[0].height.toString();
+    vitalsignsModel.body[0].weight.toString()=="0.0"?"N/A": textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
+    vitalsignsModel.body[0].bmi.toString()=="0.0"?"N/A":textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
+    vitalsignsModel.body[0].tempcel.toString()=="0.0"?"N/A":textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
+    vitalsignsModel.body[0].sysbp.toString()=="0"?"N/A":textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
+    vitalsignsModel.body[0].diabp.toString()=="0"?"N/A":textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
+    vitalsignsModel.body[0].pulse.toString()=="0"?"N/A": textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
+    vitalsignsModel.body[0].respiartion.toString()=="0"?"N/A":textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
+    vitalsignsModel.body[0].oxygen.toString()=="0"?"N/A":textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),

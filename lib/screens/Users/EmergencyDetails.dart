@@ -1,9 +1,8 @@
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:user/models/KeyvalueModel.dart';
-import 'package:user/providers/DropDown.dart';
-import 'package:user/providers/api_factory.dart';
+import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -17,6 +16,31 @@ class EmergencyDetails extends StatefulWidget {
 }
 
 class _EmergencyDetailsState extends State<EmergencyDetails> {
+
+  // AudioCache audioCache; // = AudioCache();
+  // AudioPlayer advancedPlayer = AudioPlayer();
+  String localFilePath;
+  FlutterSoundPlayer player;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    player=FlutterSoundPlayer();
+    player.startPlayer(fromURI: "assets/audio/emergency_alert.mp3");
+   /* audioCache = AudioCache(
+      prefix: "assets/audio/",
+      //fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
+    );
+    audioCache.play("emergency_alert.mp3");*/
+    //SystemSound.play(SystemSoundType.alert);
+  }
+  soundOn() async {
+    // final file = await audioCache.load('emergency_alert.mp3');
+    //final bytes = await file.readAsBytes();
+    //audioCache.playBytes(bytes, loop: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

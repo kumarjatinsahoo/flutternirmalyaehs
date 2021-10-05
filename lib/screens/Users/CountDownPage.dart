@@ -14,7 +14,9 @@ import 'package:user/widgets/MyWidget.dart';
 
 class Countdown extends AnimatedWidget {
   MainModel model;
-  Countdown({Key key, this.animation,this.model}) : super(key: key, listenable: animation);
+
+  Countdown({Key key, this.animation, this.model})
+      : super(key: key, listenable: animation);
   Animation<int> animation;
 
   @override
@@ -53,7 +55,7 @@ class _CountDownPageState extends State<CountDownPage>
   void initState() {
     super.initState();
     //loginResponse1=widget.model.loginResponse1;
-   /* longitudes = widget.model.longi;
+    /* longitudes = widget.model.longi;
     latitudes = widget.model.lati;
     cityName = widget.model.city;*/
     _getLocationName();
@@ -62,10 +64,10 @@ class _CountDownPageState extends State<CountDownPage>
       duration: new Duration(seconds: kStartValue),
     );
     _controller.forward(from: 0.0).whenComplete(() {
-      callAPI();
+      ///callAPI();
+      pushNotification();
       //AppData.showInSnackBar(context, "Done");
       //_getLocationName();
-
 
       setState(() {
         isComplete = true;
@@ -73,29 +75,55 @@ class _CountDownPageState extends State<CountDownPage>
     });
     //_controller.
   }
+
   callAPI() {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.SMS_TO_EMERGENCY +
             widget.model.user +
-           /* "&mapurl=" +"" +*/
-            "&longi=" + longitudes+
-            "&lati=" + latitudes,
+            /* "&mapurl=" +"" +*/
+            "&longi=" +
+            longitudes +
+            "&lati=" +
+            latitudes,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          Navigator.pop(context);
           String msg = map[Const.MESSAGE];
           if (map["status"] == "success") {
             setState(() {
               AppData.showInSnackBar(context, msg);
             });
-          }else {
+          } else {
             // isDataNotAvail = true;
             AppData.showInSnackBar(context, msg);
           }
-
-
         });
   }
+
+  pushNotification() {
+    var postData = {
+      "to": "/topics/9121488220723700",
+      "data": {"body": "Test Notification !!!", "title": "Test Title !!!"},
+      "notification": {"body": "SOS Message", "title": "eHealthSystem"}
+    };
+    MyWidgets.showLoading(context);
+    widget.model.PUSH_NOTIFICATION(
+        json: postData,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          if (map.containsKey("message_id")) {
+            setState(() {
+              AppData.showInSnackBar(context, "Successfully Sent");
+            });
+          } else {
+            // isDataNotAvail = true;
+            AppData.showInSnackBar(context, "Something went wrong");
+          }
+        });
+  }
+
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -123,6 +151,7 @@ class _CountDownPageState extends State<CountDownPage>
       print(e.toString());
     }*/
   }
+
   callApi(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
     //MyWidgets.showLoading(context);
@@ -143,10 +172,10 @@ class _CountDownPageState extends State<CountDownPage>
         });
   }
 
-
-  sentToServer(){
-   // widget.model.POSTMETHOD(api: api, json: json, fun: fun)
+  sentToServer() {
+    // widget.model.POSTMETHOD(api: api, json: json, fun: fun)
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

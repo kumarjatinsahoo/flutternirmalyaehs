@@ -11,20 +11,20 @@ import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-import 'AboutUs.dart';
+import 'Doctor/Dashboard/DoctorMedicationlist.dart';
 
-class FindPage extends StatefulWidget {
+class FindPage1 extends StatefulWidget {
   MainModel model;
   static KeyvalueModel specialistModel = null;
   static KeyvalueModel healthcareProvider = null;
 
-  FindPage({Key key, this.model}) : super(key: key);
+  FindPage1({Key key, this.model}) : super(key: key);
 
   @override
-  _FindPageState createState() => _FindPageState();
+  _FindPage1State createState() => _FindPage1State();
 }
 
-class _FindPageState extends State<FindPage> {
+class _FindPage1State extends State<FindPage1> {
   var selectedMinValue;
   List<KeyvalueModel> countryList = [
     KeyvalueModel(name: "India", key: "1"),
@@ -61,7 +61,8 @@ class _FindPageState extends State<FindPage> {
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
-    print('location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    print(
+        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     latitudes=position.latitude.toString();
     longitudes=position.longitude.toString();
     callApi(position.latitude.toString(), position.longitude.toString());
@@ -146,7 +147,7 @@ class _FindPageState extends State<FindPage> {
                       margin:
                       EdgeInsets.only(top: 265.0, left: 8.0, right: 8.0, bottom: .0),
                       width: double.maxFinite,
-                     /* height: 300,*/
+                      height: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius: new BorderRadius.only(
                           topLeft: const Radius.circular(8.0),
@@ -171,8 +172,8 @@ class _FindPageState extends State<FindPage> {
                         children: <Widget>[
 
                           SizedBox(
-                            height: 20.0,
-                          ),
+                    height: 20.0,
+                  ),
                           Text(
                             'Find Healthcare Provider',
                             style:
@@ -192,7 +193,9 @@ class _FindPageState extends State<FindPage> {
                               ],
                             ),
                           ),*/
-
+                          SizedBox(
+                            height: 10,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 0.0, right: 0.0),
                             child: SizedBox(
@@ -203,18 +206,18 @@ class _FindPageState extends State<FindPage> {
                                   "healthcareProvider", (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.HEALTHPROVIDER_API);
-                                  FindPage.healthcareProvider = data;
+                                  FindPage1.healthcareProvider = data;
                                   //DoctorconsultationPage.doctorModel = null;
                                   // UserSignUpForm.cityModel = null;
-                                });
-                              }),
+                                    });
+                                  }),
                             ),
                           ),
-                          (FindPage.healthcareProvider != null)
+                          (FindPage1.healthcareProvider != null)
                               ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: (FindPage.healthcareProvider.key == "1" ||
-                                FindPage.healthcareProvider.key == "4")
+                            child: (FindPage1.healthcareProvider.key == "1" ||
+                                FindPage1.healthcareProvider.key == "4")
                                 ? SizedBox(
                               height: 58,
                               child: DropDown
@@ -224,7 +227,7 @@ class _FindPageState extends State<FindPage> {
                                   "speciality", (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.SPECIALITY_API);
-                                  FindPage.specialistModel = data;
+                                  FindPage1.specialistModel = data;
                                   //DoctorconsultationPage.doctorModel = null;
                                   // UserSignUpForm.cityModel = null;
                                 });
@@ -234,12 +237,12 @@ class _FindPageState extends State<FindPage> {
                           )
                               : Container(),
 
-                          SizedBox(
-                            height: 20,
-                          ),
-                          _submitButton(),
-                          SizedBox(
-                            height: 10,),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _submitButton(),
+                      SizedBox(
+                        height: 10,),
                         ],
                       ),
                       // ),
@@ -258,42 +261,10 @@ class _FindPageState extends State<FindPage> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      'Find and Book',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                        child: Image.asset(
-                          "assets/logo1.png",
-                          fit: BoxFit.fitWidth,
-                          //width: ,
-                          height: 110.0,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    AbsorbPointer(
-                      child: TextFormField(
-                        maxLines: 3,
-                        decoration: InputDecoration(
-                            hintText: address,
-                            hintStyle: TextStyle(color: Colors.black)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+
+
+
+
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: SizedBox(
@@ -337,11 +308,11 @@ class _FindPageState extends State<FindPage> {
                                 : Container(),
                           )
                         : Container(),
-                    *//*DropDown.staticDropdown2(
+                    DropDown.staticDropdown2(
                         "Select Speciality", "state", cityList,
                         (KeyvalueModel data) {
                       setState(() {});
-                    }),*//*
+                    }),
                     SizedBox(
                       height: 60,
                     ),
@@ -358,7 +329,129 @@ class _FindPageState extends State<FindPage> {
       ),
     ));
   }
+  Widget NumberformField(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
+        child: Container(
+          //color: Colors.white,
+          height: double.infinity,
+          padding: EdgeInsets.symmetric(
+            horizontal: 5,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(3),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+                offset: Offset(1.0, 1.0), //shadow direction: bottom right
+              )
+            ],
+          ),
+          child:AbsorbPointer(
+          child: TextFormField(
+            maxLines: 3,
+            controller: textEditingController[index],
+           cursorColor: AppData.kPrimaryColor,
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            ],
+            decoration: InputDecoration(
+              /* suffixIcon: Icon(Icons.phone),*/
+              border: InputBorder.none,
+                hintText: hint,
+                hintStyle: TextStyle(color: Colors.black)
+            ),
+            onSaved: (value) {
+              //userPersonalForm.phoneNumber = value;
+            },
+          ),),
+        ) /*),*/
+    );
+  }
+  Container _buildHeader(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 200.0,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            margin:
+            EdgeInsets.only(top: 100.0, left: 10.0, right: 10.0, bottom: .0),
+            width: double.maxFinite,
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: new BorderRadius.only(
+                topLeft: const Radius.circular(15.0),
+                topRight: const Radius.circular(15.0),
+                bottomLeft: const Radius.circular(15.0),
+                bottomRight: const Radius.circular(15.0),
+              ),
+              /*image: DecorationImage(
+                  image: AssetImage(
+                    "assets/card.png",
+                  ),
+                  fit: BoxFit.fitWidth,
+                ),*/
+              /*gradient: LinearGradient(
+                  colors: [AppData.matruColor, Colors.black54],
+                ),*/
+              color: AppData.matruColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                /*SizedBox(
+                  height: 45.0,
+                ),*/
+                Text(
+                  "sg",
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(color: Colors.white, fontSize: 15),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 6.0,
+                ),
+                Text(
+                  "AADHAAR NO" +
+                      ": " +
+                     "N/A",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
 
+              ],
+            ),
+            // ),
+          ),
+          /*Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Material(
+                elevation: 5.0,
+                shape: CircleBorder(),
+                child: CircleAvatar(
+                  radius: 40.0,
+                  backgroundImage: NetworkImage(model.profileImageName??AppData.defaultImgUrl),
+                ),
+              ),
+            ],
+          ),*/
+        ],
+      ),
+    );
+  }
   /* Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
@@ -377,53 +470,7 @@ class _FindPageState extends State<FindPage> {
       },
     );
   }*/
-  Widget NumberformField(
-      int index,
-      String hint,
-      ) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
-        child: Container(
-          //color: Colors.white,
-          /*height: 80,*/
-          padding: EdgeInsets.symmetric(
-            horizontal: 5,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 1.0,
-                spreadRadius: 0.0,
-                offset: Offset(1.0, 1.0), //shadow direction: bottom right
-              )
-            ],
-          ),
-          child:AbsorbPointer(
-            child: TextFormField(
-              maxLines: 3,
-              controller: textEditingController[index],
-              cursorColor: AppData.kPrimaryColor,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-              ],
-              decoration: InputDecoration(
-                /* suffixIcon: Icon(Icons.phone),*/
-                  border: InputBorder.none,
-                  hintText: hint,
-                  hintStyle: TextStyle(color: Colors.black)
-              ),
-              onSaved: (value) {
-                //userPersonalForm.phoneNumber = value;
-              },
-            ),),
-        ) /*),*/
-    );
-  }
+
   Widget _submitButton() {
     return MyWidgets.nextButton3(
         text: "search".toUpperCase(),
@@ -441,9 +488,9 @@ class _FindPageState extends State<FindPage> {
             widget.model.lati = latitudes;
             widget.model.addr = address;
             widget.model.city = cityName;
-            widget.model.type = FindPage?.specialistModel?.key ?? "";
-            widget.model.healthpro = FindPage.healthcareProvider.key;
-            widget.model.healthproname = FindPage.healthcareProvider.name;
+            widget.model.type = FindPage1?.specialistModel?.key ?? "";
+            widget.model.healthpro = FindPage1.healthcareProvider.key;
+            widget.model.healthproname = FindPage1.healthcareProvider.name;
             //widget.model.healthproname = "Doctor";
 
             //Navigator.pushNamed(context, "/navigation");

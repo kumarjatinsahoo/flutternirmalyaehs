@@ -98,7 +98,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
-                    callAPI();
+                   // callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -143,10 +143,9 @@ class _AllergicListListState extends State<AllergicListList> {
                                 borderRadius: BorderRadius.circular(5))),
                         child: Container(
                             /*height: 100,*/
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    left: BorderSide(
-                                        color: AppData.matruColor, width: 5))),
+                            decoration:( i % 2 == 0)?BoxDecoration(
+                                border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))):BoxDecoration(
+                                border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
                             width: double.maxFinite,
                             /*  margin: const EdgeInsets.only(top: 6.0),*/
                             child: Row(
@@ -196,11 +195,14 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Text(
-                                              body.allFood ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                body.allFood ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -445,7 +447,6 @@ class _AllergicListListState extends State<AllergicListList> {
               //AppData.showInSnackBar(context, "add Successfully");
             }
             Navigator.of(context).pop();
-            callAPI();
 
             // Navigator.of(context).pop();
             // AllergicListList.nameModel.key="";
