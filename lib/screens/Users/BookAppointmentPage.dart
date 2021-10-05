@@ -414,6 +414,12 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       BookAppointmentPage.timeModel = data;
+                                     /* var string = BookAppointmentPage.timeModel.name;
+                                      List splitedText = string.split("To");
+                                      print(splitedText[0]);
+                                      String string1 = splitedText[1];
+                                      print(splitedText[1]);
+                                    */
                                       isValidtime =
                                           (data.code) ? false : true;
                                       if (!isValidtime)
@@ -548,11 +554,17 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   sendServer() {
+    var string = BookAppointmentPage.timeModel.name;
+    List splitedText = string.split("To");
+    print(splitedText[0]);
+    String timestring0 = splitedText[0];
+    print(splitedText[1]);
+
     Map<String, dynamic> postmap = {
       "userid" : widget.model.user,
       "date" : formattedDate,
       "opdid" :BookAppointmentPage.timeModel.key.toString(),
-      "time" : BookAppointmentPage.timeModel.name,
+      "time" : /*BookAppointmentPage.timeModel.name*/timestring0,
       "doctor": BookAppointmentPage.doctorModel.key.toString(),
       "notes" :  textEditingController[1].text,
       "hospitalid" :int.tryParse(BookAppointmentPage.doctorModel.hospitalid)
@@ -580,7 +592,6 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   sendLocalServer(map) {
-
     log("Print data>>>>"+jsonEncode(map));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
@@ -598,9 +609,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
           }
         });
 
-  }
-
-  popup(BuildContext context, String message) {
+  }popup(BuildContext context, String message) {
     return Alert(
         context: context,
         title: message,
