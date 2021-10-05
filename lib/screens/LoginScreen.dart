@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
   var code;
 
   var pin;
-  String token="";
+  String token = "";
 
   @override
   void initState() {
@@ -98,11 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
     tokenCall();
   }
 
-  tokenCall(){
-    FirebaseMessaging.instance.onTokenRefresh.listen((event){
+  tokenCall() {
+    FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
-        token=event;
-        log(">>>>>>>>Token>>>>>>>"+token);
+        token = event;
+        log(">>>>>>>>Token>>>>>>>" + token);
       });
     });
   }
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
-    log(token??"jj");
+    log(token ?? "jj");
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: true,
@@ -332,10 +332,11 @@ class _LoginScreenState extends State<LoginScreen> {
         textInputAction: TextInputAction.done,
         keyboardType: TextInputType.text,
         autofocus: false,
-       // maxLength: 10,
+        // maxLength: 10,
         decoration: InputDecoration(
-            prefix:
-                Padding(padding: EdgeInsets.only(top: 10), ),
+            prefix: Padding(
+              padding: EdgeInsets.only(top: 10),
+            ),
             //hintText: "Enter number",
             labelText: "Mobile No/Email Id/User Id",
             alignLabelWithHint: true,
@@ -424,24 +425,18 @@ class _LoginScreenState extends State<LoginScreen> {
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter Mobile No/Email Id/User Id");
-        }
-        // else if (_loginId.text.length != 10) {
-        //   AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        // }
-        else if (passController.text == "" || passController.text == null) {
+          AppData.showInSnackBar(
+              context, "Please enter Mobile No/Email Id/User Id");
+        } else if (passController.text == "" || passController.text == null) {
           AppData.showInSnackBar(context, "Please enter password");
         } else {
           widget.model.phnNo = _loginId.text;
-          //widget.model.phnNo = _loginId.text;
-          //Navigator.pushNamed(context, "/otpView");
-          // Navigator.pushNamed(context, "/pinView");
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
-                print("LOGIN RESPONSE>>>>" + jsonEncode(map));
+                log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
@@ -451,28 +446,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
+
+
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
+
+
                     if (loginResponse.body.roles[0] == "8".toLowerCase()) {
-                      //Lab dashboard
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "1".toLowerCase())
-                      //userdashboard
-                    {
+                    } else if (loginResponse.body.roles[0] ==
+                        "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "2".toLowerCase())
-                      //doctor dashboard
-                    {
-                      Navigator.of( context).pushNamedAndRemoveUntil(
-                          '/dashDoctor', (Route<dynamic> route) => false);
-                    }
-                    else if (loginResponse.body.roles[0] == "3".toLowerCase())
-                    //dashboard pharmacy
-                        {
+                    } else if (loginResponse.body.roles[0] ==
+                        "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy', (Route<dynamic> route) => false);
+                          '/dashDoctor', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "3".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dashboardpharmacy',
+                          (Route<dynamic> route) => false);
                     }
-
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);

@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserDashboardModel.dart';
@@ -12,6 +16,7 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
+import '../../main.dart';
 import '../../providers/app_data.dart';
 
 class DashboardUserNew extends StatefulWidget {
@@ -71,7 +76,76 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     });*/
 
     callApi();
+
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage message) {
+      if (message != null) {
+        Navigator.pushNamed(context, '/aboutus');
+      }
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && android != null && !kIsWeb) {
+         flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channel.description,
+                // TODO add a proper drawable resource to android, for now using
+                //      one that already exists in example app.
+                icon: 'launch_background',
+              ),
+            ));
+        //popup("View one",context);
+
+        Navigator.pushNamed(context, '/emergencydetails');
+        //AppData.showInSnackBar(context, "Dataa");
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      Navigator.pushNamed(context, '/aboutus');
+    });
   }
+
+  popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
@@ -483,6 +557,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Logout'),
                 selected: _selectedDestination == 16,
                 onTap: () {
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
                   selectDestination(16);
                   _exitApp();
                 },

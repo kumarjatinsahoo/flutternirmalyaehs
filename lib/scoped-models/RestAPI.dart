@@ -37,7 +37,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -48,7 +48,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.DEFAULT) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -67,7 +68,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+     /* if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -78,7 +79,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -106,7 +108,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+     /* if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -117,7 +119,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -146,7 +149,7 @@ class RestAPI extends Model {
         //print("Message is: " + response.data);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -157,7 +160,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -184,7 +188,7 @@ class RestAPI extends Model {
         fun(Const.TIMEOUT);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(Const.TIMEOUT);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -193,9 +197,10 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.DEFAULT) {
         fun(Const.TIMEOUT);
       }
-      if (e.type == DioErrorType.RESPONSE) {
-        fun(Const.TIMEOUT);
-      }
+      if (e.type == DioErrorType.RESPONSE) {*/
+        //fun(Const.TIMEOUT);
+      //}
+        fun(failedMap);
     }
   }
 
@@ -260,7 +265,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /* /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -271,7 +276,49 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
+      }*/
+      fun(failedMap);*/
+      fun(failedMap);
+    }
+  }
+
+  PUSH_NOTIFICATION(
+      {@required Map<String, dynamic> json,
+      @required Function fun}) async {
+    print("<<>>>>>DATA SEND>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+        JsonEncoder().convert(json).toString());
+    try {
+      Response response = await dio.post("https://fcm.googleapis.com/fcm/send",options: Options(
+        headers: {
+          "Authorization": "key=AAAAES5j-YA:APA91bGiyZ3MUS9BEt2y6om5T8e_kStvlV9JD2YZ20uDFOT_z4NWqs6wplhMpyBmxSycIKCa3ifAb8qTZOT0jIG9GLIT6heXKFg156eIN_c-fsHg7KZHLYYQgKAfcdT9grq6pJFmzw7r",
+        },
+      ), data: jsonEncode(json));
+      if (response.statusCode == 200) {
+        try {
+          print("RESPONSE CALL>>>>" +
+              JsonEncoder().convert(response.data).toString());
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
       }
+    } on DioError catch (e) {
+      /* /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(failedMap);
+      }*/
+      fun(failedMap);*/
+      fun(failedMap);
     }
   }
   POSTMETHOD2(
@@ -302,7 +349,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -313,7 +360,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
   POSTMETHOD1(
@@ -344,7 +392,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -355,7 +403,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -384,7 +433,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -395,7 +444,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
     }
   }
 
@@ -432,7 +482,7 @@ class RestAPI extends Model {
         return false;
       }
     } on DioError catch (e) {
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+      /*if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         return false;
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -447,7 +497,8 @@ class RestAPI extends Model {
         //fun(failedMap);
         //fun(false);
         return false;
-      }
+      }*/
+      return false;
     }
   }
   HealthChartResponse get healthChartResponse {
