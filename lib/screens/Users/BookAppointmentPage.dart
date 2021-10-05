@@ -548,11 +548,17 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   sendServer() {
+    var string = BookAppointmentPage.timeModel.name;
+    List splitedText = string.split("To");
+    print(splitedText[0]);
+    String timestring0 = splitedText[0];
+    print(splitedText[1]);
+
     Map<String, dynamic> postmap = {
       "userid" : widget.model.user,
       "date" : formattedDate,
       "opdid" :BookAppointmentPage.timeModel.key.toString(),
-      "time" : BookAppointmentPage.timeModel.name,
+      "time" : /*BookAppointmentPage.timeModel.name*/timestring0,
       "doctor": BookAppointmentPage.doctorModel.key.toString(),
       "notes" :  textEditingController[1].text,
       "hospitalid" :int.tryParse(BookAppointmentPage.doctorModel.hospitalid)
@@ -579,15 +585,14 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
   }
 
-  sendLocalServer(map) {
-
-    log("Print data>>>>"+jsonEncode(map));
+  sendLocalServer(postData) {
+    log("Print data>>>>"+jsonEncode(postData));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
         //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.POST_DOC_API,
         token: widget.model.token,
-        json: map,
+        json: postData,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           if (map[Const.STATUS] == Const.SUCCESS) {
@@ -597,7 +602,6 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });
-
   }
 
   popup(BuildContext context, String message) {

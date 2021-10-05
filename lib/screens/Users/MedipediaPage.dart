@@ -187,7 +187,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                               ),
                             ),
                             GestureDetector(
-                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                               onTap: () =>   Navigator.pushNamed(context, "/videos"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
