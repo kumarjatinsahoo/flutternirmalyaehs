@@ -414,12 +414,6 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       BookAppointmentPage.timeModel = data;
-                                     /* var string = BookAppointmentPage.timeModel.name;
-                                      List splitedText = string.split("To");
-                                      print(splitedText[0]);
-                                      String string1 = splitedText[1];
-                                      print(splitedText[1]);
-                                    */
                                       isValidtime =
                                           (data.code) ? false : true;
                                       if (!isValidtime)
@@ -591,14 +585,14 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
   }
 
-  sendLocalServer(map) {
-    log("Print data>>>>"+jsonEncode(map));
+  sendLocalServer(postData) {
+    log("Print data>>>>"+jsonEncode(postData));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
         //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.POST_DOC_API,
         token: widget.model.token,
-        json: map,
+        json: postData,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           if (map[Const.STATUS] == Const.SUCCESS) {
@@ -608,8 +602,9 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });
+  }
 
-  }popup(BuildContext context, String message) {
+  popup(BuildContext context, String message) {
     return Alert(
         context: context,
         title: message,

@@ -310,7 +310,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
-             /* ListTile(
+              /* ListTile(
                 leading: Image.asset(
                   "assets/images/home.png",
                   height: 30,
@@ -324,7 +324,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                  // Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
               ),*/
-             /* ListTile(
+              /* ListTile(
                 leading: Image.asset(
                   "assets/images/account.png",
                   height: 30,
@@ -338,8 +338,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 },
               ),*/
               ListTile(
-                leading:
-                Image.asset(
+                leading: Image.asset(
                   "assets/images/aboutus.png",
                   height: 30,
                 ),
@@ -349,7 +348,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 onTap: () {
                   selectDestination(4);
                   Navigator.pushNamed(context, "/aboutus");
-                   //Navigator.pushNamed(context, "/biomedicalimplants");
+                  //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
               ),
               ListTile(
@@ -361,7 +360,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 5,
                   onTap: () {
                     selectDestination(5);
-                    // Navigator.pushNamed(context, "/dashboard1");
+                     //Navigator.pushNamed(context, "/dashboard1");
+                     Navigator.pushNamed(context, "/emergencydetails");
                   }),
               ListTile(
                   leading: Image.asset(
@@ -385,7 +385,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(7);
                     Navigator.pushNamed(context, "/support");
                   }),
-            /*  ListTile(
+              /*  ListTile(
                   leading: Image.asset(
                     "assets/images/reminder.png",
                     height: 30,
@@ -418,7 +418,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               //   // onTap: () {
               //   // },
               // ),
-             /* ListTile(
+              /* ListTile(
                   leading: Icon(Icons.collections,
                       color: AppData.kPrimaryRedColor, size: 27),
                   title: Text('My Orders'),
@@ -650,8 +650,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       child: (imageSliders.indexOf(item) == 4 ||
                                               imageSliders.indexOf(item) == 7 ||
                                               imageSliders.indexOf(item) == 0 ||
-                                              imageSliders.indexOf(item) == 1||
-                                              imageSliders.indexOf(item) == 9||
+                                              imageSliders.indexOf(item) == 1 ||
+                                              imageSliders.indexOf(item) == 9 ||
                                               imageSliders.indexOf(item) == 10)
                                           ? Icon(
                                               Icons.play_circle_fill,
@@ -1050,9 +1050,10 @@ class MyPage1Widget extends StatelessWidget {
   double _width;
 
   final MainModel model;
+
   MyPage1Widget({Key key, this.model}) : super(key: key);
 
-  chooseAppointment(BuildContext context,model) {
+  chooseAppointment(BuildContext context, model) {
     return showDialog(
         context: context,
         barrierDismissible: true,
@@ -1212,7 +1213,7 @@ class MyPage1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     _buildTileblue(
+                    _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
@@ -1244,19 +1245,18 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/search_icon.png",
-                      fun: () {
-                         Navigator.pushNamed(
-                            context, "/findHealthcareService");
-                        //AppData.showInSnackBar(context, "Coming soon");
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      //size: (size.width - 130) / 3,
-                      fun2: (){
-                        Navigator.pushNamed(context, "/covidMobile");
-                      }
-                    ),
+                        icon: "assets/search_icon.png",
+                        fun: () {
+                          Navigator.pushNamed(
+                              context, "/findHealthcareService");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        //size: (size.width - 130) / 3,
+                        fun2: () {
+                          Navigator.pushNamed(context, "/covidMobile");
+                        }),
                     SizedBox(
                       height: 5,
                     ),
@@ -1282,7 +1282,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_checkup.png",
                       fun: () {
-                        chooseAppointment(context,model);
+                        //chooseAppointment(context, model);
+                        Navigator.pushNamed(context, "/userAppoint");
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(
@@ -1421,7 +1422,7 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/offers.png",
                       fun: () {
-                         Navigator.pushNamed(context, "/discountoffer");
+                        Navigator.pushNamed(context, "/discountoffer");
                         //AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
@@ -1601,7 +1602,7 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Upload Medical Data",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
-                         Navigator.pushNamed(context, "/insuranceList");
+                        Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/

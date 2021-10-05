@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -76,6 +78,10 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
   }*/
   callAPI() {
+    log("API :Lati & Longi" + lati + "\n" + lati);
+    log("API CALL>>>" +
+        ApiFactory.GOOGLE_API(lati: lati, longi: longi, healthpro: healthpro) +
+        "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_API(
             lati: lati, longi: longi, healthpro: healthpro),
@@ -111,23 +117,15 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                       shrinkWrap: true,
                       itemBuilder: (context, i) {
                         Results patient = googlePlaceModel.results[i];
-                        print(
-                            "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
-                                i.toString() +
-                                ((patient.photos != null &&
-                                        patient.photos.isNotEmpty)
-                                    ? ApiFactory.GOOGLE_PIC(
-                                        ref: patient.photos[0].photoReference)
-                                    : patient.icon));
                         return Container(
-                            child:InkWell(
-                              onTap: () {
-                                //widget.model.model = patient.placeId;
-                               widget.model.placeId = patient.placeId;
-                                Navigator.pushNamed(context, "/googleSearch");
+                            child: InkWell(
+                          onTap: () {
+                            //widget.model.model = patient.placeId;
+                            widget.model.placeId = patient.placeId;
+                            Navigator.pushNamed(context, "/googleSearch");
 
-                                // AppData.showInSnackBar(context,"hi");
-                              },
+                            // AppData.showInSnackBar(context,"hi");
+                          },
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
@@ -158,20 +156,17 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        ((patient.photos !=
-                                            null &&
-                                            patient.photos
-                                                .isNotEmpty))
+                                        ((patient.photos != null &&
+                                                patient.photos.isNotEmpty))
                                             ? Material(
                                                 elevation: 5.0,
                                                 shape: CircleBorder(),
                                                 child: CircleAvatar(
                                                   radius: 40.0,
                                                   backgroundImage: NetworkImage(
-                                                      ( ApiFactory.GOOGLE_PIC(
-                                                              ref: patient
-                                                                  .photos[0]
-                                                                  .photoReference))),
+                                                      (ApiFactory.GOOGLE_PIC(
+                                                          ref: patient.photos[0]
+                                                              .photoReference))),
                                                 ),
                                               )
                                             : SizedBox(
@@ -220,8 +215,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
                                   )),
                             ),
                           ),
-                            )
-                        );
+                        ));
                       },
                       itemCount: googlePlaceModel.results.length,
                     )

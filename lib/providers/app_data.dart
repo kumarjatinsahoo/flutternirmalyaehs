@@ -412,7 +412,16 @@ class AppData {
     )..show(context);
   }
 
+  static String getYoutubeThumbnail(String videoUrl) {
+    final Uri uri = Uri.tryParse(videoUrl);
+    if (uri == null) {
+      return null;
+    }
 
+    //return 'https://img.youtube.com/vi/${uri.queryParameters['v']}/maxresdefault.jpg';
+    //return 'https://img.youtube.com/vi/${uri.queryParameters['v']}/0.jpg';
+    return 'https://img.youtube.com/vi/${uri.queryParameters['v']}/mqdefault.jpg';
+  }
 
   static void showInSnackBargreen(BuildContext context, String value) {
     // final scaffold = Scaffold.of(context);

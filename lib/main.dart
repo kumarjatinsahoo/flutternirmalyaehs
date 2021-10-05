@@ -13,6 +13,7 @@ import 'package:user/screens/Users/Allergiclist.dart';
 import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/EmergencyDetails.dart';
+import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -654,6 +655,9 @@ class _MyAppState extends State<MyApp> {
                 //model: _model,
               ),
               '/aboutus': (context) => AboutUs(
+                //model: _model,
+              ),
+              '/videos': (context) => VideosPage(
                 //model: _model,
               ),
 
