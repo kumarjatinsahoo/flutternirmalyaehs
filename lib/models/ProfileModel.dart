@@ -27,6 +27,7 @@ class ProfileModel {
 
 class Body {
   String id;
+  String eCardNo;
   String title;
   String fullName;
   String fName;
@@ -62,7 +63,9 @@ class Body {
   String ageYears;
 
   Body(
-      {this.id,
+      {
+        this.id,
+        this.eCardNo,
         this.title,
         this.fullName,
         this.fName,

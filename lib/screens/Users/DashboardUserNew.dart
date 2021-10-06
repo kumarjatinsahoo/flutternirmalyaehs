@@ -378,7 +378,7 @@ List<String> imageSliders = [
                 leading: Image.asset(
                   "assets/images/myprofile.png",
                   height: 30,
-                  color: Colors.grey,
+                  //color: Colors.redAccent,
                 ),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
@@ -1762,8 +1762,8 @@ class MyPage1Widget extends StatelessWidget {
                   _buildTilered(
                     icon: "assets/medipedia.png",
                     fun: () {
-                      AppData.showInSnackDone(context, "Coming Soon");
-                      //Navigator.pushNamed(context, "/medipedia");
+                     // AppData.showInSnackDone(context, "Coming Soon");
+                      Navigator.pushNamed(context, "/medipedia");
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
