@@ -98,7 +98,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
-                   // callAPI();
+                   callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -172,7 +172,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                               ),
                                             ),
                                             Text(
-                                              body.allName ?? "N/A",
+                                              body.allnameid ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 15),
@@ -195,14 +195,11 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                body.allFood ?? "N/A",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15),
-                                              ),
+                                            Text(
+                                              body.alltypeid ?? "N/A",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
@@ -246,11 +243,14 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Text(
-                                              body.updatedby ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Container(
+                                              width: 150,
+                                              child: Text(
+                                                body.updatedby ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -438,7 +438,9 @@ class _AllergicListListState extends State<AllergicListList> {
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      callAPI();
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+
                       //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -447,7 +449,7 @@ class _AllergicListListState extends State<AllergicListList> {
               //AppData.showInSnackBar(context, "add Successfully");
             }
             Navigator.of(context).pop();
-
+            callAPI();
             // Navigator.of(context).pop();
             // AllergicListList.nameModel.key="";
             // AllergicListList.typeModel.key="";

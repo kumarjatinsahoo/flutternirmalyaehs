@@ -154,8 +154,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                   (vitalsignsModel != null&& vitalsignsModel.body[0].height.toString()=="0.0")
-                                    ?"N/A": vitalsignsModel.body[0].height.toString() ,
+                                   (vitalsignsModel == null || vitalsignsModel?.body[0]?.height?.toString()=="0.0")
+                                    ?"N/A": vitalsignsModel?.body[0]?.height?.toString(),
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -194,7 +194,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                 (vitalsignsModel.body != null&& vitalsignsModel.body[0].weight.toString()=="0.0")
+                                 (vitalsignsModel == null || vitalsignsModel.body[0].weight.toString()=="0.0")
                                 ? "N/A":vitalsignsModel.body[0].weight.toString(),
                                   style: TextStyle(
                                       fontSize: 15,
@@ -233,7 +233,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                 (vitalsignsModel.body != null&& vitalsignsModel.body[0].bmi.toString()=="0.0")
+                                 (vitalsignsModel?.body == null || vitalsignsModel.body[0].bmi.toString()=="0.0")
                                     ? "N/A":vitalsignsModel.body[0].bmi.toString() ,
                                   style: TextStyle(
                                       fontSize: 15,
@@ -280,7 +280,7 @@ class _VitalSignsState extends State<VitalSigns> {
 
                                     _buildTile1(
                                       icon: "assets/temperatuer.png",
-                                      title: (vitalsignsModel.body != null&& vitalsignsModel.body[0].tempcel.toString()=="0.0")
+                                      title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
                           ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
                                       subtitle: "Temperature",
                                       fun: () {
@@ -299,7 +299,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                   children: [
                                     _buildTile1(
                                       icon: "assets/bloodp.png",
-                                      title:(vitalsignsModel.body != null&& vitalsignsModel.body[0].respiartion.toString()=="0")
+                                      title:(vitalsignsModel?.body == null|| vitalsignsModel.body[0].respiartion.toString()=="0")
                                           ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
                                       subtitle: "Systolic Diastolic Blood Pressure",
                                       fun: () {
@@ -324,7 +324,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                     _buildTile1(
                                       //icon: Icons.document_scanner,
                                       icon: "assets/pulse.png",
-                                      title: (vitalsignsModel.body != null&& vitalsignsModel.body[0].pulse.toString()=="0")
+                                      title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].pulse.toString()=="0")
                                           ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
                                       subtitle: "Pulse",
                                       fun: () {
@@ -342,7 +342,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 children: [
                                   _buildTile1(
                                     icon: "assets/respiration.png",
-                                    title: (vitalsignsModel.body != null && vitalsignsModel.body[0].respiartion.toString()=="0")
+                                    title: (vitalsignsModel?.body == null || vitalsignsModel?.body[0].respiartion.toString()=="0")
                                         ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
                                     subtitle: "Respiration",
                                     fun: () {
@@ -368,7 +368,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 _buildTile1(
                                   //icon: Icons.document_scanner,
                                   icon:"assets/oxygen.png",
-                                  title:  (vitalsignsModel.body != null&& vitalsignsModel.body[0].oxygen.toString()=="0")
+                                  title:  (vitalsignsModel?.body == null || vitalsignsModel.body[0].oxygen.toString()=="0")
                                       ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
                                   subtitle: "Oxygen Saturation",
                                   fun: () {
@@ -747,9 +747,8 @@ class _VitalSignsState extends State<VitalSigns> {
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
                       callAPI();
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }

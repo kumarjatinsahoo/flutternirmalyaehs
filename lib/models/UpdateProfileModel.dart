@@ -12,6 +12,9 @@ class UpdateProfileModel {
   String speciality;
   String docMobile;
   String id;
+  List<Null> profileImage;
+  String profileImageName;
+  String profileImageType;
 
 
   UpdateProfileModel(
@@ -27,7 +30,11 @@ class UpdateProfileModel {
         this.fDoctor,
         this.speciality,
         this.id,
-        this.docMobile});
+        this.docMobile,
+        this.profileImage,
+        this.profileImageName,
+        this.profileImageType,
+      });
 
   UpdateProfileModel.fromJson(Map<String, dynamic> json) {
     eCardNo = json['eCardNo'];
@@ -43,6 +50,14 @@ class UpdateProfileModel {
     id = json['id'];
     speciality = json['speciality'];
     docMobile = json['docMobile'];
+    if (json['profileImage'] != null) {
+      profileImage = new List<Null>();
+      json['profileImage'].forEach((v) {
+        //profileImage.add(new Null.fromJson(v));
+      });
+    }
+    profileImageName = json['profileImageName'];
+    profileImageType = json['profileImageType'];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,6 +75,11 @@ class UpdateProfileModel {
     data['id'] = this.id;
     data['speciality'] = this.speciality;
     data['docMobile'] = this.docMobile;
+    if (this.profileImage != null) {
+      //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
+    }
+    data['profileImageName'] = this.profileImageName;
+    data['profileImageType'] = this.profileImageType;
     return data;
   }
 }
