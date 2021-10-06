@@ -70,9 +70,8 @@ class _MedipediaPageState extends State<MedipediaPage> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
-
                             GestureDetector(
-                              // onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),
+                               onTap: () =>  /* Navigator.pushNamed(context, "/bookanAppointmentlist")*/AppData.showInSnackDone(context, "Coming Soon"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -111,7 +110,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                             ),
 
                             GestureDetector(
-                              //  onTap: () =>   Navigator.pushNamed(context, "/myAppointment"),
+                                onTap: () =>   /*Navigator.pushNamed(context, "/myAppointment")*/AppData.showInSnackDone(context, "Coming Soon"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -149,7 +148,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                               ),
                             ),
                             GestureDetector(
-                              // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                              onTap: () =>/* Navigator.pushNamed(context, "/findScreen"),*/AppData.showInSnackDone(context, "Coming Soon"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(

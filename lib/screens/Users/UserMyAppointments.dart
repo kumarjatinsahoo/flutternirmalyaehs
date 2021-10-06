@@ -76,79 +76,79 @@ String userid;
       physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
-          Container(
-            // width: double.infinity,
-            // /* decoration: BoxDecoration(
-            //         image: DecorationImage(
-            //             image: NetworkImage(
-            //                 "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"
-            //             ),
-            //             fit: BoxFit.cover
-            //         )
-            //     ),*/
-            // decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //         image: AssetImage("assets/images/testbackgroundimg2.jpg"),
-            //         fit: BoxFit.cover)),
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 20.0,
-                top: 10.0,
-              ),
-
-              child: Column(
-                children: [
-                  // Text(
-                  //   "Appointment Details",
-                  //   style: TextStyle(
-                  //       fontSize: 18,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.w600),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.04,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        //height: size.height * 0.07,
-                        //width: size.width * 0.13,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(55),
-                            border: Border.all(color: Colors.black, width: 0.5),
-                            color: Colors.black),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(55),
-                            child: Image.asset(
-                              'assets/images/user.png',
-                              height: size.height * 0.07,
-                              width: size.width * 0.13,
-                              //fit: BoxFit.cover,
-                            )),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          loginResponse1.body.userName ?? "N/A",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
-            ),
-          ),
+          // Container(
+          //   // width: double.infinity,
+          //   // /* decoration: BoxDecoration(
+          //   //         image: DecorationImage(
+          //   //             image: NetworkImage(
+          //   //                 "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"
+          //   //             ),
+          //   //             fit: BoxFit.cover
+          //   //         )
+          //   //     ),*/
+          //   // decoration: BoxDecoration(
+          //   //     image: DecorationImage(
+          //   //         image: AssetImage("assets/images/testbackgroundimg2.jpg"),
+          //   //         fit: BoxFit.cover)),
+          //   child: Padding(
+          //     padding: EdgeInsets.only(
+          //       left: 20.0,
+          //       top: 10.0,
+          //     ),
+          //
+          //     child: Column(
+          //       children: [
+          //         // Text(
+          //         //   "Appointment Details",
+          //         //   style: TextStyle(
+          //         //       fontSize: 18,
+          //         //       color: Colors.white,
+          //         //       fontWeight: FontWeight.w600),
+          //         // ),
+          //         // SizedBox(
+          //         //   height: size.height * 0.04,
+          //         // ),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.start,
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: [
+          //             Container(
+          //               //height: size.height * 0.07,
+          //               //width: size.width * 0.13,
+          //               decoration: BoxDecoration(
+          //                   borderRadius: BorderRadius.circular(55),
+          //                   border: Border.all(color: Colors.black, width: 0.5),
+          //                   color: Colors.black),
+          //               child: ClipRRect(
+          //                   borderRadius: BorderRadius.circular(55),
+          //                   child: Image.asset(
+          //                     'assets/images/user.png',
+          //                     height: size.height * 0.07,
+          //                     width: size.width * 0.13,
+          //                     //fit: BoxFit.cover,
+          //                   )),
+          //             ),
+          //             SizedBox(
+          //               width: 10,
+          //             ),
+          //             Expanded(
+          //               child: Text(
+          //                 loginResponse1.body.userName ?? "N/A",
+          //                 style: TextStyle(
+          //                   color: Colors.black,
+          //                   fontSize: 18,
+          //                 ),
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //         SizedBox(
+          //           height: 10,
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
           (appointmentlistModel != null)
               ? InkWell(
                 child: ListView.builder(
