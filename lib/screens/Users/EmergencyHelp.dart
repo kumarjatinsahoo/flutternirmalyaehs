@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
+import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import '../../models/LoginResponse1.dart';
@@ -25,6 +26,7 @@ class EmergencyHelp extends StatefulWidget {
 }
 
 class _EmergencyHelpState extends State<EmergencyHelp> {
+  GooglePlaceModel googlePlaceModel;
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -56,7 +58,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     _getLocationName();
   }
 
-  /* _getLocationName() async {
+  /*_getLocationName() async {
     Position position = await Geolocator
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     debugPrint('location_latitude: ${position.latitude}');
@@ -72,6 +74,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     this.position = position;
     debugPrint('location: ${position.latitude}');
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
+    latitude= position.latitude.toString();
+    longitude= position.longitude.toString();
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -86,6 +90,24 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
       print(e.toString());
     }
   }
+
+
+  /*callAPI(lat, longi) {
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_API(
+            lati: lat, longi: longi, healthpro: medicallserviceTypelow),
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            //String msg = map[Const.MESSAGE];
+            //if (map["status"] == "ok") {
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
+            *//* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*//*
+          });
+        });
+  }*/
 
   callAPI() {
     print(ApiFactory.EMERGENCY_HELP +
@@ -125,7 +147,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 200,
+                  height: 370,
                   child: ListView.builder(
                     itemBuilder: (context, i) {
                       return ListTile(
@@ -137,8 +159,21 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           list[i].relation,
                           style: TextStyle(color: Colors.black),
                         ),
-                        trailing: Icon(Icons.call, color: Colors.black),
+                      /*InkWell(
+                      onTap: () {
+                      // Navigator.pop(context);
+                      AppData.launchURL("tel://" +
+                      emergencyHelpModel.emergency[0].mobile);
+                      },*/
+                       trailing:InkWell(
+                      onTap: () {
+                      // Navigator.pop(context);
+                      AppData.launchURL("tel://" +
+                          list[i].mobile);
+                      }, child:Icon(Icons.call, color: Colors.black),
+                       )
                       );
+                      /*);*/
                     },
                     itemCount: list.length,
                   ),
@@ -148,7 +183,60 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           );
         });
   }
+  showUserList1(BuildContext context,List<Results> results) {
+    var i = 3;
+    return showDialog(
+        context: context,
 
+        barrierDismissible: true,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                //title: const Text("Is it your details?"),
+                contentPadding:
+                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                //contentPadding: EdgeInsets.only(top: 10.0),
+                content: Container(
+
+                  height: 370,
+                  child: ListView.builder(
+                    itemBuilder: (context, i) {
+                      return ListTile(
+                          title: Text(
+                            results[i].name,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          /*subtitle: Text(
+                            results[i].relation,
+                            style: TextStyle(color: Colors.black),
+                          ),*/
+                          /*InkWell(
+                      onTap: () {
+                      // Navigator.pop(context);
+                      AppData.launchURL("tel://" +
+                      emergencyHelpModel.emergency[0].mobile);
+                      },*/
+                          /*trailing:InkWell(
+                            onTap: () {
+                              // Navigator.pop(context);
+                              AppData.launchURL("tel://" +
+                                  results[i].mobile);
+                            }, child:Icon(Icons.call, color: Colors.black),
+                          )*/
+                      );
+                      /*);*/
+                    },
+                    itemCount: results.length,
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -572,10 +660,34 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                   ),
                                 ),
                                 /* SizedBox(width: 100,),*/
-                                InkWell(
-                                    onTap: () {
+
+                                      InkWell(
+                                          onTap: () {
+                                            widget.model.GETMETHODCAL(
+                                                api: ApiFactory.GOOGLE_API(
+                                                    lati: latitude, longi: longitude, healthpro: "Ambulance"),
+                                                fun: (Map<String, dynamic> map) {
+                                                  setState(() {
+                                                    //String msg = map[Const.MESSAGE];
+                                                    //if (map["status"] == "ok") {
+                                                    googlePlaceModel = GooglePlaceModel.fromJson(map);
+                                                    if (googlePlaceModel != null &&
+                                                        googlePlaceModel.results.isNotEmpty)
+                                                      showUserList1(
+                                                          context, googlePlaceModel.results);
+                                                    else
+                                                      AppData.showInSnackBar(
+                                                          context, "Data not found");
+                                                    /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+                                                  });
+                                                });
+
+                                      },
                                       // Navigator.pop(context);
-                                    },
+
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),

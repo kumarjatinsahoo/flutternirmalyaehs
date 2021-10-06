@@ -197,6 +197,32 @@ class _MedicineList extends State<UserTestList1> {
                                             horizontal: 15, vertical: 5),
                                         child: Row(
                                           crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                            "Doctor: ",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              body.doctor ?? "N/A",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 5),
+                                        child: Row(
+                                          crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(

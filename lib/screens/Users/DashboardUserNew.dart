@@ -1459,8 +1459,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                        //  AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/medicinereminder");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                       // Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1504,7 +1504,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTilered(
                       icon: "assets/offers.png",
                       fun: () {
-                        Navigator.pushNamed(context, "/discountoffer");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                       // Navigator.pushNamed(context, "/discountoffer");
                         //AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
@@ -1552,7 +1553,7 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Organ  Donation",
                       fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
+
                         Navigator.pushNamed(context, "/organdonation");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
@@ -1597,8 +1598,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
                       fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/geneicstores");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        //Navigator.pushNamed(context, "/geneicstores");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1644,8 +1645,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Govt Schemes",
                       fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/govtschemes");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        //Navigator.pushNamed(context, "/govtschemes");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1683,8 +1684,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Upload Medical Data",
                       fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/insuranceList");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        //Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -1717,8 +1718,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_care.png",
                       fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/chemistspage");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                       // Navigator.pushNamed(context, "/chemistspage");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1761,8 +1762,8 @@ class MyPage1Widget extends StatelessWidget {
                   _buildTilered(
                     icon: "assets/medipedia.png",
                     fun: () {
-                      //AppData.showInSnackBar(context, "Coming soon");
-                      Navigator.pushNamed(context, "/medipedia");
+                      AppData.showInSnackDone(context, "Coming Soon");
+                      //Navigator.pushNamed(context, "/medipedia");
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
@@ -2196,8 +2197,8 @@ class MyPage2Widget extends StatelessWidget {
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Health Checkup",
                             fun: () {
-                              //AppData.showInSnackBar(context, "Coming soon");
-                              Navigator.pushNamed(context, "/healthCheckup");
+                              AppData.showInSnackDone(context, "Coming Soon");
+                             // Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG2BLUE,
                             bordercolor: AppData.BG2BLUE,
@@ -2226,8 +2227,8 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/infomatics.png",
                             title: "Discount & Offers",
                             fun: () {
-                              //AppData.showInSnackBar(context, "Coming soon");
-                              Navigator.pushNamed(context, "/emergencyroom");
+                              AppData.showInSnackDone(context, "Coming Soon");
+                             // Navigator.pushNamed(context, "/emergencyroom");
                               // AppData.showSnack(
                               //     context, "Coming soon", Colors.green);
                             },
