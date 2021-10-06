@@ -56,7 +56,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     _getLocationName();
   }
 
-  /* _getLocationName() async {
+  /*_getLocationName() async {
     Position position = await Geolocator
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     debugPrint('location_latitude: ${position.latitude}');
@@ -125,7 +125,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 200,
+                  height: 370,
                   child: ListView.builder(
                     itemBuilder: (context, i) {
                       return ListTile(
@@ -137,8 +137,21 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           list[i].relation,
                           style: TextStyle(color: Colors.black),
                         ),
-                        trailing: Icon(Icons.call, color: Colors.black),
+                      /*InkWell(
+                      onTap: () {
+                      // Navigator.pop(context);
+                      AppData.launchURL("tel://" +
+                      emergencyHelpModel.emergency[0].mobile);
+                      },*/
+                       trailing:InkWell(
+                      onTap: () {
+                      // Navigator.pop(context);
+                      AppData.launchURL("tel://" +
+                          list[i].mobile);
+                      }, child:Icon(Icons.call, color: Colors.black),
+                       )
                       );
+                      /*);*/
                     },
                     itemCount: list.length,
                   ),

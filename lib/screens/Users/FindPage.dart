@@ -104,7 +104,6 @@ class _FindPageState extends State<FindPage> {
           Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder>>>>>>>>>" + finder.toJson().toString());
-
           setState(() {
             address = "${finder.formattedAddress}";
             textEditingController[0].text = "${finder.formattedAddress}";
