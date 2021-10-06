@@ -202,14 +202,11 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                body.allFood ?? "N/A",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15),
-                                              ),
+                                            Text(
+                                              body.alltypeid ?? "N/A",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
