@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.RESULT_OK) {
               googlePlacesSearch = GooglePlacesSearchModel.fromJson(map);
+              log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -97,9 +99,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -203,7 +203,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                           googlePlacesSearch.result.name,
                                           //googlePlacesSearch.results[0].name,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w200,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 15,
                                               color: Colors.white),
                                         ),
@@ -257,112 +257,143 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                           color: Colors.white,
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 10.0, bottom: 10.0, left: 22.0, right: 10),
+                                top: 15.0, bottom: 10.0, left: 10.0, right: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                InkWell(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          width: 25,
-                                          height: 25,
-                                          child: Image.asset(
-                                              'assets/images/phonegoogle.png',
-                                              fit: BoxFit.cover)),
-                                      // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Call",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.redAccent,
+                                (googlePlacesSearch
+                                            ?.result?.formattedPhoneNumber !=
+                                        null)
+                                    ? Expanded(
+                                        child: InkWell(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  child: Image.asset(
+                                                      'assets/images/phonegoogle.png',
+                                                      fit: BoxFit.cover)),
+                                              // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "Call",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 15,
+                                                  color: Colors.redAccent,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          onTap: () {
+                                            //Navigator.pop(context);
+                                            /*phoneno = googlePlacesSearch
+                                          .result.formattedPhoneNumber;
+                                      _makingPhoneCall();*/
+                                            AppData.launchURL("tel://" +
+                                                googlePlacesSearch.result
+                                                    .formattedPhoneNumber);
+                                          },
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  onTap: () {
-                                    //Navigator.pop(context);
-                                    phoneno = googlePlacesSearch
-                                        .result.formattedPhoneNumber;
-                                    _makingPhoneCall();
-                                  },
-                                ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          // Navigator.pop(context);
-                                        },
-                                        child: Container(
+                                      )
+                                    : Container(),
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: () {
+                                      log("Value>>>" +
+                                          googlePlacesSearch.result.url);
+                                      AppData.launchURL(
+                                          googlePlacesSearch.result.url);
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
                                             width: 25,
                                             height: 25,
                                             child: Image.asset(
                                                 'assets/images/directiongoogle.png',
-                                                fit: BoxFit.cover))),
-                                    SizedBox(
-                                      height: 10,
+                                                fit: BoxFit.cover)),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Direction",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 15,
+                                              color: Colors.blueAccent),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "Direction",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.blueAccent),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          //Navigator.pop(context);
-                                        },
-                                        child: Container(
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: () {
+                                      log("Value>>>" +
+                                          googlePlacesSearch.result.url);
+                                      AppData.launchURL(
+                                          googlePlacesSearch.result.url);
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
                                             width: 25,
                                             height: 25,
                                             child: Image.asset(
                                                 'assets/images/sharegoogle.png',
-                                                fit: BoxFit.cover))),
-                                    SizedBox(
-                                      height: 10,
+                                                fit: BoxFit.cover)),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Share",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 15,
+                                              color: Colors.redAccent),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "Share",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.redAccent),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          //Navigator.pop(context);
-                                        },
-                                        child: Container(
-                                            width: 25,
-                                            height: 25,
-                                            child: Image.asset(
-                                                'assets/images/websitegoogle.png',
-                                                fit: BoxFit.cover))),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      "Website",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.blueAccent),
-                                    ),
-                                  ],
-                                ),
+                                (googlePlacesSearch?.result?.website != null)
+                                    ? Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            AppData.launchURL(googlePlacesSearch
+                                                .result.website);
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  child: Image.asset(
+                                                      'assets/images/websitegoogle.png',
+                                                      fit: BoxFit.cover)),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "Website",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 15,
+                                                    color: Colors.blueAccent),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
                               ],
                             ),
                           ),
@@ -372,12 +403,13 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                         ),
                         Divider(
                           thickness: 1,
+                          height: 1,
                           color: Colors.black,
                         ),
                         Container(
                           color: Colors.white,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 10.0,bottom: 10,top: 10),
                             child: Column(
                               children: [
                                 Row(
@@ -422,6 +454,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                   Divider(
                                     thickness: 1,
                                     color: Colors.black,
+                                    height: 1,
                                   ),
                                   Container(
                                     color: Colors.white,
@@ -502,6 +535,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                   ),
                                   Divider(
                                     thickness: 1,
+                                    height: 1,
                                     color: Colors.black,
                                   ),
                                 ],
