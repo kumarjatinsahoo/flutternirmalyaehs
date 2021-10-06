@@ -98,7 +98,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
-                   callAPI();
+                   // callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -129,8 +129,7 @@ class _AllergicListListState extends State<AllergicListList> {
                   }
                   allergic.Body body = allergicModel.body[i];
                   return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 15, top: 5),
+                    padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -143,9 +142,17 @@ class _AllergicListListState extends State<AllergicListList> {
                                 borderRadius: BorderRadius.circular(5))),
                         child: Container(
                             /*height: 100,*/
-                            decoration:( i % 2 == 0)?BoxDecoration(
-                                border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))):BoxDecoration(
-                                border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                            decoration: (i % 2 == 0)
+                                ? BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryRedColor,
+                                            width: 5)))
+                                : BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryColor,
+                                            width: 5))),
                             width: double.maxFinite,
                             /*  margin: const EdgeInsets.only(top: 6.0),*/
                             child: Row(
@@ -195,11 +202,14 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Text(
-                                              body.alltypeid ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                body.allFood ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -293,8 +303,8 @@ class _AllergicListListState extends State<AllergicListList> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
-  textEditingController[1].text="";
-  textEditingController[2].text="";
+    textEditingController[1].text = "";
+    textEditingController[2].text = "";
 
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -440,8 +450,6 @@ class _AllergicListListState extends State<AllergicListList> {
                     if (map[Const.STATUS] == Const.SUCCESS) {
                       callAPI();
                       AppData.showInSnackDone(context, map[Const.MESSAGE]);
-
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
@@ -449,7 +457,7 @@ class _AllergicListListState extends State<AllergicListList> {
               //AppData.showInSnackBar(context, "add Successfully");
             }
             Navigator.of(context).pop();
-            callAPI();
+
             // Navigator.of(context).pop();
             // AllergicListList.nameModel.key="";
             // AllergicListList.typeModel.key="";
@@ -521,12 +529,10 @@ class _AllergicListListState extends State<AllergicListList> {
               Navigator.pop(context);
               callAPI();
               //  Navigator.pop(context);
-
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
-
-}
+  }
 }

@@ -225,7 +225,7 @@ class _MyAppState extends State<MyApp> {
     application.onLocaleChanged = onLocaleChange;
     ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
 
-   /* FirebaseMessaging.instance
+    /* FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
@@ -262,7 +262,6 @@ class _MyAppState extends State<MyApp> {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
     });*/
-
   }
 
   popup(String msg, BuildContext context) {
@@ -735,28 +734,26 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/countDown': (context) => CountDownPage(
-                  //model: _model,
+                    model: _model,
                   ),
               '/support': (context) => SupportScreen(
-                  //model: _model,
+                    model: _model,
                   ),
               '/aboutus': (context) => AboutUs(
-                  //model: _model,
+                    model: _model,
                   ),
               '/videos': (context) => VideosPage(
-                  //model: _model,
+                    model: _model,
                   ),
-                //model: _model,
               '/findPage1': (context) => FindPage1(
-                //model: _model,
-              ),
+                    model: _model,
+                  ),
               '/userTab1': (context) => UserMedicineTab1(
-                //model: _model,
-              ),
+                    model: _model,
+                  ),
               '/autoComplete': (context) => SearchPage(
-                //model: _model,
-              ),
-
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

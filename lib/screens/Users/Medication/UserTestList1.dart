@@ -75,7 +75,7 @@ class _MedicineList extends State<UserTestList1> {
     super.initState();
     UserTestList1.labModel = null;
     loginResponse1 = widget.model.loginResponse1;
-    _getLocationName();
+    //_getLocationName();
     callAPI();
   }
 

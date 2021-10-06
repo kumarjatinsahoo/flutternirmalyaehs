@@ -1,7 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:user/models/AutocompleteDTO.dart';
+import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/ResultsServer.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -108,6 +116,179 @@ class _FindPageState extends State<FindPage> {
         });
   }
 
+  Widget dialogRegNo(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 400,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //_buildAboutText(),
+                  //_buildLogoAttribution(),
+                  Text(
+                    "SEARCH",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Material(
+                      elevation: 5,
+                      child: Container(
+                        width: double.maxFinite,
+                        child: TypeAheadField(
+                          textFieldConfiguration: TextFieldConfiguration(
+                            style: TextStyle(color: Colors.black),
+                            textInputAction: TextInputAction.search,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Search',
+                              alignLabelWithHint: true,
+                              hintStyle: TextStyle(
+                                  fontFamily: "Monte",
+                                  fontSize: 17,
+                                  color: Colors.black54),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 2, horizontal: 10),
+                            ),
+                            onSubmitted: (String value) {
+                              if (value != "") {
+                                /*widget.model.searchFilter = value;
+                                    Navigator.pushNamed(context, "/searchResult");*/
+                                //fetchSearchResult(value);
+                              }
+                              //AppData.showInSnackDone(context, value);
+                            },
+                          ),
+                          getImmediateSuggestions: true,
+                          suggestionsCallback: (pattern) async {
+                            return (pattern != null)
+                                ? await fetchSearchAutoComplete(pattern)
+                                : null;
+                          },
+                          hideOnLoading: true,
+                          itemBuilder: (context, Predictions suggestion) {
+                            return ListTile(
+                              leading: Icon(Icons.search),
+                              title: Text(suggestion.description),
+                            );
+                          },
+                          onSuggestionSelected: (Predictions suggestion) {
+                            //widget.model.courceName = suggestion.courseSlug;
+                            //Navigator.pushNamed(context, "/courceDetail1");
+                            Navigator.pop(context);
+                            setState(() {
+                              address = "${suggestion.description}";
+                              textEditingController[0].text =
+                                  "${suggestion.description}";
+                              cityName = (suggestion?.terms != null &&
+                                      suggestion?.terms?.length >= 3)
+                                  ? suggestion
+                                      .terms[suggestion.terms.length - 3].value
+                                  : "";
+                              //print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
+                              // longitudes = suggestion.longitude.toString();
+                              // latitudes = position.altitude.toString();
+                              locationData(suggestion.placeId);
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("Cancel"),
+        ),
+        new FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('SEARCH'),
+        ),
+      ],*/
+    );
+  }
+
+  locationData(placeId) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              setState(() {
+                GooglePlacesSearchModel googlePlacesSearch =
+                    GooglePlacesSearchModel.fromJson(map);
+                log("Print Select Value>>>>" +
+                    googlePlacesSearch.result.geometry.location.lat.toString() +
+                    "<<<<" +
+                    googlePlacesSearch.result.geometry.location.lng.toString());
+                latitudes =
+                    googlePlacesSearch.result.geometry.location.lat.toString();
+                longitudes =
+                    googlePlacesSearch.result.geometry.location.lng.toString();
+              });
+            } else {
+              //isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
+  }
+
+  Future<List<Predictions>> fetchSearchAutoComplete(String course_name) async {
+    var dio = Dio();
+    //Map<String, dynamic> postMap = {"course_name": course_name};
+    final response = await dio.get(
+      ApiFactory.AUTO_COMPLETE + course_name,
+    );
+
+    if (response.statusCode == 200) {
+      AutoCompleteDTO model = AutoCompleteDTO.fromJson(response.data);
+      setState(() {
+        //this.courcesDto = model;
+      });
+      return model.predictions;
+    } else {
+      setState(() {
+        //isAnySearchFail = true;
+      });
+      throw Exception('Failed to load album');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -179,15 +360,6 @@ class _FindPageState extends State<FindPage> {
                           bottomLeft: const Radius.circular(8.0),
                           bottomRight: const Radius.circular(8.0),
                         ),
-                        /*image: DecorationImage(
-                    image: AssetImage(
-                      "assets/card.png",
-                    ),
-                    fit: BoxFit.fitWidth,
-                  ),*/
-                        /*gradient: LinearGradient(
-                    colors: [AppData.matruColor, Colors.black54],
-                  ),*/
                         color: AppData.matruColor,
                       ),
                       child: Column(
@@ -239,28 +411,31 @@ class _FindPageState extends State<FindPage> {
                           ),
                           (FindPage.healthcareProvider != null)
                               ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: (FindPage.healthcareProvider.key == "1" ||
-                                FindPage.healthcareProvider.key == "4")
-                                ? SizedBox(
-                              height: 58,
-                              child: DropDown
-                                  .networkDropdownGetpart4(
-                                  " Select Speciality",
-                                  ApiFactory.SPECIALITY_API,
-                                  "speciality", (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.SPECIALITY_API);
-                                  FindPage.specialistModel = data;
-                                  //DoctorconsultationPage.doctorModel = null;
-                                  // UserSignUpForm.cityModel = null;
-                                });
-                              }),
-                            )
-                                : Container(),
-                          )
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 0),
+                                  child: (FindPage.healthcareProvider.key ==
+                                              "1" ||
+                                          FindPage.healthcareProvider.key ==
+                                              "4")
+                                      ? SizedBox(
+                                          height: 58,
+                                          child:
+                                              DropDown.networkDropdownGetpart4(
+                                                  " Select Speciality",
+                                                  ApiFactory.SPECIALITY_API,
+                                                  "speciality",
+                                                  (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.SPECIALITY_API);
+                                              FindPage.specialistModel = data;
+                                              //DoctorconsultationPage.doctorModel = null;
+                                              // UserSignUpForm.cityModel = null;
+                                            });
+                                          }),
+                                        )
+                                      : Container(),
+                                )
                               : Container(),
-
                           SizedBox(
                             height: 20,
                           ),
@@ -275,7 +450,7 @@ class _FindPageState extends State<FindPage> {
                   ],
                 ),
               ),
-             /* Padding(
+              /* Padding(
                 padding: const EdgeInsets.only(
                   left: 20.0,
                   right: 20.0,
@@ -406,49 +581,64 @@ class _FindPageState extends State<FindPage> {
     );
   }*/
   Widget NumberformField(
-     /* int index,*/
-      String hint,
-      ) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 10,vertical: 10
-      ), margin: EdgeInsets.only(
-        left: 8, right: 8, top: 10
-      ),
-      width: double.maxFinite,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(3),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 1.0,
-            spreadRadius: 0.0,
-            offset: Offset(1.0, 1.0), //shadow direction: bottom right
-          )
-        ],
-      ),
-      child: Text(hint??""),
-      /*child:AbsorbPointer(
-        child: TextFormField(
-          maxLines: 3,
-          controller: textEditingController[index],
-          cursorColor: AppData.kPrimaryColor,
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+    /* int index,*/
+    String hint,
+  ) {
+    return InkWell(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => dialogRegNo(context),
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+        margin: EdgeInsets.only(left: 8, right: 8, top: 10),
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(3),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 1.0,
+              spreadRadius: 0.0,
+              offset: Offset(1.0, 1.0), //shadow direction: bottom right
+            )
           ],
-          decoration: InputDecoration(
-            *//* suffixIcon: Icon(Icons.phone),*//*
-              border: InputBorder.none,
-              hintText: hint,
-              hintStyle: TextStyle(color: Colors.black)
-          ),
-          onSaved: (value) {
-            //userPersonalForm.phoneNumber = value;
-          },
-        ),),*/
+        ),
+        child: Row(
+          children: [
+            Expanded(child: Text(hint ?? "",style: TextStyle(color: Colors.black,fontSize: 16),)),
+            //Icon(Icons.add_location),
+            InkWell(
+                child: Icon(
+              Icons.search,
+              color: Colors.grey,
+            )),
+          ],
+        ),
+        /*child:AbsorbPointer(
+          child: TextFormField(
+            maxLines: 3,
+            controller: textEditingController[index],
+            cursorColor: AppData.kPrimaryColor,
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            ],
+            decoration: InputDecoration(
+              */ /* suffixIcon: Icon(Icons.phone),*/ /*
+                border: InputBorder.none,
+                hintText: hint,
+                hintStyle: TextStyle(color: Colors.black)
+            ),
+            onSaved: (value) {
+              //userPersonalForm.phoneNumber = value;
+            },
+          ),),*/
+      ),
     );
   }
 

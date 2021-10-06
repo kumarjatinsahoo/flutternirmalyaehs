@@ -56,7 +56,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   FocusNode fnode2 = new FocusNode();
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
-  FocusNode fnode5= new FocusNode();
+  FocusNode fnode5 = new FocusNode();
   AddBioMedicalModel addBioMedicalModel = AddBioMedicalModel();
 
   @override
@@ -76,7 +76,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              biomedicalModel = bio.BiomedicalModel.fromJson(map);
+              setState(() {
+                biomedicalModel = bio.BiomedicalModel.fromJson(map);
+              });
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -89,6 +91,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: AppData.kPrimaryColor,
           title: Row(
             children: [
               Text("Biomedical Implants"),
@@ -111,13 +114,12 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                   shrinkWrap: true,
                   itemBuilder: (context, i) {
                     bio.Body body = biomedicalModel.body[i];
-
                     return Padding(
                       padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
                       child: Card(
                         shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                         shadowColor: Colors.grey,
                         elevation: 10,
                         child: ClipPath(
@@ -125,10 +127,17 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5))),
                           child: Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    left: BorderSide(
-                                        color: AppData.matruColor, width: 5))),
+                            decoration: (i % 2 == 0)
+                                ? BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryRedColor,
+                                            width: 5)))
+                                : BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryColor,
+                                            width: 5))),
                             width: double.maxFinite,
                             child: Column(
                               children: [
@@ -137,18 +146,19 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                       left: 10.0, top: 10, right: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(
-                                        "Name",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Name",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                      SizedBox(width: 65),
-
                                       Expanded(
                                         child: Text(
                                           body?.bioMName ?? "N/A",
-                                          style: TextStyle(fontSize: 16),
+                                          style: TextStyle(fontSize: 15),
                                         ),
                                       ),
                                     ],
@@ -160,39 +170,44 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                       left: 10.0, top: 20, right: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(
-                                        "Date",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Date",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-
-                                      //dob(),
-
-                                      SizedBox(width: 75),
-                                      Text(
-                                        body?.bioMDate ?? "N/A",
-                                        style: TextStyle(fontSize: 16),
+                                      Expanded(flex: 1,
+                                        child: Text(
+                                          body?.bioMDate ?? "N/A",
+                                          style: TextStyle(fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-                               // SizedBox(height: 5),
+                                // SizedBox(height: 5),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10.0, top: 20, right: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(
-                                        "Reason",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Reason",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                      SizedBox(width: 50),
-                                      Text(
-                                        body?.bioMReason ?? "N/A",
-                                        style: TextStyle(fontSize: 16),
+                                      Expanded(flex: 1,
+                                        child: Text(
+                                          body?.bioMReason ?? "N/A",
+                                          style: TextStyle(fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -211,8 +226,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   }
 
   displayTextInputDialog(BuildContext context) {
-    _date.text="";
-    _reason.text="";
+    _date.text = "";
+    _reason.text = "";
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -235,7 +250,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                               Center(
                                 child: Text(
                                   "Add Details",
-                                  style: TextStyle(color: Colors.black, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
                                 ),
                               ),
                             ],
@@ -265,7 +281,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           });
                         }),
                         SizedBox(height: 5),
-                         dob(),
+                        dob(),
                         SizedBox(height: 5),
 
                         formField(1, "  Reason"),
@@ -340,7 +356,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         setState(() {
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             Navigator.pop(context);
-                            AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
                           } else {
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
@@ -352,7 +370,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               ),
             ],
           );
-        }, context: context);
+        },
+        context: context);
   }
 
   Widget dob() {
@@ -370,7 +389,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               border: Border.all(color: Colors.black, width: 0.3),
             ),
             child: TextFormField(
-
               focusNode: fnode3,
               // enabled: !widget.isConfirmPage ? false : true,
               controller: _date,
@@ -418,23 +436,21 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now().add(new Duration(days: 5))
-            ); //18 years is 6570 days
+        lastDate:
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
-        _date.value =
-            TextEditingValue(text: df.format(picked));
+        _date.value = TextEditingValue(text: df.format(picked));
         addBioMedicalModel.bioMDate = df.format(picked);
       });
   }
 
-
   Widget formField(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
@@ -464,6 +480,4 @@ class _BiomediImplantsState extends State<BiomediImplants> {
       ),
     );
   }
-
-
 }
