@@ -48,7 +48,7 @@ class Body {
   String email;
   String aadhar;
   String enteredBy;
-  List<Null> profileImage;
+  //List<Null> profileImage;
   String profileImageName;
   String profileImageType;
   String userId;
@@ -84,7 +84,7 @@ class Body {
         this.email,
         this.aadhar,
         this.enteredBy,
-        this.profileImage,
+       // this.profileImage,
         this.profileImageName,
         this.profileImageType,
         this.userId,
@@ -120,12 +120,12 @@ class Body {
     email = json['email'];
     aadhar = json['aadhar'];
     enteredBy = json['enteredBy'];
-    // if (json['profileImage'] != null) {
-    //   profileImage = new List<Null>();
-    //   json['profileImage'].forEach((v) {
-    //     //profileImage.add(new Null.fromJson(v));
-    //   });
-    // }
+    /*if (json['profileImage'] != null) {
+      profileImage = new List<Null>();
+      json['profileImage'].forEach((v) {
+        //profileImage.add(new Null.fromJson(v));
+      });
+    }*/
     profileImageName = json['profileImageName'];
     profileImageType = json['profileImageType'];
     userId = json['userId'];
@@ -164,9 +164,9 @@ class Body {
     data['email'] = this.email;
     data['aadhar'] = this.aadhar;
     data['enteredBy'] = this.enteredBy;
-    // if (this.profileImage != null) {
-    //   //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
-    // }
+    /*if (this.profileImage != null) {
+      //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
+    }*/
     data['profileImageName'] = this.profileImageName;
     data['profileImageType'] = this.profileImageType;
     data['userId'] = this.userId;

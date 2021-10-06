@@ -124,5 +124,10 @@ cnfrm.Body pharmacyorderModel;
 
   String txnId;
 
+////////
+String profilebloodgroup;
+String profilespeciality;
+String profilegender;
+String profilerelation;
 
 }

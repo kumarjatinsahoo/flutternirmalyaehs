@@ -71,7 +71,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
-          //  setState(() {
           String msg = map[Const.MESSAGE];
           emger_ms = map["emer_msg"];
           if (map[Const.STATUS1] == Const.SUCCESS) {
@@ -267,13 +266,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                               BorderRadius.circular(5))),
                                   child: InkWell(
                                     onTap: () {
-                                      /*_displayTextInputDialog1(
-                                          context, emergencyHelpModel, 1);*/
                                       (value2 != null)
                                           ? _displayTextInputDialog1(
-                                              context, emergencyHelpModel, 1)
+                                          context, emergencyHelpModel, 1)
                                           : _displayTextInputDialog(
-                                              context, emergencyHelpModel);
+                                          context, emergencyHelpModel);
                                     },
                                     child: Container(
                                         height: 60,
