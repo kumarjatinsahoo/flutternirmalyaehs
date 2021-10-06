@@ -98,7 +98,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
-                    // callAPI();
+                   // callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -118,7 +118,7 @@ class _AllergicListListState extends State<AllergicListList> {
         ),
         body: (allergicModel != null)
             ? ListView.builder(
-                // physics: NeverScrollableScrollPhysics(),
+               // physics: NeverScrollableScrollPhysics(),
                 // controller: _scrollController,
                 shrinkWrap: true,
                 itemBuilder: (context, i) {
@@ -179,7 +179,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                               ),
                                             ),
                                             Text(
-                                              body.allName ?? "N/A",
+                                              body.allnameid ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 15),
@@ -203,8 +203,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+                                              padding: const EdgeInsets.all(8.0),
                                               child: Text(
                                                 body.allFood ?? "N/A",
                                                 style: TextStyle(
@@ -254,11 +253,14 @@ class _AllergicListListState extends State<AllergicListList> {
                                                         FontWeight.bold),
                                               ),
                                             ),
-                                            Text(
-                                              body.updatedby ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Container(
+                                              width: 150,
+                                              child: Text(
+                                                body.updatedby ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
