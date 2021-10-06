@@ -1,8 +1,7 @@
 // import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_sound_lite/flutter_sound.dart';
+//import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -20,14 +19,19 @@ class _EmergencyDetailsState extends State<EmergencyDetails> {
   // AudioCache audioCache; // = AudioCache();
   // AudioPlayer advancedPlayer = AudioPlayer();
   String localFilePath;
-  FlutterSoundPlayer player;
+  //FlutterSoundPlayer player;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    player=FlutterSoundPlayer();
-    player.startPlayer(fromURI: "assets/audio/emergency_alert.mp3");
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // player=FlutterSoundPlayer();
+      //player.startPlayer(fromURI: "https://sidhudkl.000webhostapp.com/user_photo/emergency_alert.mp3");
+    });
+
+
    /* audioCache = AudioCache(
       prefix: "assets/audio/",
       //fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),

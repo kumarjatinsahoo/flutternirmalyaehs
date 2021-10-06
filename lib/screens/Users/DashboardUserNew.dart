@@ -100,7 +100,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 channel.description,
                 // TODO add a proper drawable resource to android, for now using
                 //      one that already exists in example app.
-                icon: 'launch_background',
+                icon: 'logo1',
               ),
             ));
         //popup("View one",context);
@@ -557,7 +557,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 title: Text('Logout'),
                 selected: _selectedDestination == 16,
                 onTap: () {
+                  //FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
                   FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
                   selectDestination(16);
                   _exitApp();
                 },

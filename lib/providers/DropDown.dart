@@ -1505,18 +1505,21 @@ class DropDown {
               bottomLeft: Radius.circular(3.0),
               bottomRight: Radius.circular(3.0),
               topRight: Radius.circular(3.0),
-              topLeft: Radius.circular(3.0)),
+              topLeft: Radius.circular(3.0),),
         ),
+
       ),
       hint: label,
       errorBuilder: (cg, value, v) {
         return Material(
-            child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "No Data Found",
-                  style: TextStyle(color: Colors.black),
-                )));
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
       },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -1539,6 +1542,7 @@ class DropDown {
           borderRadius: BorderRadius.all(Radius.circular(29)),
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
+
       ),
       //label: label,
       showSearchBox: true,
@@ -1648,13 +1652,17 @@ class DropDown {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(value.address.toString()),
-                  SizedBox(height: 3,),
+                  SizedBox(
+                    height: 3,
+                  ),
                   Text(value.type),
                 ],
               ),
               leading: Image.asset("assets/images/medical-team.png"),
             ),
-            Divider(thickness: 1,)
+            Divider(
+              thickness: 1,
+            )
           ],
         );
       },
@@ -2043,8 +2051,8 @@ class DropDown {
     ));
   }
 
-  static timeSlot(String label, final String API,
-      String callFrom, token, Function fun, context) {
+  static timeSlot(String label, final String API, String callFrom, token,
+      Function fun, context) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
@@ -2694,7 +2702,6 @@ class DropDown {
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
         }
 
         return list;

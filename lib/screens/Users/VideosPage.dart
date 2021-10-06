@@ -21,7 +21,7 @@ class VideosPage extends StatefulWidget {
 }
 
 class _VideosPageState extends State<VideosPage> {
-  LoginResponse1 loginResponse;
+  //LoginResponse1 loginResponse;
 
   List<MedipediaDTO> list = MedipediaData.list;
   List<String> urlList = [];
@@ -29,7 +29,7 @@ class _VideosPageState extends State<VideosPage> {
 
   @override
   void initState() {
-    loginResponse = widget.model.loginResponse1;
+    //loginResponse = widget.model.loginResponse1;
     super.initState();
   }
 

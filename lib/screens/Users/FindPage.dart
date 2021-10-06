@@ -61,9 +61,10 @@ class _FindPageState extends State<FindPage> {
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
-    print('location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
-    latitudes=position.latitude.toString();
-    longitudes=position.longitude.toString();
+    print(
+        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    latitudes = position.latitude.toString();
+    longitudes = position.longitude.toString();
     callApi(position.latitude.toString(), position.longitude.toString());
 
     /* try {
@@ -112,11 +113,35 @@ class _FindPageState extends State<FindPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Find',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+        automaticallyImplyLeading: false,
+        title: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Find',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/autoComplete");
+                  },
+                  child: Icon(Icons.search)),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back)),
+            ),
+          ],
         ),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
@@ -143,10 +168,10 @@ class _FindPageState extends State<FindPage> {
                       ),
                     ),*/
                     Container(
-                      margin:
-                      EdgeInsets.only(top: 265.0, left: 8.0, right: 8.0, bottom: .0),
+                      margin: EdgeInsets.only(
+                          top: 265.0, left: 8.0, right: 8.0, bottom: .0),
                       width: double.maxFinite,
-                     /* height: 300,*/
+                      /* height: 300,*/
                       decoration: BoxDecoration(
                         borderRadius: new BorderRadius.only(
                           topLeft: const Radius.circular(8.0),
@@ -169,14 +194,15 @@ class _FindPageState extends State<FindPage> {
                         //mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-
                           SizedBox(
                             height: 20.0,
                           ),
                           Text(
                             'Find Healthcare Provider',
-                            style:
-                            TextStyle(fontSize: 22, fontWeight: FontWeight.w300,color: Colors.white),
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white),
                           ),
                           NumberformField(address),
                           /*AbsorbPointer(
@@ -194,7 +220,8 @@ class _FindPageState extends State<FindPage> {
                           ),*/
 
                           Padding(
-                            padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+                            padding:
+                                const EdgeInsets.only(left: 0.0, right: 0.0),
                             child: SizedBox(
                               height: 55,
                               child: DropDown.networkDropdownGetpart4(
@@ -239,7 +266,8 @@ class _FindPageState extends State<FindPage> {
                           ),
                           _submitButton(),
                           SizedBox(
-                            height: 10,),
+                            height: 10,
+                          ),
                         ],
                       ),
                       // ),
@@ -337,11 +365,11 @@ class _FindPageState extends State<FindPage> {
                                 : Container(),
                           )
                         : Container(),
-                    *//*DropDown.staticDropdown2(
+                    */ /*DropDown.staticDropdown2(
                         "Select Speciality", "state", cityList,
                         (KeyvalueModel data) {
                       setState(() {});
-                    }),*//*
+                    }),*/ /*
                     SizedBox(
                       height: 60,
                     ),
@@ -423,6 +451,7 @@ class _FindPageState extends State<FindPage> {
         ),),*/
     );
   }
+
   Widget _submitButton() {
     return MyWidgets.nextButton3(
         text: "search".toUpperCase(),
@@ -436,25 +465,25 @@ class _FindPageState extends State<FindPage> {
               FindScreen.healthcareProvider == "") {
             AppData.showInSnackBar(context, "Select healthcare Provider");
           } else {*/
-            widget.model.longi = longitudes;
-            widget.model.lati = latitudes;
-            widget.model.addr = address;
-            widget.model.city = cityName;
-            widget.model.type = FindPage?.specialistModel?.key ?? "";
-            widget.model.healthpro = FindPage.healthcareProvider.key;
-            widget.model.healthproname = FindPage.healthcareProvider.name;
-            //widget.model.healthproname = "Doctor";
+          widget.model.longi = longitudes;
+          widget.model.lati = latitudes;
+          widget.model.addr = address;
+          widget.model.city = cityName;
+          widget.model.type = FindPage?.specialistModel?.key ?? "";
+          widget.model.healthpro = FindPage.healthcareProvider.key;
+          widget.model.healthproname = FindPage.healthcareProvider.name;
+          //widget.model.healthproname = "Doctor";
 
-            //Navigator.pushNamed(context, "/navigation");
-            /*if (_loginId.text == "" || _loginId.text == null) {
+          //Navigator.pushNamed(context, "/navigation");
+          /*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-            Navigator.pushNamed(context, "/chemistspage");
-            //Navigator.pushNamed(context, "/searchScreen");
-          }
-       /* }*/
+          Navigator.pushNamed(context, "/chemistspage");
+          //Navigator.pushNamed(context, "/searchScreen");
+        }
+        /* }*/
 
         // },
         );
