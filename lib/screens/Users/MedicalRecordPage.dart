@@ -149,7 +149,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  'Doctor Prescriptions',
+                                                  'Medication',
                                                   style: TextStyle(
                                                       fontWeight: FontWeight
                                                           .normal,

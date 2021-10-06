@@ -58,9 +58,8 @@ class _OrganDonationState extends State<OrganDonation> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(30.0),
-                                        child: Image.network(
-                                          'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-
+                                        child: Image.asset(
+                                          'assets/intro/organ1.jpeg',
                                         ),
                                       ),
                                     ],
@@ -100,9 +99,8 @@ class _OrganDonationState extends State<OrganDonation> {
                                    children: [
                                      Padding(
                                        padding: const EdgeInsets.all(30.0),
-                                       child: Image.network(
-                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-
+                                       child: Image.asset(
+                                         'assets/intro/organ2.jpeg',
                                        ),
                                      ),
                                    ],
@@ -141,8 +139,8 @@ class _OrganDonationState extends State<OrganDonation> {
                                    children: [
                                      Padding(
                                        padding: const EdgeInsets.all(30.0),
-                                       child: Image.network(
-                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
+                                       child: Image.asset(
+                                         'assets/intro/organ3.jpeg',
                                        ),
                                      ),
                                    ],
@@ -181,9 +179,8 @@ class _OrganDonationState extends State<OrganDonation> {
                                    children: [
                                      Padding(
                                        padding: const EdgeInsets.all(30.0),
-                                       child: Image.network(
-                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-
+                                       child: Image.asset(
+                                         'assets/intro/organ4.jpeg',
                                        ),
                                      ),
                                    ],
