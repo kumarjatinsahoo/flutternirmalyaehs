@@ -184,7 +184,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
   showUserList1(BuildContext context,List<Results> results) {
-    var i = 3;
     return showDialog(
         context: context,
 
@@ -204,6 +203,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   height: 370,
                   child: ListView.builder(
                     itemBuilder: (context, i) {
+
                       return ListTile(
                           title: Text(
                             results[i].name,
@@ -229,7 +229,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       );
                       /*);*/
                     },
-                    itemCount: results.length,
+                    itemCount: results.length ,
+
                   ),
                 ),
               );

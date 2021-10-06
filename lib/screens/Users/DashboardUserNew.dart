@@ -1762,8 +1762,8 @@ class MyPage1Widget extends StatelessWidget {
                   _buildTilered(
                     icon: "assets/medipedia.png",
                     fun: () {
-                      AppData.showInSnackDone(context, "Coming Soon");
-                      //Navigator.pushNamed(context, "/medipedia");
+                     // AppData.showInSnackDone(context, "Coming Soon");
+                      Navigator.pushNamed(context, "/medipedia");
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
