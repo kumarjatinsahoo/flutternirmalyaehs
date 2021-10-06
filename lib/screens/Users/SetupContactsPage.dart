@@ -120,43 +120,22 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppData.kPrimaryColor,
+            //backgroundColor: AppData.kPrimaryColor,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            title: Row(
+              children: [
+                Text('Setup Contacts'),
+              ],
+            ),
+          ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Setup Contacts',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Icon(Icons.search, color: Colors.white),
-                  ],
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-            ),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
