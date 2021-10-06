@@ -170,23 +170,6 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  fetchSearchResult(search) async {
-    Map<String, dynamic> postMap;
-    postMap = {"course_name": search};
-    widget.model.POSTMETHOD(
-        api: ApiFactory.AUTO_COMPLETE,
-        json: postMap,
-        fun: (Map<String, dynamic> map) {
-          if (map["success"] == true) {
-            setState(() {
-              courcesDto = AutoCompleteDTO.fromJson(map);
-            });
-          } else {
-            isAnySearchFail = true;
-            AppData.showInSnackBar(context, "No Data Found");
-          }
-        });
-  }
 
   Future<List<Predictions>> fetchSearchAutoComplete(
       String course_name) async {

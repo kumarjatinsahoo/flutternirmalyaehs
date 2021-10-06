@@ -37,6 +37,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
   OpeningHours openingHours;
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
+
   //Completer<WebViewController> _controller = Completer<WebViewController>();
   String phoneno;
 
@@ -95,6 +96,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
         });
   }
 
+  @override
   Widget build(
     BuildContext context,
   ) {
@@ -170,11 +172,15 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
               ),*/
                     Container(
                       height: 270,
-                      child: Image.network(ApiFactory.GOOGLE_MAP_IMG(
-                          lat: googlePlacesSearch.result.geometry.location.lat
-                              .toString(),
-                          long: googlePlacesSearch.result.geometry.location.lng
-                              .toString()),fit: BoxFit.cover,),
+                      child: Image.network(
+                        ApiFactory.GOOGLE_MAP_IMG(
+                            lat: googlePlacesSearch.result.geometry.location.lat
+                                .toString(),
+                            long: googlePlacesSearch
+                                .result.geometry.location.lng
+                                .toString()),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Column(
                       children: [
@@ -213,19 +219,27 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                     ],
                                   ),
                                   Text(
-                                    (googlePlacesSearch?.result?.rating.toString()=="null")?"0" +
-                                        " Ratings":googlePlacesSearch?.result?.rating.toString() +
-                                        " Ratings",
+                                    (googlePlacesSearch?.result?.rating
+                                                .toString() ==
+                                            "null")
+                                        ? "0" + " Ratings"
+                                        : googlePlacesSearch?.result?.rating
+                                                .toString() +
+                                            " Ratings",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 15,
                                         color: Colors.white),
                                   ),
                                   Text(
-                                    (googlePlacesSearch
-                                            ?.result?.reviews?.length.toString()=="null") ?
-                                        "0".toString() + " Reviews ":googlePlacesSearch
-                                        ?.result?.reviews?.length.toString()+ " Reviews",
+                                    (googlePlacesSearch?.result?.reviews?.length
+                                                .toString() ==
+                                            "null")
+                                        ? "0".toString() + " Reviews "
+                                        : googlePlacesSearch
+                                                ?.result?.reviews?.length
+                                                .toString() +
+                                            " Reviews",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 15,
@@ -400,89 +414,99 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                           ),
                           width: double.infinity,
                         ),
-                        (googlePlacesSearch?.result?.openingHours?.weekdayText?.length!=null)?  Column(
-                          children: [
-                            Divider(
-                              thickness: 1,
-                              color: Colors.black,
-                            ),
-                            Container(
-                              color: Colors.white,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Column(
-                                  children: [
-                                    Row(children: [
-                                      InkWell(
-                                          onTap: () {
-                                            //Navigator.pop(context);
-                                          },
-                                          child: Container(
-                                              child: Column(
-                                            children: [
-                                              Icon(Icons.access_time,
-                                                  color: AppData.kPrimaryRedColor),
-                                              SizedBox(
-                                                height: 200,
-                                              )
-                                            ],
-                                          ))),
-                                      SizedBox(width: 15),
-                                      Expanded(
-                                          child: Column(
+                        (googlePlacesSearch?.result?.openingHours?.weekdayText
+                                    ?.length !=
+                                null)
+                            ? Column(
+                                children: [
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.black,
+                                  ),
+                                  Container(
+                                    color: Colors.white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Column(
                                         children: [
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            itemCount: googlePlacesSearch
-                                                    ?.result
-                                                    ?.openingHours
-                                                    ?.weekdayText
-                                                    ?.length ??
-                                                0,
-                                            itemBuilder:
-                                                (BuildContext context, int index) {
-                                              return Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Row(
+                                          Row(children: [
+                                            InkWell(
+                                                onTap: () {
+                                                  //Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                    child: Column(
                                                   children: [
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          child: Text(
-                                                            googlePlacesSearch
-                                                                .result
-                                                                .openingHours
-                                                                .weekdayText[index],
-                                                            style: TextStyle(
-                                                                color: Colors.black,
-                                                                fontSize: 15),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                    Icon(Icons.access_time,
+                                                        color: AppData
+                                                            .kPrimaryRedColor),
                                                     SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                      height: 200,
+                                                    )
                                                   ],
+                                                ))),
+                                            SizedBox(width: 15),
+                                            Expanded(
+                                                child: Column(
+                                              children: [
+                                                ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount: googlePlacesSearch
+                                                          ?.result
+                                                          ?.openingHours
+                                                          ?.weekdayText
+                                                          ?.length ??
+                                                      0,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Row(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Container(
+                                                                child: Text(
+                                                                  googlePlacesSearch
+                                                                      .result
+                                                                      .openingHours
+                                                                      .weekdayText[index],
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
-                                          ),
+                                              ],
+                                            )),
+                                          ]),
                                         ],
-                                      )),
-                                    ]),
-                                  ],
-                                ),
-                              ),
-                              // height: MediaQuery.of(context).size.height * 0.1,
-                              // width: MediaQuery.of(context).size.width,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ):Container(),
+                                      ),
+                                    ),
+                                    // height: MediaQuery.of(context).size.height * 0.1,
+                                    // width: MediaQuery.of(context).size.width,
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              )
+                            : Container(),
                       ],
                     ),
                   ],

@@ -74,11 +74,12 @@ class _MedicineList extends State<UserMedicineList1> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     UserMedicineList1.pharmacyModel = null;
-    _getLocationName();
+    //_getLocationName();
     callAPI();
   }
 
   callAPI() {
+    log("Api call>>"+ApiFactory.doctor_MEDICINE_LIST + loginResponse1.body.user);
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.doctor_MEDICINE_LIST + loginResponse1.body.user,
       token: widget.model.token,
