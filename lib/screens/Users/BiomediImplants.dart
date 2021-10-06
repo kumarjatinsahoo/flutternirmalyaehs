@@ -89,6 +89,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: AppData.kPrimaryColor,
           title: Row(
             children: [
               Text("Biomedical Implants"),
