@@ -550,11 +550,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                         3],
                                                 decoration:
                                                     InputDecoration(
-                                                      counterText: "",
                                                   prefixIcon: Icon(Icons
                                                       .accessibility_outlined),
                                                   border:
                                                       InputBorder.none,
+                                                  counterText:"",
                                                   hintText:
                                                       MyLocalizations.of(
                                                               context)
@@ -1266,7 +1266,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text.length=="" || textEditingController[3].text == null) ) {
+    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text ==""|| textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
