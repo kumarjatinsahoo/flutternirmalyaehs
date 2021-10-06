@@ -22,7 +22,6 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
-
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
   final bool isConfirmPage;
