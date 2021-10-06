@@ -438,8 +438,8 @@ class _AllergicListListState extends State<AllergicListList> {
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                      callAPI();
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }

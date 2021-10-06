@@ -1510,7 +1510,7 @@ class DropDown {
 
       ),
       hint: label,
-      errorBuilder: (cg, value, v) {
+     /* errorBuilder: (cg, value, v) {
         return Material(
           child: Container(
             alignment: Alignment.center,
@@ -1520,7 +1520,7 @@ class DropDown {
             ),
           ),
         );
-      },
+      },*/
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         icon: Icon(
@@ -1553,9 +1553,6 @@ class DropDown {
         var response = await Dio().get(
           API,
         );
-
-        //log("Drop down list>>>>>" + jsonEncode(response.data));
-
         switch (callFrom) {
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);

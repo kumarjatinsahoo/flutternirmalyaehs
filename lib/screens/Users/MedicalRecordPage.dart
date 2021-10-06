@@ -134,18 +134,22 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                             CrossAxisAlignment.center,
                                             children: [
                                               Container(
+                                                  height: 45,
+                                                  width: 45,
                                                   color: Colors.red,
-                                                  padding: EdgeInsets.all(3),
+                                                  padding: EdgeInsets.all(6),
                                                   child: Image.asset(
-                                                    "assets/images/Vitalsigns.png",
-                                                    height: 40,
+                                                    "assets/intro/generic_medicine2.png",
+                                                    height: 25,
+                                                    width: 25,
+                                                    color: Colors.white,
                                                   )),
                                               SizedBox(
                                                 width: spaceTab,
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  'Medicines',
+                                                  'Doctor Prescriptions',
                                                   style: TextStyle(
                                                       fontWeight: FontWeight
                                                           .normal,
@@ -153,7 +157,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                 ),
                                               ),
                                               Image.asset(
-                                                "assets/generic_medicine.png",
+                                                "assets/Forwordarrow.png",
                                                 height: 25,
                                               )
                                             ],
