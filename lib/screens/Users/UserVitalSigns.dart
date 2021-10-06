@@ -129,7 +129,7 @@ class _VitalSignsState extends State<VitalSigns> {
 ]
         ),
 
-        body:  SingleChildScrollView(
+        body:   SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
             child: Column(
