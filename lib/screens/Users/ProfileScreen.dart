@@ -1010,7 +1010,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    _fname.text =patientProfileModel.body.fName.toString() ;
+    /*_fname.text =patientProfileModel.body.fName.toString() ;
     _lname.text = patientProfileModel.body.lName.toString();
     textEditingController[2].text = patientProfileModel.body.dob.toString();
    // ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";
@@ -1023,7 +1023,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _docMobile.text=patientProfileModel.body.docMobile.toString();
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
     updateProfileModel.id = patientProfileModel.body.id.toString();
-
+*/
     return showDialog(
         context: context,
         builder: (context) {
@@ -1367,7 +1367,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (_lname.text == null || _lname.text == "") {
                       AppData.showInSnackBar(context, "Please enter last name");
                     } else {*/
-                    _fname.text =patientProfileModel.body.fName.toString() ;
+                   /* _fname.text =patientProfileModel.body.fName.toString() ;
                     _lname.text = patientProfileModel.body.lName.toString();
                     textEditingController[2].text = patientProfileModel.body.dob.toString();
                     // ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";
@@ -1379,15 +1379,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
                     _docMobile.text=patientProfileModel.body.docMobile.toString();
                     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
-                    updateProfileModel.id = patientProfileModel.body.id.toString();
+                    updateProfileModel.id = patientProfileModel.body.id.toString();*/
                     log("profile  MODEL SEND>>>>" + jsonEncode(updateProfileModel.toJson()));
 
-/*                    updateProfileModel.fName = _fname.text;
+                    updateProfileModel.fName = _fname.text;
                     updateProfileModel.lName = _lname.text;
                     updateProfileModel.eCardNo = patientProfileModel.body.id;
                     updateProfileModel.fDoctor = _fDoctor.text;
                     updateProfileModel.fDoctor = _fDoctor.text;
-                    updateProfileModel.id = patientProfileModel.body.id;*/
+                    updateProfileModel.id = patientProfileModel.body.id;
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.USER_UPDATEPROFILE,
                         json: updateProfileModel.toJson(),
