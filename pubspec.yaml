@@ -57,8 +57,10 @@ dependencies:
   firebase_messaging: ^10.0.1
   flutter_local_notifications: ^6.0.0
   firebase_core: ^1.2.1
+  flutter_typeahead: ^3.2.0
 #  audioplayers: ^0.19.0
-  flutter_sound_lite: ^8.3.12
+#  flutter_sound_lite: ^8.3.12
+#  audioplayers: ^0.18.2
 
 dev_dependencies:
   flutter_test:

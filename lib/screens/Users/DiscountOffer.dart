@@ -456,7 +456,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                   ),
                                 ),
                                 GestureDetector(
-                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                                   onTap: () =>   Navigator.pushNamed(context, "/discountofferdetails"),
                                   child: Card(
                                     elevation: 5,
                                     child: Container(

@@ -79,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+    //FirebaseMessaging.instance.unsubscribeFromTopic("topic")
     /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
         'raw/video_pop.mp4',
@@ -235,13 +236,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, "/forgotpassword");
                             //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                          onDoubleTap: () {
+                         /* onDoubleTap: () {
                             //Navigator.pushNamed(context, "/forgotpassword");
                             Navigator.pushNamed(context, "/dashDoctor");
                           },
                           onLongPress: () {
                             Navigator.pushNamed(context, "/dashboardd");
-                          },
+                          },*/
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
@@ -449,7 +450,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
                     FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
 
                     if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(

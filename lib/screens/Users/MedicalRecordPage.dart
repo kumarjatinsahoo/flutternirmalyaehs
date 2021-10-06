@@ -114,6 +114,56 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   onTap: () =>
 
                                       Navigator.pushNamed(
+                                          context, "/userTab1"),
+                                  child: Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: Colors.red,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/Vitalsigns.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  'Medicines',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/generic_medicine.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),  GestureDetector(
+                                  onTap: () =>
+
+                                      Navigator.pushNamed(
                                           context, "/vitalSigns"),
                                   child: Card(
                                     elevation: 5,
@@ -452,7 +502,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         )),
                                   ),
                                 ),
-                                GestureDetector(
+                                 GestureDetector(
                                   //onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                                   child: Card(
                                     elevation: 5,
