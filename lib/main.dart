@@ -18,6 +18,8 @@ import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/EmergencyDetails.dart';
+import 'package:user/screens/Users/Medication/UserMedicineTab1.dart';
+import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
@@ -746,6 +748,12 @@ class _MyAppState extends State<MyApp> {
                   ),
                 //model: _model,
               '/findPage1': (context) => FindPage1(
+                //model: _model,
+              ),
+              '/userTab1': (context) => UserMedicineTab1(
+                //model: _model,
+              ),
+              '/autoComplete': (context) => SearchPage(
                 //model: _model,
               ),
 
