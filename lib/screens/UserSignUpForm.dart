@@ -553,6 +553,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                       .accessibility_outlined),
                                                   border:
                                                       InputBorder.none,
+                                                  counterText:"",
                                                   hintText:
                                                       MyLocalizations.of(
                                                               context)
