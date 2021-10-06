@@ -54,6 +54,7 @@ class Result {
   num userRatingsTotal;
   num utcOffset;
   String vicinity;
+  String website;
 
   Result(
       {this.addressComponents,
@@ -125,6 +126,7 @@ class Result {
     userRatingsTotal = json['user_ratings_total'];
     utcOffset = json['utc_offset'];
     vicinity = json['vicinity'];
+    website = json['website'];
   }
 
   Map<String, dynamic> toJson() {

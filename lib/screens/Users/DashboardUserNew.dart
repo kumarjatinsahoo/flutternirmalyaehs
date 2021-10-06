@@ -48,7 +48,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     initialPage: 0,
   );
 
-  List<String> imageSliders = [
+ /* List<String> imageSliders = [
     "assets/modiji_banner.jpg",
     "assets/AjitPawarji.PNG",
     "assets/JaiRamThakurji.jpg",
@@ -60,6 +60,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/intro/img_coll.jpg",
     "assets/images/thumb.jpg",
     "assets/images/tmc.png"
+  ];*/
+List<String> imageSliders = [
+    "assets/intro/pm1.jpeg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -634,8 +637,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                             //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
                             switch (index) {
                               case 0:
+                                /*AppData.launchURL(
+                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
                                 AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");
+                                    "https://www.youtube.com/watch?v=CmPGUBJZqlA");
                                 break;
                               case 1:
                                 AppData.launchURL(

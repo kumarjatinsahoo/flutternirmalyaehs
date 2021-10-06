@@ -18,37 +18,18 @@ class _OrganDonationState extends State<OrganDonation> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppData.kPrimaryColor,
+          title: Text(
+            'Organ Donation',
+            style: TextStyle(
+                fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),
+          ),
+        ),
         body: Container(
           child: Column(
             children: [
-              Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(
-                            Icons.arrow_back, color:Colors.white
-                          )),
-                      Text(
-                        'Organ Donation',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),
-                      ),
-                      Icon(
-                        Icons.search,color:Colors.white
-                      ),
-                    ],
-                  ),
-                ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
-              ),
+
               Column(
                 children: [
                   Padding(
@@ -60,178 +41,170 @@ class _OrganDonationState extends State<OrganDonation> {
                         mainAxisSpacing: 40,
                         crossAxisSpacing: 40,
                         children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.blueGrey[50],
-                                        Colors.blue[50]
-                                      ])),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image.network(
-                                            'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-                                           
-                                          ),
+                          Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: Colors.black12),
+                                    gradient: LinearGradient(colors: [
+                                      Colors.blueGrey[50],
+                                      Colors.blue[50]
+                                    ])),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(30.0),
+                                        child: Image.network(
+                                          'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
+
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    'Which Organ?',
-                                    // 'What is Organ Donation?',
-                                    style: TextStyle(
-                                      fontSize: 12,fontWeight: FontWeight.w600,
-                                    ),
-                                    overflow: TextOverflow.clip,
-                                    maxLines: 2,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Which Organ?',
+                                  // 'What is Organ Donation?',
+                                  style: TextStyle(
+                                    fontSize: 12,fontWeight: FontWeight.w600,
                                   ),
-                                )
-                              ],
-                            ),
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 2,
+                                ),
+                              )
+                            ],
                           ),
-                         Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.blueGrey[50],
-                                        Colors.blue[50]
-                                      ])),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image.network(
-                                            'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-                                           
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    'Who Can Do?',
-                                    style: TextStyle(fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    overflow: TextOverflow.clip,
-                                    maxLines: 3,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                         Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.blueGrey[50],
-                                        Colors.blue[50]
-                                      ])),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image.network(
-                                            'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    'Which Organs?',
-                                    style: TextStyle(fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    overflow: TextOverflow.clip,
-                                    maxLines: 3,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                         Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.blueGrey[50],
-                                        Colors.blue[50]
-                                      ])),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image.network(
-                                            'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
-                                           
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    'How to Donate?',
-                                    style: TextStyle(fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    overflow: TextOverflow.clip,
-                                    maxLines: 3,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                         Column(
+                           children: [
+                             Container(
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(5),
+                                   border: Border.all(color: Colors.black12),
+                                   gradient: LinearGradient(colors: [
+                                     Colors.blueGrey[50],
+                                     Colors.blue[50]
+                                   ])),
+                               child: Center(
+                                 child: Column(
+                                   mainAxisAlignment:
+                                       MainAxisAlignment.center,
+                                   children: [
+                                     Padding(
+                                       padding: const EdgeInsets.all(30.0),
+                                       child: Image.network(
+                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
+
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             SizedBox(
+                               height: 10,
+                             ),
+                             Expanded(
+                               child: Text(
+                                 'Who Can Do?',
+                                 style: TextStyle(fontSize: 12,
+                                   fontWeight: FontWeight.w600,
+                                 ),
+                                 overflow: TextOverflow.clip,
+                                 maxLines: 3,
+                               ),
+                             )
+                           ],
+                         ),
+                         Column(
+                           children: [
+                             Container(
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(5),
+                                   border: Border.all(color: Colors.black12),
+                                   gradient: LinearGradient(colors: [
+                                     Colors.blueGrey[50],
+                                     Colors.blue[50]
+                                   ])),
+                               child: Center(
+                                 child: Column(
+                                   mainAxisAlignment:
+                                       MainAxisAlignment.center,
+                                   children: [
+                                     Padding(
+                                       padding: const EdgeInsets.all(30.0),
+                                       child: Image.network(
+                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             SizedBox(
+                               height: 10,
+                             ),
+                             Expanded(
+                               child: Text(
+                                 'Which Organs?',
+                                 style: TextStyle(fontSize: 12,
+                                   fontWeight: FontWeight.w600,
+                                 ),
+                                 overflow: TextOverflow.clip,
+                                 maxLines: 3,
+                               ),
+                             )
+                           ],
+                         ),
+                         Column(
+                           children: [
+                             Container(
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(5),
+                                   border: Border.all(color: Colors.black12),
+                                   gradient: LinearGradient(colors: [
+                                     Colors.blueGrey[50],
+                                     Colors.blue[50]
+                                   ])),
+                               child: Center(
+                                 child: Column(
+                                   mainAxisAlignment:
+                                       MainAxisAlignment.center,
+                                   children: [
+                                     Padding(
+                                       padding: const EdgeInsets.all(30.0),
+                                       child: Image.network(
+                                         'https://www.usccb.org/sites/default/files/styles/slide_astrid/public/2020-11/people%20no%20words%20%281%29%20%281%29.png.jpg?itok=n0IUwhMS',
+
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             SizedBox(
+                               height: 10,
+                             ),
+                             Expanded(
+                               child: Text(
+                                 'How to Donate?',
+                                 style: TextStyle(fontSize: 12,
+                                   fontWeight: FontWeight.w600,
+                                 ),
+                                 overflow: TextOverflow.clip,
+                                 maxLines: 3,
+                               ),
+                             )
+                           ],
+                         ),
                         ],
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer' as dev;
 import 'dart:convert' show base64, utf8;
 
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class AppData {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      throw 'Could not launch $url';
+      dev.log('Could not launch '+url) ;
     }
   }
 
