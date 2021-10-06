@@ -549,6 +549,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                         3],
                                                 decoration:
                                                     InputDecoration(
+                                                      counterText: "",
                                                   prefixIcon: Icon(Icons
                                                       .accessibility_outlined),
                                                   border:
@@ -1131,7 +1132,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text.length !=3 || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
     }
-    else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == " " || textEditingController[5].text == null) ) {
+    else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }
     else if (_checkbox == false) {
@@ -1149,8 +1150,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.countryCode = UserSignUpForm.countryModel.code;
       userModel.stateCode = UserSignUpForm.stateModel.code;
       userModel.state = UserSignUpForm.stateModel.key;
-      userModel.districtid = UserSignUpForm.districtModel.key;;
-      userModel.cityid = UserSignUpForm.cityModel.key;;
+      userModel.districtid = UserSignUpForm.districtModel.key;
+      userModel.cityid = UserSignUpForm.cityModel.key;
 
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
