@@ -204,7 +204,7 @@ class _FindPageState extends State<FindPage> {
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white),
                           ),
-                          NumberformField(0, ''),
+                          NumberformField(address),
                           /*AbsorbPointer(
                             child: TextFormField(
                               maxLines: 3,
@@ -239,31 +239,28 @@ class _FindPageState extends State<FindPage> {
                           ),
                           (FindPage.healthcareProvider != null)
                               ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 0),
-                                  child: (FindPage.healthcareProvider.key ==
-                                              "1" ||
-                                          FindPage.healthcareProvider.key ==
-                                              "4")
-                                      ? SizedBox(
-                                          height: 58,
-                                          child:
-                                              DropDown.networkDropdownGetpart4(
-                                                  " Select Speciality",
-                                                  ApiFactory.SPECIALITY_API,
-                                                  "speciality",
-                                                  (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.SPECIALITY_API);
-                                              FindPage.specialistModel = data;
-                                              //DoctorconsultationPage.doctorModel = null;
-                                              // UserSignUpForm.cityModel = null;
-                                            });
-                                          }),
-                                        )
-                                      : Container(),
-                                )
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
+                            child: (FindPage.healthcareProvider.key == "1" ||
+                                FindPage.healthcareProvider.key == "4")
+                                ? SizedBox(
+                              height: 58,
+                              child: DropDown
+                                  .networkDropdownGetpart4(
+                                  " Select Speciality",
+                                  ApiFactory.SPECIALITY_API,
+                                  "speciality", (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.SPECIALITY_API);
+                                  FindPage.specialistModel = data;
+                                  //DoctorconsultationPage.doctorModel = null;
+                                  // UserSignUpForm.cityModel = null;
+                                });
+                              }),
+                            )
+                                : Container(),
+                          )
                               : Container(),
+
                           SizedBox(
                             height: 20,
                           ),
@@ -278,7 +275,7 @@ class _FindPageState extends State<FindPage> {
                   ],
                 ),
               ),
-              /* Padding(
+             /* Padding(
                 padding: const EdgeInsets.only(
                   left: 20.0,
                   right: 20.0,
@@ -409,51 +406,50 @@ class _FindPageState extends State<FindPage> {
     );
   }*/
   Widget NumberformField(
-    int index,
-    String hint,
-  ) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
-        child: Container(
-          //color: Colors.white,
-          /*height: 80,*/
-          padding: EdgeInsets.symmetric(
-            horizontal: 5,
+     /* int index,*/
+      String hint,
+      ) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,vertical: 10
+      ), margin: EdgeInsets.only(
+        left: 8, right: 8, top: 10
+      ),
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(3),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: 1.0,
+            spreadRadius: 0.0,
+            offset: Offset(1.0, 1.0), //shadow direction: bottom right
+          )
+        ],
+      ),
+      child: Text(hint??""),
+      /*child:AbsorbPointer(
+        child: TextFormField(
+          maxLines: 3,
+          controller: textEditingController[index],
+          cursorColor: AppData.kPrimaryColor,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          ],
+          decoration: InputDecoration(
+            *//* suffixIcon: Icon(Icons.phone),*//*
+              border: InputBorder.none,
+              hintText: hint,
+              hintStyle: TextStyle(color: Colors.black)
           ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 1.0,
-                spreadRadius: 0.0,
-                offset: Offset(1.0, 1.0), //shadow direction: bottom right
-              )
-            ],
-          ),
-          child: AbsorbPointer(
-            child: TextFormField(
-              maxLines: 3,
-              controller: textEditingController[index],
-              cursorColor: AppData.kPrimaryColor,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-              ],
-              decoration: InputDecoration(
-                  /* suffixIcon: Icon(Icons.phone),*/
-                  border: InputBorder.none,
-                  hintText: hint,
-                  hintStyle: TextStyle(color: Colors.black)),
-              onSaved: (value) {
-                //userPersonalForm.phoneNumber = value;
-              },
-            ),
-          ),
-        ) /*),*/
-        );
+          onSaved: (value) {
+            //userPersonalForm.phoneNumber = value;
+          },
+        ),),*/
+    );
   }
 
   Widget _submitButton() {

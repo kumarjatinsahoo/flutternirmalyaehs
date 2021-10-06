@@ -154,7 +154,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                   (vitalsignsModel.body != null&& vitalsignsModel.body[0].height.toString()=="0.0")
+                                   (vitalsignsModel != null&& vitalsignsModel.body[0].height.toString()=="0.0")
                                     ?"N/A": vitalsignsModel.body[0].height.toString() ,
                                   style: TextStyle(
                                       fontSize: 15,
