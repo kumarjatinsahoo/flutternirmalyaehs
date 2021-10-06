@@ -111,7 +111,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                   shrinkWrap: true,
                   itemBuilder: (context, i) {
                     bio.Body body = biomedicalModel.body[i];
-
                     return Padding(
                       padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
                       child: Card(
@@ -340,6 +339,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         setState(() {
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             Navigator.pop(context);
+                            callApi();
                             AppData.showInSnackDone(context, map[Const.MESSAGE]);
                           } else {
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);

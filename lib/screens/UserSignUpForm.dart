@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -240,7 +242,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                      DropDown.networkDropdownGetpartUser(
+                                      networkDropdownGetpartUser(
                                           "TITLE",
                                           ApiFactory.TITLE_API,
                                           "title",
@@ -344,7 +346,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                      DropDown.networkDropdownGetpartUser(
+                                      networkDropdownGetpartUser(
                                           "Gender",
                                           ApiFactory.GENDER_API,
                                           "gender",
@@ -376,7 +378,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                      DropDown.networkDropdownGetpartUser(
+                                      networkDropdownGetpartUser(
                                           "Country",
                                           ApiFactory.COUNTRY_API,
                                           "country",
@@ -399,8 +401,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           left: 0, right: 0, bottom: 0),
                                       child: SizedBox(
                                         height: 58,
-                                        child: DropDown
-                                            .networkDropdownGetpartUser(
+                                        child: networkDropdownGetpartUser(
                                                 "State",
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
@@ -429,7 +430,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                  DropDown.networkDropdownGetpartUser(
+                                  networkDropdownGetpartUser(
                                       "District",
                                       ApiFactory.DISTRICT_API +
                                           UserSignUpForm.stateModel.key,
@@ -554,7 +555,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                       .accessibility_outlined),
                                                   border:
                                                       InputBorder.none,
-                                                  counterText:"",
                                                   hintText:
                                                       MyLocalizations.of(
                                                               context)
@@ -859,6 +859,142 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         (KeyvalueModel model) {
       UserSignUpForm.genderModel = model;
     });
+  }
+
+   Widget newContainer(child) {
+    return Padding(
+      padding:
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
+        child: child,
+      ),
+    );
+  }
+
+  networkDropdownGetpartUser(String label, final String API,
+      String callFrom, IconData iconData, double iconSize, Function fun) {
+    return newContainer(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(3.0),
+            bottomRight: Radius.circular(3.0),
+            topRight: Radius.circular(3.0),
+            topLeft: Radius.circular(3.0),),
+        ),
+
+      ),
+      hint: label,
+      /* errorBuilder: (cg, value, v) {
+        return Material(
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      },*/
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        icon: Icon(
+          iconData,
+          size: iconSize,
+        ),
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+
+      ),
+      //label: label,
+      showSearchBox: true,
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        var list;
+        var response = await Dio().get(
+          API,
+        );
+        switch (callFrom) {
+          case "title":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+        /* case "time2":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            break;*/
+          case "gender":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "hospital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "doctor":
+          //log("LLLL>>>>"+jsonEncode(response.data));
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "organisation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "medicine":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "time":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
+            break;
+          case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+        }
+
+        return list;
+      },
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    ));
   }
 
   Widget mobileNoOTPSearch() {
