@@ -350,7 +350,7 @@ class _MedicineList extends State<UserMedicineList1> {
                                           CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Doctor: ",
+                                              "Doctor:  ",
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
