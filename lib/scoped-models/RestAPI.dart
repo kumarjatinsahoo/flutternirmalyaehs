@@ -265,7 +265,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-       if (e.type == DioErrorType.connectTimeout) {
+       /*if (e.type == DioErrorType.connectTimeout) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.receiveTimeout) {
@@ -276,7 +276,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.response) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
       /*fun(failedMap);*/
       //fun(failedMap);
     }
@@ -305,7 +306,7 @@ class RestAPI extends Model {
         fun(failedMap);
       }
     } on DioError catch (e) {
-       if (e.type == DioErrorType.connectTimeout) {
+      /* if (e.type == DioErrorType.connectTimeout) {
         fun(failedMap);
       }
       if (e.type == DioErrorType.receiveTimeout) {
@@ -316,7 +317,8 @@ class RestAPI extends Model {
       }
       if (e.type == DioErrorType.response) {
         fun(failedMap);
-      }
+      }*/
+      fun(failedMap);
       //fun(failedMap);
       //fun(failedMap);
     }
