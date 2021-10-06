@@ -178,7 +178,7 @@ class _FindPageState extends State<FindPage> {
                             style:
                             TextStyle(fontSize: 22, fontWeight: FontWeight.w300,color: Colors.white),
                           ),
-                          NumberformField(0,''),
+                          NumberformField(address),
                           /*AbsorbPointer(
                             child: TextFormField(
                               maxLines: 3,
@@ -378,50 +378,49 @@ class _FindPageState extends State<FindPage> {
     );
   }*/
   Widget NumberformField(
-      int index,
+     /* int index,*/
       String hint,
       ) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
-        child: Container(
-          //color: Colors.white,
-          /*height: 80,*/
-          padding: EdgeInsets.symmetric(
-            horizontal: 5,
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,vertical: 10
+      ), margin: EdgeInsets.only(
+        left: 8, right: 8, top: 10
+      ),
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(3),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: 1.0,
+            spreadRadius: 0.0,
+            offset: Offset(1.0, 1.0), //shadow direction: bottom right
+          )
+        ],
+      ),
+      child: Text(hint??""),
+      /*child:AbsorbPointer(
+        child: TextFormField(
+          maxLines: 3,
+          controller: textEditingController[index],
+          cursorColor: AppData.kPrimaryColor,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          inputFormatters: [
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          ],
+          decoration: InputDecoration(
+            *//* suffixIcon: Icon(Icons.phone),*//*
+              border: InputBorder.none,
+              hintText: hint,
+              hintStyle: TextStyle(color: Colors.black)
           ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 1.0,
-                spreadRadius: 0.0,
-                offset: Offset(1.0, 1.0), //shadow direction: bottom right
-              )
-            ],
-          ),
-          child:AbsorbPointer(
-            child: TextFormField(
-              maxLines: 3,
-              controller: textEditingController[index],
-              cursorColor: AppData.kPrimaryColor,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-              ],
-              decoration: InputDecoration(
-                /* suffixIcon: Icon(Icons.phone),*/
-                  border: InputBorder.none,
-                  hintText: hint,
-                  hintStyle: TextStyle(color: Colors.black)
-              ),
-              onSaved: (value) {
-                //userPersonalForm.phoneNumber = value;
-              },
-            ),),
-        ) /*),*/
+          onSaved: (value) {
+            //userPersonalForm.phoneNumber = value;
+          },
+        ),),*/
     );
   }
   Widget _submitButton() {
