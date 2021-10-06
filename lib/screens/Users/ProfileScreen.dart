@@ -1126,6 +1126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   alignment: Alignment.bottomRight,
                                   child: InkWell(
                                     onTap: () {
+
                                       _settingModalBottomSheet(context);
                                     },
                                     child: Icon(
@@ -1379,9 +1380,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.pop(context);
                           if (map[Const.STATUS] == Const.SUCCESS) {
                             // popup(context, map[Const.MESSAGE]);
+                            AppData.showInSnackDone(context, map[Const.MESSAGE]);
                             callApi();
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
+
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
