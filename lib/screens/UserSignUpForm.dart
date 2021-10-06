@@ -133,7 +133,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     KeyvalueModel(name: "Mrs.", key: "2"),
   ];
 
-  File pathUsr = null;
+  File pathUsr ;
   TextEditingController dob = TextEditingController();
 
   ///UserRegistrationModel userModel;
@@ -1266,7 +1266,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text ==""|| textEditingController[3].text == null) ) {
+    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
@@ -1383,7 +1383,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
-        //pathUsr = File(_path);
+        pathUsr = File(_path);
         // widget.model.patientimg =base64Encode(enc);
         // widget.model.patientimgtype =extName;
         userModel.profileImage = base64Encode(enc);
