@@ -75,10 +75,10 @@ class _GenericMedicineState extends State<GenericMedicine> {
   }
 
   callAPI(lat, longi) {
-    log(ApiFactory.GOOGLE_API(
+    log(ApiFactory.GOOGLE_QUERY_API(
         lati: lat, longi: longi, healthpro: medicallserviceTypelow));
     widget.model.GETMETHODCAL(
-        api: ApiFactory.GOOGLE_API(
+        api: ApiFactory.GOOGLE_QUERY_API(
             lati: lat, longi: longi, healthpro: medicallserviceTypelow),
         fun: (Map<String, dynamic> map) {
           setState(() {

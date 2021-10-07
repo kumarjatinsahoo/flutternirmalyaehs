@@ -75,7 +75,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
 
   callAPI(lat, longi) {
     widget.model.GETMETHODCAL(
-        api: ApiFactory.GOOGLE_API(
+        api: ApiFactory.GOOGLE_QUERY_API(
             lati: lat, longi: longi, healthpro: medicallserviceTypelow),
         fun: (Map<String, dynamic> map) {
           setState(() {
