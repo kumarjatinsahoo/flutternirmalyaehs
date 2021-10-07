@@ -130,4 +130,7 @@ String profilespeciality;
 String profilegender;
 String profilerelation;
 
+
+String medicineStore;
+
 }

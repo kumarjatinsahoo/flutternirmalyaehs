@@ -1598,8 +1598,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/geneicstores");
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/geneicstores");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },

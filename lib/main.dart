@@ -18,7 +18,7 @@ import 'package:user/screens/Users/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/EmergencyDetails.dart';
-import 'package:user/screens/Users/GenericMedicine.dart';
+import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';

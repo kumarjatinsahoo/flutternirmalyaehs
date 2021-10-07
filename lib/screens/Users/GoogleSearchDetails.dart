@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/LoginResponse1.dart' as session;
@@ -335,10 +336,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                 Expanded(
                                   child: InkWell(
                                     onTap: () {
-                                      log("Value>>>" +
-                                          googlePlacesSearch.result.url);
-                                      AppData.launchURL(
-                                          googlePlacesSearch.result.url);
+                                       Share.share("Here is the location details\n\n"+googlePlacesSearch.result.url,);
                                     },
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,

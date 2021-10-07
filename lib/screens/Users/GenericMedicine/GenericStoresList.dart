@@ -372,6 +372,7 @@ class _GenericStoresListState extends State<GenericStoresList> {
         child: Scaffold(
           body: Container(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   color: AppData.kPrimaryColor,
