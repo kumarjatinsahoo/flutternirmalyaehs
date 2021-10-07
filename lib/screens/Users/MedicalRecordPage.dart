@@ -30,7 +30,10 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
 
           appBar: AppBar(
             backgroundColor: AppData.kPrimaryColor,
-            title: Text('Medical Records'),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 40),
+              child: Text('Medical Records'),
+            ),
             /* leading: Icon(
             Icons.menu,
           ),*/
