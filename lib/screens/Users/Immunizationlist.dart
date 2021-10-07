@@ -5,51 +5,40 @@ import 'package:flutter/material.dart';
 
 class Immunizationlist extends StatefulWidget {
   MainModel model;
+
   Immunizationlist({Key key, this.model}) : super(key: key);
+
   @override
   _ImmunizationlistState createState() => _ImmunizationlistState();
 }
 
 class _ImmunizationlistState extends State<Immunizationlist> {
   var selectedMinValue;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            title: Text('Immunization'),
-            /* leading: Icon(
-            Icons.menu,
-          ),*/
-            actions: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.search,
-                      size: 26.0,
-                    ),
-                  )
-              ),
-              /*Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                      Icons.more_vert
-                  ),
-                )
-            ),*/
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text('Immunization'),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: Icon(
+                  Icons.search,
+                  size: 26.0,
+                ),
+              )),
+        ],
+      ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           /* Container(
+            /* Container(
               color: AppData.kPrimaryColor,
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -78,8 +67,10 @@ class _ImmunizationlistState extends State<Immunizationlist> {
               width: MediaQuery.of(context).size.width,
             ),*/
             Center(
-              child: Text('No immunization found',
-                style: TextStyle( fontSize: 12),),
+              child: Text(
+                'No immunization found',
+                style: TextStyle(fontSize: 12),
+              ),
             ),
             /*Expanded(
               child: ListView(
@@ -129,7 +120,7 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   )),
 
                                             ])),
-                                    *//* new Spacer(),*//*
+                                    */ /* new Spacer(),*/ /*
 
                                     Expanded(
                                       child: Padding(
@@ -163,9 +154,9 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   child: Image.asset("assets/green40.png",height: 30,)
                                               )),
 
-                                          *//* SizedBox(width: 100,),*//*
+                                          */ /* SizedBox(width: 100,),*/ /*
 
-                                        ])*//*),*//*
+                                        ])*/ /*),*/ /*
                                   ],
                                 ),
                               ),
@@ -203,7 +194,7 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   )),
 
                                             ])),
-                                    *//* new Spacer(),*//*
+                                    */ /* new Spacer(),*/ /*
 
                                     Expanded(
                                       child: Padding(
@@ -237,9 +228,9 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   child: Image.asset("assets/red40.png",height: 30,)
                                               )),
 
-                                          *//* SizedBox(width: 100,),*//*
+                                          */ /* SizedBox(width: 100,),*/ /*
 
-                                        ])*//*),*//*
+                                        ])*/ /*),*/ /*
                                   ],
                                 ),
                               ),
@@ -276,7 +267,7 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   )),
 
                                             ])),
-                                    *//* new Spacer(),*//*
+                                    */ /* new Spacer(),*/ /*
 
                                     Expanded(
                                       child: Padding(
@@ -310,9 +301,9 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                                   child: Image.asset("assets/green40.png",height: 30,)
                                               )),
 
-                                          *//* SizedBox(width: 100,),*//*
+                                          */ /* SizedBox(width: 100,),*/ /*
 
-                                        ])*//*),*//*
+                                        ])*/ /*),*/ /*
                                   ],
                                 ),
                               ),
@@ -351,7 +342,7 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                               )),
 
                                         ])),
-                                *//* new Spacer(),*//*
+                                */ /* new Spacer(),*/ /*
 
                                 Expanded(
                                   child: Padding(
@@ -385,9 +376,9 @@ class _ImmunizationlistState extends State<Immunizationlist> {
                                               child: Image.asset("assets/red40.png",height: 30,)
                                           )),
 
-                                      *//* SizedBox(width: 100,),*//*
+                                      */ /* SizedBox(width: 100,),*/ /*
 
-                                    ])*//*),*//*
+                                    ])*/ /*),*/ /*
                               ],
                             ),
                           ),
