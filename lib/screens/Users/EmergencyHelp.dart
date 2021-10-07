@@ -223,9 +223,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             }, child:Icon(Icons.call, color: Colors.black),
                           )
                       );
-
-                    },
-                    itemCount: /*results.length*/5,
+                      },
+                    itemCount:5,
 
                   ),
                 ),
