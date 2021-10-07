@@ -19,7 +19,7 @@ import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-import 'AboutUs.dart';
+import '../../Dashboard/AboutUs.dart';
 
 class FindPage extends StatefulWidget {
   MainModel model;
