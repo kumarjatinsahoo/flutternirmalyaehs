@@ -32,7 +32,6 @@ class AppData {
   static Color black1 = Color(0xFF3A4557);
   static Color black2 = Color(0xFF2D3645);
 
-
   static Color kPrimaryRedColor = Color(0xFFCF3564);
 
   static Color klightRedColor = Color(0xFFFEF9F6);
@@ -57,7 +56,9 @@ class AppData {
   static Color greyText = Color(0xFF616267);
   static const Color white = Color(0xFFFFFFFF);
   static List<String> phoneFormat = [
-    "+91","+60" /*, "+80", "+78"*/];
+    "+91",
+    "+60" /*, "+80", "+78"*/
+  ];
   static List<String> catagoryFormat = ["S/o", "D/o", "W/o"];
   static String selectedLanguage;
 
@@ -66,15 +67,31 @@ class AppData {
   }
 
   static setSelectedLanCode(code) {
-    (code == "en") ? selectedLanguage = "English" : selectedLanguage = "ଓଡିଆ";
-  }
-
-  static getColor(String code) {
-    (code == "en") ? selectedLanguage = "English" : selectedLanguage = "ଓଡିଆ";
+    switch (code) {
+      case "en":
+        selectedLanguage = "English";
+        break;
+      case "en-GB":
+        selectedLanguage = "ଓଡିଆ";
+        break;
+      case "mr":
+        selectedLanguage = "मराठी";
+        break;
+      case "hi":
+        selectedLanguage = "हिन्दी";
+        break;
+    }
+    //(code == "en") ? selectedLanguage = "English" : selectedLanguage = "ଓଡିଆ";
   }
 
   static subStringBy(String code) {
-    return code.substring(0,4)+" "+code.substring(4,8)+" "+code.substring(8,12)+" "+code.substring(12,16);
+    return code.substring(0, 4) +
+        " " +
+        code.substring(4, 8) +
+        " " +
+        code.substring(8, 12) +
+        " " +
+        code.substring(12, 16);
   }
 
   static double properSafeArea(BuildContext context) {
@@ -89,10 +106,9 @@ class AppData {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      dev.log('Could not launch '+url) ;
+      dev.log('Could not launch ' + url);
     }
   }
-
 
   static getMonth(String monthNumber) {
     switch (monthNumber) {
@@ -485,21 +501,29 @@ class AppData {
   static String base64Encd(String data) {
     return base64.encode(utf8.encode(data));
   }
-  static String address= "Address: 1073, Bhosale Mystiqa,Gokhale Road,\n"
+
+  static String address = "Address: 1073, Bhosale Mystiqa,Gokhale Road,\n"
       "Model Colony,Pune - 411016, (MH) INDIA";
-  static String aboutus="Together, we’re on a path to wellness for body, mind, and spirit. Now anyone can take charge of their health and transform their life using our easy-to-use, yet powerful, healthcare technologies & tools.\n The eHealthSystem supports WHO eHealth Strategy (WHA 58:28) eHealth stressing that eHealth is the cost-effective and secure use of information and communications technologies in support of health and health-related services. \n"
+  static String aboutus =
+      "Together, we’re on a path to wellness for body, mind, and spirit. Now anyone can take charge of their health and transform their life using our easy-to-use, yet powerful, healthcare technologies & tools.\n The eHealthSystem supports WHO eHealth Strategy (WHA 58:28) eHealth stressing that eHealth is the cost-effective and secure use of information and communications technologies in support of health and health-related services. \n"
       "eHealthSystem works as a LiveWire of Connectivity connecting different healthcare stakeholders that include clinics, pharmacies, blood banks, hospitals, ambulances, organ donors, laboratories and patients on a single platform."
       "We are a digital healthcare solutions provider. We dedicate ourselves to improving the existing Electronic Health Record technology further, by providing users the power to carry their health records globally in a portable, user-friendly and secure manner.";
 
-  static String organ1="We humbly request all the professionals working in the healthcare sector to come forward and make a contribution by wilfully submitting your consent form for organ donation. Only you can save someone’s life by donating your organs. Even, in case, if you are in need of an organ in your lifetime, you would get preference in getting in an organ if you have pledged yourself to donate an organ using eHealthSystem.";
-  static String organ11="Organ donation is the act of giving organs (living or dead) to someone who needs an organ to survive. Organ donation remains strictly confidential for both the donor and the recipient.";
+  static String organ1 =
+      "We humbly request all the professionals working in the healthcare sector to come forward and make a contribution by wilfully submitting your consent form for organ donation. Only you can save someone’s life by donating your organs. Even, in case, if you are in need of an organ in your lifetime, you would get preference in getting in an organ if you have pledged yourself to donate an organ using eHealthSystem.";
+  static String organ11 =
+      "Organ donation is the act of giving organs (living or dead) to someone who needs an organ to survive. Organ donation remains strictly confidential for both the donor and the recipient.";
 
-  static String organ2="A living, brain dead or deceased person can donate organs. If living, any person above 18 years of age is eligible to donate. A brain dead person can donate upto 8 organs. After death, the whole body can be donated.";
-  static String organ22="The total and irreversible loss of all brain functions. The ability to breath is lost and the person’s body can only be maintained artificially for few hours."+
-  "Family members of such patients should immediately contact the transplant coordinator for donating the organs. There is no age limit for brain-dead cases and any person male or female can donate the organs.";
+  static String organ2 =
+      "A living, brain dead or deceased person can donate organs. If living, any person above 18 years of age is eligible to donate. A brain dead person can donate upto 8 organs. After death, the whole body can be donated.";
+  static String organ22 =
+      "The total and irreversible loss of all brain functions. The ability to breath is lost and the person’s body can only be maintained artificially for few hours." +
+          "Family members of such patients should immediately contact the transplant coordinator for donating the organs. There is no age limit for brain-dead cases and any person male or female can donate the organs.";
 
- static String organ3="While alive, you can donate a kidney, some portion of liver, and bone marrow. If in a brain dead state, one can donate Heart, Kidney, Liver, Intestines, Skin, Cornea, Lungs and Pancreas.";
-  static String organ33="After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
+  static String organ3 =
+      "While alive, you can donate a kidney, some portion of liver, and bone marrow. If in a brain dead state, one can donate Heart, Kidney, Liver, Intestines, Skin, Cornea, Lungs and Pancreas.";
+  static String organ33 =
+      "After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
 
 
  static String organ4="Any living person can sign up the organ donation form and pledge to be an organ donor. When the person is brain dead, the family members should immediately contact transplant coordinators. After medical evaluation, the necessary organs are retrieved for transplantation. "+

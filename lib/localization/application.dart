@@ -9,10 +9,14 @@ class Application {
   final List<String> supportedLanguages = [
     "English",
     "ଓଡିଆ",
+    "मराठी",
+    "हिन्दी",
   ];
 
   final List<String> supportedLanguagesCodes = [
     "en",
+    "bn",
+    "mr",
     "hi",
   ];
 
