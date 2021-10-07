@@ -80,10 +80,10 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
   callAPI() {
     log("API :Lati & Longi" + lati + "\n" + lati);
     log("API CALL>>>" +
-        ApiFactory.GOOGLE_API(lati: lati, longi: longi, healthpro: healthpro) +
+        ApiFactory.GOOGLE_QUERY_API(lati: lati, longi: longi, healthpro: healthpro) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
-        api: ApiFactory.GOOGLE_API(
+        api: ApiFactory.GOOGLE_QUERY_API(
             lati: lati, longi: longi, healthpro: healthpro),
         fun: (Map<String, dynamic> map) {
           setState(() {

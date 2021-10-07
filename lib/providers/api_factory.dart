@@ -86,9 +86,15 @@ class ApiFactory {
         "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";
   }
 
-  static String GOOGLE_API(
+  static String GOOGLE_QUERY_API(
       {String longi, String lati, String healthpro, String type}) {
     return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+  }
+
+
+  static String GOOGLE_QUERY_API1(
+      {String healthpro, String type}) {
+    return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
 
   static String GOOGLE_PIC({String ref}) {
