@@ -15,7 +15,7 @@ class Application {
 
   final List<String> supportedLanguagesCodes = [
     "en",
-    "en-GB",
+    "bn",
     "mr",
     "hi",
   ];

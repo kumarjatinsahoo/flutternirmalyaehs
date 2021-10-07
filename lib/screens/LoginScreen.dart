@@ -46,11 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final Map<dynamic, dynamic> languagesMap = {
     languagesList[0]: languageCodesList[0],
-    languagesList[1]: languageCodesList[1]
+    languagesList[1]: languageCodesList[1],
+    languagesList[2]: languageCodesList[2],
+    languagesList[3]: languageCodesList[3],
   };
   final Map<dynamic, dynamic> languageCodeMap = {
     languageCodesList[0]: languagesList[0],
-    languageCodesList[1]: languagesList[1]
+    languageCodesList[1]: languagesList[1],
+    languageCodesList[2]: languagesList[3],
+    languageCodesList[3]: languagesList[3],
   };
 
   void _update(Locale locale) async {
