@@ -243,15 +243,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
-        //extendBody: true,
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        // ),
         appBar: AppBar(
-          /*leading: BackButton(
-                color: Colors.white,
-              ),*/
           title: Stack(
             children: [
               Row(
