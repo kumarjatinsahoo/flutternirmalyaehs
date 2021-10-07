@@ -28,6 +28,8 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
             /* leading: Icon(
             Icons.menu,
           ),*/
+            centerTitle: true,
+
             actions: <Widget>[
               /*  Padding(
                   padding: EdgeInsets.only(right: 20.0),
