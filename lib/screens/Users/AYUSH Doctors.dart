@@ -21,13 +21,11 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
-              title: Center(
-                child: Text(
-                  'AYUSH Doctors',
-                  style: TextStyle(color: AppData.white),
-                ),
+              title: Text(
+                'AYUSH Doctors',
+                style: TextStyle(color: AppData.white),
               ),
-             // centerTitle: true,
+              centerTitle: true,
               backgroundColor:AppData.kPrimaryColor,
           ),
 
