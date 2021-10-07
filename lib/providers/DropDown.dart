@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/widgets/MyWidget.dart';
 import '../models/KeyvalueModel.dart';
 import 'app_data.dart';
@@ -1472,6 +1473,14 @@ class DropDown {
       case "block":
         return selectedKey1;
         break;
+      case "state":
+        return GenericStores.stateModel;
+      case "district1":
+        return GenericStores.districtModel;
+        break;
+      case "city":
+        return GenericStores.cityModel;
+        break;
     }
   }
 
@@ -1502,15 +1511,15 @@ class DropDown {
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.green, width: 3.0),
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(3.0),
-              bottomRight: Radius.circular(3.0),
-              topRight: Radius.circular(3.0),
-              topLeft: Radius.circular(3.0),),
+            bottomLeft: Radius.circular(3.0),
+            bottomRight: Radius.circular(3.0),
+            topRight: Radius.circular(3.0),
+            topLeft: Radius.circular(3.0),
+          ),
         ),
-
       ),
       hint: label,
-     /* errorBuilder: (cg, value, v) {
+      /* errorBuilder: (cg, value, v) {
         return Material(
           child: Container(
             alignment: Alignment.center,
@@ -1542,7 +1551,6 @@ class DropDown {
           borderRadius: BorderRadius.all(Radius.circular(29)),
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
-
       ),
       //label: label,
       showSearchBox: true,
@@ -1612,7 +1620,8 @@ class DropDown {
       },
     ));
   }
-static genericMedicine(context,String label, final String API,
+
+  static genericMedicine(context, String label, final String API,
       String callFrom, IconData iconData, double iconSize, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
@@ -1623,12 +1632,12 @@ static genericMedicine(context,String label, final String API,
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.green, width: 3.0),
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(3.0),
-              bottomRight: Radius.circular(3.0),
-              topRight: Radius.circular(3.0),
-              topLeft: Radius.circular(3.0),),
+            bottomLeft: Radius.circular(3.0),
+            bottomRight: Radius.circular(3.0),
+            topRight: Radius.circular(3.0),
+            topLeft: Radius.circular(3.0),
+          ),
         ),
-
       ),
       hint: label,
       errorBuilder: (context, value, v) {
@@ -1642,6 +1651,7 @@ static genericMedicine(context,String label, final String API,
           ),
         );
       },
+      selectedItem: getData(callFrom),
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         icon: Icon(
@@ -1663,70 +1673,17 @@ static genericMedicine(context,String label, final String API,
           borderRadius: BorderRadius.all(Radius.circular(29)),
           borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
         ),
-
       ),
       //label: label,
       showSearchBox: true,
-      selectedItem: getData(callFrom),
+     // selectedItem: getData(callFrom),
+
       onFind: (String filter) async {
         print("DROP DOWN API?????" + API);
-        var list;
         var response = await Dio().get(
           API,
         );
-        switch (callFrom) {
-          case "title":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          /* case "time2":
-            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
-            break;*/
-          case "gender":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "bloodgroup":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "hospital":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "speciality":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "doctor":
-            //log("LLLL>>>>"+jsonEncode(response.data));
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "city":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "district":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "state":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "country":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "organisation":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "bloodgroup":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "medicine":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-          case "time":
-            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
-            break;
-          case "test":
-            list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
-        }
-
-        return list;
+        return KeyvalueModel.fromJsonList(response.data["body"]);
       },
       onChanged: (KeyvalueModel data) {
         fun(data);
