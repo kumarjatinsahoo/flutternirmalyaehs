@@ -61,6 +61,7 @@ class Body {
   String genderName;
   String dob;
   String ageYears;
+  String profileImage;
 
   Body(
       {
@@ -130,6 +131,7 @@ class Body {
       });
     }*/
     profileImageName = json['profileImageName'];
+    profileImage = json['profileImage'];
     profileImageType = json['profileImageType'];
     userId = json['userId'];
     countryCode = json['countryCode'];

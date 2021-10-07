@@ -22,6 +22,10 @@ import 'package:user/screens/Users/GenericMedicine.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';
+import 'package:user/screens/Users/organ/Organ1Page.dart';
+import 'package:user/screens/Users/organ/Organ2Page.dart';
+import 'package:user/screens/Users/organ/Organ3Page.dart';
+import 'package:user/screens/Users/organ/Organ4Page.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labrotry/Screen/LabProfile.dart';
@@ -56,7 +60,7 @@ import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm5.dart';
-import 'package:user/screens/DonorApplication.dart';
+import 'package:user/screens/Users/organ/DonorApplication.dart';
 import 'package:user/screens/DonorOrganisation.dart';
 import 'screens/Users/EmergencyHelp.dart';
 import 'screens/Users/EmergencyRoom.dart';
@@ -84,7 +88,7 @@ import 'screens/Users/MedicineReminderOther.dart';
 import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
 import 'package:user/screens/MyAppointment.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
-import 'package:user/screens/Users/OrganDonation.dart';
+import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'screens/Users/SetupContactsPage.dart';
 import 'package:user/screens/TestAppointmentPage1.dart';
@@ -756,6 +760,18 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/genericMed': (context) => GenericMedicine(
+                    model: _model,
+                  ),
+              '/organ1': (context) => Organ1Page(
+                    model: _model,
+                  ),
+              '/organ2': (context) => Organ2Page(
+                    model: _model,
+                  ),
+              '/organ3': (context) => Organ3Page(
+                    model: _model,
+                  ),
+              '/organ4': (context) => Organ4Page(
                     model: _model,
                   ),
             },

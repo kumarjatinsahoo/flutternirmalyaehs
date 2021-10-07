@@ -13,9 +13,9 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
-import '../localization/localizations.dart';
-import '../models/KeyvalueModel.dart';
-import '../providers/app_data.dart';
+import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
 
 // ignore: must_be_immutable
 class DonorApplication extends StatefulWidget {
@@ -171,10 +171,10 @@ class DonorApplicationState extends State<DonorApplication> {
         child: Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
         title: Text(
-          'Donor Application',
-          style: TextStyle(
-              fontWeight: FontWeight.w300, fontSize: 20, color: Colors.white),
+          'Donor Applications',
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
       body: Container(
@@ -337,7 +337,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                   SizedBox(width: 40),
                                   Expanded(
                                     child: Text(
-                                      'Tissus(s)',
+                                      'Tissue(s)',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           color: Colors.black,
@@ -347,242 +347,269 @@ class DonorApplicationState extends State<DonorApplication> {
                                 ],
                               )),
                         ),
+
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 5,
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                  child: Row(
-                                      /* ,*/
-                                      children: [
-                                    Checkbox(
-                                      value: _checkbox,
-                                      onChanged: (value) {
+                                  child: Column(children: [
+                                /* (medicineListModel != null)
+                                                      ?*/
+                                ListView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  // controller: _scrollController,
+                                  shrinkWrap: true,
+                                  children: [
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "All Organs",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
+                                      value: isChecked,
+                                      onChanged: (val) {
                                         setState(() {
-                                          _checkbox = !_checkbox;
-                                          /* if(_checkbox=true){
-                                                    _checkbox2=true;
-                                                    _checkbox4=true;
-                                                    _checkbox6=true;
-                                                    _checkbox8=true;
-                                                    }
-                                                    else {
-                                                      _checkbox2=false;
-                                                      _checkbox4=false;
-                                                      _checkbox6=false;
-                                                      _checkbox8=false;
-
-                                                    }*/
+                                          isChecked = val;
                                         });
                                       },
                                     ),
-                                    new Text(
-                                      'All Organs',
-                                      style: new TextStyle(
-                                          fontSize: 16.0, color: Colors.black),
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "LIVER",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
                                     ),
-                                  ])),
-                              Expanded(
-                                child: Row(
-                                    /*  mainAxisAlignment:
-                                                  MainAxisAlignment.center,*/
-                                    children: [
-                                      Checkbox(
-                                        value: _checkbox0,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _checkbox0 = !_checkbox0;
-                                            /*_checkbox3=true;
-                                                      _checkbox5=true;
-                                                      _checkbox7=true;
-                                                      _checkbox9=true;
-*/
-                                          });
-                                        },
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "KIDNEYS",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
                                       ),
-                                      new Text(
-                                        'All Tissues',
-                                        style: new TextStyle(
-                                            fontSize: 16.0,
-                                            color: Colors.black),
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
+                                    ),
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "HEART",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
                                       ),
-                                    ]),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 5,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                  child: Column(children: [
-                                /* (medicineListModel != null)
-                                                      ?*/
-                                ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // controller: _scrollController,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                                    /* if (i == medicineListModel.body.length) {
-                                                        return (medicineListModel.body.length % 10 == 0)
-                                                            ? CupertinoActivityIndicator()
-                                                            : Container();
-                                                      }*/
-                                    /* medicine.Body body = medicineListModel.body[i];
-                                                      widget.model.medicinelist = body;*/
-                                    // Print("mediiiicinie"+$body);
-                                    return Container(
-                                      child: GestureDetector(
-                                        // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                        // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              /*(!body.reqstatus)
-                                                                    ? */
-                                              CheckboxListTile(
-                                                activeColor: Colors.blue[300],
-                                                dense: true,
-                                                //font change
-                                                title: new Text(
-                                                  "LIVER",
-                                                  /*medicineListModel
-                                                                        .body[i].medname??"N/A",*/
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      letterSpacing: 0.5),
-                                                ),
-                                                value: isChecked,
-                                                //value: body.isChecked,
-                                                onChanged: (val) {
-                                                  setState(() {
-                                                    // body.isChecked = val;
-                                                    isChecked = val;
-                                                    /*if (val)
-                                                                       // selectedMedicine.add(body);
-                                                                      else
-                                                                       // selectedMedicine
-                                                                            .remove(body);*/
-                                                  });
-                                                },
-                                              ),
-                                              /*    :
-                                                                */ /*Container(),*/ /*Text("LIVER",
-                                                                  */ /*medicineListModel
-                                                                      .body[i].medname??"N/A",*/ /*
-                                                                  style: TextStyle(
-                                                                      fontSize: 14,
-                                                                      fontWeight: FontWeight.w600,
-                                                                      letterSpacing: 0.5),
-                                                                ),*/
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
+                                    ),
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "INTESTINE",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
                                       ),
-                                    );
-                                  },
-                                  itemCount: 4,
-                                  // itemCount: medicineListModel.body.length,
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
+                                    ),
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "PANCREAS",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
+                                    ),
+                                    CheckboxListTile(
+                                      activeColor: Colors.blue[300],
+                                      dense: true,
+                                      title: new Text(
+                                        "LUNGS",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
+                                      value: isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          isChecked = val;
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 )
-                                // : Container(),
                               ])),
                               Expanded(
-                                  child: Column(children: [
-                                /* (medicineListModel != null)
-                                                      ?*/
-                                ListView.builder(
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                ListView(
                                   physics: NeverScrollableScrollPhysics(),
-                                  // controller: _scrollController,
                                   shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                                    /* if (i == medicineListModel.body.length) {
-                                                        return (medicineListModel.body.length % 10 == 0)
-                                                            ? CupertinoActivityIndicator()
-                                                            : Container();
-                                                      }*/
-                                    /* medicine.Body body = medicineListModel.body[i];
-                                                      widget.model.medicinelist = body;*/
-                                    // Print("mediiiicinie"+$body);
-                                    return Container(
-                                      child: GestureDetector(
-                                        // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                        // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              /*(!body.reqstatus)
-                                                                    ? */
-                                              CheckboxListTile(
-                                                activeColor: Colors.blue[300],
-                                                dense: true,
-                                                //font change
-                                                title: new Text(
-                                                  "LIVER",
-                                                  /*medicineListModel
-                                                                        .body[i].medname??"N/A",*/
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      letterSpacing: 0.5),
-                                                ),
-                                                value: isChecked,
-                                                //value: body.isChecked,
-                                                onChanged: (val) {
-                                                  setState(() {
-                                                    // body.isChecked = val;
-                                                    isChecked = val;
-                                                    /*if (val)
-                                                                       // selectedMedicine.add(body);
-                                                                      else
-                                                                       // selectedMedicine
-                                                                            .remove(body);*/
-                                                  });
-                                                },
-                                              ),
-                                              /*    :
-                                                                */ /*Container(),*/ /*Text("LIVER",
-                                                                  */ /*medicineListModel
-                                                                      .body[i].medname??"N/A",*/ /*
-                                                                  style: TextStyle(
-                                                                      fontSize: 14,
-                                                                      fontWeight: FontWeight.w600,
-                                                                      letterSpacing: 0.5),
-                                                                ),*/
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  itemCount: 4,
+                                 children: [
+                                   CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "All Tisues",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),  CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "BONES",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),
+                                   CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "HEART VALVES",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),
+                                   CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "SKIN",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),
+                                   CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "CORNEAS/EYE BALLS",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),
+                                   CheckboxListTile(
+                                     activeColor: Colors.blue[300],
+                                     dense: true,
+                                     title: new Text(
+                                       "BLOOD VESSELS",
+                                       style: TextStyle(
+                                           fontSize: 14,
+                                           fontWeight:
+                                           FontWeight.w600,
+                                           letterSpacing: 0.5),
+                                     ),
+                                     value: isChecked,
+                                     onChanged: (val) {
+                                       setState(() {
+                                         isChecked = val;
+                                       });
+                                     },
+                                   ),
+                                 ],
                                   // itemCount: medicineListModel.body.length,
                                 )
                                 // : Container(),

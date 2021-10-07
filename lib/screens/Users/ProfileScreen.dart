@@ -22,6 +22,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
+
 class ProfileScreen extends StatefulWidget {
   final MainModel model;
   final bool isConfirmPage;
@@ -136,27 +137,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
           splashColor: Colors.grey,
         ),*/
         appBar: AppBar(
-          leading: IconButton(
+         /* leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: Row(
+          ),*/
+          automaticallyImplyLeading: false,
+          title: Stack(
             children: [
-              Text(
-                'My Profile',
-                style: TextStyle(color: Colors.white),
-              ),
-              Spacer(),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, "/idCard");
-                },
+              Center(
                 child: Text(
-                  "ID CARD",
-                  style: TextStyle(
-                    fontSize: 14,
-                    decoration: TextDecoration.underline,
+                  'My Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              //Spacer(),
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/idCard");
+                  },
+                  child: Text(
+                    "ID CARD",
+                    style: TextStyle(
+                      fontSize: 14,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back),
                 ),
               )
             ],
@@ -218,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         height: size.height * 0.15,
                                         width: size.width * 0.25,
                                       ),*/
-                                     /* Align(
+                                      /* Align(
                                         alignment: Alignment.bottomRight,
                                         child: InkWell(
                                           onTap: () {
@@ -233,67 +249,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ],
                                   )),
                             ),
-                            /*Align(
-                              alignment: Alignment.bottomRight,
-                              child: InkWell(
-                                onTap: () {
-                                  //_settingModalBottomSheet(context);
-                                },
-                                child: Icon(
-                                  Icons.edit,
-                                  color: AppData.kPrimaryColor,
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                height: 83,
+                                width: 83,
+                                child: Stack(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    (pathUsr != null)
+                                        ? Material(
+                                            elevation: 5.0,
+                                            shape: CircleBorder(),
+                                            child: CircleAvatar(
+                                              radius: 40.0,
+                                              backgroundImage:
+                                                  FileImage(pathUsr),
+                                            ),
+                                          )
+                                        : Material(
+                                            elevation: 5.0,
+                                            shape: CircleBorder(),
+                                            child: CircleAvatar(
+                                              radius: 40.0,
+                                              backgroundImage: NetworkImage(
+                                                  (patientProfileModel?.body
+                                                              ?.profileImage !=
+                                                          null)
+                                                      ? patientProfileModel
+                                                          ?.body?.profileImage
+                                                      : AppData.defaultImgUrl),
+                                            ),
+                                          ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          _settingModalBottomSheet(context);
+                                        },
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: AppData.kPrimaryColor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                            ),*/
-                              Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              height: 83,
-                              width: 83,
-                              child: Stack(
-                                //mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  (pathUsr != null)
-                                      ? Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage:
-                                      FileImage(pathUsr),
-                                    ),
-                                  )
-                                      : Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage: NetworkImage(
-                                          AppData.defaultImgUrl),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomRight,
-                                    child: InkWell(
-                                      onTap: () {
-
-                                        _settingModalBottomSheet(context);
-                                      },
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color: AppData.kPrimaryColor,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
                             SizedBox(
-                              height: size.height * 0.02,
+                              height: 20,
                             ),
                             Text(
                               patientProfileModel?.body?.fullName ?? "N/A",
@@ -303,25 +308,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
-                              height: size.height * 0.02,
+                              height: 10,
                             ),
-/*                            Text(
-                              patientProfileModel?.body?.age ?? "N/A",
+                            Text(
+                              (patientProfileModel?.body?.id != null)
+                                  ? AppData.subStringBy(
+                                              patientProfileModel?.body?.id) +
+                                          "\n(UHID)" ??
+                                      "N/A"
+                                  : "",
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
                               ),
-                            ),*/
+                              textAlign: TextAlign.center,
+                            ),
                             SizedBox(
-                              height: size.height * 0.04,
+                              height: size.height * 0.02,
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
                   ),
                   new Divider(
                     color: AppData.lightgreyBorder,
@@ -442,23 +451,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Details',
+                                child: Text('Details'.toUpperCase(),
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 13)),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 13)),
                               ),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Emergency Contacts',
+                                child: Text(
+                                    'Emergency Contacts'
+                                        .toUpperCase()
+                                        .toUpperCase(),
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 13)),
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.black,
+                                        fontSize: 13)),
                               ),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Family Doctors',
+                                child: Text('Family Doctors'.toUpperCase(),
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 13)),
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.black,
+                                        fontSize: 13)),
                               )
                             ],
                           ),
@@ -523,10 +541,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Date Of Birth',
-                        style: TextStyle(fontSize: 15
-                            // color: Colors.black54,
-                            // fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15
+                          // color: Colors.black54,
+                          ,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                     /* SizedBox(
@@ -546,8 +566,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
+              /*SizedBox(
+                height: 6,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -564,9 +591,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Blood Group',
-                        style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -582,10 +610,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
+              ),
+              /* Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                   children: [
@@ -599,7 +631,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Text(
                         'UHID ',
                         style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
+                          ,fontWeight: FontWeight.w800,
                             ),
                       ),
                     ),
@@ -617,7 +649,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 10),*/
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
@@ -634,10 +666,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 100,
                         child: Text(
                           'Gender',
-                          style: TextStyle(fontSize: 15
-                              // color: AppData.kPrimaryColor,
-                              /*fontWeight: FontWeight.w600*/
-                              ),
+                          style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w800,
+                            // color: AppData.kPrimaryColor,
+                            /*fontWeight: FontWeight.w600*/
+                          ),
                         ),
                       ),
                     ),
@@ -656,7 +689,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              //SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
@@ -670,10 +710,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Contact Details',
-                        style: TextStyle(fontSize: 15
-                            // color: AppData.kPrimaryColor,
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w800,
+                          // color: AppData.kPrimaryColor,
+                          //fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -690,7 +731,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              //SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
@@ -704,10 +752,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Address',
-                        style: TextStyle(fontSize: 15
-                            // color: AppData.kPrimaryColor,
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w800,
+                          // color: AppData.kPrimaryColor,
+                          //fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -767,10 +816,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Name',
-                        style: TextStyle(fontSize: 15
-                            // color: Colors.black54,
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          // color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -787,8 +837,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 10,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -803,9 +860,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Relation',
-                        style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -821,8 +879,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              /* SizedBox(
                 height: 10,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -837,9 +902,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Mobile No.',
-                        style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -912,10 +978,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Name',
-                        style: TextStyle(fontSize: 15
-                            // color: Colors.black54,
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15
+                          // color: Colors.black54,
+                          ,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -932,8 +1000,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 10,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -948,9 +1023,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Specialty ',
-                        style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -966,8 +1042,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 10,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: AppData.lightgreyBorder,
+                  height: 6,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -982,9 +1065,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       flex: 1,
                       child: Text(
                         'Mobile No.',
-                        style: TextStyle(fontSize: 15
-                            //fontWeight: FontWeight.w600,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -1027,7 +1111,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-
             // title: Text('TextField in Dialog'),
             insetPadding: EdgeInsets.zero,
 
@@ -1035,8 +1118,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  width: MediaQuery.of(context).size.width*0.8,
-                  height: MediaQuery.of(context).size.height*0.8,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -1095,7 +1178,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                        /*  Align(
+                          /*  Align(
                             alignment: Alignment.topCenter,
                             child: Container(
                               height: 83,
@@ -1150,7 +1233,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             controller: _fname,
                             inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                              WhitelistingTextInputFormatter(
+                                  RegExp("[a-zA-Z ]")),
                             ],
                             decoration: InputDecoration(hintText: "First Name"),
                           ),
@@ -1163,7 +1247,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             controller: _lname,
                             inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                              WhitelistingTextInputFormatter(
+                                  RegExp("[a-zA-Z ]")),
                             ],
                             decoration: InputDecoration(hintText: "Last Name"),
                           ),
@@ -1217,10 +1302,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             controller: _eName,
                             inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                              WhitelistingTextInputFormatter(
+                                  RegExp("[a-zA-Z ]")),
                             ],
-                            decoration:
-                                InputDecoration(hintText: "Emergency Contact Name"),
+                            decoration: InputDecoration(
+                                hintText: "Emergency Contact Name"),
                           ),
                           DropDown.networkDropdown(
                               "Relation", ApiFactory.RELATION_API, "relation",
@@ -1242,17 +1328,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             keyboardType: TextInputType.number,
                             controller: _eMobile,
-
                             inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[0-9]"),),
-                            ],
-
-                            maxLength: 10,
-                            decoration:
-                              new InputDecoration(hintText: "Emergency Contact No.",
-                              counterText: "",
+                              WhitelistingTextInputFormatter(
+                                RegExp("[0-9]"),
                               ),
-
+                            ],
+                            maxLength: 10,
+                            decoration: new InputDecoration(
+                              hintText: "Emergency Contact No.",
+                              counterText: "",
+                            ),
                           ),
 
                           TextField(
@@ -1264,10 +1349,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             controller: _fDoctor,
                             inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                              WhitelistingTextInputFormatter(
+                                  RegExp("[a-zA-Z ]")),
                             ],
-                            decoration:
-                                InputDecoration(hintText: "Family Doctor's Name"),
+                            decoration: InputDecoration(
+                                hintText: "Family Doctor's Name"),
                           ),
                           // TextField(
                           //   onChanged: (value) {
@@ -1279,8 +1365,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //   decoration: InputDecoration(hintText: "Speciality"),
                           // ),
                           DropDown.networkDropdown(
-                              "Speciality", ApiFactory.SPECIALITY_API, "speciality",
-                              (KeyvalueModel model) {
+                              "Speciality",
+                              ApiFactory.SPECIALITY_API,
+                              "speciality", (KeyvalueModel model) {
                             setState(() {
                               patientProfileModel.body.speciality = model.name;
                               ProfileScreen.specialitymodel = model;
@@ -1305,10 +1392,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             inputFormatters: [
                               WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                             ],
-                            decoration:
-                               new InputDecoration(hintText: " Doctors Mobile No",
-                               counterText: "",
-                               ),
+                            decoration: new InputDecoration(
+                              hintText: " Doctors Mobile No",
+                              counterText: "",
+                            ),
                           ),
                         ],
                       ),
@@ -1366,7 +1453,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (_lname.text == null || _lname.text == "") {
                       AppData.showInSnackBar(context, "Please enter last name");
                     } else {*/
-                   /* _fname.text =patientProfileModel.body.fName.toString() ;
+                    /* _fname.text =patientProfileModel.body.fName.toString() ;
                     _lname.text = patientProfileModel.body.lName.toString();
                     textEditingController[2].text = patientProfileModel.body.dob.toString();
                     // ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";
@@ -1379,7 +1466,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _docMobile.text=patientProfileModel.body.docMobile.toString();
                     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
                     updateProfileModel.id = patientProfileModel.body.id.toString();*/
-                    log("profile  MODEL SEND>>>>" + jsonEncode(updateProfileModel.toJson()));
+                    log("profile  MODEL SEND>>>>" +
+                        jsonEncode(updateProfileModel.toJson()));
 
                     updateProfileModel.fName = _fname.text;
                     updateProfileModel.lName = _lname.text;
@@ -1395,9 +1483,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.pop(context);
                           if (map[Const.STATUS] == Const.SUCCESS) {
                             // popup(context, map[Const.MESSAGE]);
-                            AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
                             callApi();
-
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
@@ -1609,9 +1697,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
                     onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
-                    }),
+                          Navigator.pop(context),
+                          getCameraImage(),
+                        }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
@@ -1643,10 +1731,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
         pathUsr = File(_path);
-       // callApii();
+        // callApii();
         //widget.model.patientimg =base64Encode(enc);
         //widget.model.patientimgtype =extName;
-       //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+        //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
         //updateProfileModel.profileImageType = extName;
       });
     }
@@ -1659,7 +1747,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-      setState(() =>pathUsr = File(image.path));/*File(_path));*/
+      setState(() => pathUsr = File(image.path)); /*File(_path));*/
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');
@@ -1692,7 +1780,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
             }
           });
         });
-
   }
-
 }
