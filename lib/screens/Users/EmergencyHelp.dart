@@ -661,7 +661,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       InkWell(
                                           onTap: () {
                                             widget.model.GETMETHODCAL(
-                                                api: ApiFactory.GOOGLE_API(
+                                                api: ApiFactory.GOOGLE_QUERY_API(
                                                     lati: latitude, longi: longitude, healthpro: "Ambulance"),
                                                 fun: (Map<String, dynamic> map) {
                                                   setState(() {
