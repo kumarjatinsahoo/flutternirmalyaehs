@@ -7,6 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Users/AboutUs.dart';
 import 'package:user/screens/Users/BiomediImplants.dart';
@@ -774,6 +775,9 @@ class _MyAppState extends State<MyApp> {
               '/organ4': (context) => Organ4Page(
                     model: _model,
                   ),
+              '/qrViewExample1': (context) => QRViewExample1(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

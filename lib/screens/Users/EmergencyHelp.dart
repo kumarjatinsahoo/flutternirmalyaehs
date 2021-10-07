@@ -199,18 +199,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-
                   height: 360,
                   child: ListView.separated(
                     separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
-
                       return ListTile(
                           title: Text(
                             results[i].name,
                             style: TextStyle(color: Colors.black),
                           ),
-
                           /*subtitle: Text(
                             results[i].relation,
                             style: TextStyle(color: Colors.black),

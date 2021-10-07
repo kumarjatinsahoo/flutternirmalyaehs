@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 class DasboardDoctor extends StatefulWidget {
@@ -49,7 +50,7 @@ chooseAppointment(BuildContext context) {
                         icon: CupertinoIcons.calendar_today,
                         title: "Health Check-up",
                         fun: () {
-                         //Navigator.pushNamed(context, "/medicalrecordpage");
+                         //Navigator.pushNamed(context, "/qrViewExample1");
                         },
                       ),
                       Divider(),
@@ -524,6 +525,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               title: Text("My Profile"),
               onTap: () {
                 Navigator.pop(context);
+
+               // Navigator.pushNamed(context, "/qrViewExample1");
               },
             ),
             SizedBox(
@@ -627,6 +630,39 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               title: Text("Contact Us"),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            ListTile(
+              leading: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        width:30,
+                        height: 30,
+                        child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
+                        Icon(
+                          Icons.qr_code,
+                          color: AppData.menublueColor,
+                          size: 30.0,
+                        ),
+                    ),
+                    VerticalDivider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+              title: Text("Qr Search"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/qrViewExample1");
+                //Navigator.pop(context);
               },
             ),
             SizedBox(
