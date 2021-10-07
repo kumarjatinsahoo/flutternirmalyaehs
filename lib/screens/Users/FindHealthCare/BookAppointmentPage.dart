@@ -29,8 +29,8 @@ import 'package:user/widgets/text_field_container.dart';
 import 'package:user/widgets/text_field_address.dart';
 //import 'package:matrujyoti/models/LoginResponse.dart';
 
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
 
 class BookAppointmentPage extends StatefulWidget {
   MainModel model;
@@ -265,30 +265,15 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Row(
-          children: [
-            Text(
-              "Book Appointment",
-              style: TextStyle(color: Colors.white),
-            ),
-           /* Spacer(),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "/doctorconsultationPage");
-              },
-              child: Text(
-                "Find",
-                style: TextStyle(color: Colors.white,fontSize: 15,decoration: TextDecoration.underline,),
-
-              ),
-            ),
-            SizedBox(width: 5,)*/
-          ],
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(
+          "Book Appointment",
+          style: TextStyle(color: Colors.white),
         ),
+
         //automaticallyImplyLeading: false,
-        toolbarHeight: 60,
-        titleSpacing: 5,
-        backgroundColor: AppData.matruColor,
+
       ),
       body: SafeArea(
         child: Container(

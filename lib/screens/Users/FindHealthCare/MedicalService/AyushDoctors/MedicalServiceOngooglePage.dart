@@ -103,6 +103,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
          /* leading: Icon(
             Icons.menu,
           ),*/
+          centerTitle: true,
           actions: <Widget>[
             /*Padding(
                 padding: EdgeInsets.only(right: 20.0),
