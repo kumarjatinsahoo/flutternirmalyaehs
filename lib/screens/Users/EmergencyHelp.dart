@@ -200,8 +200,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
 
-                  height: 370,
-                  child: ListView.builder(
+                  height: 360,
+                  child: ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
 
                       return ListTile(
@@ -209,27 +210,21 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             results[i].name,
                             style: TextStyle(color: Colors.black),
                           ),
+
                           /*subtitle: Text(
                             results[i].relation,
                             style: TextStyle(color: Colors.black),
                           ),*/
-                          /*InkWell(
-                      onTap: () {
-                      // Navigator.pop(context);
-                      AppData.launchURL("tel://" +
-                      emergencyHelpModel.emergency[0].mobile);
-                      },*/
-                          /*trailing:InkWell(
+                          trailing:InkWell(
                             onTap: () {
-                              // Navigator.pop(context);
-                              AppData.launchURL("tel://" +
-                                  results[i].mobile);
+                              //Navigator.pop(context);
+                            /*AppData.launchURL("tel://" +
+                                  results[i].mobile);*/
                             }, child:Icon(Icons.call, color: Colors.black),
-                          )*/
+                          )
                       );
-                      /*);*/
-                    },
-                    itemCount: results.length ,
+                      },
+                    itemCount:5,
 
                   ),
                 ),
@@ -243,15 +238,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
-        //extendBody: true,
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        // ),
         appBar: AppBar(
-          /*leading: BackButton(
-                color: Colors.white,
-              ),*/
           title: Stack(
             children: [
               Row(

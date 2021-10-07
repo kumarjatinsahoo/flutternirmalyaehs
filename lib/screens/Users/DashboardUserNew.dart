@@ -450,6 +450,7 @@ List<String> imageSliders = [
                   onTap: () {
                     selectDestination(6);
                     Navigator.pushNamed(context, "/support");
+                    //Navigator.pushNamed(context, "/discountoffer");
                   }),
               ListTile(
                   leading: Image.asset(
