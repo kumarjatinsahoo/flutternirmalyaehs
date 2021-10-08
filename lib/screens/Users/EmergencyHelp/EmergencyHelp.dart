@@ -10,11 +10,11 @@ import 'package:lottie/lottie.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
-import '../../models/LoginResponse1.dart';
-import '../../providers/Const.dart';
+import '../../../models/LoginResponse1.dart';
+import '../../../providers/Const.dart';
 
-import '../../providers/api_factory.dart';
-import '../../providers/app_data.dart';
+import '../../../providers/api_factory.dart';
+import '../../../providers/app_data.dart';
 
 class EmergencyHelp extends StatefulWidget {
   MainModel model;
@@ -199,18 +199,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-
                   height: 360,
                   child: ListView.separated(
                     separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
-
                       return ListTile(
                           title: Text(
                             results[i].name,
                             style: TextStyle(color: Colors.black),
                           ),
-
                           /*subtitle: Text(
                             results[i].relation,
                             style: TextStyle(color: Colors.black),

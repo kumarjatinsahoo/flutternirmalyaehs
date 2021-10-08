@@ -3,7 +3,7 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/GovtSchemesList.dart';
+import 'package:user/screens/Users/GenericMedicine/GovtSchemesList.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 

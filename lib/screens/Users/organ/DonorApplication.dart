@@ -1031,7 +1031,8 @@ class DonorApplicationState extends State<DonorApplication> {
       text: "Next".toUpperCase(),
       context: context,
       fun: () {
-        if (textEditingController[0].text == "" ||
+        Navigator.pushNamed(context, "/addWitness");
+      /*  if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
           AppData.showInSnackBar(context, "Please enter Person Name");
         } else if (textEditingController[1].text != "" &&
@@ -1057,7 +1058,7 @@ class DonorApplicationState extends State<DonorApplication> {
           AppData.showInSnackBar(context, "Please enter Address");
         } else {
           Navigator.pushNamed(context, "/addWitness");
-
+*/
           /* MyWidgets.showLoading(context);
           PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
           pharmaSignupModel.organizationid = pharmaorganisation;
@@ -1093,7 +1094,7 @@ class DonorApplicationState extends State<DonorApplication> {
               });*/
           // AppData.showInSnackBar(context, "add Successfully");
 
-        }
+
       },
     );
   }

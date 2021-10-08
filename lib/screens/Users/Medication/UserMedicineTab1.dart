@@ -3,8 +3,8 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList1.dart';
-import 'package:user/screens/Users/UserMedicineList.dart';
-import 'package:user/screens/Users/UserTestList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/UserTestList.dart';
 
 import 'UserTestList1.dart';
 class UserMedicineTab1 extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'Users/MedicineReminder.dart';
+import 'Users/MedicineReminder/MedicineReminder.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

@@ -16,8 +16,8 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-import '../../main.dart';
-import '../../providers/app_data.dart';
+import '../../../main.dart';
+import '../../../providers/app_data.dart';
 
 class DashboardUserNew extends StatefulWidget {
   final MainModel model;

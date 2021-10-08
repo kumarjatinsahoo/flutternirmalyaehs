@@ -20,6 +20,8 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor:AppData.kPrimaryColor,
         title: Text(
           'Donor Organisation',
           style: TextStyle(

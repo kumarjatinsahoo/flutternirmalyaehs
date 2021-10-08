@@ -16,37 +16,18 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppData.kPrimaryColor,
+            centerTitle: true,
+            title: Text(
+              'Terms and Conditions',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+          ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: AppData.white,)),
-                    Text(
-                      'Terms and Conditions ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: AppData.white),
-                    ),
-                   /*Icon(
-                      Icons.search,color: AppData.white
-                    ),*/
-                  ],
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-            ),
+
             Expanded(
               child: ListView(
                 shrinkWrap: true,
@@ -93,28 +74,19 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
                            Padding(
                               padding: EdgeInsets.only(
                                   left: 10.0, right: 0.0, top: 10.0, bottom: 10.0),
-                              child: Row(
-                              children: [
-                               /* Text(
-                                  'i. ',
-                                  style:
-                                  TextStyle(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.black),
-                                ),*/
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.0, right: 0.0, top: 10.0, bottom: 10.0),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 5.0, right: 0.0, top: 10.0, bottom: 10.0),
                                child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "i. Organ donation is a family decision.Therefore ,it is important that you discuss your decision with family members and loved ones so that it will be easier foto follow through with your wishes.",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                      ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    AppData.tearm,
+                                    style: TextStyle(
+                                      fontSize: 18.0,
                                     ),
                                   ),
+                                ),
                              ),
-                                ],
-                            ),
                           ),
 
                             SizedBox(

@@ -29,8 +29,8 @@ import 'package:user/widgets/text_field_container.dart';
 import 'package:user/widgets/text_field_address.dart';
 //import 'package:matrujyoti/models/LoginResponse.dart';
 
-import '../../models/KeyvalueModel.dart';
-import '../../providers/app_data.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../providers/app_data.dart';
 
 class BookAppointmentPage extends StatefulWidget {
   MainModel model;

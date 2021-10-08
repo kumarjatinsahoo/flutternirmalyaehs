@@ -525,10 +525,11 @@ class AppData {
   static String organ33 =
       "After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
 
-  static String organ4 =
-      "Any living person can sign up the organ donation form and pledge to be an organ donor. When the person is brain dead, the family members should immediately contact transplant coordinators. After medical evaluation, the necessary organs are retrieved for transplantation. " +
-          "Anyone who has pledged to be an organ donor should always inform the close family members about their wish." +
-          "After donation there is no difficulty during cremation. All the information of the donor and the receiver is kept confidential.";
-//static String organ44="After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
 
+ static String organ4="Any living person can sign up the organ donation form and pledge to be an organ donor. When the person is brain dead, the family members should immediately contact transplant coordinators. After medical evaluation, the necessary organs are retrieved for transplantation. "+
+  "Anyone who has pledged to be an organ donor should always inform the close family members about their wish."+
+  "After donation there is no difficulty during cremation. All the information of the donor and the receiver is kept confidential.";
+  //static String organ44="After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
+static String tearm=
+    "i. Organ donation is a family decision.Therefore ,it is important that you discuss your decision with family members and loved ones so that it will be easier tofollow through with your wishes.";
 }
