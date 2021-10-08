@@ -9,6 +9,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
+import 'package:user/screens/Users/FindHealthCare/Appointment/BookAppointmentTab.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/AyushDoctors/MedicalServiceOngooglePage.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/DonerOrganisation/DonorOrganisation.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/LifeStyleSolution/LifeStyleSolution.dart';
@@ -19,7 +20,7 @@ import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
 import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Allergiclist.dart';
-import 'package:user/screens/Users/FindHealthCare/BookAppointmentPage.dart';
+import 'package:user/screens/Users/FindHealthCare/Appointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
@@ -53,7 +54,7 @@ import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
-import 'screens/Users/DoctorconsultationPage.dart';
+import 'screens/Users/FindHealthCare/Appointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
@@ -67,7 +68,7 @@ import 'package:user/screens/Doctor/registartion/DoctorSignUpForm5.dart';
 import 'package:user/screens/Users/organ/DonorApplication.dart';
 import 'screens/Users/EmergencyHelp/EmergencyHelp.dart';
 import 'screens/Users/EmergencyRoom.dart';
-import 'package:user/screens/FindHealthcareService.dart';
+import 'package:user/screens/Users/FindHealthCare/Appointment/FindHealthcareService.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
@@ -437,9 +438,9 @@ class _MyAppState extends State<MyApp> {
               '/deliveredorder': (context) => SampleTracking(
                     model: _model,
                   ),
-              '/pinview': (context) => PinView(
+             /* '/pinview': (context) => PinView(
                     model: _model,
-                  ),
+                  ),*/
               '/support': (context) => SupportScreen(
                     model: _model,
                   ),
@@ -709,6 +710,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/docConsult1': (context) => BookAppointmentPage(
+                    model: _model,
+                  ),
+              '/appointmenttab': (context) => BookAppointmentTab(
                     model: _model,
                   ),
               '/ambulance': (context) => AmbulanceSignUpForm(

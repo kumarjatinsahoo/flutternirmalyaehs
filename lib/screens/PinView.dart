@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
 // import 'package:user/models/CredentialModel.dart';
 
 // import 'package:user/models/LoginResponse1.dart';
@@ -22,12 +26,14 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class PinView extends StatefulWidget {
   // final String email;
   MainModel model;
+  LoginResponse1 loginData;
 
   // final bool isGuestCheckOut;
 
   PinView({
     Key key,
     this.model,
+    this.loginData,
   }) : super(key: key);
 
   @override
@@ -66,10 +72,15 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+
     totalTimeInSeconds = time;
-    // otpGenerate = Math.generate();
+    otpGenerateStr = widget.loginData.body.otp;
+    otpGenerate = int.parse(otpGenerateStr);
+
     print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerate.toString());
+
     super.initState();
+   // AppData.showInSnackBar(context, otpGenerateStr);
     // loadAsset();
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: time))
@@ -116,6 +127,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
     return Scaffold(
+
       appBar: _getAppbar,
       backgroundColor: AppData.kPrimaryColor,
       body: Stack(
@@ -128,7 +140,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                //Text(otpGenerate.toString()),
+
                 _getVerificationCodeLabel,
                 _getEmailLabel,
                 _getInputField,
@@ -161,7 +173,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0.0,
-      leading: InkWell(
+     /* leading: InkWell(
         borderRadius: BorderRadius.circular(30.0),
         child: Icon(
           Icons.arrow_back,
@@ -169,8 +181,9 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
         ),
         onTap: () {
           Navigator.pop(context);
+         // Navigator.pop(context);
         },
-      ),
+      ),*/
       centerTitle: true,
     );
   }
@@ -257,7 +270,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             SizedBox(
               width: 5.0,
             ),
-            OtpTimer(_controller, 15.0, Colors.white)
+             OtpTimer(_controller, 15.0, Colors.white)
           ],
         ),
       ),
@@ -304,7 +317,38 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   Widget _getResendButton1(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return MyWidgets.nextButton(
-        text: "Resend OTP", context: context, fun: () {});
+        text: "Resend OTP", context: context, fun: () {
+      MyWidgets.showLoading(context);
+      widget.model.GETMETHODCALL(
+          api: ApiFactory.LOGIN_Otp(widget.model.phnNo),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            //log("LOGIN RESPONSE>>>>" + jsonEncode(map));
+            //log("LOGIN RESPONSE>>>>" + jsonEncode(map));
+            //AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            if (map[Const.CODE] == Const.SUCCESS) {
+              setState(() {
+                LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+               // widget.loginData=loginResponse;
+                otpGenerateStr = loginResponse.body.otp;
+                otpGenerate = int.parse(otpGenerateStr);
+              /*  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          PinView(
+                            loginData: loginResponse,
+                            model: widget.model,
+                          )),
+                );*/
+
+              });
+
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });
+    });
   }
 
   _login(String mobile, String userId, BuildContext context) async {}
@@ -321,6 +365,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
           ),
           color: Colors.blueAccent,
           onPressed: () {
+
             // You can dall OTP verification API.
           },
           child: Text(
@@ -416,60 +461,43 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                         color: Colors.white,
                         child: Text("Submit"),
                         onPressed: () {
-                          // MyWidgets.showLoading(context);
-                          // widget.model.GETMETHODCALL(
-                          //     api: ApiFactory.LOGIN_MOB(
-                          //         widget.model.phnNo, otpTypeStr),
-                          //     fun: (Map<String, dynamic> map) {
-                          //       Navigator.pop(context);
-                          //       if (map[Const.STATUS] == Const.SUCCESS) {
-                          //         setState(() {
-                          //           LoginResponse1 loginResponse =
-                          //               LoginResponse1.fromJson(map);
-                          //           sharedPref.save(
-                          //               Const.LOGIN_DATA, loginResponse);
-                          //           widget.model.setLoginData1(loginResponse);
-                          //           sharedPref.save(Const.IS_LOGIN, "true");
-                          //           if (loginResponse.ashadtls[0].userType ==
-                          //               describeEnum(UserType.USER)
-                          //                   .toLowerCase()) {
-                          //             Navigator.of(context)
-                          //                 .pushNamedAndRemoveUntil(
-                          //                     '/navigation',
-                          //                     (Route<dynamic> route) => false);
-                          //           } else {
-                          //             Navigator.of(context)
-                          //                 .pushNamedAndRemoveUntil('/dash',
-                          //                     (Route<dynamic> route) => false);
-                          //           }
-                          //         });
-                          //       } else {
-                          //         // AppData.showInSnackBar(
-                          //         //     context, map[Const.MESSAGE]);
-                          //       }
-                          //     });
-                          // //checkValue();
+                          if (otpType == otpGenerate) {
+                            widget.model.token = widget.loginData.body.token;
+                            widget.model.user = widget.loginData.body.user;
+                            sharedPref.save(Const.LOGIN_DATA, widget.loginData);
+                            widget.model.setLoginData1(widget.loginData);
+                            sharedPref.save(Const.IS_LOGIN, "true");
+                            FirebaseMessaging.instance.subscribeToTopic(widget.loginData.body.user);
+                            FirebaseMessaging.instance.subscribeToTopic(widget.loginData.body.userMobile);
+                            if(widget.loginData.body.roles[0] == "8".toLowerCase()) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/patientDashboard', (Route<dynamic> route) => false);
+                            } else if (widget.loginData.body.roles[0] == "1".toLowerCase()) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                '/dashboard', (Route<dynamic> route) => false);
+                            } else if (widget.loginData.body.roles[0] == "2".toLowerCase()) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/dashDoctor', (Route<dynamic> route) => false);
+                            } else if (widget.loginData.body.roles[0] =="3".toLowerCase()) {
+                                  Navigator.of(context).pushNamedAndRemoveUntil('/dashboardpharmacy',
+                                (Route<dynamic> route) => false);
+                            }else{
+                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            }
+                            AppData.showInSnackBar(context, widget.loginData.message);
+                           // Navigator.pushNamed(context, "/navigation");
+                          }else{
+                            AppData.showInSnackBar(context, "Please enter valid OTP");
+                          }
+
+
+
                         },
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0),
                         ),
                       )
-                      //  _otpKeyboardActionButton(
-                      //     label: Icon(
-                      //       Icons.check_circle,
-                      //       color: Colors.black,
-                      //     ),
-                      //     onPressed: () {
-                      //       // you can call OTP verification API.
-                      //       // Navigator.push(
-                      //       //   context,
-                      //       //   MaterialPageRoute(
-                      //       //     builder: (BuildContext context) => ExistingUser(),
-                      //       //   ),
-                      //       // );
-                      //       Navigator.popAndPushNamed(context, '/existing');
-                      //     }),
-                      ),
+                  ),
                   _otpKeyboardInputButton(
                       label: "0",
                       onPressed: () {
