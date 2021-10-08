@@ -458,9 +458,6 @@ String formattedDate;
                                       "Time", ApiFactory.TIME_SLOT1+ DoctorconsultationPage.doctorModel.key+
                                       "&appointdate=" + appointmentdate.text.toString()+
                                       "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,
-                                   /* (DoctorconsultationPage.doctorModel.key.toString(),
-                                      formattedDate,
-                                      DoctorconsultationPage.hospitalModel.key.toString()),*/
                                       "time2",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {

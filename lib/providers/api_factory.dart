@@ -165,7 +165,8 @@ static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomp
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART =
       "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
-
+  static String TIME_SLOT1 = MAIN_URL +
+      "/Doc/GetDocSlotInfo?doctor=";
   ///COWIN
   static String COWIN_SERVER = "https://cdn-api.co-vin.in/api";
   static String GENERATE_OTP = COWIN_SERVER + "/v2/auth/public/generateOTP";
