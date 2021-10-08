@@ -1,10 +1,11 @@
 class ApiFactory {
-  bool isRelease=bool.fromEnvironment("DEV");
+  bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+
+  // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
 
-  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -92,7 +93,7 @@ class ApiFactory {
   }
 
 
-  static String GOOGLE_QUERY_API1="https://maps.googleapis.com/maps/api/place/textsearch/json?radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&query=";
+  static String GOOGLE_QUERY_API1 = "https://maps.googleapis.com/maps/api/place/textsearch/json?radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&query=";
 
   static String GOOGLE_PIC({String ref}) {
     //https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=Aap_uEAtFwLkonRuDN5tIlx1azLnZgdL8X6IKGY6mU56a_j_QCXfJmxGiJ9QInvT6psLc0DxSpEEsN7MtjjQ-nNexU7hjkF3nyK_VKOzqFx-TM3vuUuk_OpRbMU-KdGfkE49pXVNNxmrc5E5XYRVSfW8JA-W0x134Aj7JWa0Rsa2SIojRkuO&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE
@@ -112,7 +113,8 @@ class ApiFactory {
     return "https://maps.google.com/maps/api/staticmap?zoom=16&size=1200x400&maptype=hybrid&sensor=false&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&markers=$lat,$long";
     //return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
   }
-static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
+
+  static String AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
@@ -176,11 +178,19 @@ static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomp
   static String TAKE_APNTMENT = MAIN_URL1 + "/Doc";
   static String POST_DOC_API = MAIN_URL + "geo-post-doctor-appointment";
 
-  static String TIME_SLOT(
-      String doctor, String appointdate, String hospitalid) {
+  static String TIME_SLOT(String doctor, String appointdate,
+      String hospitalid) {
     return MAIN_URL1 +
         "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
   }
+
+  static String TIME_SLOT1 = MAIN_URL +
+      "/Doc/GetDocSlotInfo?doctor=";
+/* (
+      String doctor, String appointdate, String hospitalid) {
+    return
+      MAIN_URL + "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
+  }*/
 
 
 

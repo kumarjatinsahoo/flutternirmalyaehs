@@ -14,6 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/models/TimeScheduleModel.dart';
@@ -22,20 +23,17 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/FindHealthCare/Appointment/DoctorconsultationPage.dart';
 import 'package:user/widgets/Buttons.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 import 'package:user/widgets/text_field_address.dart';
 //import 'package:matrujyoti/models/LoginResponse.dart';
-
-import '../../../models/KeyvalueModel.dart';
-import '../../../providers/app_data.dart';
-
-class BookAppointmentPage extends StatefulWidget {
+class RegisteredDoctor extends StatefulWidget {
   MainModel model;
-
-  BookAppointmentPage({Key key, this.model}) : super(key: key);
+  RegisteredDoctor({Key key, this.model}) : super(key: key);
 
   static KeyvalueModel countryModel = null;
   static KeyvalueModel stateModel = null;
@@ -49,14 +47,18 @@ class BookAppointmentPage extends StatefulWidget {
   static KeyvalueModel selectDistrict = null;
 
   @override
-  BookAppointmentPageState createState() => BookAppointmentPageState();
+  RegisteredDoctorState createState() => RegisteredDoctorState();
 }
+enum RadioGroup1 { RegisterDoctor, Other }
 
-class BookAppointmentPageState extends State<BookAppointmentPage> {
+class RegisteredDoctorState extends State<RegisteredDoctor> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   String comeFrom;
+  RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
+  bool _visible = false;
+  bool _visible1 = true;
 
   DateTime selectedDate = DateTime.now();
   String selectedDatestr;
@@ -118,8 +120,8 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   String opdId;
 
   Future<Null> _selectDate(
-    BuildContext context,
-  ) async {
+      BuildContext context,
+      ) async {
     // MyWidgets.showLoading(context);
     final DateTime picked = await showDatePicker(
         context: context,
@@ -127,7 +129,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
         lastDate:
-            DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
+        DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
@@ -168,8 +170,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   String address;
   Position position;
   String cityName;
-
-  //LoginResponse1 loginResponse;
+  LoginResponse1 loginResponse;
 
   var mapData;
   String formattedDate;
@@ -177,13 +178,13 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   @override
   void initState() {
     super.initState();
-    BookAppointmentPage.specialistModel = null;
-    BookAppointmentPage.doctorModel = null;
+    RegisteredDoctor.specialistModel = null;
+    RegisteredDoctor.doctorModel = null;
     comeFrom = widget.model.apntUserType;
-    //loginResponse = widget.model.loginResponse1;
-    //_getLocationName();
+    loginResponse = widget.model.loginResponse1;
+    _getLocationName();
     ConnectionStatusSingleton connectionStatus =
-        ConnectionStatusSingleton.getInstance();
+    ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
         connectionStatus.connectionChange.listen(connectionChanged);
     setState(() {
@@ -264,7 +265,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
+    /*  appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(
@@ -274,7 +275,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
 
         //automaticallyImplyLeading: false,
 
-      ),
+      ),*/
       body: SafeArea(
         child: Container(
           height: double.maxFinite,
@@ -291,7 +292,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                     autovalidate: _autovalidate,
                     child: Column(
                       children: <Widget>[
-                       /* (address != null)
+                        /* (address != null)
                             ? Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8.0, vertical: 10),
@@ -310,108 +311,79 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.SPECIALITY_API);
-                                BookAppointmentPage.specialistModel = data;
-                                BookAppointmentPage.doctorModel = null;
+                                RegisteredDoctor.specialistModel = data;
+                                RegisteredDoctor.doctorModel = null;
                                 // UserSignUpForm.cityModel = null;
                               });
                             }),
                           ),
                         ),
-                      /*  (BookAppointmentPage.specialistModel != null)
+                        SizedBox(height:10),
+                        (RegisteredDoctor.specialistModel != null)
                             ? Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child: DropDown.networkDropdownGetpartUser(
-                                "Doctor",
-                                ApiFactory.DOCTOOR_API +
-                                    BookAppointmentPage
-                                        .specialistModel.key ,*//*+
-                                          "&city=" +
-                                          (DoctorconsultationPage
-                                                  ?.cityModel?.key ??
-                                              ""),*//*
-                                "doctor",
-                                Icons.mail,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
-                                BookAppointmentPage.doctorModel = data;
-                                BookAppointmentPage.hospitalModel = null;
-                                // UserSignUpForm.cityModel = null;
-                              });
-                            }),
-                          ),
-                        )
-                            : Container(),  */
-
-                        //////DEMO DOCTOR
-                        (BookAppointmentPage.specialistModel != null)
-                            ? Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child: DropDown.docList(
-                                "Doctor",
-                                ApiFactory.DOC_LIST +
-                                    BookAppointmentPage
-                                        .specialistModel.key,/*+
-                                          "&city=" +
-                                          (DoctorconsultationPage
-                                                  ?.cityModel?.key ??
-                                              ""),*/
-                                "doctor",
-                                Icons.mail,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
-                                BookAppointmentPage.doctorModel = data;
-                                BookAppointmentPage.hospitalModel = null;
-                                // UserSignUpForm.cityModel = null;
-                              });
-                            }),
-                          ),
-                        )
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 0),
+                              child: SizedBox(
+                                height: 58,
+                                child: DropDown.docList(
+                                    "Doctor",
+                                    ApiFactory.DOC_LIST +
+                                        RegisteredDoctor
+                                            .specialistModel.key,/*+
+                                              "&city=" +
+                                              (DoctorconsultationPage
+                                                      ?.cityModel?.key ??
+                                                  ""),*/
+                                    "doctor",
+                                    Icons.person,
+                                    23.0, (KeyvalueModel data) {
+                                  setState(() {
+                                    //print(ApiFactory.DOCTOOR_API+ DoctorconsultationPage.specialistModel.key+ "&city="+DoctorconsultationPage.cityModel.key);
+                                    RegisteredDoctor.doctorModel = data;
+                                    RegisteredDoctor.hospitalModel = null;
+                                    // UserSignUpForm.cityModel = null;
+                                  });
+                                }),
+                              ),
+                            )
                             : Container(),
 
-                    SizedBox(
-                      height: 10,),
+                        SizedBox(
+                          height: 10,),
                         appointdate(),
                         SizedBox(
                           height: 10,
                         ),
                         //comultationTime(),
                         (appointmentdate.text.toString() != null ||
-                                    appointmentdate.text.toString() != "") &&
-                                (BookAppointmentPage.doctorModel != null)
+                            appointmentdate.text.toString() != "") &&
+                            (RegisteredDoctor.doctorModel != null)
                             ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
-                                child: SizedBox(
-                                  height: 58,
-                                  child:
-                                  DropDown.timeSlot(
-                                        "Time", ApiFactory.TIME_SLOT(BookAppointmentPage.doctorModel.key.toString(),formattedDate,BookAppointmentPage.doctorModel.hospitalid.toString()),
-                                        "time2",
-                                      widget.model.token, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(ApiFactory.DOCTER_AVAILABLE);
-                                      BookAppointmentPage.timeModel = data;
-                                      isValidtime =
-                                          (data.code) ? false : true;
-                                      if (!isValidtime)
-                                        AppData.showInSnackBar(context,
-                                            "This time is already booked please select another time");
-                                    });
-                                    if (data.key == 1) {
-                                      AppData.showInSnackBar(context,
-                                          "This time is already booked. Please choose another time.");
-                                    }
-                                  }, context),
-                                ),
-                              )
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child:
+                            DropDown.timeSlot(
+                                "Time", ApiFactory.TIME_SLOT(RegisteredDoctor.doctorModel.key.toString(),formattedDate,RegisteredDoctor.doctorModel.hospitalid.toString()),
+                                "time2",
+                                widget.model.token, (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.DOCTER_AVAILABLE);
+                                RegisteredDoctor.timeModel = data;
+                                isValidtime =
+                                (data.code) ? false : true;
+                                if (!isValidtime)
+                                  AppData.showInSnackBar(context,
+                                      "This time is already booked please select another time");
+                              });
+                              if (data.key == 1) {
+                                AppData.showInSnackBar(context,
+                                    "This time is already booked. Please choose another time.");
+                              }
+                            }, context),
+                          ),
+                        )
                             : Container(),
                         fromAddress(
                             1,
@@ -433,7 +405,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child:
-                              nextButton(), /*Buttons.nextButton(
+                          nextButton(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
@@ -451,17 +423,17 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
               ),
               isLoginLoading
                   ? Stack(
-                      children: [
-                        new Opacity(
-                          opacity: 0.1,
-                          child: const ModalBarrier(
-                              dismissible: false, color: Colors.grey),
-                        ),
-                        new Center(
-                          child: new CircularProgressIndicator(),
-                        ),
-                      ],
-                    )
+                children: [
+                  new Opacity(
+                    opacity: 0.1,
+                    child: const ModalBarrier(
+                        dismissible: false, color: Colors.grey),
+                  ),
+                  new Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                ],
+              )
                   : Container()
             ],
           ),
@@ -488,7 +460,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             "Take Appointment",
             textAlign: TextAlign.center,
@@ -500,19 +472,19 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   validate() async {
-   // _formKey.currentState.validate();
-   if (BookAppointmentPage.specialistModel == null ||
-        BookAppointmentPage.specialistModel == "") {
+    // _formKey.currentState.validate();
+    if (RegisteredDoctor.specialistModel == null ||
+        RegisteredDoctor.specialistModel == "") {
       AppData.showInSnackBar(context, "Please select specialist");
-    } else if (BookAppointmentPage.doctorModel == null ||
-        BookAppointmentPage.doctorModel == "") {
+    } else if (RegisteredDoctor.doctorModel == null ||
+        RegisteredDoctor.doctorModel == "") {
       AppData.showInSnackBar(context, "Please select doctor");
-    /*} else if (BookAppointmentPage.hospitalModel == null ||
+      /*} else if (BookAppointmentPage.hospitalModel == null ||
         BookAppointmentPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");*/
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select your appointmentdate");
-    } else if (BookAppointmentPage.timeModel == null) {
+    } else if (RegisteredDoctor.timeModel == null) {
       AppData.showInSnackBar(context, "Please select time");
     } else if (!isValidtime) {
       AppData.showInSnackBar(context, "Please select valid time");
@@ -533,7 +505,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   }
 
   sendServer() {
-    var string = BookAppointmentPage.timeModel.name;
+    var string = RegisteredDoctor.timeModel.name;
     List splitedText = string.split("To");
     print(splitedText[0]);
     String timestring0 = splitedText[0];
@@ -542,17 +514,17 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     Map<String, dynamic> postmap = {
       "userid" : widget.model.user,
       "date" : formattedDate,
-      "opdid" :BookAppointmentPage.timeModel.key.toString(),
+      "opdid" :RegisteredDoctor.timeModel.key.toString(),
       "time" : /*BookAppointmentPage.timeModel.name*/timestring0,
-      "doctor": BookAppointmentPage.doctorModel.key.toString(),
+      "doctor": RegisteredDoctor.doctorModel.key.toString(),
       "notes" :  textEditingController[1].text,
-      "hospitalid" :int.tryParse(BookAppointmentPage.doctorModel.hospitalid)
+      "hospitalid" :int.tryParse(RegisteredDoctor.doctorModel.hospitalid)
     };
 
     log("Print data>>>>"+jsonEncode(postmap));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
-        //api: ApiFactory.POST_APPOINTMENT,
+      //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.TAKE_APNTMENT,
         token: widget.model.token,
         json: postmap,
@@ -574,7 +546,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
     log("Print data>>>>"+jsonEncode(postData));
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
-        //api: ApiFactory.POST_APPOINTMENT,
+      //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.POST_DOC_API,
         token: widget.model.token,
         json: postData,
@@ -641,7 +613,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                     Text(
                       'Personal details:',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?" *
@@ -650,12 +622,12 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                     Text(
                       'Family/Work/Nominee :',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'Other  Details :',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -730,7 +702,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
                 colors: [Colors.black, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             "NEXT",
             textAlign: TextAlign.center,
@@ -759,7 +731,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
@@ -831,7 +803,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                    "Consultation Time",
+                "Consultation Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -893,7 +865,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
               },
               decoration: InputDecoration(
                 hintText: //"Last Period Date",
-                    "Appointment Date",
+                "Appointment Date",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -1006,7 +978,7 @@ class BookAppointmentPageState extends State<BookAppointmentPage> {
       onSaved: (value) {
         //_addModel.names = value;
         switch (comeFrom) {
-          /* case "Village":
+        /* case "Village":
             registrationModel.presentStreet1 = value;
             break;
           case "Street":

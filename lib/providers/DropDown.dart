@@ -1553,6 +1553,17 @@ class DropDown {
         ),
       ),
       //label: label,
+      errorBuilder: (context, value, v) {
+        return Material(
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      },
       showSearchBox: true,
       selectedItem: getData(callFrom),
       onFind: (String filter) async {
@@ -1565,9 +1576,9 @@ class DropDown {
           case "title":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          /* case "time2":
+           case "time2":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
-            break;*/
+            break;
           case "gender":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -1581,7 +1592,7 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "doctor":
-            //log("LLLL>>>>"+jsonEncode(response.data));
+            log("LLLL>>>>"+jsonEncode(response.data));
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "city":
