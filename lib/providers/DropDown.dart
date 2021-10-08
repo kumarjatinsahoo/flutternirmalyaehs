@@ -2125,7 +2125,7 @@ class DropDown {
 
         var list;
         switch (callFrom) {
-          case "time2":
+          case "time1":
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
         }
@@ -2232,6 +2232,9 @@ class DropDown {
         switch (callFrom) {
           case "time2":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "time1":
+            list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
         }
         return list;

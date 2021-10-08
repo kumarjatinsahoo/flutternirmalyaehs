@@ -1,7 +1,8 @@
 class ApiFactory {
-  bool isRelease=bool.fromEnvironment("DEV");
+  bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+
+  // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
 
   static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
@@ -114,7 +115,8 @@ class ApiFactory {
     return "https://maps.google.com/maps/api/staticmap?zoom=16&size=1200x400&maptype=hybrid&sensor=false&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&markers=$lat,$long";
     //return "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&place_id=$place_id";
   }
-static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
+
+  static String AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
@@ -165,8 +167,7 @@ static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomp
   static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String HEALTH_CHART =
       "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
-  static String TIME_SLOT1 = MAIN_URL +
-      "/Doc/GetDocSlotInfo?doctor=";
+
   ///COWIN
   static String COWIN_SERVER = "https://cdn-api.co-vin.in/api";
   static String GENERATE_OTP = COWIN_SERVER + "/v2/auth/public/generateOTP";
@@ -179,11 +180,19 @@ static String AUTO_COMPLETE="https://maps.googleapis.com/maps/api/place/autocomp
   static String TAKE_APNTMENT = MAIN_URL1 + "/Doc";
   static String POST_DOC_API = MAIN_URL + "geo-post-doctor-appointment";
 
-  static String TIME_SLOT(
-      String doctor, String appointdate, String hospitalid) {
+  static String TIME_SLOT(String doctor, String appointdate,
+      String hospitalid) {
     return MAIN_URL1 +
         "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
   }
+
+  static String TIME_SLOT1 = MAIN_URL +
+      "/Doc/GetDocSlotInfo?doctor=";
+/* (
+      String doctor, String appointdate, String hospitalid) {
+    return
+      MAIN_URL + "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
+  }*/
 
 
 

@@ -453,12 +453,16 @@ String formattedDate;
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.timeSlot(
-                                      //"Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+DoctorconsultationPage.doctorModel.code.toString(),
-                                      "Time", ApiFactory.TIME_SLOT1+ DoctorconsultationPage.doctorModel.key+
+                                  child: DropDown.networkDropdownGetpartUser11(
+                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&date=" + appointmentdate.text.toString(),
+                                     /* "Time", ApiFactory.DOCTER_AVAILABLE+
+                                      DoctorconsultationPage.doctorModel.key+
                                       "&appointdate=" + appointmentdate.text.toString()+
-                                      "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,
-                                      "time2",
+                                      "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,*/
+                                   /* (DoctorconsultationPage.doctorModel.key.toString(),
+                                      formattedDate,
+                                      DoctorconsultationPage.hospitalModel.key.toString()),*/
+                                      "time1",
                                       widget.model.token, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
