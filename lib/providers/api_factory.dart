@@ -184,8 +184,7 @@ class ApiFactory {
         "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
   }
 
-  static String TIME_SLOT1 = MAIN_URL +
-      "/Doc/GetDocSlotInfo?doctor=";
+  static String TIME_SLOT1 = MAIN_URL+"/Doc/GetDocSlotInfo?doctor=";
 /* (
       String doctor, String appointdate, String hospitalid) {
     return

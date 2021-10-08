@@ -454,10 +454,11 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.timeSlot(
-                                      //"Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&appointdate=" + appointmentdate.text.toString()+"&hospitalid="+DoctorconsultationPage.doctorModel.code.toString(),
-                                      "Time", ApiFactory.TIME_SLOT1+ DoctorconsultationPage.doctorModel.key+
+                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&date=" + appointmentdate.text.toString(),
+                                     /* "Time", ApiFactory.DOCTER_AVAILABLE+
+                                      DoctorconsultationPage.doctorModel.key+
                                       "&appointdate=" + appointmentdate.text.toString()+
-                                      "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,
+                                      "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,*/
                                    /* (DoctorconsultationPage.doctorModel.key.toString(),
                                       formattedDate,
                                       DoctorconsultationPage.hospitalModel.key.toString()),*/
