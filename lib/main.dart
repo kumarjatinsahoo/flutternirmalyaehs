@@ -437,9 +437,9 @@ class _MyAppState extends State<MyApp> {
               '/deliveredorder': (context) => SampleTracking(
                     model: _model,
                   ),
-              '/pinview': (context) => PinView(
+             /* '/pinview': (context) => PinView(
                     model: _model,
-                  ),
+                  ),*/
               '/support': (context) => SupportScreen(
                     model: _model,
                   ),

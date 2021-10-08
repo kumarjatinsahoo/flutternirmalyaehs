@@ -10,6 +10,7 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/PinView.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -198,6 +199,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       _loginButton(),
                       SizedBox(
                         height: size.height * 0.04,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          //Navigator.pushNamed(context, "/docDash");
+                        },
+                        child: Text(
+                          '- OR -',
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      _otpButton(),
+                      SizedBox(
+                        height: size.height * 0.01,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -452,7 +469,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
 
-
                     FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
                     FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
 
@@ -482,7 +498,52 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+  Widget _otpButton() {
+    return MyWidgets.outlinedButton(
+      text: "Login with OTP".toUpperCase(),
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {
+          widget.model.phnNo = _loginId.text;
+          MyWidgets.showLoading(context);
+          widget.model.GETMETHODCALL(
+              api: ApiFactory.LOGIN_Otp(_loginId.text),
+              fun: (Map<String, dynamic> map) {
+                Navigator.pop(context);
+                log("LOGIN RESPONSE>>>>" + jsonEncode(map));
+                //AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                if (map[Const.CODE] == Const.SUCCESS) {
+                  setState(() {
+                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                   // widget.model.loginData=loginResponse;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              PinView(
+                                  loginData: loginResponse,
+                                  model: widget.model,
+                                  )),
+                    );
 
+                    });
+
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
+         // widget.model.phnNo = _loginId.text;
+          //Navigator.pushNamed(context, "/otpView");
+         // Navigator.pushNamed(context, "/pinView");
+        }
+      },
+    );
+  }
   dashOption(BuildContext context) {
     return showDialog(
         context: context,

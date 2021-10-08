@@ -370,7 +370,7 @@ class MyWidgets {
         margin: EdgeInsets.only(left: 10.0, right: 10.0),
         decoration: BoxDecoration(
             // color: Colors.indigo[50],
-            borderRadius: BorderRadius.circular(25.0),
+            borderRadius: BorderRadius.circular(10.0),
             border: Border.all(color: AppData.kPrimaryColor, width: 0.5)    ,
            boxShadow: [
                     BoxShadow(
