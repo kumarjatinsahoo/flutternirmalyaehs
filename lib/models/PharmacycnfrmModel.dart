@@ -51,6 +51,8 @@ class Body {
   Null medid;
   Null reqstatus;
   Null status;
+  dynamic key;
+  dynamic name;
 
   Body(
       {this.medname,
@@ -95,6 +97,11 @@ class Body {
     medid = json['medid'];
     reqstatus = json['reqstatus'];
     status = json['status'];
+    if(json.containsKey("key")) {
+      key = json["key"];
+    }if(json.containsKey("name")) {
+      name = json["name"];
+    }
   }
 
   Map<String, dynamic> toJson() {

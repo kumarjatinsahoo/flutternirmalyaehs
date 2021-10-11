@@ -132,11 +132,12 @@ class Body {
     return data;
   }
 
- /* Map<String, dynamic> toJson1() {
+  Map<String, dynamic> toJson1() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.srlNoOne;
-    data['code'] = this.srlNoTwo;
-    data['key'] = this.medid;
+    data['name'] = this.testname;
+    data['code'] = this.srlNoOne;
+    data['data'] = this.srlNoTwo;
+    data['key'] = this.testgroup;
     return data;
-  }*/
+  }
 }

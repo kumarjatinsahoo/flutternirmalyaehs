@@ -486,7 +486,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
-                          fontWeight: FontWeight.w600),
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

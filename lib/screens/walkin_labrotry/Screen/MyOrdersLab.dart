@@ -63,9 +63,6 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final orientation = MediaQuery.of(context).orientation;
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -111,7 +108,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                             child: InkWell(
                               onTap: () {
                                 widget.model.pharmacyorderModel=body;
-                                Navigator.pushNamed(context, "/confirmorder");
+                                Navigator.pushNamed(context, "/orderDetails");
                               },
                               child: Row(
                                 mainAxisAlignment:
@@ -226,10 +223,8 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                               Expanded(
                                 child: InkWell(
                                   onTap: (){
-                                    String orderid=body.orderid;
-                                    String Status="6";
-                                    rejectApi(orderid,Status);
-                                    callAPI();
+                                    rejectApi(body.orderid);
+
                                   },
                                   child: Container(
                                     height: size.height * 0.06,
@@ -295,11 +290,13 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
     );
   }
 
-   rejectApi(String orderid, String status) {
+   rejectApi(String orderid) {
+    MyWidgets.showLoading(context);
      widget.model.GETMETHODCALL_TOKEN(
-         api: ApiFactory.CHANGE_STATUS +orderid+"&status="+"4",
+         api: ApiFactory.CHANGE_STATUS_LAB +orderid+"&status=6",
          token: widget.model.token,
          fun: (Map<String, dynamic> map) {
+           Navigator.pop(context);
            setState(() {
              log("Json Response>>>" + JsonEncoder().convert(map));
              String msg = map[Const.MESSAGE];
@@ -307,7 +304,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                // pocReportModel = PocReportModel.fromJson(map);
                //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
              //  AppData.showInSnackBar(context, msg);
-
+               callAPI();
 
              } else {
                isDataNotAvail = true;
@@ -320,7 +317,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
    acceptApi(String orderid) {
     MyWidgets.showLoading(context);
      widget.model.GETMETHODCALL_TOKEN(
-         api: ApiFactory.CHANGE_STATUS +orderid+"&status=4",
+         api: ApiFactory.CHANGE_STATUS_LAB +orderid+"&status=4",
          token: widget.model.token,
          fun: (Map<String, dynamic> map) {
            Navigator.pop(context);
