@@ -15,30 +15,38 @@
   "AMBULANCE": "Ambulance",
   "NGO": "NGO",
   "BLOOD_BANK": "Blood Bank",
-  "CANCEL": "",
+  "CANCEL": "Cancel",
 
-  "SIGNUP": "",
-  "TITLE": "",
+  "SIGNUP": "SIGNUP",
+  "TITLE": "Title",
   "FIRST_NAME": " First Name",
   "LAST_NAME": "Last Name",
-  "GENDER": "",
+  "GENDER": "Gender",
   "PHONE_NUMBER": "Phone No.",
-  "COUNTRY": "",
-  "AGE": "",
-  "DOB": "",
-  "YEARS": "",
+  "COUNTRY": "Country",
+  "AGE": "Age",
+  "DOB": "DOB",
+  "YEARS": "Yes",
   "I_AGREE_TO_EHEALTH_SYSTEM": "",
   "TERM_CONDITION": "",
+  "SUBMIT": "SUBMIT",
 
-  "INDIVIDUAL": "",
-  "PROFESSIONAL/ORGANIZATION": "",
+  "INDIVIDUAL": "Individual",
+  "PROFESSIONAL/ORGANIZATION": "Professional/Organization",
+  "USER": "User",
+  "PHARMACIST": "Pharmacist",
+  "PATHOLOGIST": "Pathologist",
+  "DOCTOR": "Doctor",
+  "HOSPITAL": "Hospital",
+  "RECEPTIONIST": "Receptionist",
+  "PHARMACY": "Pharmacy",
+  "PATHOLOGYLAB": "PathologyLab",
   "NEXT": "NEXT",
-  "FILL_IN_PERSONAL_INFORMATION": "",
+  "FILL_IN_PERSONAL_INFORMATION": "Fill in Personal Information (All fields are Mandatory)",
   "ORGANIZATION_NAME": "",
   "PROFESSIONAL_NAME": "",
   "EDUCATION": "",
   "ROLE": "",
-  "DOCTOR": "",
   "SPECIALITY": "",
   "BLOODGROUP": "",
   "ADDRESS": "",
@@ -53,8 +61,7 @@
   "EXPERIENCE": "",
   "UPLOAD_DOCUMENT": "",
   "AGREE_TO_NCORDS": "",
-  "PATHOLOGIST": "",
-  "SUBMIT": "SUBMIT",
+
 
 
   "DASHBOARD": "",
@@ -187,17 +194,10 @@
   "SKIN": "",
   "EYE_BALL": "",
   "BLOOD_VESSELS": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": ""
-}
+
+
+
+
+  "AMBULANCE1": ""
+  }
 

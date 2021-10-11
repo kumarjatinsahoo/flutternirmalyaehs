@@ -197,7 +197,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                               child: Icon(Icons.arrow_back,color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                            child: Text('SIGN UP',
+                            child: Text(MyLocalizations.of(context).text("SIGNUP"),
                               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                           ),
                         ],
@@ -287,7 +287,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                   Row(
                                     children: [
                                       Icon(Icons.supervised_user_circle_rounded),
-                                      Text("Individual",style: TextStyle(fontSize: 20),),
+                                      Text(MyLocalizations.of(context).text("INDIVIDUAL"),style: TextStyle(fontSize: 20),),
                                     ],
                                   ),
 
@@ -302,14 +302,14 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("User"),
+                                      Text(MyLocalizations.of(context).text("USER")),
                                     ],
                                   ),
 
                                   Row(
                                     children: [
                                       Icon(Icons.supervised_user_circle),
-                                      Text("  Professional/Organization",style: TextStyle(fontSize: 20),),
+                                      Text(MyLocalizations.of(context).text("PROFESSIONAL/ORGANIZATION"),style: TextStyle(fontSize: 20),),
                                     ],
                                   ),
                                   Row(
@@ -323,7 +323,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Doctor"),
+                                      Text(MyLocalizations.of(context).text("DOCTOR")),
                                     ],
                                   ),
                                   Row(
@@ -337,7 +337,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Pharmacist"),
+                                      Text(MyLocalizations.of(context).text("PHARMACIST")),
                                     ],
                                   ),
                                   Row(
@@ -351,7 +351,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Pathologist"),
+                                      Text(MyLocalizations.of(context).text("PATHOLOGIST")),
                                     ],
                                   ),
                                   Row(
@@ -365,7 +365,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Receptionist"),
+                                      Text(MyLocalizations.of(context).text("RECEPTIONIST")),
                                     ],
                                   ),
                                   Row(
@@ -379,7 +379,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Hospital"),
+                                      Text(MyLocalizations.of(context).text("HOSPITAL")),
                                     ],
                                   ),
                                   Row(
@@ -393,7 +393,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("Pharmacy"),
+                                      Text(MyLocalizations.of(context).text("PHARMACY")),
                                     ],
                                   ),
                                   Row(
@@ -407,7 +407,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                           });
                                         },
                                       ),
-                                      Text("PathologyLab"),
+                                      Text(MyLocalizations.of(context).text("PATHOLOGYLAB")),
                                     ],
                                   ),
                                   SizedBox(height: 5),

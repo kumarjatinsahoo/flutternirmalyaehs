@@ -555,7 +555,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Center(child: Text("User Registration")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("USER_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -568,7 +568,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Doctor Registration")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("DOCTOR_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -581,7 +581,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Lab Registration")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("LAB_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -593,7 +593,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Pharmacists")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("PHARMACISTS"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -605,7 +605,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Ambulance")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("AMBULANCE"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -617,7 +617,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("NGO")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("NGO"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -629,7 +629,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Blood Bank")),
+                          title: Center(child: Text(MyLocalizations.of(context).text("BLOOD_BANK"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
