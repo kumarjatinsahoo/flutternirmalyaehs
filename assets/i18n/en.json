@@ -20,7 +20,7 @@
 
   "SIGNUP": "SIGNUP",
   "TITLE": "Title",
-  "FIRST_NAME": " First Name",
+  "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
   "GENDER": "Gender",
   "PHONE_NUMBER": "Phone No.",
@@ -92,6 +92,17 @@
   "CONTACT_US": "Contact Us",
   "SUPPORT": "Support",
   "LOGOUT": "Logout",
+  "TESTS": "Tests",
+  "PLEASE_ENTER_FIRST_NAME": "Please Enter First Name",
+  "PLEASE_ENTER_lAST_NAME": "Please Enter Last Name",
+  "PLEASE_SELECT_GENDER": "Please Select Gender",
+  "PLEASE_ENTER_AADHAAR_NUMBER": "Please Enter Aadhaar Number",
+  "PLEASE_ENTER_PHONE_NUMBER": "Please Enter Phone Number",
+  "PLEASE_ENTER_FATHER_NAME": "Please Enter Father Name",
+  "PLEASE_ENTER_DOB": "Please Enter DOB",
+  "PLEASE_SELECT_BLOCK": "Please Select Block",
+  "PLEASE_SELECT_DISTRICT": "Please Select District",
+  "PLEASE_ENTER_ADDRESS": "Please Enter Address",
 
 
   "MEDICATION": "Medication",

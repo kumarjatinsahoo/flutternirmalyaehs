@@ -667,9 +667,9 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
           context, MyLocalizations.of(context).text("PLEASE_ENTER_DOB"));
       FocusScope.of(context).requestFocus(fnode3);
     } else if (DoctorSignUpForm5.districtModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
+      AppData.showInSnackBar(context,MyLocalizations.of(context).text ("PLEASE SELECT DISTRICT"));
     } else if (DoctorSignUpForm5.blockModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
+      AppData.showInSnackBar(context, MyLocalizations.of(context).text("PLEASE SELECT BLOCK/ULB"));
     } else {
       _formKey.currentState.save();
 

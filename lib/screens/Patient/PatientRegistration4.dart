@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -593,11 +594,11 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                     /*codeDialog = valueText;
                     Navigator.pop(context);*/
                     if (_name.text == null || _name.text == "") {
-                      AppData.showInSnackBar(context, "Please enter name");
+                      AppData.showInSnackBar(context,MyLocalizations.of(context).text ("PLEASE_ENTER_FIRST_NAME"));
                     } else if (_address.text == null || _address.text == "") {
-                      AppData.showInSnackBar(context, "Please enter address");
+                      AppData.showInSnackBar(context,MyLocalizations.of(context).text ("PLEASE_ENTER_ADDRESS"));
                     } else if (_email.text == null || _email.text == "") {
-                      AppData.showInSnackBar(context, "Please enter phoneno.");
+                      AppData.showInSnackBar(context,MyLocalizations.of(context).text ("PLEASE_ENTER_PHONE_NUMBER"));
                     }
                     /*else if (!_email.text.contains("@")) {
                       AppData.showInSnackBar(
