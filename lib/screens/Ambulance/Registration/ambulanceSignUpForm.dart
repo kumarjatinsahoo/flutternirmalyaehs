@@ -186,7 +186,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                             child: Icon(Icons.arrow_back,color: Colors.white)),
                         Padding(
                           padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
+                          child: Text(MyLocalizations.of(context).text("SIGNUP"),
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
                         /*Align(
@@ -242,7 +242,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
+                                            Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
@@ -250,7 +250,8 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
-                                            "Organization Name",
+                                            MyLocalizations.of(context)
+                                                .text("ORGANIZATION_NAME") ,
                                             ApiFactory.AMBULANCE_ORGANISATION_API,
                                             "ambulance",
                                             Icons.location_on_rounded,
@@ -263,7 +264,8 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser1(
-                                            "Title",
+                                            MyLocalizations.of(context)
+                                                .text("TITLE") ,
                                             ApiFactory.TITLE_API,
                                             "title",
                                             Icons.location_on_rounded,
@@ -276,21 +278,22 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        formField(9, "Professional's Name"),
+                                        formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
 
                                         SizedBox(height: 10),
 
-                                        formFieldMobile(10, " Experience(Years)"),
+                                        formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE")),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        formField(11, " Address"),
+                                        formField(11, MyLocalizations.of(context).text("ADDRESS")),
                                         SizedBox(
                                           height: 5,
                                         ),
 
                                         DropDown.networkDropdownGetpartUser1(
-                                            "Gender",
+                                            MyLocalizations.of(context)
+                                                .text("GENDER") ,
                                             ApiFactory.GENDER_API,
                                             "gender",
                                             Icons.location_on_rounded,
@@ -467,7 +470,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
        // Navigator.pushNamed(context, "/patientRegistration2");

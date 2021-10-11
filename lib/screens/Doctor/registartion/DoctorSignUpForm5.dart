@@ -171,7 +171,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
                       Padding(
                         padding: const EdgeInsets.only(left: 80.0, right: 40.0),
                         child: Text(
-                          'SIGN UP',
+                          MyLocalizations.of(context).text("SIGNUP"),
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 20,
@@ -225,7 +225,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
                               Column(
                                 children: [
                                   Text(
-                                    " Welcome to eHealthSystem",
+                                    MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
                                     style: TextStyle(
                                         fontSize: 27, color: Colors.blue),
                                     textAlign: TextAlign.center,

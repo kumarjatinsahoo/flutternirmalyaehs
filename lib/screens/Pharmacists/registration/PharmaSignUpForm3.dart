@@ -232,7 +232,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                             child: Icon(Icons.arrow_back,color: Colors.white)),
                         Padding(
                           padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
+                          child: Text(MyLocalizations.of(context).text("SIGNUP"),
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
                       ],
@@ -279,7 +279,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
+                                            Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                               style: TextStyle(fontSize: 18, color: Colors.black),),
                                           ],
                                         ),
@@ -291,7 +291,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         ),
 
                                         DropDown.networkDropdownGetpartUser(
-                                            "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                            MyLocalizations.of(context)
+                                                .text("COUNTRY") ,
+                                            ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
                                             23.0,
                                                 (KeyvalueModel data) {
                                               setState(() {
@@ -305,7 +307,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser(
-                                            "State", ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                            MyLocalizations.of(context)
+                                                .text("STATE") ,
+                                            ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
                                             23.0,
                                                 (KeyvalueModel data) {
                                               setState(() {
@@ -319,7 +323,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser(
-                                            "District", ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                            MyLocalizations.of(context)
+                                                .text("DIST") ,
+                                            ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
                                             23.0,
                                                 (KeyvalueModel data) {
                                               setState(() {
@@ -332,7 +338,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           height: 5,
                                         ),
                                         DropDown.networkDropdownGetpartUser(
-                                            "City", ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                            MyLocalizations.of(context)
+                                                .text("CITY") ,
+                                            ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
                                             23.0,
                                                 (KeyvalueModel data) {
                                               setState(() {
@@ -345,16 +353,16 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         SizedBox(
                                           height: 13,
                                         ),
-                                        formFieldzip(5, "Enter Zip/Pin Code :"),
+                                        formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
                                         SizedBox(
                                           height: 13,
                                         ),
 
-                                        formFieldMobile(10, "Mobile Number :"),
+                                        formFieldMobile(10,  MyLocalizations.of(context).text("MOBILE_NO")),
                                         SizedBox(
                                           height: 13,
                                         ),
-                                        formFielEmail(11, "Email Id :"),
+                                        formFielEmail(11, MyLocalizations.of(context).text("EMAILID")),
                                         SizedBox(
                                           height: 13,
                                         ),
@@ -363,7 +371,8 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                             children: [
                                               Padding(
                                                 padding: const EdgeInsets.all(10.0),
-                                                child: Text("Upload Photo",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                                child: Text(MyLocalizations.of(context).text("UPLOAD_PHOTO"),
+                                                  style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
                                               ),
 
                                             ],
@@ -375,7 +384,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                               padding: const EdgeInsets.symmetric(
                                                   horizontal: 10),
                                               child: Text(
-                                                "Upload Document :",
+                                                MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
                                                 style: TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.black),
@@ -405,7 +414,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: 'I agree to NCORDS ',
+                                                        text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
                                                         /* "Welcome back",*/
                                                         style: TextStyle(
                                                           // fontWeight: FontWeight.w800,
@@ -416,7 +425,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                                       ),
                                                       TextSpan(
                                                         text:
-                                                        'Terms and Conditions',
+                                                        MyLocalizations.of(context).text("T&C") ,
                                                         /* "Welcome back",*/
                                                         style: TextStyle(
                                                           // fontWeight: FontWeight.w500,
@@ -611,7 +620,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "SUBMIT".toUpperCase(),
+      text:MyLocalizations.of(context).text("SUBMIT"),
       context: context,
       fun: () {
     if (PharmaSignUpForm3.countryModel == null ||

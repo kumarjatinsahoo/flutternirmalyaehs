@@ -255,10 +255,10 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-
                                   Column(
                                     children: [
                                       Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -269,7 +269,9 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                       height: 58,
                                       child:
                                       DropDown.networkDropdownGetpartUser(
-                                          "Organization Name", ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                          MyLocalizations.of(context)
+                                              .text("ORGANIZATION_NAME") ,
+                                           ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
                                           23.0,
                                               (KeyvalueModel data) {
                                             setState(() {
@@ -291,7 +293,8 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                       height: 58,
                                       child:
                                       DropDown.networkDropdownGetpartUser(
-                                          "title",
+                                          MyLocalizations.of(context)
+                                              .text("TITLE") ,
                                           ApiFactory.TITLE_API,
                                           "title",
                                           Icons.mail,
@@ -309,7 +312,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                   SizedBox(
                                     height: 13,
                                   ),
-                                  formField1(1, "Professional's Name"),
+                                  formField1(1,MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
                                   SizedBox(
                                     height: 5,
                                   ),
@@ -475,7 +478,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   }
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
