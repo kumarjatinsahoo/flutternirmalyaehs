@@ -1366,7 +1366,8 @@ class MyPage1Widget extends StatelessWidget {
                       icon: "assets/health_checkup.png",
                       fun: () {
                         //chooseAppointment(context, model);
-                        Navigator.pushNamed(context, "/userAppoint");
+                        //Navigator.pushNamed(context, "/userAppoint");
+                        Navigator.pushNamed(context, "/myAppointment");
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(

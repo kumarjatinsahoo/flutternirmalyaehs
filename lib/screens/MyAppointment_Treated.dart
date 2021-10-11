@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:user/models/AppointmentlistModel.dart';
+import 'package:user/models/AppointmentlistModel.dart'as apt;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -83,10 +85,19 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        apt.Body appointmentlist = appointmentlistModel.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
-                        return Column(
+                        return InkWell(
+                            onTap: (){
+                         // widget.model.appointmentlist=appointmentlist;
+                          //Navigator.pushNamed(context, "/medi");
+                             widget.model.userappointment=appointmentlist;
+                              Navigator.pushNamed(context, "/usermedicinelist");
+                          //Navigator.pushNamed(context, "/userTab1");
+                        },
+                        child:
+                          Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
@@ -97,7 +108,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        //height: 120,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -133,8 +144,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                       appointmentlist.patname??"N/A",
                                                       overflow:
                                                       TextOverflow.clip,
-                                                      style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,
-                                                        fontSize: 10    ,),
+                                                      style: TextStyle(color: Colors.blue),
                                                     ),
                                                   ],
 
@@ -171,7 +181,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
                             ),
                           ],
-                        );
+                        ));
                       },itemCount: appointmentlistModel.body.length,
 
                   ): Container(),
