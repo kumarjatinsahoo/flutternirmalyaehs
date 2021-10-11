@@ -212,7 +212,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                               child: Icon(Icons.arrow_back,color: Colors.white)),
                           Padding(
                             padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                            child: Text('SIGN UP',
+                            child: Text(MyLocalizations.of(context).text("SIGNUP"),
                               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                           ),
 
@@ -258,7 +258,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
 
                                   Column(
                                     children: [
-                                      Text("Fill in personal Information (All fields are mandatory)",
+                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),

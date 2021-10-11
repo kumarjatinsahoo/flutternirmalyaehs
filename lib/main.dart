@@ -9,18 +9,21 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
-import 'package:user/screens/Users/FindHealthCare/Appointment/BookAppointmentTab.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentTab.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
+import 'package:user/screens/Users/FindHealthCare/FindHealthcareService.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/AyushDoctors/MedicalServiceOngooglePage.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/DonerOrganisation/DonorOrganisation.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/LifeStyleSolution/LifeStyleSolution.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/RIP/RIP.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/TreatmentCenter/TreatmentCenters.dart';
+import 'package:user/screens/Users/FindHealthCare/MyAppointment/AppointmentTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
 import 'package:user/screens/Pharmacists/Screens/PharmaMyProfile.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Allergiclist.dart';
-import 'package:user/screens/Users/FindHealthCare/Appointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
@@ -54,7 +57,6 @@ import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
-import 'screens/Users/FindHealthCare/Appointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
@@ -68,7 +70,6 @@ import 'package:user/screens/Doctor/registartion/DoctorSignUpForm5.dart';
 import 'package:user/screens/Users/organ/DonorApplication.dart';
 import 'screens/Users/EmergencyHelp/EmergencyHelp.dart';
 import 'screens/Users/EmergencyRoom.dart';
-import 'package:user/screens/Users/FindHealthCare/Appointment/FindHealthcareService.dart';
 import 'package:user/screens/ForgotPassword.dart';
 import 'package:user/screens/ForgotUserID.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
@@ -100,7 +101,7 @@ import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
 import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/Dashboard/IdcardPage.dart';
-import 'package:user/screens/Users/FindHealthCare/UserMyAppointments.dart';
+import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
@@ -685,6 +686,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/userAppoint': (context) => UserAppointments(
+                    model: _model,
+                  ),
+              '/Appointtab': (context) => MyAppointmentTab(
                     model: _model,
                   ),
               '/doctorMedicationTab': (context) => DoctorMedicationTab(
