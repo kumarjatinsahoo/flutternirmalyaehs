@@ -143,7 +143,14 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                       Body appointmentlist = doctorAppointmment.body[i];
                       /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
-                      return Column(
+                      return
+                        InkWell(
+                          onTap: (){
+                        widget.model.appointmentlist=appointmentlist;
+                        //Navigator.pushNamed(context, "/medi");
+                        Navigator.pushNamed(context, "/doctorMedicationTab");
+                      },
+                      child:  Column(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
@@ -220,7 +227,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
 
                           ),
                         ],
-                      );
+                      ),
+                        );
                     },itemCount: doctorAppointmment.body.length,
 
                 ): Container(),

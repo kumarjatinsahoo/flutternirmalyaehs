@@ -290,7 +290,7 @@ class _MedicationlistState extends State<Medicationlist> {
                                                         ],
                                                       ),
                                                       new Spacer(),
-                                                      Padding(
+                                                     /* Padding(
                                                         padding: const EdgeInsets.only(
                                                           top: 15.0,
                                                         ),
@@ -358,7 +358,7 @@ class _MedicationlistState extends State<Medicationlist> {
                                                             )
                                                           ],
                                                         ),
-                                                      ),
+                                                      ),*/
                                                     ],
                                                   ),
                                                 )),
