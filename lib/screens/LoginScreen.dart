@@ -476,10 +476,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] ==
-                        "3".toLowerCase()) {
+                        "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboardpharmacy',
                           (Route<dynamic> route) => false);
+                    }else{
+AppData.showInSnackBar(context, "No Role Assign");
                     }
                   });
                 } else {
