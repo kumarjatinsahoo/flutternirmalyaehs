@@ -38,7 +38,7 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
               Spacer(),
               InkWell(
                   onTap: (){
-                     //userid=loginResponse.body.user;
+                     userid=widget.model.appointmentlist.doctorName;
                     Navigator.pushNamed(context, "/showemr");
                   },
                   child: Text('Show Emr',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)),
