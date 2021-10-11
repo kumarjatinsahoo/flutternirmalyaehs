@@ -1119,7 +1119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -1225,7 +1225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 20,
                           ),*/
-                          TextField(
+                        /*  TextField(
                             onChanged: (value) {
                               setState(() {
                                 valueText = value;
@@ -1251,7 +1251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   RegExp("[a-zA-Z ]")),
                             ],
                             decoration: InputDecoration(hintText: "Last Name"),
-                          ),
+                          ),*/
 
                           dob(),
                           DropDown.networkDropdown(
@@ -1270,7 +1270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.black,
                           ),
 
-                          DropDown.networkDropdown(
+                        /*  DropDown.networkDropdown(
                               "Gender", ApiFactory.GENDER_API, "gender",
                               (KeyvalueModel model) {
                             setState(() {
@@ -1283,7 +1283,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 2,
                             color: Colors.black,
                           ),
-
+*/
                           // TextField(
                           //   onChanged: (value) {
                           //     setState(() {

@@ -2,17 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/Users/FindHealthCare/Appointment/DoctorconsultationPage.dart';
-import 'package:user/screens/Users/FindHealthCare/Appointment/BookAppointmentPage.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
+import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserTestList.dart';
-class BookAppointmentTab extends StatefulWidget {
+class MyAppointmentTab extends StatefulWidget {
   final MainModel model;
 
-  BookAppointmentTab({Key key, this.model}) : super(key: key);
+  MyAppointmentTab({Key key, this.model}) : super(key: key);
 
   @override
-  _BookAppointmentTab createState() => _BookAppointmentTab();
+  _MyAppointmentTab createState() => _MyAppointmentTab();
 }
 
 final List<Tab> myTabs = <Tab>[
@@ -20,7 +21,7 @@ final List<Tab> myTabs = <Tab>[
   Tab(text: 'RIGHT'),
 ];
 
-class _BookAppointmentTab extends State<BookAppointmentTab> {
+class _MyAppointmentTab extends State<MyAppointmentTab> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,11 +43,11 @@ class _BookAppointmentTab extends State<BookAppointmentTab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Registered Doctor",
+                text:"Doctor Appointment",
 
               ),
               Tab(
-                text:"Other Doctor",
+                text:"Other Appointment",
               ),
             ],
           ),
@@ -55,7 +56,7 @@ class _BookAppointmentTab extends State<BookAppointmentTab> {
         body: TabBarView(
           children: [
             DoctorconsultationPage(model:widget.model,),
-            BookAppointmentPage(model:widget.model,),
+            UserAppointments(model:widget.model,),
           ],
         ),
       ),
