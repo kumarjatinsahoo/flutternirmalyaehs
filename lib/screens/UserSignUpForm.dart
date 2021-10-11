@@ -349,7 +349,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   height: 58,
                                   child:
                                       networkDropdownGetpartUser(
-                                          "Gender",
+                                          //"Gender"
+                                          MyLocalizations.of(context)
+                                              .text("GENDER") ,
                                           ApiFactory.GENDER_API,
                                           "gender",
                                           Icons.person_rounded,
@@ -381,7 +383,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   height: 58,
                                   child:
                                       networkDropdownGetpartUser(
-                                          "Country",
+                                         // "Country",
+                                          MyLocalizations.of(context)
+                                              .text("COUNTRY") ,
                                           ApiFactory.COUNTRY_API,
                                           "country",
                                           Icons.location_on_rounded,
@@ -404,7 +408,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       child: SizedBox(
                                         height: 58,
                                         child: networkDropdownGetpartUser(
-                                                "State",
+                                                //"State",
+                                            MyLocalizations.of(context)
+                                                .text("STATE") ,
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
                                                         .countryModel.key,
@@ -433,7 +439,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   height: 58,
                                   child:
                                   networkDropdownGetpartUser(
-                                      "District",
+                                      //"District",
+                                      MyLocalizations.of(context)
+                                          .text("DIST") ,
                                       ApiFactory.DISTRICT_API +
                                           UserSignUpForm.stateModel.key,
                                       "district",
@@ -458,7 +466,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   height: 58,
                                   child: DropDown
                                       .networkDropdownGetpartUser(
-                                      "City",
+                                      //"City",
+                                      MyLocalizations.of(context)
+                                          .text("CITY") ,
                                       ApiFactory.CITY_API +
                                           UserSignUpForm
                                               .districtModel.key,
@@ -665,7 +675,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                         .calendar_today),
                                                     border:
                                                         InputBorder.none,
-                                                    hintText: "Years",
+                                                    hintText:MyLocalizations.of(context).text("YEARS") ,
                                                     hintStyle: TextStyle(
                                                         color: AppData
                                                             .hintColor,
@@ -717,8 +727,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               prefixIcon: Icon(
                                                   Icons.calendar_today),
                                               border: InputBorder.none,
-                                              hintText: "Date of Birth",
-                                              hintStyle: TextStyle(
+                                              hintText:MyLocalizations.of(context).text("DOB1") ,                                              hintStyle: TextStyle(
                                                   color:
                                                       AppData.hintColor,
                                                   fontSize: 17),
@@ -760,8 +769,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
-                                              text:
-                                                  'I agree to eHealthSystem\'s ',
+                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
                                               /* "Welcome back",*/
                                               style: TextStyle(
                                                 // fontWeight: FontWeight.w800,
@@ -771,8 +779,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               ),
                                             ),
                                             TextSpan(
-                                              text:
-                                                  'Terms and Conditions',
+                                              text:MyLocalizations.of(context).text("T&C"),
                                               /* "Welcome back",*/
                                               style: TextStyle(
                                                 // fontWeight: FontWeight.w500,
