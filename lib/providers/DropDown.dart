@@ -2042,7 +2042,7 @@ class DropDown {
 
   static networkDropdownGetpartUser11(String label, final String API,
       String callFrom, token, Function fun, context) {
-    return newContainer(DropdownSearch<TimeScheduleModel>(
+    return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
@@ -2091,7 +2091,7 @@ class DropDown {
       ),
       popupItemBuilder: (context, value, isSucc) {
         return Container(
-          color: (value.bookstatus == 1) ? Colors.grey : null,
+          color: (value.key == 1) ? Colors.grey : null,
           child: Material(
             type: MaterialType.transparency,
             child: Container(
@@ -2099,7 +2099,7 @@ class DropDown {
               alignment: Alignment.topLeft,
               //  height: 50,
               child: Text(
-                value.time,
+                value.name,
                 style: TextStyle(
                     fontSize: 18,
                     color: (value == 1) ? Colors.grey : Colors.black),
@@ -2109,7 +2109,8 @@ class DropDown {
         );
       },
       showSearchBox: true,
-      selectedItem: getData1(callFrom),
+      selectedItem: getData(callFrom),
+     // selectedItem: getData1(callFrom),
       onFind: (String filter) async {
         print("DROP DOWN API?????" + API);
         var response = await Dio().get(
@@ -2131,7 +2132,7 @@ class DropDown {
         }
         return list;
       },
-      onChanged: (TimeScheduleModel data) {
+      onChanged: (KeyvalueModel data) {
         fun(data);
       },
     ));
