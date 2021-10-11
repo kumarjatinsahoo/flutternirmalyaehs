@@ -41,6 +41,7 @@ import 'package:user/screens/cowin/CovidOtpPage.dart';
 import 'package:user/screens/labortory/DashboardLabortory.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabProfile.dart';
 import 'package:user/screens/walkin_labrotry/Screen/MyOrdersLab.dart';
+import 'package:user/screens/walkin_labrotry/Screen/OrderDetails.dart';
 import 'package:user/screens/walkin_labrotry/SearchPocReportPage.dart';
 import 'notification/TokenMonitor.dart';
 import 'notification/local_notification_service.dart';
@@ -436,6 +437,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/confirmorder': (context) => ConfirmOrders(
+                    model: _model,
+                  ),
+              '/orderDetails': (context) => OrderDetails(
                     model: _model,
                   ),
               '/deliveredorder': (context) => SampleTracking(

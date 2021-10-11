@@ -11,7 +11,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
-import 'package:user/models/MedicinModel.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/models/UserListModel.dart' as test;
@@ -30,7 +29,7 @@ class UserTestList extends StatefulWidget {
   MainModel model;
   static KeyvalueModel labModel = null;
   final bool isConfirmPage;
-  static KeyvalueModel medicinModel = null;
+  static KeyvalueModel selectedLab = null;
 
   UserTestList({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
@@ -101,6 +100,26 @@ class _MedicineList extends State<UserTestList> {
     );
   }
 
+  addLabRequest() {
+    widget.model.POSTMETHOD_TOKEN(
+      api: ApiFactory.LAB_REQUEST,
+      token: widget.model.token,
+      fun: (Map<String, dynamic> map) {
+        String msg = map[Const.MESSAGE];
+        //String msg = map[Const.MESSAGE];
+        if (map[Const.CODE] == Const.SUCCESS) {
+          setState(() {
+            log("Response from sagar>>>>>" + jsonEncode(map));
+            userListModel = UserListModel.fromJson(map);
+          });
+        } else {
+          //isDataNotAvail = true;
+          AppData.showInSnackBar(context, msg);
+        }
+      },
+    );
+  }
+
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -110,6 +129,7 @@ class _MedicineList extends State<UserTestList> {
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     geocodeFetch(position.latitude.toString(), position.longitude.toString());
   }
+
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
     MyWidgets.showLoading(context);
@@ -124,7 +144,8 @@ class _MedicineList extends State<UserTestList> {
             cityName = finder.addressComponents[4].longName;
 
             mapK["address"] = address;
-            mapK["city"] = cityName;
+            //mapK["city"] = cityName;
+            mapK["city"] = "bhubaneswar";
 
             widget.model.pharmacyaddress = address;
             widget.model.pharmacity = finder.addressComponents[4].longName;
@@ -133,6 +154,7 @@ class _MedicineList extends State<UserTestList> {
           });
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -168,11 +190,8 @@ class _MedicineList extends State<UserTestList> {
                           }
                           test.Body body = userListModel.body[i];
                           widget.model.testList = body;
-                          // Print("mediiiicinie"+$body);
                           return Container(
                             child: GestureDetector(
-                              // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                              // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
                               child: Card(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5.0),
@@ -191,7 +210,8 @@ class _MedicineList extends State<UserTestList> {
                                               //font change
                                               title: new Text(
                                                 userListModel
-                                                    .body[i].testname??"N/A",
+                                                        .body[i].testname ??
+                                                    "N/A",
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
@@ -208,15 +228,14 @@ class _MedicineList extends State<UserTestList> {
                                                 });
                                               },
                                             )
-                                          : /*Container(),*/Text(
-                                        userListModel
-                                            .body[i].testname??"N/A",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            letterSpacing: 0.5),
-                                      ),
-
+                                          : /*Container(),*/ Text(
+                                              userListModel.body[i].testname ??
+                                                  "N/A",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 0.5),
+                                            ),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -224,58 +243,55 @@ class _MedicineList extends State<UserTestList> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 15, vertical: 5),
                                         child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Appoint no: ",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                body.appno ?? "N/A",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 13),
-                                              ),
-                                            ],
-
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Appoint no: ",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              body.appno ?? "N/A",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       Container(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 15, vertical: 5),
                                         child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Type: ",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                body.testgroup ?? "N/A",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 13),
-                                              ),
-                                            ],
-
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Type: ",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              body.testgroup ?? "N/A",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
                                         ),
                                       ),
-
                                       Container(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5 ),
+                                            horizontal: 15, vertical: 5),
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -339,41 +355,7 @@ class _MedicineList extends State<UserTestList> {
     ));
   }
 
-  Widget nextButton() {
-    return GestureDetector(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) => dialogaddnomination(context),
-        );
-        //AppData.showInSnackBar(context, "Please select Title");
-        //validate();
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left: 9.0, right: 9.0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            // MyLocalizations.of(context).text("SIGN_BTN"),
-            "SUBMIT",
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget dialogaddnomination(BuildContext context) {
+  Widget dialogAddLab(BuildContext context) {
     DoctorMedicationlistModel item = DoctorMedicationlistModel();
     //Nomine
     return AlertDialog(
@@ -408,15 +390,14 @@ class _MedicineList extends State<UserTestList> {
                       height: 58,
                       child: DropDown.networkDropdownGetpartUserrrr(
                           "Choose Lab",
-                          ApiFactory.LAB_LIST,
-                          "choose lab", (KeyvalueModel data) {
+                          ApiFactory.LAB_LIST_LOC,
+                          "choosepharmacy", (KeyvalueModel data) {
                         setState(() {
-                          UserTestList.labModel = data;
+                          UserTestList.selectedLab = data;
                         });
                       }, mapK),
                     ),
                   ),
-
                   fromAddress(0, "Remark", TextInputAction.next,
                       TextInputType.text, "remark"),
                 ],
@@ -436,36 +417,31 @@ class _MedicineList extends State<UserTestList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserTestList.labModel == null ||
-                UserTestList.labModel == "") {
-              AppData.showInSnackBar(context, "Please select lab ");
+            if (UserTestList.selectedLab == null ||
+                UserTestList.selectedLab == "") {
+              AppData.showInSnackBar(context, "Please select Lab ");
             } else {
-               Navigator.of(context).pop();
-              /*String userid = loginResponse1.body.user;
-              String pharmacistid = UserMedicineList.pharmacyModel.key;
-              String patientnote = textEditingController[0].text.toString();*/
-             /* Map<String, dynamic> map = fromJsonListData(selectedTest);
+              Map<String, dynamic> map = fromJsonListData(selectedTest);
 
-              log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
-              log("TO POST>>>>" + jsonEncode(map));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.POST_PHARMACY_REQUST,
+                  api: ApiFactory.LAB_REQUEST,
                   json: map,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
-                    if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
-                      callAPI();
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
-                    } else {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                    }
-                  });*/
+                    setState(() {
+                      if (map[Const.STATUS1] == Const.SUCCESS) {
+                        callAPI();
+                        AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      } else {
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      }
+                    });
+                  });
             }
-            Navigator.of(context).pop();
-            textEditingController[0].text = "";
+            // Navigator.of(context).pop();
+            // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Save'),
@@ -474,15 +450,49 @@ class _MedicineList extends State<UserTestList> {
     );
   }
 
- /* Map<String, dynamic> fromJsonListData(List list) {
+  Map<String, dynamic> fromJsonListData(List list) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
-    data['pharmacistid'] = UserTestList.labModel.key;
+    data['pharmacistid'] = UserTestList.selectedLab.key;
     data['patientnote'] = textEditingController[0].text;
     data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
     return data;
   }
-*/
+
+  Widget nextButton() {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => dialogAddLab(context),
+        );
+        //AppData.showInSnackBar(context, "Please select Title");
+        //validate();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 9.0, right: 9.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            // MyLocalizations.of(context).text("SIGN_BTN"),
+            "SUBMIT",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget fromAddress(int index, String hint, inputAct, keyType, String type) {
     return TextFieldAddress(
       child: TextFormField(
