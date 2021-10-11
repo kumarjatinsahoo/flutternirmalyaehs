@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/notification/TokenMonitor.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -32,7 +33,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
             backgroundColor: AppData.kPrimaryColor,
             title: Padding(
               padding: const EdgeInsets.only(left: 40),
-              child: Text('Medical Records'),
+              child: Text(MyLocalizations.of(context).text("MEDICAL_RECORD1")),
             ),
             /* leading: Icon(
             Icons.menu,
@@ -151,8 +152,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Text(
-                                                  'Medication',
+                                                child: Text(MyLocalizations.of(context).text("MEDICATION"),
                                                   style: TextStyle(
                                                       fontWeight: FontWeight
                                                           .normal,
@@ -201,8 +201,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                 width: spaceTab,
                                               ),
                                               Expanded(
-                                                child: Text(
-                                                  'Vital Signs',
+                                                child: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
                                                   style: TextStyle(
                                                       fontWeight: FontWeight
                                                           .normal,
@@ -257,8 +256,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      'Immunization',
+                                                    Text(MyLocalizations.of(context).text("IMMUNIZATION"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.normal,
@@ -314,8 +312,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      'Allergic',
+                                                    Text(MyLocalizations.of(context).text("ALLERGIC"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.normal,
@@ -371,8 +368,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      'Biomedical Implant',
+                                                    Text(MyLocalizations.of(context).text("BIOMEDICAL"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.normal,
@@ -428,8 +424,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      'Health Chart',
+                                                    Text(MyLocalizations.of(context).text("HEALTH_CHART"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.normal,
@@ -491,8 +486,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                                   children: [
-                                                    Text(
-                                                      'Test Report',
+                                                    Text(MyLocalizations.of(context).text("TEST_REPORT"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                           FontWeight.normal,
