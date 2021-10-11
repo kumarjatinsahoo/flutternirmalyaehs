@@ -30,7 +30,7 @@ class BiomediImplants extends StatefulWidget {
 class _BiomediImplantsState extends State<BiomediImplants> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
-  bool isDataNotAvail = false;
+  bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
   DateTime selectedDate = DateTime.now();
@@ -80,8 +80,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 biomedicalModel = bio.BiomedicalModel.fromJson(map);
               });
             } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              setState(() {
+                isDataNoFound = true;
+              });
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -104,125 +106,133 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             ],
           ),
         ),
-        body: Container(
-          alignment: (biomedicalModel != null)
-              ? Alignment.topCenter
-              : Alignment.center,
-          child: (biomedicalModel != null)
-              ? ListView.builder(
-                  itemCount: biomedicalModel.body.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, i) {
-                    bio.Body body = biomedicalModel.body[i];
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        shadowColor: Colors.grey,
-                        elevation: 10,
-                        child: ClipPath(
-                          clipper: ShapeBorderClipper(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5))),
-                          child: Container(
-                            decoration: (i % 2 == 0)
-                                ? BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color: AppData.kPrimaryRedColor,
-                                            width: 5)))
-                                : BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color: AppData.kPrimaryColor,
-                                            width: 5))),
-                            width: double.maxFinite,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 10, right: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Text(
-                                          "Name",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+        body:
+        (biomedicalModel != null)
+            ? Container(
+            child: SingleChildScrollView(
+            child:
+        (biomedicalModel != null)
+            ? ListView.builder(
+                itemCount: biomedicalModel.body.length,
+                shrinkWrap: true,
+                itemBuilder: (context, i) {
+                  bio.Body body = biomedicalModel.body[i];
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      shadowColor: Colors.grey,
+                      elevation: 10,
+                      child: ClipPath(
+                        clipper: ShapeBorderClipper(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5))),
+                        child: Container(
+                          decoration: (i % 2 == 0)
+                              ? BoxDecoration(
+                                  border: Border(
+                                      left: BorderSide(
+                                          color: AppData.kPrimaryRedColor,
+                                          width: 5)))
+                              : BoxDecoration(
+                                  border: Border(
+                                      left: BorderSide(
+                                          color: AppData.kPrimaryColor,
+                                          width: 5))),
+                          width: double.maxFinite,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, top: 10, right: 10.0),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "Name",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          body?.bioMName ?? "N/A",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        body?.bioMName ?? "N/A",
+                                        style: TextStyle(fontSize: 15),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                //SizedBox(height: 2),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 20, right: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Text(
-                                          "Date",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                              ),
+                              //SizedBox(height: 2),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, top: 20, right: 10.0),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "Date",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Expanded(flex: 1,
-                                        child: Text(
-                                          body?.bioMDate ?? "N/A",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
+                                    ),
+                                    Expanded(flex: 1,
+                                      child: Text(
+                                        body?.bioMDate ?? "N/A",
+                                        style: TextStyle(fontSize: 15),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                // SizedBox(height: 5),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 20, right: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Text(
-                                          "Reason",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                              ),
+                              // SizedBox(height: 5),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, top: 20, right: 10.0),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "Reason",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Expanded(flex: 1,
-                                        child: Text(
-                                          body?.bioMReason ?? "N/A",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
+                                    ),
+                                    Expanded(flex: 1,
+                                      child: Text(
+                                        body?.bioMReason ?? "N/A",
+                                        style: TextStyle(fontSize: 15),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 10),
-                              ],
-                            ),
+                              ),
+                              SizedBox(height: 10),
+                            ],
                           ),
                         ),
                       ),
-                    );
-                  },
-                )
-              : CircularProgressIndicator(),
-        ));
+                    ),
+                  );
+                },
+        ): Container(),
+            ),
+        ): Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
+
+        ),
+    );
   }
 
   displayTextInputDialog(BuildContext context) {
@@ -360,6 +370,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
+
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         });

@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserTestList.dart';
+import 'package:user/screens/Users/Medication/UserMedicineList.dart';
+import 'package:user/screens/Users/Medication/UserTestList.dart';
 class UserMedicineTab extends StatefulWidget {
   final MainModel model;
 

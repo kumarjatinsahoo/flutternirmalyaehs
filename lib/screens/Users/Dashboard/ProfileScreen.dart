@@ -763,8 +763,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        /* patientProfileModel?.body?.mobile ??*/
-                        "N/A",
+                         patientProfileModel?.body?.address ??"N/A",
                         style: TextStyle(fontSize: 14
                             //fontWeight: FontWeight.w500,
                             // color: AppData.kPrimaryColor,

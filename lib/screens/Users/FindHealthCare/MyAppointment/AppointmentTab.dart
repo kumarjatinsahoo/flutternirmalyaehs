@@ -6,8 +6,6 @@ import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserTestList.dart';
 class MyAppointmentTab extends StatefulWidget {
   final MainModel model;
 

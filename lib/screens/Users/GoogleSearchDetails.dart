@@ -267,28 +267,31 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                         null)
                                     ? Expanded(
                                         child: InkWell(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  width: 25,
-                                                  height: 25,
-                                                  child: Image.asset(
-                                                      'assets/images/phonegoogle.png',
-                                                      fit: BoxFit.cover)),
-                                              // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                "Call",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 15,
-                                                  color: Colors.redAccent,
+                                          child: Container(
+                                            width: 100,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    child: Image.asset(
+                                                        'assets/images/phonegoogle.png',
+                                                        fit: BoxFit.cover)),
+                                                // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
+                                                SizedBox(
+                                                  height: 10,
                                                 ),
-                                              ),
-                                            ],
+                                                Text(
+                                                  "Call",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                    color: Colors.redAccent,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                           onTap: () {
                                             //Navigator.pop(context);
@@ -310,26 +313,29 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                       AppData.launchURL(
                                           googlePlacesSearch.result.url);
                                     },
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            width: 25,
-                                            height: 25,
-                                            child: Image.asset(
-                                                'assets/images/directiongoogle.png',
-                                                fit: BoxFit.cover)),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Direction",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 15,
-                                              color: Colors.blueAccent),
-                                        ),
-                                      ],
+                                    child: Container(
+                                      width: 100,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              width: 25,
+                                              height: 25,
+                                              child: Image.asset(
+                                                  'assets/images/directiongoogle.png',
+                                                  fit: BoxFit.cover)),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Direction",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color: Colors.blueAccent),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -338,26 +344,29 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                     onTap: () {
                                        Share.share("Here is the location details\n\n"+googlePlacesSearch.result.url,);
                                     },
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            width: 25,
-                                            height: 25,
-                                            child: Image.asset(
-                                                'assets/images/sharegoogle.png',
-                                                fit: BoxFit.cover)),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Share",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 15,
-                                              color: Colors.redAccent),
-                                        ),
-                                      ],
+                                    child: Container(
+                                      width: 100,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              width: 25,
+                                              height: 25,
+                                              child: Image.asset(
+                                                  'assets/images/sharegoogle.png',
+                                                  fit: BoxFit.cover)),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Share",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color: Colors.redAccent),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -368,26 +377,29 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                             AppData.launchURL(googlePlacesSearch
                                                 .result.website);
                                           },
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  width: 25,
-                                                  height: 25,
-                                                  child: Image.asset(
-                                                      'assets/images/websitegoogle.png',
-                                                      fit: BoxFit.cover)),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                "Website",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 15,
-                                                    color: Colors.blueAccent),
-                                              ),
-                                            ],
+                                          child: Container(
+                                            width: 100,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    child: Image.asset(
+                                                        'assets/images/websitegoogle.png',
+                                                        fit: BoxFit.cover)),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Website",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15,
+                                                      color: Colors.blueAccent),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       )
@@ -419,7 +431,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                         },
                                         child: Icon(Icons.location_on_rounded,
                                             color: AppData.kPrimaryRedColor)),
-                                    SizedBox(width: 15),
+                                    SizedBox(width: 5),
                                     Expanded(
                                         child: Column(
                                       children: [
@@ -476,7 +488,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                                     )
                                                   ],
                                                 ))),
-                                            SizedBox(width: 15),
+                                            SizedBox(width: 5),
                                             Expanded(
                                                 child: Column(
                                               children: [

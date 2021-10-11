@@ -286,7 +286,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           Icon(Icons.person_rounded),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
-                                          fontSize: 17),
+                                          fontSize: 16),
                                     ),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
@@ -328,7 +328,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           Icon(Icons.person_rounded),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
-                                          fontSize: 17),
+                                          fontSize: 16),
                                     ),
                                     textInputAction: TextInputAction.next,
                                     textAlignVertical:

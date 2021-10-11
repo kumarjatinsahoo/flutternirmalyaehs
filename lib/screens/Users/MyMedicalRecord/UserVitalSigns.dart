@@ -744,15 +744,30 @@ class _VitalSignsState extends State<VitalSigns> {
                   api: ApiFactory.UPDATE_VITAL_SIGN,
                   json: sendData,
                   token: widget.model.token,
-                  fun: (Map<String, dynamic> map) {
-                    Navigator.pop(context);
-                    if (map[Const.STATUS] == Const.SUCCESS) {
+                fun: (Map<String, dynamic> map) {
+                  Navigator.pop(context);
+                  setState(() {
+                    if (map[Const.STATUS1] == Const.SUCCESS) {
+                      //Navigator.pop(context);
                       callAPI();
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      AppData.showInSnackDone(
+                          context, map[Const.MESSAGE]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   });
+                },
+                  /*fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    callAPI();
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  }*/
+                  );
               callAPI();
             Navigator.of(context).pop();
            // textEditingController[0].text = "";

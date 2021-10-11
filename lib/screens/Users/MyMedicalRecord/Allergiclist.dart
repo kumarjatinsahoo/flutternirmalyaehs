@@ -48,7 +48,7 @@ class _AllergicListListState extends State<AllergicListList> {
     KeyvalueModel(name: "Low", key: "Low"),
   ];
   LoginResponse1 loginResponse;
-  bool isDataNotAvail = false;
+  bool isDataNoFound = false;
   allergic.AllergicModel allergicModel;
 
   @override
@@ -71,8 +71,10 @@ class _AllergicListListState extends State<AllergicListList> {
               // pocReportModel = PocReportModel.fromJson(map);
               allergicModel = allergic.AllergicModel.fromJson(map);
             } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              setState(() {
+                isDataNoFound = true;
+              });
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -98,7 +100,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       builder: (BuildContext context) =>
                           dialogaddnomination(context),
                     );
-                   // callAPI();
+                    // callAPI();
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -117,166 +119,192 @@ class _AllergicListListState extends State<AllergicListList> {
           ],
         ),
         body: (allergicModel != null)
-            ? ListView.builder(
-               // physics: NeverScrollableScrollPhysics(),
-                // controller: _scrollController,
-                shrinkWrap: true,
-                itemBuilder: (context, i) {
-                  if (i == allergicModel.body.length) {
-                    return (allergicModel.body.length % 10 == 0)
-                        ? CupertinoActivityIndicator()
-                        : Container();
-                  }
-                  allergic.Body body = allergicModel.body[i];
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      shadowColor: Colors.grey,
-                      elevation: 10,
-                      child: ClipPath(
-                        clipper: ShapeBorderClipper(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5))),
-                        child: Container(
-                            /*height: 100,*/
-                            decoration: (i % 2 == 0)
-                                ? BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color: AppData.kPrimaryRedColor,
-                                            width: 5)))
-                                : BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color: AppData.kPrimaryColor,
-                                            width: 5))),
-                            width: double.maxFinite,
-                            /*  margin: const EdgeInsets.only(top: 6.0),*/
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
+            ? Container(
+                child: SingleChildScrollView(
+                  child: (allergicModel != null)
+                      ? ListView.builder(
+                          // physics: NeverScrollableScrollPhysics(),
+                          // controller: _scrollController,
+                          shrinkWrap: true,
+                          itemBuilder: (context, i) {
+                            if (i == allergicModel.body.length) {
+                              return (allergicModel.body.length % 10 == 0)
+                                  ? CupertinoActivityIndicator()
+                                  : Container();
+                            }
+                            allergic.Body body = allergicModel.body[i];
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 5, right: 5, top: 5),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                shadowColor: Colors.grey,
+                                elevation: 10,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
                                   child: Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Name",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                      /*height: 100,*/
+                                      decoration: (i % 2 == 0)
+                                          ? BoxDecoration(
+                                              border: Border(
+                                                  left: BorderSide(
+                                                      color: AppData
+                                                          .kPrimaryRedColor,
+                                                      width: 5)))
+                                          : BoxDecoration(
+                                              border: Border(
+                                                  left: BorderSide(
+                                                      color:
+                                                          AppData.kPrimaryColor,
+                                                      width: 5))),
+                                      width: double.maxFinite,
+                                      /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 100,
+                                                        child: Text(
+                                                          "Name",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        body.allnameid ?? "N/A",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 100,
+                                                        child: Text(
+                                                          "Allergen",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        body.alltypeid ?? "N/A",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 100,
+                                                        child: Text(
+                                                          "Severity",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        body.severity ?? "N/A",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 100,
+                                                        child: Text(
+                                                          "Updated by",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: 150,
+                                                        child: Text(
+                                                          body.updatedby ??
+                                                              "N/A",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            Text(
-                                              body.allnameid ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Allergen",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Text(
-                                              body.alltypeid ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Severity",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Text(
-                                              body.severity ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Updated by",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 150,
-                                              child: Text(
-                                                body.updatedby ?? "N/A",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                        ],
+                                      )),
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                  );
-                },
-                itemCount: allergicModel.body.length,
+                              ),
+                            );
+                          },
+                          itemCount: allergicModel.body.length,
+                        )
+                      : Container(),
+                ),
               )
-            : Container(),
+            : Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                alignment: Alignment.center,
+                child: (isDataNoFound) ? Text("Data Not Found") : callAPI(),
+              ),
       ),
     );
   }
@@ -439,18 +467,30 @@ class _AllergicListListState extends State<AllergicListList> {
               print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
                   allergicmodel.toJson().toString());
               widget.model.POSTMETHOD2(
-                  api: ApiFactory.ALLERGIC_POST,
-                  json: allergicmodel.toJson(),
-                  token: widget.model.token,
-                  fun: (Map<String, dynamic> map) {
-                    Navigator.pop(context);
-                    if (map[Const.STATUS] == Const.SUCCESS) {
+                api: ApiFactory.ALLERGIC_POST,
+                json: allergicmodel.toJson(),
+                token: widget.model.token,
+                fun: (Map<String, dynamic> map) {
+                  Navigator.pop(context);
+                  setState(() {
+                    if (map[Const.STATUS1] == Const.SUCCESS) {
                       callAPI();
                       AppData.showInSnackDone(context, map[Const.MESSAGE]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   });
+                },
+                /*fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    callAPI();
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  }*/
+              );
               //AppData.showInSnackBar(context, "add Successfully");
             }
             Navigator.of(context).pop();
