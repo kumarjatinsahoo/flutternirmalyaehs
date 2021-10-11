@@ -72,6 +72,8 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.4)
     - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_keyboard_visibility (0.0.1):
+    - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
   - flutter_webview_plugin (0.0.1):
@@ -105,6 +107,7 @@ PODS:
     - Flutter
   - location_permissions (2.0.5):
     - Flutter
+  - MTBBarcodeScanner (5.0.11)
   - multi_select_item (0.0.1):
     - Flutter
   - nanopb (2.30908.0):
@@ -117,10 +120,15 @@ PODS:
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (2.0.0)
+  - qr_code_scanner (0.2.0):
+    - Flutter
+    - MTBBarcodeScanner
   - Reachability (3.2)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - share (0.0.1):
+    - Flutter
   - shared_preferences (0.0.1):
     - Flutter
   - SwiftyGif (5.4.0)
@@ -137,6 +145,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
+  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
@@ -146,6 +155,8 @@ DEPENDENCIES:
   - multi_select_item (from `.symlinks/plugins/multi_select_item/ios`)
   - pageview_indicator_plugins (from `.symlinks/plugins/pageview_indicator_plugins/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - unique_identifier (from `.symlinks/plugins/unique_identifier/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -162,6 +173,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleDataTransport
     - GoogleUtilities
+    - MTBBarcodeScanner
     - nanopb
     - PromisesObjC
     - Reachability
@@ -179,6 +191,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
+  flutter_keyboard_visibility:
+    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_webview_plugin:
@@ -197,6 +211,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pageview_indicator_plugins/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  qr_code_scanner:
+    :path: ".symlinks/plugins/qr_code_scanner/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   unique_identifier:
@@ -219,6 +237,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
   FirebaseMessaging: ce0a5ee974f7bfe83b6cc5acce88c2d969e37c41
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
   geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
@@ -227,13 +246,16 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
   image_picker: 66aa71bc96850a90590a35d4c4a2907b0d823109
   location_permissions: 4a49d4e5bec5b653643e551ab77963cc99bb0e4a
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   multi_select_item: b70b78aac4d208141e5d7de8640655570fb40e90
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   pageview_indicator_plugins: b9368b8dbbaf1f6999de221af4443220b126e345
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
   unique_identifier: 5b4b48cfe07a95df6aa11746944c0dce22ab5400

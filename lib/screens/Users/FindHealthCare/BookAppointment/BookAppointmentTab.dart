@@ -4,8 +4,6 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserTestList.dart';
 class BookAppointmentTab extends StatefulWidget {
   final MainModel model;
 

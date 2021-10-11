@@ -113,7 +113,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        //height: 120,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -135,7 +135,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                   children: [
                                                     Text(
                                                       appointmentlist
-                                                          .doctorName,
+                                                          .doctorName??"N/A",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -146,7 +146,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                     ),
                                                     Text(
                                                       appointmentlist
-                                                          .speciality,
+                                                          .speciality??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
@@ -156,10 +156,16 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                     ),
                                                     Text(
                                                       "Patient Notes:" +
-                                                          appointmentlist.notes,
+                                                          appointmentlist.notes??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
+                                                    ),
+                                                    Text(
+                                                      appointmentlist.patname??"N/A",
+                                                      overflow:
+                                                      TextOverflow.clip,
+                                                      style: TextStyle(color: Colors.blue),
                                                     ),
                                                   ],
                                                 ),
@@ -176,7 +182,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                   children: [
                                                     Text(
                                                       /*'Confirmed'*/
-                                                      appointmentlist.status+" ",
+                                                      appointmentlist.status+" "??"N/A",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -188,9 +194,9 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                     ),
                                                     Text(
                                                       /*'23-Nov-2020-11:30AM'*/
-                                                      appointmentlist.appdate +
+                                                      appointmentlist.appdate??"N/A" +","+
                                                           appointmentlist
-                                                              .appmonth,
+                                                              .apptime??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),

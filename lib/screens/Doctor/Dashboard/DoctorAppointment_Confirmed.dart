@@ -167,7 +167,8 @@ class _DoctorAppointmentConfirmedState
                       Body appointmentlist = doctorAppointmment.body[i];
                       /* itemCount: lists.length,
               itemBuilder: (context, index) {*/
-                      return InkWell(
+                      return
+                        InkWell(
                         onTap: (){
                           widget.model.appointmentlist=appointmentlist;
                           //Navigator.pushNamed(context, "/medi");

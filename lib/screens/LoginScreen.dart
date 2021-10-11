@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _otpButton(),
                       SizedBox(
-                        height: size.height * 0.01,
+                        height: size.height * 0.03,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
-                                    text: "      ",
+                                    text: "   ",
                                     style: TextStyle(color: Colors.black)),
                                 TextSpan(
                                     text: MyLocalizations.of(context)
@@ -476,10 +476,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] ==
-                        "3".toLowerCase()) {
+                        "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboardpharmacy',
                           (Route<dynamic> route) => false);
+                    }else{
+AppData.showInSnackBar(context, "No Role Assign");
                     }
                   });
                 } else {

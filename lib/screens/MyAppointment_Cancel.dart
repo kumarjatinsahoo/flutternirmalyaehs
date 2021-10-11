@@ -97,7 +97,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+                                        //height: 120,
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -116,19 +116,25 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .start,
                                                   children: [
-                                                    Text(appointmentlist.doctorName,
+                                                    Text(appointmentlist.doctorName??"N/A",
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 18),),
                                                     SizedBox(height: 5,),
-                                                    Text(appointmentlist.speciality,
+                                                    Text(appointmentlist.speciality??"N/A",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      "Patient Notes:"+appointmentlist.notes??"N/A",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
+                                                    Text(
+                                                      appointmentlist.patname??"N/A",
+                                                      overflow:
+                                                      TextOverflow.clip,
+                                                      style: TextStyle(color: Colors.blue),
+                                                    ),
                                                   ],
                                                 ),),
                                               /*new Spacer(),*/
@@ -140,13 +146,13 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                   crossAxisAlignment: CrossAxisAlignment
                                                       .end,
                                                   children: [
-                                                    Text(/*'Confirmed'*/appointmentlist.status,
+                                                    Text(/*'Confirmed'*/appointmentlist.status??"N/A",
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 15,
                                                           color: Colors.green),),
                                                     SizedBox(height: 3,),
-                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
+                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate??"N/A"+appointmentlist.apptime??"N/A",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
 

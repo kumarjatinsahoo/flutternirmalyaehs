@@ -34,14 +34,14 @@ class _MyAppointmentState extends State<MyAppointment> {
           title: const Text('My Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
-            IconButton(
+           /* IconButton(
               icon: const Icon(Icons.add_box_rounded),
               tooltip: 'Show Snackbar',
               onPressed: () {
                 Navigator.pushNamed(
                     context, "/doctorconsultationPage");
               },
-            ),
+            ),*/
           ],
           /*appBar: AppBar(
           title: Text("My Appointment"),
