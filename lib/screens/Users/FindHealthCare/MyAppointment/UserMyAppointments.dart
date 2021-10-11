@@ -65,13 +65,13 @@ String userid;
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
+       /* appBar: AppBar(
           centerTitle: true,
           title: const Text('My Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
           ],
-        ),
+        ),*/
         body: SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(

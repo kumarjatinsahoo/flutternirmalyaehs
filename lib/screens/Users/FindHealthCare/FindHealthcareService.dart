@@ -165,8 +165,10 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                     /*               Navigator.pushNamed(
                                     context, "/myAppointment");*/
 
+                                  /*  Navigator.pushNamed(
+                                        context, "/userAppoint");*/
                                     Navigator.pushNamed(
-                                        context, "/userAppoint");
+                                        context, "/Appointtab");
                                   }
                                   ,
                                   child: Card(
