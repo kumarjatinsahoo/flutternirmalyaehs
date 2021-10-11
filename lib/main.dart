@@ -19,6 +19,7 @@ import 'package:user/screens/Users/FindHealthCare/MedicalService/LifeStyleSoluti
 import 'package:user/screens/Users/FindHealthCare/MedicalService/RIP/RIP.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/TreatmentCenter/TreatmentCenters.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/AppointmentTab.dart';
+import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
@@ -28,7 +29,7 @@ import 'package:user/screens/Users/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
-import 'package:user/screens/Users/Medication/UserMedicineTab1.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/Users/organ/Organ1Page.dart';
@@ -102,7 +103,6 @@ import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dar
 import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/Dashboard/IdcardPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab.dart';
 import 'package:user/screens/labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';

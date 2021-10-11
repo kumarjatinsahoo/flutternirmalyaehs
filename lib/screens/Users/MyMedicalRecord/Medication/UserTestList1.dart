@@ -69,6 +69,7 @@ class _MedicineList extends State<UserTestList1> {
   List<test.Body> selectedTest = [];
 
   Map<String, dynamic> mapK = {};
+  bool isDataNoFound = false;
 
   void initState() {
     // TODO: implement initState
@@ -91,8 +92,11 @@ class _MedicineList extends State<UserTestList1> {
             userListModel = UserListModel.fromJson(map);
           });
         } else {
+          setState(() {
+            isDataNoFound = true;
+          });
           //isDataNotAvail = true;
-          AppData.showInSnackBar(context, msg);
+         // AppData.showInSnackBar(context, msg);
         }
       },
     );
@@ -136,202 +140,213 @@ class _MedicineList extends State<UserTestList1> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                /* DropDown.networkDropdownGetpartUserrrr(
-                    "Choose Pharmacy",
-                    ApiFactory.PHARMACY_LIST,
-                    "choosepharmacy", (KeyvalueModel data) {
-                  setState(() {
-                    print(ApiFactory.GENDER_API);
-                    UserMedicineList.pharmacyModel = data;
-                  });
-                }, mapK),
-                SizedBox(
-                  height: 15,
-                ),*/
-                (userListModel != null)
-                    ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        // controller: _scrollController,
-                        shrinkWrap: true,
-                        itemBuilder: (context, i) {
-                          /*  if (i == userListModel.body.length) {
-                            return (userListModel.body.length % 10 == 0)
-                                ? CupertinoActivityIndicator()
-                                : Container();
-                          }*/
-                          test.Body body = userListModel.body[i];
-                          widget.model.testList = body;
-                          return Container(
-                            child: GestureDetector(
-                              // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                              // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                elevation: 5,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        userListModel.body[i].testname ?? "N/A",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            letterSpacing: 0.5),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5),
-                                        child: Row(
-                                          crossAxisAlignment:
+      body:
+      (userListModel != null)
+        ?    Container(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  /* DropDown.networkDropdownGetpartUserrrr(
+                      "Choose Pharmacy",
+                      ApiFactory.PHARMACY_LIST,
+                      "choosepharmacy", (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.GENDER_API);
+                      UserMedicineList.pharmacyModel = data;
+                    });
+                  }, mapK),
+                  SizedBox(
+                    height: 15,
+                  ),*/
+                  (userListModel != null)
+                      ? ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          // controller: _scrollController,
+                          shrinkWrap: true,
+                          itemBuilder: (context, i) {
+                            /*  if (i == userListModel.body.length) {
+                              return (userListModel.body.length % 10 == 0)
+                                  ? CupertinoActivityIndicator()
+                                  : Container();
+                            }*/
+                            test.Body body = userListModel.body[i];
+                            widget.model.testList = body;
+                            return Container(
+                              child: GestureDetector(
+                                // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                                // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                            "Doctor: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              body.doctor ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13),
-                                            ),
-                                          ],
+                                      children: [
+                                        Text(
+                                          userListModel.body[i].testname ?? "N/A",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 0.5),
                                         ),
-                                      ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 5),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                              "Doctor: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.doctor ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
 
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Appoint no: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              body.appno ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13),
-                                            ),
-                                          ],
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 5),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Appoint no: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.appno ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Type: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              body.testgroup ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13),
-                                            ),
-                                          ],
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 5),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Type: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.testgroup ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Remark: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              body.remarks ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13),
-                                            ),
-                                          ],
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 5),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Remark: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.remarks ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 13),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: userListModel.body.length,
-                      )
-                    : Container(),
-                SizedBox(
-                  height: 10,
-                ),
-                (selectedTest != null && selectedTest.length > 0)
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: nextButton(),
-                      )
-                    : Container(),
-                /*Material(
-                  elevation: 5,
-                  color: const Color(0xFF0F6CE1),
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: MaterialButton(
-                    onPressed: () {},
-                    minWidth: 350,
-                    height: 40.0,
-                    child: Text(
-                      " SUBMIT ",
-                      style: TextStyle(color: Colors.white, fontSize: 17.0),
-                    ),
+                            );
+                          },
+                          itemCount: userListModel.body.length,
+                        )
+                      : Container(),
+                  SizedBox(
+                    height: 10,
                   ),
-                ),*/
-              ],
+                  (selectedTest != null && selectedTest.length > 0)
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: nextButton(),
+                        )
+                      : Container(),
+                  /*Material(
+                    elevation: 5,
+                    color: const Color(0xFF0F6CE1),
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: MaterialButton(
+                      onPressed: () {},
+                      minWidth: 350,
+                      height: 40.0,
+                      child: Text(
+                        " SUBMIT ",
+                        style: TextStyle(color: Colors.white, fontSize: 17.0),
+                      ),
+                    ),
+                  ),*/
+                ],
+              ),
             ),
           ),
         ),
+      ): Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        alignment: Alignment.center,
+        child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+
+
       ),
-    ));
+        ));
   }
 
   Widget nextButton() {

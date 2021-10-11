@@ -36,7 +36,7 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-   final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   static final List<String> languageCodesList =
       application.supportedLanguagesCodes;
@@ -62,16 +62,18 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
   // LoginResponse loginResponse;
   SharedPref sharedPref = SharedPref();
   bool isPassShow = false;
+
   //  String phoneNumber = "; //enter your 10 digit number
-   int minNumber = 1000;
-   int maxNumber = 6000;
-   String countryCode ="+91"; 
-   bool isotpVisible = true;
-   bool ispassVisible= true;
-   bool isloginButton = true;
-   var rng = new Random();
-var code ;
-var pin ;
+  int minNumber = 1000;
+  int maxNumber = 6000;
+  String countryCode = "+91";
+  bool isotpVisible = true;
+  bool ispassVisible = true;
+  bool isloginButton = true;
+  var rng = new Random();
+  var code;
+
+  var pin;
 
   @override
   void initState() {
@@ -88,8 +90,7 @@ var pin ;
     );
   }
 
-  Widget body(BuildContext context) {  
-    
+  Widget body(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
         height: size.height,
@@ -113,7 +114,7 @@ var pin ;
               ),
               child: ListView(shrinkWrap: true, children: <Widget>[
                 SizedBox(height: size.height * 0.10),
-               /* SizedBox(
+                /* SizedBox(
                   height: size.height * 0.14,
                 ),*/
                 SizedBox(
@@ -143,7 +144,7 @@ var pin ;
                 SizedBox(height: 10),
                 Form(
                   key: _formKey,
-                                  child: Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(height: 10),
@@ -151,48 +152,55 @@ var pin ;
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: fromFieldNumber(),
                       ),
-                                         
+
                       Visibility(
                         visible: isotpVisible,
-                                            child: Container(
+                        child: Container(
                           child: Column(
                             children: [
-                               SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
                               OTPTextField(
-          length: 4,
-          width: MediaQuery.of(context).size.width,
-          textFieldAlignment: MainAxisAlignment.spaceAround,
-          fieldWidth: 55,
-          fieldStyle: FieldStyle.underline,
-          // outlineBorderRadius: 15,
-          style: TextStyle(fontSize: 17),
-          onChanged: (value) {
-            print("Changed: " + value);
-          },
-          onCompleted: (value) {           
-            pin = value;
-             print("Completed: " + pin);
-          },
-        ),
-        
-        
-
+                                length: 4,
+                                width: MediaQuery.of(context).size.width,
+                                textFieldAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                fieldWidth: 55,
+                                fieldStyle: FieldStyle.underline,
+                                // outlineBorderRadius: 15,
+                                style: TextStyle(fontSize: 17),
+                                onChanged: (value) {
+                                  print("Changed: " + value);
+                                },
+                                onCompleted: (value) {
+                                  pin = value;
+                                  print("Completed: " + pin);
+                                },
+                              ),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(height: 40,),
-        _getOTPButton(),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      _getOTPButton(),
                       // SizedBox(height: 60),
                       // Visibility(
                       //   visible: isloginButton,
                       //   child: _loginButton()),
-                   SizedBox(height: 20,),
-                     Text('- OR -', style: TextStyle(color: Colors.black54), ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        '- OR -',
+                        style: TextStyle(color: Colors.black54),
+                      ),
                       Visibility(
-                                            child: Column(
+                        child: Column(
                           children: [
-                             SizedBox(height: 20),
+                            SizedBox(height: 20),
                             _otpButton(),
                           ],
                         ),
@@ -203,7 +211,7 @@ var pin ;
                             left: 10.0, right: 10.0, bottom: 14.0),
                         child: InkWell(
                           onTap: () {
-                               Navigator.pushNamed(context, "/signUp");
+                            Navigator.pushNamed(context, "/signUp");
                             // Navigator.pushNamed(context, "/registration1");
                           },
                           child: RichText(
@@ -225,13 +233,15 @@ var pin ;
                           ),
                         ),
                       ),
-                     
-         SizedBox(height: 10,),
+
+                      SizedBox(
+                        height: 10,
+                      ),
                       InkWell(
-                        onTap: (){
-                           Navigator.pushNamed(context, "/forgotpassword");
-                        },
-                        child: Text('Forgot Password?')),
+                          onTap: () {
+                            Navigator.pushNamed(context, "/forgotpassword");
+                          },
+                          child: Text('Forgot Password?')),
                       SizedBox(height: 60),
                     ],
                   ),
@@ -304,8 +314,6 @@ var pin ;
         ));
   }
 
-  
-
   Widget fromFieldNumber() {
     return Theme(
       data: ThemeData(primaryColor: AppData.matruColor),
@@ -343,28 +351,25 @@ var pin ;
       ),
     );
   }
-  
-  
+
   Widget _getOTPButton() {
     return MyWidgets.nextButton(
       text: "Get OTP".toUpperCase(),
       context: context,
       fun: () {
-        if(!_formKey.currentState.validate()){
+        if (!_formKey.currentState.validate()) {
           return true;
         }
         //  _formKey.currentState.validate();
         // widget.model.phnNo = _loginId.text;
         Navigator.pushNamed(context, "/dashboard");
-                
+
         //  otp.sendOtp(_loginId.text, 'OTP is : $code',
         //     minNumber, maxNumber, countryCode);
-      
-        
       },
     );
   }
- 
+
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: "Login with Password".toUpperCase(),
@@ -378,9 +383,7 @@ var pin ;
         } else {*/
         widget.model.phnNo = _loginId.text;
         Navigator.pushNamed(context, "/login");
-        
-         
-       
+
         //}
       },
     );

@@ -28,6 +28,7 @@ class _ChemistsPageState extends State<ChemistsPage> {
   session.LoginResponse1 loginResponse1;
   String longi,lati,city,addr,healthpro,type,healthproname;
 
+  bool isDataNoFound = false;
 
 
   @override
@@ -72,8 +73,11 @@ class _ChemistsPageState extends State<ChemistsPage> {
 
             //foundUser = appointModel.body;
           } else {
+            setState(() {
+              isDataNoFound = true;
+            });
             //isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
+            //AppData.showInSnackBar(context, msg);
           }
         },
       );
@@ -117,7 +121,9 @@ class _ChemistsPageState extends State<ChemistsPage> {
 
     return SafeArea(
         child: Scaffold(
-          body: Container(
+          body:
+          (chemistsLocationWise!=null)?
+          Container(
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: SingleChildScrollView(
@@ -235,7 +241,15 @@ class _ChemistsPageState extends State<ChemistsPage> {
               ),
           ),
         ),
+          ): Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.center,
+            child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+
+
           ),
+
         ));
   }
 
