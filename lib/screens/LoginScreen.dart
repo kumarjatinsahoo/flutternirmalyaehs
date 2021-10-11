@@ -234,11 +234,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
-                                    text: " ",
+                                    text: "      ",
                                     style: TextStyle(color: Colors.black)),
                                 TextSpan(
                                     text: MyLocalizations.of(context)
-                                        .text("CREATEACC"),
+                                        .text("CREATE_ACCOUNT"),
                                     style: TextStyle(
                                         color: AppData.matruColor,
                                         fontStyle: FontStyle.normal,
@@ -257,15 +257,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, "/forgotpassword");
                             //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                         /* onDoubleTap: () {
-                            //Navigator.pushNamed(context, "/forgotpassword");
-                            Navigator.pushNamed(context, "/dashDoctor");
-                          },
-                          onLongPress: () {
-                            Navigator.pushNamed(context, "/dashboardd");
-                          },*/
-                          child: Text(
-                            'Forgot Password?',
+                          child: Text(MyLocalizations.of(context)
+                            .text("FORGOT_PASSWORD"),
                             style: TextStyle(
                                 fontSize: 17, color: AppData.kPrimaryColor),
                           )),
@@ -360,7 +353,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(top: 10),
             ),
             //hintText: "Enter number",
-            labelText: "Mobile No/Email Id/User Id",
+            labelText:MyLocalizations.of(context).text("USER_NAME"),
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
@@ -401,7 +394,7 @@ class _LoginScreenState extends State<LoginScreen> {
             //contentPadding: EdgeInsets.only(top: ),
             /*filled: true,
             fillColor: Colors.red.withOpacity(.5),*/
-            labelText: "Password",
+            labelText:MyLocalizations.of(context).text("PASSWORD"),
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
@@ -440,9 +433,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _loginButton() {
     return MyWidgets.nextButton(
-      text: "LOGIN",
+      text:MyLocalizations.of(context).text("LOGIN"),
       context: context,
-
       ///_loginId,passController
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
@@ -500,7 +492,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
-      text: "Login with OTP".toUpperCase(),
+      text: MyLocalizations.of(context).text("LOGIN_WITH_OTP"),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
