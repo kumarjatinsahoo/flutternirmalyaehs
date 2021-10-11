@@ -494,7 +494,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 children: [
                                   Expanded(
                                     child: ListTile(
-                                      title: const Text('Age'),
+                                      title: Text(MyLocalizations.of(context).text("AGE")),
                                       leading: Radio(
                                         materialTapTargetSize:
                                             MaterialTapTargetSize
@@ -511,7 +511,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   ),
                                   Expanded(
                                     child: ListTile(
-                                      title: const Text('DOB'),
+                                      title: Text(MyLocalizations.of(context).text("DOB")),
                                       leading: Radio(
                                         materialTapTargetSize:
                                             MaterialTapTargetSize

@@ -212,8 +212,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           child: Icon(Icons.arrow_back, color: Colors.white)),
                       Padding(
                         padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(
-                          'SIGN UP',
+                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 20,
@@ -261,8 +260,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         children: <Widget>[
                           Column(
                             children: [
-                              Text(
-                                "Fill in personal Information (All fields are mandatory)",
+                              Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black),
                               ),
@@ -271,21 +269,19 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          formField1(8, "Education"),
+                          formField1(8,MyLocalizations.of(context).text("EDUCATION")),
                           SizedBox(
                             height: 5,
                           ),
                           Row(
                             children: [
-                              Text(
-                                "  Role :",
+                              Text(MyLocalizations.of(context).text("ROLE"),
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.black),
                               ),
                               Column(
                                 children: [
-                                  Text(
-                                    "    Doctor",
+                                  Text(MyLocalizations.of(context).text("DOCTOR"),
                                     style: TextStyle(
                                         fontSize: 20, color: Colors.black),
                                   ),
@@ -299,7 +295,8 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                             child: SizedBox(
                               height: 58,
                               child: DropDown.networkDropdownGetpartUser(
-                                  "Speciality",
+                                  MyLocalizations.of(context)
+                                      .text("SPECIALITY") ,
                                   ApiFactory.SPECIALITY_API,
                                   "speciality",
                                   Icons.mail,
@@ -325,7 +322,8 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                             child: SizedBox(
                               height: 58,
                               child: DropDown.networkDropdownGetpartUser(
-                                  "BLOOD GROUP",
+                                  MyLocalizations.of(context)
+                                      .text("BLOODGROUP") ,
                                   ApiFactory.BLOODGROUP_API,
                                   "bloodgroup",
                                   Icons.location_on_rounded,
@@ -345,7 +343,8 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                             child: SizedBox(
                               height: 58,
                               child: DropDown.networkDropdownGetpartUser(
-                                  "GENDER",
+                                  MyLocalizations.of(context)
+                                      .text("GENDER") ,
                                   ApiFactory.GENDER_API,
                                   "gender",
                                   Icons.mail,
@@ -527,7 +526,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
         if (textEditingController[8].text == null ||
@@ -718,7 +717,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
               },
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(

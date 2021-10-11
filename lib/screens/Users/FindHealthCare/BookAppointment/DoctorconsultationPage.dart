@@ -407,8 +407,7 @@ String formattedDate;
                                     });
                                   }),
                                 ),
-                              )
-                            : Container(),
+                              ) : Container(),
                         (DoctorconsultationPage.doctorModel != null)
                             ? Padding(
                                 padding:
