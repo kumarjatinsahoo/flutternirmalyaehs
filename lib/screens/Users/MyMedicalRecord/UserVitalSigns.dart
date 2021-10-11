@@ -98,8 +98,7 @@ class _VitalSignsState extends State<VitalSigns> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Vital Signs',
+          title: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
             style: TextStyle(color: AppData.white),
           ),
           centerTitle: true,
@@ -164,8 +163,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(
-                                  ' Height(CM)',
+                                Text(MyLocalizations.of(context).text("HEIGHT"),
                                   style: TextStyle(
                                     color: Colors.black38,
                                     fontWeight: FontWeight.w500,
@@ -204,8 +202,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(
-                                  'Weigth(kg)',
+                                Text(MyLocalizations.of(context).text("WEIGHT"),
                                   style: TextStyle(
                                     color: Colors.black38,
                                     fontWeight: FontWeight.w500,
@@ -243,8 +240,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(
-                                  'BMI(kg/m)',
+                                Text(MyLocalizations.of(context).text("BMI"),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black38),
@@ -282,7 +278,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                       icon: "assets/temperatuer.png",
                                       title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
                           ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
-                                      subtitle: "Temperature",
+                                      subtitle: MyLocalizations.of(context).text("TEMPERATURE"),
                                       fun: () {
                                         /*Navigator.pushNamed(
                                         context, "/patientRegistration");*/
@@ -301,7 +297,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                       icon: "assets/bloodp.png",
                                       title:(vitalsignsModel?.body == null|| vitalsignsModel.body[0].respiartion.toString()=="0")
                                           ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
-                                      subtitle: "Systolic Diastolic Blood Pressure",
+                                      subtitle:MyLocalizations.of(context).text("BLOOD_PRESSURE"),
                                       fun: () {
                                        // chooseAppointment(context);
                                         // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -326,7 +322,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                       icon: "assets/pulse.png",
                                       title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].pulse.toString()=="0")
                                           ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
-                                      subtitle: "Pulse",
+                                      subtitle:MyLocalizations.of(context).text("PULSE"),
                                       fun: () {
                                         /*Navigator.pushNamed(
                                             context, "/pocreportlist");*/
@@ -344,7 +340,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                     icon: "assets/respiration.png",
                                     title: (vitalsignsModel?.body == null || vitalsignsModel?.body[0].respiartion.toString()=="0")
                                         ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
-                                    subtitle: "Respiration",
+                                    subtitle:MyLocalizations.of(context).text("RESPIRATION"),
                                     fun: () {
                                       //chooseAppointment1(context);
                                      /* Navigator.pushNamed(
@@ -370,7 +366,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                   icon:"assets/oxygen.png",
                                   title:  (vitalsignsModel?.body == null || vitalsignsModel.body[0].oxygen.toString()=="0")
                                       ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
-                                  subtitle: "Oxygen Saturation",
+                                  subtitle: MyLocalizations.of(context).text("OXYGEN_SATURATION"),
                                   fun: () {
                                    /* Navigator.pushNamed(context, "/testappointmentpage1");*/
                                   },
@@ -598,8 +594,7 @@ class _VitalSignsState extends State<VitalSigns> {
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
-                  Text(
-                    "Update Vital Sign",
+                  Text(MyLocalizations.of(context).text("UPDATE_VITAL"),
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.black,
@@ -609,39 +604,39 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 15,
                   ),
-                  formFieldMobile(0, "Height :"),
+                  formFieldMobile(0, MyLocalizations.of(context).text("HEIGHT")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(1, "Weight:"),
+                  formFieldMobile(1,  MyLocalizations.of(context).text("WEIGHT")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(2, "BMI(KG/m):"),
+                  formFieldMobile(2, MyLocalizations.of(context).text("BMI")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(3, "Temprature :"),
+                  formFieldMobile(3, MyLocalizations.of(context).text("TEMPERATURE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(4, "Systolic Blood Prssure:"),
+                  formFieldMobile(4,MyLocalizations.of(context).text("BLOOD_PRESSURE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(5, "Diastolic Blood Prssure:"),
+                  formFieldMobile(5,MyLocalizations.of(context).text("DIASTOLIC_BLOOD_PRESSURE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(6, "Pulse:"),
+                  formFieldMobile(6,MyLocalizations.of(context).text("PULSE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(7, "Respiration:"),
+                  formFieldMobile(7,MyLocalizations.of(context).text("RESPIRATION")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(8, "Oxygen Saturation:"),
+                  formFieldMobile(8, MyLocalizations.of(context).text("OXYGEN_SATURATION")),
                 ],
               ),
             ),
@@ -655,7 +650,7 @@ class _VitalSignsState extends State<VitalSigns> {
            // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Cancel'),
+          child:Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
@@ -773,7 +768,7 @@ class _VitalSignsState extends State<VitalSigns> {
            // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Update'),
+          child:Text(MyLocalizations.of(context).text("UPDATE")),
         ),
       ],
     );
