@@ -186,8 +186,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                           child: Icon(Icons.arrow_back, color: Colors.white)),
                       Padding(
                         padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(
-                          'SIGN UP',
+                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 20,
@@ -279,8 +278,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                             children: <Widget>[
                               Column(
                                 children: [
-                                  Text(
-                                    "Fill in personal Information (All fields are mandatory)",
+                                  Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 18, color: Colors.black),
@@ -293,7 +291,8 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               //formField(0, "Organization Name"),
 
                               DropDown.networkDropdownGetpartUser1(
-                                  "Organization Name",
+                                  MyLocalizations.of(context)
+                                      .text("ORGANIZATION_NAME") ,
                                   ApiFactory.ORGANIZATION_API,
                                   "organization",
                                   Icons.location_on_rounded,
@@ -322,7 +321,8 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               // ),
 
                               DropDown.networkDropdownGetpartUser1(
-                                  "Title",
+                                  MyLocalizations.of(context)
+                                      .text("TITLE") ,
                                   ApiFactory.TITLE_API,
                                   "title",
                                   Icons.location_on_rounded,
@@ -336,7 +336,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               SizedBox(
                                 height: 13,
                               ),
-                              formField1(1, "Professional's Name"),
+                              formField1(1, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
                               SizedBox(
                                 height: 10,
                               ),
@@ -657,7 +657,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");

@@ -223,8 +223,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           child: Icon(Icons.arrow_back, color: Colors.white)),
                       Padding(
                         padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(
-                          'SIGN UP',
+                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 20,
@@ -273,8 +272,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                         children: <Widget>[
                           Column(
                             children: [
-                              Text(
-                                "Fill in personal Information (All fields are mandatory)",
+                              Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.black),
@@ -284,7 +282,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 5,
                           ),
-                          formFieldaddress(8, "Address"),
+                          formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS")),
                           SizedBox(
                             height: 5,
                           ),
@@ -295,7 +293,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               height: 58,
                               child:
                                   DropDown.networkDropdownGetpartUser(
-                                      "Country",
+                                      MyLocalizations.of(context)
+                                          .text("COUNTRY") ,
                                       ApiFactory.COUNTRY_API,
                                       "country",
                                       Icons.location_on_rounded,
@@ -323,7 +322,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                     height: 58,
                                     child: DropDown
                                         .networkDropdownGetpartUser(
-                                            "State",
+                                        MyLocalizations.of(context)
+                                            .text("STATE") ,
                                             ApiFactory.STATE_API +
                                                 DoctorSignUpForm4
                                                     .countryModel.key,
@@ -355,7 +355,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                     height: 58,
                                     child: DropDown
                                         .networkDropdownGetpartUser(
-                                            "District",
+                                        MyLocalizations.of(context)
+                                            .text("DIST") ,
                                             ApiFactory.DISTRICT_API +
                                                 DoctorSignUpForm4
                                                     .stateModel.key,
@@ -387,7 +388,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                     height: 58,
                                     child: DropDown
                                         .networkDropdownGetpartUser(
-                                            "City",
+                                        MyLocalizations.of(context)
+                                            .text("CITY") ,
                                             ApiFactory.CITY_API +
                                                 DoctorSignUpForm4
                                                     .districtModel
@@ -413,32 +415,32 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldzip(5, "Enter Zip/Pin Code :"),
+                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(4, "Enter Home Phone (Optional)"),
+                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE")),
                           SizedBox(
                             height: 13,
                           ),
                           formFieldMobile(
-                              9, "Enter Office phone (Optional)"),
+                              9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE")),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(10, "Mobile Number :"),
+                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO")),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(11, "Email Id :"),
+                          formFielEmail(11,MyLocalizations.of(context).text("EMAILID")),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(12, "Alternate Email Id"),
+                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID")),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldExperience(13, "Experience"),
+                          formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE")),
                           SizedBox(
                             height: 13,
                           ),
@@ -446,8 +448,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Upload Document :",
+                                child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
                                   style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.black),
@@ -479,7 +480,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'I agree to NCORDS ',
+                                          text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
                                           /* "Welcome back",*/
                                           style: TextStyle(
                                             // fontWeight: FontWeight.w800,
@@ -489,8 +490,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text:
-                                              'Terms and Conditions',
+                                          text:MyLocalizations.of(context).text("T&C") ,
                                           /* "Welcome back",*/
                                           style: TextStyle(
                                             // fontWeight: FontWeight.w500,

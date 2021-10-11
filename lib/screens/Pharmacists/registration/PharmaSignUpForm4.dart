@@ -172,7 +172,7 @@ class PharmaSignUpForm4State extends State<PharmaSignUpForm4> {
                             child: Icon(Icons.arrow_back,color: Colors.white)),
                         Padding(
                           padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
+                          child: Text(MyLocalizations.of(context).text("SIGNUP"),
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
                       ],
@@ -219,7 +219,7 @@ class PharmaSignUpForm4State extends State<PharmaSignUpForm4> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            Text(" Welcome to eHealthSystem",
+                                            Text(MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
                                               style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
                                           ],
                                         ),
