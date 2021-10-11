@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apnt;
 import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/models/PocReportModel.dart';
@@ -12,6 +9,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+
 
 class UserAppointments extends StatefulWidget {
   MainModel model;
@@ -65,13 +63,13 @@ String userid;
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-       /* appBar: AppBar(
+        appBar: AppBar(
           centerTitle: true,
           title: const Text('My Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
           ],
-        ),*/
+        ),
         body: SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(

@@ -111,7 +111,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               AppData.showInSnackBar(context, msg);
             }
           });
-        });
+        }
+        );
   }
 
   @override
@@ -247,7 +248,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                         ],
                                                       ),
                                                       new Spacer(),
-                                                      Padding(
+                                                    /*  Padding(
                                                         padding: const EdgeInsets.only(
                                                           top: 15.0,
                                                         ),
@@ -261,7 +262,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                                 setState(() {
                                                                   widget.model.GETMETHODCALL_TOKEN(
                                                                       api: ApiFactory.DELETE_TEST_LIST +
-                                                                          widget.model.appointmentlist.doctorName /*"4"*/+
+                                                                          widget.model.appointmentlist.doctorName *//*"4"*//*+
                                                                           "&srlone=" +medicationlis.srlNoOne +
                                                                           "&srltwo=" + medicationlis.srlNoTwo,
                                                                       token: widget.model.token,
@@ -315,7 +316,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                             )
                                                           ],
                                                         ),
-                                                      ),
+                                                      ),*/
                                                     ],
                                                   ),
                                                 )),
