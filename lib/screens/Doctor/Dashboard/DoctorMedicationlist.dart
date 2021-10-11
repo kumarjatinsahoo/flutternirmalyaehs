@@ -559,7 +559,10 @@ class _MedicationlistState extends State<Medicationlist> {
               AppData.showInSnackBar(context, "Please select item name");
               /* } else if (textEditingController[1].text == '') {
               AppData.showInSnackBar(context, "Please enter Day Duration");*/
-            } else if (textEditingController[2].text == '') {
+            }else if (_checkbox == false &&_checkbox1 == false &&_checkbox2 == false){
+              AppData.showInSnackBar(context, "Please checked terms and Condition");
+            }
+            else if (textEditingController[2].text == '') {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
               //NomineeModel nomineeModel = NomineeModel();
