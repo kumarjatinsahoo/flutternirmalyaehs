@@ -85,14 +85,14 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
+                        apt.Body appointmentlist = appointmentlistModel.body[i];
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return InkWell(
                             onTap: (){
-                          //widget.model.appointmentlist=appointmentlist;
+                         // widget.model.appointmentlist=appointmentlist;
                           //Navigator.pushNamed(context, "/medi");
-                             // widget.model.userappointment=patient;
+                             widget.model.userappointment=appointmentlist;
                               Navigator.pushNamed(context, "/usermedicinelist");
                           //Navigator.pushNamed(context, "/userTab1");
                         },
