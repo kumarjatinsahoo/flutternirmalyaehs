@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
+import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
@@ -55,7 +56,7 @@ class _MyAppointmentTab extends State<MyAppointmentTab> {
         ),
         body: TabBarView(
           children: [
-            DoctorconsultationPage(model:widget.model,),
+            DoctorAppointment(model:widget.model,),
             UserAppointments(model:widget.model,),
           ],
         ),

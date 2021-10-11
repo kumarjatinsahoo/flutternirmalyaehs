@@ -175,7 +175,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 120,
+
                                         //width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -185,7 +185,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                             borderRadius:
                                                 BorderRadius.circular(8)),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
+                                          padding: const EdgeInsets.all(0.0),
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -197,7 +197,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                   children: [
                                                     Text(
                                                       appointmentlist
-                                                          .doctorName,
+                                                          .doctorName??"N/A",
                                                       /*"",*/
                                                       style: TextStyle(
                                                           fontWeight:
@@ -208,8 +208,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      /*appointmentlist.speciality,*/
-                                                      "",
+                                                      appointmentlist.speciality??"N/A",
+
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
@@ -219,10 +219,17 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                     ),
                                                     Text(
                                                       "Patient Notes:" +
-                                                          appointmentlist.notes,
+                                                          appointmentlist.notes??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
+                                                    ),
+                                                    Text(
+
+                                                      appointmentlist.patname??"N/A",
+                                                      overflow:
+                                                      TextOverflow.clip,
+                                                      style: TextStyle(color: Colors.blue),
                                                     ),
                                                   ],
                                                 ),
@@ -239,7 +246,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                   children: [
                                                     Text(
                                                       /*'Confirmed'*/
-                                                      appointmentlist.status,
+                                                      appointmentlist.status??"N/A",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -251,9 +258,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                     ),
                                                     Text(
                                                       /*'23-Nov-2020-11:30AM'*/
-                                                      appointmentlist.appdate +
+                                                      appointmentlist.appdate??"N/A" +
                                                           appointmentlist
-                                                              .apptime,
+                                                              .apptime??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),

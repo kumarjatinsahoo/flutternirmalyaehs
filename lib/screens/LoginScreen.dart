@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _otpButton(),
                       SizedBox(
-                        height: size.height * 0.01,
+                        height: size.height * 0.03,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
-                                    text: "      ",
+                                    text: "   ",
                                     style: TextStyle(color: Colors.black)),
                                 TextSpan(
                                     text: MyLocalizations.of(context)

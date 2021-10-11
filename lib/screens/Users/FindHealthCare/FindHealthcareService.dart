@@ -162,13 +162,13 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
 
                                 GestureDetector(
                                   onTap: () {
-                                    /*               Navigator.pushNamed(
-                                    context, "/myAppointment");*/
-
-                                  /*  Navigator.pushNamed(
-                                        context, "/userAppoint");*/
                                     Navigator.pushNamed(
-                                        context, "/Appointtab");
+                                    context, "/myAppointment");
+
+                                    /*Navigator.pushNamed(
+                                        context, "/userAppoint");*/
+                                   /* Navigator.pushNamed(
+                                        context, "/Appointtab");*/
                                   }
                                   ,
                                   child: Card(
