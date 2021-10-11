@@ -450,7 +450,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
                       callAPI();
                       //popup(context, "Medicine Added Successfully",map[Const.BODY]);
                     } else {

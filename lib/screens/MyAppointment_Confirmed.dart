@@ -157,8 +157,6 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                       itemBuilder: (context, i) {
                         apnt.Body appointmentlist =
                             appointmentlistModel.body[i];
-                        /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
                         return Column(
                           children: [
                             Padding(
@@ -177,6 +175,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                     child: Container(
 
                                         //width: double.maxFinite,
+
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             border: Border.all(
@@ -185,7 +184,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                             borderRadius:
                                                 BorderRadius.circular(8)),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(0.0),
+                                          padding: const EdgeInsets.all(10.0),
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
