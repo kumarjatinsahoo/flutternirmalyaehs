@@ -64,6 +64,7 @@ class _MedicineList extends State<UserMedicineList1> {
   Position position;
   String cityName;
   bool isDataNoFound = false;
+  bool DataFound = true;
   List<MedicinlistModel> medicinlist = [];
   List<medicine.Body> selectedMedicine = [];
 
@@ -415,7 +416,8 @@ class _MedicineList extends State<UserMedicineList1> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
-        child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+        child: (isDataNoFound) ? Text("Data Not Found"):
+        callAPI(),
 
 
       ),

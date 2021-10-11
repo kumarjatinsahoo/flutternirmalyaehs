@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:user/models/PharmacyorderModel.dart'as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -10,17 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-
-class MyOrders extends StatefulWidget {
+class MyOrdersLab extends StatefulWidget {
   final MainModel model;
 
-  const MyOrders({Key key, this.model}) : super(key: key);
+  const MyOrdersLab({Key key, this.model}) : super(key: key);
 
   @override
-  _MyOrdersState createState() => _MyOrdersState();
+  _MyOrdersLabState createState() => _MyOrdersLabState();
 }
 
-class _MyOrdersState extends State<MyOrders> {
+class _MyOrdersLabState extends State<MyOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;

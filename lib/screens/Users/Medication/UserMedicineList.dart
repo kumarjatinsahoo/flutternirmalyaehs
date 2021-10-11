@@ -520,14 +520,30 @@ class _MedicineList extends State<UserMedicineList> {
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
-                    if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                    setState(() {
+                      if (map[Const.STATUS1] == Const.SUCCESS) {
+                        //Navigator.pop(context);
+                        callAPI();
+                        AppData.showInSnackDone(
+                            context, map[Const.MESSAGE]);
+                      } else {
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      }
+                    });
+                  /*  setState(() {
                       callAPI();
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
-                    } else {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                    }
-                  });
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                    });*/
+                     /* if (map[Const.STATUS] == Const.SUCCESS) {
+
+                        //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                      } else {
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      }*/
+
+                    });
+
+
             }
             Navigator.of(context).pop();
             textEditingController[0].text = "";

@@ -87,7 +87,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                 padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
                     child: Card(
                       child: Container(
-                        height: size.height * 0.15,
+                        //height: size.height * 0.15,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.black12),
