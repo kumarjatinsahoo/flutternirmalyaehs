@@ -41,7 +41,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
       selectedDatestr = df.format(date).toString();
       loginResponse = widget.model.loginResponse1;
       print(">>>>>>>" + jsonEncode(loginResponse.toJson()));
-      callAPI(selectedDatestr);
+      callAPI("");
     });
   }
 

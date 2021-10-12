@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:user/models/DocterMedicationlistModel.dart';
-
 import 'package:user/models/KeyvalueModel.dart';
 
 import 'package:user/models/MedicinModel.dart';
@@ -378,7 +376,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     height: 58,
                     child: DropDown.networkDropdownGetpartUser(
                         "Test",
-                        ApiFactory.TESTNAME_LIST,
+                        //ApiFactory.TESTNAME_LIST,
+                        "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
                         "test",
                         Icons.fiber_manual_record,
                         23.0, (KeyvalueModel data) {
@@ -444,7 +443,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               print("TO POST>>>>" + jsonEncode(param));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.POST_TEST,
+                  api: "http://192.168.43.248:8062/nirmalyaRest/api/post-user-test-by-doctor",
                   json: param,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {

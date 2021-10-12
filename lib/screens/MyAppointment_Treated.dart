@@ -36,7 +36,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
       fromThis_.text = df.format(date);
       selectedDatestr = df.format(date).toString();
       //toThis_.text = df.format(date);
-      callAPI(selectedDatestr);
+      callAPI("");
     });
   }
 
@@ -86,11 +86,11 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
     return SafeArea(
         child: Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            appointdate(),
-            Expanded(
-              child: (appointmentlistModel != null)
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              appointdate(),
+              (appointmentlistModel != null)
                   ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -243,8 +243,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                       itemCount: appointmentlistModel.body.length,
                     )
                   : Container(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ));

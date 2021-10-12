@@ -136,6 +136,17 @@ class _CancelledOrdersPharmacyState extends State<CancelledOrdersPharmacy> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Text(
+                                          body.name,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
                                         Row(
                                           children: [
                                             Icon(
@@ -237,7 +248,7 @@ class _CancelledOrdersPharmacyState extends State<CancelledOrdersPharmacy> {
                                     child: RaisedButton(
                                       onPressed: null,
                                       child: Text(
-                                        'Reject',
+                                        'Rejected',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,
