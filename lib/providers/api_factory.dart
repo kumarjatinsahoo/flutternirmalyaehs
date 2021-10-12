@@ -157,8 +157,11 @@ class ApiFactory {
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
-  static String PHARMACY_ORDER_LIST =
+  static String ORDER_LIST =
       MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+
+  static String ORDER_LIST_STATUS =
+      MAIN_URL + 'view-status-lab-orderlist-by-id?userid=';
   static String PHARMACY_CNFRM_ORDER_LIST =
       MAIN_URL + 'view-requested-medicine-details?orderid=';
   static String ORDER_DETAILS_LAB =

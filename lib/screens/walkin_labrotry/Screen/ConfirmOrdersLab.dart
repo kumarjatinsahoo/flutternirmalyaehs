@@ -11,16 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class MyOrdersLab extends StatefulWidget {
+class ConfirmOrdersLab extends StatefulWidget {
   final MainModel model;
 
-  const MyOrdersLab({Key key, this.model}) : super(key: key);
+  const ConfirmOrdersLab({Key key, this.model}) : super(key: key);
 
   @override
-  _MyOrdersLabState createState() => _MyOrdersLabState();
+  _ConfirmOrdersLabState createState() => _ConfirmOrdersLabState();
 }
 
-class _MyOrdersLabState extends State<MyOrdersLab> {
+class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
@@ -40,7 +40,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.ORDER_LIST + loginResponse.body.user,
+        api: ApiFactory.ORDER_LIST_STATUS + loginResponse.body.user+"&status=4",
         userId: loginResponse.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -65,9 +65,9 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text(
-            'Confirm Order List',
+            'Orders List',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -75,14 +75,9 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
           //leading: Icon(Icons.arrow_back, color: Colors.black),
            iconTheme: IconThemeData(color: Colors.white),
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right:8.0),
-              child: InkWell(onTap:(){
-                Navigator.pushNamed(context, "/confirmOrder");
-              },child: Icon(Icons.info_outline)),
-            )
+            InkWell(child: Icon(Icons.info_outline))
           ],
-        ),
+        ),*/
         body:
         (pharmacyorderModel != null)
         ?  ListView.builder(
@@ -231,36 +226,6 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                               Expanded(
                                 child: InkWell(
                                   onTap: (){
-                                    rejectApi(body.orderid);
-
-                                  },
-                                  child: Container(
-                                    height: size.height * 0.06,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Colors.black12),
-                                        color: Colors.red[900]),
-                                    child: RaisedButton(
-                                      onPressed: null,
-                                      child: Text(
-                                        'Reject',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      disabledColor: Colors.red[900],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                child: InkWell(
-                                  onTap: (){
-                                    acceptApi(body.orderid);
                                   },
                                   child: Container(
                                     height: size.height * 0.06,
@@ -271,7 +236,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                                     child: RaisedButton(
                                       onPressed: null,
                                       child: Text(
-                                        'Accept',
+                                        'Accepted',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,

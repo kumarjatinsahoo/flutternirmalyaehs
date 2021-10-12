@@ -40,7 +40,7 @@ class _MyOrdersState extends State<MyOrders> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.PHARMACY_ORDER_LIST + loginResponse.body.user,
+        api: ApiFactory.ORDER_LIST + loginResponse.body.user,
         userId: loginResponse.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {

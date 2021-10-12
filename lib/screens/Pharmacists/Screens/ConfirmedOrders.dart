@@ -63,7 +63,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Confirm Orders',
+            'Orders Details',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,

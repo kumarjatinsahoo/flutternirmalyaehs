@@ -50,6 +50,7 @@ class _CountDownPageState extends State<CountDownPage>
   String address;
   Position position;
   String cityName;
+  final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -64,17 +65,14 @@ class _CountDownPageState extends State<CountDownPage>
       duration: new Duration(seconds: kStartValue),
     );
     _controller.forward(from: 0.0).whenComplete(() {
-      ///callAPI();
-      pushNotification();
-      //AppData.showInSnackBar(context, "Done");
-      //_getLocationName();
-
+      //pushNotification();
       setState(() {
         isComplete = true;
       });
     });
     //_controller.
   }
+
 
   callAPI() {
     MyWidgets.showLoading(context);
@@ -183,6 +181,7 @@ class _CountDownPageState extends State<CountDownPage>
         child: new Icon(Icons.play_arrow),
         onPressed: () => _controller.forward(from: 0.0),
       ),*/
+      key: _scaffoldKey1,
       bottomNavigationBar: Buttons.downloadButton(
           title: "Cancel",
           context: context,
@@ -192,6 +191,7 @@ class _CountDownPageState extends State<CountDownPage>
       body: new Container(
         child: new Center(
           child: new Countdown(
+            //key: _scaffoldKey1,
             animation: new StepTween(
               begin: kStartValue,
               end: 0,

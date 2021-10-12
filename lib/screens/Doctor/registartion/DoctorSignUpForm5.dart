@@ -432,7 +432,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("HOME"),
+            "Home",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -460,7 +460,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("SIGN_BTN"),
+            "Sign Up",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -602,7 +602,7 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
               },
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(
