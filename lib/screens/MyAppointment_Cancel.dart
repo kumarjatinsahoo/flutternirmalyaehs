@@ -30,7 +30,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
       fromThis_.text = df.format(date);
       selectedDatestr =  df.format(date).toString();
       //toThis_.text = df.format(date);
-      callAPI(selectedDatestr);
+      callAPI("");
     });
   }
   Future<Null> _selectDate(BuildContext context) async {
@@ -73,19 +73,19 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
     return SafeArea(
         child: Scaffold(
           body: Container(
-            child: Column(
-              children: [
-                appointdate(),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  appointdate(),
 
-                Expanded(
-                  child: (appointmentlistModel != null)
+                  (appointmentlistModel != null)
                       ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         Body appointmentlist = appointmentlistModel.body[i];
                         /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
+                  itemBuilder: (context, index) {*/
                         return Column(
                           children: [
                             Padding(
@@ -173,8 +173,8 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                       },itemCount: appointmentlistModel.body.length,
 
                   ): Container(),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 

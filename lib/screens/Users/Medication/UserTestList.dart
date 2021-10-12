@@ -430,6 +430,7 @@ class _MedicineList extends State<UserTestList> {
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
+                    Navigator.pop(context);
                     setState(() {
                       if (map[Const.STATUS1] == Const.SUCCESS) {
                         callAPI();
