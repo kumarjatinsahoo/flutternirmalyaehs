@@ -245,7 +245,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       networkDropdownGetpartUser(
                                          // "TITLE"
                                           MyLocalizations.of(context)
-                                              .text("TITLE") ,
+                                              .text("TITLE") +"*",
                                           ApiFactory.TITLE_API,
                                           "title",
                                           Icons.person_rounded,
@@ -351,7 +351,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       networkDropdownGetpartUser(
                                           //"Gender"
                                           MyLocalizations.of(context)
-                                              .text("GENDER") ,
+                                              .text("GENDER") +"*",
                                           ApiFactory.GENDER_API,
                                           "gender",
                                           Icons.person_rounded,
@@ -385,7 +385,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       networkDropdownGetpartUser(
                                          // "Country",
                                           MyLocalizations.of(context)
-                                              .text("COUNTRY") ,
+                                              .text("COUNTRY")+"*" ,
                                           ApiFactory.COUNTRY_API,
                                           "country",
                                           Icons.location_on_rounded,
@@ -410,7 +410,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         child: networkDropdownGetpartUser(
                                                 //"State",
                                             MyLocalizations.of(context)
-                                                .text("STATE") ,
+                                                .text("STATE") +"*",
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
                                                         .countryModel.key,
@@ -441,7 +441,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                   networkDropdownGetpartUser(
                                       //"District",
                                       MyLocalizations.of(context)
-                                          .text("DIST") ,
+                                          .text("DIST")+"*" ,
                                       ApiFactory.DISTRICT_API +
                                           UserSignUpForm.stateModel.key,
                                       "district",
@@ -468,7 +468,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       .networkDropdownGetpartUser(
                                       //"City",
                                       MyLocalizations.of(context)
-                                          .text("CITY") ,
+                                          .text("CITY") +"*",
                                       ApiFactory.CITY_API +
                                           UserSignUpForm
                                               .districtModel.key,
@@ -885,7 +885,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     );
   }
 
-  networkDropdownGetpartUser(String label, final String API,
+  networkDropdownGetpartUser(String label,  final String API,
       String callFrom, IconData iconData, double iconSize, Function fun) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
@@ -904,6 +904,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
       ),
       hint: label,
+      searchBoxStyle:TextStyle(fontSize: 17)
+      ,
+
+
+
       /* errorBuilder: (cg, value, v) {
         return Material(
           child: Container(
@@ -1200,7 +1205,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   counterText: "",
                   hintText:
                       MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
-                  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+                  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 16),
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
