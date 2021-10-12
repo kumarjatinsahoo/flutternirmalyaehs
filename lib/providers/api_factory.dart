@@ -157,12 +157,18 @@ class ApiFactory {
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
-  static String PHARMACY_ORDER_LIST =
+  static String ORDER_LIST =
       MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+
+  static String ORDER_LIST_STATUS =
+      MAIN_URL + 'view-status-lab-orderlist-by-id?userid=';
   static String PHARMACY_CNFRM_ORDER_LIST =
       MAIN_URL + 'view-requested-medicine-details?orderid=';
+  static String ORDER_DETAILS_LAB =
+      MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
-  static String CHANGE_STATUS = MAIN_URL + 'change-pharmacy-status?orderid=';
+  static String CHANGE_STATUS_PHARMACY = MAIN_URL + 'change-pharmacy-status?orderid=';
+  static String CHANGE_STATUS_LAB = MAIN_URL + 'change-lab-status?orderid=';
   static String HEALTH_CHART =
       "https://www.matrujyoti.in/api/view-screeningReport?regNo=9121389950648015";
 
@@ -177,6 +183,8 @@ class ApiFactory {
   static String DOC_LIST = MAIN_URL1 + "/Doc/GetDocList?speciality=";
   static String TAKE_APNTMENT = MAIN_URL1 + "/Doc";
   static String POST_DOC_API = MAIN_URL + "geo-post-doctor-appointment";
+  static String LAB_REQUEST = MAIN_URL + "post-lab-request-api";
+  static String LAB_LIST_LOC = MAIN_URL + "get-lab-list-by-location";
 
   static String TIME_SLOT(String doctor, String appointdate,
       String hospitalid) {

@@ -1,14 +1,17 @@
 import 'package:flutter/gestures.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineList1.dart';
-import 'UserTestList1.dart';
-class UserMedicineTab1 extends StatefulWidget {
+import 'package:user/screens/Pharmacists/screens/ConfirmedOrders.dart';
+import 'package:user/screens/Users/Medication/UserMedicineList.dart';
+import 'package:user/screens/Users/Medication/UserTestList.dart';
+import 'package:user/screens/walkin_labrotry/Screen/ConfirmOrdersLab.dart';
+
+import 'CancelledOrdersLab.dart';
+class OrdersTabLab extends StatefulWidget {
   final MainModel model;
 
-  UserMedicineTab1({Key key, this.model}) : super(key: key);
+  OrdersTabLab({Key key, this.model}) : super(key: key);
 
   @override
   _UserMedicineList createState() => _UserMedicineList();
@@ -19,7 +22,7 @@ final List<Tab> myTabs = <Tab>[
   Tab(text: 'RIGHT'),
 ];
 
-class _UserMedicineList extends State<UserMedicineTab1> {
+class _UserMedicineList extends State<OrdersTabLab> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +31,7 @@ class _UserMedicineList extends State<UserMedicineTab1> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(MyLocalizations.of(context).text("MEDICATION")),
+          title: const Text('Order Details'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 
@@ -41,11 +44,11 @@ class _UserMedicineList extends State<UserMedicineTab1> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:MyLocalizations.of(context).text("MEDICINE"),
+                text:"Confirm Orders",
 
               ),
               Tab(
-                text:MyLocalizations.of(context).text("TEST"),
+                text:"Cancel Orders",
               ),
             ],
           ),
@@ -53,8 +56,8 @@ class _UserMedicineList extends State<UserMedicineTab1> {
         ),
         body: TabBarView(
           children: [
-            UserMedicineList1(model:widget.model,),
-            UserTestList1(model:widget.model,),
+            ConfirmOrdersLab(model:widget.model,),
+            CancelledOrdersLab(model:widget.model,),
           ],
         ),
       ),

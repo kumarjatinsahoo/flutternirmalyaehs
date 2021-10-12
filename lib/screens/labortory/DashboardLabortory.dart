@@ -14,16 +14,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class DashboardPharmacy extends StatefulWidget {
+class DashboardLabortory extends StatefulWidget {
   final MainModel model;
 
-  const DashboardPharmacy({Key key, this.model}) : super(key: key);
+  const DashboardLabortory({Key key, this.model}) : super(key: key);
 
   @override
-  _DashboardPharmacyState createState() => _DashboardPharmacyState();
+  _DashboardLabortoryState createState() => _DashboardLabortoryState();
 }
 
-class _DashboardPharmacyState extends State<DashboardPharmacy> {
+class _DashboardLabortoryState extends State<DashboardLabortory> {
   LoginResponse1 loginResponse;
 
   double _height = 120;
@@ -363,7 +363,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                                 title: " Confirmed Order ",
                                 fun: () {
                                   //chooseAppointment(context);
-                                  Navigator.pushNamed(context, "/ordersPharma");
+                                  Navigator.pushNamed(context, "/confirmorder");
                                   },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
@@ -398,7 +398,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           children: [
                             _buildTileblue(
                               icon: "assets/DeliverdOrder.png",
-                              title: "Deliverd Order",
+                              title: "Delivered Order",
                               fun: () {
                                 //chooseAppointment1(context);
                                Navigator.pushNamed(context, "/deliverdorder");

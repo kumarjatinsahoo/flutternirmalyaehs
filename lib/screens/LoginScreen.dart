@@ -257,8 +257,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushNamed(context, "/forgotpassword");
                             //Navigator.pushNamed(context, "/dashDoctor");
                           },
-                          child: Text(MyLocalizations.of(context)
-                            .text("FORGOT_PASSWORD"),
+                          child: Text(
+                            MyLocalizations.of(context).text("FORGOT_PASSWORD"),
                             style: TextStyle(
                                 fontSize: 17, color: AppData.kPrimaryColor),
                           )),
@@ -353,7 +353,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(top: 10),
             ),
             //hintText: "Enter number",
-            labelText:MyLocalizations.of(context).text("USER_NAME"),
+            labelText: MyLocalizations.of(context).text("USER_NAME"),
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
@@ -394,7 +394,7 @@ class _LoginScreenState extends State<LoginScreen> {
             //contentPadding: EdgeInsets.only(top: ),
             /*filled: true,
             fillColor: Colors.red.withOpacity(.5),*/
-            labelText:MyLocalizations.of(context).text("PASSWORD"),
+            labelText: MyLocalizations.of(context).text("PASSWORD"),
             alignLabelWithHint: true,
             hintStyle: TextStyle(color: Colors.grey),
             labelStyle: TextStyle(color: Colors.grey),
@@ -433,8 +433,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _loginButton() {
     return MyWidgets.nextButton(
-      text:MyLocalizations.of(context).text("LOGIN"),
+      text: MyLocalizations.of(context).text("LOGIN"),
       context: context,
+
       ///_loginId,passController
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
@@ -461,8 +462,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
 
-                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
+                    FirebaseMessaging.instance
+                        .subscribeToTopic(loginResponse.body.user);
+                    FirebaseMessaging.instance
+                        .subscribeToTopic(loginResponse.body.userMobile);
 
                     if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
@@ -480,8 +483,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboardpharmacy',
                           (Route<dynamic> route) => false);
-                    }else{
-AppData.showInSnackBar(context, "No Role Assign");
+                    }else if (loginResponse.body.roles[0] ==
+                        "8".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/labDash',
+                          (Route<dynamic> route) => false);
+                    } else {
+                      AppData.showInSnackBar(context, "No Role Assign");
                     }
                   });
                 } else {
@@ -492,6 +500,7 @@ AppData.showInSnackBar(context, "No Role Assign");
       },
     );
   }
+
   Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: MyLocalizations.of(context).text("LOGIN_WITH_OTP"),
@@ -514,30 +523,28 @@ AppData.showInSnackBar(context, "No Role Assign");
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
-                   // widget.model.loginData=loginResponse;
+                    // widget.model.loginData=loginResponse;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              PinView(
-                                  loginData: loginResponse,
-                                  model: widget.model,
-                                  )),
+                          builder: (BuildContext context) => PinView(
+                                loginData: loginResponse,
+                                model: widget.model,
+                              )),
                     );
-
-                    });
-
+                  });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-         // widget.model.phnNo = _loginId.text;
+          // widget.model.phnNo = _loginId.text;
           //Navigator.pushNamed(context, "/otpView");
-         // Navigator.pushNamed(context, "/pinView");
+          // Navigator.pushNamed(context, "/pinView");
         }
       },
     );
   }
+
   dashOption(BuildContext context) {
     return showDialog(
         context: context,
@@ -557,7 +564,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("USER_REGISTRATION"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("USER_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -570,7 +579,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("DOCTOR_REGISTRATION"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("DOCTOR_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -583,7 +594,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("LAB_REGISTRATION"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("LAB_REGISTRATION"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -595,7 +608,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("PHARMACISTS"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("PHARMACISTS"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -607,7 +622,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("AMBULANCE"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("AMBULANCE"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -619,7 +636,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("NGO"))),
+                          title: Center(
+                              child: Text(
+                                  MyLocalizations.of(context).text("NGO"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -631,7 +650,9 @@ AppData.showInSnackBar(context, "No Role Assign");
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context).text("BLOOD_BANK"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("BLOOD_BANK"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,

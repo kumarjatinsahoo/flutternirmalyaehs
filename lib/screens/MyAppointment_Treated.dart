@@ -97,7 +97,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                       itemBuilder: (context, i) {
                         apt.Body appointmentlist = appointmentlistModel.body[i];
                         /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
+                          itemBuilder: (context, index) {*/
                         return InkWell(
                             onTap: () {
                               widget.model.userappointment = appointmentlist;

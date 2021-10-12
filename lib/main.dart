@@ -8,6 +8,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
+import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentTab.dart';
@@ -38,8 +39,13 @@ import 'package:user/screens/Users/organ/Organ3Page.dart';
 import 'package:user/screens/Users/organ/Organ4Page.dart';
 import 'package:user/screens/cowin/CovidMobilePage.dart';
 import 'package:user/screens/cowin/CovidOtpPage.dart';
-import 'package:user/screens/labrotry/Screen/LabProfile.dart';
-import 'package:user/screens/labrotry/SearchPocReportPage.dart';
+import 'package:user/screens/labortory/DashboardLabortory.dart';
+import 'package:user/screens/walkin_labrotry/Screen/ConfirmOrdersLab.dart';
+import 'package:user/screens/walkin_labrotry/Screen/LabProfile.dart';
+import 'package:user/screens/walkin_labrotry/Screen/MyOrdersLab.dart';
+import 'package:user/screens/walkin_labrotry/Screen/OrderDetails.dart';
+import 'package:user/screens/walkin_labrotry/Screen/OrdersTabLab.dart';
+import 'package:user/screens/walkin_labrotry/SearchPocReportPage.dart';
 import 'notification/TokenMonitor.dart';
 import 'notification/local_notification_service.dart';
 import 'screens/Users/organ/AddWitness.dart';
@@ -103,7 +109,7 @@ import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dar
 import 'package:user/screens/Users/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/Dashboard/IdcardPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
-import 'package:user/screens/labrotry/LabDashboard.dart';
+import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/screens/Patient/PatientRegistration3.dart';
@@ -142,10 +148,10 @@ import 'package:user/screens/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
 import 'screens/Users/FindHealthCare/Find/FindPage.dart';
 import 'screens/Users/Medipedia/MedipediaPage.dart';
-import 'package:user/screens/labrotry/registration/LabSignUpForm.dart';
-import 'package:user/screens/labrotry/registration/LabSignUpForm2.dart';
-import 'package:user/screens/labrotry/registration/LabSignUpForm3.dart';
-import 'package:user/screens/labrotry/registration/LabSignUpForm4.dart';
+import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm.dart';
+import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm2.dart';
+import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
+import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/screens/splash.dart';
 import 'screens/Users/Discount&Offer/DiscountOffer.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorAppointment.dart';
@@ -434,6 +440,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/confirmorder': (context) => ConfirmOrders(
+                    model: _model,
+                  ),
+              '/orderDetails': (context) => OrderDetails(
                     model: _model,
                   ),
               '/deliveredorder': (context) => SampleTracking(
@@ -783,6 +792,18 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/qrViewExample1': (context) => QRViewExample1(
+                model: _model,
+              ),
+              '/labDash': (context) => DashboardLabortory(
+                model: _model,
+              ),
+              '/myOrderTest': (context) => MyOrdersLab(
+                model: _model,
+              ),
+              '/confirmOrder': (context) => OrdersTabLab(
+                model: _model,
+              ),
+              '/ordersPharma': (context) => OrdersTabPharmacy(
                 model: _model,
               ),
             },

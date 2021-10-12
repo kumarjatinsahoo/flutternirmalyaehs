@@ -155,9 +155,9 @@ class _LabDashboardState extends State<LabDashboard> {
                         Text(
                           "Hi " + loginResponse.body.userName,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 18,
-                              fontWeight: FontWeight.w300),
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -418,6 +418,17 @@ class _LabDashboardState extends State<LabDashboard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        _buildTile1(
+                          //icon: Icons.document_scanner,
+                          icon: CupertinoIcons.bag,
+                          title: "My Orders",
+                          fun: () {
+                            Navigator.pushNamed(context, "/myOrderTest");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          // ,
+                        ),
                         _buildTile2(
                           //icon: Icons.document_scanner,
                           icon: CupertinoIcons.settings_solid,

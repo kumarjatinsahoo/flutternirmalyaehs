@@ -10,15 +10,15 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ConfirmOrders extends StatefulWidget {
+class OrderDetails extends StatefulWidget {
   final MainModel model;
 
-  const ConfirmOrders({Key key, this.model}) : super(key: key);
+  const OrderDetails({Key key, this.model}) : super(key: key);
 
   @override
-  _ConfirmOrdersState createState() => _ConfirmOrdersState();
+  _OrderDetailsState createState() => _OrderDetailsState();
 }
-class _ConfirmOrdersState extends State<ConfirmOrders> {
+class _OrderDetailsState extends State<OrderDetails> {
   int _selectedDestination = -1;
 
   void selectDestination(int index) {
@@ -38,7 +38,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
   }
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.PHARMACY_CNFRM_ORDER_LIST+pharamctorderid ,
+        api: ApiFactory.ORDER_DETAILS_LAB+pharamctorderid ,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -46,8 +46,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-              pharmacycnfrmModel = cnfrmorder. PharmacycnfrmModel.fromJson(map);
-
+              pharmacycnfrmModel = cnfrmorder.PharmacycnfrmModel.fromJson(map);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -63,7 +62,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Orders Details',
+            'Confirm Orders',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -97,7 +96,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                             ])),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              left: 10.0, right: 10.0, top: 10, bottom: 10),
+                              left: 15.0, right: 15.0, top: 15, bottom: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,33 +110,31 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Medicine Name: ',
+                                        'Test Name: ',
                                         style: TextStyle(
                                             color: AppData.kPrimaryColor),
                                       ),
-                                      Text(body.medname??"N/A"),
+                                      Text(body.name??"N/A"),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
 
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Quanitity : ',
+                                        'Test Group: ',
                                         style: TextStyle(
                                             color: AppData.kPrimaryColor),
                                       ),
-                                      Text(body.qty),
+                                      Text(body.key??"N/A"),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
 
-                                  Row(
+                                /*  Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
@@ -150,7 +147,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                   ),
                                   SizedBox(
                                     height: 10,
-                                  ),
+                                  ),*/
                                 ],
                               ),
                               /*Icon(Icons.more_vert)*/

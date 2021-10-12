@@ -27,6 +27,7 @@ class EmergencyHelp extends StatefulWidget {
 
 class _EmergencyHelpState extends State<EmergencyHelp> {
   GooglePlaceModel googlePlaceModel;
+
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -48,6 +49,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   String longitude;
   String latitude;
   String cityName;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -74,8 +76,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     this.position = position;
     debugPrint('location: ${position.latitude}');
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
-    latitude= position.latitude.toString();
-    longitude= position.longitude.toString();
+    latitude = position.latitude.toString();
+    longitude = position.longitude.toString();
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -91,7 +93,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     }
   }
 
-
   /*callAPI(lat, longi) {
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_API(
@@ -101,10 +102,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             //String msg = map[Const.MESSAGE];
             //if (map["status"] == "ok") {
             googlePlaceModel = GooglePlaceModel.fromJson(map);
-            *//* } else {
+            */ /* } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
-            }*//*
+            }*/ /*
           });
         });
   }*/
@@ -126,7 +127,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
             } else {
               isDataNotAvail = true;
-             // AppData.showInSnackBar(context, msg);
+              // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -143,12 +144,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 //title: const Text("Is it your details?"),
                 contentPadding:
                     EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                insetPadding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 370,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: ListView.builder(
+                    shrinkWrap: true,
                     itemBuilder: (context, i) {
                       return ListTile(
                         title: Text(
@@ -159,21 +163,13 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           list[i].relation,
                           style: TextStyle(color: Colors.black),
                         ),
-                      /*InkWell(
-                      onTap: () {
-                      // Navigator.pop(context);
-                      AppData.launchURL("tel://" +
-                      emergencyHelpModel.emergency[0].mobile);
-                      },*/
-                       trailing:InkWell(
-                      onTap: () {
-                      // Navigator.pop(context);
-                      AppData.launchURL("tel://" +
-                          list[i].mobile);
-                      }, child:Icon(Icons.call, color: Colors.black),
-                       )
+                        trailing: InkWell(
+                          onTap: () {
+                            AppData.launchURL("tel://" + list[i].mobile);
+                          },
+                          child: Icon(Icons.call, color: Colors.black),
+                        ),
                       );
-                      /*);*/
                     },
                     itemCount: list.length,
                   ),
@@ -183,10 +179,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           );
         });
   }
-  showUserList1(BuildContext context,List<Results> results) {
+
+  showUserList1(BuildContext context, List<Results> results) {
     return showDialog(
         context: context,
-
         barrierDismissible: true,
         builder: (context) {
           return StatefulBuilder(
@@ -194,14 +190,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               return AlertDialog(
                 //title: const Text("Is it your details?"),
                 contentPadding:
-                EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                    EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
                   height: 360,
                   child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.black54),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
                       return ListTile(
                           title: Text(
@@ -212,17 +209,16 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             results[i].relation,
                             style: TextStyle(color: Colors.black),
                           ),*/
-                          trailing:InkWell(
+                          trailing: InkWell(
                             onTap: () {
                               //Navigator.pop(context);
-                            /*AppData.launchURL("tel://" +
+                              /*AppData.launchURL("tel://" +
                                   results[i].mobile);*/
-                            }, child:Icon(Icons.call, color: Colors.black),
-                          )
-                      );
-                      },
-                    itemCount:5,
-
+                            },
+                            child: Icon(Icons.call, color: Colors.black),
+                          ));
+                    },
+                    itemCount: 5,
                   ),
                 ),
               );
@@ -230,11 +226,13 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Stack(
             children: [
@@ -300,8 +298,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     ),
                   ),*/
                   InkWell(
-                    onTap: (){
-
+                    onTap: () {
                       widget.model.longi = latitude;
                       widget.model.lati = longitude;
                       widget.model.city = cityName;
@@ -344,7 +341,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ),
                     ),
                   ),
-                 /* RichText(
+                  /* RichText(
                     text: TextSpan(
                       text: 'Hello ',
                       style: DefaultTextStyle.of(context).style,
@@ -646,32 +643,36 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 ),
                                 /* SizedBox(width: 100,),*/
 
-                                      InkWell(
-                                          onTap: () {
-                                            widget.model.GETMETHODCAL(
-                                                api: ApiFactory.GOOGLE_QUERY_API(
-                                                    lati: latitude, longi: longitude, healthpro: "Ambulance"),
-                                                fun: (Map<String, dynamic> map) {
-                                                  setState(() {
-                                                    //String msg = map[Const.MESSAGE];
-                                                    //if (map["status"] == "ok") {
-                                                    googlePlaceModel = GooglePlaceModel.fromJson(map);
-                                                    if (googlePlaceModel != null &&
-                                                        googlePlaceModel.results.isNotEmpty)
-                                                      showUserList1(
-                                                          context, googlePlaceModel.results);
-                                                    else
-                                                      AppData.showInSnackBar(
-                                                          context, "Data not found");
-                                                    /* } else {
+                                InkWell(
+                                    onTap: () {
+                                      widget.model.GETMETHODCAL(
+                                          api: ApiFactory.GOOGLE_QUERY_API(
+                                              lati: latitude,
+                                              longi: longitude,
+                                              healthpro: "Ambulance"),
+                                          fun: (Map<String, dynamic> map) {
+                                            setState(() {
+                                              //String msg = map[Const.MESSAGE];
+                                              //if (map["status"] == "ok") {
+                                              googlePlaceModel =
+                                                  GooglePlaceModel.fromJson(
+                                                      map);
+                                              if (googlePlaceModel != null &&
+                                                  googlePlaceModel
+                                                      .results.isNotEmpty)
+                                                showUserList1(context,
+                                                    googlePlaceModel.results);
+                                              else
+                                                AppData.showInSnackBar(
+                                                    context, "Data not found");
+                                              /* } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
             }*/
-                                                  });
-                                                });
-
-                                      },
-                                      // Navigator.pop(context);
+                                            });
+                                          });
+                                    },
+                                    // Navigator.pop(context);
 
                                     child: Padding(
                                       padding: const EdgeInsets.only(
