@@ -161,11 +161,11 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      key: _scaffoldKey,
+      //key: _scaffoldKey,
       appBar: AppBar(
-        leading: BackButton(
-          color: bgColor,
-        ),
+        // leading: BackButton(
+        //   color: bgColor,
+        // ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -180,7 +180,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Icon(!isSearchShow
                     ? Icons.search
                     : Icons.highlight_remove_rounded),
