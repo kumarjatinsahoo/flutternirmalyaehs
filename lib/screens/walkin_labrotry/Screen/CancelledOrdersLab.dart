@@ -135,6 +135,17 @@ class _CancelledOrdersLabState extends State<CancelledOrdersLab> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Text(
+                                          body.name,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
                                         Row(
                                           children: [
                                             Icon(
@@ -236,7 +247,7 @@ class _CancelledOrdersLabState extends State<CancelledOrdersLab> {
                                     child: RaisedButton(
                                       onPressed: null,
                                       child: Text(
-                                        'Reject',
+                                        'Rejected',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,

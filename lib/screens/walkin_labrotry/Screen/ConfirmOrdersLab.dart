@@ -135,6 +135,17 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Text(
+                                          body.name,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
                                         Row(
                                           children: [
                                             Icon(

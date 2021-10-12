@@ -144,8 +144,8 @@ class _MedicineList extends State<UserTestList> {
             cityName = finder.addressComponents[4].longName;
 
             mapK["address"] = address;
-            //mapK["city"] = cityName;
-            mapK["city"] = "bhubaneswar";
+            mapK["city"] = cityName;
+            //mapK["city"] = "bhubaneswar";
 
             widget.model.pharmacyaddress = address;
             widget.model.pharmacity = finder.addressComponents[4].longName;
