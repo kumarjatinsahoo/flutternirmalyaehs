@@ -1265,10 +1265,17 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select gender");
-    } else if (textEditingController[2].text.length != 10 ||
+    }
+    else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Mobile Number");
-    } else if (UserSignUpForm.countryModel == null ||
+    }
+    else if (textEditingController[2].text.length != 10 ||
+        textEditingController[2].text == null) {
+      AppData.showInSnackBar(context, "Please enter Valid Mobile Number");
+    }
+
+    else if (UserSignUpForm.countryModel == null ||
         UserSignUpForm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.stateModel == null ||

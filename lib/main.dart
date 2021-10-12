@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
@@ -680,6 +681,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/vitalDoctor': (context) => VitalDoctor(
+                    model: _model,
+                  ),
+              '/Newdashboard': (context) => NewDashboardDoctor(
                     model: _model,
                   ),
               // '/Healthchart': (context) => HealthChart1(

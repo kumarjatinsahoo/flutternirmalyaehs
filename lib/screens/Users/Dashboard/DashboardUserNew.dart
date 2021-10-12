@@ -1281,7 +1281,8 @@ class MyPage1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     _width = (MediaQuery.of(context).size.width - 80) / 3;
-    return Container(
+    return
+      Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
         children: [

@@ -132,9 +132,12 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 4.0, bottom: 4),
-                      child: MyWidgets.header(
-                          "  Add Test", Alignment.centerLeft),
+                      padding: const EdgeInsets.only(left: 10.0, bottom: 4),
+                      child:
+                      Text("Add Test",style: TextStyle(color:Colors.black,fontSize: 17,fontWeight: FontWeight.bold),)
+
+                      /*MyWidgets.header(
+                          "  Add Test", Alignment.centerLeft,),*/
                       //child: MyWidgets.header("Attendance", Alignment.topLeft),
                     ),
                     InkWell(
@@ -352,6 +355,10 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
+    textEditingController[0].text = "";
+    textEditingController[1].text = "";
+    textEditingController[2].text = "";
+
    /// DoctorMedicationlistModel item = DoctorMedicationlistModel();
     //Nomine
     return AlertDialog(
@@ -376,8 +383,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     height: 58,
                     child: DropDown.networkDropdownGetpartUser(
                         "Test",
-                        //ApiFactory.TESTNAME_LIST,
-                        "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
+                        ApiFactory.TESTNAME_LIST,
+                       // "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
                         "test",
                         Icons.fiber_manual_record,
                         23.0, (KeyvalueModel data) {
@@ -443,7 +450,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               print("TO POST>>>>" + jsonEncode(param));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: "http://192.168.43.248:8062/nirmalyaRest/api/post-user-test-by-doctor",
+                 api: ApiFactory.POST_TEST,
+                 // api: "http://192.168.43.248:8062/nirmalyaRest/api/post-user-test-by-doctor",
                   json: param,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {

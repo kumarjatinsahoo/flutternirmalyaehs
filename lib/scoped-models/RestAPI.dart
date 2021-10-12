@@ -415,7 +415,7 @@ class RestAPI extends Model {
       json,
       @required Function fun,
       String token}) async {
-    // print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
     try {
       Response response = await dio.post(api,
           options: Options(

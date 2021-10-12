@@ -61,7 +61,7 @@ class _MedicationlistState extends State<Medicationlist> {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
       selectedDatestr = df.format(date).toString();
-      useridst =widget.model.appointmentlist.userid;
+      useridst = widget.model.appointmentlist.userid;
       //toThis_.text = df.format(date);
       //callAPI(selectedDatestr);
       callAPI();
@@ -94,7 +94,8 @@ class _MedicationlistState extends State<Medicationlist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS +widget.model.appointmentlist.doctorName/*"4"*/,
+        api: ApiFactory.VIEW_USER_MEDICINE_DETAILS +
+            widget.model.appointmentlist.doctorName /*"4"*/,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -131,11 +132,18 @@ class _MedicationlistState extends State<Medicationlist> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 4.0, bottom: 4),
-                      child: MyWidgets.header(
-                          "  Add Medicine", Alignment.centerLeft),
-                      //child: MyWidgets.header("Attendance", Alignment.topLeft),
-                    ),
+                        padding: const EdgeInsets.only(left: 10.0, bottom: 4),
+                        child: Text(
+                          "Add Medicine",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        )
+
+                        //child: MyWidgets.header("Attendance", Alignment.topLeft),
+                        ),
+                    Spacer(),
                     InkWell(
                       onTap: () {
                         showDialog(
@@ -157,7 +165,6 @@ class _MedicationlistState extends State<Medicationlist> {
                 ),
               ),
             ),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -168,14 +175,15 @@ class _MedicationlistState extends State<Medicationlist> {
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: medicationlistModel.body.length,
                             itemBuilder: (BuildContext ctxt, int index) {
-                              Body medicationlis = medicationlistModel.body[index];
+                              Body medicationlis =
+                                  medicationlistModel.body[index];
 
-                              return  Dismissible(
-
+                              return Dismissible(
                                 //key: Key(item1),
-                                key: Key( medicationlistModel.body[index].toString()),
+                                key: Key(
+                                    medicationlistModel.body[index].toString()),
                                 direction: DismissDirection.startToEnd,
-                                  child:Column(
+                                child: Column(
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -183,7 +191,8 @@ class _MedicationlistState extends State<Medicationlist> {
                                         right: 5.0,
                                       ),
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           SizedBox(
                                             height: 10,
@@ -191,7 +200,7 @@ class _MedicationlistState extends State<Medicationlist> {
                                           Card(
                                             elevation: 5,
                                             child: Container(
-                                                 //height: 100,
+                                                //height: 100,
                                                 width: double.maxFinite,
                                                 decoration: BoxDecoration(
                                                     color: Colors.white,
@@ -199,22 +208,28 @@ class _MedicationlistState extends State<Medicationlist> {
                                                       color: Colors.grey[300],
                                                     ),
                                                     borderRadius:
-                                                        BorderRadius.circular(8)),
+                                                        BorderRadius.circular(
+                                                            8)),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(10.0),
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
                                                   child: Row(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Column(
                                                         crossAxisAlignment:
-                                                            CrossAxisAlignment.start,
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Text(
-                                                            medicationlis.medname,
+                                                            medicationlis
+                                                                .medname,
                                                             style: TextStyle(
                                                                 fontWeight:
-                                                                    FontWeight.bold,
+                                                                    FontWeight
+                                                                        .bold,
                                                                 fontSize: 18),
                                                           ),
                                                           SizedBox(
@@ -226,26 +241,32 @@ class _MedicationlistState extends State<Medicationlist> {
                                                                     .duration +
                                                                 "Days",
                                                             overflow:
-                                                                TextOverflow.clip,
+                                                                TextOverflow
+                                                                    .clip,
                                                             style: TextStyle(),
                                                           ),
                                                           Text(
-                                                            medicationlis.remarks ??
+                                                            medicationlis
+                                                                    .remarks ??
                                                                 "N/A",
                                                             overflow:
-                                                                TextOverflow.clip,
+                                                                TextOverflow
+                                                                    .clip,
                                                             style: TextStyle(),
                                                           ),
                                                           SizedBox(
                                                             height: 5,
                                                           ),
-                                                          medicationlis.morning == "1"
+                                                          medicationlis
+                                                                      .morning ==
+                                                                  "1"
                                                               ? Text(
                                                                   "Morning",
                                                                   overflow:
                                                                       TextOverflow
                                                                           .clip,
-                                                                  style: TextStyle(
+                                                                  style:
+                                                                      TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -255,7 +276,8 @@ class _MedicationlistState extends State<Medicationlist> {
                                                           SizedBox(
                                                             height: 5,
                                                           ),
-                                                          medicationlis.afternoon ==
+                                                          medicationlis
+                                                                      .afternoon ==
                                                                   "1"
                                                               ? Text(
                                                                   "Afternoon",
@@ -271,7 +293,9 @@ class _MedicationlistState extends State<Medicationlist> {
                                                           SizedBox(
                                                             height: 5,
                                                           ),
-                                                          medicationlis.evening == "1"
+                                                          medicationlis
+                                                                      .evening ==
+                                                                  "1"
                                                               ? Text(
                                                                   "Evening",
                                                                   overflow:
@@ -286,11 +310,10 @@ class _MedicationlistState extends State<Medicationlist> {
                                                           SizedBox(
                                                             height: 5,
                                                           ),
-
                                                         ],
                                                       ),
                                                       new Spacer(),
-                                                     /* Padding(
+                                                      /* Padding(
                                                         padding: const EdgeInsets.only(
                                                           top: 15.0,
                                                         ),
@@ -367,12 +390,12 @@ class _MedicationlistState extends State<Medicationlist> {
                                       ),
                                     ),
                                   ],
-                                  ),
+                                ),
                                 onDismissed: (direction) {
-                                setState(() {
-                                  medicationlistModel.body.removeAt(index);
-                                });
-                              },
+                                  setState(() {
+                                    medicationlistModel.body.removeAt(index);
+                                  });
+                                },
                               );
                             },
                             // itemCount:medicinmodel.length,
@@ -397,6 +420,12 @@ class _MedicationlistState extends State<Medicationlist> {
 
   Widget dialogaddnomination(BuildContext context) {
     DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    textEditingController[0].text = "";
+    textEditingController[1].text = "";
+    textEditingController[2].text = "";
+    _checkbox=false;
+    _checkbox1=false;
+    _checkbox2=false;
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -559,15 +588,17 @@ class _MedicationlistState extends State<Medicationlist> {
               AppData.showInSnackBar(context, "Please select item name");
               /* } else if (textEditingController[1].text == '') {
               AppData.showInSnackBar(context, "Please enter Day Duration");*/
-            }else if (_checkbox == false &&_checkbox1 == false &&_checkbox2 == false){
-              AppData.showInSnackBar(context, "Please checked terms and Condition");
-            }
-            else if (textEditingController[2].text == '') {
+            } else if (_checkbox == false &&
+                _checkbox1 == false &&
+                _checkbox2 == false) {
+              AppData.showInSnackBar(
+                  context, "Please checked terms and Condition");
+            } else if (textEditingController[2].text == '') {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
               //NomineeModel nomineeModel = NomineeModel();
               item.userid = widget.model.appointmentlist.userid;
-              item.appno = widget.model.appointmentlist.doctorName;//appno
+              item.appno = widget.model.appointmentlist.doctorName; //appno
               //item.mednaid = Medicationlist.medicinModel.key;
               item.medname = Medicationlist.medicinModel.key;
               item.duration = textEditingController[1].text;
@@ -913,7 +944,7 @@ class _MedicationlistState extends State<Medicationlist> {
 
             decoration: InputDecoration(
               border: InputBorder.none,
-
+              counterText: "",
               hintText: hint,
               hintStyle: TextStyle(color: Colors.grey),
 

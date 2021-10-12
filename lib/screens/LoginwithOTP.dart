@@ -129,7 +129,7 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
                         children: [
                           TextSpan(
                             text:
-                                MyLocalizations.of(context).text("WELCOMENACK"),
+                                MyLocalizations.of(context).text("WELCOMEBACK"),
                             /* "Welcome back",*/
                             style: TextStyle(
                               fontWeight: FontWeight.w800,

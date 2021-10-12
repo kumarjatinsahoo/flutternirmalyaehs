@@ -1482,8 +1482,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.pop(context);
                           if (map[Const.STATUS] == Const.SUCCESS) {
                             // popup(context, map[Const.MESSAGE]);
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
+                            AppData.showInSnackDone(context, map[Const.MESSAGE]);
                             callApi();
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
