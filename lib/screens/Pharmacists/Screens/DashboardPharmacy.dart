@@ -363,7 +363,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                                 title: " Confirmed Order ",
                                 fun: () {
                                   //chooseAppointment(context);
-                                  Navigator.pushNamed(context, "/confirmorder");
+                                  Navigator.pushNamed(context, "/ordersPharma");
                                   },
                                 color: AppData.BG1RED,
                                 bordercolor: AppData.BG1RED,
