@@ -74,7 +74,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+           //   AppData.showInSnackBar(context, msg);
             }
           });
         });

@@ -906,6 +906,15 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       hint: label,
       searchBoxStyle:TextStyle(fontSize: 17)
       ,
+      errorBuilder: (cg, value, v) {
+        return Material(
+            child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "No Data Found",
+                  style: TextStyle(color: Colors.black),
+                )));
+      },
 
 
 

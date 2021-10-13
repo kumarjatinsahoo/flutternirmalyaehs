@@ -647,7 +647,10 @@ class _MyAppState extends State<MyApp> {
                   ),
 
               //////////////////DOCTOR USER//////////////////////
-              '/dashDoctor': (context) => DasboardDoctor(
+           /*   '/dashDoctor': (context) => DasboardDoctor(
+                    model: _model,
+                  ),*/
+              '/dashDoctor': (context) => NewDashboardDoctor(
                     model: _model,
                   ),
               '/apntMange': (context) => DocAppointmentMangement(

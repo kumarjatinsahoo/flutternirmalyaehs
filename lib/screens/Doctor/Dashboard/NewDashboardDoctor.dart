@@ -62,50 +62,6 @@ chooseAppointment(BuildContext context) {
                           // Navigator.pop(context);
                         },
                       ),
-
-
-                      /* ListTile(
-                          title: Text("Health Screening"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-                            //widget.model.apntUserType =Const.HEALTH_SCREENING_APNT;
-
-                            Navigator.pushNamed(context, "/docApnt");
-                            Navigator.pop(context);
-                            // AppData.showInSnackBar(context,"hi");
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Health Check-up"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-                            //widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
-
-                            Navigator.pushNamed(context, "/docApnt");
-                            Navigator.pop(context);
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Doctor Appointment"),
-                          leading: Icon(
-                            CupertinoIcons.calendar_today,
-                            size: 40,
-                          ),
-                          onTap: () {
-
-                            //widget.model.apntUserType = Const.DOC_APNT;
-                            Navigator.pushNamed(context, "/doctorconsultationPage");
-                            Navigator.pop(context);
-                          },
-                        ),*/
                       Divider(),
                       MaterialButton(
                         child: Text(
@@ -181,10 +137,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/folder.png",
+                        icon: "assets/images/myprofile.png",
                         fun: () {
                           //AppData.showInSnackBar(context, "Coming soon");
-                          Navigator.pushNamed(context, "/medicalrecordpage");
+                         // Navigator.pushNamed(context, "/medicalrecordpage");
+                          Navigator.pushNamed(context, "/docMyProf");
+
                         },
                         color: AppData.BG2BLUE,
                         bordercolor: AppData.BG2BLUE,
@@ -197,7 +155,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("MEDICAL_RECORD"),
+                        child: Text(MyLocalizations.of(context).text("MY_PROFILE"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -206,27 +164,21 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 SizedBox(
                   width: 5,
                 ),
-                SizedBox(
-                  width: 5,
-                ),
+
                 /* Expanded(*/
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildTileblue(
-                        icon: "assets/health_checkup.png",
+                      _buildTilered(
+                        icon: "assets/images/appointment.png",
                         fun: () {
-                          //chooseAppointment(context, model);
-                          //Navigator.pushNamed(context, "/userAppoint");
-                          Navigator.pushNamed(context, "/myAppointment");
-                          /*Navigator.pushNamed(
-                                      context, "/medipedia");*/
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
+                         // Navigator.pushNamed(context, "/myAppointment");
+                          Navigator.pushNamed(context, "/doctorAppointment");
+
                         },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
                         size: 100 / 3,
                       ),
                       SizedBox(
@@ -251,30 +203,29 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                           ),
                                         )),*/
                     ]),
-              ],
-            ),
-            SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+                SizedBox(
+                  width: 5,
+                ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildTile1(
-                        //icon: "assets/meditate.png",
-                        icon: Icons.local_offer,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "HELP",
+                      _buildTileblue(
+                        icon: "assets/images/walk.png",
                         fun: () {
-                          //AppData.showInSnackBar(context, "Coming soon");
+                          //chooseAppointment(context, model);
+                          //Navigator.pushNamed(context, "/userAppoint");
+                         // Navigator.pushNamed(context, "/myAppointment");
+                          /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
                           // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
-                          Navigator.pushNamed(context, "/emergencyHelp");
+                          //     context, "Coming soon", Colors.green);
+                          Navigator.pushNamed(context, "/docWalkInReg");
+
                         },
-                        color: AppData.kPrimaryRedColor,
-                        bordercolor: AppData.kPrimaryRedColor,
-                        //size: (size.width - 130) / 3,
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: 100 / 3,
                       ),
                       SizedBox(
                         height: 5,
@@ -283,7 +234,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("EMERGENCY_HELP"),
+                        child: Text(MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -292,11 +243,55 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                         alignment: Alignment.center,
                                         child: Expanded(
                                           child: Text(
-                                            " Emergency Help",
+                                            "Govternment Schemes",
                                             style: TextStyle(color: Colors.black),
                                             textAlign: TextAlign.center,
                                           ),
                                         )),*/
+                    ]),
+
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/emergency.png",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "Coming Soon");
+                          // Navigator.pushNamed(context, "/discountoffer");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text(MyLocalizations.of(context).text("EMERGENCY ACCESS"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
                     ]),
                 SizedBox(
                   width: 5,
@@ -308,19 +303,19 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/clock.png",
+                        icon: "assets/images/shareapnt.png",
                         //icon: Icons.alarm,
                         //icon: FontAwesomeIcons.accusoft,
-                        title: "Medicine Reminder",
+                        title: "Share_appointment",
                         fun: () {
-                          AppData.showInSnackDone(context, "Coming Soon");
+                         // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/medicinereminder");
                           // AppData.showSnack(
                           //     context, "Coming soon", Colors.green);
                         },
                         color: AppData.BG2BLUE,
                         bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
+                        size:100 / 3,
                       ),
                       SizedBox(
                         height: 5,
@@ -329,7 +324,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("MEDICINE_REMINDER"),
+                        child: Text(MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -355,16 +350,16 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/offers.png",
+                        icon: "assets/images/mypatient.png",
                         fun: () {
-                          AppData.showInSnackDone(context, "Coming Soon");
+                         // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/discountoffer");
                           //AppData.showInSnackBar(context, "Coming soon");
                         },
                         //color: AppData.BG2BLUE,
                         color: AppData.BG1RED,
                         bordercolor: AppData.BG1RED,
-                        //size: (size.width - 130) / 3,
+                        size: 100 / 3,
                       ),
                       SizedBox(
                         height: 5,
@@ -372,7 +367,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text(MyLocalizations.of(context).text("DISCOUNT_OFFER"),
+                        child: Text(MyLocalizations.of(context).text("MY_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -389,30 +384,28 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     ]),
               ],
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                /*Expanded(
-                                child:*/
+                SizedBox(width: 10,),
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/organ_donner.png",
-                        //icon: Icons.wc_rounded,
+                        icon: "assets/images/monthlyoverview.png",
+                        //icon: Icons.search,
                         //icon: FontAwesomeIcons.accusoft,
-                        title: "Organ  Donation",
                         fun: () {
-
-                          Navigator.pushNamed(context, "/organdonation");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
+                          AppData.showInSnackDone(context, "Coming Soon");
+                          // Navigator.pushNamed(context, "/healthCheckup");
                         },
                         color: AppData.BG2BLUE,
                         bordercolor: AppData.BG2BLUE,
-                        size: 100 / 3,
+                        //size: (size.width - 130) / 3,
                       ),
                       SizedBox(
                         height: 5,
@@ -420,40 +413,26 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("ORGAN_DONATION"),
+                        child: Text(MyLocalizations.of(context).text("MONTHLY OVERVIEW"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Organ     Donation",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
                     ]),
                 SizedBox(
-                  width: 5,
+                  width: 40,
                 ),
-                /*Expanded(*/
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/generic_medicine.png",
-                        //icon: Icons.animation,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Generic Medical Stores",
+                        icon: "assets/images/video.png",
                         fun: () {
-                          //AppData.showInSnackDone(context, "Coming Soon");
-                          Navigator.pushNamed(context, "/geneicstores");
+                          AppData.showInSnackDone(context, "Coming Soon");
+                          // Navigator.pushNamed(context, "/emergencyroom");
                           // AppData.showSnack(
-                          //   context, "Coming soon", Colors.green);
+                          //     context, "Coming soon", Colors.green);
                         },
                         color: AppData.BG1RED,
                         bordercolor: AppData.BG1RED,
@@ -465,59 +444,27 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("GENERIC_MEDICAL_STORE"),
+                        child: Text(MyLocalizations.of(context).text("VIDEO CONSULTATION"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      /* Align(
+
+                      /*  Align(
                                           alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
+                                          child:SizedBox(
+                                            width:100, child: FittedBox(child:Text(
+                                            "Discount & Offers",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          )
+                                        ),
+                                        ),*/
                     ]),
                 SizedBox(
-                  width: 5,
+                  width: 15,
                 ),
-                /* Expanded(
-                                child: */
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/govtscheme.png",
-                        //icon: Icons.home_outlined,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Govt Schemes",
-                        fun: () {
-                          AppData.showInSnackDone(context, "Coming Soon");
-                          //Navigator.pushNamed(context, "/govtschemes");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        //size: (size.width - 130) / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text(MyLocalizations.of(context).text("GOVT_SCHEMES"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
               ],
             ),
             SizedBox(height: 50),
