@@ -329,22 +329,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           //overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Medicine Reminder",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
                     ]),
-                /*),*/
                 SizedBox(
                   width: 5,
                 ),
-                /*  Expanded(*/
-
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
