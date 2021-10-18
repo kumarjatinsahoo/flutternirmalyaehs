@@ -27,12 +27,64 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 onTap: () {
                   Navigator.pushNamed(context, "/govetschem1");
                 },
-                child: Padding(
+                /*child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
                     "assets/images/govetSchemes1.png",
                     fit: BoxFit.fill,
                   ),
+                ),*/
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        "assets/images/govetSchemes1.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    /* Image.network(
+                                         item.bannerImage,
+                                         fit: BoxFit.fill,
+                                         width: 1000,
+                                         height: double.maxFinite,
+                                       ),*/
+
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(200, 0, 0, 0),
+                              Color.fromARGB(0, 0, 0, 0)
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "abc",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w200,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  ],
                 ),
               ),
               InkWell(
