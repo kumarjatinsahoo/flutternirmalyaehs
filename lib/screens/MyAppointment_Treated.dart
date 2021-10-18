@@ -24,6 +24,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
+  bool isdata = false;
+
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -95,6 +97,27 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
           child: Column(
             children: [
               appointdate(),
+              isdata == true
+                  ? CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              )
+                  : appointmentlistModel == null || appointmentlistModel == null
+                  ? Container(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 300,),
+                      Text(
+                        'No Data Found',
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
+
+              )
+                  :
               (appointmentlistModel != null)
                   ? ListView.builder(
                       shrinkWrap: true,
