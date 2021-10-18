@@ -9,6 +9,8 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
+import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
@@ -21,6 +23,14 @@ import 'package:user/screens/Users/FindHealthCare/MedicalService/LifeStyleSoluti
 import 'package:user/screens/Users/FindHealthCare/MedicalService/RIP/RIP.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/TreatmentCenter/TreatmentCenters.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/AppointmentTab.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage1.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage2.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage3.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage4.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage5.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
@@ -558,6 +568,9 @@ class _MyAppState extends State<MyApp> {
               '/medipedia': (context) => MedipediaPage(
                     model: _model,
               ),
+              '/govetschemeslist': (context) => GovernmentSchemesList(
+                    model: _model,
+              ),
               '/discountofferdetails': (context) => DiscountOffersDetails(
                     model: _model,
                   ),
@@ -720,7 +733,7 @@ class _MyAppState extends State<MyApp> {
               '/idCard': (context) => IdCardPage(
                     model: _model,
                   ),
-              '/dashboardpharmacy': (context) => DashboardPharmacy(
+              '/dashboardpharmacy': (context) => NewDashboardPharmacy(
                     model: _model,
                   ),
               /*'/dashboardpharmacy': (context) => DashboardPharmacy(
@@ -796,6 +809,29 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/organ4': (context) => Organ4Page(
+                    model: _model,
+              ),
+              '/govetschem1': (context) => GovetListPage1(
+                    model: _model,
+              ),
+              '/govetschem2': (context) => GovetListPage2(
+                    model: _model,
+              ),
+              '/govetschem3': (context) => GovetListPage3(
+                    model: _model,
+              ),
+              '/govetschem4': (context) => GovetListPage4(
+                    model: _model,
+              ),
+              '/govetschem5': (context) => GovetListPage5(
+                    model: _model,
+              ),
+              '/govetschem6': (context) => GovetListPage6(
+                    model: _model,
+              ),
+              '/govetschem7': (context) => GovetListPage7(
+                    model: _model, ),
+              '/govetschem8': (context) => GovetListPage8(
                     model: _model,
                   ),
               '/qrViewExample1': (context) => QRViewExample1(

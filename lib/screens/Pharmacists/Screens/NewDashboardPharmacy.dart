@@ -14,16 +14,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class DashboardPharmacy extends StatefulWidget {
+class NewDashboardPharmacy extends StatefulWidget {
   final MainModel model;
 
-  const DashboardPharmacy({Key key, this.model}) : super(key: key);
+  const NewDashboardPharmacy({Key key, this.model}) : super(key: key);
 
   @override
-  _DashboardPharmacyState createState() => _DashboardPharmacyState();
+  _NewDashboardPharmacyState createState() => _NewDashboardPharmacyState();
 }
 
-class _DashboardPharmacyState extends State<DashboardPharmacy> {
+class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
   LoginResponse1 loginResponse;
 
   double _height = 120;
@@ -58,39 +58,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
   }
 
 
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-    try {
-      identifier = await UniqueIdentifier.serial;
-      if (identifier != null) {
-        Map<String, dynamic> postData = {
-          "apid": Const.APP_ID,
-          "deviceId": identifier,
-          "action": "add"
-        };
-        print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
-        widget.model.POSTMETHOD(
-          api: ApiFactory.REG_DEVICE,
-          json: postData,
-          fun: (Map<String, dynamic> map) {
-            if (map["code"] == 200) {
-              sharedPref.save(Const.IS_REG_SERVER, "true");
-            } else {
-              //if(map["msg"]!="")
-              //AppData.showInSnackBar(context, map["msg"]??"");
-            }
-          },
-        );
-      }
-    } on PlatformException {
-      identifier = 'Failed to get Unique Identifier';
-    }
-
-    if (!mounted) return;
-
-    print("Another ID>>>>>" + identifier);
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -108,6 +75,259 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 0,
         ),
+        body:  Container(
+          padding: EdgeInsets.symmetric(horizontal: 7),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/Myorder1.png",
+                          fun: () {
+                            //AppData.showInSnackBar(context, "Coming soon");
+                            // Navigator.pushNamed(context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/myorder");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          // ,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("My Orders",
+                           // MyLocalizations.of(context).text("My Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+
+                  /* Expanded(*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/ConOrder.png",
+                          fun: () {
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            Navigator.pushNamed(context, "/ordersPharma");
+                          },
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Confirmed Order",
+                           // MyLocalizations.of(context).text("Confirmed Order"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/ProcessOrder.png",
+                          fun: () {
+                            //chooseAppointment(context, model);
+                            //Navigator.pushNamed(context, "/userAppoint");
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                            Navigator.pushNamed(context, "/processedorders");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Processed Orders",
+                           // MyLocalizations.of(context).text("Processed Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
+
+                ],
+              ),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/DeliverdOrder.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/deliverdorder");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Deliverd Order",
+/*
+                            MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  /*Expanded(
+                              child:*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/Invoices.png",
+                          //icon: Icons.alarm,
+                          //icon: FontAwesomeIcons.accusoft,
+                          title: "Invoices",
+                          fun: () {
+                            AppData.showInSnackDone(context, "Coming Soon");
+                            // Navigator.pushNamed(context, "/medicinereminder");
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Invoices",
+                           // MyLocalizations.of(context).text("Invoices"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/monthlyoverview2.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/monthloveryview");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Monthly Overview",
+                           // MyLocalizations.of(context).text("Monthly Overview"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+
+                      ]),
+                ],
+              ),
+              SizedBox(height: 50),
+
+            ],
+          ),
+        ),
+
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -153,7 +373,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                                   fontWeight: FontWeight.w300),
                             ),
                             Text(
-                              loginResponse.body.userName,
+                              loginResponse.body.userName??"N/A",
 
                               style: TextStyle(
                                   color: Colors.white,
@@ -314,7 +534,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
             ),
           ),
         ),
-        body: _dashboardnew(context),
       ),
     );
   }
@@ -341,9 +560,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
                         // Navigator.pushNamed(context, "/medicalrecordpage");
-                       // Navigator.pushNamed(context, "/docMyProf");
                         Navigator.pushNamed(context, "/myorder");
-
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -356,7 +573,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(MyLocalizations.of(context).text("MY_ORDER"),
+                      child: Text(
+                        MyLocalizations.of(context).text("My Orders"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -375,9 +593,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       icon: "assets/ConOrder.png",
                       fun: () {
                         // Navigator.pushNamed(context, "/myAppointment");
-                       // Navigator.pushNamed(context, "/doctorAppointment");
                         Navigator.pushNamed(context, "/ordersPharma");
-
                       },
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
@@ -390,20 +606,21 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(MyLocalizations.of(context).text("CONFIRM ORDER"),
+                      child: Text(
+                        MyLocalizations.of(context).text("Confirmed Order"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
                   ]),
               SizedBox(
                 width: 5,
@@ -419,12 +636,10 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                         //Navigator.pushNamed(context, "/userAppoint");
                         // Navigator.pushNamed(context, "/myAppointment");
                         /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
+                                      context, "/medipedia");*/
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
-                        //Navigator.pushNamed(context, "/docWalkInReg");
                         Navigator.pushNamed(context, "/processedorders");
-
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -437,25 +652,25 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(MyLocalizations.of(context).text("PROCESSED ORDER"),
+                      child: Text(
+                        MyLocalizations.of(context).text("Processed Orders"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
                   ]),
 
             ],
           ),
-          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -467,10 +682,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       icon: "assets/DeliverdOrder.png",
                       fun: () {
                         // AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/discountoffer");
-                        //AppData.showInSnackBar(context, "Coming soon");
                         Navigator.pushNamed(context, "/deliverdorder");
-
+                        //AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
                       color: AppData.BG1RED,
@@ -483,26 +696,27 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(MyLocalizations.of(context).text("DELIVERED ORDER"),
+                      child: Text(
+                        MyLocalizations.of(context).text("Deliverd Order"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Health               chat",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
                   ]),
               SizedBox(
                 width: 5,
               ),
               /*Expanded(
-                            child:*/
+                              child:*/
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -511,16 +725,16 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       icon: "assets/Invoices.png",
                       //icon: Icons.alarm,
                       //icon: FontAwesomeIcons.accusoft,
-                      title: "Share_appointment",
+                      title: "Invoices",
                       fun: () {
-                        // AppData.showInSnackDone(context, "Coming Soon");
+                         AppData.showInSnackDone(context, "Coming Soon");
                         // Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
-                      size:100 / 3,
+                      size: 100 / 3,
                     ),
                     SizedBox(
                       height: 5,
@@ -529,27 +743,16 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(MyLocalizations.of(context).text("INVOICE"),
+                      child: Text(
+                        MyLocalizations.of(context).text("Invoices"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Medicine Reminder",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
                   ]),
-              /*),*/
               SizedBox(
                 width: 5,
               ),
-              /*  Expanded(*/
-
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -558,7 +761,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       icon: "assets/monthlyoverview2.png",
                       fun: () {
                         // AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/discountoffer");
+                        Navigator.pushNamed(context, "/monthloveryview");
                         //AppData.showInSnackBar(context, "Coming soon");
                       },
                       //color: AppData.BG2BLUE,
@@ -572,104 +775,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(MyLocalizations.of(context).text("MONTHLY OVERVIEW"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Health               chat",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                  ]),
-            ],
-          ),
-          SizedBox(height: 20),
-          Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(width: 10,),
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/Discount.png",
-                      //icon: Icons.search,
-                      //icon: FontAwesomeIcons.accusoft,
-                      fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/healthCheckup");
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      child: Text(MyLocalizations.of(context).text("DISCOUNT & OFFER"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
-              SizedBox(
-                width: 40,
-              ),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilered(
-                      icon: "assets/chat 1.png",
-                      fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/emergencyroom");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      child: Text(MyLocalizations.of(context).text("ONLINE CHAT"),
+                      child: Text(
+                        MyLocalizations.of(context).text("Monthly Overview"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
 
-                    /*  Align(
-                                        alignment: Alignment.center,
-                                        child:SizedBox(
-                                          width:100, child: FittedBox(child:Text(
-                                          "Discount & Offers",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        )
-                                      ),
-                                      ),*/
                   ]),
-              SizedBox(
-                width: 15,
-              ),
             ],
           ),
           SizedBox(height: 50),
@@ -834,22 +947,20 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-  Widget _buildTilered(
-      {String icon,
-        /*IconData icon,*/
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+  Widget _buildTilered({String icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
+        height: 85,
         //width: (MediaQuery.of(context).size.width - 80) / 3,
-        width: _width,
+        width: 100,
         decoration: BoxDecoration(
 
           /// borderRadius: BorderRadius.circular(7.0),
@@ -864,14 +975,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-          /* boxShadow: [
-            BoxShadow(
-              color: bordercolor,
-              blurRadius: 5.0,
-              spreadRadius: 2.0,
-              offset: Offset(2.0, 2.0), // shadow direction: bottom right
-            )
-          ],*/
         ),
         child: Stack(
           children: [
@@ -882,46 +985,14 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    /*"assets/logo1.png"*/
+                    /* "assets/logo1.png"*/
                     icon,
                     fit: BoxFit.fitWidth,
                     width: 50,
-                    height: 70.0,
+                    height: 50.0,
                   ),
                 ),
-                /*child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),*/
 
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: "Monte",
-                    fontSize: 16,
-                  ),
-                ),
-                /*Padding(
-                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
-                      ),
-                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Text(
-                  title,
-                  style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 18.0,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                ),
-                          ),
-                        ],
-                      ),
-                    ),*/
               ],
             ),
 
@@ -931,21 +1002,21 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
     );
   }
 
-  Widget _buildTileblue(
-      {String icon,
-        /*IconData icon,*/
-        String title,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+
+  Widget _buildTileblue({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
-        width: _width,
+        height: 85,
+        width: 100,
         decoration: BoxDecoration(
 
           /// borderRadius: BorderRadius.circular(7.0),
@@ -960,7 +1031,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-
         ),
         child: Stack(
           children: [
@@ -975,19 +1045,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       icon,
                       fit: BoxFit.fitWidth,
                       width: 50,
-                      height: 70.0,
+                      height: 50.0,
                     )),
-                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
-
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: "Monte",
-                    fontSize: 16,
-                  ),
-                ),
-
               ],
             ),
 
