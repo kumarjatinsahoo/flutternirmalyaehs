@@ -12,24 +12,24 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
-class TestAppointmentPage extends StatefulWidget {
+class TestAppointmentPage1 extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
 
-  TestAppointmentPage({
+  TestAppointmentPage1({
     Key key,
     this.model,
     this.isConfirmPage = false,
   }) : super(key: key);
 
   @override
-  _TestAppointmentPageState createState() => _TestAppointmentPageState();
+  _TestAppointmentPage1State createState() => _TestAppointmentPage1State();
 }
 
-class _TestAppointmentPageState extends State<TestAppointmentPage>
+class _TestAppointmentPage1State extends State<TestAppointmentPage1>
     with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -148,7 +148,9 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
       results = appointModel.body
           .where((user) => user.patientName
               .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
+              .contains(enteredKeyword.toLowerCase()) ||  user.regNo
+          .toLowerCase()
+          .contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
@@ -161,11 +163,11 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      //key: _scaffoldKey,
+      key: _scaffoldKey,
       appBar: AppBar(
-        // leading: BackButton(
-        //   color: bgColor,
-        // ),
+        leading: BackButton(
+          color: bgColor,
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -180,7 +182,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.only(right: 12.0),
                 child: Icon(!isSearchShow
                     ? Icons.search
                     : Icons.highlight_remove_rounded),
@@ -329,6 +331,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                         padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
+
+                          //String ageFirst=foundUser[index]?.gender[0];
                           return Column(
                             children: [
                               Container(
@@ -372,7 +376,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     SizedBox(
                                       width: 35,
                                       child: Text(
-                                        (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
+                                        foundUser[index].age.toString(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -383,7 +387,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        (foundUser[index].gender!=null)?foundUser[index].gender[0]:"N/A",
+                                        (foundUser[index]?.gender!=null)?foundUser[index]?.gender[0]:"",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -395,11 +399,13 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                       width: 80,
                                       child: InkWell(
                                         onTap: () {
-                                          showDialog(
+                                          /*showDialog(
                                               context: context,
                                               builder: (BuildContext context) =>
                                                   dialogRegNo(context,
-                                                      foundUser[index]));
+                                                      foundUser[index]));*/
+                                          widget.model.bodyUser=foundUser[index];
+                                          Navigator.pushNamed(context, "/vitalDoctor");
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -699,17 +705,10 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
       child: TextFormField(
         autofocus: false,
         controller: controller,
-        //textInputAction: TextInputAction.next,
-
-        /*inputFormatters: [
-          //UpperCaseTextFormatter(),
-        ],*/
-        maxLength: 5,
-        keyboardType: TextInputType.number,
         inputFormatters: [
-          WhitelistingTextInputFormatter(
-              RegExp("[0-9. ]")),
+          //UpperCaseTextFormatter(),
         ],
+        maxLength: 3,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,
