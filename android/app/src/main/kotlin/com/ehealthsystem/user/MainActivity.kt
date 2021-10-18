@@ -61,12 +61,12 @@ class MainActivity: FlutterActivity() {
                         LaunchIntent.type = "text/plain"
                         //startActivity(LaunchIntent)
 
-                        Toast.makeText(getApplicationContext(), "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
 
                     } else {
                         val string: String = call.arguments as String
                         val data: List<String> = string.split(",")
-                        Toast.makeText(getApplicationContext(), "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
                         redirectToPlayStore()
 
                         // Do whatever we want to do if application not installed
@@ -75,31 +75,35 @@ class MainActivity: FlutterActivity() {
                         // Log.i("Application is not currently installed.");
                     }
                 } else {
-                    var dialog = Dialog(this@MainActivity)
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
-                    dialog.setContentView(R.layout.noapkdialog)
-                    val downloadbtn: Button = dialog.findViewById(R.id.downloadbtn) as Button
-                    /*downloadbtn.setOnClickListener(object : View.OnClickListener() {
-                        fun onClick(view: View?) {
-                            redirectToPlayStore()
-                            //   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.janacare.aina.production"));
-                            // startActivity(intent);
-                        }
-                    })*/
-                    downloadbtn.setOnClickListener(object : View.OnClickListener {
-                        override fun onClick(view: View?) {
-                            // Do some work here
-                            redirectToPlayStore()
-                        }
+                    val string: String = call.arguments as String
+                    val data: List<String> = string.split(",")
+                    Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
 
-                    })
-                    val cancelbtn: Button = dialog.findViewById(R.id.cancelbtn) as Button
-                    cancelbtn.setOnClickListener(object : View.OnClickListener {
-                        override fun onClick(view: View?) {
-                            dialog.dismiss()
-                        }
-                    })
-                    dialog.show()
+//                    var dialog = Dialog(this@MainActivity)
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
+//                    dialog.setContentView(R.layout.noapkdialog)
+//                    val downloadbtn: Button = dialog.findViewById(R.id.downloadbtn) as Button
+//                    /*downloadbtn.setOnClickListener(object : View.OnClickListener() {
+//                        fun onClick(view: View?) {
+//                            redirectToPlayStore()
+//                            //   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.janacare.aina.production"));
+//                            // startActivity(intent);
+//                        }
+//                    })*/
+//                    downloadbtn.setOnClickListener(object : View.OnClickListener {
+//                        override fun onClick(view: View?) {
+//                            // Do some work here
+//                            redirectToPlayStore()
+//                        }
+//
+//                    })
+//                    val cancelbtn: Button = dialog.findViewById(R.id.cancelbtn) as Button
+//                    cancelbtn.setOnClickListener(object : View.OnClickListener {
+//                        override fun onClick(view: View?) {
+//                            dialog.dismiss()
+//                        }
+//                    })
+//                    dialog.show()
                 }
 
             } else {
