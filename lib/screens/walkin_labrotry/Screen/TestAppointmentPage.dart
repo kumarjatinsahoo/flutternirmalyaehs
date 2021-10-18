@@ -12,24 +12,24 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
-class TestAppointmentPage1 extends StatefulWidget {
+class TestAppointmentPage extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
 
-  TestAppointmentPage1({
+  TestAppointmentPage({
     Key key,
     this.model,
     this.isConfirmPage = false,
   }) : super(key: key);
 
   @override
-  _TestAppointmentPage1State createState() => _TestAppointmentPage1State();
+  _TestAppointmentPageState createState() => _TestAppointmentPageState();
 }
 
-class _TestAppointmentPage1State extends State<TestAppointmentPage1>
+class _TestAppointmentPageState extends State<TestAppointmentPage>
     with WidgetsBindingObserver {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -86,6 +86,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
 
   Future<void> _callLabApp(String data) async {
     try {
+      print("<<>>>>>iLab>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + data);
       final int result = await platform.invokeMethod('iLab', data);
     } on PlatformException catch (e) {}
   }
@@ -148,9 +149,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
       results = appointModel.body
           .where((user) => user.patientName
               .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()) ||  user.regNo
-          .toLowerCase()
-          .contains(enteredKeyword.toLowerCase()))
+              .contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
@@ -163,11 +162,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      key: _scaffoldKey,
+      //key: _scaffoldKey,
       appBar: AppBar(
-        leading: BackButton(
-          color: bgColor,
-        ),
+        // leading: BackButton(
+        //   color: bgColor,
+        // ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -182,7 +181,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Icon(!isSearchShow
                     ? Icons.search
                     : Icons.highlight_remove_rounded),
@@ -331,8 +330,6 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                         padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
-
-                          //String ageFirst=foundUser[index]?.gender[0];
                           return Column(
                             children: [
                               Container(
@@ -376,7 +373,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                     SizedBox(
                                       width: 35,
                                       child: Text(
-                                        foundUser[index].age.toString(),
+                                        (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -387,7 +384,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        (foundUser[index]?.gender!=null)?foundUser[index]?.gender[0]:"",
+                                        (foundUser[index].gender!=null)?foundUser[index].gender[0]:"N/A",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -399,13 +396,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                       width: 80,
                                       child: InkWell(
                                         onTap: () {
-                                          /*showDialog(
+                                          showDialog(
                                               context: context,
                                               builder: (BuildContext context) =>
                                                   dialogRegNo(context,
-                                                      foundUser[index]));*/
-                                          widget.model.bodyUser=foundUser[index];
-                                          Navigator.pushNamed(context, "/vitalDoctor");
+                                                      foundUser[index]));
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -454,8 +449,6 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
   }
 
   Widget dialogRegNo(BuildContext context, Body body) {
-    //NomineeModel nomineeModel = NomineeModel();
-    //Nomine
     height.text = "";
     weight.text = "";
     return AlertDialog(
@@ -524,23 +517,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              String mob =
-                  (body.mob == null || body.mob == "" || body.mob == "null")
-                      ? ""
-                      : body.mob;
-              String mapping = body.regNo +
-                  "," +
-                  body.patientName +
-                  "," +
-                  mob +
-                  "," +
-                  body.gender +
-                  "," +
-                  height.text +
-                  "," +
-                  weight.text +
-                  "," +
-                  body.age.toString();
+              String mob = (body.mob == null || body.mob == "" || body.mob == "null")
+                      ? "" : body.mob;
+              String mapping = body.regNo + "," + body.patientName + ","
+                  + mob + "," + body.gender + "," + height.text + "," +
+                  weight.text + "," + body.age.toString();
               _callLabApp(mapping.trim());
             }
           },
@@ -705,10 +686,17 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
       child: TextFormField(
         autofocus: false,
         controller: controller,
-        inputFormatters: [
+        //textInputAction: TextInputAction.next,
+
+        /*inputFormatters: [
           //UpperCaseTextFormatter(),
+        ],*/
+        maxLength: 5,
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          WhitelistingTextInputFormatter(
+              RegExp("[0-9. ]")),
         ],
-        maxLength: 3,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,

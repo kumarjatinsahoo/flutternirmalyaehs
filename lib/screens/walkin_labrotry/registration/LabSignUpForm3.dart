@@ -175,6 +175,11 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     LabSignUpForm3.blockModel = null;
     LabSignUpForm3.genderModel = null;
 
+    LabSignUpForm3.countryModel = null;
+    LabSignUpForm3.stateModel = null;
+    LabSignUpForm3.districtModel = null;
+    LabSignUpForm3.citymodel = null;
+
     labid = widget.model.organization;
     labtitleid = widget.model.title1;
     labdname = widget.model.labprofessionalname;
@@ -312,13 +317,15 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                   print(ApiFactory.COUNTRY_API);
                                   LabSignUpForm3.countryModel = data;
                                   LabSignUpForm3.stateModel = null;
+                                  LabSignUpForm3.districtModel = null;
+                                  LabSignUpForm3.citymodel = null;
 
                                 });
                               }),
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("STATE") ,
                               ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
@@ -328,13 +335,14 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                   print(ApiFactory.STATE_API);
                                   LabSignUpForm3.stateModel = data;
                                   LabSignUpForm3.districtModel = null;
+                                  LabSignUpForm3.citymodel = null;
                                 });
                               }),
 
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("DIST") ,
                               ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
@@ -349,7 +357,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("CITY") ,
                               ApiFactory.CITY_API + (LabSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
@@ -424,33 +432,35 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w800,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.grey,
+                                Container(
+                                  child: RichText(
+                                      textAlign: TextAlign.start,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                            /* "Welcome back",*/
+                                            style: TextStyle(
+                                              // fontWeight: FontWeight.w800,
+                                              fontFamily: "Monte",
+                                              // fontSize: 25.0,
+                                              color: Colors.grey,
+                                            ),
                                           ),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                          MyLocalizations.of(context).text("T&C") ,
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w500,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.indigo,
-                                          ),
-                                        )
-                                      ],
-                                    )),
+                                          TextSpan(
+                                            text:
+                                            MyLocalizations.of(context).text("T&C") ,
+                                            /* "Welcome back",*/
+                                            style: TextStyle(
+                                              // fontWeight: FontWeight.w500,
+                                              fontFamily: "Monte",
+                                              // fontSize: 25.0,
+                                              color: Colors.indigo,
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                ),
                               ],
                             ),
                           ),

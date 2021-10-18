@@ -322,7 +322,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Container(
+      child:
+      Container(
         color: Colors.white,
         height: double.maxFinite,
         child: Column(

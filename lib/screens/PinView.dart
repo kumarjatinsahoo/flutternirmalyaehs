@@ -484,7 +484,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                             }else{
                              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                             }
-                            AppData.showInSnackBar(context, widget.loginData.message);
+                           // AppData.showInSnackBar(context, widget.loginData.message);
                            // Navigator.pushNamed(context, "/navigation");
                           }else{
                             AppData.showInSnackBar(context, "Please enter valid OTP");

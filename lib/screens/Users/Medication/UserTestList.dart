@@ -144,8 +144,8 @@ class _MedicineList extends State<UserTestList> {
             cityName = finder.addressComponents[4].longName;
 
             mapK["address"] = address;
-            //mapK["city"] = cityName;
-            mapK["city"] = "bhubaneswar";
+            mapK["city"] = cityName;
+            //mapK["city"] = "bhubaneswar";
 
             widget.model.pharmacyaddress = address;
             widget.model.pharmacity = finder.addressComponents[4].longName;
@@ -357,6 +357,8 @@ class _MedicineList extends State<UserTestList> {
 
   Widget dialogAddLab(BuildContext context) {
     DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    textEditingController[0].text = "";
+
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -429,6 +431,7 @@ class _MedicineList extends State<UserTestList> {
                   json: map,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                     setState(() {
                       if (map[Const.STATUS1] == Const.SUCCESS) {

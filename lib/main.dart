@@ -6,8 +6,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
+import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
@@ -77,7 +79,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
-import 'package:user/screens/Doctor/VitalDoctor.dart';
+import 'package:user/screens/walkin_labrotry/Screen/UpdationData.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
@@ -111,7 +113,7 @@ import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'screens/Users/EmergencyHelp/SetupContactsPage.dart';
-import 'package:user/screens/TestAppointmentPage1.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
@@ -148,7 +150,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction5.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'screens/Users/organ/TermsandConditions.dart';
-import 'package:user/screens/TestAppointmentPage.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'screens/Users/MyMedicalRecord/UserVitalSigns.dart';
@@ -658,7 +660,10 @@ class _MyAppState extends State<MyApp> {
                   ),
 
               //////////////////DOCTOR USER//////////////////////
-              '/dashDoctor': (context) => DasboardDoctor(
+           /*   '/dashDoctor': (context) => DasboardDoctor(
+                    model: _model,
+                  ),*/
+              '/dashDoctor': (context) => NewDashboardDoctor(
                     model: _model,
                   ),
               '/apntMange': (context) => DocAppointmentMangement(
@@ -691,7 +696,10 @@ class _MyAppState extends State<MyApp> {
               '/medi': (context) => MedicationAddScreen(
                     model: _model,
                   ),
-              '/vitalDoctor': (context) => VitalDoctor(
+              '/vitalDoctor': (context) => UpdationData(
+                    model: _model,
+                  ),
+              '/Newdashboard': (context) => NewDashboardDoctor(
                     model: _model,
                   ),
               // '/Healthchart': (context) => HealthChart1(
@@ -725,7 +733,7 @@ class _MyAppState extends State<MyApp> {
               '/idCard': (context) => IdCardPage(
                     model: _model,
                   ),
-              '/dashboardpharmacy': (context) => DashboardPharmacy(
+              '/dashboardpharmacy': (context) => NewDashboardPharmacy(
                     model: _model,
                   ),
               /*'/dashboardpharmacy': (context) => DashboardPharmacy(

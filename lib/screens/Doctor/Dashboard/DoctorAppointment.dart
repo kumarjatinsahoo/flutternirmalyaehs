@@ -60,7 +60,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
 
               ),
               Tab(
-                text: /*"Confirmed"*/ "COFIRMED",
+                text: /*"Confirmed"*/ "CONFIRMED",
               ),
               Tab(
                 text: /*"Cancelled"*/ "CANCELLED",

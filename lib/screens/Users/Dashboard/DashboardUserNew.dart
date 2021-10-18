@@ -967,34 +967,7 @@ List<String> imageSliders = [
               ],
             ),
 
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
-            )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
+
           ],
         ),
       ),
@@ -1281,7 +1254,8 @@ class MyPage1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     _width = (MediaQuery.of(context).size.width - 80) / 3;
-    return Container(
+    return
+      Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
         children: [

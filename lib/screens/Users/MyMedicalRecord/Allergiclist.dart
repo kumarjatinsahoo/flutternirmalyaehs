@@ -51,6 +51,7 @@ class _AllergicListListState extends State<AllergicListList> {
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
   allergic.AllergicModel allergicModel;
+  bool isdata = false;
 
   @override
   void initState() {
@@ -73,9 +74,10 @@ class _AllergicListListState extends State<AllergicListList> {
               allergicModel = allergic.AllergicModel.fromJson(map);
             } else {
               setState(() {
-                isDataNoFound = true;
+                //isDataNoFound = true;
+                AppData.showInSnackBar(context, msg);
+
               });
-              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -119,8 +121,29 @@ class _AllergicListListState extends State<AllergicListList> {
             ),*/
           ],
         ),
-        body: (allergicModel != null)
+        body:
+        isdata == true
+            ? CircularProgressIndicator(
+          backgroundColor: AppData.matruColor,
+        )
+            : allergicModel == null || allergicModel == null
             ? Container(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 300,),
+                Text(
+                  'No Data Found',
+                  style:
+                  TextStyle(color: Colors.black, fontSize: 15),
+                ),
+              ],
+            ),
+          ),
+
+        )
+            :
+         Container(
                 child: SingleChildScrollView(
                   child: (allergicModel != null)
                       ? ListView.builder(
@@ -296,12 +319,12 @@ class _AllergicListListState extends State<AllergicListList> {
                       : Container(),
                 ),
               )
-            : Container(
+            /*: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 alignment: Alignment.center,
                 child: (isDataNoFound) ? Text("Data Not Found") : callAPI(),
-              ),
+              ),*/
       ),
     );
   }

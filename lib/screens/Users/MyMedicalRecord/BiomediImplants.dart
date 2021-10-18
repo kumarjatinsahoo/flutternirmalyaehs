@@ -33,6 +33,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
+  bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
 
@@ -107,8 +108,23 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           ),
         ),
         body:
-        (biomedicalModel != null)
+        isdata == true
+            ? CircularProgressIndicator(
+          backgroundColor: AppData.matruColor,
+        )
+            : biomedicalModel == null || biomedicalModel == null
             ? Container(
+          child: Center(
+            child: Text(
+              'No Data Found',
+              style:
+              TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+
+        )
+            :
+         Container(
             child: SingleChildScrollView(
             child:
         (biomedicalModel != null)
@@ -225,12 +241,12 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 },
         ): Container(),
             ),
-        ): Container(
+       /* ): Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
-
+*/
         ),
     );
   }

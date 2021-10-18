@@ -23,6 +23,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
+  bool isdata = false;
+
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -35,7 +37,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
       fromThis_.text = df.format(date);
       selectedDatestr = df.format(date).toString();
       //toThis_.text = df.format(date);
-      callAPI(selectedDatestr);
+      callAPI("");
     });
   }
 
@@ -74,7 +76,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+           //   AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -85,11 +87,32 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
     return SafeArea(
         child: Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            appointdate(),
-            Expanded(
-              child: (appointmentlistModel != null)
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              appointdate(),
+              isdata == true
+                  ? CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              )
+                  : appointmentlistModel == null || appointmentlistModel == null
+                  ? Container(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 300,),
+                      Text(
+                        'No Data Found',
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
+
+              )
+                  :
+              (appointmentlistModel != null)
                   ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -217,8 +240,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                       itemCount: appointmentlistModel.body.length,
                     )
                   : Container(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ));

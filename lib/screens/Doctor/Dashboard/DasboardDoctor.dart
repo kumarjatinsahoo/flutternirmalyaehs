@@ -462,7 +462,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () async {
-    Navigator.pushNamed(context, "/Healthchart");
+    //Navigator.pushNamed(context, "/Healthchart");
+    Navigator.pushNamed(context, "/Newdashboard");
 
                     },
                   ),

@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:unique_identifier/unique_identifier.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
-
 //import 'dart:html';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -14,17 +14,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class LabDashboard extends StatefulWidget {
+class NewDashboardPharmacy extends StatefulWidget {
   final MainModel model;
 
-  const LabDashboard({Key key, this.model}) : super(key: key);
+  const NewDashboardPharmacy({Key key, this.model}) : super(key: key);
 
   @override
-  _LabDashboardState createState() => _LabDashboardState();
+  _NewDashboardPharmacyState createState() => _NewDashboardPharmacyState();
 }
 
-class _LabDashboardState extends State<LabDashboard> {
+class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
   LoginResponse1 loginResponse;
+
+  double _height = 120;
+  double _width = 150;
   SharedPref sharedPref = SharedPref();
   File pathUsr = null;
   List<String> strOrders = [
@@ -52,53 +55,8 @@ class _LabDashboardState extends State<LabDashboard> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
-    checkApiCallOrNot();
   }
 
-  checkApiCallOrNot() async {
-    String isAlreadyReg = await sharedPref.getKey(Const.IS_REG_SERVER);
-    if (isAlreadyReg != null) {
-      if (isAlreadyReg.replaceAll("\"", "") == "false") {
-        if (Platform.isAndroid) initUniqueIdentifierState();
-      }
-    } else {
-      if (Platform.isAndroid) initUniqueIdentifierState();
-    }
-  }
-
-  Future<void> initUniqueIdentifierState() async {
-    String identifier;
-    try {
-      identifier = await UniqueIdentifier.serial;
-      if (identifier != null) {
-        Map<String, dynamic> postData = {
-          "apid": Const.APP_ID,
-          "deviceId": identifier,
-          "action": "add"
-        };
-        print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
-        widget.model.POSTMETHOD(
-          api: ApiFactory.REG_DEVICE,
-          json: postData,
-          fun: (Map<String, dynamic> map) {
-            if (map["code"] == 200) {
-              //AppData.showInSnackDone(context, map["msg"]);
-              sharedPref.save(Const.IS_REG_SERVER, "true");
-            } else {
-              //if(map["msg"]!="")
-              //AppData.showInSnackBar(context, map["msg"]??"");
-            }
-          },
-        );
-      }
-    } on PlatformException {
-      identifier = 'Failed to get Unique Identifier';
-    }
-
-    if (!mounted) return;
-
-    print("Another ID>>>>>" + identifier);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,11 +90,11 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: Icons.people,
+                          icon: "assets/Myorder1.png",
                           fun: () {
                             //AppData.showInSnackBar(context, "Coming soon");
                             // Navigator.pushNamed(context, "/medicalrecordpage");
-                            Navigator.pushNamed(context, "/walkRegList");
+                            Navigator.pushNamed(context, "/myorder");
                           },
                           color: AppData.BG2BLUE,
                           bordercolor: AppData.BG2BLUE,
@@ -149,8 +107,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Register Patient",
-                            // MyLocalizations.of(context).text("My Orders"),
+                          child: Text("My Orders",
+                           // MyLocalizations.of(context).text("My Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -166,11 +124,10 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: Icons.alarm,
+                          icon: "assets/ConOrder.png",
                           fun: () {
-                            chooseAppointment(context);
                             // Navigator.pushNamed(context, "/myAppointment");
-                            //Navigator.pushNamed(context, "/ordersPharma");
+                            Navigator.pushNamed(context, "/ordersPharma");
                           },
                           color: AppData.BG1RED,
                           bordercolor: AppData.BG1RED,
@@ -183,8 +140,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Appointment",
-                            // MyLocalizations.of(context).text("Confirmed Order"),
+                          child: Text("Confirmed Order",
+                           // MyLocalizations.of(context).text("Confirmed Order"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -207,7 +164,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: CupertinoIcons.doc_append,
+                          icon: "assets/ProcessOrder.png",
                           fun: () {
                             //chooseAppointment(context, model);
                             //Navigator.pushNamed(context, "/userAppoint");
@@ -216,7 +173,7 @@ class _LabDashboardState extends State<LabDashboard> {
                                       context, "/medipedia");*/
                             // AppData.showSnack(
                             //     context, "Coming soon", Colors.green);
-                            Navigator.pushNamed(context, "/pocreportlist");
+                            Navigator.pushNamed(context, "/processedorders");
                           },
                           color: AppData.BG2BLUE,
                           bordercolor: AppData.BG2BLUE,
@@ -229,8 +186,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("POC Reports",
-                            // MyLocalizations.of(context).text("Processed Orders"),
+                          child: Text("Processed Orders",
+                           // MyLocalizations.of(context).text("Processed Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -257,10 +214,10 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: Icons.edit_attributes,
+                          icon: "assets/DeliverdOrder.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/testappointmentpage");
+                            Navigator.pushNamed(context, "/deliverdorder");
                             //AppData.showInSnackBar(context, "Coming soon");
                           },
                           //color: AppData.BG2BLUE,
@@ -274,7 +231,7 @@ class _LabDashboardState extends State<LabDashboard> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Test",
+                          child: Text("Deliverd Order",
 /*
                             MyLocalizations.of(context).text("Deliverd Order").toString(),
 */
@@ -302,11 +259,12 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: CupertinoIcons.bag,
+                          icon: "assets/Invoices.png",
+                          //icon: Icons.alarm,
                           //icon: FontAwesomeIcons.accusoft,
-                          title: "My Orders",
+                          title: "Invoices",
                           fun: () {
-                            AppData.showInSnackDone(context, "/myOrderTest");
+                            AppData.showInSnackDone(context, "Coming Soon");
                             // Navigator.pushNamed(context, "/medicinereminder");
                             // AppData.showSnack(
                             //     context, "Coming soon", Colors.green);
@@ -322,8 +280,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("My Orders",
-                            // MyLocalizations.of(context).text("Invoices"),
+                          child: Text("Invoices",
+                           // MyLocalizations.of(context).text("Invoices"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -337,10 +295,10 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: CupertinoIcons.settings_solid,
+                          icon: "assets/monthlyoverview2.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/testappointmentpage1");
+                            Navigator.pushNamed(context, "/monthloveryview");
                             //AppData.showInSnackBar(context, "Coming soon");
                           },
                           //color: AppData.BG2BLUE,
@@ -354,8 +312,8 @@ class _LabDashboardState extends State<LabDashboard> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Updation Data",
-                            // MyLocalizations.of(context).text("Monthly Overview"),
+                          child: Text("Monthly Overview",
+                           // MyLocalizations.of(context).text("Monthly Overview"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -369,6 +327,7 @@ class _LabDashboardState extends State<LabDashboard> {
             ],
           ),
         ),
+
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -379,7 +338,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   width: double.infinity,
                   child: Padding(
                     padding:
-                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                    EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -390,7 +349,7 @@ class _LabDashboardState extends State<LabDashboard> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(55),
                               border:
-                                  Border.all(color: Colors.white, width: 0.5),
+                              Border.all(color: Colors.white, width: 0.5),
                               color: Colors.white),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(55),
@@ -404,110 +363,154 @@ class _LabDashboardState extends State<LabDashboard> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          "Hi " + loginResponse.body.userName,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
+                        Column(
+                          children: [
+                            Text(
+                              "PHARMACY " ,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                            Text(
+                              loginResponse.body.userName??"N/A",
+
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
                 ListTile(
-                    leading: Icon(Icons.dashboard),
+                    leading: Icon(Icons.dashboard,
+                        color: Colors.grey, size: 27),
                     title: Text('Dashboard'),
                     selected: _selectedDestination == 0,
                     onTap: () {
                       selectDestination(0);
-                      Navigator.pushNamed(context, "/patientDashboard");
+                      Navigator.pushNamed(context, "/dashboardpharmacy");
                     }
-                    // onTap: (){},
-
-                    ),
+                  // onTap: (){},
+                ),
+                Divider(),
                 ListTile(
-                  leading: Icon(Icons.person),
+                  leading: Image.asset(
+                      "assets/images/myprofile.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
                   title: Text('My Profile'),
                   selected: _selectedDestination == 1,
                   onTap: () {
                     selectDestination(1);
-                    Navigator.pushNamed(context, "/labprofile");
+                    Navigator.pushNamed(context, "/pharmaprofile");
                     //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Notifications'),
+                // Divider(),
+                /*   ListTile(
+                  leading: Image.asset(
+                    "assets/images/home.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  // leading: Icon(Icons.person),
+                  title: Text('Home'),
                   selected: _selectedDestination == 2,
                   onTap: () {
                     selectDestination(2);
-                    // Navigator.pushNamed(context, "/Notifications");
+                    //Navigator.pushNamed(context, "/profile");
+                    Navigator.pushNamed(context, "/dashboardpharmacy");
                   },
-                ),
+                ),*/
+                Divider(),
                 ListTile(
-                  leading: Icon(Icons.notifications),
+                  leading: Image.asset(
+                      "assets/images/account.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  // leading: Icon(Icons.person),
+                  title: Text('Manage Account'),
                   selected: _selectedDestination == 3,
                   onTap: () {
                     selectDestination(3);
-                    //Navigator.pushNamed(context, "/onlinechats");
+                    // Navigator.pushNamed(context, "/patientDashboard");
                   },
-
-                  title: Text('Online Chat'),
-                  // onTap: () {
-                  // },
                 ),
+                Divider(),
                 ListTile(
-                  leading: Icon(Icons.help_center),
+                  leading: Image.asset(
+                      "assets/images/aboutus.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  // leading: Icon(Icons.person),
+                  title: Text('About Us'),
                   selected: _selectedDestination == 4,
                   onTap: () {
                     selectDestination(4);
-                    // Navigator.pushNamed(context, "/onlinechats");
+                    // Navigator.pushNamed(context, "/profile");
                   },
-
-                  title: Text('Help'),
-                  // onTap: () {
-                  // },
                 ),
+                Divider(),
                 ListTile(
-                  leading: Icon(Icons.share),
-                  title: Text('Share'),
-                  selected: _selectedDestination == 5,
-                  onTap: () => selectDestination(5),
-                ),
+                    leading: Image.asset(
+                        "assets/images/share.png",
+                        height: 30,
+                        color: Colors.grey
+                    ),
+                    title: Text('Share'),
+                    selected: _selectedDestination == 5,
+                    onTap: () {
+                      selectDestination(5);
+                      // Navigator.pushNamed(context, "/dashboard1");
+                    }),
+                Divider(),
                 ListTile(
-                    leading: Icon(Icons.collections),
-                    title: Text('My Orders'),
+                    leading: Image.asset(
+                        "assets/images/contact us.png",
+                        height: 30,
+                        color: Colors.grey
+                    ),
+                    title: Text('Contact Us'),
                     selected: _selectedDestination == 6,
                     onTap: () {
                       selectDestination(6);
-                      //Navigator.pushNamed(context, "/myorder");
+                      //Navigator.pushNamed(context, "/share");
                     }),
+                Divider(),
                 ListTile(
-                    leading: Icon(Icons.calendar_today),
-                    title: Text('Monthly Overview'),
+                    leading: Image.asset(
+                        "assets/images/support.png",
+                        height: 30,
+                        color: Colors.grey
+                    ),
+                    title: Text('Support'),
                     selected: _selectedDestination == 7,
                     onTap: () {
                       selectDestination(7);
-                      //Navigator.pushNamed(context, "/monthlyview");
+                      //Navigator.pushNamed(context, "/signUpForm");
                     }),
+                Divider(),
                 ListTile(
-                    leading: Icon(Icons.healing),
-                    title: Text('Processed Orders'),
+                    leading: Image.asset(
+                        "assets/images/reminder.png",
+                        height: 30,
+                        color: Colors.grey
+                    ),
+                    title: Text('Reminder'),
                     selected: _selectedDestination == 8,
                     onTap: () {
                       selectDestination(8);
-                      //Navigator.pushNamed(context, "/processedorders");
+                      //Navigator.pushNamed(context, "/share");
                     }),
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Set Discount and Offer'),
-                  selected: _selectedDestination == 9,
-                  onTap: () {
-                    selectDestination(9);
-                    //Navigator.pushNamed(context, "/setdiscount");
-                  },
-                ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.logout),
                   title: Text('Logout'),
@@ -531,407 +534,260 @@ class _LabDashboardState extends State<LabDashboard> {
             ),
           ),
         ),
-    //    body: _dashboardnew(context),
       ),
     );
   }
 
-  /* Future<void> initUniqueIdentifierState() async {
-    if(Platform.isAndroid) {
-      MyWidgets.showLoading(context);
-      String identifier;
-      try {
-        identifier = await UniqueIdentifier.serial;
-        if (identifier != null) {
-          Map<String, dynamic> postData = {
-            "apid": Const.APP_ID,
-            "deviceId": identifier,
-            "action": "remove"
-          };
-          widget.model.POSTMETHOD(
-            api: ApiFactory.REG_DEVICE,
-            json: postData,
-            fun: (Map<String, dynamic> map) {
-              if (map["code"] == 200) {
-                AppData.showInSnackDone(context, map["msg"] ?? "Offline");
-                //if (map["msg"] == "device id added") {
-                sharedPref.save(Const.IS_REG_SERVER, "false");
-                _exitApp();
-                //}
-              } else {
-                AppData.showInSnackBar(context, map["msg"] ?? "Offline");
-              }
-            },
-          );
-        }
-      } on PlatformException {
-        identifier = 'Failed to get Unique Identifier';
-      }
-      if (!mounted) return;
-    }else{
-      _exitApp();
-    }
-  }*/
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        height: double.maxFinite,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, right: 10, left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return
+      Container(
+      padding: EdgeInsets.symmetric(horizontal: 7),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTile1(
-                                icon: Icons.people,
-                                title: "Register Patient",
-                                fun: () {
-                                  /*Navigator.pushNamed(
-                                      context, "/patientRegistration");*/
-                                  Navigator.pushNamed(context, "/walkRegList");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTile2(
-                                icon: Icons.alarm,
-                                title: "Appointment",
-                                fun: () {
-                                  chooseAppointment(context);
-                                  // Navigator.pushNamed(context, "/medicalrecordpage");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                      ],
+                    _buildTileblue(
+                      icon: "assets/Myorder1.png",
+                      fun: () {
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        // Navigator.pushNamed(context, "/medicalrecordpage");
+                        Navigator.pushNamed(context, "/myorder");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      // ,
                     ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTile2(
-                                //icon: Icons.document_scanner,
-                                icon: CupertinoIcons.doc_append,
-                                title: "POC Reports",
-                                fun: () {
-                                  Navigator.pushNamed(
-                                      context, "/pocreportlist");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTile1(
-                              icon: Icons.edit_attributes,
-                              title: "Test",
-                              fun: () {
-                                //chooseAppointment1(context);
-                                Navigator.pushNamed(
-                                    context, "/testappointmentpage");
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              // ,
-                            ),
-                          ],
-                        ),
-                      ],
+                    SizedBox(
+                      height: 5,
                     ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildTile1(
-                          //icon: Icons.document_scanner,
-                          icon: CupertinoIcons.bag,
-                          title: "My Orders",
-                          fun: () {
-                            Navigator.pushNamed(context, "/myOrderTest");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          // ,
-                        ),
-                        _buildTile2(
-                          //icon: Icons.document_scanner,
-                          icon: CupertinoIcons.settings_solid,
-                          title: "Updation Data",
-                          fun: () {
-                            Navigator.pushNamed(context, "/testappointmentpage1");
-                          },
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          // ,
-                        ),
-                      ],
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("My Orders"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ],
-                ),
+                  ]),
+              SizedBox(
+                width: 5,
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 
-  Widget _buildTile1(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 145,
-        width: (MediaQuery.of(context).size.width - 60) / 2,
-        decoration: BoxDecoration(
-
-            /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.zero,
-              topRight: Radius.circular(10.0),
-              bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.zero,
-            ),
-            color: color,
-            border: Border.all(
-              color: AppData.kPrimaryColor,
-              width: 1.0,
-            )),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                /* Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    */ /*"assets/logo1.png"*/ /*icon,
-                    fit: BoxFit.fitWidth,
-                    width: 50,
-                    height: 70.0,
-                  ),),*/
-                Icon(icon, color: AppData.kPrimaryColor, size: 40.0),
-                /*Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Monte",
-                    fontSize: 22.0,
-                  ),
-
-                ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 15.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            /*Positioned(
-              top: 6,
-              right: 6,
-              child: Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    color: Colors.black12,
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+              /* Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/ConOrder.png",
+                      fun: () {
+                        // Navigator.pushNamed(context, "/myAppointment");
+                        Navigator.pushNamed(context, "/ordersPharma");
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
                       child: Text(
-                        '67',
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ))),
-              */ /*Positioned(
-            top: 20,
-            left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
-              */
-            /*Positioned(
-            bottom: 20,
-            right: 15,
-            child:Column(
-              children: [
-                Text('Daily Goal', style: TextStyle(color: Colors.white),),
-                 Text('900 kcal', style: TextStyle(color: Colors.white),),
-              ],
-            ))*/ /*
-            )*/
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTile2(
-      {IconData icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
-    return InkWell(
-      onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 145,
-        width: (MediaQuery.of(context).size.width - 60) / 2,
-        decoration: BoxDecoration(
-
-            /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.zero,
-              bottomLeft: Radius.zero,
-              bottomRight: Radius.circular(10.0),
-            ),
-            color: color,
-            border: Border.all(
-              color: AppData.kPrimaryRedColor,
-              width: 1.0,
-            )),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                /* Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    */
-                /*"assets/logo1.png"*/
-                /*icon,
-                    fit: BoxFit.fitWidth,
-                    width: 50,
-                    height: 70.0,
-                  ),),*/
-                Icon(icon, color: AppData.kPrimaryRedColor, size: 40.0),
-                /*Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Monte",
-                    fontSize: 22.0,
-                  ),
-
-                ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 15.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                        ),
+                        MyLocalizations.of(context).text("Confirmed Order"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            /*Positioned(
-              top: 6,
-              right: 6,
-              child: Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    color: Colors.black12,
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/ProcessOrder.png",
+                      fun: () {
+                        //chooseAppointment(context, model);
+                        //Navigator.pushNamed(context, "/userAppoint");
+                        // Navigator.pushNamed(context, "/myAppointment");
+                        /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                        Navigator.pushNamed(context, "/processedorders");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
                       child: Text(
-                        '67',
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ))),
-              */
-            /*Positioned(
-            top: 20,
-            left: 15,
-            child:Text('Heart Rate', style: TextStyle(color: Colors.black),)),*/ /*
-              */
-            /*Positioned(
-            bottom: 20,
-            right: 15,
-            child:Column(
-              children: [
-                Text('Daily Goal', style: TextStyle(color: Colors.white),),
-                 Text('900 kcal', style: TextStyle(color: Colors.white),),
-              ],
-            ))*/
-            /*
-            )*/
-          ],
-        ),
+                        MyLocalizations.of(context).text("Processed Orders"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/DeliverdOrder.png",
+                      fun: () {
+                        // AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/deliverdorder");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        MyLocalizations.of(context).text("Deliverd Order"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(
+                              child:*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/Invoices.png",
+                      //icon: Icons.alarm,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Invoices",
+                      fun: () {
+                         AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/medicinereminder");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("Invoices"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/monthlyoverview2.png",
+                      fun: () {
+                        // AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/monthloveryview");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        MyLocalizations.of(context).text("Monthly Overview"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+
+                  ]),
+            ],
+          ),
+          SizedBox(height: 50),
+
+        ],
       ),
     );
   }
@@ -1091,7 +947,7 @@ class _LabDashboardState extends State<LabDashboard> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-  Widget _buildTilered({IconData icon,
+  Widget _buildTilered({String icon,
     String title,
     double size,
     Color bordercolor,
@@ -1128,10 +984,12 @@ class _LabDashboardState extends State<LabDashboard> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.center,
-                  child: Icon(
+                  child: Image.asset(
                     /* "assets/logo1.png"*/
-                    icon,size: 40.0,
-
+                    icon,
+                    fit: BoxFit.fitWidth,
+                    width: 50,
+                    height: 50.0,
                   ),
                 ),
 
@@ -1145,7 +1003,7 @@ class _LabDashboardState extends State<LabDashboard> {
   }
 
 
-  Widget _buildTileblue({IconData icon,
+  Widget _buildTileblue({String icon,
     /*IconData icon,*/
     String title,
     double size,
@@ -1182,9 +1040,12 @@ class _LabDashboardState extends State<LabDashboard> {
               children: <Widget>[
                 Align(
                     alignment: Alignment.center,
-                    child: Icon(
+                    child: Image.asset(
                       /* "assets/logo1.png"*/
-                      icon,size: 40.0
+                      icon,
+                      fit: BoxFit.fitWidth,
+                      width: 50,
+                      height: 50.0,
                     )),
               ],
             ),
