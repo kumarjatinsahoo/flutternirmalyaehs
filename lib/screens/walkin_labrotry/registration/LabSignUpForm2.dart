@@ -652,7 +652,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       fun: () {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Education name");
+          AppData.showInSnackBar(context, "Please enter Education Name");
         } else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
           AppData.showInSnackBar(context, "Please enter Date of birth");
