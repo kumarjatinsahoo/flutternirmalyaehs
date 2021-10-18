@@ -28,8 +28,8 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             val string: String = call.arguments as String
             val data: List<String> = string.split(",")
-            Toast.makeText(getApplicationContext(),"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show();
-            if (call.method == "getBatteryLevel") {
+            Toast.makeText(getApplicationContext(),"Name "+data.get(1)+"mobile "+data.get(2)+"gender "+data.get(3)+"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show();
+            /*if (call.method == "getBatteryLevel") {
 
             }else if (call.method == "callUrl") {
                 //val intent = Intent(this, WebViewActivity::class.java)
@@ -81,13 +81,13 @@ class MainActivity: FlutterActivity() {
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
                     dialog.setContentView(R.layout.noapkdialog)
                     val downloadbtn: Button = dialog.findViewById(R.id.downloadbtn) as Button
-                    /*downloadbtn.setOnClickListener(object : View.OnClickListener() {
+                    *//*downloadbtn.setOnClickListener(object : View.OnClickListener() {
                         fun onClick(view: View?) {
                             redirectToPlayStore()
                             //   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.janacare.aina.production"));
                             // startActivity(intent);
                         }
-                    })*/
+                    })*//*
                     downloadbtn.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(view: View?) {
                             // Do some work here
@@ -102,7 +102,7 @@ class MainActivity: FlutterActivity() {
                         }
                     })
                     dialog.show()
-                }
+                }*/
 
             } else {
                 result.notImplemented()
