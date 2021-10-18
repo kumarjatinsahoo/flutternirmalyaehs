@@ -14,6 +14,7 @@ import android.telephony.TelephonyManager
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -62,12 +63,12 @@ class MainActivity : FlutterActivity() {
                         LaunchIntent.putExtra("weight", data.get(5))
                         LaunchIntent.putExtra("age", data.get(6))
                         LaunchIntent.type = "text/plain"
-                        val t = Toast.makeText(
+                       /* val t = Toast.makeText(
                             this@MainActivity,
                             "Height: " + data.get(4) + " Weight: " + data.get(5),
                             Toast.LENGTH_SHORT
                         )
-                        t.show()
+                        t.show()*/
                         startActivity(LaunchIntent)
 
                     } else {
