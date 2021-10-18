@@ -522,11 +522,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                   "," +
                   mob.trim() +
                   "," +
-                  body.gender.trim() +
+                  body.gender +
                   "," +
-                  height.text.trim() +
+                  height.text +
                   "," +
-                  weight.text.trim() +
+                  weight.text +
                   "," +
                   body.age.toString().trim();
               _callLabApp(mapping.trim());
