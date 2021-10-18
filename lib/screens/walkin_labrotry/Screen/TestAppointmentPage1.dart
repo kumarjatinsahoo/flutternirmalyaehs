@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,9 +11,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import '../../CreateAppointmentLab.dart';
 
-// ignore: must_be_immutable
 class TestAppointmentPage1 extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
@@ -36,7 +33,6 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
   // LoginResponse1 loginResponse;
   LabBookModel appointModel;
 
-  StreamSubscription _connectionChangeStream;
   Color bgColor = Colors.white;
   Color txtColor = Colors.black;
   bool isOnline = false;
@@ -54,7 +50,6 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
   ];
 
   List<bool> error = [false, false, false, false, false, false];
-  bool _isSignUpLoading = false;
   String today;
   String comeFrom;
 
@@ -503,21 +498,14 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
         },
       ),
       actions: <Widget>[
-        new FlatButton(
+         FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           textColor: Colors.grey[900],
           child: const Text('CANCEL'),
         ),
-        /* new FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          textColor: Colors.grey[900],
-          child: const Text('SCAN'),
-        ),*/
-        new FlatButton(
+         FlatButton(
           onPressed: () {
             if (height.text == "" || height.text == null) {
               AppData.showInSnackBar(context, "Please enter height");

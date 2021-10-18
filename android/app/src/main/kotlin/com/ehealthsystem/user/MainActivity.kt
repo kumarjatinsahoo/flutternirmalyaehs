@@ -63,7 +63,7 @@ class MainActivity: FlutterActivity() {
                         //var value= arrayOf(call.arguments).get(0).toString();
 
 
-                        //Toast.makeText(getApplicationContext(), yourArray.get(0), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show();
 
                     } else {
                         redirectToPlayStore()
