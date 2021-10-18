@@ -1591,15 +1591,6 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
                   ]),
               SizedBox(
                 width: 5,
@@ -1616,8 +1607,9 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Govt Schemes",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
+                        //AppData.showInSnackDone(context, "Coming Soon");
                         //Navigator.pushNamed(context, "/govtschemes");
+                        Navigator.pushNamed(context, "/govetschemeslist");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },

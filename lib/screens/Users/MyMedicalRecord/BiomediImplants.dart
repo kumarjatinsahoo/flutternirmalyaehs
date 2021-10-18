@@ -97,7 +97,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           backgroundColor: AppData.kPrimaryColor,
           title: Row(
             children: [
-              Text("Biomedical Implants"),
+              Text(MyLocalizations.of(context).text("BIOMEDICAL")),
               Spacer(),
               InkWell(
                   onTap: () {

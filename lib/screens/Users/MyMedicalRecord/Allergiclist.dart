@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AllergicModel.dart' as allergic;
 import 'package:user/models/AllergicPostModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -88,7 +89,7 @@ class _AllergicListListState extends State<AllergicListList> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppData.kPrimaryColor,
-          title: Text('Allergic'),
+          title: Text(MyLocalizations.of(context).text("ALLERGIC")),
           /* leading: Icon(
             Icons.menu,
           ),*/
@@ -202,8 +203,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                     children: [
                                                       Container(
                                                         width: 100,
-                                                        child: Text(
-                                                          "Name",
+                                                        child: Text(MyLocalizations.of(context).text("NAME"),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -228,8 +228,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                     children: [
                                                       Container(
                                                         width: 100,
-                                                        child: Text(
-                                                          "Allergen",
+                                                        child: Text(MyLocalizations.of(context).text("ALLERGEN"),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -254,8 +253,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                     children: [
                                                       Container(
                                                         width: 100,
-                                                        child: Text(
-                                                          "Severity",
+                                                        child: Text(MyLocalizations.of(context).text("SEVERTY"),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -280,8 +278,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                     children: [
                                                       Container(
                                                         width: 100,
-                                                        child: Text(
-                                                          "Updated by",
+                                                        child: Text(MyLocalizations.of(context).text("UPDATED_BY"),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -379,8 +376,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Center(
-                          child: Text(
-                            "Add Allergic".toUpperCase(),
+                          child: Text(MyLocalizations.of(context).text("ADD_ALLERGIC"),
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
@@ -392,7 +388,8 @@ class _AllergicListListState extends State<AllergicListList> {
                           height: 15,
                         ),
                         DropDown.networkDropdownGetpartUser1(
-                            " NAME",
+                            MyLocalizations.of(context)
+                                .text("NAME") ,
                             ApiFactory.TYPE_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -406,7 +403,8 @@ class _AllergicListListState extends State<AllergicListList> {
                           height: 5,
                         ),
                         DropDown.networkDropdownGetpartUser1(
-                            "ALLERGEN",
+                            MyLocalizations.of(context)
+                                .text("ALLERGEN") ,
                             ApiFactory.NAME_API,
                             "namelist",
                             Icons.location_on_rounded,
@@ -420,7 +418,9 @@ class _AllergicListListState extends State<AllergicListList> {
                           height: 5,
                         ),
                         DropDown.networkDrop(
-                            'SEVERITY', "SEVERITY", severitylist,
+                            MyLocalizations.of(context)
+                                .text("SEVERTY") ,
+                            "SEVERITY", severitylist,
                             (KeyvalueModel data) {
                           setState(() {
                             AllergicListList.severitylistModel = data;
@@ -429,11 +429,11 @@ class _AllergicListListState extends State<AllergicListList> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField(1, "  REACTION"),
+                        formField(1,MyLocalizations.of(context).text("REACTION")),
                         SizedBox(
                           height: 15,
                         ),
-                        formField(2, "  UPDATED BY"),
+                        formField(2,MyLocalizations.of(context).text("UPDATED_BY")),
                       ],
                     ),
                   ),
@@ -459,7 +459,7 @@ class _AllergicListListState extends State<AllergicListList> {
             // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Cancel'),
+          child:Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
@@ -526,7 +526,7 @@ class _AllergicListListState extends State<AllergicListList> {
             // textEditingController[2].text="";
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Save'),
+          child: Text(MyLocalizations.of(context).text("SAVE")),
         ),
       ],
     );
