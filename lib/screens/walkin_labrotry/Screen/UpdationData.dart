@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
-import 'package:user/models/PatientsDetailsModel.dart';
 import 'package:user/models/VitalModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -16,16 +15,17 @@ import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
-class VitalDoctor extends StatefulWidget {
+//@immutable
+class UpdationData extends StatefulWidget {
   MainModel model;
 
-  VitalDoctor({Key key, this.model}) : super(key: key);
+  UpdationData({Key key, this.model}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _VitalDoctor();
 }
 
-class _VitalDoctor extends State<VitalDoctor> {
+class _VitalDoctor extends State<UpdationData> {
   VitalModel vitalModel = VitalModel();
 
   List<TextEditingController> textEditingController = [
@@ -3074,7 +3074,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                     "subcutaneous_fat": subcutaneous_fat,
                     "skeletal_muscie": skeletal_muscie,
                     "muscle_mass": muscle_mass,
-                    "metabolic_age": metabolic_age,
+                    "metabolic_age": metabolic_age
                   }
                 },
                 {
@@ -3088,7 +3088,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                     "blood_grouping": blood_grouping,
                     "rh_factor": rh_factor,
                     "syphilis": syphilis,
-                    "crp": crp,
+                    "crp": crp
                   }
                 },
                 {
@@ -3098,7 +3098,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                     "nose": nose,
                     "throat": throat,
                     "mouth": mouth,
-                    "others": others,
+                    "others": others
                   }
                 },
                 {
@@ -3109,7 +3109,7 @@ class _VitalDoctor extends State<VitalDoctor> {
                     "fev1_fcv": fev1_fcv,
                     "fev6": fev6,
                     "fef25_75": fef25_75,
-                    "pef": pef,
+                    "pef": pef
                   }
                 }
 

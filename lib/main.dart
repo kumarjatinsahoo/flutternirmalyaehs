@@ -70,7 +70,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
-import 'package:user/screens/Doctor/VitalDoctor.dart';
+import 'package:user/screens/walkin_labrotry/Screen/UpdationData.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
@@ -104,7 +104,7 @@ import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'screens/Users/EmergencyHelp/SetupContactsPage.dart';
-import 'screens/walkin_labrotry/Screen/TestAppointmentUpdationPage.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
@@ -684,7 +684,7 @@ class _MyAppState extends State<MyApp> {
               '/medi': (context) => MedicationAddScreen(
                     model: _model,
                   ),
-              '/vitalDoctor': (context) => VitalDoctor(
+              '/vitalDoctor': (context) => UpdationData(
                     model: _model,
                   ),
               '/Newdashboard': (context) => NewDashboardDoctor(

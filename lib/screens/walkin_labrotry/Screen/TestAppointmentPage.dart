@@ -449,8 +449,6 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   Widget dialogRegNo(BuildContext context, Body body) {
-    //NomineeModel nomineeModel = NomineeModel();
-    //Nomine
     height.text = "";
     weight.text = "";
     return AlertDialog(
