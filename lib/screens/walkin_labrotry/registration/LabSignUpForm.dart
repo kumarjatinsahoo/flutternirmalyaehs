@@ -144,9 +144,9 @@ class LabSignUpFormState extends State<LabSignUpForm> {
     LabSignUpForm.districtModel = null;
     LabSignUpForm.blockModel = null;
     LabSignUpForm.genderModel = null;
-    LabSignUpForm organizationModel = null;
-    LabSignUpForm titlemodel = null;
 
+    LabSignUpForm.organizationModel =null;
+    LabSignUpForm.titlemodel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });

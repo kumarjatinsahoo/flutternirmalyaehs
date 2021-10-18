@@ -152,7 +152,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'screens/Users/organ/TermsandConditions.dart';
 import 'screens/walkin_labrotry/Screen/TestAppointmentPage.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
-import 'package:user/screens/UserSignUpForm.dart';
+import 'screens/Users/UserSignUpForm.dart';
 import 'screens/Users/MyMedicalRecord/UserVitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
 import 'package:user/screens/WalkinRegisterListPage.dart';
