@@ -72,10 +72,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               appointmentlistModel = AppointmentlistModel.fromJson(map);
+              String userid = map["userid"];
+              //String travel =travel_allownces.toString();
+              widget.model.userid = userid;
+              print('userid>>>>>>>>>>>>>>>>>>: $userid.');
+
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -101,6 +106,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                         return InkWell(
                             onTap: () {
                               widget.model.userappointment = appointmentlist;
+
+
                               Navigator.pushNamed(context, "/usermedicinelist");
                             },
                             child: Column(

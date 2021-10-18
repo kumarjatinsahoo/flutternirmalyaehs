@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:unique_identifier/unique_identifier.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
-
 //import 'dart:html';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -118,7 +118,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                   width: double.infinity,
                   child: Padding(
                     padding:
-                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                    EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,7 +129,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(55),
                               border:
-                                  Border.all(color: Colors.white, width: 0.5),
+                              Border.all(color: Colors.white, width: 0.5),
                               color: Colors.white),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(55),
@@ -175,13 +175,13 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       selectDestination(0);
                       Navigator.pushNamed(context, "/dashboardpharmacy");
                     }
-                    // onTap: (){},
-                    ),
+                  // onTap: (){},
+                ),
                 Divider(),
                 ListTile(
                   leading: Image.asset(
-                    "assets/images/myprofile.png",
-                    height: 30,
+                      "assets/images/myprofile.png",
+                      height: 30,
                       color: Colors.grey
                   ),
                   title: Text('My Profile'),
@@ -192,8 +192,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     //Navigator.pushNamed(context, "/profileScreen1");
                   },
                 ),
-               // Divider(),
-             /*   ListTile(
+                // Divider(),
+                /*   ListTile(
                   leading: Image.asset(
                     "assets/images/home.png",
                     height: 30,
@@ -211,8 +211,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                   leading: Image.asset(
-                    "assets/images/account.png",
-                    height: 30,
+                      "assets/images/account.png",
+                      height: 30,
                       color: Colors.grey
                   ),
                   // leading: Icon(Icons.person),
@@ -226,8 +226,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                   leading: Image.asset(
-                    "assets/images/aboutus.png",
-                    height: 30,
+                      "assets/images/aboutus.png",
+                      height: 30,
                       color: Colors.grey
                   ),
                   // leading: Icon(Icons.person),
@@ -241,8 +241,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                     leading: Image.asset(
-                      "assets/images/share.png",
-                      height: 30,
+                        "assets/images/share.png",
+                        height: 30,
                         color: Colors.grey
                     ),
                     title: Text('Share'),
@@ -254,8 +254,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                     leading: Image.asset(
-                      "assets/images/contact us.png",
-                      height: 30,
+                        "assets/images/contact us.png",
+                        height: 30,
                         color: Colors.grey
                     ),
                     title: Text('Contact Us'),
@@ -267,8 +267,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                     leading: Image.asset(
-                      "assets/images/support.png",
-                      height: 30,
+                        "assets/images/support.png",
+                        height: 30,
                         color: Colors.grey
                     ),
                     title: Text('Support'),
@@ -280,8 +280,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 Divider(),
                 ListTile(
                     leading: Image.asset(
-                      "assets/images/reminder.png",
-                      height: 30,
+                        "assets/images/reminder.png",
+                        height: 30,
                         color: Colors.grey
                     ),
                     title: Text('Reminder'),
@@ -321,198 +321,360 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
 
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child:
+    return
       Container(
-        color: Colors.white,
-        height: double.maxFinite,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 20.0, right: 10, left: 10, bottom: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      padding: EdgeInsets.symmetric(horizontal: 7),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                icon: "assets/Myorder1.png",
-                                title: "My Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/myorder");
-                                  //Navigator.pushNamed(context, "/walkRegList");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                icon: "assets/ConOrder.png",
-                                title: " Confirmed Order ",
-                                fun: () {
-                                  //chooseAppointment(context);
-                                  Navigator.pushNamed(context, "/ordersPharma");
-                                  },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/ProcessOrder.png",
-                                title: "Processed Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/processedorders");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/DeliverdOrder.png",
-                              title: "Deliverd Order",
-                              fun: () {
-                                //chooseAppointment1(context);
-                               Navigator.pushNamed(context, "/deliverdorder");
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              // ,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Invoices.png",
-                                title: "Invoices",
-                                fun: () {
+                    _buildTileblue(
+                      icon: "assets/Myorder1.png",
+                      fun: () {
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        // Navigator.pushNamed(context, "/medicalrecordpage");
+                       // Navigator.pushNamed(context, "/docMyProf");
+                        Navigator.pushNamed(context, "/myorder");
 
-                                //  Navigator.pushNamed(context, "/paymentcollection");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTilered(
-                              icon: "assets/monthlyoverview2.png",
-                              title: "Monthly Overview",
-                              fun: () {
-                                 Navigator.pushNamed(context, "/monthloveryview");
-                              },
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
-                              // ,
-                            ),
-                          ],
-                        ),
-                      ],
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      // ,
                     ),
-                    SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Discount.png",
-                                title: "Discount & Offer",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/setdiscount");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildTileblue(
-                              icon: "assets/chat 1.png",
-                              title: "Online Chat",
-                              fun: () {
-                                //chooseAppointment1(context);
-                                  Navigator.pushNamed(context, "/onlinechats");
-                              },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
-                              // ,
-                            ),
-                          ],
-                        ),
-                      ],
+                    SizedBox(
+                      height: 5,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     _buildTile2(
-                    //       //icon: Icons.document_scanner,
-                    //       icon: CupertinoIcons.settings_solid,
-                    //       title: "Updation Data",
-                    //       fun: () {
-                    //         Navigator.pushNamed(context, "/testappointmentpage1");
-                    //       },
-                    //       color: AppData.BG1RED,
-                    //       bordercolor: AppData.BG1RED,
-                    //       // ,
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(MyLocalizations.of(context).text("MY_ORDER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
               ),
-            )
-          ],
-        ),
+
+              /* Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/ConOrder.png",
+                      fun: () {
+                        // Navigator.pushNamed(context, "/myAppointment");
+                       // Navigator.pushNamed(context, "/doctorAppointment");
+                        Navigator.pushNamed(context, "/ordersPharma");
+
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(MyLocalizations.of(context).text("CONFIRM ORDER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/ProcessOrder.png",
+                      fun: () {
+                        //chooseAppointment(context, model);
+                        //Navigator.pushNamed(context, "/userAppoint");
+                        // Navigator.pushNamed(context, "/myAppointment");
+                        /*Navigator.pushNamed(
+                                    context, "/medipedia");*/
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                        //Navigator.pushNamed(context, "/docWalkInReg");
+                        Navigator.pushNamed(context, "/processedorders");
+
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(MyLocalizations.of(context).text("PROCESSED ORDER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                  ]),
+
+            ],
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/DeliverdOrder.png",
+                      fun: () {
+                        // AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/discountoffer");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(context, "/deliverdorder");
+
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context).text("DELIVERED ORDER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Health               chat",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(
+                            child:*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/Invoices.png",
+                      //icon: Icons.alarm,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Share_appointment",
+                      fun: () {
+                        // AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/medicinereminder");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      size:100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(MyLocalizations.of(context).text("INVOICE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Medicine Reminder",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                  ]),
+              /*),*/
+              SizedBox(
+                width: 5,
+              ),
+              /*  Expanded(*/
+
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/monthlyoverview2.png",
+                      fun: () {
+                        // AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/discountoffer");
+                        //AppData.showInSnackBar(context, "Coming soon");
+                      },
+                      //color: AppData.BG2BLUE,
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: 100 / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context).text("MONTHLY OVERVIEW"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Health               chat",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: 20),
+          Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 10,),
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/Discount.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      fun: () {
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/healthCheckup");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context).text("DISCOUNT & OFFER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+              SizedBox(
+                width: 40,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/chat 1.png",
+                      fun: () {
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/emergencyroom");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context).text("ONLINE CHAT"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+
+                    /*  Align(
+                                        alignment: Alignment.center,
+                                        child:SizedBox(
+                                          width:100, child: FittedBox(child:Text(
+                                          "Discount & Offers",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        )
+                                      ),
+                                      ),*/
+                  ]),
+              SizedBox(
+                width: 15,
+              ),
+            ],
+          ),
+          SizedBox(height: 50),
+
+        ],
       ),
     );
   }
@@ -674,12 +836,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
 
   Widget _buildTilered(
       {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -690,7 +852,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -702,7 +864,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryRedColor,
               width: 1.0,
             )
-            /* boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -710,7 +872,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -762,34 +924,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     ),*/
               ],
             ),
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
-            )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
+
           ],
         ),
       ),
@@ -798,12 +933,12 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
 
   Widget _buildTileblue(
       {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -813,7 +948,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -825,15 +960,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
               color: AppData.kPrimaryColor,
               width: 1.0,
             )
-            /* boxShadow: [
-            BoxShadow(
-              color: bordercolor,
-              blurRadius: 5.0,
-              spreadRadius: 2.0,
-              offset: Offset(2.0, 2.0), // shadow direction: bottom right
-            )
-          ],*/
-            ),
+
+        ),
         child: Stack(
           children: [
             Column(
@@ -859,59 +987,10 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                     fontSize: 16,
                   ),
                 ),
-                /*Padding(
-                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
-                      ),
-                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Text(
-                  title,
-                  style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 18.0,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                ),
-                          ),
-                        ],
-                      ),
-                    ),*/
+
               ],
             ),
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
-            )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
+
           ],
         ),
       ),

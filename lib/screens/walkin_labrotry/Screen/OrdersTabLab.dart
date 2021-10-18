@@ -44,11 +44,10 @@ class _UserMedicineList extends State<OrdersTabLab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Confirm Orders",
-
+                text:"Confirmed Orders",
               ),
               Tab(
-                text:"Cancel Orders",
+                text:"Cancelled Orders",
               ),
             ],
           ),

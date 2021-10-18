@@ -139,6 +139,26 @@ class _MyOrdersState extends State<MyOrders> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                          /*  Text(
+                                              'Name: ',
+                                              style: TextStyle(
+                                                  color: Colors.blue,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(
+                                              height: 3,
+                                            ),*/
+                                            Text(
+                                              body.name,
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(
+                                              height: 7,
+                                            ),
                                             Row(
                                               children: [
                                                 Icon(
@@ -177,7 +197,7 @@ class _MyOrdersState extends State<MyOrders> {
                                             SizedBox(
                                               height: size.height * 0.01,
                                             ),
-                                            Text(
+                                             Text(
                                               'Order ID: ',
                                               style: TextStyle(
                                                   color: Colors.blue,

@@ -428,6 +428,8 @@ class _MedicineList extends State<UserMedicineList> {
 
   Widget dialogaddnomination(BuildContext context) {
     DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    textEditingController[0].text = "";
+
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),

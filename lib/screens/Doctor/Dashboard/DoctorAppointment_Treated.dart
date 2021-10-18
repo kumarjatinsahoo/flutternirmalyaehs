@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
@@ -82,7 +81,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -91,148 +90,150 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                //appointdate(),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        leftArrow();
-                      },
-                      child: Icon(
-                        CupertinoIcons.arrow_left_circle,
-                        size: 38,
-                        color: Colors.grey,
+          body: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  //appointdate(),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          appointdate(),
-                        ],
+                      InkWell(
+                        onTap: (){
+                          leftArrow();
+                        },
+                        child: Icon(
+                          CupertinoIcons.arrow_left_circle,
+                          size: 38,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        rightArrow();
-                      },
-                      child: Icon(
-                        CupertinoIcons.arrow_right_circle,
-                        size: 38,
-                        color: Colors.grey,
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            appointdate(),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
+                      InkWell(
+                        onTap: (){
+                          rightArrow();
+                        },
+                        child: Icon(
+                          CupertinoIcons.arrow_right_circle,
+                          size: 38,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                    ],
+                  ),
 
-                (doctorAppointmment != null)
-                    ? ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, i) {
-                      Body appointmentlist = doctorAppointmment.body[i];
-                      /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
-                      return
-                        InkWell(
-                          onTap: (){
-                        widget.model.appointmentlist=appointmentlist;
-                        //Navigator.pushNamed(context, "/medi");
-                        Navigator.pushNamed(context, "/doctorMedicationTab");
-                      },
-                      child:  Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(height: 10,),
-                                Card(
-                                  elevation: 5,
-                                  child: Container(
-                                      height: 100,
-                                      //width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: Border.all(
-                                            color: Colors.grey[300],
-                                          ),
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment
-                                              .center,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment
-                                                    .start,
-                                                children: [
-                                                  Text(appointmentlist.patname,
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 18),),
-                                                  SizedBox(height: 5,),
-                                                  /*Text(appointmentlist.speciality,
-                                                    overflow: TextOverflow.clip,
-                                                    style: TextStyle(),),
-                                                  SizedBox(height: 5,),*/
-                                                  Text(
-                                                    "Patient Notes:"+appointmentlist.notes,
-                                                    overflow: TextOverflow.clip,
-                                                    style: TextStyle(),),
-                                                ],
-                                              ),),
-                                            /*new Spacer(),*/
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                top: 15.0,),
-                                              child: Column(
-                                                // mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment
-                                                    .end,
-                                                children: [
-                                                  Text(/*'Confirmed'*/appointmentlist.status,
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 15,
-                                                        color: Colors.green),),
-                                                  SizedBox(height: 3,),
-                                                  Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+" "+appointmentlist.appmonth,
-                                                    overflow: TextOverflow.clip,
-                                                    style: TextStyle(),),
-
-                                                ],
-                                              ),
+                  (doctorAppointmment != null)
+                      ? ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        Body appointmentlist = doctorAppointmment.body[i];
+                        /* itemCount: lists.length,
+                  itemBuilder: (context, index) {*/
+                        return
+                          InkWell(
+                            onTap: (){
+                          widget.model.appointmentlist=appointmentlist;
+                          //Navigator.pushNamed(context, "/medi");
+                          Navigator.pushNamed(context, "/doctorMedicationTab");
+                        },
+                        child:  Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: 10,),
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: 100,
+                                        //width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
                                             ),
-                                          ],
-                                        ),
-                                      )),
-                                ),
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment
+                                                .center,
+                                            children: [
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(appointmentlist.patname,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 18),),
+                                                    SizedBox(height: 5,),
+                                                    /*Text(appointmentlist.speciality,
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
+                                                    SizedBox(height: 5,),*/
+                                                    Text(
+                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
+                                                  ],
+                                                ),),
+                                              /*new Spacer(),*/
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 15.0,),
+                                                child: Column(
+                                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .end,
+                                                  children: [
+                                                    Text(/*'Confirmed'*/appointmentlist.status,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 15,
+                                                          color: Colors.green),),
+                                                    SizedBox(height: 3,),
+                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+" "+appointmentlist.appmonth,
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
 
-                              ],
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+
+                                ],
+                              ),
+
                             ),
+                          ],
+                        ),
+                          );
+                      },itemCount: doctorAppointmment.body.length,
 
-                          ),
-                        ],
-                      ),
-                        );
-                    },itemCount: doctorAppointmment.body.length,
-
-                ): Container(),
-              ],
+                  ): Container(),
+                ],
+              ),
             ),
           ),
 
