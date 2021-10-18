@@ -526,10 +526,87 @@ class AppData {
       "After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
 
 
- static String organ4="Any living person can sign up the organ donation form and pledge to be an organ donor. When the person is brain dead, the family members should immediately contact transplant coordinators. After medical evaluation, the necessary organs are retrieved for transplantation. "+
+  static String organ4="Any living person can sign up the organ donation form and pledge to be an organ donor. When the person is brain dead, the family members should immediately contact transplant coordinators. After medical evaluation, the necessary organs are retrieved for transplantation. "+
   "Anyone who has pledged to be an organ donor should always inform the close family members about their wish."+
   "After donation there is no difficulty during cremation. All the information of the donor and the receiver is kept confidential.";
   //static String organ44="After approval from the transplant center, concerned health authorities, and the family members, doctors can begin the necessary procedure.";
-static String tearm=
+  static String tearm=
     "i. Organ donation is a family decision.Therefore ,it is important that you discuss your decision with family members and loved ones so that it will be easier tofollow through with your wishes.";
+  static String govtschem1=
+      "The scheme aimed to help road accident victims get instant treatment at the trauma care hospitals across the state.";
+  static String govtschem11=
+      "Under the Bal Thackeray Upgath Vima Yojana, the accident victims will be treated for free in trauma care hospitals for up to 3 days. The state government will cover the cost of treatment of up to Rs. 30,000/-.";
+  static String govtschem12=
+      "Complete Details are not available yet.";
+  static String govtschem2=
+      "The objective of JSSK Programme is that each and every pregnant woman and sick infant upto age of 1 year gets timely access to the health care system for required quality antenatal, intra-natal, post-natal and immunization and diagnostics free of cost.";
+  static String govtschem21=
+      "Prgenant Womens.";
+  static String govtschem22=
+    "1.	Ration Card\n2.	Aadhar Card\n3.	Antyodaya or Annapurna Card";
+  static String govtschem23=
+      "Services are provided by a network of Sub-centers, Primary health centers, Rural hospitals, Sub-district hospitals, District/Woman hospitals, Govt. medical college hospitals etc government institutes.";
+  static String govtschem3=
+      "To improve access of Below Poverty Line (BPL) and Above Poverty Line (APL) families (excluding White Card Holders as defined by Civil Supplies Department) to quality medical care for identified speciality services requiring hospitalization for surgeries and therapies or consultations through an identified Network of health care providers.";
+  static String govtschem31=
+      "1.	People from Below & Above Poverty line categories having Orange card(annual family income below 1 lac), Yello/white Card, Antyodaya and Annapurna Card holders.\n2.	Ashramshal, orphanage, old age homes and journalists.\n3.	Farmers from 14 identified distressed districts of Maharashtra.";
+  static String govtschem32=
+      "1.	Insurance upto 2 lakh per family annually.\n2.	Amount will be incresed to 2.5-3 lakh in case of kidney transplant.\n3.	1100 identified ailments are covered such as knee replacement, sickle cell, anamia treatment and old age issues.\n4.	Scheme covers treatment, follow up charges, consultation charges and kidney tranplant charges.";
+  static String govtschem33=
+      "People can directly visit to network hospitals with the required documents for treatment. Visit given link for list of networked hopsitals.";
+  static String govtschem4=
+      "To strengthen effective monitoring of mortality indicators IMR and MMR through tracking of health Services to pregnant women & children is the main objective of project. Tracking & monitoring of health services delivered to severe anaemic & high risk mothers as well as low birth weight babies, monitoring of health services of beneficiaries in view of fully protected mothers and fully protected child, generation of monthly action plans in the form of work plans at health facility and health worker level as per the beneficiaries allotted are the other objectives of this project.";
+  static String govtschem41=
+      "Womens from BPL families";
+  static String govtschem42=
+      "1.	Beneficiary information regarding services given and services recorded in the MCTS Software is verified through telephonic calls pushed to beneficiary’s mobile number by state MCTS Call Centre. Janani Suraksha Yojana (JSY), Janani Shishu Suraksha Karyakram (JSSK) etc. Government health programs information is also being made available to them through telephonic calls.\n2.	New registered beneficiaries as well as services updated beneficiaries information is sent in the form of text SMS on the mobile numbers of various officers working at State, District, Block, Facility level.\n3.	SMS work plans regarding due services for a particular month are being sent on mobile numbers of health workers as per beneficiary allotted.\n4.	Information regarding AADHAR Number and Bank Account number of Eligible beneficiary under Janani Suraksha Yojana (JSY) is collected in MCTS Software for Aadhar Enabled Payment System (AEPS) through Direct Benefit Transfer (DBT). The beneficiary list is synchronised with Central Government’s CPSMS Portal on daily basis.";
+  static String govtschem5=
+      "The objective of JSSK Programme is that each and every pregnant woman and sick infant upto age of 1 year gets timely access to the health care system for required quality antenatal, intra-natal, post-natal and immunization and diagnostics free of cost.";
+  static String govtschem51=
+      "BPL families";
+  static String govtschem52=
+      "All the mental health care services and diet are being provided free of cost to the below poverty give patients/families";
+  static String govtschem53=
+      "Govt. Mental Care/Hospitals";
+  static String govtschem6=
+      "1.	To provide an easy access to promotional, preventive, curative and rehabilitative services to the elderly through community based primary health care approach\n2.	To identify health problems in the elderly and provide appropriate health interventions in the community with a strong referral backup support. \n3.	To build capacity of the medical and paramedical professionals as well as the care-takers within the family for providing health care to the elderly.\n4.	To provide referral services to the elderly patients through district hospitals, regional medical institutions.";
+  static String govtschem61=
+      "In Maharashtra, this programme is being implemented in 6 districts namely Amravati, Bhandara, Chandrapur, Gadchiroli, Wardha & Washim. ";
+  static String govtschem62=
+      "Health promotion and Prevention Referral of difficult cases to District Hospital/higher healthcare facility";
+  static String govtschem63=
+      "Primary Health cares in ";
+  static String govtschem64=
+      "a)	First phase (2 dist.): Wardha and Washim\nb)	Second phase (4 dist.): Bhandara, Gadchiroli, Chandrapur and Amaravati";
+  static String govtschem7=
+      "To improve the health of population in Tribal areas by providing them health services, ample clean water, by providing food supply, giving proper treatment to malnourished children and ultimately giving productive and long life to tribal population is the main aim of Navsanjivani scheme.";
+  static String govtschem71=
+      "People belonging to Tribal Areas ";
+  static String govtschem72=
+      "A pregnant women is paid Rs. 400 /- in cash for visiting health center for antenatal check up along with medicines worth Rs. 400/- to ensure a better health. This Scheme is applicable to tribal women having current pregnancy and live two issues.";
+  static String govtschem73=
+      "In tribal areas for tribal people, mostly for women & children to provide medical health at their homes and if required to shift nearest health centre Bharari Pathaks are functional.172 Bharari Pathaks have been constituted with one Medical officer with 2 Para-Medical staff which are appointed on deputation. 172 Bharari Pathaks are doing medical checkup and provide medicines. Bharari Pathaks Medical Officers are being provided Govt grants and grant of Rs. 6000/- per month per Pathak is provided. Additional funds of Rs 12000/- through RCH PIP (NRHM) are provided.";
+  static String govtschem74=
+      "In this scheme regular re-orientation regarding safe motherhood & neonatal care of trained and untrained Dais is being carried out by organizing quarterly meetings of Dais at sub centre level.\n\nProvision of food and loss of wages for SAM /MAM children and their relatives - Provision of food and loss of wages to relatives accompanying SAM/MAM children taking treatment at PHC/RH. Relatives accompanying SAM/MAM children Rs.40 per day is given as compensation for loss of wages till the child is admitted and Rs 65 per child is given, for food till the child is admitted. The funds for same are distributed to Zillah Parishad from Tribal Development Dept.";
+  static String govtschem75=
+      "Accessibility in tribal area is a problem in monsoon season due to geographical situation of area & limited transport facilities. Hence it is planned to conduct Health check up Immunization / Nutritional assessment of all tribal Population in said area. In the months of May & June various Bharari Pathaks are deputed in hilly areas to facilitate uninterrupted treatment, vaccination, referral services";
+  static String govtschem76=
+      "Under Navsanjivani Yojana in tribal area Rural Hospital, PHC, Subcentres, Ayurvedic Hospital give free services for patients, Bharari Pathaks also provide such Health Services.";
+  static String govtschem8=
+      "1.	To improve the health status of the urban poor community by provision of quality integrated primary health care services.\n2.	To strengthen the existing urban health infrastructure by renovation/ upgradation of existing facilities.\n3.	To support the development of referral system for institutional deliveries, emergency obstetric care and terminal method of family planning.\n4.	Involvement of NGO's / Private sector in the provision of primary health care services and also as part of referral system.\n5.	Integration of the existing health infrastructure with the proposed urban health programme. Funding will be performance based and the same principle will apply to the urban bodies receiving grants for the programme.";
+  static String govtschem81=
+      "urban poor children";
+  static String govtschem82=
+      "Parental iron supply, Gynecologist visit, supply of lab chemical & consumable, Maternal Death Audit, Pediatrician services, Child Death Audit, ARSH Clinic establishment. Outreach activities & provided value added services to adolescent girls and boys. Organizing Diagnostic camps which include HB testing, blood grouping, treatment of minor ailments, RCH Camps, Capacity building workshop & Training etc. services have been provided.";
+  static String govtschem83=
+      "Services are provided by health posts established under the 26 Municipal Corporations & 219 Municipal Councils.";
+
+
+
+
+
+
+
+
 }
+
