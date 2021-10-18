@@ -28,7 +28,7 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             val string: String = call.arguments as String
             val data: List<String> = string.split(",")
-            Toast.makeText(getApplicationContext(),"Name "+data.get(1)+"mobile "+data.get(2)+"gender "+data.get(3)+"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Name "+data.get(1)+"mobile "+data.get(2)+"gender "+data.get(3)+"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show()
             /*if (call.method == "getBatteryLevel") {
 
             }else if (call.method == "callUrl") {
@@ -58,8 +58,8 @@ class MainActivity: FlutterActivity() {
                         LaunchIntent.putExtra("name", data.get(1))
                         LaunchIntent.putExtra("mobile", data.get(2))
                         LaunchIntent.putExtra("gender", data.get(3))
-                        LaunchIntent.putExtra("weight", data.get(4))
-                        LaunchIntent.putExtra("height", data.get(5))
+                        LaunchIntent.putExtra("height", data.get(4))
+                        LaunchIntent.putExtra("weight", data.get(5))
                         LaunchIntent.putExtra("age", data.get(6))
                         LaunchIntent.type = "text/plain"
                         startActivity(LaunchIntent)
