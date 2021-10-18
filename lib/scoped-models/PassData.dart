@@ -93,6 +93,7 @@ String pharmaaddress;
 String pharmaexperience;
 String pharmagender;
 pharma.Body userappointment;
+String userid;
 medicine.Body medicinelist;
 test.Body testList;
 String pharmacyaddress;
