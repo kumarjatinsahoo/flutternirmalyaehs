@@ -16,6 +16,7 @@
   "NGO": "NGO",
   "BLOOD_BANK": "Blood Bank",
   "CANCEL": "Cancel",
+  "SAVE": "Save",
   "UPDATE": "Update",
 
   "SIGNUP": "SIGNUP",
@@ -66,7 +67,7 @@
   "UPLOAD_DOCUMENT": "Upload Document",
   "UPLOAD_PHOTO": "Upload Photo",
   "UPLOAD": "Upload",
-  "AGREE_TO_NCORDS": "I Agree to NCORDS",
+  "AGREE_TO_NCORDS": "I Agree to eHealthSystem's",
 
 
 
@@ -132,12 +133,13 @@
   "APPOINT_NO": "",
   "TYPE": "",
   "REMARK": "",
-  "NO_IMMUNIZATION_FOUND": "",
-  "NAME": "",
-  "ALLERGEN": "",
-  "SEVERTY": "",
-  "UPDATED_BY": "",
-  "ADD_ALLERGIC": "",
+  "NO_IMMUNIZATION_FOUND": "No immunization found",
+  "NAME": "name",
+  "ALLERGEN": "Allergen",
+  "SEVERTY": "Severity",
+  "REACTION": "Reaction",
+  "UPDATED_BY": "Updated by",
+  "ADD_ALLERGIC": "ADD ALLERGIC",
   "DATE": "",
   "RESON": "",
   "ADD_DETAILS": "",
