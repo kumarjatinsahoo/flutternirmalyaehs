@@ -27,6 +27,8 @@ class _DoctorAppointmentConfirmedState
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
+  bool isdata = false;
+
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -148,18 +150,27 @@ class _DoctorAppointmentConfirmedState
                   ),
                 ],
               ),
-              /*appointdate(),*/
+              isdata == true
+                  ? CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              )
+                  : doctorAppointmment == null || doctorAppointmment == null
+                  ? Container(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 300,),
+                      Text(
+                        'No Data Found',
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
 
-              /*InkWell(
-                       onTap: (){
-                         _displayTextInputDialog(context);
-                       },
-                       child: Text("edit",style: TextStyle(fontSize: 30),)),*/
-              /* Navigator.push(
-                     context,
-                     new MaterialPageRoute(
-                         builder: (context) => new ShowEmr(model:widget.model)));*/
-
+              )
+                  :
               (doctorAppointmment != null)
                   ? ListView.builder(
                       shrinkWrap: true,
