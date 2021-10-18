@@ -26,6 +26,7 @@ class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+            Toast.makeText(getApplicationContext(),"Height "+data.get(5)+": Weight "+data.get(4), Toast.LENGTH_SHORT).show();
             if (call.method == "getBatteryLevel") {
 
             }else if (call.method == "callUrl") {
