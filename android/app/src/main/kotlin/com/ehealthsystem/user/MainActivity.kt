@@ -14,12 +14,13 @@ import android.telephony.TelephonyManager
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-class MainActivity: FlutterActivity() {
+class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.eHealthSystem/goAnotherApp"
 
 
@@ -28,7 +29,7 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             if (call.method == "getBatteryLevel") {
 
-            }else if (call.method == "callUrl") {
+            } else if (call.method == "callUrl") {
                 //val intent = Intent(this, WebViewActivity::class.java)
                 //intent.putExtra("key", value)
                 //startActivity(intent)
@@ -61,12 +62,13 @@ class MainActivity: FlutterActivity() {
                         LaunchIntent.type = "text/plain"
                         //startActivity(LaunchIntent)
 
-                        Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
-
+                        val v = Toast.makeText(this@MainActivity, "Height: " + data.get(4) + " Weight: " + data.get(5), Toast.LENGTH_SHORT)
+                        v.show()
                     } else {
                         val string: String = call.arguments as String
                         val data: List<String> = string.split(",")
-                        Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
+                        val l=Toast.makeText(this@MainActivity, "Height: " + data.get(4) + " Weight: " + data.get(5), Toast.LENGTH_SHORT)
+                        l.show()
                         redirectToPlayStore()
 
                         // Do whatever we want to do if application not installed
@@ -77,8 +79,8 @@ class MainActivity: FlutterActivity() {
                 } else {
                     val string: String = call.arguments as String
                     val data: List<String> = string.split(",")
-                    Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()
-
+                    val v=Toast.makeText(this@MainActivity, "Height: " + data.get(4) + " Weight: " + data.get(5), Toast.LENGTH_SHORT)
+v.show()
 //                    var dialog = Dialog(this@MainActivity)
 //                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
 //                    dialog.setContentView(R.layout.noapkdialog)
@@ -168,7 +170,7 @@ class MainActivity: FlutterActivity() {
                         Settings.Secure.ANDROID_ID)
             }
         }
-        if (deviceId == "" || deviceId==null) {
+        if (deviceId == "" || deviceId == null) {
             val android_id = Settings.Secure.getString(applicationContext.contentResolver, Settings.Secure.ANDROID_ID)
             deviceId = android_id
         }
