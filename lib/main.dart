@@ -9,6 +9,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
+import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
@@ -720,7 +721,7 @@ class _MyAppState extends State<MyApp> {
               '/idCard': (context) => IdCardPage(
                     model: _model,
                   ),
-              '/dashboardpharmacy': (context) => DashboardPharmacy(
+              '/dashboardpharmacy': (context) => NewDashboardPharmacy(
                     model: _model,
                   ),
               /*'/dashboardpharmacy': (context) => DashboardPharmacy(

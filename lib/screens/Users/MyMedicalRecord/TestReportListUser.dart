@@ -21,6 +21,8 @@ class TestReportListUser1 extends StatefulWidget {
 class _TestReportListUser1State extends State<TestReportListUser1> {
   PocReportModel pocReportModel;
   bool isDataNotAvail = false;
+  bool isdata = false;
+
   session.LoginResponse1 loginResponse1;
   ScrollController _scrollController = ScrollController();
   int currentMax = 1;
@@ -75,8 +77,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                 pocReportModel.addMore(map);
               }
             } else {
-              isDataNotAvail = true;
-              if (i == 1) AppData.showInSnackBar(context, msg);
+             // isDataNotAvail = true;
+              //if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -182,6 +184,27 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
               ),
             ),
           ),
+          isdata == true
+              ? CircularProgressIndicator(
+            backgroundColor: AppData.matruColor,
+          )
+              : pocReportModel == null || pocReportModel == null
+              ? Container(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 300,),
+                  Text(
+                    'No Data Found',
+                    style:
+                    TextStyle(color: Colors.black, fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+
+          )
+              :
           (pocReportModel != null)
               ? ListView.builder(
                   physics: NeverScrollableScrollPhysics(),

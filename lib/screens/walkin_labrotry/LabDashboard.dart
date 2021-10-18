@@ -117,6 +117,258 @@ class _LabDashboardState extends State<LabDashboard> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 0,
         ),
+        body:  Container(
+          padding: EdgeInsets.symmetric(horizontal: 7),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: Icons.people,
+                          fun: () {
+                            //AppData.showInSnackBar(context, "Coming soon");
+                            // Navigator.pushNamed(context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/walkRegList");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          // ,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Register Patient",
+                            // MyLocalizations.of(context).text("My Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+
+                  /* Expanded(*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: Icons.alarm,
+                          fun: () {
+                            chooseAppointment(context);
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            //Navigator.pushNamed(context, "/ordersPharma");
+                          },
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Appointment",
+                            // MyLocalizations.of(context).text("Confirmed Order"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: CupertinoIcons.doc_append,
+                          fun: () {
+                            //chooseAppointment(context, model);
+                            //Navigator.pushNamed(context, "/userAppoint");
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                            Navigator.pushNamed(context, "/pocreportlist");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("POC Reports",
+                            // MyLocalizations.of(context).text("Processed Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
+
+                ],
+              ),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: Icons.edit_attributes,
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/testappointmentpage");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Test",
+/*
+                            MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  /*Expanded(
+                              child:*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: CupertinoIcons.bag,
+                          //icon: FontAwesomeIcons.accusoft,
+                          title: "My Orders",
+                          fun: () {
+                            AppData.showInSnackDone(context, "/myOrderTest");
+                            // Navigator.pushNamed(context, "/medicinereminder");
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("My Orders",
+                            // MyLocalizations.of(context).text("Invoices"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: CupertinoIcons.settings_solid,
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/testappointmentpage1");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Updation Data",
+                            // MyLocalizations.of(context).text("Monthly Overview"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+
+                      ]),
+                ],
+              ),
+              SizedBox(height: 50),
+
+            ],
+          ),
+        ),
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -279,7 +531,7 @@ class _LabDashboardState extends State<LabDashboard> {
             ),
           ),
         ),
-        body: _dashboardnew(context),
+    //    body: _dashboardnew(context),
       ),
     );
   }
@@ -837,5 +1089,109 @@ class _LabDashboardState extends State<LabDashboard> {
     sharedPref.remove(Const.IS_REG_SERVER);
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
+  Widget _buildTilered({IconData icon,
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 85,
+        //width: (MediaQuery.of(context).size.width - 80) / 3,
+        width: 100,
+        decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.zero,
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
+              bottomRight: Radius.zero,
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryRedColor,
+              width: 1.0,
+            )
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: Icon(
+                    /* "assets/logo1.png"*/
+                    icon,size: 40.0,
+
+                  ),
+                ),
+
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+
+  Widget _buildTileblue({IconData icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 85,
+        width: 100,
+        decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(10.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 1.0,
+            )
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      /* "assets/logo1.png"*/
+                      icon,size: 40.0
+                    )),
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    );
   }
 }
