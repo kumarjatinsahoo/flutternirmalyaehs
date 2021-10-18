@@ -12,7 +12,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
 class TestAppointmentPage1 extends StatefulWidget {

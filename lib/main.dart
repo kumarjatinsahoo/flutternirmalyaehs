@@ -103,7 +103,7 @@ import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'screens/Users/EmergencyHelp/SetupContactsPage.dart';
-import 'package:user/screens/TestAppointmentPage1.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentUpdationPage.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
