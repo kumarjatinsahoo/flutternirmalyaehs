@@ -58,8 +58,8 @@ class MainActivity: FlutterActivity() {
                         LaunchIntent.putExtra("name", data.get(1))
                         LaunchIntent.putExtra("mobile", data.get(2))
                         LaunchIntent.putExtra("gender", data.get(3))
-                        LaunchIntent.putExtra("weight", data.get(4))
-                        LaunchIntent.putExtra("height", data.get(5))
+                        LaunchIntent.putExtra("height", data.get(4))
+                        LaunchIntent.putExtra("weight", data.get(5))
                         LaunchIntent.putExtra("age", data.get(6))
                         LaunchIntent.type = "text/plain"
                         startActivity(LaunchIntent)

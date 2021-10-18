@@ -516,11 +516,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                   (body.mob == null || body.mob == "" || body.mob == "null")
                       ? ""
                       : body.mob;
-              String mapping = body.regNo +
+              String mapping = body.regNo.trim() +
                   "," +
-                  body.patientName +
+                  body.patientName.trim() +
                   "," +
-                  mob +
+                  mob.trim() +
                   "," +
                   body.gender +
                   "," +
@@ -528,7 +528,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                   "," +
                   weight.text +
                   "," +
-                  body.age.toString();
+                  body.age.toString().trim();
               _callLabApp(mapping.trim());
             }
           },
