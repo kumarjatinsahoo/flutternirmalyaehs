@@ -1267,13 +1267,13 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please select Title");
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter first Name");
+      AppData.showInSnackBar(context, "Please enter First Name");
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
-      AppData.showInSnackBar(context, "Please select gender");
+      AppData.showInSnackBar(context, "Please select Gender");
     }
     else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
