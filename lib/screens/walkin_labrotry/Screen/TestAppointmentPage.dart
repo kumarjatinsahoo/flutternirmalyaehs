@@ -12,7 +12,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
 class TestAppointmentPage extends StatefulWidget {
@@ -86,6 +86,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
 
   Future<void> _callLabApp(String data) async {
     try {
+      print("<<>>>>>iLab>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + data);
       final int result = await platform.invokeMethod('iLab', data);
     } on PlatformException catch (e) {}
   }
@@ -518,23 +519,11 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              String mob =
-                  (body.mob == null || body.mob == "" || body.mob == "null")
-                      ? ""
-                      : body.mob;
-              String mapping = body.regNo +
-                  "," +
-                  body.patientName +
-                  "," +
-                  mob +
-                  "," +
-                  body.gender +
-                  "," +
-                  height.text +
-                  "," +
-                  weight.text +
-                  "," +
-                  body.age.toString();
+              String mob = (body.mob == null || body.mob == "" || body.mob == "null")
+                      ? "" : body.mob;
+              String mapping = body.regNo + "," + body.patientName + ","
+                  + mob + "," + body.gender + "," + height.text + "," +
+                  weight.text + "," + body.age.toString();
               _callLabApp(mapping.trim());
             }
           },

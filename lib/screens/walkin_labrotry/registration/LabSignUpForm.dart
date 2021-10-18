@@ -144,6 +144,9 @@ class LabSignUpFormState extends State<LabSignUpForm> {
     LabSignUpForm.districtModel = null;
     LabSignUpForm.blockModel = null;
     LabSignUpForm.genderModel = null;
+    LabSignUpForm organizationModel = null;
+    LabSignUpForm titlemodel = null;
+
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -661,14 +664,17 @@ class LabSignUpFormState extends State<LabSignUpForm> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[1].text == "" ||
+         if (LabSignUpForm.organizationModel == null ||
+        LabSignUpForm.organizationModel == "") {
+          AppData.showInSnackBar(context, "Please select Organization Name");
+        }else if (LabSignUpForm.titlemodel == null ||
+             LabSignUpForm.titlemodel == "") {
+           AppData.showInSnackBar(context, "Please select Title");}
+         else if(textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
+          AppData.showInSnackBar(context, "Please enter Professional's Name");
         } else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Professional Name ");
-        } else if (LabSignUpForm.organizationModel == null ||
-            LabSignUpForm.organizationModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization");
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
         } else {
           widget.model.organization = LabSignUpForm.organizationModel.key;
           widget.model.labprofessionalname = textEditingController[1].text;

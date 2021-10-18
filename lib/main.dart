@@ -139,7 +139,7 @@ import 'package:user/screens/TabInstructionPage/TabInstruction5.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'screens/Users/organ/TermsandConditions.dart';
-import 'package:user/screens/TestAppointmentPage.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
 import 'package:user/screens/UserSignUpForm.dart';
 import 'screens/Users/MyMedicalRecord/UserVitalSigns.dart';
