@@ -27,13 +27,6 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 onTap: () {
                   Navigator.pushNamed(context, "/govetschem1");
                 },
-                /*child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "assets/images/govetSchemes1.png",
-                    fit: BoxFit.fill,
-                  ),
-                ),*/
                 child: Stack(
                   children: [
                     Padding(
@@ -43,13 +36,6 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    /* Image.network(
-                                         item.bannerImage,
-                                         fit: BoxFit.fill,
-                                         width: 1000,
-                                         height: double.maxFinite,
-                                       ),*/
-
                     Positioned(
                       bottom: 0,
                       left: 0,
