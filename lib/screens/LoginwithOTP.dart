@@ -335,9 +335,9 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
         textAlignVertical: TextAlignVertical.center,
         validator: (value) {
           if (value.isEmpty) {
-            return 'please enter mobile number';
+            return 'Mlease enter Mobile Number';
           } else if (value.length != 10) {
-            return 'Mobile no. should be 10 digit';
+            return 'Mobile No. should be 10 digit';
           } else {
             return null;
           }

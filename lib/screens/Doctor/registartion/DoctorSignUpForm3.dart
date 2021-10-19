@@ -535,6 +535,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
         if (textEditingController[8].text == null ||
             textEditingController[8].text == "") {
           AppData.showInSnackBar(context, "Please enter Education Name");
+          FocusScope.of(context).requestFocus(fnode1);
         } else if (DoctorSignUpForm3.specialistModel == null ||
             DoctorSignUpForm3.specialistModel == "") {
           AppData.showInSnackBar(context, "Please select Speciality");
@@ -932,8 +933,17 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
+            focusNode: fnode1,
             textAlignVertical:
             TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
             /*inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
