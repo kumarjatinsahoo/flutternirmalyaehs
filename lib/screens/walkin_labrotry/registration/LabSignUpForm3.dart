@@ -688,45 +688,45 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter Address");
         }else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
+          AppData.showInSnackBar(context, "Please select Country");
         } else if (LabSignUpForm3.stateModel == null ||
             LabSignUpForm3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (LabSignUpForm3.districtModel == null ||
             LabSignUpForm3.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
         }else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select city");
+          AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Pin");
         }else if (textEditingController[4].text != ""  &&
             textEditingController[4].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid home phone");
+          AppData.showInSnackBar(context, "Please enter a valid Home Phone");
         }else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid office phone");
+          AppData.showInSnackBar(context, "Please enter a valid Office Phone");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile number");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
         }else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
         }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email id");
+          AppData.showInSnackBar(context, "Please enter E-mail Id");
         } else if (textEditingController[11].text != ""&&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
         }else if (textEditingController[12].text != "" &&
             !AppData.isValidEmail(textEditingController[12].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+          AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
         }else if (textEditingController[13].text == "" || textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
         }
         else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked terms and Condition");
+          AppData.showInSnackBar(context, "Please checked Terms and Condition");
         }
          else {
           MyWidgets.showLoading(context);

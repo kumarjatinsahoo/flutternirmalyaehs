@@ -154,6 +154,8 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     super.initState();
     LabSignUpForm2.districtModel = null;
     LabSignUpForm2.blockModel = null;
+
+    LabSignUpForm2.bloodgroupModel = null;
     LabSignUpForm2.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
@@ -655,13 +657,13 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
           AppData.showInSnackBar(context, "Please enter Education Name");
         } else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please enter Date of birth");
+          AppData.showInSnackBar(context, "Please enter Date of Birth");
         } else if (LabSignUpForm2.bloodgroupModel == null ||
             LabSignUpForm2.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select blood group");
+          AppData.showInSnackBar(context, "Please select Blood Group");
         } else if (LabSignUpForm2.genderModel == null ||
             LabSignUpForm2.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select gender");
+          AppData.showInSnackBar(context, "Please select Gender");
         } else {
           widget.model.labeducation = textEditingController[8].text;
           widget.model.labdob = textEditingController[2].text;

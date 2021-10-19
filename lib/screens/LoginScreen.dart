@@ -443,7 +443,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(
               context, "Please enter Mobile No/Email Id/User Id");
         } else if (passController.text == "" || passController.text == null) {
-          AppData.showInSnackBar(context, "Please enter password");
+          AppData.showInSnackBar(context, "Please enter Password");
         } else {
           widget.model.phnNo = _loginId.text;
           MyWidgets.showLoading(context);

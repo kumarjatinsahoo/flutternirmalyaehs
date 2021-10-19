@@ -217,7 +217,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                           Container(
                               width:50,
                               height: 50,
-                              child: Image.asset('assets/images/appointment.png',fit: BoxFit.cover)
+                              child: Image.asset('assets/images/appointmentt.png',fit: BoxFit.cover)
                           ),
                         ),
                         Text(
@@ -525,7 +525,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               ),
               title: Text("My Profile"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/docMyProf");
+                //Navigator.pop(context);
 
                // Navigator.pushNamed(context, "/qrViewExample1");
               },
