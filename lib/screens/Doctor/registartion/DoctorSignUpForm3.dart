@@ -302,7 +302,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("SPECIALITY") ,
                                   ApiFactory.SPECIALITY_API,
                                   "speciality",
-                                  Icons.mail,
+                                  Icons.work_outlined,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.SPECIALITY_API);
@@ -329,7 +329,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("BLOODGROUP") ,
                                   ApiFactory.BLOODGROUP_API,
                                   "bloodgroup",
-                                  Icons.location_on_rounded,
+                                  Icons.bloodtype,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.BLOODGROUP_API);
@@ -350,7 +350,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("GENDER") ,
                                   ApiFactory.GENDER_API,
                                   "gender",
-                                  Icons.mail,
+                                  Icons.wc_outlined,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.GENDER_API);
@@ -726,7 +726,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                 prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey[600],
                 ),
               ),
             ),
@@ -917,25 +917,28 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical:
+            TextAlignVertical.center,
+            /*inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          /*inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],*/
         ),
       ),
     );

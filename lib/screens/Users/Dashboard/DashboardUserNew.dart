@@ -1607,8 +1607,8 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Govt Schemes",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/govtschemes");
-                        Navigator.pushNamed(context, "/govetschemeslist");
+                        Navigator.pushNamed(context, "/govtschemes");
+                       //Navigator.pushNamed(context, "/govetschemeslist");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },

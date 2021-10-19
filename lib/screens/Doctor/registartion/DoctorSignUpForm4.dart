@@ -562,11 +562,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                                 color: Colors.grey,
                                               ),
                                             ),
+
                                             TextSpan(
-                                              text:MyLocalizations.of(context).text("T&C"),
+                                              text:MyLocalizations.of(context).text(  "T&C"),
                                               /* "Welcome back",*/
+
                                               style: TextStyle(
-                                                // fontWeight: FontWeight.w500,
+                                                 //fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                                 fontFamily: "Monte",
                                                 // fontSize: 25.0,
                                                 color: AppData
@@ -1268,25 +1271,28 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 15),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical:
+            TextAlignVertical.center,
+            /* inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          /* inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],*/
         ),
       ),
     );
@@ -1309,25 +1315,28 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 15),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            /* textAlignVertical:
+            TextAlignVertical.center,*/
+            /*inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          /* textAlignVertical:
-          TextAlignVertical.center,*/
-          /*inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
-          ],*/
         ),
       ),
     );
@@ -1348,7 +1357,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1405,7 +1414,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1462,7 +1471,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(

@@ -354,7 +354,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               .text("GENDER") +"*",
                                           ApiFactory.GENDER_API,
                                           "gender",
-                                          Icons.person_rounded,
+                                          Icons.wc_outlined,
                                           23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
@@ -782,7 +782,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               text:MyLocalizations.of(context).text("T&C"),
                                               /* "Welcome back",*/
                                               style: TextStyle(
-                                                // fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                                 fontFamily: "Monte",
                                                 // fontSize: 25.0,
                                                 color: AppData

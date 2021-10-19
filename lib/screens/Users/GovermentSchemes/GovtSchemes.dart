@@ -137,7 +137,8 @@ class _GovtSchemesState extends State<GovtSchemes> {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
 
-        Navigator.pushNamed(context, "/govtschemeslist");
+       // Navigator.pushNamed(context, "/govtschemeslist");
+        Navigator.pushNamed(context, "/govetschemeslist");
         //}
       },
     );

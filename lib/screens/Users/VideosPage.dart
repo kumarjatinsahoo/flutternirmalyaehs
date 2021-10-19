@@ -70,39 +70,92 @@ class _VideosPageState extends State<VideosPage> {
                     onTap: () {
                       launchURL(list[i].informationUrl);
                     },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            Image.network(
-                              AppData.getYoutubeThumbnail(list[i].informationUrl),
-                              fit: BoxFit.contain,
-                              width: size.width,
+                    child: Card(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset("assets/logo1.png",height: 40,),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("eHealthSystem",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                                      Text("5 days ago"),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            Positioned(
-                              top: 0,
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Icon(
-                                Icons.play_circle_outline,
-                                color: Colors.white,
-                                size: 60,
-                              ),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            list[i].nameOfData,
-                            textAlign: TextAlign.start,
-                            style:
-                                TextStyle(fontSize: 20, fontFamily: "MonteMed"),
                           ),
-                        )
-                      ],
+                          Stack(
+                            children: [
+                              Image.network(
+                                AppData.getYoutubeThumbnail(list[i].informationUrl),
+                                fit: BoxFit.contain,
+                                width: size.width,
+                              ),
+                              Positioned(
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Icon(
+                                  Icons.play_circle_outline,
+                                  color: Colors.white,
+                                  size: 60,
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              list[i].nameOfData,
+                              textAlign: TextAlign.start,
+                              style:
+                                  TextStyle(fontSize: 15,fontWeight: FontWeight.bold, fontFamily: "MonteMed"),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Icon(Icons.visibility,color: Colors.blue,size: 16,),
+                                SizedBox(width: 5),
+                                Text("250",style: TextStyle(fontSize: 12),),
+                                SizedBox(width: 20),
+                                Icon(Icons.thumb_up,color: Colors.blue,size: 16),
+                                SizedBox(width: 5),
+                                Text("95",style: TextStyle(fontSize: 12),),
+                                SizedBox(width: 20),
+                                Icon(Icons.message,color: Colors.blue,size: 16),
+                                SizedBox(width: 5),
+                                Text("45",style: TextStyle(fontSize: 12),),
+                                SizedBox(width: 20),
+                                Icon(Icons.share,color: Colors.blue,size: 16),
+                                SizedBox(width: 5),
+                                Text("28",style: TextStyle(fontSize: 12),),
+                              ],
+                            ),
+                          ),
+                          Divider(),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.thumb_up,color: Colors.red,size: 20,),
+                              Icon(Icons.message,color: Colors.black,size: 20),
+                              Icon(Icons.bookmark,color: Colors.black,size: 20),
+                              Icon(Icons.share,color: Colors.black,size: 20),
+                            ],
+                          ),SizedBox(height: 10,)
+                        ],
+                      ),
                     ),
                   );
                 },

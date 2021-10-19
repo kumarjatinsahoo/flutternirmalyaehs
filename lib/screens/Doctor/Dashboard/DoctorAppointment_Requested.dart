@@ -352,7 +352,7 @@ class _DoctorAppointmentRequestedState
                   height: 20,
                 ),
                 ListTile(
-                  title: Text("Confirmed"),
+                  title: Text("Confirm"),
                   leading: Icon(Icons.book),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
@@ -385,7 +385,7 @@ class _DoctorAppointmentRequestedState
                   height: 2,
                 ),
                 ListTile(
-                  title: Text("Cancelled"),
+                  title: Text("Cancel"),
                   leading: Icon(Icons.trending_up),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
