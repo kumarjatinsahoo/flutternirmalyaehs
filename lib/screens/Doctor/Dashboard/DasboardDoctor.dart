@@ -217,7 +217,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                           Container(
                               width:50,
                               height: 50,
-                              child: Image.asset('assets/images/appointment.png',fit: BoxFit.cover)
+                              child: Image.asset('assets/images/appointmentt.png',fit: BoxFit.cover)
                           ),
                         ),
                         Text(
