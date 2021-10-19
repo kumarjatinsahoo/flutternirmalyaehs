@@ -53,10 +53,8 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                             onTap: () {
                               widget.model.medicallserviceType =
                                   "Blood Donation";
-                              Navigator.pushNamed(
-                                  context, "/medicalsServiceOngooglePage");
-
-                              // AppData.showInSnackBar(context,"hi");
+                              Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                   //AppData.showInSnackBar(context,"hi");
                             },
                             child: Card(
                               elevation: 5,
