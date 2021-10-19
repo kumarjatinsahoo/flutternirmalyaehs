@@ -93,297 +93,293 @@ class _VitalSignsState extends State<VitalSigns> {
   }
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    final orientation = MediaQuery.of(context).orientation;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
-            style: TextStyle(color: AppData.white),
-          ),
-          centerTitle: true,
-          backgroundColor:AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: AppData.white),
-            actions: <Widget>[
-              InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.00),
-                  child: Icon(
-                    Icons.add_circle,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                ),
-                onTap:() async{
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => dialogaddnomination(context),
-                  );
-                 // dialogaddnomination(context);
-
-
-
-                },
-              ),
-]
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
+          style: TextStyle(color: AppData.white),
         ),
+        centerTitle: true,
+        backgroundColor:AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: AppData.white),
+          actions: <Widget>[
+            InkWell(
+              child: Padding(
+                padding: const EdgeInsets.all(20.00),
+                child: Icon(
+                  Icons.add_circle,
+                  color: Colors.white,
+                  size: 25,
+                ),
+              ),
+              onTap:() async{
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => dialogaddnomination(context),
+                );
+               // dialogaddnomination(context);
 
-        body:   SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
-            child: Column(
-              children: [
-                 Container(
-                  height: 100,
-                  //color: Colors.,
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.black26),
-                            /*color: Colors.blue[50]*/),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                   (vitalsignsModel == null || vitalsignsModel?.body[0]?.height?.toString()=="0.0")
-                                    ?"N/A": vitalsignsModel?.body[0]?.height?.toString(),
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(MyLocalizations.of(context).text("HEIGHT"),
-                                  style: TextStyle(
-                                    color: Colors.black38,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.black26),
-                            //color: Colors.red[50]),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                 (vitalsignsModel == null || vitalsignsModel.body[0].weight.toString()=="0.0")
-                                ? "N/A":vitalsignsModel.body[0].weight.toString(),
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(MyLocalizations.of(context).text("WEIGHT"),
-                                  style: TextStyle(
-                                    color: Colors.black38,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.black26),
-                            ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                 (vitalsignsModel?.body == null || vitalsignsModel.body[0].bmi.toString()=="0.0")
-                                    ? "N/A":vitalsignsModel.body[0].bmi.toString() ,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(MyLocalizations.of(context).text("BMI"),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black38),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),/*:Container(),*/
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SingleChildScrollView(
-                  child: Container(
-                    height: 600,
-                    color: AppData.greyBorder,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, right: 5,left: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+
+              },
+            ),
+]
+      ),
+
+      body:   SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
+          child: Column(
+            children: [
+               Container(
+                height: 100,
+                //color: Colors.,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black26),
+                          /*color: Colors.blue[50]*/),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-
-                                    _buildTile1(
-                                      icon: "assets/temperatuer.png",
-                                      title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
-                          ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
-                                      subtitle: MyLocalizations.of(context).text("TEMPERATURE"),
-                                      fun: () {
-                                        /*Navigator.pushNamed(
-                                        context, "/patientRegistration");*/
-                                       // Navigator.pushNamed(context, "/walkRegList");
-                                      },
-                                      color:Color(0xFFCF3564),
-                                      bordercolor: AppData.grey100,
-                                      // ,
-                                    ),
-                                  ]),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    _buildTile1(
-                                      icon: "assets/bloodp.png",
-                                      title:(vitalsignsModel?.body == null|| vitalsignsModel.body[0].respiartion.toString()=="0")
-                                          ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
-                                      subtitle:MyLocalizations.of(context).text("BLOOD_PRESSURE"),
-                                      fun: () {
-                                       // chooseAppointment(context);
-                                        // Navigator.pushNamed(context, "/medicalrecordpage");
-                                      },
-                                      color: Color(0xFF2372B6),
-                                      bordercolor: AppData.BG1RED,
-                                      // ,
-                                    ),
-                                  ]),
+                              Text(
+                                 (vitalsignsModel == null || vitalsignsModel?.body[0]?.height?.toString()=="0.0")
+                                  ?"N/A": vitalsignsModel?.body[0]?.height?.toString(),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(MyLocalizations.of(context).text("HEIGHT"),
+                                style: TextStyle(
+                                  color: Colors.black38,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ],
                           ),
-                          SizedBox(height: 7),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black26),
+                          //color: Colors.red[50]),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    _buildTile1(
-                                      //icon: Icons.document_scanner,
-                                      icon: "assets/pulse.png",
-                                      title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].pulse.toString()=="0")
-                                          ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
-                                      subtitle:MyLocalizations.of(context).text("PULSE"),
-                                      fun: () {
-                                        /*Navigator.pushNamed(
-                                            context, "/pocreportlist");*/
-                                      },
-                                      color: Color(0xFF2372B6),
-                                      bordercolor: AppData.BG1RED,
-                                      // ,
-                                    ),
-                                  ]),
-                              Column(
+                              Text(
+                               (vitalsignsModel == null || vitalsignsModel.body[0].weight.toString()=="0.0")
+                              ? "N/A":vitalsignsModel.body[0].weight.toString(),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(MyLocalizations.of(context).text("WEIGHT"),
+                                style: TextStyle(
+                                  color: Colors.black38,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black26),
+                          ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                               (vitalsignsModel?.body == null || vitalsignsModel.body[0].bmi.toString()=="0.0")
+                                  ? "N/A":vitalsignsModel.body[0].bmi.toString() ,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(MyLocalizations.of(context).text("BMI"),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black38),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),/*:Container(),*/
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SingleChildScrollView(
+                child: Container(
+                  height: 600,
+                  color: AppData.greyBorder,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0, right: 5,left: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+
+                                  _buildTile1(
+                                    icon: "assets/temperatuer.png",
+                                    title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
+                        ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
+                                    subtitle: MyLocalizations.of(context).text("TEMPERATURE"),
+                                    fun: () {
+                                      /*Navigator.pushNamed(
+                                      context, "/patientRegistration");*/
+                                     // Navigator.pushNamed(context, "/walkRegList");
+                                    },
+                                    color:Color(0xFFCF3564),
+                                    bordercolor: AppData.grey100,
+                                    // ,
+                                  ),
+                                ]),
+                            Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   _buildTile1(
-                                    icon: "assets/respiration.png",
-                                    title: (vitalsignsModel?.body == null || vitalsignsModel?.body[0].respiartion.toString()=="0")
-                                        ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
-                                    subtitle:MyLocalizations.of(context).text("RESPIRATION"),
+                                    icon: "assets/bloodp.png",
+                                    title:(vitalsignsModel?.body == null|| vitalsignsModel.body[0].respiartion.toString()=="0")
+                                        ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
+                                    subtitle:MyLocalizations.of(context).text("BLOOD_PRESSURE"),
                                     fun: () {
-                                      //chooseAppointment1(context);
-                                     /* Navigator.pushNamed(
-                                          context, "/testappointmentpage");*/
+                                     // chooseAppointment(context);
+                                      // Navigator.pushNamed(context, "/medicalrecordpage");
                                     },
-                                    color: Color(0xFFCF3564),
-
-                                    bordercolor: AppData.BG2BLUE,
+                                    color: Color(0xFF2372B6),
+                                    bordercolor: AppData.BG1RED,
                                     // ,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Padding(
-                            padding: const EdgeInsets.only( right: 5,left: 5,bottom: 10),
-                            child: Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                ]),
+                          ],
+                        ),
+                        SizedBox(height: 7),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildTile1(
+                                    //icon: Icons.document_scanner,
+                                    icon: "assets/pulse.png",
+                                    title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].pulse.toString()=="0")
+                                        ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
+                                    subtitle:MyLocalizations.of(context).text("PULSE"),
+                                    fun: () {
+                                      /*Navigator.pushNamed(
+                                          context, "/pocreportlist");*/
+                                    },
+                                    color: Color(0xFF2372B6),
+                                    bordercolor: AppData.BG1RED,
+                                    // ,
+                                  ),
+                                ]),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _buildTile1(
-                                  //icon: Icons.document_scanner,
-                                  icon:"assets/oxygen.png",
-                                  title:  (vitalsignsModel?.body == null || vitalsignsModel.body[0].oxygen.toString()=="0")
-                                      ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
-                                  subtitle: MyLocalizations.of(context).text("OXYGEN_SATURATION"),
+                                  icon: "assets/respiration.png",
+                                  title: (vitalsignsModel?.body == null || vitalsignsModel?.body[0].respiartion.toString()=="0")
+                                      ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
+                                  subtitle:MyLocalizations.of(context).text("RESPIRATION"),
                                   fun: () {
-                                   /* Navigator.pushNamed(context, "/testappointmentpage1");*/
+                                    //chooseAppointment1(context);
+                                   /* Navigator.pushNamed(
+                                        context, "/testappointmentpage");*/
                                   },
                                   color: Color(0xFFCF3564),
-                                  bordercolor: AppData.BG1RED,
+
+                                  bordercolor: AppData.BG2BLUE,
                                   // ,
                                 ),
                               ],
                             ),
+                          ],
+                        ),
+                        SizedBox(height: 7),
+                        Padding(
+                          padding: const EdgeInsets.only( right: 5,left: 5,bottom: 10),
+                          child: Row(
+                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _buildTile1(
+                                //icon: Icons.document_scanner,
+                                icon:"assets/oxygen.png",
+                                title:  (vitalsignsModel?.body == null || vitalsignsModel.body[0].oxygen.toString()=="0")
+                                    ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
+                                subtitle: MyLocalizations.of(context).text("OXYGEN_SATURATION"),
+                                fun: () {
+                                 /* Navigator.pushNamed(context, "/testappointmentpage1");*/
+                                },
+                                color: Color(0xFFCF3564),
+                                bordercolor: AppData.BG1RED,
+                                // ,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
