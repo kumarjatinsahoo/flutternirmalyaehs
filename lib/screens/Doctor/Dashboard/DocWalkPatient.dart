@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class DocWalkPatient extends StatefulWidget {
   MainModel model;
@@ -45,7 +47,7 @@ class _WalkPatient extends State<DocWalkPatient> {
         title: Text('Walk in Patient '),
       ),
       body: Container(
-        height: 380,
+        height: 450,
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Card(
@@ -64,73 +66,82 @@ class _WalkPatient extends State<DocWalkPatient> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
+                  child: Column(
                     children: [
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 120,
+                                child: Text(
+                                  "UHID No",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "   :   ",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextField(
+                                controller: myController,
+                                maxLength: 16,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+
+                                    border: InputBorder.none, hintText: ' '),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5,),
+                      Center(
+                        child: Text(
+                          '- OR -',
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      _scanButton(),
+                      SizedBox(height: 10,),
                       Row(
                         children: [
                           Container(
                             width: 120,
                             child: Text(
-                              "Patient's eHealthCard No",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
+                              "Password",
+                              style: TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                          Text(
+                            "  :  ",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: myControllerpass,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  border: InputBorder.none, hintText: ''),
                             ),
                           ),
                         ],
                       ),
-                      Text(
-                        "   :   ",
-                        style: TextStyle(color: Colors.black, fontSize: 15),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 35),
-                          child: TextField(
-                            controller: myController,
-                            maxLength: 16,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: ''),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 120,
-                          child: Text(
-                            "Password",
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        Text(
-                          "  :  ",
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: myControllerpass,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                border: InputBorder.none, hintText: ''),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+
+
                 //      SizedBox(height: 6),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -167,7 +178,7 @@ class _WalkPatient extends State<DocWalkPatient> {
                     ],
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 20),
                 Material(
                   elevation: 5,
                   color: const Color(0xFF0F6CE1),
@@ -177,12 +188,13 @@ class _WalkPatient extends State<DocWalkPatient> {
                       if (myController.text == "" ||
                           myController.text == null) {
                         AppData.showInSnackBar(context,
-                            "Please enter patient's eHealthCard No");
-                      } else if (myController.text.length <=
-                          3) {
-                        AppData.showInSnackBar(
-                            context, "Please enter patient's eHealthCard No ");
-                      } else {
+                            "Please enter  UHID No");
+                      } else if (myController.text.length != 16 ||
+                          myController.text == null) {
+                        AppData.showInSnackBar(context, "Please enter Valid UHID Number");
+                      }
+
+                      else {
                         widget.model.patientseHealthCard = myController.text;
                         Navigator.pushNamed(context, "/showemr");
 
@@ -210,6 +222,17 @@ class _WalkPatient extends State<DocWalkPatient> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _scanButton() {
+    return MyWidgets.outlinedButton(
+      text: "SCAN",
+      context: context,
+      fun: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, "/qrViewExample1");
+      },
     );
   }
 }

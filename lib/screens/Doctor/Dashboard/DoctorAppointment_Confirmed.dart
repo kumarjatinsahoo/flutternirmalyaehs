@@ -94,6 +94,10 @@ class _DoctorAppointmentConfirmedState
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               doctorAppointmment = DoctorAppointmment.fromJson(map);
+              //String userid=map["userid"];
+
+              //Print("ussserriiddd"+ &userid);
+
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -177,6 +181,10 @@ class _DoctorAppointmentConfirmedState
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         Body appointmentlist = doctorAppointmment.body[i];
+                        String userid=appointmentlist.userid;
+                        print('userid>>>>>>>>>>>>>>>>>>: $userid');
+                        userid = widget.model.userid;
+
                         /* itemCount: lists.length,
                 itemBuilder: (context, index) {*/
                         return
@@ -184,6 +192,7 @@ class _DoctorAppointmentConfirmedState
                           onTap: (){
                             widget.model.appointmentlist=appointmentlist;
                             //Navigator.pushNamed(context, "/medi");
+
                             Navigator.pushNamed(context, "/doctorMedicationTab");
                           },
                           child: Column(
