@@ -432,14 +432,42 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Container(
+                                Expanded(
+                                    child:RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text("T&C"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w500,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData
+                                                    .kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                                /*Container(
                                   child: RichText(
                                       textAlign: TextAlign.start,
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
                                             text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                            /* "Welcome back",*/
+                                            *//* "Welcome back",*//*
                                             style: TextStyle(
                                               // fontWeight: FontWeight.w800,
                                               fontFamily: "Monte",
@@ -450,7 +478,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                           TextSpan(
                                             text:
                                             MyLocalizations.of(context).text("T&C") ,
-                                            /* "Welcome back",*/
+                                            *//* "Welcome back",*//*
                                             style: TextStyle(
                                               // fontWeight: FontWeight.w500,
                                               fontFamily: "Monte",
@@ -460,7 +488,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                           )
                                         ],
                                       )),
-                                ),
+                                ),*/
                               ],
                             ),
                           ),
@@ -660,45 +688,45 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter Address");
         }else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
+          AppData.showInSnackBar(context, "Please select Country");
         } else if (LabSignUpForm3.stateModel == null ||
             LabSignUpForm3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (LabSignUpForm3.districtModel == null ||
             LabSignUpForm3.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
         }else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select city");
+          AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Pin");
         }else if (textEditingController[4].text != ""  &&
             textEditingController[4].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid home phone");
+          AppData.showInSnackBar(context, "Please enter a valid Home Phone");
         }else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid office phone");
+          AppData.showInSnackBar(context, "Please enter a valid Office Phone");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile number");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
         }else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
         }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email id");
+          AppData.showInSnackBar(context, "Please enter E-mail Id");
         } else if (textEditingController[11].text != ""&&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
         }else if (textEditingController[12].text != "" &&
             !AppData.isValidEmail(textEditingController[12].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+          AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
         }else if (textEditingController[13].text == "" || textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
         }
         else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked terms and Condition");
+          AppData.showInSnackBar(context, "Please checked Terms and Condition");
         }
          else {
           MyWidgets.showLoading(context);
@@ -754,8 +782,50 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       },
     );
   }
-
   popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        desc:
+        "Now you can login through your mobile no and password is: User@123",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              widget.model.patientName = null;
+              Navigator.pop(context);
+              widget.model.patientphnNo = null;
+              widget.model.patientemail = null;
+              widget.model.patientaadhar = null;
+              widget.model.patientheight = null;
+              widget.model.patientweight = null;
+              widget.model.patientimg = null;
+              widget.model.patientage = null;
+              widget.model.patientgender = null;
+              widget.model.patienCitycode = null;
+              widget.model.patienCitykey = null;
+              widget.model.patienStatecode = null;
+              widget.model.patienStatekey = null;
+              widget.model.patientimgtype = null;
+              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+ /* popup(BuildContext context, String message) {
     return Alert(
         context: context,
         //title: "Success",
@@ -841,7 +911,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         ]).show();
   }
 
-
+*/
   Widget nextButton() {
     return GestureDetector(
       onTap: () {

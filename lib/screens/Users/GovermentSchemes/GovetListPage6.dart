@@ -88,6 +88,7 @@ class _AboutUs extends State<GovetListPage6> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         color: Colors.blue),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 SizedBox(height: 10),

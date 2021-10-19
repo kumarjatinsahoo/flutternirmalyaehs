@@ -853,6 +853,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
   }
 
   Widget _buildTileblue({String icon,
+    /*IconData icon,*/
     String title,
     double size,
     Color bordercolor,

@@ -116,8 +116,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
         ),
         body: SingleChildScrollView(
           physics: ScrollPhysics(),
-          child: (googlePlacesSearch !=
-                  null /*&&
+          child: (googlePlacesSearch != null /*&&
             googlePlacesSearch.results != null*/
               /*googlePlacesSearch.results .length > 0*/)
               ? Column(

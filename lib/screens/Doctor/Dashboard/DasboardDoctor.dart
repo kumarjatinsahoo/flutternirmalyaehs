@@ -525,7 +525,8 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               ),
               title: Text("My Profile"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/docMyProf");
+                //Navigator.pop(context);
 
                // Navigator.pushNamed(context, "/qrViewExample1");
               },
