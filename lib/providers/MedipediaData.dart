@@ -1,5 +1,5 @@
 import 'package:user/models/MedipediaDTO.dart';
-//https://www.youtube.com/watch?v=XsGXUriPKto
+//https://www.e.com/watch?v=XsGXUriPKto
 class MedipediaData{
   static List<MedipediaDTO> list=[
     new MedipediaDTO("Abdominal Aortic Aneurysm", "https://www.youtube.com/watch?v=3D5PPE8j0P8", "https://www.youtube.com/watch?v=Knz0uVnGTsQ", "https://www.youtube.com/watch?v=Of6NEJ3FtQM"),

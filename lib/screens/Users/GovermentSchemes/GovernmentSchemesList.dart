@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
 class GovernmentSchemesList extends StatefulWidget {
@@ -17,6 +18,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
         title: Text("Government Schemes List"),
       ),
       body: Container(
