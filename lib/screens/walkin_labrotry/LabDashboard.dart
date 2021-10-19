@@ -306,8 +306,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           //icon: FontAwesomeIcons.accusoft,
                           title: "My Orders",
                           fun: () {
-                            AppData.showInSnackDone(context, "/myOrderTest");
-                            // Navigator.pushNamed(context, "/medicinereminder");
+                           // AppData.showInSnackDone(context, "/myOrderTest");
+                             Navigator.pushNamed(context, "/myOrderTest");
                             // AppData.showSnack(
                             //     context, "Coming soon", Colors.green);
                           },

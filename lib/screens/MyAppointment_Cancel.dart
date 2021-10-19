@@ -209,37 +209,35 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-      child: Expanded(
-        child: InkWell(
-          onTap: () {
-            print("Click done");
-            _selectDate(context);
-          },
-          child: AbsorbPointer(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: TextFormField(
-                autofocus: false,
-                controller: fromThis_,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
-                  hintText: 'From this',
-                  //labelText: 'Booking Date',
-                  alignLabelWithHint: false,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
+      child: InkWell(
+        onTap: () {
+          print("Click done");
+          _selectDate(context);
+        },
+        child: AbsorbPointer(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: TextFormField(
+              autofocus: false,
+              controller: fromThis_,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.calendar_today),
+                floatingLabelBehavior:
+                FloatingLabelBehavior.always,
+                hintText: 'From this',
+                //labelText: 'Booking Date',
+                alignLabelWithHint: false,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
+                ),
+                contentPadding:
+                EdgeInsets.only(left: 10, top: 4, right: 4),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                    width: 1.0,
                   ),
                 ),
               ),
