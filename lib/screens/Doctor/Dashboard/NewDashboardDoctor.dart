@@ -251,10 +251,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       ),
                       Container(
                         width: 100,
-                        height: 40,
+                        height: 35,
                         /* child: Expanded(*/
-                        child: Text("Walk In Patient",
-                         // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
+                        child: Text(
+                          MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -280,7 +280,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/images/emergency access.png",
+                        icon: "assets/images/emergency.png",
                         fun: () {
                           // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/discountoffer");
@@ -297,8 +297,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text("Emergency Access",
-                        //  MyLocalizations.of(context).text("EMERGENCY ACCESS"),
+                        child: Text(
+                          MyLocalizations.of(context).text("EMERGENCY ACCESS"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -323,7 +323,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/share_appointment.png",
+                        icon: "assets/images/shareapnt.png",
                         //icon: Icons.alarm,
                         //icon: FontAwesomeIcons.accusoft,
                         title: "Share_appointment",
@@ -344,8 +344,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text("Share Appointment",
-                         // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
+                        child: Text(
+                          MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -359,7 +359,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/images/mypatients.png",
+                        icon: "assets/images/mypatient.png",
                         fun: () {
                           // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/discountoffer");
@@ -376,8 +376,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text("My Patient",
-                          //MyLocalizations.of(context).text("MY_PATIENT"),
+                        child: Text(
+                          MyLocalizations.of(context).text("MY_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -403,7 +403,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/monthly_overview.png",
+                        icon: "assets/images/monthlyoverview.png",
                         fun: () {
                           // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/discountoffer");
@@ -420,8 +420,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text("Monthly Overview",
-                         // MyLocalizations.of(context).text("Monthly Overview"),
+                        child: Text(
+                          MyLocalizations.of(context).text("Monthly Overview"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -446,10 +446,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/images/video_consultation.png",
+                        icon: "assets/images/video.png",
                         //icon: Icons.alarm,
                         //icon: FontAwesomeIcons.accusoft,
-                        title: "Video Consulatation",
+                        title: "Video Consulation",
                         fun: () {
                           // AppData.showInSnackDone(context, "Coming Soon");
                           // Navigator.pushNamed(context, "/medicinereminder");
@@ -467,8 +467,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text("Video Consulatation",
-                          //MyLocalizations.of(context).text("Video Consulation"),
+                        child: Text(
+                          MyLocalizations.of(context).text("Video Consulation"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -504,6 +504,15 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           //overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
                     ]),
               ],
             ),
@@ -517,49 +526,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            Container(
-              // height: 120,
-              color: AppData.kPrimaryColor,
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: size.height * 0.07,
-                      width: size.width * 0.13,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(55),
-                          border: Border.all(color: Colors.white, width: 0.5),
-                          color: Colors.white),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(55),
-                          child: Image.asset(
-                            'assets/images/user.png',
-                            height: size.height * 0.07,
-                            width: size.width * 0.13,
-                            //fit: BoxFit.cover,
-                          )),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Text(
-                        "Hi " + loginResponse.body.userName ?? "N/A",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          /*  UserAccountsDrawerHeader(
+            UserAccountsDrawerHeader(
               accountName: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -586,7 +553,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 color: const Color(0xFFD2E4FC),
                 // color: Colors.blueGrey,
               ),
-            ),*/
+            ),
             ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -609,7 +576,6 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
               title: Text("My Profile"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, "/docMyProf");
 
                 // Navigator.pushNamed(context, "/qrViewExample1");
               },
@@ -890,11 +856,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 Align(
                     alignment: Alignment.center,
                     child: Image.asset(
+                      /* "assets/logo1.png"*/
                       icon,
                       fit: BoxFit.fitWidth,
                       width: 50,
                       height: 70.0,
-                    ),),
+                    )),
               ],
             ),
 

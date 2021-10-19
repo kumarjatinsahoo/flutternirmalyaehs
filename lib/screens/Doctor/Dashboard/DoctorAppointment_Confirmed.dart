@@ -173,8 +173,7 @@ class _DoctorAppointmentConfirmedState
                   ),
                 ),
 
-              )
-                  :
+              ) :
               (doctorAppointmment != null)
                   ? ListView.builder(
                       shrinkWrap: true,
@@ -192,7 +191,6 @@ class _DoctorAppointmentConfirmedState
                           onTap: (){
                             widget.model.appointmentlist=appointmentlist;
                             //Navigator.pushNamed(context, "/medi");
-
                             Navigator.pushNamed(context, "/doctorMedicationTab");
                           },
                           child: Column(

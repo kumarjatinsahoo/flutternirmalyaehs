@@ -50,7 +50,8 @@ class _ShowEmr extends State<ShowEmr> {
     _focusNode = FocusNode();
     //eHealthCardno="5093626841904641";
     eHealthCardno = widget.model.patientseHealthCard;
-
+    eHealthCardnoo= widget.model.userid;
+    //print('userrrrrrrrr>>>>>>>>>>>>>>>>>>>:$eHealthCardnoo');
    // eHealthCardnoo=widget.model.userid;
     //callPERSONALAPI(eHealthCardno);
    // callLabtastAPI(eHealthCardno);
