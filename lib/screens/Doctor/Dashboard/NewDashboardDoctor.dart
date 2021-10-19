@@ -157,7 +157,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/doctor_profile.png",
+                        icon: "assets/images/dprofile.png",
                         fun: () {
                           //AppData.showInSnackBar(context, "Coming soon");
                           // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -191,7 +191,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/images/appointmentt.png",
+                        icon: "assets/images/appointment.png",
                         fun: () {
                           // Navigator.pushNamed(context, "/myAppointment");
                           Navigator.pushNamed(context, "/doctorAppointment");
@@ -231,7 +231,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/walkinpatient.png",
+                        icon: "assets/images/walk.png",
                         fun: () {
                           //chooseAppointment(context, model);
                           //Navigator.pushNamed(context, "/userAppoint");
