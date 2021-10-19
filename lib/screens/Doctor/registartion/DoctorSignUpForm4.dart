@@ -172,6 +172,11 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   void initState() {
     super.initState();
     DoctorSignUpForm4.districtModel = null;
+    DoctorSignUpForm4.countryModel = null;
+    DoctorSignUpForm4.stateModel = null;
+    DoctorSignUpForm4.cityModel = null;
+
+
     DoctorSignUpForm4.blockModel = null;
     DoctorSignUpForm4.genderModel = null;
     organisationname = widget.model.organisationname;
@@ -286,7 +291,72 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 5,
                           ),
-                          Padding(
+                          DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context)
+                                  .text("COUNTRY") ,
+                              ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                              23.0,
+                                  (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.COUNTRY_API);
+                                  DoctorSignUpForm4.countryModel = data;
+                                  DoctorSignUpForm4.stateModel = null;
+                                  DoctorSignUpForm4.districtModel = null;
+                                  DoctorSignUpForm4.cityModel = null;
+
+                                });
+                              }),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          (DoctorSignUpForm4.countryModel != null)
+                              ?  DropDown.countryList(
+                              MyLocalizations.of(context)
+                                  .text("STATE") ,
+                              ApiFactory.STATE_API +(DoctorSignUpForm4?.countryModel?.key??""), "stated", Icons.location_on_rounded,
+                              23.0,
+                                  (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.STATE_API);
+                                  DoctorSignUpForm4.stateModel = data;
+                                  DoctorSignUpForm4.districtModel = null;
+                                  DoctorSignUpForm4.cityModel = null;
+                                });
+                              }): Container(),
+
+                          SizedBox(
+                            height: 5,
+                          ),
+                          (DoctorSignUpForm4.stateModel != null)
+                              ?  DropDown.countryList(
+                              MyLocalizations.of(context)
+                                  .text("DIST") ,
+                              ApiFactory.DISTRICT_API +(DoctorSignUpForm4?.stateModel?.key??""), "districtd", Icons.location_on_rounded,
+                              23.0,
+                                  (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.DISTRICT_API);
+                                  DoctorSignUpForm4.districtModel = data;
+                                  DoctorSignUpForm4.cityModel = null;
+                                });
+                              }): Container(),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          (DoctorSignUpForm4.districtModel != null)
+                              ? DropDown.countryList(
+                              MyLocalizations.of(context)
+                                  .text("CITY") ,
+                              ApiFactory.CITY_API + (DoctorSignUpForm4?.districtModel?.key??""), "cityd", Icons.location_on_rounded,
+                              23.0,
+                                  (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.CITY_API);
+                                  DoctorSignUpForm4.cityModel = data;
+                                  // LabSignUpForm3.districtModel = null;
+                                });
+                              }): Container(),
+                        /*  Padding(
                             padding: const EdgeInsets.only(
                                 left: 0, right: 0),
                             child: SizedBox(
@@ -301,17 +371,19 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                       23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.COUNTRY_API);
-                                  DoctorSignUpForm4.countryModel =
-                                      data;
+                                  DoctorSignUpForm4.countryModel = data;
                                   userModel.country = data.key;
                                   userModel.countryCode = data.code;
                                   DoctorSignUpForm4.stateModel = null;
+                                  DoctorSignUpForm4.districtModel = null;
+                                  DoctorSignUpForm4.cityModel = null;
+
 
                                 });
                               }),
                             ),
-                          ),
-                          SizedBox(
+                          ),*/
+                         /* SizedBox(
                             height: 5,
                           ),
                           (DoctorSignUpForm4.countryModel != null)
@@ -321,7 +393,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   child: SizedBox(
                                     height: 58,
                                     child: DropDown
-                                        .networkDropdownGetpartUser(
+                                        .countryList(
                                         MyLocalizations.of(context)
                                             .text("STATE") ,
                                             ApiFactory.STATE_API +
@@ -337,8 +409,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         userModel.state = data.key;
                                         userModel.stateCode =
                                             data.code;
-                                        DoctorSignUpForm4.cityModel =
-                                            null;
+                                        DoctorSignUpForm4.districtModel = null;
+                                        DoctorSignUpForm4.cityModel = null;
+
 
       //                                  DoctorSignUpForm4.stateModel=data.reset();
 
@@ -354,7 +427,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   child: SizedBox(
                                     height: 58,
                                     child: DropDown
-                                        .networkDropdownGetpartUser(
+                                        .countryList(
                                         MyLocalizations.of(context)
                                             .text("DIST") ,
                                             ApiFactory.DISTRICT_API +
@@ -387,7 +460,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   child: SizedBox(
                                     height: 58,
                                     child: DropDown
-                                        .networkDropdownGetpartUser(
+                                        .countryList(
                                         MyLocalizations.of(context)
                                             .text("CITY") ,
                                             ApiFactory.CITY_API +
@@ -402,8 +475,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         print(ApiFactory.CITY_API +
                                             DoctorSignUpForm4
                                                 .districtModel.key);
-                                        DoctorSignUpForm4.cityModel =
-                                            data;
+                                        DoctorSignUpForm4.cityModel = data;
 
                                         // DoctorSignUpForm4.cityModel =
                                         //     null;
@@ -411,7 +483,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                     }),
                                   ),
                                 )
-                              : Container(),
+                              : Container(),*/
                           SizedBox(
                             height: 13,
                           ),
@@ -475,13 +547,41 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                RichText(
+                                Expanded(
+                                    child:RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text("T&C"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w500,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData
+                                                    .kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                               /* RichText(
                                     textAlign: TextAlign.start,
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
                                           text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                          /* "Welcome back",*/
+                                          *//* "Welcome back",*//*
                                           style: TextStyle(
                                             // fontWeight: FontWeight.w800,
                                             fontFamily: "Monte",
@@ -491,7 +591,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         ),
                                         TextSpan(
                                           text:MyLocalizations.of(context).text("T&C") ,
-                                          /* "Welcome back",*/
+                                          *//* "Welcome back",*//*
                                           style: TextStyle(
                                             // fontWeight: FontWeight.w500,
                                             fontFamily: "Monte",
@@ -500,7 +600,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                           ),
                                         )
                                       ],
-                                    )),
+                                    )),*/
                               ],
                             ),
                           ),
@@ -697,45 +797,45 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         AppData.showInSnackBar(context, "Please enter Address");
       } else if (DoctorSignUpForm4.countryModel == null ||
           DoctorSignUpForm4.countryModel == "") {
-        AppData.showInSnackBar(context, "Please select country");
+        AppData.showInSnackBar(context, "Please select Country");
       } else if (DoctorSignUpForm4.stateModel == null ||
           DoctorSignUpForm4.stateModel == "") {
-        AppData.showInSnackBar(context, "Please select state");
+        AppData.showInSnackBar(context, "Please select State");
       } else if (DoctorSignUpForm4.districtModel == null ||
           DoctorSignUpForm4.districtModel == "") {
-        AppData.showInSnackBar(context, "Please select district");
+        AppData.showInSnackBar(context, "Please select District");
       }else if (DoctorSignUpForm4.cityModel == null ||
           DoctorSignUpForm4.cityModel == "") {
-        AppData.showInSnackBar(context, "Please select city");
+        AppData.showInSnackBar(context, "Please select City");
       }else if (textEditingController[5].text == "" ||
           textEditingController[5].text == null) {
-        AppData.showInSnackBar(context, "Please enter Zip/pin code");
+        AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
       }else if (textEditingController[4].text != ""  &&
           textEditingController[4].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid home phone");
+        AppData.showInSnackBar(context, "Please enter a valid Home Phone");
       }else if (textEditingController[9].text != "" &&
           textEditingController[9].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid office phone");
+        AppData.showInSnackBar(context, "Please enter a valid Office Phone");
       }else if (textEditingController[10].text == "" ||
           textEditingController[10].text == null) {
-        AppData.showInSnackBar(context, "Please enter mobile number");
+        AppData.showInSnackBar(context, "Please enter Mobile Number");
       }else if (textEditingController[10].text != "" &&
           textEditingController[10].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid mobile number");
+        AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
       }else if (textEditingController[11].text == "" ||
           textEditingController[11].text == null) {
-        AppData.showInSnackBar(context, "Please enter email id");
+        AppData.showInSnackBar(context, "Please enter E-mail Id");
       } else if (textEditingController[11].text != ""&&
           !AppData.isValidEmail(textEditingController[11].text)) {
-        AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
       }else if (textEditingController[12].text != "" &&
           !AppData.isValidEmail(textEditingController[12].text)) {
-        AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+        AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
       }else if (textEditingController[13].text == "" ||
           textEditingController[13].text == null) {
-        AppData.showInSnackBar(context, "Please enter experience");
+        AppData.showInSnackBar(context, "Please enter Experience");
       }else if (_checkbox == false) {
-        AppData.showInSnackBar(context, "Please checked terms and Condition");
+        AppData.showInSnackBar(context, "Please checked Terms and Condition");
       }
     //  else if (_checkbox != true) {
     //     setState(() =>

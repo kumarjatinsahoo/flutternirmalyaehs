@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
+import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/widgets/MyWidget.dart';
 import '../models/KeyvalueModel.dart';
 import 'app_data.dart';
@@ -1498,6 +1500,14 @@ class DropDown {
       case "city":
         return LabSignUpForm3.citymodel;
         break;
+      case "stated":
+        return DoctorSignUpForm4.stateModel;
+      case "districtd":
+        return DoctorSignUpForm4.districtModel;
+        break;
+      case "cityd":
+        return DoctorSignUpForm4.cityModel;
+        break;
     }
   }
 
@@ -1731,7 +1741,17 @@ class DropDown {
           case "state":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "country":
+          case "stated":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "districtd":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "cityd":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+            case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "organisation":

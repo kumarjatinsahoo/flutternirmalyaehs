@@ -574,8 +574,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
               ),
               title: Text("My Profile"),
               onTap: () {
-                Navigator.pop(context);
-
+                //Navigator.pop(context);
+                Navigator.pushNamed(context, "/docMyProf");
                 // Navigator.pushNamed(context, "/qrViewExample1");
               },
             ),

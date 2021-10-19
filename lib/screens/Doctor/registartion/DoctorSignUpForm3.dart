@@ -169,7 +169,10 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     title = widget.model.title;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
+
     DoctorSignUpForm3.genderModel = null;
+    DoctorSignUpForm3.specialistModel = null;
+    DoctorSignUpForm3.bloodgroupModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -531,19 +534,19 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       fun: () {
         if (textEditingController[8].text == null ||
             textEditingController[8].text == "") {
-          AppData.showInSnackBar(context, "Please enter education");
+          AppData.showInSnackBar(context, "Please enter Education Name");
         } else if (DoctorSignUpForm3.specialistModel == null ||
             DoctorSignUpForm3.specialistModel == "") {
-          AppData.showInSnackBar(context, "Please select Specalist");
+          AppData.showInSnackBar(context, "Please select Speciality");
         } else if (textEditingController[2].text == null ||
             textEditingController[2].text == "") {
-          AppData.showInSnackBar(context, "Please enter Date  of birth");
+          AppData.showInSnackBar(context, "Please enter Date  of Birth");
         } else if (DoctorSignUpForm3.bloodgroupModel == null ||
             DoctorSignUpForm3.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select bloodgroup");
+          AppData.showInSnackBar(context, "Please select Blood Group");
         } else if (DoctorSignUpForm3.genderModel == null ||
             DoctorSignUpForm3.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select gender");
+          AppData.showInSnackBar(context, "Please select Gender");
         } else {
           widget.model.education = textEditingController[8].text;
           widget.model.speciality = DoctorSignUpForm3.specialistModel.key;

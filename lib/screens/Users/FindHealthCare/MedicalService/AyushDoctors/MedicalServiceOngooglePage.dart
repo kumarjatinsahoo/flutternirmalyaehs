@@ -170,6 +170,14 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                                         ref: patient.photos[0].photoReference)
                                     : patient.icon));
                         return Container(
+                            child: InkWell(
+                            onTap: () {
+                          //widget.model.model = patient.placeId;
+                          widget.model.placeId = patient.placeId;
+                          Navigator.pushNamed(context, "/googleSearch");
+
+                          // AppData.showInSnackBar(context,"hi");
+                        },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 13.0,right: 13,),
                             child: Card(
@@ -265,6 +273,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                               ),
                             ),
                           ),
+                            )
                         );
                       },
                       itemCount: googlePlaceModel.results.length,

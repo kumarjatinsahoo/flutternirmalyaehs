@@ -147,6 +147,9 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
     DoctorSignUpForm2.districtModel = null;
     DoctorSignUpForm2.blockModel = null;
     DoctorSignUpForm2.genderModel = null;
+
+    DoctorSignUpForm2.organizationModel = null;
+    DoctorSignUpForm2.titleModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -297,7 +300,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                               .text("TITLE") ,
                                           ApiFactory.TITLE_API,
                                           "title",
-                                          Icons.mail,
+                                          Icons.person,
                                           23.0, (KeyvalueModel data) {
                                         setState(() {
                                           print(ApiFactory.TITLE_API);
@@ -484,13 +487,13 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
         //Navigator.pushNamed(context, "/patientRegistration2");
          if (DoctorSignUpForm2.organizationModel == null ||
             DoctorSignUpForm2.organizationModel == "") {
-          AppData.showInSnackBar(context, "Please select organization name");
+          AppData.showInSnackBar(context, "Please select Organization Name");
         }else if (DoctorSignUpForm2.titleModel == null ||
             DoctorSignUpForm2.titleModel == "") {
-          AppData.showInSnackBar(context, "Please select title");
+          AppData.showInSnackBar(context, "Please select Title");
         }
         else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
+          AppData.showInSnackBar(context, "Please enter Professional's Name");
         }
         else if (textEditingController[1].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter Professional Name ");
