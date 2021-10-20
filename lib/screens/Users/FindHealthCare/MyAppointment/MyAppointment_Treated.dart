@@ -335,18 +335,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   SizedBox(height:5),
                                                   Row(
                                                     // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .end,
                                                     children: [
                                                       Text(
                                                         /*'Confirmed'*/
-                                                        "",
+                                                        "Show prescription",
                                                         style: TextStyle(
                                                             fontWeight:
                                                             FontWeight
                                                                 .bold,
-                                                            fontSize: 15),
+                                                            fontSize: 15,color:AppData.kPrimaryColor),
                                                       ),
                                                       Spacer(),
                                                       Text(
