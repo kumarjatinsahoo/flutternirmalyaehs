@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:core';
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart' as loca;
@@ -63,7 +62,7 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
-
+bool isdata = false;
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
@@ -114,7 +113,7 @@ class _MedicineList extends State<UserTestList> {
           });
         } else {
           //isDataNotAvail = true;
-          AppData.showInSnackBar(context, msg);
+          //AppData.showInSnackBar(context, msg);
         }
       },
     );
@@ -132,7 +131,7 @@ class _MedicineList extends State<UserTestList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-    MyWidgets.showLoading(context);
+   MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
@@ -159,12 +158,29 @@ class _MedicineList extends State<UserTestList> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(
+      body:
+      isdata == true
+          ? CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      )
+          : userListModel == null || userListModel == null
+          ? Container(
+        child: Center(
+          child: Text(
+            'No Data Found',
+            style:
+            TextStyle(color: Colors.black, fontSize: 15),
+          ),
+        ),
+
+      )
+          :SingleChildScrollView(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
+
                 /* DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
                     ApiFactory.PHARMACY_LIST,
