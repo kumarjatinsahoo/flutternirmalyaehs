@@ -106,6 +106,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -151,6 +152,89 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                   ),
                 ],
               ),
+
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Card(
+            elevation: 5,
+            child: Container(
+              //width: double.maxFinite,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.grey[300],
+                    ),
+                    borderRadius:
+                    BorderRadius.circular(8)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    crossAxisAlignment:
+                    CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border: Border.all(color: AppData.kPrimaryColor, width: 2.0),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                'assets/images/user.png',
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                //fit: BoxFit.cover,
+                              ),
+                            )),
+                      ),
+SizedBox(width: 15,),
+                      Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "DR. Ipsita Sahoo",
+                            /*"",*/
+                            style: TextStyle(
+                                fontWeight:
+                                FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "MD EXP 25 Year(s)",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                                "Surgeon",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(),
+                          ),
+                          Text(
+                            "",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ],
+                      ),
+                      /*new Spacer(),*/
+                    ],
+                  ),
+                )),
+          ),
+        ),
+
               isdata == true
                   ? CircularProgressIndicator(
                 backgroundColor: AppData.matruColor,
@@ -179,7 +263,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                       itemBuilder: (context, i) {
                         apnt.Body appointmentlist =
                             appointmentlistModel.body[i];
-                        return Column(
+                        return
+                          Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(

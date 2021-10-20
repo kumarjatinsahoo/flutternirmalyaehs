@@ -70,6 +70,7 @@ class _MedicineList extends State<UserMedicineList> {
   Map<String, dynamic> mapK = {};
 
   bool isDataNoFound = false;
+  bool isdata = false;
 
   void initState() {
     // TODO: implement initState
@@ -97,9 +98,6 @@ class _MedicineList extends State<UserMedicineList> {
             medicineListModel = MedicineListModel.fromJson(map);
           });
         } else {
-          setState(() {
-            isDataNoFound = true;
-          });
           /* Center(
             child: Text(
               'Data Not Found',
@@ -150,7 +148,24 @@ class _MedicineList extends State<UserMedicineList> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: (medicineListModel != null)
+      body:
+      isdata == true
+          ? CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      )
+          : medicineListModel == null || medicineListModel == null
+          ? Container(
+        child: Center(
+          child: Text(
+            'No Data Found',
+            style:
+            TextStyle(color: Colors.black, fontSize: 15),
+          ),
+        ),
+
+      )
+          :
+      (medicineListModel != null)
           ? Container(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
