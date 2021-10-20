@@ -49,8 +49,6 @@ class _MedicineList extends State<UserTestList> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   String userid;
-  bool isdata =false;
-
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -63,11 +61,11 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
-bool isdata = false;
+  bool isdata = false;
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
-  Map<String, dynamic> mapK = {};
+  Map< String, dynamic> mapK = {};
 
   void initState() {
     // TODO: implement initState
