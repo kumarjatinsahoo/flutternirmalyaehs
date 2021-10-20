@@ -211,7 +211,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),*/
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      "Patient Notes: "+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                   ],

@@ -116,14 +116,14 @@ class _MedicationlistState extends State<Medicationlist> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      //backgroundColor: Colors.grey[200],
-      body: Container(
-        height: double.maxFinite,
+    return Scaffold(
+
+      //appBar: MyWidgets.appBar(context),
+      body: SafeArea(
+        //height: double.maxFinite,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 5,
@@ -166,28 +166,9 @@ class _MedicationlistState extends State<Medicationlist> {
                 ),
               ),
               SizedBox(height: 10,),
+          SingleChildScrollView(
 
-              isdata == true
-                  ? CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              )
-                  : medicationlistModel == null || medicationlistModel == null
-                  ? Container(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'No Data Found',
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-
-              ):
-              (medicationlistModel != null)
+            child:(medicationlistModel != null)
                   ? ListView.separated(
                       separatorBuilder: (context, i) {
                         return Divider();
@@ -365,12 +346,15 @@ class _MedicationlistState extends State<Medicationlist> {
                       },
                       // itemCount:medicinmodel.length,
                     )
-                  : Container(),
+                  :Center(child:  Text('No Data Found',
+                style:TextStyle(color: Colors.black, fontSize: 15),
+              )),
+          ),
             ],
           ),
         ),
       ),
-    ));
+    );
   }
 
   Widget dialogaddnomination(BuildContext context) {

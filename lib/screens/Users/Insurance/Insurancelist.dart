@@ -18,10 +18,15 @@ class _InsuranceListState extends State<InsuranceList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("Insurance"),
+        centerTitle: true,
+      ),
       body: Container(
     child: Column(
       children: [
-        Container(
+        /*Container(
           color: AppData.kPrimaryColor,
           child: Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -49,7 +54,7 @@ class _InsuranceListState extends State<InsuranceList> {
           ),
           height: MediaQuery.of(context).size.height * 0.1,
           width: MediaQuery.of(context).size.width,
-        ),
+        ),*/
         Expanded(
           child: ListView(
             shrinkWrap: true,
