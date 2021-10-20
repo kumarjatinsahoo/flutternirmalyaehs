@@ -143,6 +143,11 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   void initState() {
     super.initState();
     UserSignUpForm.genderModel = null;
+    UserSignUpForm.titleModel = null;
+    UserSignUpForm.countryModel = null;
+    UserSignUpForm.stateModel = null;
+    UserSignUpForm.districtModel = null;
+    UserSignUpForm.cityModel = null;
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -291,12 +296,16 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
                                     controller: textEditingController[0],
+                                    focusNode: fnode1,
                                     textAlignVertical:
                                         TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
                                           RegExp("[a-zA-Z]")),
                                     ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode1, fnode2);
+                                    },
                                   ),
                                 ),
                               ),
@@ -334,11 +343,15 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     textAlignVertical:
                                         TextAlignVertical.center,
                                     controller: textEditingController[1],
+                                    focusNode: fnode2,
                                     keyboardType: TextInputType.text,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
                                           RegExp("[a-zA-Z]")),
                                     ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode2, fnode3);
+                                    },
                                   ),
                                 ),
                               ),
@@ -394,6 +407,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       print(ApiFactory.COUNTRY_API);
                                       UserSignUpForm.countryModel = data;
                                       UserSignUpForm.stateModel = null;
+                                      UserSignUpForm.districtModel = null;
+                                      UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                 ),
@@ -407,20 +422,21 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           left: 0, right: 0, bottom: 0),
                                       child: SizedBox(
                                         height: 58,
-                                        child: networkDropdownGetpartUser(
+                                        child: DropDown.countryList(
                                                 //"State",
                                             MyLocalizations.of(context)
                                                 .text("STATE") +"*",
                                                 ApiFactory.STATE_API +
                                                     UserSignUpForm
                                                         .countryModel.key,
-                                                "state",
+                                                "stateU",
                                                 Icons.location_on_rounded,
                                                 23.0,
                                                 (KeyvalueModel data) {
                                           setState(() {
                                             UserSignUpForm.stateModel = data;
                                             UserSignUpForm.districtModel = null;
+                                            UserSignUpForm.cityModel = null;
                                             /*userModel.state=data.key;
                                           userModel.stateCode=data.code;*/
                                           });
@@ -428,6 +444,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                       ),
                                     )
                                   : Container(),
+
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
@@ -437,14 +454,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                     left: 0, right: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child:
-                                  networkDropdownGetpartUser(
+                                    child: DropDown.
+                                  countryList(
                                       //"District",
                                       MyLocalizations.of(context)
                                           .text("DIST")+"*" ,
                                       ApiFactory.DISTRICT_API +
                                           UserSignUpForm.stateModel.key,
-                                      "district",
+                                      "districtU",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -465,14 +482,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown
-                                      .networkDropdownGetpartUser(
+                                      .countryList(
                                       //"City",
                                       MyLocalizations.of(context)
                                           .text("CITY") +"*",
                                       ApiFactory.CITY_API +
                                           UserSignUpForm
                                               .districtModel.key,
-                                      "city",
+                                      "cityU",
                                       Icons.location_on_rounded,
                                       23.0,
                                           (KeyvalueModel data) {
@@ -557,9 +574,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                     width: 0.3),
                                               ),
                                               child: TextFormField(
-                                                controller:
-                                                    textEditingController[
-                                                        3],
+                                                controller: textEditingController[3],
+                                                focusNode: fnode4,
                                                 decoration:
                                                     InputDecoration(
                                                   prefixIcon: Icon(Icons
@@ -586,6 +602,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 inputFormatters: <TextInputFormatter>[
                                                   FilteringTextInputFormatter.digitsOnly
                                                 ],
+                                                onFieldSubmitted: (value) {
+                                                  AppData.fieldFocusChange(context, fnode4, null);
+                                                },
                                                 //maxLength: 2,
                                               ),
                                             ),
@@ -1199,7 +1218,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               child: TextFormField(
                 enabled: widget.isConfirmPage ? false : true,
                 controller: textEditingController[2],
-                focusNode: fnode7,
+                focusNode: fnode3,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
                 //inputFormatters:[1,2,3,4,5,6,7,8,9],
@@ -1209,7 +1228,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.phone),
+                  //suffixIcon: Icon(Icons.phone),
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
@@ -1228,7 +1247,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   // print(error[2]);
                   error[4] = false;
                   setState(() {});
-                  AppData.fieldFocusChange(context, fnode7, fnode8);
+                  AppData.fieldFocusChange(context, fnode3, fnode4);
                 },
                 onSaved: (value) {
                   //userPersonalForm.phoneNumber = value;
@@ -1268,29 +1287,32 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
       AppData.showInSnackBar(context, "Please enter First Name");
+      FocusScope.of(context).requestFocus(fnode1);
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
+      FocusScope.of(context).requestFocus(fnode2);
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select Gender");
     }
     else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Mobile Number");
+      AppData.showInSnackBar(context, "Please enter Phone Number");
+      FocusScope.of(context).requestFocus(fnode3);
     }
     else if (textEditingController[2].text.length != 10 ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Valid Mobile Number");
+      AppData.showInSnackBar(context, "Please enter Valid Phone Number");
+      FocusScope.of(context).requestFocus(fnode3);
     }
-
     else if (UserSignUpForm.countryModel == null ||
         UserSignUpForm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.stateModel == null ||
         UserSignUpForm.stateModel == "") {
       AppData.showInSnackBar(context, "Please select State");
-    } else if (UserSignUpForm.stateModel == null ||
+    } else if (UserSignUpForm.districtModel == null ||
         UserSignUpForm.districtModel == "") {
       AppData.showInSnackBar(context, "Please select District");
     } else if (UserSignUpForm.cityModel == null ||
@@ -1298,12 +1320,13 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please select City");
     } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
+      FocusScope.of(context).requestFocus(fnode4);
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }
     else if (_checkbox == false) {
-      AppData.showInSnackBar(context, "Please checked terms and Condition");
+      AppData.showInSnackBar(context, "Please checked Terms and Condition");
     }
     else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();

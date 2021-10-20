@@ -167,6 +167,14 @@ String formattedDate;
   void initState() {
     super.initState();
     comeFrom = widget.model.apntUserType;
+    DoctorconsultationPage.countryModel = null;
+    DoctorconsultationPage.stateModel = null;
+    DoctorconsultationPage.doctorModel = null;
+    DoctorconsultationPage.cityModel = null;
+    DoctorconsultationPage.distrModel = null;
+    DoctorconsultationPage.specialistModel = null;
+    DoctorconsultationPage.hospitalModel = null;
+    DoctorconsultationPage.timeModel = null;
     // loginResponse = widget.model.loginResponse1;
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
@@ -568,31 +576,31 @@ String formattedDate;
     _formKey.currentState.validate();
     if (DoctorconsultationPage.countryModel == null ||
         DoctorconsultationPage.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select country");
+      AppData.showInSnackBar(context, "Please select Country");
     } else if (DoctorconsultationPage.stateModel == null ||
         DoctorconsultationPage.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select state");
+      AppData.showInSnackBar(context, "Please select State");
     } else if (DoctorconsultationPage.distrModel == null ||
         DoctorconsultationPage.distrModel == "") {
       AppData.showInSnackBar(context, "Please select District");
     } else if (DoctorconsultationPage.cityModel == null ||
         DoctorconsultationPage.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select city");
+      AppData.showInSnackBar(context, "Please select City");
     } else if (DoctorconsultationPage.specialistModel == null ||
         DoctorconsultationPage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select specialist");
+      AppData.showInSnackBar(context, "Please select Specialist");
     } else if (DoctorconsultationPage.doctorModel == null ||
         DoctorconsultationPage.doctorModel == "") {
-      AppData.showInSnackBar(context, "Please select doctor");
+      AppData.showInSnackBar(context, "Please select Doctor");
     } else if (DoctorconsultationPage.hospitalModel == null ||
         DoctorconsultationPage.hospitalModel == "") {
-      AppData.showInSnackBar(context, "Please select hospital");
+      AppData.showInSnackBar(context, "Please select Hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your appointmentdate");
+      AppData.showInSnackBar(context, "Please select your Appointmentdate");
     } else if ( DoctorconsultationPage.timeModel==null) {
-      AppData.showInSnackBar(context, "Please select time");
+      AppData.showInSnackBar(context, "Please select Time");
     }  else if (!isValidtime) {
-      AppData.showInSnackBar(context, "Please select valid time");
+      AppData.showInSnackBar(context, "Please select valid Time");
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();

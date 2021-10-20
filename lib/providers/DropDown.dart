@@ -9,6 +9,7 @@ import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
+import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm4.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -1508,6 +1509,15 @@ class DropDown {
       case "cityd":
         return DoctorSignUpForm4.cityModel;
         break;
+      case "stateU":
+        return UserSignUpForm.stateModel;
+      case "districtU":
+        return UserSignUpForm.districtModel;
+        break;
+      case "cityU":
+        return UserSignUpForm.cityModel;
+        break;
+
     }
   }
 
@@ -1750,7 +1760,15 @@ class DropDown {
           case "cityd":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
+          case "districtU":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "stateU":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "cityU":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
             case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
