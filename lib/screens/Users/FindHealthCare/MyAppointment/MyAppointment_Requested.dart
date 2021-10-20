@@ -178,7 +178,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Patient Notes:" +
+                                                      "Patient Notes: "+
                                                           appointmentlist.notes??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,

@@ -1062,7 +1062,8 @@ class _PatientDetail extends State<PatientDetail> {
                   (patientsDetails!=null && patientsDetails.body.isNotEmpty && patientsDetails.body[0].allergies.isNotEmpty)?Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Expanded(
-                      child: ListView.builder(
+                      child:
+                      ListView.builder(
                         shrinkWrap: true,
                         // scrollDirection: Axis.horizontal,
                         itemCount: patientsDetails.body[0].allergies.length,

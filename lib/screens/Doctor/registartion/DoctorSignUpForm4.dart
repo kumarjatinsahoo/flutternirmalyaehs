@@ -287,7 +287,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 5,
                           ),
-                          formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS")),
+                          formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
                           SizedBox(
                             height: 5,
                           ),
@@ -487,32 +487,31 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
+                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE")),
+                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(
-                              9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE")),
+                          formFieldMobile(9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO")),
+                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(11,MyLocalizations.of(context).text("EMAILID")),
+                          formFielEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID")),
+                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE")),
+                          formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
                           SizedBox(
                             height: 13,
                           ),
@@ -798,6 +797,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       if (textEditingController[8].text == "" ||
           textEditingController[8].text == null) {
         AppData.showInSnackBar(context, "Please enter Address");
+        FocusScope.of(context).requestFocus(fnode1);
       } else if (DoctorSignUpForm4.countryModel == null ||
           DoctorSignUpForm4.countryModel == "") {
         AppData.showInSnackBar(context, "Please select Country");
@@ -813,30 +813,39 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       }else if (textEditingController[5].text == "" ||
           textEditingController[5].text == null) {
         AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        FocusScope.of(context).requestFocus(fnode2);
       }else if (textEditingController[4].text != ""  &&
           textEditingController[4].text.length != 10) {
         AppData.showInSnackBar(context, "Please enter a valid Home Phone");
+        FocusScope.of(context).requestFocus(fnode3);
       }else if (textEditingController[9].text != "" &&
           textEditingController[9].text.length != 10) {
         AppData.showInSnackBar(context, "Please enter a valid Office Phone");
+        FocusScope.of(context).requestFocus(fnode4);
       }else if (textEditingController[10].text == "" ||
           textEditingController[10].text == null) {
         AppData.showInSnackBar(context, "Please enter Mobile Number");
+        FocusScope.of(context).requestFocus(fnode5);
       }else if (textEditingController[10].text != "" &&
           textEditingController[10].text.length != 10) {
         AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+        FocusScope.of(context).requestFocus(fnode5);
       }else if (textEditingController[11].text == "" ||
           textEditingController[11].text == null) {
         AppData.showInSnackBar(context, "Please enter E-mail Id");
+        FocusScope.of(context).requestFocus(fnode6);
       } else if (textEditingController[11].text != ""&&
           !AppData.isValidEmail(textEditingController[11].text)) {
         AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
+        FocusScope.of(context).requestFocus(fnode6);
       }else if (textEditingController[12].text != "" &&
           !AppData.isValidEmail(textEditingController[12].text)) {
         AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
+        FocusScope.of(context).requestFocus(fnode7);
       }else if (textEditingController[13].text == "" ||
           textEditingController[13].text == null) {
         AppData.showInSnackBar(context, "Please enter Experience");
+        FocusScope.of(context).requestFocus(fnode8);
       }else if (_checkbox == false) {
         AppData.showInSnackBar(context, "Please checked Terms and Condition");
       }
@@ -1255,7 +1264,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   }
   Widget formFieldaddress(
       int index,
-      String hint,
+      String hint,  FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -1286,8 +1295,17 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
+            focusNode: currentfn,
             textAlignVertical:
             TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
             /* inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
@@ -1299,7 +1317,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   }
   Widget formFielEmail(
       int index,
-      String hint,
+      String hint, FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -1330,6 +1348,15 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
+            focusNode: currentfn,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
             /* textAlignVertical:
             TextAlignVertical.center,*/
             /*inputFormatters: [
@@ -1343,7 +1370,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   }
   Widget formFieldzip(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn
+
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1364,7 +1392,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 6,
@@ -1385,7 +1413,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -1400,7 +1428,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   }
   Widget formFieldExperience(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1421,7 +1449,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 3,
@@ -1442,7 +1470,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -1457,7 +1485,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   }
   Widget formFieldMobile(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1478,7 +1506,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 10,
@@ -1500,7 +1528,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                     AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;

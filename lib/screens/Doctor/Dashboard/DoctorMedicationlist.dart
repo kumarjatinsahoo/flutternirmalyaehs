@@ -43,6 +43,7 @@ class _MedicationlistState extends State<Medicationlist> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
+  bool isdata =false;
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -107,7 +108,7 @@ class _MedicationlistState extends State<Medicationlist> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -115,13 +116,14 @@ class _MedicationlistState extends State<Medicationlist> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      //backgroundColor: Colors.grey[200],
-      body: Container(
-        height: double.maxFinite,
+    return Scaffold(
+
+      //appBar: MyWidgets.appBar(context),
+      body: SafeArea(
+        //height: double.maxFinite,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 5,
@@ -164,7 +166,9 @@ class _MedicationlistState extends State<Medicationlist> {
                 ),
               ),
               SizedBox(height: 10,),
-              (medicationlistModel != null)
+          SingleChildScrollView(
+
+            child:(medicationlistModel != null)
                   ? ListView.separated(
                       separatorBuilder: (context, i) {
                         return Divider();
@@ -342,12 +346,15 @@ class _MedicationlistState extends State<Medicationlist> {
                       },
                       // itemCount:medicinmodel.length,
                     )
-                  : Container(),
+                  :Center(child:  Text('No Data Found',
+                style:TextStyle(color: Colors.black, fontSize: 15),
+              )),
+          ),
             ],
           ),
         ),
       ),
-    ));
+    );
   }
 
   Widget dialogaddnomination(BuildContext context) {

@@ -157,7 +157,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/doctor_profile.png",
+                        icon: "assets/images/dprofile.png",
                         fun: () {
                           //AppData.showInSnackBar(context, "Coming soon");
                           // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -191,7 +191,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTilered(
-                        icon: "assets/images/appointmentt.png",
+                        icon: "assets/images/appointment.png",
                         fun: () {
                           // Navigator.pushNamed(context, "/myAppointment");
                           Navigator.pushNamed(context, "/doctorAppointment");
@@ -231,7 +231,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildTileblue(
-                        icon: "assets/images/walkinpatient.png",
+                        icon: "assets/images/walk.png",
                         fun: () {
                           //chooseAppointment(context, model);
                           //Navigator.pushNamed(context, "/userAppoint");
@@ -526,32 +526,46 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
+            Container(
+              // height: 120,
+              color: AppData.kPrimaryColor,
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Hi " + loginResponse.body.userName,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
+                    Container(
+                      height: size.height * 0.07,
+                      width: size.width * 0.13,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(55),
+                          border: Border.all(color: Colors.white, width: 0.5),
+                          color: Colors.white),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(55),
+                          child: Image.asset(
+                            'assets/images/user.png',
+                            height: size.height * 0.07,
+                            width: size.width * 0.13,
+                            //fit: BoxFit.cover,
+                          )),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Hi " + loginResponse.body.userName ?? "N/A",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              currentAccountPicture: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.orange,
-                  child:
-                  Icon(Icons.person, size: 35,),
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: const Color(0xFFD2E4FC),
-                // color: Colors.blueGrey,
               ),
             ),
             ListTile(

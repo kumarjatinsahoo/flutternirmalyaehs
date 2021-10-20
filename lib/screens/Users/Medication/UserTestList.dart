@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:core';
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart' as loca;
@@ -30,7 +29,6 @@ class UserTestList extends StatefulWidget {
   static KeyvalueModel labModel = null;
   final bool isConfirmPage;
   static KeyvalueModel selectedLab = null;
-
   UserTestList({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
   @override
@@ -51,6 +49,8 @@ class _MedicineList extends State<UserTestList> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   String userid;
+  bool isdata =false;
+
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -63,11 +63,10 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
-
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
-  Map<String, dynamic> mapK = {};
+  Map< String, dynamic> mapK = {};
 
   void initState() {
     // TODO: implement initState
@@ -114,7 +113,7 @@ class _MedicineList extends State<UserTestList> {
           });
         } else {
           //isDataNotAvail = true;
-          AppData.showInSnackBar(context, msg);
+          //AppData.showInSnackBar(context, msg);
         }
       },
     );
@@ -132,7 +131,7 @@ class _MedicineList extends State<UserTestList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-    MyWidgets.showLoading(context);
+   MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
@@ -159,12 +158,30 @@ class _MedicineList extends State<UserTestList> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(
+      body:
+      isdata == true
+          ? CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      )
+          : userListModel == null || userListModel == null
+          ? Container(
+        child: Center(
+          child: Text(
+            'No Data Found',
+            style:
+            TextStyle(color: Colors.black, fontSize: 15),
+          ),
+        ),
+
+      )
+          :SingleChildScrollView(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
+
             child: Column(
               children: [
+
                 /* DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
                     ApiFactory.PHARMACY_LIST,
@@ -177,6 +194,24 @@ class _MedicineList extends State<UserTestList> {
                 SizedBox(
                   height: 15,
                 ),*/
+                isdata == true
+                    ? CircularProgressIndicator(
+                  backgroundColor: AppData.matruColor,
+                )
+                    : userListModel == null || userListModel == null
+                    ?
+                Align(
+                    alignment: Alignment.center, child: Container(
+                  child: Center(
+                    child: Text(
+                      'No Data Found',
+                      style:
+                      TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                  ),
+
+                ))
+                    :
                 (userListModel != null)
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),

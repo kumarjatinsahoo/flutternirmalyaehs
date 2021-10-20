@@ -485,18 +485,16 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-         if (DoctorSignUpForm2.organizationModel == null ||
-            DoctorSignUpForm2.organizationModel == "") {
+         if (DoctorSignUpForm2.organizationModel == null || DoctorSignUpForm2.organizationModel == "") {
           AppData.showInSnackBar(context, "Please select Organization Name");
-        }else if (DoctorSignUpForm2.titleModel == null ||
-            DoctorSignUpForm2.titleModel == "") {
+        }else if (DoctorSignUpForm2.titleModel == null || DoctorSignUpForm2.titleModel == "") {
           AppData.showInSnackBar(context, "Please select Title");
-        }
-        else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
+        }else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
           AppData.showInSnackBar(context, "Please enter Professional's Name");
-        }
-        else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Professional Name ");
+          FocusScope.of(context).requestFocus(fnode1);
+        }else if (textEditingController[1].text.length <= 3) {
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
+          FocusScope.of(context).requestFocus(fnode1);
         }
         // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
         //   AppData.showInSnackBar(context, "Please enter Userid");
@@ -923,12 +921,17 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
+            focusNode: fnode1,
             textAlignVertical:
             TextAlignVertical.center,
             inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
             ],
+            onFieldSubmitted: (value) {
+              setState(() {});
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
           ),
         ),
       ),
