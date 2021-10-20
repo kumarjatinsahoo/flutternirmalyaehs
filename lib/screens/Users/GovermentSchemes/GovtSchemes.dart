@@ -38,38 +38,14 @@ class _GovtSchemesState extends State<GovtSchemes> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text("Government Schemes"),
+            centerTitle: true,
+          ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50.0, right: 30.0),
-                      child: Text(
-                        'Government Schemes',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                    ),
-                    Icon(Icons.search, color: Colors.white),
-                  ],
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-            ),
 
             Padding(
               padding: const EdgeInsets.only(
