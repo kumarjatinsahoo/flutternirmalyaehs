@@ -132,6 +132,43 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               child: Card(
                 elevation: 1,
                 child: Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Add Test",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    //Spacer(),
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              dialogaddnomination(context),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Icon(
+                          Icons.add_box,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+           /* Container(
+              height: 50,
+              child: Card(
+                elevation: 1,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
@@ -139,8 +176,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                       child:
                       Text("Add Test",style: TextStyle(color:Colors.black,fontSize: 17,fontWeight: FontWeight.bold),)
 
-                      /*MyWidgets.header(
-                          "  Add Test", Alignment.centerLeft,),*/
+                      *//*MyWidgets.header(
+                          "  Add Test", Alignment.centerLeft,),*//*
                       //child: MyWidgets.header("Attendance", Alignment.topLeft),
                     ),
                     InkWell(
@@ -163,7 +200,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   ],
                 ),
               ),
-            ),
+            ),*/
 
             SingleChildScrollView(
               child: Column(
