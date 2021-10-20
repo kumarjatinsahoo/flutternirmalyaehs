@@ -177,7 +177,25 @@ class _DoctorAppointmentRequestedState
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
-                            return Column(
+                            return InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext
+                                    context) =>
+                                        changeStatus(
+                                            context,
+                                            appointmentlist
+                                                .patname,
+                                            appointmentlist
+                                                .doctorName),
+                                  );
+                             /* widget.model.userappointment = appointmentlist;
+
+
+                              Navigator.pushNamed(context, "/usermedicinelist");*/
+                            },
+                                child: Column(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -267,7 +285,7 @@ class _DoctorAppointmentRequestedState
                                                                 color: Colors
                                                                     .green),
                                                           ),
-                                                          onTap: () {
+                                                         /* onTap: () {
                                                             showDialog(
                                                               context: context,
                                                               builder: (BuildContext
@@ -279,7 +297,7 @@ class _DoctorAppointmentRequestedState
                                                                       appointmentlist
                                                                           .doctorName),
                                                             );
-                                                          },
+                                                          },*/
                                                         ),
                                                         SizedBox(
                                                           height: 3,
@@ -306,7 +324,7 @@ class _DoctorAppointmentRequestedState
                                   ),
                                 ),
                               ],
-                            );
+                            ));
                           },
                           itemCount: doctorAppointmment.body.length,
                         )
@@ -353,7 +371,7 @@ class _DoctorAppointmentRequestedState
                 ),
                 ListTile(
                   title: Text("Confirm"),
-                  leading: Icon(Icons.book),
+                  leading: Icon(Icons.check),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
                         api: ApiFactory.user_APPOINTMENT_status +
@@ -386,7 +404,7 @@ class _DoctorAppointmentRequestedState
                 ),
                 ListTile(
                   title: Text("Cancel"),
-                  leading: Icon(Icons.trending_up),
+                  leading: Icon(Icons.cancel_outlined),
                   onTap: () {
                     widget.model.GETMETHODCALL_TOKEN(
                         api: ApiFactory.user_APPOINTMENT_status +

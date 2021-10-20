@@ -196,7 +196,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           height: 5,
                                                         ),
                                                         Text(
-                                                          "Patient Notes:" +
+                                                          "Patient Notes: " +
                                                                   appointmentlist
                                                                       .notes ??
                                                               "N/A",

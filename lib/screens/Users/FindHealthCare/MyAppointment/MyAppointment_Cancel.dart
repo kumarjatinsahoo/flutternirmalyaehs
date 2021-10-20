@@ -6,18 +6,14 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
-
-class MyAppointmentRequested extends StatefulWidget {
-  MainModel model;
-
-  MyAppointmentRequested({Key key, this.model}) : super(key: key);
-
+class MyAppointmentCancle extends StatefulWidget {
+   MainModel model;
+  MyAppointmentCancle({Key key, this.model}) : super(key: key);
   @override
-  _MyAppointmentRequestedState createState() => _MyAppointmentRequestedState();
+  _MyAppointmentCancleState createState() => _MyAppointmentCancleState();
 }
 
-class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
+class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
   DateTime selectedDate = DateTime.now();
   AppointmentlistModel appointmentlistModel;
   TextEditingController fromThis_ = TextEditingController();
@@ -28,19 +24,17 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
-
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
-      selectedDatestr = df.format(date).toString();
+      selectedDatestr =  df.format(date).toString();
       //toThis_.text = df.format(date);
       callAPI("");
     });
   }
-
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -48,91 +42,80 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-        /*.add(Duration(days: 60))*/); //18 years is 6570 days
+      /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-        selectedDatestr = df.format(selectedDate).toString();
+        selectedDatestr =  df.format(selectedDate).toString();
         callAPI(selectedDatestr);
+
       });
   }
-
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.USER_APPOINTMENT_LIST +
-            widget.model.user +
-            "&date=" +
-            today +
-            "&status=" +
-            "7",
+        api: ApiFactory.USER_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"4",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel = AppointmentlistModel.fromJson(map);
+              appointmentlistModel=AppointmentlistModel.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-           //   AppData.showInSnackBar(context, msg);
+            //  AppData.showInSnackBar(context, msg);
             }
           });
         });
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              appointdate(),
-              isdata == true
-                  ? CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              )
-                  : appointmentlistModel == null || appointmentlistModel == null
-                  ? Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 300,),
-                      Text(
-                        'No Data Found',
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 15),
+          body: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  appointdate(),
+                  isdata == true
+                      ? CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  )
+                      : appointmentlistModel == null || appointmentlistModel == null
+                      ? Container(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 300,),
+                          Text(
+                            'No Data Found',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
 
-              )
-                  :
-              (appointmentlistModel != null)
-                  ? ListView.builder(
+                  )
+                      :
+                  (appointmentlistModel != null)
+                      ? ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         Body appointmentlist = appointmentlistModel.body[i];
                         /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
+                  itemBuilder: (context, index) {*/
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(
-                                left: 5.0,
-                                right: 5.0,
-                              ),
+                              padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
+                                  SizedBox(height: 10,),
                                   Card(
                                     elevation: 5,
                                     child: Container(
@@ -143,47 +126,31 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                             border: Border.all(
                                               color: Colors.grey[300],
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
+                                            borderRadius: BorderRadius.circular(8)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment
+                                                .center,
                                             children: [
                                               Expanded(
                                                 child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
                                                   children: [
-                                                    Text(
-                                                      appointmentlist
-                                                          .doctorName??"N/A",
+                                                    Text(appointmentlist.doctorName??"N/A",
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 18),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 18),),
+                                                    SizedBox(height: 5,),
+                                                    Text(appointmentlist.speciality??"N/A",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
+                                                    SizedBox(height: 5,),
                                                     Text(
-                                                      appointmentlist
-                                                          .speciality??"N/A",
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      "Patient Notes:" +
-                                                          appointmentlist.notes??"N/A",
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
+                                                      "Patient Notes: " +appointmentlist.notes??"N/A",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
                                                     Text(
                                                       appointmentlist.patname??"N/A",
                                                       overflow:
@@ -191,39 +158,26 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       style: TextStyle(color: Colors.blue),
                                                     ),
                                                   ],
-                                                ),
-                                              ),
+                                                ),),
                                               /*new Spacer(),*/
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                  top: 15.0,
-                                                ),
+                                                  top: 15.0,),
                                                 child: Column(
                                                   // mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .end,
                                                   children: [
-                                                    Text(
-                                                      /*'Confirmed'*/
-                                                      appointmentlist.status+" "??"N/A",
+                                                    Text(/*'Confirmed'*/appointmentlist.status??"N/A",
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          fontWeight: FontWeight.bold,
                                                           fontSize: 15,
-                                                          color: Colors.green),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 3,
-                                                    ),
-                                                    Text(
-                                                      /*'23-Nov-2020-11:30AM'*/
-                                                      appointmentlist.appdate??"N/A" +","+
-                                                          appointmentlist
-                                                              .apptime??"N/A",
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
+                                                          color: Colors.green),),
+                                                    SizedBox(height: 3,),
+                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate??"N/A"+appointmentlist.apptime??"N/A",
+                                                      overflow: TextOverflow.clip,
+                                                      style: TextStyle(),),
+
                                                   ],
                                                 ),
                                               ),
@@ -231,22 +185,25 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                           ),
                                         )),
                                   ),
+
                                 ],
                               ),
+
                             ),
                           ],
                         );
-                      },
-                      itemCount: appointmentlistModel.body.length,
-                    )
-                  : Container(),
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
+                      },itemCount: appointmentlistModel.body.length,
 
+                  ): Container(),
+                ],
+              ),
+            ),
+          ),
+
+
+        )
+    );
+  }
   Widget appointdate() {
     return Container(
       height: 40,
@@ -265,7 +222,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
               controller: fromThis_,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.calendar_today),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
+                floatingLabelBehavior:
+                FloatingLabelBehavior.always,
                 hintText: 'From this',
                 //labelText: 'Booking Date',
                 alignLabelWithHint: false,
@@ -274,7 +232,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                     color: Colors.blue,
                   ),
                 ),
-                contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
+                contentPadding:
+                EdgeInsets.only(left: 10, top: 4, right: 4),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey,
@@ -285,10 +244,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
             ),
           ),
         ),
-      ),
-    );
+      ),);
   }
-
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
@@ -300,12 +257,13 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-
+      
         // Navigator.pushNamed(context, "/otpView");
         //}
       },
     );
   }
+ // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
 
-// style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
+
 }

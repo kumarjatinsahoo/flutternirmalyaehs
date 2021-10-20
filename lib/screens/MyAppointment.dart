@@ -3,10 +3,10 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 
-import 'MyAppointment_Cancel.dart';
-import 'MyAppointment_Confirmed.dart';
-import 'MyAppointment_Requested.dart';
-import 'MyAppointment_Treated.dart';
+import 'Users/FindHealthCare/MyAppointment/MyAppointment_Cancel.dart';
+import 'Users/FindHealthCare/MyAppointment/MyAppointment_Confirmed.dart';
+import 'Users/FindHealthCare/MyAppointment/MyAppointment_Requested.dart';
+import 'Users/FindHealthCare/MyAppointment/MyAppointment_Treated.dart';
 
 class MyAppointment extends StatefulWidget {
   final MainModel model;

@@ -366,6 +366,7 @@ List<String> imageSliders = [
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
+                    Navigator.pop(context);
                     //Navigator.pushNamed(context, "/dashboard");
                     // Navigator.pushNamed(context, "/dashboard1");
                   }
