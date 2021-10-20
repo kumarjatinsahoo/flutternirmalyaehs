@@ -250,7 +250,7 @@ class _DoctorAppointmentRequestedState
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),*/
                                                         Text(
-                                                          "Patient Notes:" +
+                                                          "Patient Notes: " +
                                                               appointmentlist
                                                                   .notes,
                                                           overflow:

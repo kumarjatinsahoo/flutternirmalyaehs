@@ -200,21 +200,18 @@ class _MedicineList extends State<UserTestList> {
                   backgroundColor: AppData.matruColor,
                 )
                     : userListModel == null || userListModel == null
-                    ? Container(
+                    ?
+                Align(
+                    alignment: Alignment.center, child: Container(
                   child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'No Data Found',
-                          style:
-                          TextStyle(color: Colors.black, fontSize: 15),
-                        ),
-                      ],
+                    child: Text(
+                      'No Data Found',
+                      style:
+                      TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
 
-                )
+                ))
                     :
                 (userListModel != null)
                     ? ListView.builder(

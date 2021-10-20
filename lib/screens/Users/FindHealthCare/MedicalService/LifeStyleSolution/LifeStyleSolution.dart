@@ -14,6 +14,7 @@ LifeStyleSolution extends StatefulWidget {
 
 class _LifeStyleSolutionState extends State<LifeStyleSolution> {
   var selectedMinValue;
+  double tileSize = 80;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -66,7 +67,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: tileSize,
                                                width: double.maxFinite,
                                               decoration: BoxDecoration(
                                     color: Colors.white,
@@ -110,7 +111,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -153,7 +154,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -195,7 +196,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -237,7 +238,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -280,7 +281,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,

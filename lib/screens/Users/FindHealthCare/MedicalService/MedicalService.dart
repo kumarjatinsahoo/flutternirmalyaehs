@@ -14,7 +14,7 @@ class MedicalService extends StatefulWidget {
 
 class _MedicalServiceState extends State<MedicalService> {
   var selectedMinValue;
-
+  double tileSize = 80;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,6 +22,7 @@ class _MedicalServiceState extends State<MedicalService> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         title: Text('Medical Service'),
+        centerTitle: true,
         /* leading: Icon(
             Icons.menu,
           ),*/
@@ -94,9 +95,10 @@ class _MedicalServiceState extends State<MedicalService> {
                               onTap: () =>
                                   Navigator.pushNamed(context, "/aYUSHDoctors"),
                               child: Card(
+
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -143,7 +145,7 @@ class _MedicalServiceState extends State<MedicalService> {
                               child: Card(
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -191,7 +193,7 @@ class _MedicalServiceState extends State<MedicalService> {
                               child: Card(
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -238,7 +240,7 @@ class _MedicalServiceState extends State<MedicalService> {
                               child: Card(
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -293,7 +295,7 @@ class _MedicalServiceState extends State<MedicalService> {
                               child: Card(
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -340,7 +342,7 @@ class _MedicalServiceState extends State<MedicalService> {
                               child: Card(
                                 elevation: 5,
                                 child: Container(
-                                    height: 100,
+                                    height: tileSize,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
