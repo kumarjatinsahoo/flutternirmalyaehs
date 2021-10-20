@@ -63,7 +63,7 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
-bool isdata = false;
+
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
