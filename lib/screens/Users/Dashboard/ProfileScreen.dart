@@ -1021,7 +1021,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Specialty ',
+                        'Speciality ',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -1573,13 +1573,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey,
                 ),
               ),
             ),

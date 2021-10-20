@@ -8,6 +8,7 @@ import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
+import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
@@ -1517,6 +1518,15 @@ class DropDown {
       case "cityU":
         return UserSignUpForm.cityModel;
         break;
+        break;
+      case "stateDA":
+        return DoctorconsultationPage.stateModel;
+      case "districtDA":
+        return DoctorconsultationPage.distrModel;
+        break;
+      case "cityDA":
+        return DoctorconsultationPage.cityModel;
+        break;
 
     }
   }
@@ -1767,6 +1777,16 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "cityU":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "stateDA":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "districtDA":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+          case "cityDA":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
             case "country":
@@ -2234,10 +2254,10 @@ class DropDown {
       },
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
-        /* icon: Icon(
-          Icons.safety_divider,
-          size: 25,
-        ),*/
+         icon: Icon(
+          Icons.access_time,
+          size: 23.0 ,
+        ),
         isDense: true,
         disabledBorder: InputBorder.none,
         // border: InputBorder.none,

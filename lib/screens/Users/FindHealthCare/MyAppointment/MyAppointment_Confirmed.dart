@@ -1,4 +1,9 @@
-import 'package:user/models/AppointmentlistModel.dart';
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:user/models/AppointmentlistModel.dart' as apnt;
+import 'package:user/models/LoginResponse1.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -6,25 +11,24 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
 
-class MyAppointmentRequested extends StatefulWidget {
+class MyAppointmentConfirmed extends StatefulWidget {
   MainModel model;
 
-  MyAppointmentRequested({Key key, this.model}) : super(key: key);
+  MyAppointmentConfirmed({Key key, this.model}) : super(key: key);
 
   @override
-  _MyAppointmentRequestedState createState() => _MyAppointmentRequestedState();
+  _MyAppointmentConfirmedState createState() => _MyAppointmentConfirmedState();
 }
 
-class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
+class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
   DateTime selectedDate = DateTime.now();
-  AppointmentlistModel appointmentlistModel;
+  apnt.AppointmentlistModel appointmentlistModel;
+  LoginResponse1 loginResponse;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   bool isdata = false;
-
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -36,7 +40,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
       selectedDatestr = df.format(date).toString();
-      //toThis_.text = df.format(date);
+      loginResponse = widget.model.loginResponse1;
+      print(">>>>>>>" + jsonEncode(loginResponse.toJson()));
       callAPI("");
     });
   }
@@ -45,7 +50,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
-        initialDate: DateTime.now(),
+        initialDate: selectedDate ?? DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
         /*.add(Duration(days: 60))*/); //18 years is 6570 days
@@ -58,6 +63,23 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
       });
   }
 
+  leftArrow() {
+    setState(() {
+      selectedDate = selectedDate.subtract(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
+  rightArrow() {
+    setState(() {
+      selectedDate = selectedDate.add(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
+
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
@@ -66,17 +88,17 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
             "&date=" +
             today +
             "&status=" +
-            "7",
+            "2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              appointmentlistModel = AppointmentlistModel.fromJson(map);
+              appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-           //   AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -84,13 +106,135 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
       body: Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              appointdate(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      leftArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        appointdate(),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: (){
+                      rightArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_right_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Card(
+            elevation: 5,
+            child: Container(
+              //width: double.maxFinite,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.grey[300],
+                    ),
+                    borderRadius:
+                    BorderRadius.circular(8)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    crossAxisAlignment:
+                    CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border: Border.all(color: AppData.kPrimaryColor, width: 2.0),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                'assets/images/user.png',
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                //fit: BoxFit.cover,
+                              ),
+                            )),
+                      ),
+SizedBox(width: 15,),
+                      Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "DR. Ipsita Sahoo",
+                            /*"",*/
+                            style: TextStyle(
+                                fontWeight:
+                                FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "MD EXP 25 Year(s)",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                                "Surgeon",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(),
+                          ),
+                          Text(
+                            "",
+                            overflow:
+                            TextOverflow.clip,
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ],
+                      ),
+                      /*new Spacer(),*/
+                    ],
+                  ),
+                )),
+          ),
+        ),
+
               isdata == true
                   ? CircularProgressIndicator(
                 backgroundColor: AppData.matruColor,
@@ -117,10 +261,10 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
-                        Body appointmentlist = appointmentlistModel.body[i];
-                        /* itemCount: lists.length,
-                itemBuilder: (context, index) {*/
-                        return Column(
+                        apnt.Body appointmentlist =
+                            appointmentlistModel.body[i];
+                        return
+                          Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
@@ -136,8 +280,9 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                   Card(
                                     elevation: 5,
                                     child: Container(
-                                        //height: 120,
+
                                         //width: double.maxFinite,
+
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             border: Border.all(
@@ -159,6 +304,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                     Text(
                                                       appointmentlist
                                                           .doctorName??"N/A",
+                                                      /*"",*/
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -168,8 +314,8 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      appointmentlist
-                                                          .speciality??"N/A",
+                                                      appointmentlist.speciality??"N/A",
+
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
@@ -178,13 +324,14 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Patient Notes:" +
+                                                      "Patient Notes: " +
                                                           appointmentlist.notes??"N/A",
                                                       overflow:
                                                           TextOverflow.clip,
                                                       style: TextStyle(),
                                                     ),
                                                     Text(
+
                                                       appointmentlist.patname??"N/A",
                                                       overflow:
                                                       TextOverflow.clip,
@@ -205,7 +352,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                   children: [
                                                     Text(
                                                       /*'Confirmed'*/
-                                                      appointmentlist.status+" "??"N/A",
+                                                      appointmentlist.status??"N/A",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -217,7 +364,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                     ),
                                                     Text(
                                                       /*'23-Nov-2020-11:30AM'*/
-                                                      appointmentlist.appdate??"N/A" +","+
+                                                      appointmentlist.appdate??"N/A" +
                                                           appointmentlist
                                                               .apptime??"N/A",
                                                       overflow:
@@ -289,6 +436,23 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
     );
   }
 
+  /*else if (comeFrom == Const.HEALTH_CHKUP_APNT) {
+      widget.model.GETMETHODCALL_TOKEN(
+          api: ApiFactory.HEALTH_CHKUP_LIST + today,
+          token: widget.model.token,
+          fun: (Map<String, dynamic> map) {
+            setState(() {
+              String msg = map[Const.MESSAGE];
+              if (map[Const.CODE] == Const.SUCCESS) {
+                appointModel = lab.LabBookModel.fromJson(map);
+              } else {
+                isDataNotAvail = true;
+                AppData.showInSnackBar(context, msg);
+              }
+            });
+          });
+    }*/
+
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
@@ -306,6 +470,4 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
       },
     );
   }
-
-// style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.deepOrange),),
 }

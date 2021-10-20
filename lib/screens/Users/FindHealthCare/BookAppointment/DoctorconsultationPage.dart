@@ -283,6 +283,9 @@ String formattedDate;
                                 /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
                                 DoctorconsultationPage.stateModel = null;
+
+                                DoctorconsultationPage.distrModel = null;
+                                DoctorconsultationPage.cityModel = null;
                               });
                             }),
                           ),
@@ -296,12 +299,12 @@ String formattedDate;
                                     left: 0, right: 0, bottom: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
+                                  child: DropDown.countryList(
                                       "State",
                                       ApiFactory.STATE_API +
                                           DoctorconsultationPage
                                               .countryModel.key,
-                                      "state",
+                                      "stateDA",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -309,6 +312,7 @@ String formattedDate;
                                       /*userModel.state=data.key;
                                                 userModel.stateCode=data.code;*/
                                       DoctorconsultationPage.distrModel = null;
+                                      DoctorconsultationPage.cityModel = null;
                                     });
                                   }),
                                 ),
@@ -320,11 +324,11 @@ String formattedDate;
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
+                                  child: DropDown.countryList(
                                       "District",
                                       ApiFactory.DISTRICT_API +
                                           DoctorconsultationPage.stateModel.key,
-                                      "district",
+                                      "districtDA",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -340,17 +344,18 @@ String formattedDate;
                                 ),
                               )
                             : Container(),
+
                         (DoctorconsultationPage.distrModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
+                                  child: DropDown.countryList(
                                       "City",
                                       ApiFactory.CITY_API +
                                           DoctorconsultationPage.distrModel.key,
-                                      "city",
+                                      "cityDA",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -373,7 +378,7 @@ String formattedDate;
                                 "Speciality",
                                 ApiFactory.SPECIALITY_API,
                                 "speciality",
-                                Icons.mail,
+                                Icons.work_outlined,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.SPECIALITY_API);
@@ -488,7 +493,7 @@ String formattedDate;
                             : Container(),
                         fromAddress(
                             1,
-                            "Reason for choice of Dr",
+                            "Reason for choice of Doctor",
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -588,7 +593,7 @@ String formattedDate;
       AppData.showInSnackBar(context, "Please select City");
     } else if (DoctorconsultationPage.specialistModel == null ||
         DoctorconsultationPage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select Specialist");
+      AppData.showInSnackBar(context, "Please select Speciality");
     } else if (DoctorconsultationPage.doctorModel == null ||
         DoctorconsultationPage.doctorModel == "") {
       AppData.showInSnackBar(context, "Please select Doctor");
@@ -596,7 +601,7 @@ String formattedDate;
         DoctorconsultationPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select Hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your Appointmentdate");
+      AppData.showInSnackBar(context, "Please select your Appointment Date");
     } else if ( DoctorconsultationPage.timeModel==null) {
       AppData.showInSnackBar(context, "Please select Time");
     }  else if (!isValidtime) {
@@ -934,40 +939,43 @@ String formattedDate;
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.black, width: 0.3)),
-            child: TextFormField(
-              //focusNode: fnode4,
-              //enabled: !widget.isConfirmPage ? false : true,
-              controller: appointmentdate,
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              textAlignVertical: TextAlignVertical.center,
-              onSaved: (value) {
-                // registrationModel.dathOfBirth = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[3] = true;
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: TextFormField(
+                //focusNode: fnode4,
+                //enabled: !widget.isConfirmPage ? false : true,
+                controller: appointmentdate,
+                keyboardType: TextInputType.datetime,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                onSaved: (value) {
+                  // registrationModel.dathOfBirth = value;
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    error[3] = true;
+                    return null;
+                  }
+                  error[3] = false;
                   return null;
-                }
-                error[3] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[3] = false;
-                // print("error>>>" + error[2].toString());
+                },
+                onFieldSubmitted: (value) {
+                  error[3] = false;
+                  // print("error>>>" + error[2].toString());
 
-                setState(() {});
-                // AppData.fieldFocusChange(context, fnode4, fnode5);
-              },
-              decoration: InputDecoration(
-                hintText: //"Last Period Date",
-                    "Appointment Date",
-                border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                suffixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
+                  setState(() {});
+                  // AppData.fieldFocusChange(context, fnode4, fnode5);
+                },
+                decoration: InputDecoration(
+                  hintText: //"Last Period Date",
+                      "Appointment Date",
+                  border: InputBorder.none,
+                  //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                  suffixIcon: Icon(
+                    Icons.calendar_today,
+                    size: 18,
+                    color:Colors.grey,
+                  ),
                 ),
               ),
             ),

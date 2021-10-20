@@ -148,7 +148,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes??"N/A",
+                                                      "Patient Notes: " +appointmentlist.notes??"N/A",
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                     Text(
