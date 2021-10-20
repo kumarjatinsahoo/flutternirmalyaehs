@@ -190,6 +190,7 @@ class _DoctorAppointmentConfirmedState
                           InkWell(
                           onTap: (){
                             widget.model.appointmentlist=appointmentlist;
+                            widget.model.patientseHealthCard=appointmentlist.userid;
                             //Navigator.pushNamed(context, "/medi");
                             Navigator.pushNamed(context, "/doctorMedicationTab");
                           },
