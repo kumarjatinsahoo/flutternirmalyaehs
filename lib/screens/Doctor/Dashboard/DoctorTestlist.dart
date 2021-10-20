@@ -20,6 +20,7 @@ import 'package:user/widgets/text_field_address.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 class DoctorTestlist extends StatefulWidget {
+
   MainModel model;
   final bool isConfirmPage;
   static KeyvalueModel medicinModel = null;
@@ -40,6 +41,7 @@ List<TextEditingController> textEditingController = [
 class _DoctorTestlistState extends State<DoctorTestlist> {
   DateTime selectedDate = DateTime.now();
   UserListModel userListModel;
+  bool isdata =false;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
@@ -106,7 +108,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         }
@@ -166,6 +168,26 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    isdata == true
+                        ? CircularProgressIndicator(
+                      backgroundColor: AppData.matruColor,
+                    )
+                        : userListModel == null || userListModel == null
+                        ? Container(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'No Data Found',
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ):
                     (userListModel != null)
                         ? ListView.builder(
                             shrinkWrap: true,

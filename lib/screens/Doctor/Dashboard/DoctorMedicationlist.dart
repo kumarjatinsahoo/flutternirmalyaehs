@@ -43,6 +43,7 @@ class _MedicationlistState extends State<Medicationlist> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
+  bool isdata =false;
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -107,7 +108,7 @@ class _MedicationlistState extends State<Medicationlist> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -122,6 +123,7 @@ class _MedicationlistState extends State<Medicationlist> {
         height: double.maxFinite,
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: 5,
@@ -164,6 +166,27 @@ class _MedicationlistState extends State<Medicationlist> {
                 ),
               ),
               SizedBox(height: 10,),
+
+              isdata == true
+                  ? CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              )
+                  : medicationlistModel == null || medicationlistModel == null
+                  ? Container(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No Data Found',
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
+
+              ):
               (medicationlistModel != null)
                   ? ListView.separated(
                       separatorBuilder: (context, i) {
