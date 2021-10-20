@@ -63,11 +63,10 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
-
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
-  Map<String, dynamic> mapK = {};
+  Map< String, dynamic> mapK = {};
 
   void initState() {
     // TODO: implement initState
