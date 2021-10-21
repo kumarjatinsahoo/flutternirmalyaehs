@@ -15,6 +15,7 @@ class AYUSHDoctors extends StatefulWidget {
 
 class _AYUSHDoctorsState extends State<AYUSHDoctors> {
   var selectedMinValue;
+  double tileSize = 80;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
+                                        height: tileSize,
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -115,7 +116,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
+                                        height: tileSize,
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -167,7 +168,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
+                                        height: tileSize,
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -218,7 +219,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                   child: Card(
                                     elevation: 5,
                                     child: Container(
-                                        height: 100,
+                                        height: tileSize,
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -270,7 +271,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                     child: Card(
                                       elevation: 5,
                                       child: Container(
-                                          height: 100,
+                                          height: tileSize,
                                           width: double.maxFinite,
                                           decoration: BoxDecoration(
                                               color: Colors.white,

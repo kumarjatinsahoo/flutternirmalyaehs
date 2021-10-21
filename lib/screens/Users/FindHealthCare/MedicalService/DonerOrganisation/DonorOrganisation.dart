@@ -14,7 +14,7 @@ class DonorOrganisation extends StatefulWidget {
 
 class _DonorOrganisationState extends State<DonorOrganisation> {
   var selectedMinValue;
-
+  double tileSize = 80;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,15 +53,13 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                             onTap: () {
                               widget.model.medicallserviceType =
                                   "Blood Donation";
-                              Navigator.pushNamed(
-                                  context, "/medicalsServiceOngooglePage");
-
-                              // AppData.showInSnackBar(context,"hi");
+                              Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                   //AppData.showInSnackBar(context,"hi");
                             },
                             child: Card(
                               elevation: 5,
                               child: Container(
-                                  height: 100,
+                                  height: tileSize,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -114,7 +112,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                             child: Card(
                               elevation: 5,
                               child: Container(
-                                  height: 100,
+                                  height: tileSize,
                                   width: double.maxFinite,
                                   decoration: BoxDecoration(
                                       color: Colors.white,

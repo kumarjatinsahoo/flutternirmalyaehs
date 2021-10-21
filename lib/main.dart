@@ -9,6 +9,8 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
+import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
@@ -21,6 +23,15 @@ import 'package:user/screens/Users/FindHealthCare/MedicalService/LifeStyleSoluti
 import 'package:user/screens/Users/FindHealthCare/MedicalService/RIP/RIP.dart';
 import 'package:user/screens/Users/FindHealthCare/MedicalService/TreatmentCenter/TreatmentCenters.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/AppointmentTab.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage1.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage2.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage3.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage4.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage5.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
+import 'package:user/screens/Users/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
@@ -69,7 +80,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
-import 'package:user/screens/Doctor/VitalDoctor.dart';
+import 'package:user/screens/walkin_labrotry/Screen/UpdationData.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm3.dart';
@@ -103,7 +114,7 @@ import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';
 import 'screens/Users/EmergencyHelp/SetupContactsPage.dart';
-import 'package:user/screens/TestAppointmentPage1.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
@@ -140,9 +151,9 @@ import 'package:user/screens/TabInstructionPage/TabInstruction5.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction6.dart';
 import 'package:user/screens/TabInstructionPage/TabInstruction7.dart';
 import 'screens/Users/organ/TermsandConditions.dart';
-import 'package:user/screens/TestAppointmentPage.dart';
+import 'screens/walkin_labrotry/Screen/TestAppointmentPage.dart';
 import 'package:user/screens/UserAppointmentPage.dart';
-import 'package:user/screens/UserSignUpForm.dart';
+import 'screens/Users/UserSignUpForm.dart';
 import 'screens/Users/MyMedicalRecord/UserVitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
 import 'package:user/screens/WalkinRegisterListPage.dart';
@@ -558,6 +569,9 @@ class _MyAppState extends State<MyApp> {
               '/medipedia': (context) => MedipediaPage(
                     model: _model,
               ),
+              '/govetschemeslist': (context) => GovernmentSchemesList(
+                    model: _model,
+              ),
               '/discountofferdetails': (context) => DiscountOffersDetails(
                     model: _model,
                   ),
@@ -683,7 +697,7 @@ class _MyAppState extends State<MyApp> {
               '/medi': (context) => MedicationAddScreen(
                     model: _model,
                   ),
-              '/vitalDoctor': (context) => VitalDoctor(
+              '/vitalDoctor': (context) => UpdationData(
                     model: _model,
                   ),
               '/Newdashboard': (context) => NewDashboardDoctor(
@@ -720,7 +734,7 @@ class _MyAppState extends State<MyApp> {
               '/idCard': (context) => IdCardPage(
                     model: _model,
                   ),
-              '/dashboardpharmacy': (context) => DashboardPharmacy(
+              '/dashboardpharmacy': (context) => NewDashboardPharmacy(
                     model: _model,
                   ),
               /*'/dashboardpharmacy': (context) => DashboardPharmacy(
@@ -773,6 +787,9 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/videos': (context) => VideosPage(
                     model: _model,
+              ),
+              '/healthtipslist': (context) => HealthTipsList(
+                    model: _model,
                   ),
               '/findPage1': (context) => FindPage1(
                     model: _model,
@@ -796,6 +813,29 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/organ4': (context) => Organ4Page(
+                    model: _model,
+              ),
+              '/govetschem1': (context) => GovetListPage1(
+                    model: _model,
+              ),
+              '/govetschem2': (context) => GovetListPage2(
+                    model: _model,
+              ),
+              '/govetschem3': (context) => GovetListPage3(
+                    model: _model,
+              ),
+              '/govetschem4': (context) => GovetListPage4(
+                    model: _model,
+              ),
+              '/govetschem5': (context) => GovetListPage5(
+                    model: _model,
+              ),
+              '/govetschem6': (context) => GovetListPage6(
+                    model: _model,
+              ),
+              '/govetschem7': (context) => GovetListPage7(
+                    model: _model, ),
+              '/govetschem8': (context) => GovetListPage8(
                     model: _model,
                   ),
               '/qrViewExample1': (context) => QRViewExample1(

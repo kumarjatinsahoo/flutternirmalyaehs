@@ -14,6 +14,7 @@ RIPScreen extends StatefulWidget {
 
 class _RIPScreenState extends State<RIPScreen> {
   var selectedMinValue;
+  double tileSize = 80;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,7 +68,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: tileSize,
                                                width: double.maxFinite,
                                               decoration: BoxDecoration(
                                     color: Colors.white,
@@ -112,7 +113,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -156,7 +157,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -199,7 +200,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -242,7 +243,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -286,7 +287,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,

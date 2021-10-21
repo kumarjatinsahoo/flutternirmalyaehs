@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -367,6 +366,7 @@ List<String> imageSliders = [
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
+                    Navigator.pop(context);
                     //Navigator.pushNamed(context, "/dashboard");
                     // Navigator.pushNamed(context, "/dashboard1");
                   }
@@ -1591,15 +1591,6 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
                   ]),
               SizedBox(
                 width: 5,
@@ -1616,8 +1607,9 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Govt Schemes",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/govtschemes");
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/govtschemes");
+                       //Navigator.pushNamed(context, "/govetschemeslist");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1654,8 +1646,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Upload Medical Data",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/insuranceList");
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/insuranceList");
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/

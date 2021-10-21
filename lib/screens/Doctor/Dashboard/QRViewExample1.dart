@@ -99,7 +99,7 @@ class _QRViewExample1State extends State<QRViewExample1> {
                         "Search",
                         style: TextStyle(color: Colors.white),
                       ),
-                      color: Colors.green,
+                      color: AppData.kPrimaryColor,
                       onPressed: () {
                         //widget.model.regNoValue = _regNo.text;
                         /*  if (widget.model.QR_FROM == Const.USER_CALL) {

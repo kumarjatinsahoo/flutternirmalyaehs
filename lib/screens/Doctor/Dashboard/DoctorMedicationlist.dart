@@ -43,6 +43,7 @@ class _MedicationlistState extends State<Medicationlist> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
+  bool isdata =false;
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -107,7 +108,7 @@ class _MedicationlistState extends State<Medicationlist> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -115,307 +116,245 @@ class _MedicationlistState extends State<Medicationlist> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Container(
-        height: double.maxFinite,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 5,
-            ),
-            Container(
-              height: 50,
-              child: Card(
-                elevation: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.only(left: 10.0, bottom: 4),
+    return Scaffold(
+
+      //appBar: MyWidgets.appBar(context),
+      body: SafeArea(
+        //height: double.maxFinite,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 50,
+                child: Card(
+                  elevation: 1,
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
                         child: Text(
                           "Add Medicine",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
-                        )
-
-                        //child: MyWidgets.header("Attendance", Alignment.topLeft),
-                        ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              dialogaddnomination(context),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: Icon(
-                          Icons.add_box,
-
-                          // color: Colors.red,
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
-                  ],
+                      //Spacer(),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                dialogaddnomination(context),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Icon(
+                            Icons.add_box,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    (medicationlistModel != null)
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: medicationlistModel.body.length,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              Body medicationlis =
-                                  medicationlistModel.body[index];
+              SizedBox(height: 10,),
+          SingleChildScrollView(
 
-                              return Dismissible(
-                                //key: Key(item1),
-                                key: Key(
-                                    medicationlistModel.body[index].toString()),
-                                direction: DismissDirection.startToEnd,
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 5.0,
-                                        right: 5.0,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Card(
-                                            elevation: 5,
-                                            child: Container(
-                                                //height: 100,
-                                                width: double.maxFinite,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                      color: Colors.grey[300],
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            medicationlis
-                                                                .medname,
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 18),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          Text(
-                                                            "Duration:" +
-                                                                medicationlis
-                                                                    .duration +
-                                                                "Days",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                            style: TextStyle(),
-                                                          ),
-                                                          Text(
-                                                            medicationlis
-                                                                    .remarks ??
-                                                                "N/A",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                            style: TextStyle(),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          medicationlis
-                                                                      .morning ==
-                                                                  "1"
-                                                              ? Text(
-                                                                  "Morning",
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .clip,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                )
-                                                              : Container(),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          medicationlis
-                                                                      .afternoon ==
-                                                                  "1"
-                                                              ? Text(
-                                                                  "Afternoon",
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .clip,
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                )
-                                                              : Container(),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          medicationlis
-                                                                      .evening ==
-                                                                  "1"
-                                                              ? Text(
-                                                                  "Evening",
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .clip,
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                )
-                                                              : Container(),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      new Spacer(),
-                                                      /* Padding(
-                                                        padding: const EdgeInsets.only(
-                                                          top: 15.0,
-                                                        ),
-                                                        child: Column(
-                                                          // mainAxisAlignment: MainAxisAlignment.center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment.end,
-                                                          children: [
-                                                            InkWell(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  widget.model.GETMETHODCALL_TOKEN(
-                                                                      api: ApiFactory.DELETE_MEDICINE_LIST +
-                                                                          widget.model.appointmentlist.doctorName +
-                                                                          "&srlone=" +medicationlis.srlNoOne +
-                                                                          "&srltwo=" + medicationlis.srlNoTwo,
-                                                                      token: widget.model.token,
-                                                                      fun: (Map<String, dynamic> map) {
-                                                                        String msg = map[Const.MESSAGE];
-                                                                        if (map["status"] == "success") {
-                                                                          setState(() {
-                                                                            medicationlistModel.body.removeAt(index);
-                                                                            //medicationlis.remove(index);
-                                                                            //AppData.showInSnackBar(context, "hii");
-                                                                            //medicinlist.remove(medicinlist[index]);
-                                                                            callAPI();
-                                                                            //medicinlist.remove(index);
+            child:(medicationlistModel != null)
+                  ? ListView.separated(
+                      separatorBuilder: (context, i) {
+                        return Divider();
+                      },
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: medicationlistModel.body.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        Body medicationlis = medicationlistModel.body[index];
 
-                                                                            //medicinlist.remove(medicinlist[index]);
-                                                                          });
-                                                                        }else {
-                                                                          // isDataNotAvail = true;
-                                                                          AppData.showInSnackBar(context, msg);
-                                                                        }
+                        return Column(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: double.maxFinite,
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  /*decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(
+                                                8)),*/
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          (index + 1).toString() +
+                                              ". " +
+                                              medicationlis.medname +
+                                              "(${medicationlis.medtype})" +
+                                              "(" +
+                                              medicationlis.duration +
+                                              " Days)",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        /*  Text(
+                                          "Duration:" +
+                                              medicationlis.duration +
+                                              " Days",
+                                          overflow: TextOverflow.clip,
+                                          style: TextStyle(),
+                                        ),*/
 
-                                                                        setState(() {
-                                                                          String msg = map[Const.MESSAGE];
-                                                                          if (map["status"] == "success") {
-                                                                            setState(() {
-                                                                              callAPI();
-                                                                              medicinlist.remove(medicinlist[index]);
-                                                                            });
-                                                                            //
-                                                                            //medicinlist.removeAt(index);
-                                                                            //medicinlist.removeAt(index);
-                                                                            //
-
-
-                                                                          } else {
-                                                                            // isDataNotAvail = true;
-                                                                            AppData.showInSnackBar(context, msg);
-                                                                          }
-                                                                        });
-                                                                      });
-                                                                  //DELETE_MEDICINE_LIST
-                                                                  medicinlist.remove(
-                                                                      medicinlist[
-                                                                          index]);
-                                                                });
-                                                              },
-                                                              child: Icon(
-                                                                Icons.delete,
-                                                                // color: Colors.red,
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),*/
-                                                    ],
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    "Morning",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13),
                                                   ),
-                                                )),
-                                          ),
-                                        ],
-                                      ),
+                                                ),
+                                                (medicationlis.morning == "1")
+                                                    ? Container(
+                                                        width: 80,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons.check_circle,
+                                                          color: Colors.green,
+                                                        ),
+                                                      )
+                                                    : Container(
+                                                        width: 80,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons
+                                                              .highlight_remove,
+                                                          color: Colors.red,
+                                                        ),
+                                                      ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  //width: 80,
+                                                  child: Text(
+                                                    "Afternoon",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13),
+                                                  ),
+                                                ),
+                                                (medicationlis.afternoon == "1")
+                                                    ? Container(
+                                                        width: 100,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons.check_circle,
+                                                          color: Colors.green,
+                                                        ),
+                                                      )
+                                                    : Container(
+                                                        width: 80,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons
+                                                              .highlight_remove,
+                                                          color: Colors.red,
+                                                        ),
+                                                      ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    "Night",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13),
+                                                  ),
+                                                ),
+                                                (medicationlis.evening == "1")
+                                                    ? Container(
+                                                        width: 80,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons.check_circle,
+                                                          color: Colors.green,
+                                                        ),
+                                                      )
+                                                    : Container(
+                                                        width: 80,
+                                                        height: 30,
+                                                        child: Icon(
+                                                          Icons
+                                                              .highlight_remove,
+                                                          color: Colors.red,
+                                                        ),
+                                                      ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "Notes: " + medicationlis.remarks ??
+                                              "N/A",
+                                          overflow: TextOverflow.clip,
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.grey[800]),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                                onDismissed: (direction) {
-                                  setState(() {
-                                    medicationlistModel.body.removeAt(index);
-                                  });
-                                },
-                              );
-                            },
-                            // itemCount:medicinmodel.length,
-                          )
-                        : Container(),
-                    /*  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child:  _submitButton(),
-                    ),*/
-                    SizedBox(
-                      height: 16,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                      // itemCount:medicinmodel.length,
+                    )
+                  :Center(child:  Text('No Data Found',
+                style:TextStyle(color: Colors.black, fontSize: 15),
+              )),
+          ),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Widget dialogaddnomination(BuildContext context) {
@@ -423,9 +362,9 @@ class _MedicationlistState extends State<Medicationlist> {
     textEditingController[0].text = "";
     textEditingController[1].text = "";
     textEditingController[2].text = "";
-    _checkbox=false;
-    _checkbox1=false;
-    _checkbox2=false;
+    _checkbox = false;
+    _checkbox1 = false;
+    _checkbox2 = false;
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),

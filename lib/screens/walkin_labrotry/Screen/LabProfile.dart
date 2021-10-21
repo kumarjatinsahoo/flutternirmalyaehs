@@ -170,14 +170,14 @@ class _LabProfileState extends State<LabProfile> {
                                   subtitle: Text(profileModel1.body.aadhaar??"N/A"),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.info_outline),
+                                  leading: Icon(Icons.location_on_rounded),
                                   title: Text(
                                     "COUNTRY",
                                   ),
                                   subtitle: Text(profileModel1.body.country??"N/A"),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.info_outline),
+                                  leading: Icon(Icons.location_on_rounded),
                                   title: Text(
                                     "STATE",
                                   ),

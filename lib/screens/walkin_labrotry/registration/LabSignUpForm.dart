@@ -144,6 +144,9 @@ class LabSignUpFormState extends State<LabSignUpForm> {
     LabSignUpForm.districtModel = null;
     LabSignUpForm.blockModel = null;
     LabSignUpForm.genderModel = null;
+
+    LabSignUpForm.organizationModel =null;
+    LabSignUpForm.titlemodel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -290,7 +293,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               ),
                               //formField(0, "Organization Name"),
 
-                              DropDown.networkDropdownGetpartUser1(
+                              /*DropDown.networkDropdownGetpartUser1(
                                   MyLocalizations.of(context)
                                       .text("ORGANIZATION_NAME") ,
                                   ApiFactory.ORGANIZATION_API,
@@ -301,8 +304,53 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                   print(ApiFactory.ORGANIZATION_API);
                                   LabSignUpForm.organizationModel = data;
                                 });
-                              }),
+                              }),*/
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("ORGANIZATION_NAME") ,
+                                      ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
 
+                                          print(ApiFactory.ORGANIZATION_API);
+                                          LabSignUpForm.organizationModel = data;
+
+                                        });
+                                      }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("TITLE") ,
+                                      ApiFactory.TITLE_API,
+                                      "title",
+                                      Icons.person,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      LabSignUpForm.titlemodel = data;
+                                      //userModel.title=data.key;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ),
                               SizedBox(
                                 height: 5,
                               ),
@@ -320,7 +368,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               //   }),
                               // ),
 
-                              DropDown.networkDropdownGetpartUser1(
+                            /*  DropDown.networkDropdownGetpartUser1(
                                   MyLocalizations.of(context)
                                       .text("TITLE") ,
                                   ApiFactory.TITLE_API,
@@ -332,7 +380,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                   LabSignUpForm.titlemodel = data;
                                 });
                               }),
-
+*/
                               SizedBox(
                                 height: 13,
                               ),
@@ -661,14 +709,19 @@ class LabSignUpFormState extends State<LabSignUpForm> {
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
-        if (textEditingController[1].text == "" ||
+         if (LabSignUpForm.organizationModel == null ||
+        LabSignUpForm.organizationModel == "") {
+          AppData.showInSnackBar(context, "Please select Organization Name");
+        }else if (LabSignUpForm.titlemodel == null ||
+             LabSignUpForm.titlemodel == "") {
+           AppData.showInSnackBar(context, "Please select Title");}
+         else if(textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
+          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          FocusScope.of(context).requestFocus(fnode1);
         } else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Professional Name ");
-        } else if (LabSignUpForm.organizationModel == null ||
-            LabSignUpForm.organizationModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization");
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
+          FocusScope.of(context).requestFocus(fnode1);
         } else {
           widget.model.organization = LabSignUpForm.organizationModel.key;
           widget.model.labprofessionalname = textEditingController[1].text;
@@ -1038,25 +1091,37 @@ class LabSignUpFormState extends State<LabSignUpForm> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-           /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+             /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],
         ),
       ),
     );

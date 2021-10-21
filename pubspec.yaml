@@ -45,6 +45,7 @@ dependencies:
   unique_identifier: ^0.2.0
   lottie: ^1.1.0
   date_picker_timeline: ^1.2.3
+  flutter_rating_bar: ^4.0.0
 
   #fl_chart: ^0.40.0
   #image_picker: ^0.8.3
@@ -77,6 +78,7 @@ flutter:
     - assets/images/
     - assets/intro/
     - assets/audio/
+    - assets/health_tips/
 
   fonts:
 

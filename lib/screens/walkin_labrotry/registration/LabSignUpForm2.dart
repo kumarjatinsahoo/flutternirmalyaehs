@@ -154,6 +154,8 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     super.initState();
     LabSignUpForm2.districtModel = null;
     LabSignUpForm2.blockModel = null;
+
+    LabSignUpForm2.bloodgroupModel = null;
     LabSignUpForm2.genderModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
@@ -326,7 +328,50 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                   //     });
                                   //   }),
                                   // ),
-                                  DropDown.networkDropdownGetpartUser1(
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                                    child: SizedBox(
+                                      height: 58,
+                                      child: DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("BLOODGROUP") ,
+                                          ApiFactory.BLOODGROUP_API,
+                                          "bloodgroup",
+                                          Icons.bloodtype,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.BLOODGROUP_API);
+                                          LabSignUpForm2.bloodgroupModel = data;
+                                        });
+                                      }),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                                    child: SizedBox(
+                                      height: 58,
+                                      child: DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("GENDER") ,
+                                          ApiFactory.GENDER_API,
+                                          "gender",
+                                          Icons.wc_outlined,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                         /* print(ApiFactory.GENDER_API);
+                                          DoctorSignUpForm3.genderModel = data;
+                                          userModel.title = data.key;*/
+                                          print(ApiFactory.GENDER_API);
+                                          LabSignUpForm2.genderModel = data;
+                                          // UserSignUpForm.cityModel = null;
+                                        });
+                                      }),
+                                    ),
+                                  ),
+                                  /*DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("BLOODGROUP") ,
                                       ApiFactory.BLOODGROUP_API,
@@ -337,7 +382,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       print(ApiFactory.BLOODGROUP_API);
                                       LabSignUpForm2.bloodgroupModel = data;
                                     });
-                                  }),
+                                  }),*/
                                   SizedBox(
                                     height: 5,
                                   ),
@@ -353,7 +398,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                   //     });
                                   //   }),
                                   // ),
-                                  DropDown.networkDropdownGetpartUser1(
+                                /*  DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("GENDER") ,
                                       ApiFactory.GENDER_API,
@@ -364,7 +409,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       print(ApiFactory.GENDER_API);
                                       LabSignUpForm2.genderModel = data;
                                     });
-                                  }),
+                                  }),*/
                                   SizedBox(
                                     height: 10,
                                   ),
@@ -652,16 +697,17 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       fun: () {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Education name");
+          AppData.showInSnackBar(context, "Please enter Education Name");
+          FocusScope.of(context).requestFocus(fnode1);
         } else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please enter Date of birth");
+          AppData.showInSnackBar(context, "Please enter Date of Birth");
         } else if (LabSignUpForm2.bloodgroupModel == null ||
             LabSignUpForm2.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select blood group");
+          AppData.showInSnackBar(context, "Please select Blood Group");
         } else if (LabSignUpForm2.genderModel == null ||
             LabSignUpForm2.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select gender");
+          AppData.showInSnackBar(context, "Please select Gender");
         } else {
           widget.model.labeducation = textEditingController[8].text;
           widget.model.labdob = textEditingController[2].text;
@@ -840,7 +886,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                 prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey[600],
                 ),
               ),
             ),
@@ -1031,25 +1077,37 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            /*inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          /*inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],*/
         ),
       ),
     );

@@ -20,6 +20,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
+  bool isdata = false;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -134,7 +135,27 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                       ),
                     ],
                   ),
+                  isdata == true
+                      ? CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  )
+                      : doctorAppointmment == null || doctorAppointmment == null
+                      ? Container(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 300,),
+                          Text(
+                            'No Data Found',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
 
+                  )
+                      :
                   (doctorAppointmment != null)
                       ? ListView.builder(
                       shrinkWrap: true,
@@ -147,6 +168,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                           InkWell(
                             onTap: (){
                           widget.model.appointmentlist=appointmentlist;
+                          widget.model.patientseHealthCard=appointmentlist.userid;
                           //Navigator.pushNamed(context, "/medi");
                           Navigator.pushNamed(context, "/doctorMedicationTab");
                         },
@@ -190,7 +212,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),*/
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      "Patient Notes: "+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                   ],

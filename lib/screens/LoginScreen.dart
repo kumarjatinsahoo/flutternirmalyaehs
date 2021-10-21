@@ -443,7 +443,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(
               context, "Please enter Mobile No/Email Id/User Id");
         } else if (passController.text == "" || passController.text == null) {
-          AppData.showInSnackBar(context, "Please enter password");
+          AppData.showInSnackBar(context, "Please enter Password");
         } else {
           widget.model.phnNo = _loginId.text;
           MyWidgets.showLoading(context);
@@ -508,9 +508,9 @@ class _LoginScreenState extends State<LoginScreen> {
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
+          AppData.showInSnackBar(context, "Please enter Mobile No");
         } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+          AppData.showInSnackBar(context, "Please enter 10 digit Mobile No");
         } else {
           widget.model.phnNo = _loginId.text;
           MyWidgets.showLoading(context);

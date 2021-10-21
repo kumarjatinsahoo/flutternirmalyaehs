@@ -34,9 +34,10 @@ class _ShowEmr extends State<ShowEmr> {
   FocusNode _descriptionFocus, _focusNode;
   final _titleController = TextEditingController();
   String _ratingController;
-  String eHealthCardno;
+  String eHealthCardno,eHealthCardnoo;
   String comeFrom;
   LoginResponse1 loginResponse;
+
   // PatientsDetailsModel patientsDetails = PatientsDetailsModel();
  // UserlabtestreportModel userlabtestreportModel = UserlabtestreportModel();
 //  apnt.MadicationlistModel madicationlistModel =apnt.MadicationlistModel();
@@ -49,9 +50,14 @@ class _ShowEmr extends State<ShowEmr> {
     _focusNode = FocusNode();
     //eHealthCardno="5093626841904641";
     eHealthCardno = widget.model.patientseHealthCard;
+    eHealthCardnoo= widget.model.userid;
+    //print('userrrrrrrrr>>>>>>>>>>>>>>>>>>>:$eHealthCardnoo');
+   // eHealthCardnoo=widget.model.userid;
     //callPERSONALAPI(eHealthCardno);
    // callLabtastAPI(eHealthCardno);
     //callMadicationAPI(eHealthCardno);
+   // print('userrriddddtesting>>>>>>>>>>>>>>>>>>: $eHealthCardnoo');
+
   }
 
   // callPERSONALAPI(String eHealthCardno) {

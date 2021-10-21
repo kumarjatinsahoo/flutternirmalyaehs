@@ -1,6 +1,13 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/PinView.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +21,8 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   var selectedMinValue;
+  TextEditingController _mobileno = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,6 +69,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                    Padding(
                      padding: const EdgeInsets.symmetric(horizontal: 30),
                      child: TextFormField(
+                       controller: _mobileno,
                        maxLength: 10,
                        keyboardType: TextInputType.number,
                        inputFormatters: [
@@ -115,7 +125,42 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       
         // Navigator.pushNamed(context, "/otpView");
         //}
-      },
+
+        if (_mobileno.text == "" || _mobileno.text == null) {
+    AppData.showInSnackBar(context, "Please enter Mobile No");
+    } else if (_mobileno.text.length != 10) {
+    AppData.showInSnackBar(context, "Please enter 10 digit Mobile No");
+    } else {
+    widget.model.phnNo = _mobileno.text;
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCALL(
+    api: ApiFactory.LOGIN_Otp(_mobileno.text),
+    fun: (Map<String, dynamic> map) {
+    Navigator.pop(context);
+    log("LOGIN RESPONSE>>>>" + jsonEncode(map));
+    //AppData.showInSnackBar(context, map[Const.MESSAGE]);
+    if (map[Const.CODE] == Const.SUCCESS) {
+    setState(() {
+    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+    // widget.model.loginData=loginResponse;
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (BuildContext context) => PinView(
+    loginData: loginResponse,
+    model: widget.model,
+    )),
+    );
+    });
+    } else {
+    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+    }
+    });
+    // widget.model.phnNo = _loginId.text;
+    //Navigator.pushNamed(context, "/otpView");
+    // Navigator.pushNamed(context, "/pinView");
+    }
+  },
     );
   }
 

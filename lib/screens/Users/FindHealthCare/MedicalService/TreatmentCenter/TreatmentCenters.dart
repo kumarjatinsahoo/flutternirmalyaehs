@@ -14,34 +14,23 @@ TreatmentCenters extends StatefulWidget {
 
 class _TreatmentCentersState extends State<TreatmentCenters> {
   var selectedMinValue;
+  double tileSize = 80;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Treatment Centers',
+                style: TextStyle(color: AppData.white),
+              ),
+              centerTitle: true,
+              backgroundColor:AppData.kPrimaryColor,
+            ),
            body: Container(
              child: Column(
                children: [
-                  Container(
-                  color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white,   )),
-                   Text('Treatment Centers',
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20, color: Colors.white),),
-                        Icon(Icons.search,color: Colors.white),
-                    ],
-                  ),
-                ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
-              ),
+
               Expanded(
                               child: ListView(
                                 shrinkWrap: true,
@@ -66,7 +55,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                              elevation: 5,
                                                      child: Container(
-                                               height: 100,
+                                               height: tileSize,
                                                width: double.maxFinite,
                                               decoration: BoxDecoration(
                                     color: Colors.white,
@@ -110,7 +99,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -153,7 +142,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -195,7 +184,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -237,7 +226,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,
@@ -280,7 +269,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                              child: Card(
                                                elevation: 5,
                                                child: Container(
-                                                   height: 100,
+                                                   height: tileSize,
                                                    width: double.maxFinite,
                                                    decoration: BoxDecoration(
                                                        color: Colors.white,

@@ -175,6 +175,11 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     LabSignUpForm3.blockModel = null;
     LabSignUpForm3.genderModel = null;
 
+    LabSignUpForm3.countryModel = null;
+    LabSignUpForm3.stateModel = null;
+    LabSignUpForm3.districtModel = null;
+    LabSignUpForm3.citymodel = null;
+
     labid = widget.model.organization;
     labtitleid = widget.model.title1;
     labdname = widget.model.labprofessionalname;
@@ -298,7 +303,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          formFieldaddress(8, MyLocalizations.of(context).text("ADDRESS")),
+                          formFieldaddress(8, MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
                           SizedBox(
                             height: 5,
                           ),
@@ -312,13 +317,15 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                   print(ApiFactory.COUNTRY_API);
                                   LabSignUpForm3.countryModel = data;
                                   LabSignUpForm3.stateModel = null;
+                                  LabSignUpForm3.districtModel = null;
+                                  LabSignUpForm3.citymodel = null;
 
                                 });
                               }),
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("STATE") ,
                               ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
@@ -328,13 +335,14 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                   print(ApiFactory.STATE_API);
                                   LabSignUpForm3.stateModel = data;
                                   LabSignUpForm3.districtModel = null;
+                                  LabSignUpForm3.citymodel = null;
                                 });
                               }),
 
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("DIST") ,
                               ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
@@ -349,7 +357,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 5,
                           ),
-                          DropDown.networkDropdownGetpartUser(
+                          DropDown.countryList(
                               MyLocalizations.of(context)
                                   .text("CITY") ,
                               ApiFactory.CITY_API + (LabSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
@@ -365,32 +373,31 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
+                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE")),
+                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(
-                              6,MyLocalizations.of(context).text("ENTER_OFFICE_PHONE")),
+                          formFieldMobile(6,MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO")),
+                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(11, MyLocalizations.of(context).text("EMAILID")),
+                          formFielEmail(11, MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
                           SizedBox(
                             height: 13,
                           ),
-                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID")),
+                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
                           SizedBox(
                             height: 13,
                           ),
-                          formFieldExperience(13, MyLocalizations.of(context).text("EXPERIENCE")),
+                          formFieldExperience(13, MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
                           SizedBox(
                             height: 13,
                           ),
@@ -424,33 +431,66 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w800,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.grey,
+                                Expanded(
+                                    child:RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+
+                                            TextSpan(
+                                              text:MyLocalizations.of(context).text(  "T&C"),
+                                              /* "Welcome back",*/
+
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData
+                                                    .kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                                /*Container(
+                                  child: RichText(
+                                      textAlign: TextAlign.start,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                            *//* "Welcome back",*//*
+                                            style: TextStyle(
+                                              // fontWeight: FontWeight.w800,
+                                              fontFamily: "Monte",
+                                              // fontSize: 25.0,
+                                              color: Colors.grey,
+                                            ),
                                           ),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                          MyLocalizations.of(context).text("T&C") ,
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w500,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.indigo,
-                                          ),
-                                        )
-                                      ],
-                                    )),
+                                          TextSpan(
+                                            text:
+                                            MyLocalizations.of(context).text("T&C") ,
+                                            *//* "Welcome back",*//*
+                                            style: TextStyle(
+                                              // fontWeight: FontWeight.w500,
+                                              fontFamily: "Monte",
+                                              // fontSize: 25.0,
+                                              color: Colors.indigo,
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                ),*/
                               ],
                             ),
                           ),
@@ -648,47 +688,57 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
+          FocusScope.of(context).requestFocus(fnode1);
         }else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
+          AppData.showInSnackBar(context, "Please select Country");
         } else if (LabSignUpForm3.stateModel == null ||
             LabSignUpForm3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (LabSignUpForm3.districtModel == null ||
             LabSignUpForm3.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
         }else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select city");
+          AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Pin");
+          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+          FocusScope.of(context).requestFocus(fnode2);
         }else if (textEditingController[4].text != ""  &&
             textEditingController[4].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid home phone");
+          AppData.showInSnackBar(context, "Please enter a valid Home Phone");
+          FocusScope.of(context).requestFocus(fnode3);
         }else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid office phone");
+          AppData.showInSnackBar(context, "Please enter a valid Office Phone");
+          FocusScope.of(context).requestFocus(fnode4);
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile number");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
+          FocusScope.of(context).requestFocus(fnode5);
         }else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+          FocusScope.of(context).requestFocus(fnode5);
         }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email id");
+          AppData.showInSnackBar(context, "Please enter E-mail Id");
+          FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[11].text != ""&&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
+          FocusScope.of(context).requestFocus(fnode6);
         }else if (textEditingController[12].text != "" &&
             !AppData.isValidEmail(textEditingController[12].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid alternate email id");
+          AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
+          FocusScope.of(context).requestFocus(fnode7);
         }else if (textEditingController[13].text == "" || textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
+          FocusScope.of(context).requestFocus(fnode8);
         }
         else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked terms and Condition");
+          AppData.showInSnackBar(context, "Please checked Terms and Condition");
         }
          else {
           MyWidgets.showLoading(context);
@@ -744,8 +794,50 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       },
     );
   }
-
   popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        desc:
+        "Now you can login through your mobile no and password is: User@123",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              widget.model.patientName = null;
+              Navigator.pop(context);
+              widget.model.patientphnNo = null;
+              widget.model.patientemail = null;
+              widget.model.patientaadhar = null;
+              widget.model.patientheight = null;
+              widget.model.patientweight = null;
+              widget.model.patientimg = null;
+              widget.model.patientage = null;
+              widget.model.patientgender = null;
+              widget.model.patienCitycode = null;
+              widget.model.patienCitykey = null;
+              widget.model.patienStatecode = null;
+              widget.model.patienStatekey = null;
+              widget.model.patientimgtype = null;
+              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+ /* popup(BuildContext context, String message) {
     return Alert(
         context: context,
         //title: "Success",
@@ -831,7 +923,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         ]).show();
   }
 
-
+*/
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
@@ -1174,7 +1266,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   }
   Widget formFieldaddress(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -1190,32 +1282,44 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 15),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            focusNode: currentfn,
+            controller: textEditingController[index],
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+           /* inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-         /* inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],*/
         ),
       ),
     );
   }
   Widget formFieldExperience(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1229,14 +1333,14 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 3,
@@ -1257,7 +1361,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -1272,7 +1376,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   }
   Widget formFielEmail(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -1288,32 +1392,42 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 15),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            focusNode: currentfn,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            onFieldSubmitted: (value) {
+              // print(error[2]);
+              error[4] = false;
+              setState(() {});
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+           /* textAlignVertical:
+            TextAlignVertical.center,*/
+             /*inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-         /* textAlignVertical:
-          TextAlignVertical.center,*/
-           /*inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
-          ],*/
         ),
       ),
     );
   }
   Widget formFieldzip(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1327,14 +1441,14 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 6,
@@ -1355,7 +1469,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -1370,7 +1484,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   }
   Widget formFieldMobile(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -1384,14 +1498,14 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: <Widget>[
               new Expanded(
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 10,
@@ -1413,7 +1527,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;

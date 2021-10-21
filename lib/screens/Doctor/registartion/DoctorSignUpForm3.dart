@@ -169,7 +169,10 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     title = widget.model.title;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
+
     DoctorSignUpForm3.genderModel = null;
+    DoctorSignUpForm3.specialistModel = null;
+    DoctorSignUpForm3.bloodgroupModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -299,7 +302,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("SPECIALITY") ,
                                   ApiFactory.SPECIALITY_API,
                                   "speciality",
-                                  Icons.mail,
+                                  Icons.work_outlined,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.SPECIALITY_API);
@@ -326,7 +329,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("BLOODGROUP") ,
                                   ApiFactory.BLOODGROUP_API,
                                   "bloodgroup",
-                                  Icons.location_on_rounded,
+                                  Icons.bloodtype,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.BLOODGROUP_API);
@@ -347,7 +350,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                       .text("GENDER") ,
                                   ApiFactory.GENDER_API,
                                   "gender",
-                                  Icons.mail,
+                                  Icons.wc_outlined,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.GENDER_API);
@@ -531,19 +534,20 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       fun: () {
         if (textEditingController[8].text == null ||
             textEditingController[8].text == "") {
-          AppData.showInSnackBar(context, "Please enter education");
+          AppData.showInSnackBar(context, "Please enter Education Name");
+          FocusScope.of(context).requestFocus(fnode1);
         } else if (DoctorSignUpForm3.specialistModel == null ||
             DoctorSignUpForm3.specialistModel == "") {
-          AppData.showInSnackBar(context, "Please select Specalist");
+          AppData.showInSnackBar(context, "Please select Speciality");
         } else if (textEditingController[2].text == null ||
             textEditingController[2].text == "") {
-          AppData.showInSnackBar(context, "Please enter Date  of birth");
+          AppData.showInSnackBar(context, "Please enter Date  of Birth");
         } else if (DoctorSignUpForm3.bloodgroupModel == null ||
             DoctorSignUpForm3.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select bloodgroup");
+          AppData.showInSnackBar(context, "Please select Blood Group");
         } else if (DoctorSignUpForm3.genderModel == null ||
             DoctorSignUpForm3.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select gender");
+          AppData.showInSnackBar(context, "Please select Gender");
         } else {
           widget.model.education = textEditingController[8].text;
           widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
@@ -723,7 +727,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                 prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey[600],
                 ),
               ),
             ),
@@ -914,25 +918,37 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            /*inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],*/
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          /*inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],*/
         ),
       ),
     );

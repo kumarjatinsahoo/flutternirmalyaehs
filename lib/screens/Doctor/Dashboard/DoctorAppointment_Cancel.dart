@@ -22,6 +22,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
+  bool isdata = false;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -136,6 +137,27 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                       ),
                     ],
                   ),
+                  isdata == true
+                      ? CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  )
+                      : doctorAppointmment == null || doctorAppointmment == null
+                      ? Container(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 300,),
+                          Text(
+                            'No Data Found',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  )
+                      :
                   (doctorAppointmment != null)
                       ? ListView.builder(
                       shrinkWrap: true,
@@ -184,7 +206,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                       style: TextStyle(),),
                                                     SizedBox(height: 5,),*/
                                                     Text(
-                                                      "Patient Notes:"+appointmentlist.notes,
+                                                      "Patient Notes: "+appointmentlist.notes,
                                                       overflow: TextOverflow.clip,
                                                       style: TextStyle(),),
                                                   ],

@@ -1059,10 +1059,12 @@ class _PatientDetail extends State<PatientDetail> {
                     ]),
                   ),
                   Divider(height: 1,),
-                  (patientsDetails!=null && patientsDetails.body.isNotEmpty && patientsDetails.body[0].allergies.isNotEmpty)?Padding(
+                  (patientsDetails!=null && patientsDetails.body.isNotEmpty && patientsDetails.body[0].allergies.isNotEmpty&&patientsDetails.body != null &&
+                      patientsDetails.body.length > 0) ?Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Expanded(
-                      child: ListView.builder(
+                      child:
+                      ListView.builder(
                         shrinkWrap: true,
                         // scrollDirection: Axis.horizontal,
                         itemCount: patientsDetails.body[0].allergies.length,
