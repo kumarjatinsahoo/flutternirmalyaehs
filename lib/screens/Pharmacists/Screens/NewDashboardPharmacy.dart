@@ -75,7 +75,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 0,
         ),
-        body:  Container(
+        body:
+        Container(
           padding: EdgeInsets.symmetric(horizontal: 7),
           child: Column(
             children: [
@@ -90,7 +91,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: "assets/Myorder1.png",
+                          icon: "assets/images/pharmacyorders.png",
                           fun: () {
                             //AppData.showInSnackBar(context, "Coming soon");
                             // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -108,7 +109,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           height: 35,
                           /* child: Expanded(*/
                           child: Text("My Orders",
-                           // MyLocalizations.of(context).text("My Orders"),
+                            // MyLocalizations.of(context).text("My Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -124,7 +125,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/ConOrder.png",
+                          icon: "assets/images/pharmacyconfirm.png",
                           fun: () {
                             // Navigator.pushNamed(context, "/myAppointment");
                             Navigator.pushNamed(context, "/ordersPharma");
@@ -141,7 +142,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           height: 35,
                           /* child: Expanded(*/
                           child: Text("Confirmed Order",
-                           // MyLocalizations.of(context).text("Confirmed Order"),
+                            // MyLocalizations.of(context).text("Confirmed Order"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -164,7 +165,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: "assets/ProcessOrder.png",
+                          icon: "assets/images/pharmacyprocessed.png",
                           fun: () {
                             //chooseAppointment(context, model);
                             //Navigator.pushNamed(context, "/userAppoint");
@@ -187,7 +188,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           height: 35,
                           /* child: Expanded(*/
                           child: Text("Processed Orders",
-                           // MyLocalizations.of(context).text("Processed Orders"),
+                            // MyLocalizations.of(context).text("Processed Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -214,7 +215,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/DeliverdOrder.png",
+                          icon: "assets/images/pharmacydelivered.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/deliverdorder");
@@ -259,7 +260,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: "assets/Invoices.png",
+                          icon: "assets/images/pharmacyinvoice.png",
                           //icon: Icons.alarm,
                           //icon: FontAwesomeIcons.accusoft,
                           title: "Invoices",
@@ -281,7 +282,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           height: 35,
                           /* child: Expanded(*/
                           child: Text("Invoices",
-                           // MyLocalizations.of(context).text("Invoices"),
+                            // MyLocalizations.of(context).text("Invoices"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -295,7 +296,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/monthlyoverview2.png",
+                          icon: "assets/images/pharmacymonthly.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/monthloveryview");
@@ -313,7 +314,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           width: 100,
                           height: 35,
                           child: Text("Monthly Overview",
-                           // MyLocalizations.of(context).text("Monthly Overview"),
+                            // MyLocalizations.of(context).text("Monthly Overview"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -327,7 +328,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
             ],
           ),
         ),
-
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
