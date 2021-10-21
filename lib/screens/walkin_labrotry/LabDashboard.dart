@@ -132,7 +132,8 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: Icons.people,
+                          icon:"assets/images/registerpatient.png",
+                          iconcolor: AppData.BG2BLUE,
                           fun: () {
                             //AppData.showInSnackBar(context, "Coming soon");
                             // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -166,7 +167,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: Icons.alarm,
+                          icon: "assets/images/appointmentlab.png",
                           fun: () {
                             chooseAppointment(context);
                             // Navigator.pushNamed(context, "/myAppointment");
@@ -207,7 +208,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: CupertinoIcons.doc_append,
+                          icon: "assets/images/pocreports.png",
                           fun: () {
                             //chooseAppointment(context, model);
                             //Navigator.pushNamed(context, "/userAppoint");
@@ -257,7 +258,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: Icons.edit_attributes,
+                          icon: "assets/images/testlab.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/testappointmentpage");
@@ -302,12 +303,12 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: CupertinoIcons.bag,
+                          icon:"assets/images/orderslab.png",
                           //icon: FontAwesomeIcons.accusoft,
                           title: "My Orders",
                           fun: () {
-                           // AppData.showInSnackDone(context, "/myOrderTest");
-                             Navigator.pushNamed(context, "/myOrderTest");
+                            // AppData.showInSnackDone(context, "/myOrderTest");
+                            Navigator.pushNamed(context, "/myOrderTest");
                             // AppData.showSnack(
                             //     context, "Coming soon", Colors.green);
                           },
@@ -337,7 +338,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: CupertinoIcons.settings_solid,
+                          icon: "assets/images/datalab.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/testappointmentpage1");
@@ -1091,7 +1092,7 @@ class _LabDashboardState extends State<LabDashboard> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-  Widget _buildTilered({IconData icon,
+  Widget _buildTilered({String icon,
     String title,
     double size,
     Color bordercolor,
@@ -1128,10 +1129,12 @@ class _LabDashboardState extends State<LabDashboard> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.center,
-                  child: Icon(
+                  child: Image.asset(
                     /* "assets/logo1.png"*/
-                    icon,size: 40.0,
-
+                    icon,
+                    fit: BoxFit.fitWidth,
+                    width: 50,
+                    height: 50.0,
                   ),
                 ),
 
@@ -1145,11 +1148,13 @@ class _LabDashboardState extends State<LabDashboard> {
   }
 
 
-  Widget _buildTileblue({IconData icon,
+
+  Widget _buildTileblue({String icon,
     /*IconData icon,*/
     String title,
     double size,
     Color bordercolor,
+    Color iconcolor,
     Color color,
     Function fun}) {
     return InkWell(
@@ -1182,9 +1187,12 @@ class _LabDashboardState extends State<LabDashboard> {
               children: <Widget>[
                 Align(
                     alignment: Alignment.center,
-                    child: Icon(
+                    child: Image.asset(
                       /* "assets/logo1.png"*/
-                      icon,size: 40.0
+                      icon,
+                      fit: BoxFit.fitWidth,
+                      width: 50,
+                      height: 50.0,
                     )),
               ],
             ),

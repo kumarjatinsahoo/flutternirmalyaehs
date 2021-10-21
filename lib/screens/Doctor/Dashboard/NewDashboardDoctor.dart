@@ -253,8 +253,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(
-                          MyLocalizations.of(context).text("WALK_IN_PATIENT"),
+                        child: Text("Walk in Patient",
+                         // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -297,8 +297,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text(
-                          MyLocalizations.of(context).text("EMERGENCY ACCESS"),
+                        child: Text("Emergency Access",
+                          //MyLocalizations.of(context).text("EMERGENCY ACCESS"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -344,8 +344,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(
-                          MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
+                        child: Text("Share Appointment",
+                         // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -376,8 +376,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text(
-                          MyLocalizations.of(context).text("MY_PATIENT"),
+                        child: Text("My Patient",
+                          //MyLocalizations.of(context).text("MY_PATIENT"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -420,8 +420,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                         width: 100,
                         height: 35,
-                        child: Text(
-                          MyLocalizations.of(context).text("Monthly Overview"),
+                        child: Text("Monthly Overview",
+                         // MyLocalizations.of(context).text("Monthly Overview"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
@@ -467,8 +467,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                         width: 100,
                         height: 35,
                         /* child: Expanded(*/
-                        child: Text(
-                          MyLocalizations.of(context).text("Video Consulation"),
+                        child: Text("Video Consultation",
+                         // MyLocalizations.of(context).text("Video Consulation"),
                           textAlign: TextAlign.center,
                           //overflow: TextOverflow.ellipsis,
                         ),
