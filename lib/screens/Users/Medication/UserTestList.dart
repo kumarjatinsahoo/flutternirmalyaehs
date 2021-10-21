@@ -50,7 +50,6 @@ class _MedicineList extends State<UserTestList> {
   String selectedDatestr;
   String userid;
   bool isdata =false;
-
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
