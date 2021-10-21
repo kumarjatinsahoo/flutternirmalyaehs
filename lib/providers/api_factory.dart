@@ -1,10 +1,10 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
- //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+ static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
@@ -59,6 +59,8 @@ class ApiFactory {
   static String SPECIALITY_API2 = MAIN_URL + 'get-doctor-speciality-list';
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
+  static String FORGOT_OTP = MAIN_URL + 'forgot-password-get-otp';
+  static String CHNG_PASS = MAIN_URL + 'change-password';
   static String DOCTER_AVAILABLE =
       MAIN_URL + 'doctor-available-by-date?doctor=';
   static String FIND_HEALTH_PROVIDER1 =
@@ -79,6 +81,7 @@ class ApiFactory {
   static String LOGIN_Otp(String mob) {
     return MAIN_URL + "login-with-otp?mobileNo=$mob";
   }
+
   static String ADD_BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'post-biomedical-implants-api';
   static String SMS_TO_EMERGENCY =
