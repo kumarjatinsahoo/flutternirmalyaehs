@@ -288,220 +288,218 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                            style: TextStyle(fontSize: 18, color: Colors.black),),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5,),
+
+                                      //  formFieldaddress(8, "Address"),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+
+                                      DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("COUNTRY") ,
+                                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.COUNTRY_API);
+                                              AmbulanceSignUpForm2.countryModel = data;
+                                              AmbulanceSignUpForm2.stateModel = null;
+
+                                            });
+                                          }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("STATE") ,
+                                          ApiFactory.STATE_API +(AmbulanceSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.STATE_API);
+                                              AmbulanceSignUpForm2.stateModel = data;
+                                              AmbulanceSignUpForm2.districtModel = null;
+                                            });
+                                          }),
+
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("DIST") ,
+                                          ApiFactory.DISTRICT_API +(AmbulanceSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.DISTRICT_API);
+                                              AmbulanceSignUpForm2.districtModel = data;
+                                              AmbulanceSignUpForm2.citymodel = null;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("CITY") ,
+                                          ApiFactory.CITY_API + (AmbulanceSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.CITY_API);
+                                              AmbulanceSignUpForm2.citymodel = data;
+                                              // LabSignUpForm3.districtModel = null;
+                                            });
+                                          }),
+
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+
+                                      formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO")),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      formFielEmail(11,MyLocalizations.of(context).text("EMAILID")),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      Container(
+                                        child: Row(
                                           children: [
-                                            Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
+                                            Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                            ),
+                                            SizedBox(width:5),
+                                            Material(
+                                              elevation: 3,
+                                              color:AppData.kPrimaryColor,
+                                              borderRadius: BorderRadius.circular(5.0),
+                                              child: MaterialButton(
+                                                onPressed: () {
+                                                  _settingModalBottomSheet(context);
+
+                                                },
+                                                minWidth: 150,
+                                                height: 40.0,
+                                                child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                                  style: TextStyle(
+                                                      color: Colors.white, fontSize: 17.0),
+                                                ),
+                                              ),
+                                            ),
+
                                           ],
                                         ),
-                                        SizedBox(height: 5,),
+                                      ),
+                                      SizedBox(height: 10,),
+                                      (idproof != null)
+                                          ? Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Container(
 
-                                        //  formFieldaddress(8, "Address"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
+                                                child: Text(
 
-                                        DropDown.networkDropdownGetpartUser(
-                                            MyLocalizations.of(context)
-                                                .text("COUNTRY") ,
-                                            ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.COUNTRY_API);
-                                                AmbulanceSignUpForm2.countryModel = data;
-                                                AmbulanceSignUpForm2.stateModel = null;
-
-                                              });
-                                            }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            MyLocalizations.of(context)
-                                                .text("STATE") ,
-                                            ApiFactory.STATE_API +(AmbulanceSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.STATE_API);
-                                                AmbulanceSignUpForm2.stateModel = data;
-                                                AmbulanceSignUpForm2.districtModel = null;
-                                              });
-                                            }),
-
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            MyLocalizations.of(context)
-                                                .text("DIST") ,
-                                            ApiFactory.DISTRICT_API +(AmbulanceSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.DISTRICT_API);
-                                                AmbulanceSignUpForm2.districtModel = data;
-                                                AmbulanceSignUpForm2.citymodel = null;
-                                              });
-                                            }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            MyLocalizations.of(context)
-                                                .text("CITY") ,
-                                            ApiFactory.CITY_API + (AmbulanceSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.CITY_API);
-                                                AmbulanceSignUpForm2.citymodel = data;
-                                                // LabSignUpForm3.districtModel = null;
-                                              });
-                                            }),
-
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-
-                                        formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO")),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        formFielEmail(11,MyLocalizations.of(context).text("EMAILID")),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                              ),
-                                              SizedBox(width:5),
-                                              Material(
-                                                elevation: 3,
-                                                color:AppData.kPrimaryColor,
-                                                borderRadius: BorderRadius.circular(5.0),
-                                                child: MaterialButton(
-                                                  onPressed: () {
-                                                    _settingModalBottomSheet(context);
-
-                                                  },
-                                                  minWidth: 150,
-                                                  height: 40.0,
-                                                  child: Text(MyLocalizations.of(context).text("UPLOAD"),
-                                                    style: TextStyle(
-                                                        color: Colors.white, fontSize: 17.0),
-                                                  ),
+                                                  "Report Path :" + idproof,
+                                                  style: TextStyle(color: Colors.green),
                                                 ),
                                               ),
-
-                                            ],
-                                          ),
+                                            ),
+                                            InkWell(
+                                              child: SizedBox(
+                                                  width: 50.0,
+                                                  child: Icon(Icons.clear)),
+                                              onTap: () {
+                                                setState(() {
+                                                  idproof = null;
+                                                  // registrationModel.profilePhotoBase64 =
+                                                  null;
+                                                  //registrationModel.profilePhotoExt =
+                                                  null;
+                                                });
+                                              },
+                                            )
+                                          ],
                                         ),
-                                        SizedBox(height: 10,),
-                                        (idproof != null)
-                                            ? Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Container(
-
-                                                  child: Text(
-
-                                                    "Report Path :" + idproof,
-                                                    style: TextStyle(color: Colors.green),
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                child: SizedBox(
-                                                    width: 50.0,
-                                                    child: Icon(Icons.clear)),
-                                                onTap: () {
-                                                  setState(() {
-                                                    idproof = null;
-                                                    // registrationModel.profilePhotoBase64 =
-                                                    null;
-                                                    //registrationModel.profilePhotoExt =
-                                                    null;
-                                                  });
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                            : Container(),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: Row(
-                                            //  mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox = !_checkbox;
-                                                  });
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              RichText(
-                                                  textAlign: TextAlign.start,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w800,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.grey,
-                                                        ),
+                                      )
+                                          : Container(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Row(
+                                          //  mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox = !_checkbox;
+                                                });
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            RichText(
+                                                textAlign: TextAlign.start,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w800,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.grey,
                                                       ),
-                                                      TextSpan(
-                                                        text:
-                                                        MyLocalizations.of(context).text("T&C") ,
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w500,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.indigo,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                      MyLocalizations.of(context).text("T&C") ,
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w500,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.indigo,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: nextButton1(),
+                                      ),
+                                    ],
                                   ),
                                 )
                               ],

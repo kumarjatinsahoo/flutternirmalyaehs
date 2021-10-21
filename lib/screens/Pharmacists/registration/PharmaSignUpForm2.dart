@@ -239,187 +239,185 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(8, MyLocalizations.of(context).text("EDUCATION")),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(MyLocalizations.of(context).text("ROLE"),
-                                              style: TextStyle(fontSize: 20, color: Colors.black),),
-                                            SizedBox(width: 80),
-                                            Column(
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("PHARMACIST"),
-                                                  style: TextStyle(fontSize: 20, color: Colors.black),),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                            height: 11
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            MyLocalizations.of(context)
-                                                .text("SPECIALITY") ,
-                                            ApiFactory.SPECIALITY_API,
-                                            "speciality",
-                                            Icons.mail,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.SPECIALITY_API);
-                                            PharmaSignUpForm2.specialistModel = data;
-                                            PharmaSignUpForm2.doctorModel = null;
-                                            // UserSignUpForm.cityModel = null;
-                                          });
-                                        }),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        dob(),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            MyLocalizations.of(context)
-                                                .text("BLOODGROUP") ,
-                                            ApiFactory.BLOODGROUP_API,
-                                            "bloodgroup",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.BLOODGROUP_API);
-                                            PharmaSignUpForm2.bloodgroupModel = data;
-                                          });
-                                        }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            MyLocalizations.of(context)
-                                                .text("GENDER") ,
-                                            ApiFactory.GENDER_API,
-                                            "gender",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.GENDER_API);
-                                            PharmaSignUpForm2.genderModel = data;
-                                          });
-                                        }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // InkWell(
-                                        //     onTap: () {
-                                        //       setState(() {
-                                        //         ispartnercode = !ispartnercode;
-                                        //       });
-                                        //     },
-                                        //     child: Text(
-                                        //       MyLocalizations.of(context)
-                                        //               .text("HAVE_PARTNERCODE") +
-                                        //           "?",
-                                        //       style: TextStyle(color: Colors.blue),
-                                        //     )),
-                                        //
-                                        // SizedBox(
-                                        //   height: 10,
-                                        // ),
-                                        // Visibility(
-                                        //   visible: ispartnercode,
-                                        //   child: Padding(
-                                        //     padding:
-                                        //         const EdgeInsets.symmetric(horizontal: 25),
-                                        //     child: TextFormField(
-                                        //       decoration: InputDecoration(
-                                        //           hintText: MyLocalizations.of(context)
-                                        //               .text("PARTNERCODE"),
-                                        //           hintStyle: TextStyle(color: Colors.grey)),
-                                        //       textInputAction: TextInputAction.next,
-                                        //       keyboardType: TextInputType.text,
-                                        //       //           inputFormatters: [
-                                        //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //       //           ],
-                                        //     ),
-                                        //   ),
-                                        // ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                            style: TextStyle(fontSize: 18, color: Colors.black),),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      formField(8, MyLocalizations.of(context).text("EDUCATION")),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(MyLocalizations.of(context).text("ROLE"),
+                                            style: TextStyle(fontSize: 20, color: Colors.black),),
+                                          SizedBox(width: 80),
+                                          Column(
+                                            children: [
+                                              Text(MyLocalizations.of(context).text("PHARMACIST"),
+                                                style: TextStyle(fontSize: 20, color: Colors.black),),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: 11
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          MyLocalizations.of(context)
+                                              .text("SPECIALITY") ,
+                                          ApiFactory.SPECIALITY_API,
+                                          "speciality",
+                                          Icons.mail,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.SPECIALITY_API);
+                                          PharmaSignUpForm2.specialistModel = data;
+                                          PharmaSignUpForm2.doctorModel = null;
+                                          // UserSignUpForm.cityModel = null;
+                                        });
+                                      }),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      dob(),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser1(
+                                          MyLocalizations.of(context)
+                                              .text("BLOODGROUP") ,
+                                          ApiFactory.BLOODGROUP_API,
+                                          "bloodgroup",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.BLOODGROUP_API);
+                                          PharmaSignUpForm2.bloodgroupModel = data;
+                                        });
+                                      }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser1(
+                                          MyLocalizations.of(context)
+                                              .text("GENDER") ,
+                                          ApiFactory.GENDER_API,
+                                          "gender",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.GENDER_API);
+                                          PharmaSignUpForm2.genderModel = data;
+                                        });
+                                      }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                        child: nextButton1(),
+                                      ),
+                                      // SizedBox(
+                                      //   height: 10,
+                                      // ),
+                                      // InkWell(
+                                      //     onTap: () {
+                                      //       setState(() {
+                                      //         ispartnercode = !ispartnercode;
+                                      //       });
+                                      //     },
+                                      //     child: Text(
+                                      //       MyLocalizations.of(context)
+                                      //               .text("HAVE_PARTNERCODE") +
+                                      //           "?",
+                                      //       style: TextStyle(color: Colors.blue),
+                                      //     )),
+                                      //
+                                      // SizedBox(
+                                      //   height: 10,
+                                      // ),
+                                      // Visibility(
+                                      //   visible: ispartnercode,
+                                      //   child: Padding(
+                                      //     padding:
+                                      //         const EdgeInsets.symmetric(horizontal: 25),
+                                      //     child: TextFormField(
+                                      //       decoration: InputDecoration(
+                                      //           hintText: MyLocalizations.of(context)
+                                      //               .text("PARTNERCODE"),
+                                      //           hintStyle: TextStyle(color: Colors.grey)),
+                                      //       textInputAction: TextInputAction.next,
+                                      //       keyboardType: TextInputType.text,
+                                      //       //           inputFormatters: [
+                                      //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                      //       //           ],
+                                      //     ),
+                                      //   ),
+                                      // ),
 
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: Row(
-                                        //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                        //     children: [
-                                        //       Checkbox(
-                                        //         value: _checkbox,
-                                        //         onChanged: (value) {
-                                        //           setState(() {
-                                        //             _checkbox = !_checkbox;
-                                        //           });
-                                        //         },
-                                        //       ),
-                                        //       SizedBox(
-                                        //         height: 10,
-                                        //       ),
-                                        //       RichText(
-                                        //           textAlign: TextAlign.start,
-                                        //           text: TextSpan(
-                                        //             children: [
-                                        //               TextSpan(
-                                        //                 text: 'I agree to NCORDS ',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w800,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.grey,
-                                        //                 ),
-                                        //               ),
-                                        //               TextSpan(
-                                        //                 text: 'Terms and Conditions',
-                                        //                 /* "Welcome back",*/
-                                        //                 style: TextStyle(
-                                        //                   // fontWeight: FontWeight.w500,
-                                        //                   fontFamily: "Monte",
-                                        //                   // fontSize: 25.0,
-                                        //                   color: Colors.indigo,
-                                        //                 ),
-                                        //               )
-                                        //             ],
-                                        //           )),
-                                        //     ],
-                                        //   ),
-                                        // ),
-                                        // Padding(
-                                        //   padding:
-                                        //       const EdgeInsets.symmetric(horizontal: 10),
-                                        //   child: nextButton(),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 25,
-                                        // ),
-                                      ],
-                                    ),
+                                      // Padding(
+                                      //   padding:
+                                      //       const EdgeInsets.symmetric(horizontal: 10),
+                                      //   child: Row(
+                                      //     //  mainAxisAlignment: MainAxisAlignment.center,
+                                      //     children: [
+                                      //       Checkbox(
+                                      //         value: _checkbox,
+                                      //         onChanged: (value) {
+                                      //           setState(() {
+                                      //             _checkbox = !_checkbox;
+                                      //           });
+                                      //         },
+                                      //       ),
+                                      //       SizedBox(
+                                      //         height: 10,
+                                      //       ),
+                                      //       RichText(
+                                      //           textAlign: TextAlign.start,
+                                      //           text: TextSpan(
+                                      //             children: [
+                                      //               TextSpan(
+                                      //                 text: 'I agree to NCORDS ',
+                                      //                 /* "Welcome back",*/
+                                      //                 style: TextStyle(
+                                      //                   // fontWeight: FontWeight.w800,
+                                      //                   fontFamily: "Monte",
+                                      //                   // fontSize: 25.0,
+                                      //                   color: Colors.grey,
+                                      //                 ),
+                                      //               ),
+                                      //               TextSpan(
+                                      //                 text: 'Terms and Conditions',
+                                      //                 /* "Welcome back",*/
+                                      //                 style: TextStyle(
+                                      //                   // fontWeight: FontWeight.w500,
+                                      //                   fontFamily: "Monte",
+                                      //                   // fontSize: 25.0,
+                                      //                   color: Colors.indigo,
+                                      //                 ),
+                                      //               )
+                                      //             ],
+                                      //           )),
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                      // Padding(
+                                      //   padding:
+                                      //       const EdgeInsets.symmetric(horizontal: 10),
+                                      //   child: nextButton(),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 25,
+                                      // ),
+                                    ],
                                   ),
                                 )
                               ],

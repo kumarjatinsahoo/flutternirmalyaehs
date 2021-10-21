@@ -177,7 +177,7 @@ class _MedicationlistState extends State<Medicationlist> {
               child: Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 250,),
+                    SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
                     Text(
                       'No Data Found',
                       style:

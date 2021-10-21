@@ -117,6 +117,9 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -234,21 +237,23 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     backgroundColor: AppData.matruColor,
                   )
                       : userListModel == null || userListModel == null
-                      ? Container(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 250,),
-                          Text(
+                      ? Center(
+                        child: Container(
+                    //height:  MediaQuery.of(context).size.height* 0.30,
+
+                    child: Column(
+                      children: [
+                        SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                        Text(
                             'No Data Found',
                             style:
                             TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
 
-                  ) : (userListModel != null)
+                  ),
+                      ) : (userListModel != null)
                       ? ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),

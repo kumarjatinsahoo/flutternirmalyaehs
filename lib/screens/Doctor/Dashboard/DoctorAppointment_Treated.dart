@@ -144,7 +144,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                     child: Center(
                       child: Column(
                         children: [
-                          SizedBox(height: 300,),
+                         // SizedBox(height: 300,),
+                          SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
                           Text(
                             'No Data Found',
                             style:

@@ -213,36 +213,34 @@ class PharmaSignUpForm4State extends State<PharmaSignUpForm4> {
                                 Card(
                                   key: _formKey,
                                   // autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text(MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
-                                              style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
-                                          ],
-                                        ),
-                                        SizedBox(height: 5,),
-                                        Column(
-                                          children: [
-                                            Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
-                                                "Your document verification process started now . Verification will be"
-                                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
-                                              style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: home(),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                      ],
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          Text(MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
+                                            style: TextStyle(fontSize: 27, color: Colors.blue),textAlign: TextAlign.center,),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5,),
+                                      Column(
+                                        children: [
+                                          Text("Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
+                                              "Your document verification process started now . Verification will be"
+                                              " completed within 24 hours and confirmation mail will be send to your registered email id.",
+                                            style: TextStyle(fontSize: 18,color: Colors.black),textAlign: TextAlign.center,),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                        child: home(),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                    ],
                                   ),
                                 )
                               ],
