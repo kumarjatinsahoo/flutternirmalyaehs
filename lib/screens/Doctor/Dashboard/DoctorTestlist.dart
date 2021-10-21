@@ -229,7 +229,26 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     ),
 
                   ):*/
-                  (userListModel != null)
+                  isdata == true
+                      ? CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  )
+                      : userListModel == null || userListModel == null
+                      ? Container(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 250,),
+                          Text(
+                            'No Data Found',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ) : (userListModel != null)
                       ? ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
@@ -399,7 +418,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                           },
                           // itemCount:medicinmodel.length,
                         )
-                      : /*Container()*/ Center(
+                  : Container(),/* Center(
             child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -411,7 +430,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                 ),
               ],
             ),
-            ),
+            ),*/
                   /*  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child:  _submitButton(),

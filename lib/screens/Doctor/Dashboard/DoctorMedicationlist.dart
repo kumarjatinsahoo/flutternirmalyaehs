@@ -168,7 +168,26 @@ class _MedicationlistState extends State<Medicationlist> {
               SizedBox(height: 10,),
           SingleChildScrollView(
 
-            child:(medicationlistModel != null)
+            child: isdata == true
+                ? CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            )
+                : medicationlistModel == null || medicationlistModel == null
+                ? Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 250,),
+                    Text(
+                      'No Data Found',
+                      style:
+                      TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                  ],
+                ),
+              ),
+
+            ) :(medicationlistModel != null)
                   ? ListView.separated(
                       separatorBuilder: (context, i) {
                         return Divider();
