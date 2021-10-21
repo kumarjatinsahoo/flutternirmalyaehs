@@ -133,6 +133,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       children: [
                         _buildTileblue(
                           icon:"assets/images/registerpatient.png",
+                          iconcolor: AppData.BG2BLUE,
                           fun: () {
                             //AppData.showInSnackBar(context, "Coming soon");
                             // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -166,7 +167,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/images/appointmentlab",
+                          icon: "assets/images/appointmentlab.png",
                           fun: () {
                             chooseAppointment(context);
                             // Navigator.pushNamed(context, "/myAppointment");
@@ -207,7 +208,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon: "assets/images/pocreports",
+                          icon: "assets/images/pocreports.png",
                           fun: () {
                             //chooseAppointment(context, model);
                             //Navigator.pushNamed(context, "/userAppoint");
@@ -257,7 +258,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/images/testlab",
+                          icon: "assets/images/testlab.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/testappointmentpage");
@@ -302,7 +303,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTileblue(
-                          icon:"assets/images/orderslab",
+                          icon:"assets/images/orderslab.png",
                           //icon: FontAwesomeIcons.accusoft,
                           title: "My Orders",
                           fun: () {
@@ -337,7 +338,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildTilered(
-                          icon: "assets/images/datalab",
+                          icon: "assets/images/datalab.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
                             Navigator.pushNamed(context, "/testappointmentpage1");
@@ -1153,6 +1154,7 @@ class _LabDashboardState extends State<LabDashboard> {
     String title,
     double size,
     Color bordercolor,
+    Color iconcolor,
     Color color,
     Function fun}) {
     return InkWell(
