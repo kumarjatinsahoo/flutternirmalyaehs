@@ -62,7 +62,12 @@ class Body {
   String genderName;
   String dob;
   String ageYears;
+  String genderId;
+  String eRelationId;
+  String specialityId;
+  String bloodGroupId;
   String profileImage;
+
 
   Body(
       {
@@ -101,6 +106,10 @@ class Body {
         this.stateName,
         this.genderName,
         this.dob,
+        this.genderId,
+        this.eRelationId,
+        this.specialityId,
+        this.bloodGroupId,
         this.ageYears});
 
   Body.fromJson(Map<String, dynamic> json) {
@@ -127,6 +136,11 @@ class Body {
     email = json['email'];
     aadhar = json['aadhar'];
     enteredBy = json['enteredBy'];
+    genderId = json['genderId'];
+    eRelationId = json['eRelationId'];
+    specialityId = json['specialityId'];
+    bloodGroupId = json['bloodGroupId'];
+
     /*if (json['profileImage'] != null) {
       profileImage = new List<Null>();
       json['profileImage'].forEach((v) {
@@ -172,7 +186,10 @@ class Body {
     data['weight'] = this.weight;
     data['email'] = this.email;
     data['aadhar'] = this.aadhar;
-    data['enteredBy'] = this.enteredBy;
+    data['genderId'] = this.genderId;
+    data['eRelationId'] = this.eRelationId;
+    data['specialityId'] = this.specialityId;
+    data['bloodGroupId'] = this.bloodGroupId;
     /*if (this.profileImage != null) {
       //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
     }*/
