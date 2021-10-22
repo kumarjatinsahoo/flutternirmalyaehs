@@ -299,7 +299,7 @@ class _DoctorAppointmentConfirmedState
                                                               style:
                                                               TextStyle(),
                                                             ),
-                                                            Text(
+                                                          /*  Text(
                                                               appointmentlist
                                                                   .patname ??
                                                                   "N/A",
@@ -309,7 +309,7 @@ class _DoctorAppointmentConfirmedState
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue),
-                                                            ),
+                                                            ),*/
                                                           ],
                                                         ),
                                                       ],

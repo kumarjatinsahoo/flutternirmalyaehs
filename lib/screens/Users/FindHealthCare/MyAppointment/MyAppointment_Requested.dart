@@ -348,7 +348,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                                 .bold,
                                                             fontSize: 15,
                                                             color: Colors
-                                                                .yellow),
+                                                                .yellow[600]),
                                                       ),
                                                     ],
                                                   ),

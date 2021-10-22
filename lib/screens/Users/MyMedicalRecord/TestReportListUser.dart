@@ -87,103 +87,17 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        appBar: AppBar(
+            title: Text(MyLocalizations.of(context).text("Visit Summery"),
+              style: TextStyle(color: AppData.white),
+            ),
+            centerTitle: true,
+            backgroundColor:AppData.kPrimaryColor,
+        ),
         body: SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
-          Container(
-            //height: 140,
-            //color: AppData.kPrimaryColor,
-            width: double.infinity,
-            /* decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"
-                        ),
-                        fit: BoxFit.cover
-                    )
-                ),*/
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/testbackgroundimg2.jpg"),
-                    fit: BoxFit.cover)),
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 20.0,
-                top: 40.0,
-              ),
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      InkWell(
-                        onTap:(){
-                          Navigator.pop(context);
-                        },
-                        child: Align(
-                          alignment:Alignment.topLeft,
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment:Alignment.topCenter,
-                        child: Text(
-                          "Visit Summary",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.04,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        //height: size.height * 0.07,
-                        //width: size.width * 0.13,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(55),
-                            border: Border.all(color: Colors.white, width: 0.5),
-                            color: Colors.white),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(55),
-                            child: Image.asset(
-                              'assets/images/user.png',
-                              height: size.height * 0.07,
-                              width: size.width * 0.13,
-                              //fit: BoxFit.cover,
-                            )),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          loginResponse1.body.userName ?? "N/A",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  )
-                ],
-              ),
-            ),
-          ),
           isdata == true
               ? CircularProgressIndicator(
             backgroundColor: AppData.matruColor,
