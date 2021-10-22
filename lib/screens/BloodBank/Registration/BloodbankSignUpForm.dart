@@ -629,7 +629,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       onTap: () {
 
 
-        Navigator.pushNamed(context, "/pharmasignupform2");
+       // Navigator.pushNamed(context, "/pharmasignupform2");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

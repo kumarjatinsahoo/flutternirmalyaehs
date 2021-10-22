@@ -58,46 +58,45 @@ class _AboutUs extends State<Organ2Page> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Organ Information'),
-            backgroundColor: AppData.kPrimaryColor,
-            centerTitle: true,
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                 /* Container(
-                    height: 150,
-                    width: 500,
-                    child: Image.asset(
-                      "assets/bg_img.jpg",
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),*/
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0,top: 20),
-                    child: Text("Who can donate?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(child: Text(AppData.organ2,style:TextStyle(color: Colors.black,fontSize: 16),textAlign: TextAlign.justify,),),
-                  ), Padding(
-                    padding: const EdgeInsets.only(left: 20.0,top: 7),
-                    child: Text("What is a brain-dead condition?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(child: Text(AppData.organ22,style:TextStyle(color: Colors.black,fontSize: 16),textAlign: TextAlign.justify,),),
-                  ),
-                ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Organ Information'),
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+             /* Container(
+                height: 150,
+                width: 500,
+                child: Image.asset(
+                  "assets/bg_img.jpg",
+                  fit: BoxFit.fitWidth,
+                ),
+              ),*/
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0,top: 20),
+                child: Text("Who can donate?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(child: Text(AppData.organ2,style:TextStyle(color: Colors.black,fontSize: 16),textAlign: TextAlign.justify,),),
+              ), Padding(
+                padding: const EdgeInsets.only(left: 20.0,top: 7),
+                child: Text("What is a brain-dead condition?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(child: Text(AppData.organ22,style:TextStyle(color: Colors.black,fontSize: 16),textAlign: TextAlign.justify,),),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
 }

@@ -27,29 +27,29 @@ class _BookAppointmentTab extends State<BookAppointmentTab> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Book Appointment'),
-          backgroundColor: AppData.kPrimaryColor,
-          actions: <Widget>[
+        title: const Text('Book Appointment'),
+        backgroundColor: AppData.kPrimaryColor,
+        actions: <Widget>[
 
+        ],
+
+        bottom: TabBar(
+          //indicatorSize: TabBarIndicatorSize.label,
+          indicatorColor: AppData.white,
+          //isScrollable: true,
+          dragStartBehavior: DragStartBehavior.down,
+          tabs: [
+            Tab(
+              text:"Registered Doctor",
+
+            ),
+            Tab(
+              text:"Other Doctor",
+            ),
           ],
-
-          bottom: TabBar(
-            //indicatorSize: TabBarIndicatorSize.label,
-            indicatorColor: AppData.white,
-            //isScrollable: true,
-            dragStartBehavior: DragStartBehavior.down,
-            tabs: [
-              Tab(
-                text:"Registered Doctor",
-
-              ),
-              Tab(
-                text:"Other Doctor",
-              ),
-            ],
-          ),
-          //title: Text(widget.model.saloonName),
         ),
+        //title: Text(widget.model.saloonName),
+      ),
         body: TabBarView(
           children: [
             DoctorconsultationPage(model:widget.model,),

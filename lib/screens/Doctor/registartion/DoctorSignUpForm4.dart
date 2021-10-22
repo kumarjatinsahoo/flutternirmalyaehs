@@ -209,381 +209,329 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   Widget build(BuildContext context) {
     bool showErrorMessage = false;
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGNUP"),
+        centerTitle: true,
+      ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.arrow_back, color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 60.0, right: 60.0),
+                    child: Image.asset(
+                      "assets/logo1.png",
+                      fit: BoxFit.fitWidth,
+                      //width: ,
+                      height: 110.0,
+                    ),
                   ),
                 ),
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
+                SizedBox(
+                  height: 20,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 60.0, right: 60.0),
-                        child: Image.asset(
-                          "assets/logo1.png",
-                          fit: BoxFit.fitWidth,
-                          //width: ,
-                          height: 110.0,
-                        ),
+                Form(
+                  key: _formKey,
+                  autovalidate: _autovalidate,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Column(
+                        children: [
+                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black),
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Form(
-                      key: _formKey,
-                      autovalidate: _autovalidate,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          DropDown.networkDropdownGetpartUser(
-                              MyLocalizations.of(context)
-                                  .text("COUNTRY") ,
-                              ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.COUNTRY_API);
-                                  DoctorSignUpForm4.countryModel = data;
-                                  DoctorSignUpForm4.stateModel = null;
-                                  DoctorSignUpForm4.districtModel = null;
-                                  DoctorSignUpForm4.cityModel = null;
+                      SizedBox(
+                        height: 5,
+                      ),
+                      formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      DropDown.networkDropdownGetpartUser(
+                          MyLocalizations.of(context)
+                              .text("COUNTRY") ,
+                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.COUNTRY_API);
+                              DoctorSignUpForm4.countryModel = data;
+                              DoctorSignUpForm4.stateModel = null;
+                              DoctorSignUpForm4.districtModel = null;
+                              DoctorSignUpForm4.cityModel = null;
 
-                                });
-                              }),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          (DoctorSignUpForm4.countryModel != null)
-                              ?  DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("STATE") ,
-                              ApiFactory.STATE_API +(DoctorSignUpForm4?.countryModel?.key??""), "stated", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.STATE_API);
-                                  DoctorSignUpForm4.stateModel = data;
-                                  DoctorSignUpForm4.districtModel = null;
-                                  DoctorSignUpForm4.cityModel = null;
-                                });
-                              }): Container(),
+                            });
+                          }),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      (DoctorSignUpForm4.countryModel != null)
+                          ?  DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("STATE") ,
+                          ApiFactory.STATE_API +(DoctorSignUpForm4?.countryModel?.key??""), "stated", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.STATE_API);
+                              DoctorSignUpForm4.stateModel = data;
+                              DoctorSignUpForm4.districtModel = null;
+                              DoctorSignUpForm4.cityModel = null;
+                            });
+                          }): Container(),
 
-                          SizedBox(
-                            height: 5,
-                          ),
-                          (DoctorSignUpForm4.stateModel != null)
-                              ?  DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("DIST") ,
-                              ApiFactory.DISTRICT_API +(DoctorSignUpForm4?.stateModel?.key??""), "districtd", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.DISTRICT_API);
-                                  DoctorSignUpForm4.districtModel = data;
-                                  DoctorSignUpForm4.cityModel = null;
-                                });
-                              }): Container(),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          (DoctorSignUpForm4.districtModel != null)
-                              ? DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("CITY") ,
-                              ApiFactory.CITY_API + (DoctorSignUpForm4?.districtModel?.key??""), "cityd", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.CITY_API);
-                                  DoctorSignUpForm4.cityModel = data;
-                                  // LabSignUpForm3.districtModel = null;
-                                });
-                              }): Container(),
-                        /*  Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child:
-                                  DropDown.networkDropdownGetpartUser(
-                                      MyLocalizations.of(context)
-                                          .text("COUNTRY") ,
-                                      ApiFactory.COUNTRY_API,
-                                      "country",
-                                      Icons.location_on_rounded,
-                                      23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.COUNTRY_API);
-                                  DoctorSignUpForm4.countryModel = data;
-                                  userModel.country = data.key;
-                                  userModel.countryCode = data.code;
-                                  DoctorSignUpForm4.stateModel = null;
-                                  DoctorSignUpForm4.districtModel = null;
-                                  DoctorSignUpForm4.cityModel = null;
+                      SizedBox(
+                        height: 5,
+                      ),
+                      (DoctorSignUpForm4.stateModel != null)
+                          ?  DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("DIST") ,
+                          ApiFactory.DISTRICT_API +(DoctorSignUpForm4?.stateModel?.key??""), "districtd", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.DISTRICT_API);
+                              DoctorSignUpForm4.districtModel = data;
+                              DoctorSignUpForm4.cityModel = null;
+                            });
+                          }): Container(),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      (DoctorSignUpForm4.districtModel != null)
+                          ? DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("CITY") ,
+                          ApiFactory.CITY_API + (DoctorSignUpForm4?.districtModel?.key??""), "cityd", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.CITY_API);
+                              DoctorSignUpForm4.cityModel = data;
+                              // LabSignUpForm3.districtModel = null;
+                            });
+                          }): Container(),
+                    /*  Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, right: 0),
+                        child: SizedBox(
+                          height: 58,
+                          child:
+                              DropDown.networkDropdownGetpartUser(
+                                  MyLocalizations.of(context)
+                                      .text("COUNTRY") ,
+                                  ApiFactory.COUNTRY_API,
+                                  "country",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.COUNTRY_API);
+                              DoctorSignUpForm4.countryModel = data;
+                              userModel.country = data.key;
+                              userModel.countryCode = data.code;
+                              DoctorSignUpForm4.stateModel = null;
+                              DoctorSignUpForm4.districtModel = null;
+                              DoctorSignUpForm4.cityModel = null;
 
 
-                                });
-                              }),
-                            ),
-                          ),*/
-                         /* SizedBox(
-                            height: 5,
-                          ),
-                          (DoctorSignUpForm4.countryModel != null)
-                              ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 0, right: 0, bottom: 0),
-                                  child: SizedBox(
-                                    height: 58,
-                                    child: DropDown
-                                        .countryList(
-                                        MyLocalizations.of(context)
-                                            .text("STATE") ,
-                                            ApiFactory.STATE_API +
-                                                DoctorSignUpForm4
-                                                    .countryModel.key,
-                                            "state",
-                                            Icons.location_on_rounded,
-                                            23.0,
-                                            (KeyvalueModel data) {
-                                      setState(() {
-                                        DoctorSignUpForm4.stateModel =
-                                            data;
-                                        userModel.state = data.key;
-                                        userModel.stateCode =
-                                            data.code;
-                                        DoctorSignUpForm4.districtModel = null;
-                                        DoctorSignUpForm4.cityModel = null;
+                            });
+                          }),
+                        ),
+                      ),*/
+                     /* SizedBox(
+                        height: 5,
+                      ),
+                      (DoctorSignUpForm4.countryModel != null)
+                          ? Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 0, bottom: 0),
+                              child: SizedBox(
+                                height: 58,
+                                child: DropDown
+                                    .countryList(
+                                    MyLocalizations.of(context)
+                                        .text("STATE") ,
+                                        ApiFactory.STATE_API +
+                                            DoctorSignUpForm4
+                                                .countryModel.key,
+                                        "state",
+                                        Icons.location_on_rounded,
+                                        23.0,
+                                        (KeyvalueModel data) {
+                                  setState(() {
+                                    DoctorSignUpForm4.stateModel =
+                                        data;
+                                    userModel.state = data.key;
+                                    userModel.stateCode =
+                                        data.code;
+                                    DoctorSignUpForm4.districtModel = null;
+                                    DoctorSignUpForm4.cityModel = null;
 
 
       //                                  DoctorSignUpForm4.stateModel=data.reset();
 
-                                      });
-                                    }),
-                                  ),
-                                )
-                              : Container(),
-                          (DoctorSignUpForm4.stateModel != null)
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 0),
-                                  child: SizedBox(
-                                    height: 58,
-                                    child: DropDown
-                                        .countryList(
-                                        MyLocalizations.of(context)
-                                            .text("DIST") ,
-                                            ApiFactory.DISTRICT_API +
-                                                DoctorSignUpForm4
-                                                    .stateModel.key,
-                                            "district",
-                                            Icons.location_on_rounded,
-                                            23.0,
-                                            (KeyvalueModel data) {
-                                      setState(() {
-                                        print(
-                                            ApiFactory.DISTRICT_API +
-                                                DoctorSignUpForm4
-                                                    .stateModel.key);
-                                        DoctorSignUpForm4
-                                            .districtModel = data;
-                                        // userModel.district=data.key;
-                                        // userModel.st=data.code;
-                                        // UserSignUpForm.cityModel = null;
-                                        DoctorSignUpForm4.cityModel = null;
-                                      });
-                                    }),
-                                  ),
-                                )
-                              : Container(),
-                          (DoctorSignUpForm4.districtModel != null)
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 0),
-                                  child: SizedBox(
-                                    height: 58,
-                                    child: DropDown
-                                        .countryList(
-                                        MyLocalizations.of(context)
-                                            .text("CITY") ,
-                                            ApiFactory.CITY_API +
-                                                DoctorSignUpForm4
-                                                    .districtModel
-                                                    .key,
-                                            "city",
-                                            Icons.location_on_rounded,
-                                            23.0,
-                                            (KeyvalueModel data) {
-                                      setState(() {
-                                        print(ApiFactory.CITY_API +
-                                            DoctorSignUpForm4
-                                                .districtModel.key);
-                                        DoctorSignUpForm4.cityModel = data;
-
-                                        // DoctorSignUpForm4.cityModel =
-                                        //     null;
-                                      });
-                                    }),
-                                  ),
-                                )
-                              : Container(),*/
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFielEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                                  });
+                                }),
                               ),
-                            ],
-                          ),
+                            )
+                          : Container(),
+                      (DoctorSignUpForm4.stateModel != null)
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 0),
+                              child: SizedBox(
+                                height: 58,
+                                child: DropDown
+                                    .countryList(
+                                    MyLocalizations.of(context)
+                                        .text("DIST") ,
+                                        ApiFactory.DISTRICT_API +
+                                            DoctorSignUpForm4
+                                                .stateModel.key,
+                                        "district",
+                                        Icons.location_on_rounded,
+                                        23.0,
+                                        (KeyvalueModel data) {
+                                  setState(() {
+                                    print(
+                                        ApiFactory.DISTRICT_API +
+                                            DoctorSignUpForm4
+                                                .stateModel.key);
+                                    DoctorSignUpForm4
+                                        .districtModel = data;
+                                    // userModel.district=data.key;
+                                    // userModel.st=data.code;
+                                    // UserSignUpForm.cityModel = null;
+                                    DoctorSignUpForm4.cityModel = null;
+                                  });
+                                }),
+                              ),
+                            )
+                          : Container(),
+                      (DoctorSignUpForm4.districtModel != null)
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 0),
+                              child: SizedBox(
+                                height: 58,
+                                child: DropDown
+                                    .countryList(
+                                    MyLocalizations.of(context)
+                                        .text("CITY") ,
+                                        ApiFactory.CITY_API +
+                                            DoctorSignUpForm4
+                                                .districtModel
+                                                .key,
+                                        "city",
+                                        Icons.location_on_rounded,
+                                        23.0,
+                                        (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.CITY_API +
+                                        DoctorSignUpForm4
+                                            .districtModel.key);
+                                    DoctorSignUpForm4.cityModel = data;
+
+                                    // DoctorSignUpForm4.cityModel =
+                                    //     null;
+                                  });
+                                }),
+                              ),
+                            )
+                          : Container(),*/
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFielEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      Column(
+                        children: [
                           Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
 
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: Row(
-                              //  mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Checkbox(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: Row(
+                          //  mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
 
-                                  value: _checkbox,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _checkbox = !_checkbox;
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                    child:RichText(
-                                        textAlign: TextAlign.start,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                              /* "Welcome back",*/
-                                              style: TextStyle(
-                                                // fontWeight: FontWeight.w800,
-                                                fontFamily: "Monte",
-                                                // fontSize: 25.0,
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-
-                                            TextSpan(
-                                              text:MyLocalizations.of(context).text(  "T&C"),
-                                              /* "Welcome back",*/
-
-                                              style: TextStyle(
-                                                 //fontWeight: FontWeight.w500,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "Monte",
-                                                // fontSize: 25.0,
-                                                color: AppData
-                                                    .kPrimaryColor,
-                                              ),
-                                            )
-                                          ],
-                                        ))),
-                               /* RichText(
+                              value: _checkbox,
+                              onChanged: (value) {
+                                setState(() {
+                                  _checkbox = !_checkbox;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                                child:RichText(
                                     textAlign: TextAlign.start,
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                          *//* "Welcome back",*//*
+                                          text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                          /* "Welcome back",*/
                                           style: TextStyle(
                                             // fontWeight: FontWeight.w800,
                                             fontFamily: "Monte",
@@ -591,53 +539,83 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                             color: Colors.grey,
                                           ),
                                         ),
+
                                         TextSpan(
-                                          text:MyLocalizations.of(context).text("T&C") ,
-                                          *//* "Welcome back",*//*
+                                          text:MyLocalizations.of(context).text(  "T&C"),
+                                          /* "Welcome back",*/
+
                                           style: TextStyle(
-                                            // fontWeight: FontWeight.w500,
+                                             //fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.bold,
                                             fontFamily: "Monte",
                                             // fontSize: 25.0,
-                                            color: Colors.indigo,
+                                            color: AppData
+                                                .kPrimaryColor,
                                           ),
                                         )
                                       ],
-                                    )),*/
-                              ],
-                            ),
-                          ),
-                          showErrorMessage ?
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(80.0)
-                              ),
-                              child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text('Please accept the terms and conditions to proceed...')
-                              )
-                          )
-              :
-
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: nextButton1(),
-                          ),
-                        ],
+                                    ))),
+                           /* RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                      *//* "Welcome back",*//*
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.w800,
+                                        fontFamily: "Monte",
+                                        // fontSize: 25.0,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:MyLocalizations.of(context).text("T&C") ,
+                                      *//* "Welcome back",*//*
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.w500,
+                                        fontFamily: "Monte",
+                                        // fontSize: 25.0,
+                                        color: Colors.indigo,
+                                      ),
+                                    )
+                                  ],
+                                )),*/
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                      showErrorMessage ?
+                      Container(
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(80.0)
+                          ),
+                          child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text('Please accept the terms and conditions to proceed...')
+                          )
+                      )
+          :
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: nextButton1(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   /*_

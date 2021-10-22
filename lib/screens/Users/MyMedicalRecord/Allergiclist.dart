@@ -85,247 +85,245 @@ class _AllergicListListState extends State<AllergicListList> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("ALLERGIC")),
-          /* leading: Icon(
-            Icons.menu,
-          ),*/
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogaddnomination(context),
-                    );
-                    // callAPI();
-                  },
-                  child: Icon(
-                    Icons.add_circle_outline_sharp,
-                    size: 26.0,
-                  ),
-                )),
-            /*Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                      Icons.more_vert
-                  ),
-                )
-            ),*/
-          ],
-        ),
-        body:
-        isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
-            : allergicModel == null || allergicModel == null
-            ? Container(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 300,),
-                Text(
-                  'No Data Found',
-                  style:
-                  TextStyle(color: Colors.black, fontSize: 15),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(MyLocalizations.of(context).text("ALLERGIC")),
+        /* leading: Icon(
+          Icons.menu,
+        ),*/
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        dialogaddnomination(context),
+                  );
+                  // callAPI();
+                },
+                child: Icon(
+                  Icons.add_circle_outline_sharp,
+                  size: 26.0,
                 ),
-              ],
-            ),
-          ),
-
-        )
-            :
-         Container(
-                child: SingleChildScrollView(
-                  child: (allergicModel != null)
-                      ? ListView.builder(
-                          // physics: NeverScrollableScrollPhysics(),
-                          // controller: _scrollController,
-                          shrinkWrap: true,
-                          itemBuilder: (context, i) {
-                            if (i == allergicModel.body.length) {
-                              return (allergicModel.body.length % 10 == 0)
-                                  ? CupertinoActivityIndicator()
-                                  : Container();
-                            }
-                            allergic.Body body = allergicModel.body[i];
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 5),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                shadowColor: Colors.grey,
-                                elevation: 10,
-                                child: ClipPath(
-                                  clipper: ShapeBorderClipper(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5))),
-                                  child: Container(
-                                      /*height: 100,*/
-                                      decoration: (i % 2 == 0)
-                                          ? BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData
-                                                          .kPrimaryRedColor,
-                                                      width: 5)))
-                                          : BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color:
-                                                          AppData.kPrimaryColor,
-                                                      width: 5))),
-                                      width: double.maxFinite,
-                                      /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Container(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 100,
-                                                        child: Text(MyLocalizations.of(context).text("NAME"),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        body.allnameid ?? "N/A",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 15),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 100,
-                                                        child: Text(MyLocalizations.of(context).text("ALLERGEN"),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        body.alltypeid ?? "N/A",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 15),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 100,
-                                                        child: Text(MyLocalizations.of(context).text("SEVERTY"),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        body.severity ?? "N/A",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 15),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        width: 100,
-                                                        child: Text(MyLocalizations.of(context).text("UPDATED_BY"),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        width: 150,
-                                                        child: Text(
-                                                          body.updatedby ??
-                                                              "N/A",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            );
-                          },
-                          itemCount: allergicModel.body.length,
-                        )
-                      : Container(),
+              )),
+          /*Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: Icon(
+                    Icons.more_vert
                 ),
               )
-            /*: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                alignment: Alignment.center,
-                child: (isDataNoFound) ? Text("Data Not Found") : callAPI(),
-              ),*/
+          ),*/
+        ],
       ),
+      body:
+      isdata == true
+          ? CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      )
+          : allergicModel == null || allergicModel == null
+          ? Container(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 300,),
+              Text(
+                'No Data Found',
+                style:
+                TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+
+      )
+          :
+       Container(
+              child: SingleChildScrollView(
+                child: (allergicModel != null)
+                    ? ListView.builder(
+                        // physics: NeverScrollableScrollPhysics(),
+                        // controller: _scrollController,
+                        shrinkWrap: true,
+                        itemBuilder: (context, i) {
+                          if (i == allergicModel.body.length) {
+                            return (allergicModel.body.length % 10 == 0)
+                                ? CupertinoActivityIndicator()
+                                : Container();
+                          }
+                          allergic.Body body = allergicModel.body[i];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 5, right: 5, top: 5),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              shadowColor: Colors.grey,
+                              elevation: 10,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5))),
+                                child: Container(
+                                    /*height: 100,*/
+                                    decoration: (i % 2 == 0)
+                                        ? BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5)))
+                                        : BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
+                                                        AppData.kPrimaryColor,
+                                                    width: 5))),
+                                    width: double.maxFinite,
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: Text(MyLocalizations.of(context).text("NAME"),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      body.allnameid ?? "N/A",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: Text(MyLocalizations.of(context).text("ALLERGEN"),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      body.alltypeid ?? "N/A",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: Text(MyLocalizations.of(context).text("SEVERTY"),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      body.severity ?? "N/A",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: Text(MyLocalizations.of(context).text("UPDATED_BY"),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 150,
+                                                      child: Text(
+                                                        body.updatedby ??
+                                                            "N/A",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black,
+                                                            fontSize: 15),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                            ),
+                          );
+                        },
+                        itemCount: allergicModel.body.length,
+                      )
+                    : Container(),
+              ),
+            )
+          /*: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.center,
+              child: (isDataNoFound) ? Text("Data Not Found") : callAPI(),
+            ),*/
     );
   }
 

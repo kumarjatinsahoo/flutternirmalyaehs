@@ -58,33 +58,33 @@ class _AboutUs extends State<AboutUs> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('About Us'),
-            backgroundColor: AppData.kPrimaryColor,
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    height: 150,
-                    width: 500,
-                    child: Image.asset(
-                      "assets/bg_img.jpg",
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(child: Text(AppData.aboutus,style:TextStyle(color: Colors.black,fontSize: 16)),),
-                  ),
-                ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('About Us'),
+        backgroundColor: AppData.kPrimaryColor,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                height: 150,
+                width: 500,
+                child: Image.asset(
+                  "assets/bg_img.jpg",
+                  fit: BoxFit.fitWidth,
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(child: Text(AppData.aboutus,style:TextStyle(color: Colors.black,fontSize: 16)),),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
 }

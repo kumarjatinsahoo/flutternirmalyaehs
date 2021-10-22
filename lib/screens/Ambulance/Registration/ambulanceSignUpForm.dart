@@ -143,6 +143,10 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
     AmbulanceSignUpForm.districtModel = null;
     AmbulanceSignUpForm.blockModel = null;
     AmbulanceSignUpForm.genderModel = null;
+    AmbulanceSignUpForm.ambulanceModel = null;
+    AmbulanceSignUpForm.titlemodel = null;
+    AmbulanceSignUpForm.genderModel = null;
+
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -165,19 +169,31 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
+
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text(
+              "SIGN UP",
+              style: TextStyle(color: Colors.white),
+            ),
+
+            //automaticallyImplyLeading: false,
+
+          ),
           body: Container(
             child: Column(
               children: [
                 /*  Padding(
           padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
+          child:*//*Container(
                   color: AppData.kPrimaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
+                    child: Row(*//*
+            mainAxisAlignment: MainAxisAlignment.start,*//*
                       children: [
                         InkWell(
                             onTap: (){
@@ -189,19 +205,19 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                           child: Text(MyLocalizations.of(context).text("SIGNUP"),
                             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                         ),
-                        /*Align(
+                        *//*Align(
                 alignment: Alignment.center,
                 child: Text('SIGN UP',textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
               ),
-              ),*/
+              ),*//*
                       ],
                     ),
                   ),
                   height: 55,
                   width: MediaQuery.of(context).size.width,
-                  /*  height:*/
-                ),
+                  *//*  height:*//*
+                ),*/
 
                 /* ),*/
                 Expanded(
@@ -259,9 +275,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                           print(ApiFactory.AMBULANCE_ORGANISATION_API);
                                           AmbulanceSignUpForm.ambulanceModel = data;
                                         });
-                                      }),  SizedBox(
-                                        height: 5,
-                                      ),
+                                      }),
                                       DropDown.networkDropdownGetpartUser1(
                                           MyLocalizations.of(context)
                                               .text("TITLE") ,
@@ -275,21 +289,21 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                         });
                                       }),
                                       SizedBox(
+                                        height: 8.0,
+                                      ),
+                                      formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME"),fnode1,fnode2),
+
+                                      SizedBox(height: 8.0),
+
+                                      formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE"),fnode2,fnode3),
+                                      SizedBox(
+                                        height: 8.0,
+                                      ),
+                                      formField(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
+                                     /* SizedBox(
                                         height: 5,
                                       ),
-                                      formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
-
-                                      SizedBox(height: 10),
-
-                                      formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE")),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      formField(11, MyLocalizations.of(context).text("ADDRESS")),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-
+*/
                                       DropDown.networkDropdownGetpartUser1(
                                           MyLocalizations.of(context)
                                               .text("GENDER") ,
@@ -474,7 +488,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
        // Navigator.pushNamed(context, "/patientRegistration2");
         if (AmbulanceSignUpForm.ambulanceModel == null ||
             AmbulanceSignUpForm.ambulanceModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization");
+          AppData.showInSnackBar(context, "Please select Organization Name");
         }
         else if (AmbulanceSignUpForm.titlemodel == null ||
             AmbulanceSignUpForm.titlemodel == "") {
@@ -482,15 +496,18 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
         }
         else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
+          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          FocusScope.of(context).requestFocus(fnode6);
         }
         else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
+          FocusScope.of(context).requestFocus(fnode6);
         }
         else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
+          FocusScope.of(context).requestFocus(fnode6);
         }
         else if (AmbulanceSignUpForm.genderModel == null ||
             AmbulanceSignUpForm.genderModel == "") {
@@ -837,7 +854,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
   // }
   Widget formFieldMobile(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -851,14 +868,14 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             children: <Widget>[
               new Expanded(
                 child: TextFormField(
                   enabled: widget.isConfirmPage ? false : true,
                   controller: textEditingController[index],
-                  //focusNode: fnode7,
+                  focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
                   maxLength: 10,
@@ -880,7 +897,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
+                     AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -895,7 +912,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
   }
   Widget formField(
       int index,
-      String hint,
+      String hint,FocusNode currentfn, FocusNode nextFn
       ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -911,25 +928,33 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
           border: Border.all(
               color: Colors.black, width: 0.3),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            /* prefixIcon:
-            Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(
-                color: AppData.hintColor,
-                fontSize: 17),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            focusNode: currentfn,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical:
+            TextAlignVertical.center,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
+            onFieldSubmitted: (value) {
+              setState(() {});
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
           ),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          controller: textEditingController[index],
-          textAlignVertical:
-          TextAlignVertical.center,
-          inputFormatters: [
-            WhitelistingTextInputFormatter(
-                RegExp("[a-zA-Z ]")),
-          ],
         ),
       ),
     );

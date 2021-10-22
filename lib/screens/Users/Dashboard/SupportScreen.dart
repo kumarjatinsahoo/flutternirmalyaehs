@@ -38,7 +38,8 @@ class _SupportScreenState extends State<SupportScreen> {
         //extendBody: true,
         appBar: AppBar(
           title: const Text('Support'),
-          elevation: 0,
+          centerTitle: true,
+          backgroundColor:  AppData.kPrimaryColor,
         ),
         body: SafeArea(
           child: Container(
