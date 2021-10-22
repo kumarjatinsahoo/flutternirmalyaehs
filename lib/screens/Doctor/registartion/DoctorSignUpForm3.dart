@@ -194,194 +194,170 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGNUP"),
+        centerTitle: true,
+      ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    /*
-              mainAxisAlignment: MainAxisAlignment.start,*/
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.arrow_back, color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white,
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                    child: Image.asset(
+                      "assets/logo1.png",
+                      fit: BoxFit.fitWidth,
+                      //width: ,
+                      height: 110.0,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Form(
+                  key: _formKey,
+                  autovalidate: _autovalidate,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Column(
+                        children: [
+                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.black),
                           ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      formField1(8,MyLocalizations.of(context).text("EDUCATION")),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Text(MyLocalizations.of(context).text("ROLE"),
+                            style: TextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                          Column(
+                            children: [
+                              Text(MyLocalizations.of(context).text("DOCTOR"),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 11),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: SizedBox(
+                          height: 58,
+                          child: DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context)
+                                  .text("SPECIALITY") ,
+                              ApiFactory.SPECIALITY_API,
+                              "speciality",
+                              Icons.work_outlined,
+                              23.0, (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.SPECIALITY_API);
+                              DoctorSignUpForm3.specialistModel = data;
+                              //DoctorSignUpForm3.doctorModel = null;
+                              // UserSignUpForm.cityModel = null;
+                            });
+                          }),
                         ),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      dob(),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: SizedBox(
+                          height: 58,
+                          child: DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context)
+                                  .text("BLOODGROUP") ,
+                              ApiFactory.BLOODGROUP_API,
+                              "bloodgroup",
+                              Icons.bloodtype,
+                              23.0, (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.BLOODGROUP_API);
+                              DoctorSignUpForm3.bloodgroupModel = data;
+                            });
+                          }),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: SizedBox(
+                          height: 58,
+                          child: DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context)
+                                  .text("GENDER") ,
+                              ApiFactory.GENDER_API,
+                              "gender",
+                              Icons.wc_outlined,
+                              23.0, (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.GENDER_API);
+                              DoctorSignUpForm3.genderModel = data;
+                              userModel.title = data.key;
+                              // UserSignUpForm.cityModel = null;
+                            });
+                          }),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: nextButton1(),
                       ),
                     ],
                   ),
                 ),
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
+                SizedBox(
+                  height: 10,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                        child: Image.asset(
-                          "assets/logo1.png",
-                          fit: BoxFit.fitWidth,
-                          //width: ,
-                          height: 110.0,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Form(
-                      key: _formKey,
-                      autovalidate: _autovalidate,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          formField1(8,MyLocalizations.of(context).text("EDUCATION")),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text(MyLocalizations.of(context).text("ROLE"),
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.black),
-                              ),
-                              Column(
-                                children: [
-                                  Text(MyLocalizations.of(context).text("DOCTOR"),
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 11),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child: DropDown.networkDropdownGetpartUser(
-                                  MyLocalizations.of(context)
-                                      .text("SPECIALITY") ,
-                                  ApiFactory.SPECIALITY_API,
-                                  "speciality",
-                                  Icons.work_outlined,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.SPECIALITY_API);
-                                  DoctorSignUpForm3.specialistModel = data;
-                                  //DoctorSignUpForm3.doctorModel = null;
-                                  // UserSignUpForm.cityModel = null;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          dob(),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child: DropDown.networkDropdownGetpartUser(
-                                  MyLocalizations.of(context)
-                                      .text("BLOODGROUP") ,
-                                  ApiFactory.BLOODGROUP_API,
-                                  "bloodgroup",
-                                  Icons.bloodtype,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.BLOODGROUP_API);
-                                  DoctorSignUpForm3.bloodgroupModel = data;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child: DropDown.networkDropdownGetpartUser(
-                                  MyLocalizations.of(context)
-                                      .text("GENDER") ,
-                                  ApiFactory.GENDER_API,
-                                  "gender",
-                                  Icons.wc_outlined,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.GENDER_API);
-                                  DoctorSignUpForm3.genderModel = data;
-                                  userModel.title = data.key;
-                                  // UserSignUpForm.cityModel = null;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: nextButton1(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   // Widget gender() {

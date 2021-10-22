@@ -36,69 +36,68 @@ class _GovtSchemesState extends State<GovtSchemes> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            title: Text("Government Schemes"),
-            centerTitle: true,
-          ),
-      body: Container(
-        child: Column(
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 10.0,
-                right: 10.0,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Find Health Schemes',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 30),
-                  DropDown.staticDropdown2('India', "country", countryList,
-                      (KeyvalueModel data) {
-                    setState(() {});
-                  }),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  DropDown.staticDropdown2(
-                      MyLocalizations.of(context).text("SELECT_STATE"),
-                      "state",
-                      stateList, (KeyvalueModel data) {
-                    setState(() {});
-                  }),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  DropDown.staticDropdown2(
-                      MyLocalizations.of(context).text("SELECT_SCHEME"),
-                      "scheme",
-                      schemeList, (KeyvalueModel data) {
-                    setState(() {});
-                  }),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  _submitButton(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("Government Schemes"),
+        centerTitle: true,
       ),
-    ));
+      body: Container(
+    child: Column(
+      children: [
+
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 10.0,
+            right: 10.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Find Health Schemes',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 30),
+              DropDown.staticDropdown2('India', "country", countryList,
+                  (KeyvalueModel data) {
+                setState(() {});
+              }),
+              SizedBox(
+                height: 10,
+              ),
+              DropDown.staticDropdown2(
+                  MyLocalizations.of(context).text("SELECT_STATE"),
+                  "state",
+                  stateList, (KeyvalueModel data) {
+                setState(() {});
+              }),
+              SizedBox(
+                height: 10,
+              ),
+              DropDown.staticDropdown2(
+                  MyLocalizations.of(context).text("SELECT_SCHEME"),
+                  "scheme",
+                  schemeList, (KeyvalueModel data) {
+                setState(() {});
+              }),
+              SizedBox(
+                height: 60,
+              ),
+              _submitButton(),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+      ),
+    );
   }
 
   Widget _submitButton() {

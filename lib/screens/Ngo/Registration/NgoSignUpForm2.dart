@@ -197,6 +197,11 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
     NgoSignUpForm2.districtModel = null;
     NgoSignUpForm2.blockModel = null;
     NgoSignUpForm2.genderModel = null;
+    NgoSignUpForm2.citymodel = null;
+    NgoSignUpForm2.stateModel = null;
+    NgoSignUpForm2.countryModel = null;
+    NgoSignUpForm2.districtModel = null;
+
     ngoorganisation = widget.model.ngoorganisation;
     ngotitle = widget.model.ngotitle;
     ngoprofessional = widget.model.ngoprofessional;
@@ -230,32 +235,21 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text(
+              "SIGN UP",
+              style: TextStyle(color: Colors.white),
+            ),
+
+            //automaticallyImplyLeading: false,
+
+          ),
           body: Container(
             child: Column(
               children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                      ],
-                    ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,
@@ -297,43 +291,39 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                             style: TextStyle(fontSize: 18, color: Colors.black),),
                                         ],
                                       ),
-                                      SizedBox(height: 5,),
+                                      SizedBox(height: 10,),
 
-                                      //  formFieldaddress(8, "Address"),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
 
                                       DropDown.networkDropdownGetpartUser(
-                                          "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                          "Country", ApiFactory.COUNTRY_API, "country_Ngo", Icons.location_on_rounded,
                                           23.0,
                                               (KeyvalueModel data) {
                                             setState(() {
                                               print(ApiFactory.COUNTRY_API);
                                               NgoSignUpForm2.countryModel = data;
                                               NgoSignUpForm2.stateModel = null;
+                                              NgoSignUpForm2.districtModel = null;
+                                              NgoSignUpForm2.citymodel = null;
 
                                             });
                                           }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
-                                          "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
+
+                                      (NgoSignUpForm2.countryModel != null)
+                                          ?DropDown.networkDropdownGetpartUser(
+                                          "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state_Ngo", Icons.location_on_rounded,
                                           23.0,
                                               (KeyvalueModel data) {
                                             setState(() {
                                               print(ApiFactory.STATE_API);
                                               NgoSignUpForm2.stateModel = data;
                                               NgoSignUpForm2.districtModel = null;
+                                              NgoSignUpForm2.citymodel = null;
                                             });
-                                          }),
+                                          }):Container(),
 
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
-                                          "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                      (NgoSignUpForm2.stateModel != null)
+                                          ?DropDown.networkDropdownGetpartUser(
+                                          "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""), "district_Ngo", Icons.location_on_rounded,
                                           23.0,
                                               (KeyvalueModel data) {
                                             setState(() {
@@ -341,11 +331,10 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                               NgoSignUpForm2.districtModel = data;
                                               NgoSignUpForm2.citymodel = null;
                                             });
-                                          }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
+                                          }):Container(),
+
+                                      (NgoSignUpForm2.districtModel != null)
+                                          ?DropDown.networkDropdownGetpartUser(
                                           "City", ApiFactory.CITY_API + (NgoSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
                                           23.0,
                                               (KeyvalueModel data) {
@@ -354,23 +343,23 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                               NgoSignUpForm2.citymodel = data;
                                               // LabSignUpForm3.districtModel = null;
                                             });
-                                          }),
+                                          }):Container(),
 
                                       SizedBox(
-                                        height: 13,
+                                        height: 8,
                                       ),
                                       formFieldzip(5, "Enter Zip/Pin Code :"),
                                       SizedBox(
-                                        height: 13,
+                                        height: 8,
                                       ),
 
                                       formFieldMobile(10, "Mobile Number :"),
                                       SizedBox(
-                                        height: 13,
+                                        height: 8,
                                       ),
                                       formFielEmail(11, "Email Id :"),
                                       SizedBox(
-                                        height: 13,
+                                        height: 8,
                                       ),
                                       Container(
                                         child: Row(

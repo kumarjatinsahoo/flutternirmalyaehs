@@ -42,205 +42,198 @@ class _GenericStoresState extends State<GenericStores> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Generic Medical Stores',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+    title: Text(
+      'Generic Medical Stores',
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+    centerTitle: true,
+    backgroundColor: AppData.kPrimaryColor,
+    iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 20.0,
+            right: 20.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Find Generic Medical Store',
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Request your doctor to prescribe Generic Medicine.',
-                    style:
-                        TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 35),
-                  /*DropDown.staticDropdown2('India', "country", countryList,
+              Text(
+                'Find Generic Medical Store',
+                style:
+                    TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Request your doctor to prescribe Generic Medicine.',
+                style:
+                    TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 35),
+              /*DropDown.staticDropdown2('India', "country", countryList,
+                  (KeyvalueModel data) {
+                setState(() {
+                  GenericStores.stateModel = data;
+                  GenericStores.stateModel = null;
+                });
+              }),
+              SizedBox(
+                height: 25,
+              ),
+
+              DropDown.networkDropdownGetpartUserundreline(
+                  "State",
+                  ApiFactory.STATE_API +"99",
+                      // (GenericStores?.countryModel?.key ?? ""),
+                  "state", (KeyvalueModel data) {
+                setState(() {
+                  print(ApiFactory.STATE_API);
+                  GenericStores.stateModel = data;
+                  GenericStores.districtModel = null;
+                });
+              }),
+              SizedBox(
+                height: 25,
+              ),
+              DropDown.networkDropdownGetpartUserundreline(
+                  "District", ApiFactory.DISTRICT_API +(GenericStores?.stateModel?.key??""), "district",
                       (KeyvalueModel data) {
                     setState(() {
-                      GenericStores.stateModel = data;
-                      GenericStores.stateModel = null;
+                      print(ApiFactory.DISTRICT_API);
+                      GenericStores.districtModel = data;
+                      GenericStores.cityModel = null;
                     });
                   }),
-                  SizedBox(
-                    height: 25,
-                  ),
-
-                  DropDown.networkDropdownGetpartUserundreline(
-                      "State",
-                      ApiFactory.STATE_API +"99",
-                          // (GenericStores?.countryModel?.key ?? ""),
-                      "state", (KeyvalueModel data) {
-                    setState(() {
-                      print(ApiFactory.STATE_API);
-                      GenericStores.stateModel = data;
-                      GenericStores.districtModel = null;
-                    });
-                  }),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  DropDown.networkDropdownGetpartUserundreline(
-                      "District", ApiFactory.DISTRICT_API +(GenericStores?.stateModel?.key??""), "district",
-                          (KeyvalueModel data) {
-                        setState(() {
-                          print(ApiFactory.DISTRICT_API);
-                          GenericStores.districtModel = data;
-                          GenericStores.cityModel = null;
-                        });
-                      }),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  DropDown.networkDropdownGetpartUserundreline(
-                      "Select City", ApiFactory.CITY_API + (GenericStores?.districtModel?.key??""), "city",
-                          (KeyvalueModel data) {
-                        setState(() {
-                          print(ApiFactory.CITY_API);
-                          GenericStores.cityModel = data;
-                          // LabSignUpForm3.districtModel = null;
-                        });
-                      }),*/
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0, right: 0),
-                    child: SizedBox(
-                      height: 58,
-                      child: DropDown.genericMedicine(
-                        context,
-                          "Country",
-                          ApiFactory.COUNTRY_API,
-                          "country",
-                          Icons.location_on_rounded,
-                          23.0, (KeyvalueModel data) {
-                        setState(() {
-                          print(ApiFactory.COUNTRY_API);
-                          GenericStores.countryModel = data;
-                          GenericStores.stateModel = null;
-                          GenericStores.districtModel = null;
-                          GenericStores.cityModel = null;
-                        });
-                      }),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Padding(
-                          padding: const EdgeInsets.only(
-                              left: 0, right: 0, bottom: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child: DropDown.genericMedicine(
-                                context,
-                                "State",
-                                ApiFactory.STATE_API +
-                                    (GenericStores?.countryModel?.key??""),
-                                "state",
-                                Icons.location_on_rounded,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                GenericStores.stateModel = data;
-                                GenericStores.districtModel = null;
-                                GenericStores.cityModel = null;
-                              });
-                            }),
-                          ),
-                        )
-                      ,
-                  SizedBox(
-                    height: 10,
-                  ),
-                 Padding(
-                          padding: const EdgeInsets.only(left: 0, right: 0),
-                          child: SizedBox(
-                            height: 58,
-                            child: DropDown.genericMedicine(
-                                context,
-                                "District",
-                                ApiFactory.DISTRICT_API +
-                                    (GenericStores?.stateModel?.key??""),
-                                "district1",
-                                Icons.location_on_rounded,
-                                23.0, (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.COUNTRY_API);
-                                GenericStores.districtModel = data;
-                                GenericStores.cityModel = null;
-                              });
-                            }),
-                          ),
-                        )
-                     ,
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                    child: SizedBox(
-                      height: 58,
-                      child: DropDown.genericMedicine(
-                          context,
-                          "City",
-                          ApiFactory.CITY_API +
-                              (GenericStores?.districtModel?.key??""),
-                          "city",
-                          Icons.location_on_rounded,
-                          23.0, (KeyvalueModel data) {
-                        setState(() {
-                          GenericStores.cityModel = data;
-                          /*userModel.state=data.key;
-                                        userModel.stateCode=data.code;*/
-                        });
-                      }),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  _submitButton(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
+              SizedBox(
+                height: 25,
               ),
-            ),
-          ],
+              DropDown.networkDropdownGetpartUserundreline(
+                  "Select City", ApiFactory.CITY_API + (GenericStores?.districtModel?.key??""), "city",
+                      (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.CITY_API);
+                      GenericStores.cityModel = data;
+                      // LabSignUpForm3.districtModel = null;
+                    });
+                  }),*/
+              Padding(
+                padding: const EdgeInsets.only(left: 0, right: 0),
+                child: SizedBox(
+                  height: 58,
+                  child: DropDown.genericMedicine(
+                    context,
+                      "Country",
+                      ApiFactory.COUNTRY_API,
+                      "country",
+                      Icons.location_on_rounded,
+                      23.0, (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.COUNTRY_API);
+                      GenericStores.countryModel = data;
+                      GenericStores.stateModel = null;
+                      GenericStores.districtModel = null;
+                      GenericStores.cityModel = null;
+                    });
+                  }),
+                ),
+              ),
+
+              Padding(
+                      padding: const EdgeInsets.only(
+                          left: 0, right: 0, bottom: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            "State",
+                            ApiFactory.STATE_API +
+                                (GenericStores?.countryModel?.key??""),
+                            "state",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            GenericStores.stateModel = data;
+                            GenericStores.districtModel = null;
+                            GenericStores.cityModel = null;
+                          });
+                        }),
+                      ),
+                    )
+                  ,
+
+             Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            "District",
+                            ApiFactory.DISTRICT_API +
+                                (GenericStores?.stateModel?.key??""),
+                            "district1",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.COUNTRY_API);
+                            GenericStores.districtModel = data;
+                            GenericStores.cityModel = null;
+                          });
+                        }),
+                      ),
+                    )
+                 ,
+
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                child: SizedBox(
+                  height: 58,
+                  child: DropDown.genericMedicine(
+                      context,
+                      "City",
+                      ApiFactory.CITY_API +
+                          (GenericStores?.districtModel?.key??""),
+                      "city",
+                      Icons.location_on_rounded,
+                      23.0, (KeyvalueModel data) {
+                    setState(() {
+                      GenericStores.cityModel = data;
+                      /*userModel.state=data.key;
+                                    userModel.stateCode=data.code;*/
+                    });
+                  }),
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              _submitButton(),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
         ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   /* Widget _submitButton() {
@@ -267,13 +260,19 @@ class _GenericStoresState extends State<GenericStores> {
       text: "search".toUpperCase(),
       context: context,
       fun: () {
-        if (GenericStores.stateModel == null ||
+    if (GenericStores.countryModel == null ||
+    GenericStores.countryModel == "") {
+    AppData.showInSnackBar(context, "Please select Country");
+    } else if (GenericStores.stateModel == null ||
             GenericStores.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (GenericStores.districtModel == null ||
             GenericStores.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select district");
-        }  else {
+          AppData.showInSnackBar(context, "Please select District");
+        }  else if (GenericStores.cityModel == null ||
+    GenericStores.cityModel == "") {
+      AppData.showInSnackBar(context, "Please select City");
+    }  else {
           //country = "99";
           country = GenericStores.countryModel.name;
           state = GenericStores.stateModel.name;

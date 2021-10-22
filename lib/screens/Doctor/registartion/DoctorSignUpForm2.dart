@@ -196,205 +196,208 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    color: AppData.kPrimaryColor,
-                    child: Padding(
-                      padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                      child: Row(
-                        children: [
-                          InkWell(
-                              onTap: (){
-                                Navigator.pop(context);
-                              },
-                              child: Icon(Icons.arrow_back,color: Colors.white)),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                            child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                          ),
-
-                        ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGNUP"),
+        centerTitle: true,
+      ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              /*Container(
+                color: AppData.kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
+                  child: Row(
+                    children: [
+                      InkWell(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.arrow_back,color: Colors.white)),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
+                          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                       ),
-                    ),
-                    height: 55,
-                    width: MediaQuery.of(context).size.width,
+
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                height: 55,
+                width: MediaQuery.of(context).size.width,
+              ),*/
+              Padding(
+                padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 10,),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
-                        SizedBox(height: 10,),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                child: Image.asset(
-                                  "assets/logo1.png",
-                                  fit: BoxFit.fitWidth,
-                                  //width: ,
-                                  height: 110.0,
-                                ),
-                              ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                            child: Image.asset(
+                              "assets/logo1.png",
+                              fit: BoxFit.fitWidth,
+                              //width: ,
+                              height: 110.0,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
 
 
-                            Form(
-                              key: _formKey,
-                              autovalidate: _autovalidate,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Column(
-                                    children: [
-                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 18, color: Colors.black),),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 0),
-                                    child: SizedBox(
-                                      height: 58,
-                                      child:
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("ORGANIZATION_NAME") ,
-                                           ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-
-                                              print(ApiFactory.ORGANISATION_API);
-                                              DoctorSignUpForm2.organizationModel = data;
-
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 0),
-                                    child: SizedBox(
-                                      height: 58,
-                                      child:
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("TITLE") ,
-                                          ApiFactory.TITLE_API,
-                                          "title",
-                                          Icons.person,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.TITLE_API);
-                                          DoctorSignUpForm2.titleModel =
-                                              data;
-                                          userModel.title=data.key;
-                                          // UserSignUpForm.cityModel = null;
-                                        });
-                                      }),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 13,
-                                  ),
-                                  formField1(1,MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  // formField(10, "User Id"),
-                                  // SizedBox(
-                                  //   height: 5,
-                                  // ),
-                                  // formField(11, "Password"),
-                                  // SizedBox(
-                                  //   height: 5,
-                                  // ),
-                                  // formField(12, "Confirm Password"),
-                                  // SizedBox(
-                                  //   height: 5,
-                                  // ),
-
-                                  // Column(
-                                  //   //crossAxisAlignment: CrossAxisAlignment.start,
-                                  //   // mainAxisAlignment: MainAxisAlignment.start,
-                                  //   children: [
-                                  //
-                                  //     GestureDetector(
-                                  //         child: Padding(
-                                  //           padding: const EdgeInsets.all(8.0),
-                                  //           child: Card(
-                                  //             child: Container(
-                                  //                 width: 300,
-                                  //                 height: 40,
-                                  //                 color: Colors.white,
-                                  //                 alignment: Alignment.center,
-                                  //                 child: Row(
-                                  //                     mainAxisSize: MainAxisSize.min,
-                                  //                     children: [
-                                  //                       //
-                                  //                       //   Image.memory(bytes),
-                                  //                       SizedBox(width:5),
-                                  //                       Icon(
-                                  //                         Icons.photo,
-                                  //                         color: Colors.red,
-                                  //                       ),
-                                  //                       SizedBox(
-                                  //                         width: 5,
-                                  //                       ),
-                                  //                       Text(' Upload Photo'),
-                                  //                     ]
-                                  //                 )
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //         onTap: () {
-                                  //           displayModalBottomSheet(context);
-                                  //
-                                  //           // openGallery();
-                                  //         }
-                                  //     ),
-                                  //     _showImage(),
-                                  //   ],
-                                  // ),
-                                  SizedBox(height: 35),
-
-                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                    child: nextButton1(),
-                                  ),
+                        Form(
+                          key: _formKey,
+                          autovalidate: _autovalidate,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Column(
+                                children: [
+                                  Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                            textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 18, color: Colors.black),),
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10,),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("ORGANIZATION_NAME") ,
+                                       ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
 
-                      ],),
-                  ),
-                ],
+                                          print(ApiFactory.ORGANISATION_API);
+                                          DoctorSignUpForm2.organizationModel = data;
+
+                                        });
+                                      }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("TITLE") ,
+                                      ApiFactory.TITLE_API,
+                                      "title",
+                                      Icons.person,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      DoctorSignUpForm2.titleModel =
+                                          data;
+                                      userModel.title=data.key;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 13,
+                              ),
+                              formField1(1,MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              // formField(10, "User Id"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              // formField(11, "Password"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              // formField(12, "Confirm Password"),
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+
+                              // Column(
+                              //   //crossAxisAlignment: CrossAxisAlignment.start,
+                              //   // mainAxisAlignment: MainAxisAlignment.start,
+                              //   children: [
+                              //
+                              //     GestureDetector(
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.all(8.0),
+                              //           child: Card(
+                              //             child: Container(
+                              //                 width: 300,
+                              //                 height: 40,
+                              //                 color: Colors.white,
+                              //                 alignment: Alignment.center,
+                              //                 child: Row(
+                              //                     mainAxisSize: MainAxisSize.min,
+                              //                     children: [
+                              //                       //
+                              //                       //   Image.memory(bytes),
+                              //                       SizedBox(width:5),
+                              //                       Icon(
+                              //                         Icons.photo,
+                              //                         color: Colors.red,
+                              //                       ),
+                              //                       SizedBox(
+                              //                         width: 5,
+                              //                       ),
+                              //                       Text(' Upload Photo'),
+                              //                     ]
+                              //                 )
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         onTap: () {
+                              //           displayModalBottomSheet(context);
+                              //
+                              //           // openGallery();
+                              //         }
+                              //     ),
+                              //     _showImage(),
+                              //   ],
+                              // ),
+                              SizedBox(height: 35),
+
+                              Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: nextButton1(),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+
+                  ],),
               ),
-            ),
+            ],
           ),
+        ),
+      ),
 
 
-        )
     );
   }
   Widget gender() {

@@ -143,7 +143,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               return AlertDialog(
                 //title: const Text("Is it your details?"),
                 contentPadding:
-                    EdgeInsets.only(top: 18, left: 18, right: 18, bottom: 18),
+                    EdgeInsets.only(top: 10, left: 18, right: 18, bottom: 10),
                 insetPadding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -154,22 +154,37 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemBuilder: (context, i) {
-                      return ListTile(
-                        title: Text(
-                          list[i].name,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        subtitle: Text(
-                          list[i].relation,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            AppData.launchURL("tel://" + list[i].mobile);
-                          },
-                          child: Icon(Icons.call, color: Colors.black),
-                        ),
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              list[i].name,
+                              style: TextStyle(color: Colors.black),
+                            ),
+
+                              subtitle: Text(
+                              list[i].relation,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            trailing: InkWell(
+                              onTap: () {
+                                AppData.launchURL("tel://" + list[i].mobile);
+                              },
+                              child: Icon(Icons.call, color: Colors.black),
+                            ),
+                              onTap: () {
+                                // call setstate
+                                setState(() { // new line
+                                  // change the bool variable based on the index
+                                  AppData.launchURL("tel://" + list[i].mobile);
+                                });
+                              }
+                          ),
+                          (i == list.length - 1)? Container():Divider(height: 1,color: Colors.black54),
+
+                        ],
                       );
+
                     },
                     itemCount: list.length,
                   ),

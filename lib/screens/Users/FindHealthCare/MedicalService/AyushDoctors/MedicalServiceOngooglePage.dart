@@ -95,195 +95,194 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     double spaceTab = 20;
     double edgeInsets = 3;
 
-    return SafeArea(
-        child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text(medicallserviceType),
-         /* leading: Icon(
-            Icons.menu,
-          ),*/
-          centerTitle: true,
-          actions: <Widget>[
-            /*Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.search,
-                    size: 26.0,
-                  ),
-                )
-            ),*/
-            /*Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                      Icons.more_vert
-                  ),
-                )
-            ),*/
-          ],
-        ),
+    return Scaffold(
+    appBar: AppBar(
+      backgroundColor: AppData.kPrimaryColor,
+      title: Text(medicallserviceType),
+     /* leading: Icon(
+        Icons.menu,
+      ),*/
+      centerTitle: true,
+      actions: <Widget>[
+        /*Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.search,
+                size: 26.0,
+              ),
+            )
+        ),*/
+        /*Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                  Icons.more_vert
+              ),
+            )
+        ),*/
+      ],
+    ),
 
     body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-             /* Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                          onTap: (){
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.arrow_back,color: Colors.white, )),
-                      Text(*//*'AYUSH Doctors'*//*medicallserviceType,
-                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                      Icon(Icons.search,color: Colors.white ),
-                    ],
-                  ),
-                ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
-              ),*/
-           /*Expanded(
-             child:*/(googlePlaceModel != null)
-                  ? ListView.builder(
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+         /* Container(
+            color: AppData.kPrimaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only( left:15.0,right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back,color: Colors.white, )),
+                  Text(*//*'AYUSH Doctors'*//*medicallserviceType,
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
+                  Icon(Icons.search,color: Colors.white ),
+                ],
+              ),
+            ),
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width,
+          ),*/
+       /*Expanded(
+         child:*/(googlePlaceModel != null)
+              ? ListView.builder(
 
-                  //physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    controller: _scrollController,
-                      itemBuilder: (context, i) {
-                        Results patient = googlePlaceModel.results[i];
-                        print(
-                            "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
-                                i.toString() +
-                                ((patient.photos != null &&
-                                        patient.photos.isNotEmpty)
-                                    ? ApiFactory.GOOGLE_PIC(
-                                        ref: patient.photos[0].photoReference)
-                                    : patient.icon));
-                        return Container(
-                            child: InkWell(
-                            onTap: () {
-                          //widget.model.model = patient.placeId;
-                          widget.model.placeId = patient.placeId;
-                          Navigator.pushNamed(context, "/googleSearch");
+              //physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                controller: _scrollController,
+                  itemBuilder: (context, i) {
+                    Results patient = googlePlaceModel.results[i];
+                    print(
+                        "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
+                            i.toString() +
+                            ((patient.photos != null &&
+                                    patient.photos.isNotEmpty)
+                                ? ApiFactory.GOOGLE_PIC(
+                                    ref: patient.photos[0].photoReference)
+                                : patient.icon));
+                    return Container(
+                        child: InkWell(
+                        onTap: () {
+                      //widget.model.model = patient.placeId;
+                      widget.model.placeId = patient.placeId;
+                      Navigator.pushNamed(context, "/googleSearch");
 
-                          // AppData.showInSnackBar(context,"hi");
-                        },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 13.0,right: 13,),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              elevation: 5,
-                              child: ClipPath(
-                                clipper: ShapeBorderClipper(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
-                                child: Container(
-                                    //height: tileSize,
-                                    // width: double.maxFinite,
-                                    decoration: (i % 2 == 0)
-                                        ? BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color:
-                                                        AppData.kPrimaryRedColor,
-                                                    width: 5)))
-                                        : BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData.kPrimaryColor,
-                                                    width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(13.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          ((patient.photos !=
-                                              null &&
-                                              patient.photos
-                                                  .isNotEmpty))
-                                              ? Material(
-                                                  elevation: 5.0,
-                                                  shape: CircleBorder(),
-                                                  child: CircleAvatar(
-                                                    radius: 40.0,
-                                                    backgroundImage: NetworkImage(
-                                                        ( ApiFactory.GOOGLE_PIC(
-                                                                ref: patient
-                                                                    .photos[0]
-                                                                    .photoReference))),
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  height: 85,
-                                                  child: Image.network(
-                                                    patient.icon,
-                                                  ),
-                                                ),
-                                          /* Image.asset(
-                                          "assets/medicine_reminder.png",
-                                          height: 40,
-                                        ),*/
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                      // AppData.showInSnackBar(context,"hi");
+                    },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 13.0,right: 13,),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          elevation: 5,
+                          child: ClipPath(
+                            clipper: ShapeBorderClipper(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
+                            child: Container(
+                                //height: tileSize,
+                                // width: double.maxFinite,
+                                decoration: (i % 2 == 0)
+                                    ? BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color:
+                                                    AppData.kPrimaryRedColor,
+                                                width: 5)))
+                                    : BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryColor,
+                                                width: 5))),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(13.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      ((patient.photos !=
+                                          null &&
+                                          patient.photos
+                                              .isNotEmpty))
+                                          ? Material(
+                                              elevation: 5.0,
+                                              shape: CircleBorder(),
+                                              child: CircleAvatar(
+                                                radius: 40.0,
+                                                backgroundImage: NetworkImage(
+                                                    ( ApiFactory.GOOGLE_PIC(
+                                                            ref: patient
+                                                                .photos[0]
+                                                                .photoReference))),
+                                              ),
+                                            )
+                                          : SizedBox(
+                                              height: 85,
+                                              child: Image.network(
+                                                patient.icon,
+                                              ),
+                                            ),
+                                      /* Image.asset(
+                                      "assets/medicine_reminder.png",
+                                      height: 40,
+                                    ),*/
+                                      SizedBox(
+                                        width: spaceTab,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              patient.name ?? "N/A",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            Column(
                                               children: [
                                                 Text(
-                                                  patient.name ?? "N/A",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Text(
-                                                      /* "No 43,CF Block,Sector III,Bidhannagar\n"
-                                                        "Kolkata,West Bengal 700091,India",*/
-                                                      patient.formattedAddress,
-                                                      style:
-                                                          TextStyle(fontSize: 13),
-                                                    )
-                                                  ],
+                                                  /* "No 43,CF Block,Sector III,Bidhannagar\n"
+                                                    "Kolkata,West Bengal 700091,India",*/
+                                                  patient.formattedAddress,
+                                                  style:
+                                                      TextStyle(fontSize: 13),
                                                 )
                                               ],
-                                            ),
-                                          ),
-                                          //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    )),
-                              ),
-                            ),
+                                      //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                    ],
+                                  ),
+                                )),
                           ),
-                            )
-                        );
-                      },
-                      itemCount: googlePlaceModel.results.length,
-                    )
-                  : Container(),
-            ],
-          ),
-        ),
+                        ),
+                      ),
+                        )
+                    );
+                  },
+                  itemCount: googlePlaceModel.results.length,
+                )
+              : Container(),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   Widget _submitButton() {

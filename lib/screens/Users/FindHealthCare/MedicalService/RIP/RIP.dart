@@ -17,326 +17,332 @@ class _RIPScreenState extends State<RIPScreen> {
   double tileSize = 80;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-          child: Scaffold(
-           body: Container(
-             child: Column(
-               children: [
-                  Container(
-                    color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back,color: Colors.white )),
-                   Text('RIP',
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                        Icon(Icons.search,color: Colors.white, ),
-                    ],
-                  ),
-                ),
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Expanded(
-                              child: ListView(
-                                shrinkWrap: true,
-                                children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [    
-                                      SizedBox(height: 10,), 
-                                       ListView(
-                                         shrinkWrap: true,
-                                         physics: NeverScrollableScrollPhysics(),
-                                         children: [
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "Book a Hearse Van";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'RIP',
+          style: TextStyle(color: AppData.white),
+        ),
+        centerTitle: true,
+        backgroundColor:AppData.kPrimaryColor,
+      ),
+     body: Container(
+       child: Column(
+         children: [
+           /* Container(
+              color: AppData.kPrimaryColor,
+          child: Padding(
+            padding: const EdgeInsets.only( left:15.0,right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back,color: Colors.white )),
+             Text('RIP',
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
+                  Icon(Icons.search,color: Colors.white, ),
+              ],
+            ),
+          ),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+        ),*/
+        Expanded(
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 10,),
+                                 ListView(
+                                   shrinkWrap: true,
+                                   physics: NeverScrollableScrollPhysics(),
+                                   children: [
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Book a Hearse Van";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
 
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                            /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                             elevation: 5,
-                                                     child: Container(
-                                               height: tileSize,
-                                               width: double.maxFinite,
-                                              decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                               child: Padding(
-                                                 padding: const EdgeInsets.all(10.0),
-                                                 child: Row(
-                                                   crossAxisAlignment: CrossAxisAlignment.center,
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                      /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                       elevation: 5,
+                                               child: Container(
+                                         height: tileSize,
+                                         width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.grey[300],
+                              ),
+                              borderRadius: BorderRadius.circular(8)),
+                                         child: Padding(
+                                           padding: const EdgeInsets.all(10.0),
+                                           child: Row(
+                                             crossAxisAlignment: CrossAxisAlignment.center,
+                                             children: [
+                                               Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                               SizedBox(width: 10,),
+                                               Expanded(
+                                                       child: Column(
+                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                    children: [
-                                                     Icon(Icons.ac_unit, size: 50,color: Colors.red),
-                                                     SizedBox(width: 10,),
-                                                     Expanded(
-                                                             child: Column(
-                                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                                         mainAxisAlignment: MainAxisAlignment.center,
-                                                         children: [
-                                                           Text('Book a Hearse Van',
-                                                            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                     Text('Book a Hearse Van',
+                                                      style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
 
 
-                                                         ],
-                                                       ),
-                                                     ),
                                                    ],
                                                  ),
-                                               )),
+                                               ),
+                                             ],
                                            ),
-                                           ),
+                                         )),
+                                     ),
+                                     ),
 
 
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "Book a Mortuary Freezer";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Book a Mortuary Freezer";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
 
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                               elevation: 5,
-                                               child: Container(
-                                                   height: tileSize,
-                                                   width: double.maxFinite,
-                                                   decoration: BoxDecoration(
-                                                       color: Colors.white,
-                                                       border: Border.all(
-                                                         color: Colors.grey[300],
-                                                       ),
-                                                       borderRadius: BorderRadius.circular(8)),
-                                                   child: Padding(
-                                                     padding: const EdgeInsets.all(10.0),
-                                                     child: Row(
-                                                       crossAxisAlignment: CrossAxisAlignment.center,
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                       /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                         elevation: 5,
+                                         child: Container(
+                                             height: tileSize,
+                                             width: double.maxFinite,
+                                             decoration: BoxDecoration(
+                                                 color: Colors.white,
+                                                 border: Border.all(
+                                                   color: Colors.grey[300],
+                                                 ),
+                                                 borderRadius: BorderRadius.circular(8)),
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(10.0),
+                                               child: Row(
+                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                 children: [
+                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   SizedBox(width: 10,),
+                                                   Expanded(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                        children: [
-                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
-                                                         SizedBox(width: 10,),
-                                                         Expanded(
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                                             children: [
-                                                               Text('Book a Mortuary Freezer',
-                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                         Text('Book a Mortuary Freezer',
+                                                           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
 
 
-                                                             ],
-                                                           ),
-                                                         ),
                                                        ],
                                                      ),
-                                                   )),
-                                             ),
-                                           ),
-
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "Book a Priest";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
-
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                               elevation: 5,
-                                               child: Container(
-                                                   height: tileSize,
-                                                   width: double.maxFinite,
-                                                   decoration: BoxDecoration(
-                                                       color: Colors.white,
-                                                       border: Border.all(
-                                                         color: Colors.grey[300],
-                                                       ),
-                                                       borderRadius: BorderRadius.circular(8)),
-                                                   child: Padding(
-                                                     padding: const EdgeInsets.all(10.0),
-                                                     child: Row(
-                                                       crossAxisAlignment: CrossAxisAlignment.center,
-                                                       children: [
-                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
-                                                         SizedBox(width: 10,),
-                                                         Expanded(
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                                             children: [
-                                                               Text('Book a Priest',
-                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-
-
-                                                             ],
-                                                           ),
-                                                         ),
-                                                       ],
-                                                     ),
-                                                   )),
-                                             ),
-                                           ),
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "Book a Rrpatriation";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
-
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                               elevation: 5,
-                                               child: Container(
-                                                   height: tileSize,
-                                                   width: double.maxFinite,
-                                                   decoration: BoxDecoration(
-                                                       color: Colors.white,
-                                                       border: Border.all(
-                                                         color: Colors.grey[300],
-                                                       ),
-                                                       borderRadius: BorderRadius.circular(8)),
-                                                   child: Padding(
-                                                     padding: const EdgeInsets.all(10.0),
-                                                     child: Row(
-                                                       crossAxisAlignment: CrossAxisAlignment.center,
-                                                       children: [
-                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
-                                                         SizedBox(width: 10,),
-                                                         Expanded(
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                                             children: [
-                                                               Text('Book a Rrpatriation',
-                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-
-
-                                                             ],
-                                                           ),
-                                                         ),
-                                                       ],
-                                                     ),
-                                                   )),
-                                             ),
-                                           ),
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "book a Funeral Hall ";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
-
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                               elevation: 5,
-                                               child: Container(
-                                                   height: tileSize,
-                                                   width: double.maxFinite,
-                                                   decoration: BoxDecoration(
-                                                       color: Colors.white,
-                                                       border: Border.all(
-                                                         color: Colors.grey[300],
-                                                       ),
-                                                       borderRadius: BorderRadius.circular(8)),
-                                                   child: Padding(
-                                                     padding: const EdgeInsets.all(10.0),
-                                                     child: Row(
-                                                       crossAxisAlignment: CrossAxisAlignment.center,
-                                                       children: [
-                                                         Icon(Icons.ac_unit, size: 50,color: Colors.red),
-                                                         SizedBox(width: 10,),
-                                                         Expanded(
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                                             children: [
-                                                               Text('book a Funeral Hall ',
-                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-
-
-                                                             ],
-                                                           ),
-                                                         ),
-                                                       ],
-                                                     ),
-                                                   )),
-                                             ),
-                                           ),
-
-                                           GestureDetector(
-                                             onTap: () {
-                                               widget.model.medicallserviceType = "Dispersal of Ashes & Ums";
-                                               Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
-
-                                               // AppData.showInSnackBar(context,"hi");
-                                             },
-                                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                             child: Card(
-                                               elevation: 5,
-                                               child: Container(
-                                                   height: tileSize,
-                                                   width: double.maxFinite,
-                                                   decoration: BoxDecoration(
-                                                       color: Colors.white,
-                                                       border: Border.all(
-                                                         color: Colors.grey[300],
-                                                       ),
-                                                       borderRadius: BorderRadius.circular(8)),
-                                                   child: Padding(
-                                                     padding: const EdgeInsets.all(10.0),
-                                                     child: Row(
-                                                       crossAxisAlignment: CrossAxisAlignment.center,
-                                                       children: [
-                                                         Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
-                                                         SizedBox(width: 10,),
-                                                         Expanded(
-                                                           child: Column(
-                                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                                             children: [
-                                                               Text('Dispersal of Ashes & Ums',
-                                                                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
-                                                             ],
-                                                           ),
-                                                         ),
-                                                       ],
-                                                     ),
-                                                   )),
-                                             ),
-                                           ),
-                                         ],
+                                                   ),
+                                                 ],
+                                               ),
+                                             )),
                                        ),
-                                     
-          
-           SizedBox(height: 10,),
-            
-         
-         
-                                 
-                                  ],),
-                                ),
-                              ],
-                ),
-              ),
-               ],
-             ),
-           ),
-                      
-                      
-          )  
+                                     ),
+
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Book a Priest";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                       /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                         elevation: 5,
+                                         child: Container(
+                                             height: tileSize,
+                                             width: double.maxFinite,
+                                             decoration: BoxDecoration(
+                                                 color: Colors.white,
+                                                 border: Border.all(
+                                                   color: Colors.grey[300],
+                                                 ),
+                                                 borderRadius: BorderRadius.circular(8)),
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(10.0),
+                                               child: Row(
+                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                 children: [
+                                                   Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                   SizedBox(width: 10,),
+                                                   Expanded(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                       children: [
+                                                         Text('Book a Priest',
+                                                           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+
+
+                                                       ],
+                                                     ),
+                                                   ),
+                                                 ],
+                                               ),
+                                             )),
+                                       ),
+                                     ),
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Book a Repatriation";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                       /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                         elevation: 5,
+                                         child: Container(
+                                             height: tileSize,
+                                             width: double.maxFinite,
+                                             decoration: BoxDecoration(
+                                                 color: Colors.white,
+                                                 border: Border.all(
+                                                   color: Colors.grey[300],
+                                                 ),
+                                                 borderRadius: BorderRadius.circular(8)),
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(10.0),
+                                               child: Row(
+                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                 children: [
+                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   SizedBox(width: 10,),
+                                                   Expanded(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                       children: [
+                                                         Text('Book a Repatriation',
+                                                           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+
+
+                                                       ],
+                                                     ),
+                                                   ),
+                                                 ],
+                                               ),
+                                             )),
+                                       ),
+                                     ),
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Book a Funeral Hall ";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                       /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                         elevation: 5,
+                                         child: Container(
+                                             height: tileSize,
+                                             width: double.maxFinite,
+                                             decoration: BoxDecoration(
+                                                 color: Colors.white,
+                                                 border: Border.all(
+                                                   color: Colors.grey[300],
+                                                 ),
+                                                 borderRadius: BorderRadius.circular(8)),
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(10.0),
+                                               child: Row(
+                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                 children: [
+                                                   Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                   SizedBox(width: 10,),
+                                                   Expanded(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                       children: [
+                                                         Text('Book a Funeral Hall ',
+                                                           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+
+
+                                                       ],
+                                                     ),
+                                                   ),
+                                                 ],
+                                               ),
+                                             )),
+                                       ),
+                                     ),
+
+                                     GestureDetector(
+                                       onTap: () {
+                                         widget.model.medicallserviceType = "Dispersal of Ashes & Ums";
+                                         Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
+
+                                         // AppData.showInSnackBar(context,"hi");
+                                       },
+                                       /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                                       child: Card(
+                                         elevation: 5,
+                                         child: Container(
+                                             height: tileSize,
+                                             width: double.maxFinite,
+                                             decoration: BoxDecoration(
+                                                 color: Colors.white,
+                                                 border: Border.all(
+                                                   color: Colors.grey[300],
+                                                 ),
+                                                 borderRadius: BorderRadius.circular(8)),
+                                             child: Padding(
+                                               padding: const EdgeInsets.all(10.0),
+                                               child: Row(
+                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                 children: [
+                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   SizedBox(width: 10,),
+                                                   Expanded(
+                                                     child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                       children: [
+                                                         Text('Dispersal of Ashes & Ums',
+                                                           style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),),
+                                                       ],
+                                                     ),
+                                                   ),
+                                                 ],
+                                               ),
+                                             )),
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+
+
+     SizedBox(height: 10,),
+
+
+
+
+                            ],),
+                          ),
+                        ],
+          ),
+        ),
+         ],
+       ),
+     ),
+
+
     );
   }
 

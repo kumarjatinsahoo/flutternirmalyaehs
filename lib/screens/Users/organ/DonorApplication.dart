@@ -232,608 +232,607 @@ class DonorApplicationState extends State<DonorApplication> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppData.kPrimaryColor,
-        centerTitle: true,
-        title: Text(
-          'Donor Applications',
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
+    backgroundColor: AppData.kPrimaryColor,
+    centerTitle: true,
+    title: Text(
+      'Donor Applications',
+      style: TextStyle(fontSize: 20, color: Colors.white),
+    ),
       ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: [
-              ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Form(
-                    key: _formKey,
-                    // ignore: deprecated_member_use
-                    autovalidate: _autovalidate,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[0],
-                            decoration: InputDecoration(
-                                hintText: "Person Name",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z ]")),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 3.0),
-                          child: mobileNoOTPSearch(),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[2],
-                            decoration: InputDecoration(
-                                hintText: "Date Of Birth",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z,0-9 ]")),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[3],
-                            decoration: InputDecoration(
-                                hintText: "Age:Years",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: DropDown.networkDropdownGetpartUserundreline(
-                              "Blood Group",
-                              ApiFactory.BLOODGROUP_API,
-                              "bloodgroup", (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.BLOODGROUP_API);
-                              DonorApplication.bloodgroupModel = data;
-                              DonorApplication.bloodgroupModel = null;
-                            });
-                          }),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[5],
-                            decoration: InputDecoration(
-                                hintText: "Mobile Number",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[6],
-                            decoration: InputDecoration(
-                                hintText: "Email ID(optional)",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.emailAddress,
-                            //           inputFormatters: [
-                            //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                            //           ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextFormField(
-                            controller: textEditingController[7],
-                            decoration: InputDecoration(
-                                hintText: "Address",
-                                hintStyle: TextStyle(color: Colors.grey)),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[0-9,a-zA-Z]")),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Container(
-                              color: Colors.black12,
-                              height: 40,
-                              child: Row(
-                                children: const <Widget>[
-                                  SizedBox(width: 6),
-                                  Expanded(
-                                    child: Text(
-                                      'Organ(s)',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                          fontSize: 15),
-                                    ),
-                                  ),
-                                  SizedBox(width: 40),
-                                  Expanded(
-                                    child: Text(
-                                      'Tissue(s)',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                          fontSize: 15),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 5,
-                          ),
+              SizedBox(
+                height: 10,
+              ),
+              Form(
+                key: _formKey,
+                // ignore: deprecated_member_use
+                autovalidate: _autovalidate,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[0],
+                        decoration: InputDecoration(
+                            hintText: "Person Name",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(
+                              RegExp("[a-zA-Z ]")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 3.0),
+                      child: mobileNoOTPSearch(),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[2],
+                        decoration: InputDecoration(
+                            hintText: "Date Of Birth",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(
+                              RegExp("[a-zA-Z,0-9 ]")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[3],
+                        decoration: InputDecoration(
+                            hintText: "Age:Years",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: DropDown.networkDropdownGetpartUserundreline(
+                          "Blood Group",
+                          ApiFactory.BLOODGROUP_API,
+                          "bloodgroup", (KeyvalueModel data) {
+                        setState(() {
+                          print(ApiFactory.BLOODGROUP_API);
+                          DonorApplication.bloodgroupModel = data;
+                          DonorApplication.bloodgroupModel = null;
+                        });
+                      }),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[5],
+                        decoration: InputDecoration(
+                            hintText: "Mobile Number",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[6],
+                        decoration: InputDecoration(
+                            hintText: "Email ID(optional)",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        //           inputFormatters: [
+                        //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                        //           ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        controller: textEditingController[7],
+                        decoration: InputDecoration(
+                            hintText: "Address",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(
+                              RegExp("[0-9,a-zA-Z]")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                          color: Colors.black12,
+                          height: 40,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const <Widget>[
+                              SizedBox(width: 6),
                               Expanded(
-                                  child: Column(children: [
-                                /* (medicineListModel != null)
-                                                     ?*/
-                                CheckboxListTile(
-                                  activeColor: Colors.blue[300],
-                                  dense: true,
-                                  title: new Text(
-                                    "All Organs",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight:
-                                        FontWeight.w600,
-                                        letterSpacing: 0.5),
-                                  ),
-                                  value: isChecked,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isChecked = val;
-                                    });
-                                  },
+                                child: Text(
+                                  'Organ(s)',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                      fontSize: 15),
                                 ),
-                               /* ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // controller: _scrollController,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                                    if (i == tissueModel.body.length) {
-                                      return (tissueModel.body.length % 10 == 0)
-                                          ? CupertinoActivityIndicator()
-                                          : Container();
-                                    }
-                                    organ.Body body = tissueModel.body[i];
+                              ),
+                              SizedBox(width: 40),
+                              Expanded(
+                                child: Text(
+                                  'Tissue(s)',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
 
-                                    // Print("mediiiicinie"+$body);
-                                    return Container(
-                                      child: GestureDetector(
-                                        // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                        // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              *//* (!body.reqstatus)
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 5,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: Column(children: [
+                            /* (medicineListModel != null)
+                                                 ?*/
+                            CheckboxListTile(
+                              activeColor: Colors.blue[300],
+                              dense: true,
+                              title: new Text(
+                                "All Organs",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight:
+                                    FontWeight.w600,
+                                    letterSpacing: 0.5),
+                              ),
+                              value: isChecked,
+                              onChanged: (val) {
+                                setState(() {
+                                  isChecked = val;
+                                });
+                              },
+                            ),
+                           /* ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              // controller: _scrollController,
+                              shrinkWrap: true,
+                              itemBuilder: (context, i) {
+                                if (i == tissueModel.body.length) {
+                                  return (tissueModel.body.length % 10 == 0)
+                                      ? CupertinoActivityIndicator()
+                                      : Container();
+                                }
+                                organ.Body body = tissueModel.body[i];
+
+                                // Print("mediiiicinie"+$body);
+                                return Container(
+                                  child: GestureDetector(
+                                    // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                                    // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          *//* (!body.reqstatus)
+                                                  ? *//*
+                                          CheckboxListTile(
+                                            activeColor: Colors.blue[300],
+                                            dense: true,
+                                            //font change
+                                            title: new Text(
+                                              tissueModel.body[i].name??"N/A",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 0.5),
+                                            ),
+                                            value: body.isChecked,
+                                            onChanged: (val) {
+                                              setState(() {
+                                                body.isChecked = val;
+                                                *//* if (val)
+                                                      selectedMedicine.add(body);
+                                                    else
+                                                      selectedMedicine
+                                                          .remove(body);*//*
+                                              });
+                                            },
+                                          ),
+                                          *//*: Container(), Text(
+                                            organTissueModel.body[i].name??"N/A",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                    letterSpacing: 0.5),
+                                              ),*//*
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              itemCount: tissueModel.body.length,
+                            )*/
+                          ])),
+                          Expanded(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                            CheckboxListTile(
+                              activeColor: Colors.blue[300],
+                              dense: true,
+                              title: new Text(
+                                "All Tisues",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight:
+                                    FontWeight.w600,
+                                    letterSpacing: 0.5),
+                              ),
+                              value: isChecked,
+                              onChanged: (val) {
+                                setState(() {
+                                  isChecked = val;
+                                });
+                              },
+                            ),
+                                 /*   ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      // controller: _scrollController,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, i) {
+                                        if (i == tissueModel.body.length) {
+                                          return (tissueModel.body.length % 10 == 0)
+                                              ? CupertinoActivityIndicator()
+                                              : Container();
+                                        }
+                                        organ.Body body = tissueModel.body[i];
+
+                                        // Print("mediiiicinie"+$body);
+                                        return Container(
+                                          child: GestureDetector(
+                                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
+                                                 *//* (!body.reqstatus)
                                                       ? *//*
-                                              CheckboxListTile(
-                                                activeColor: Colors.blue[300],
-                                                dense: true,
-                                                //font change
-                                                title: new Text(
-                                                  tissueModel.body[i].name??"N/A",
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
-                                                      letterSpacing: 0.5),
-                                                ),
-                                                value: body.isChecked,
-                                                onChanged: (val) {
-                                                  setState(() {
-                                                    body.isChecked = val;
-                                                    *//* if (val)
+                                                      CheckboxListTile(
+                                                    activeColor: Colors.blue[300],
+                                                    dense: true,
+                                                    //font change
+                                                    title: new Text(
+                                                      tissueModel.body[i].name??"N/A",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight.w600,
+                                                          letterSpacing: 0.5),
+                                                    ),
+                                                    value: body.isChecked,
+                                                    onChanged: (val) {
+                                                      setState(() {
+                                                        body.isChecked = val;
+                                                       *//* if (val)
                                                           selectedMedicine.add(body);
                                                         else
                                                           selectedMedicine
                                                               .remove(body);*//*
-                                                  });
-                                                },
-                                              ),
-                                              *//*: Container(), Text(
+                                                      });
+                                                    },
+                                                  ),
+                                                      *//*: Container(), Text(
                                                 organTissueModel.body[i].name??"N/A",
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w600,
                                                         letterSpacing: 0.5),
                                                   ),*//*
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 15,
+                                                  ),
 
 
-                                            ],
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  itemCount: tissueModel.body.length,
-                                )*/
-                              ])),
-                              Expanded(
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                CheckboxListTile(
-                                  activeColor: Colors.blue[300],
-                                  dense: true,
-                                  title: new Text(
-                                    "All Tisues",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight:
-                                        FontWeight.w600,
-                                        letterSpacing: 0.5),
-                                  ),
-                                  value: isChecked,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isChecked = val;
-                                    });
-                                  },
-                                ),
-                                     /*   ListView.builder(
-                                          physics: NeverScrollableScrollPhysics(),
-                                          // controller: _scrollController,
-                                          shrinkWrap: true,
-                                          itemBuilder: (context, i) {
-                                            if (i == tissueModel.body.length) {
-                                              return (tissueModel.body.length % 10 == 0)
-                                                  ? CupertinoActivityIndicator()
-                                                  : Container();
-                                            }
-                                            organ.Body body = tissueModel.body[i];
+                                        );
+                                      },
+                                      itemCount: tissueModel.body.length,
+                                    ),*/
 
-                                            // Print("mediiiicinie"+$body);
-                                            return Container(
-                                              child: GestureDetector(
-                                                // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                                // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(10.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    children: [
-                                                     *//* (!body.reqstatus)
-                                                          ? *//*
-                                                          CheckboxListTile(
-                                                        activeColor: Colors.blue[300],
-                                                        dense: true,
-                                                        //font change
-                                                        title: new Text(
-                                                          tissueModel.body[i].name??"N/A",
-                                                          style: TextStyle(
-                                                              fontSize: 14,
-                                                              fontWeight: FontWeight.w600,
-                                                              letterSpacing: 0.5),
-                                                        ),
-                                                        value: body.isChecked,
-                                                        onChanged: (val) {
-                                                          setState(() {
-                                                            body.isChecked = val;
-                                                           *//* if (val)
-                                                              selectedMedicine.add(body);
-                                                            else
-                                                              selectedMedicine
-                                                                  .remove(body);*//*
-                                                          });
-                                                        },
-                                                      ),
-                                                          *//*: Container(), Text(
-                                                    organTissueModel.body[i].name??"N/A",
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight: FontWeight.w600,
-                                                            letterSpacing: 0.5),
-                                                      ),*//*
-                                                      SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 15,
-                                                      ),
-
-
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          itemCount: tissueModel.body.length,
-                                        ),*/
-
-                              ])),
-                            ],
-                          ),
-                        ),
-
-                        /* Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10, ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                            child: Row(
-                                              */ /* ,*/ /*
-                                                children: [
-                                                  Checkbox(
-                                                    value: _checkbox2,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        _checkbox2 = !_checkbox2;
-
-                                                      });
-                                                    },
-                                                  ),
-                                                  new Text(
-                                                    'LIVER',
-                                                    style: new TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.black),
-                                                  ),
-                                                ])),
-                                        Expanded(
-                                          child: Row(
-                                            */ /*  mainAxisAlignment:
-                                                  MainAxisAlignment.center,*/ /*
-                                              children: [
-                                                Checkbox(
-                                                  value: _checkbox3,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _checkbox3 = !_checkbox3;
-                                                    });
-                                                  },
-                                                ),
-                                                new Text(
-                                                  'BONES',
-                                                  style: new TextStyle(
-                                                      fontSize: 16.0,
-                                                      color: Colors.black),
-                                                ),
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10, ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                            child: Row(
-                                              */ /* ,*/ /*
-                                                children: [
-                                                  Checkbox(
-                                                    value: _checkbox4,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        _checkbox4 = !_checkbox4;
-                                                      });
-                                                    },
-                                                  ),
-                                                  new Text(
-                                                    'KIDNEYS',
-                                                    style: new TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.black),
-                                                  ),
-                                                ])),
-                                        Expanded(
-                                          child: Row(
-                                            */ /*  mainAxisAlignment:
-                                                  MainAxisAlignment.center,*/ /*
-                                              children: [
-                                                Checkbox(
-                                                  value: _checkbox5,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _checkbox5 = !_checkbox5;
-                                                    });
-                                                  },
-                                                ),
-                                                new Text(
-                                                  'HEART VALVES',
-                                                  style: new TextStyle(
-                                                      fontSize: 16.0,
-                                                      color: Colors.black),
-                                                ),
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10, ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                            child: Row(
-                                              */ /* ,*/ /*
-                                                children: [
-                                                  Checkbox(
-                                                    value: _checkbox6,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        _checkbox6 = !_checkbox6;
-                                                      });
-                                                    },
-                                                  ),
-                                                  new Text(
-                                                    'HEART',
-                                                    style: new TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.black),
-                                                  ),
-                                                ])),
-                                        Expanded(
-                                          child: Row(
-                                            */ /*  mainAxisAlignment:
-                                                  MainAxisAlignment.center,*/ /*
-                                              children: [
-                                                Checkbox(
-                                                  value: _checkbox7,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _checkbox7= !_checkbox7;
-                                                    });
-                                                  },
-                                                ),
-                                                new Text(
-                                                  'SKIN',
-                                                  style: new TextStyle(
-                                                      fontSize: 16.0,
-                                                      color: Colors.black),
-                                                ),
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10, ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                            child: Row(
-                                              */ /* ,*/ /*
-                                                children: [
-                                                  Checkbox(
-                                                    value: _checkbox8,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        _checkbox8 = !_checkbox8;
-                                                      });
-                                                    },
-                                                  ),
-                                                  new Text(
-                                                    'INTESTINE',
-                                                    style: new TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.black),
-                                                  ),
-                                                ])),
-                                        Expanded(
-                                          child: Row(
-                                            */ /*  mainAxisAlignment:
-                                                  MainAxisAlignment.center,*/ /*
-                                              children: [
-                                                Checkbox(
-                                                  value: _checkbox9,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _checkbox9 = !_checkbox9;
-                                                    });
-                                                  },
-                                                ),
-                                                new Text(
-                                                  'EYES',
-                                                  style: new TextStyle(
-                                                      fontSize: 16.0,
-                                                      color: Colors.black),
-                                                ),
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),*/
-                        SizedBox(
-                          height: 5,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: _submitButton(),
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                      ],
+                          ])),
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
+
+                    /* Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10, ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                        child: Row(
+                                          */ /* ,*/ /*
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox2,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox2 = !_checkbox2;
+
+                                                  });
+                                                },
+                                              ),
+                                              new Text(
+                                                'LIVER',
+                                                style: new TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: Colors.black),
+                                              ),
+                                            ])),
+                                    Expanded(
+                                      child: Row(
+                                        */ /*  mainAxisAlignment:
+                                              MainAxisAlignment.center,*/ /*
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox3,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox3 = !_checkbox3;
+                                                });
+                                              },
+                                            ),
+                                            new Text(
+                                              'BONES',
+                                              style: new TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black),
+                                            ),
+                                          ]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10, ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                        child: Row(
+                                          */ /* ,*/ /*
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox4,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox4 = !_checkbox4;
+                                                  });
+                                                },
+                                              ),
+                                              new Text(
+                                                'KIDNEYS',
+                                                style: new TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: Colors.black),
+                                              ),
+                                            ])),
+                                    Expanded(
+                                      child: Row(
+                                        */ /*  mainAxisAlignment:
+                                              MainAxisAlignment.center,*/ /*
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox5,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox5 = !_checkbox5;
+                                                });
+                                              },
+                                            ),
+                                            new Text(
+                                              'HEART VALVES',
+                                              style: new TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black),
+                                            ),
+                                          ]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10, ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                        child: Row(
+                                          */ /* ,*/ /*
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox6,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox6 = !_checkbox6;
+                                                  });
+                                                },
+                                              ),
+                                              new Text(
+                                                'HEART',
+                                                style: new TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: Colors.black),
+                                              ),
+                                            ])),
+                                    Expanded(
+                                      child: Row(
+                                        */ /*  mainAxisAlignment:
+                                              MainAxisAlignment.center,*/ /*
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox7,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox7= !_checkbox7;
+                                                });
+                                              },
+                                            ),
+                                            new Text(
+                                              'SKIN',
+                                              style: new TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black),
+                                            ),
+                                          ]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10, ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                        child: Row(
+                                          */ /* ,*/ /*
+                                            children: [
+                                              Checkbox(
+                                                value: _checkbox8,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _checkbox8 = !_checkbox8;
+                                                  });
+                                                },
+                                              ),
+                                              new Text(
+                                                'INTESTINE',
+                                                style: new TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: Colors.black),
+                                              ),
+                                            ])),
+                                    Expanded(
+                                      child: Row(
+                                        */ /*  mainAxisAlignment:
+                                              MainAxisAlignment.center,*/ /*
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox9,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox9 = !_checkbox9;
+                                                });
+                                              },
+                                            ),
+                                            new Text(
+                                              'EYES',
+                                              style: new TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.black),
+                                            ),
+                                          ]),
+                                    ),
+                                  ],
+                                ),
+                              ),*/
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: _submitButton(),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        ),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   /*_

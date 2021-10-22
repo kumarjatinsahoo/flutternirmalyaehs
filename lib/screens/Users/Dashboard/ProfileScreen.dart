@@ -127,379 +127,377 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        /* floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add, color: Colors.white, size: 29,),
-          backgroundColor: AppData.kPrimaryColor,
-          elevation: 5,
-          splashColor: Colors.grey,
+    return Scaffold(
+      /* floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add, color: Colors.white, size: 29,),
+        backgroundColor: AppData.kPrimaryColor,
+        elevation: 5,
+        splashColor: Colors.grey,
+      ),*/
+      appBar: AppBar(
+       /* leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
         ),*/
-        appBar: AppBar(
-         /* leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
-          ),*/
-          automaticallyImplyLeading: false,
-          title: Stack(
-            children: [
-              Center(
-                child: Text(
-                  'My Profile',
-                  style: TextStyle(color: Colors.white),
-                ),
+        automaticallyImplyLeading: false,
+        title: Stack(
+          children: [
+            Center(
+              child: Text(
+                'My Profile',
+                style: TextStyle(color: Colors.white),
               ),
-              //Spacer(),
-              Align(
-                alignment: Alignment.topRight,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/idCard");
-                  },
-                  child: Text(
-                    "ID CARD",
-                    style: TextStyle(
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
-                    ),
+            ),
+            //Spacer(),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/idCard");
+                },
+                child: Text(
+                  "ID CARD",
+                  style: TextStyle(
+                    fontSize: 14,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back),
-                ),
-              )
-            ],
-          ),
-          backgroundColor: AppData.kPrimaryColor,
-          //centerTitle: true,
-          // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back),
+              ),
+            )
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          /*gradient: LinearGradient(
-                            colors: [Colors.blue[400], Colors.blue[200]]),*/
-                          /*borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey[200]),*/
+        backgroundColor: AppData.kPrimaryColor,
+        //centerTitle: true,
+        // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 0.0, bottom: 0.0, left: 0.0, right: 0.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        /*gradient: LinearGradient(
+                          colors: [Colors.blue[400], Colors.blue[200]]),*/
+                        /*borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey[200]),*/
+                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20.0, right: 20, top: 0, bottom: 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    _displayTextInputDialog(context);
+                                  },
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.black,
+                                  ))
+                            ],
                           ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20, top: 0, bottom: 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      _displayTextInputDialog(context);
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Colors.black,
-                                    ))
-                              ],
-                            ),
-                            SizedBox(
-                              height: 0,
-                            ),
-                            Container(
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(60),
-                                  child: Column(
-                                    children: [
-                                      /*Image.network(
-                                        patientProfileModel
-                                                ?.body?.profileImageType ??
-                                            AppData.defaultImgUrl,
-                                        // height: 95,
-                                        height: size.height * 0.15,
-                                        width: size.width * 0.25,
-                                      ),*/
-                                      /* Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: InkWell(
-                                          onTap: () {
-                                            //_settingModalBottomSheet(context);
-                                          },
-                                          child: Icon(
-                                            Icons.edit,
-                                            color: AppData.kPrimaryColor,
-                                          ),
-                                        ),
-                                      ),*/
-                                    ],
-                                  )),
-                            ),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                height: 83,
-                                width: 83,
-                                child: Stack(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    (pathUsr != null)
-                                        ? Material(
-                                            elevation: 5.0,
-                                            shape: CircleBorder(),
-                                            child: CircleAvatar(
-                                              radius: 40.0,
-                                              backgroundImage:
-                                                  FileImage(pathUsr),
-                                            ),
-                                          )
-                                        : Material(
-                                            elevation: 5.0,
-                                            shape: CircleBorder(),
-                                            child: CircleAvatar(
-                                              radius: 40.0,
-                                              backgroundImage: NetworkImage(
-                                                  (patientProfileModel?.body
-                                                              ?.profileImage !=
-                                                          null)
-                                                      ? patientProfileModel
-                                                          ?.body?.profileImage
-                                                      : AppData.defaultImgUrl),
-                                            ),
-                                          ),
-                                    Align(
+                          SizedBox(
+                            height: 0,
+                          ),
+                          Container(
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(60),
+                                child: Column(
+                                  children: [
+                                    /*Image.network(
+                                      patientProfileModel
+                                              ?.body?.profileImageType ??
+                                          AppData.defaultImgUrl,
+                                      // height: 95,
+                                      height: size.height * 0.15,
+                                      width: size.width * 0.25,
+                                    ),*/
+                                    /* Align(
                                       alignment: Alignment.bottomRight,
                                       child: InkWell(
                                         onTap: () {
-                                          _settingModalBottomSheet(context);
+                                          //_settingModalBottomSheet(context);
                                         },
                                         child: Icon(
-                                          Icons.camera_alt,
+                                          Icons.edit,
                                           color: AppData.kPrimaryColor,
                                         ),
                                       ),
-                                    )
+                                    ),*/
                                   ],
-                                ),
+                                )),
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              height: 83,
+                              width: 83,
+                              child: Stack(
+                                //mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  (pathUsr != null)
+                                      ? Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage:
+                                                FileImage(pathUsr),
+                                          ),
+                                        )
+                                      : Material(
+                                          elevation: 5.0,
+                                          shape: CircleBorder(),
+                                          child: CircleAvatar(
+                                            radius: 40.0,
+                                            backgroundImage: NetworkImage(
+                                                (patientProfileModel?.body
+                                                            ?.profileImage !=
+                                                        null)
+                                                    ? patientProfileModel
+                                                        ?.body?.profileImage
+                                                    : AppData.defaultImgUrl),
+                                          ),
+                                        ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: InkWell(
+                                      onTap: () {
+                                        _settingModalBottomSheet(context);
+                                      },
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color: AppData.kPrimaryColor,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            patientProfileModel?.body?.fullName ?? "N/A",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            (patientProfileModel?.body?.id != null)
+                                ? AppData.subStringBy(
+                                            patientProfileModel?.body?.id) +
+                                        "\n(UHID)" ??
+                                    "N/A"
+                                : "",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              // color: AppData.kPrimaryColor,
                             ),
-                            Text(
-                              patientProfileModel?.body?.fullName ?? "N/A",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              (patientProfileModel?.body?.id != null)
-                                  ? AppData.subStringBy(
-                                              patientProfileModel?.body?.id) +
-                                          "\n(UHID)" ??
-                                      "N/A"
-                                  : "",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                // color: AppData.kPrimaryColor,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: size.height * 0.02,
-                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                new Divider(
+                  color: AppData.lightgreyBorder,
+                ),
+                /* Container(
+                  //This is responsible for the background of the tabbar, does the magic
+                    decoration: BoxDecoration(
+                      //This is for background color
+                        color: Colors.white.withOpacity(0.0),
+                        //This is for bottom border that is needed
+                        border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
+                    child: TabBar(
+                        //controller: _controller,
+                        tabs: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical:12),
+                            child: Text('Details',
+                                style: TextStyle(color: Colors.black,fontSize:13)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            child: Text('Emergency Contacts',
+                                style: TextStyle(color: Colors.black,fontSize:13)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical:12),
+                            child: Text('Family Docters',
+                                style: TextStyle(color: Colors.black,fontSize:13)),
+                          )
+
+                        ]
+                    )
+                ),
+                Container(
+                    height: MediaQuery.of(context).size.height/2.3,
+                    child: new TabBarView(
+                      //controller: _controller,
+                      children: <Widget>[
+
+                         rowValue(),
+                          rowValue1(),
+                          rowValue2()
+
+                      ],
+                    ),
+                ),*/
+                /*DefaultTabController(
+                  length: 3,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        constraints: BoxConstraints(maxHeight: 150.0),
+                        child: Material(
+                          color: Colors.indigo,
+                          child: TabBar(
+                            tabs: [
+                              Tab(icon: Icon(Icons.directions_car)),
+                              Tab(icon: Icon(Icons.directions_transit)),
+                              Tab(icon: Icon(Icons.directions_bike)),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            rowValue(),
+                            rowValue1(),
+                            rowValue2()
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  new Divider(
-                    color: AppData.lightgreyBorder,
-                  ),
-                  /* Container(
-                    //This is responsible for the background of the tabbar, does the magic
-                      decoration: BoxDecoration(
-                        //This is for background color
-                          color: Colors.white.withOpacity(0.0),
-                          //This is for bottom border that is needed
-                          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
-                      child: TabBar(
-                          //controller: _controller,
+                ),*/
+                DefaultTabController(
+                    length: 3,
+                    initialIndex: 0,
+                    //backgroundColor: Colors.white,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          automaticIndicatorColorAdjustment: true,
+                          indicatorColor: AppData.kPrimaryRedColor,
+                          unselectedLabelColor: Colors.black,
+                          labelColor: Color(0xffF15C22),
+                          /*indicator: UnderlineTabIndicator(
+                            borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
+                            insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
+                          ),*/
+                          indicatorSize: TabBarIndicatorSize.tab,
+
+                          /*labelColor: Color(0xFF343434),
+                          labelStyle: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.white,
+                              fontFamily: 'OpenSans',
+                              fontWeight: FontWeight.w600).copyWith(
+                              fontSize: 20.0,
+                              color: Color(0xFFc9c9c9),
+                              fontWeight: FontWeight.w700),
+                          indicator: UnderlineTabIndicator(
+                            borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
+                            insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
+                          ),
+                          unselectedLabelColor: Color(0xFFc9c9c9),
+                          unselectedLabelStyle: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.white,
+                              fontFamily: 'OpenSans',
+                              fontWeight: FontWeight.w600).copyWith(
+                              fontSize: 20.0,
+                              color: Color(0xFFc9c9c9),
+                              fontWeight: FontWeight.w700),*/
+                          //unselectedLabelColor: AppData.kPrimaryRedColor,
                           tabs: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical:12),
-                              child: Text('Details',
-                                  style: TextStyle(color: Colors.black,fontSize:13)),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12),
+                              child: Text('Details'.toUpperCase(),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 13)),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text('Emergency Contacts',
-                                  style: TextStyle(color: Colors.black,fontSize:13)),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                  'Emergency Contacts'
+                                      .toUpperCase()
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black,
+                                      fontSize: 13)),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical:12),
-                              child: Text('Family Docters',
-                                  style: TextStyle(color: Colors.black,fontSize:13)),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12),
+                              child: Text('Family Doctors'.toUpperCase(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black,
+                                      fontSize: 13)),
                             )
-
-                          ]
-                      )
-                  ),
-                  Container(
-                      height: MediaQuery.of(context).size.height/2.3,
-                      child: new TabBarView(
-                        //controller: _controller,
-                        children: <Widget>[
-
-                           rowValue(),
-                            rowValue1(),
-                            rowValue2()
-
-                        ],
-                      ),
-                  ),*/
-                  /*DefaultTabController(
-                    length: 3,
-                    child: Column(
-                      children: <Widget>[
+                          ],
+                        ),
+                        /* new Divider(
+                          color: AppData.lightgreyBorder,
+                        ),*/
+                        /*SizedBox(
+                          height: size.height * 0.02,
+                        ),*/
+                        //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                         Container(
-                          constraints: BoxConstraints(maxHeight: 150.0),
-                          child: Material(
-                            color: Colors.indigo,
-                            child: TabBar(
-                              tabs: [
-                                Tab(icon: Icon(Icons.directions_car)),
-                                Tab(icon: Icon(Icons.directions_transit)),
-                                Tab(icon: Icon(Icons.directions_bike)),
+                            height: 280.0,
+                            child: TabBarView(
+                              children: [
+                                rowValue(),
+                                rowValue1(),
+                                rowValue2()
                               ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            children: [
-                              rowValue(),
-                              rowValue1(),
-                              rowValue2()
-                            ],
-                          ),
-                        ),
+                            ))
                       ],
-                    ),
-                  ),*/
-                  DefaultTabController(
-                      length: 3,
-                      initialIndex: 0,
-                      //backgroundColor: Colors.white,
-                      child: Column(
-                        children: [
-                          TabBar(
-                            isScrollable: true,
-                            automaticIndicatorColorAdjustment: true,
-                            indicatorColor: AppData.kPrimaryRedColor,
-                            unselectedLabelColor: Colors.black,
-                            labelColor: Color(0xffF15C22),
-                            /*indicator: UnderlineTabIndicator(
-                              borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
-                              insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
-                            ),*/
-                            indicatorSize: TabBarIndicatorSize.tab,
-
-                            /*labelColor: Color(0xFF343434),
-                            labelStyle: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontFamily: 'OpenSans',
-                                fontWeight: FontWeight.w600).copyWith(
-                                fontSize: 20.0,
-                                color: Color(0xFFc9c9c9),
-                                fontWeight: FontWeight.w700),
-                            indicator: UnderlineTabIndicator(
-                              borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
-                              insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
-                            ),
-                            unselectedLabelColor: Color(0xFFc9c9c9),
-                            unselectedLabelStyle: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontFamily: 'OpenSans',
-                                fontWeight: FontWeight.w600).copyWith(
-                                fontSize: 20.0,
-                                color: Color(0xFFc9c9c9),
-                                fontWeight: FontWeight.w700),*/
-                            //unselectedLabelColor: AppData.kPrimaryRedColor,
-                            tabs: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Details'.toUpperCase(),
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 13)),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: Text(
-                                    'Emergency Contacts'
-                                        .toUpperCase()
-                                        .toUpperCase(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.black,
-                                        fontSize: 13)),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: Text('Family Doctors'.toUpperCase(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.black,
-                                        fontSize: 13)),
-                              )
-                            ],
-                          ),
-                          /* new Divider(
-                            color: AppData.lightgreyBorder,
-                          ),*/
-                          /*SizedBox(
-                            height: size.height * 0.02,
-                          ),*/
-                          //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
-                          Container(
-                              height: 280.0,
-                              child: TabBarView(
-                                children: [
-                                  rowValue(),
-                                  rowValue1(),
-                                  rowValue2()
-                                ],
-                              ))
-                        ],
-                      ))
-                ],
-              ),
+                    ))
+              ],
             ),
           ),
         ),
