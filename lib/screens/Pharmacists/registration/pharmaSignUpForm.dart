@@ -244,80 +244,78 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          children: [
-                                            Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            MyLocalizations.of(context)
-                                                .text("ORGANIZATION_NAME") ,
-                                            ApiFactory.PHARMACY_ORGANISATION_API,
-                                            "pharmacy",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                            PharmaSignUpForm.pharmacyModel = data;
-                                          });
-                                        }),  SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser1(
-                                            MyLocalizations.of(context)
-                                                .text("TITLE") ,
-                                            ApiFactory.TITLE_API,
-                                            "title",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.TITLE_API);
-                                            PharmaSignUpForm.titlemodel = data;
-                                          });
-                                        }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
-                                        SizedBox(height: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                            style: TextStyle(fontSize: 18, color: Colors.black),),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser1(
+                                          MyLocalizations.of(context)
+                                              .text("ORGANIZATION_NAME") ,
+                                          ApiFactory.PHARMACY_ORGANISATION_API,
+                                          "pharmacy",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                          PharmaSignUpForm.pharmacyModel = data;
+                                        });
+                                      }),  SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser1(
+                                          MyLocalizations.of(context)
+                                              .text("TITLE") ,
+                                          ApiFactory.TITLE_API,
+                                          "title",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.TITLE_API);
+                                          PharmaSignUpForm.titlemodel = data;
+                                        });
+                                      }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
+                                      SizedBox(height: 10),
 
-                                        formFieldMobile(10,  MyLocalizations.of(context).text("EXPERIENCE")),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        formField(11,MyLocalizations.of(context).text("ADDRESS")),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
+                                      formFieldMobile(10,  MyLocalizations.of(context).text("EXPERIENCE")),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      formField(11,MyLocalizations.of(context).text("ADDRESS")),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
 
-                                        DropDown.networkDropdownGetpartUser1(
-                                            MyLocalizations.of(context)
-                                                .text("GENDER") ,
-                                            ApiFactory.GENDER_API,
-                                            "gender",
-                                            Icons.location_on_rounded,
-                                            23.0, (KeyvalueModel data) {
-                                          setState(() {
-                                            print(ApiFactory.GENDER_API);
-                                            PharmaSignUpForm.genderModel = data;
-                                          });
-                                        }),
-                                        SizedBox(height: 15),
+                                      DropDown.networkDropdownGetpartUser1(
+                                          MyLocalizations.of(context)
+                                              .text("GENDER") ,
+                                          ApiFactory.GENDER_API,
+                                          "gender",
+                                          Icons.location_on_rounded,
+                                          23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.GENDER_API);
+                                          PharmaSignUpForm.genderModel = data;
+                                        });
+                                      }),
+                                      SizedBox(height: 15),
 
-                                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
+                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                        child: nextButton1(),
+                                      ),
 
-                                      ],
-                                    ),
+                                    ],
                                   ),
                                 )
                               ],

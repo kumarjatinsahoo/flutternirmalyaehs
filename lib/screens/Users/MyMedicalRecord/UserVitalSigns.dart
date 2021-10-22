@@ -650,34 +650,6 @@ class _VitalSignsState extends State<VitalSigns> {
         ),
         new FlatButton(
           onPressed: () {
-           /* if (textEditingController[0].text == null ||
-                textEditingController[0].text == "") {
-              AppData.showInSnackBar(context, "Please enter Height ");
-            }else if (textEditingController[1].text == null ||
-                textEditingController[1].text == "") {
-              AppData.showInSnackBar(context, "Please enter Weight ");
-            }else if (textEditingController[2].text == null ||
-                textEditingController[2].text == "") {
-              AppData.showInSnackBar(context, "Please enter BMK(KG/m) ");
-            }else if (textEditingController[3].text == null ||
-                textEditingController[3].text == "") {
-              AppData.showInSnackBar(context, "Please enter Temprature");
-            }else if (textEditingController[4].text == null ||
-                textEditingController[4].text == "") {
-              AppData.showInSnackBar(context, "Please enter Systolic Blood Prssure");
-            }else if (textEditingController[5].text == null ||
-                textEditingController[5].text == "") {
-              AppData.showInSnackBar(context, "Please enter Diastolic Blood Prssure");
-            }else if (textEditingController[6].text == null ||
-                textEditingController[6].text == "") {
-              AppData.showInSnackBar(context, "Pulse");
-            }else if (textEditingController[7].text == null ||
-                textEditingController[7].text == "") {
-              AppData.showInSnackBar(context, "Respiration");
-            }else if (textEditingController[8].text == null ||
-                textEditingController[8].text == "") {
-              AppData.showInSnackBar(context, "Oxygen Saturation");
-            } else {*/
               var sendData =
                 [
                   {
