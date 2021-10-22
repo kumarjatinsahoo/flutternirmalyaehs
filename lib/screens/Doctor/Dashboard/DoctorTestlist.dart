@@ -117,6 +117,9 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -229,7 +232,28 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     ),
 
                   ):*/
-                  (userListModel != null)
+                  isdata == true
+                      ? CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  )
+                      : userListModel == null || userListModel == null
+                      ? Center(
+                        child: Container(
+                    //height:  MediaQuery.of(context).size.height* 0.30,
+
+                    child: Column(
+                      children: [
+                        SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                        Text(
+                            'No Data Found',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+
+                  ),
+                      ) : (userListModel != null)
                       ? ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
@@ -399,7 +423,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                           },
                           // itemCount:medicinmodel.length,
                         )
-                      : /*Container()*/ Center(
+                  : Container(),/* Center(
             child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -411,7 +435,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                 ),
               ],
             ),
-            ),
+            ),*/
                   /*  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child:  _submitButton(),

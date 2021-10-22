@@ -13,7 +13,6 @@ class DoctorAppointmentCancle extends StatefulWidget {
   MainModel model;
 
   DoctorAppointmentCancle({Key key, this.model}) : super(key: key);
-
   @override
   _DoctorAppointmentCancleState createState() =>
       _DoctorAppointmentCancleState();
@@ -29,7 +28,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
-
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -41,7 +39,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
       callAPI(selectedDatestr);
     });
   }
-
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -49,16 +46,16 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-        /*.add(Duration(days: 60))*/); //18 years is 6570 days
+      /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-        selectedDatestr = df.format(selectedDate).toString();
+        selectedDatestr =  df.format(selectedDate).toString();
         callAPI(selectedDatestr);
+
       });
   }
-
   leftArrow() {
     setState(() {
       selectedDate = selectedDate.subtract(Duration(days: 1));
@@ -67,7 +64,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
       callAPI(selectedDatestr);
     });
   }
-
   rightArrow() {
     setState(() {
       selectedDate = selectedDate.add(Duration(days: 1));
@@ -100,7 +96,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
           });
         });
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -448,7 +443,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
       ),
     ));
   }
-
   Widget appointdate() {
     return Container(
       height: 40,
@@ -504,7 +498,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-
+      
         // Navigator.pushNamed(context, "/otpView");
         //}
       },

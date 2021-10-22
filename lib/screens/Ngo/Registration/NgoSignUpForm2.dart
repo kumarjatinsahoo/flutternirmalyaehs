@@ -288,224 +288,222 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                 Form(
                                   key: _formKey,
                                   autovalidate: _autovalidate,
-                                  child: Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        children: [
+                                          Text("Fill in personal Information (All fields are mandatory)",
+                                            style: TextStyle(fontSize: 18, color: Colors.black),),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5,),
+
+                                      //  formFieldaddress(8, "Address"),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+
+                                      DropDown.networkDropdownGetpartUser(
+                                          "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.COUNTRY_API);
+                                              NgoSignUpForm2.countryModel = data;
+                                              NgoSignUpForm2.stateModel = null;
+
+                                            });
+                                          }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.STATE_API);
+                                              NgoSignUpForm2.stateModel = data;
+                                              NgoSignUpForm2.districtModel = null;
+                                            });
+                                          }),
+
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.DISTRICT_API);
+                                              NgoSignUpForm2.districtModel = data;
+                                              NgoSignUpForm2.citymodel = null;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      DropDown.networkDropdownGetpartUser(
+                                          "City", ApiFactory.CITY_API + (NgoSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                          23.0,
+                                              (KeyvalueModel data) {
+                                            setState(() {
+                                              print(ApiFactory.CITY_API);
+                                              NgoSignUpForm2.citymodel = data;
+                                              // LabSignUpForm3.districtModel = null;
+                                            });
+                                          }),
+
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      formFieldzip(5, "Enter Zip/Pin Code :"),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+
+                                      formFieldMobile(10, "Mobile Number :"),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      formFielEmail(11, "Email Id :"),
+                                      SizedBox(
+                                        height: 13,
+                                      ),
+                                      Container(
+                                        child: Row(
                                           children: [
-                                            Text("Fill in personal Information (All fields are mandatory)",
-                                              style: TextStyle(fontSize: 18, color: Colors.black),),
+                                            Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Photo",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                            ),
+
                                           ],
                                         ),
-                                        SizedBox(height: 5,),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Document : ",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                            ),
+                                            SizedBox(width:5),
+                                            Material(
+                                              elevation: 3,
+                                              color:AppData.kPrimaryColor,
+                                              borderRadius: BorderRadius.circular(5.0),
+                                              child: MaterialButton(
+                                                onPressed: () {
+                                                  _settingModalBottomSheet(context);
 
-                                        //  formFieldaddress(8, "Address"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-
-                                        DropDown.networkDropdownGetpartUser(
-                                            "Country", ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.COUNTRY_API);
-                                                NgoSignUpForm2.countryModel = data;
-                                                NgoSignUpForm2.stateModel = null;
-
-                                              });
-                                            }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.STATE_API);
-                                                NgoSignUpForm2.stateModel = data;
-                                                NgoSignUpForm2.districtModel = null;
-                                              });
-                                            }),
-
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""), "district", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.DISTRICT_API);
-                                                NgoSignUpForm2.districtModel = data;
-                                                NgoSignUpForm2.citymodel = null;
-                                              });
-                                            }),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        DropDown.networkDropdownGetpartUser(
-                                            "City", ApiFactory.CITY_API + (NgoSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                                            23.0,
-                                                (KeyvalueModel data) {
-                                              setState(() {
-                                                print(ApiFactory.CITY_API);
-                                                NgoSignUpForm2.citymodel = data;
-                                                // LabSignUpForm3.districtModel = null;
-                                              });
-                                            }),
-
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        formFieldzip(5, "Enter Zip/Pin Code :"),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-
-                                        formFieldMobile(10, "Mobile Number :"),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        formFielEmail(11, "Email Id :"),
-                                        SizedBox(
-                                          height: 13,
-                                        ),
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Text("Upload Photo",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                              ),
-
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Text("Upload Document : ",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                              ),
-                                              SizedBox(width:5),
-                                              Material(
-                                                elevation: 3,
-                                                color:AppData.kPrimaryColor,
-                                                borderRadius: BorderRadius.circular(5.0),
-                                                child: MaterialButton(
-                                                  onPressed: () {
-                                                    _settingModalBottomSheet(context);
-
-                                                  },
-                                                  minWidth: 150,
-                                                  height: 40.0,
-                                                  child: Text(
-                                                    "Upload",
-                                                    style: TextStyle(
-                                                        color: Colors.white, fontSize: 17.0),
-                                                  ),
+                                                },
+                                                minWidth: 150,
+                                                height: 40.0,
+                                                child: Text(
+                                                  "Upload",
+                                                  style: TextStyle(
+                                                      color: Colors.white, fontSize: 17.0),
                                                 ),
                                               ),
+                                            ),
 
-                                            ],
-                                          ),
+                                          ],
                                         ),
-                                        SizedBox(height: 10,),
-                                        (idproof != null)
-                                            ? Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Container(
+                                      ),
+                                      SizedBox(height: 10,),
+                                      (idproof != null)
+                                          ? Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Container(
 
-                                                  child: Text(
+                                                child: Text(
 
-                                                    "Report Path :" + idproof,
-                                                    style: TextStyle(color: Colors.green),
-                                                  ),
+                                                  "Report Path :" + idproof,
+                                                  style: TextStyle(color: Colors.green),
                                                 ),
                                               ),
-                                              InkWell(
-                                                child: SizedBox(
-                                                    width: 50.0,
-                                                    child: Icon(Icons.clear)),
-                                                onTap: () {
-                                                  setState(() {
-                                                    idproof = null;
-                                                    // registrationModel.profilePhotoBase64 =
-                                                    null;
-                                                    //registrationModel.profilePhotoExt =
-                                                    null;
-                                                  });
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                            : Container(),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: Row(
-                                            //  mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox = !_checkbox;
-                                                  });
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              RichText(
-                                                  textAlign: TextAlign.start,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'I agree to NCORDS ',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w800,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.grey,
-                                                        ),
+                                            ),
+                                            InkWell(
+                                              child: SizedBox(
+                                                  width: 50.0,
+                                                  child: Icon(Icons.clear)),
+                                              onTap: () {
+                                                setState(() {
+                                                  idproof = null;
+                                                  // registrationModel.profilePhotoBase64 =
+                                                  null;
+                                                  //registrationModel.profilePhotoExt =
+                                                  null;
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                          : Container(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Row(
+                                          //  mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Checkbox(
+                                              value: _checkbox,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _checkbox = !_checkbox;
+                                                });
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            RichText(
+                                                textAlign: TextAlign.start,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'I agree to NCORDS ',
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w800,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.grey,
                                                       ),
-                                                      TextSpan(
-                                                        text:
-                                                        'Terms and Conditions',
-                                                        /* "Welcome back",*/
-                                                        style: TextStyle(
-                                                          // fontWeight: FontWeight.w500,
-                                                          fontFamily: "Monte",
-                                                          // fontSize: 25.0,
-                                                          color: Colors.indigo,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                      'Terms and Conditions',
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w500,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.indigo,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: nextButton1(),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: nextButton1(),
+                                      ),
+                                    ],
                                   ),
                                 )
                               ],

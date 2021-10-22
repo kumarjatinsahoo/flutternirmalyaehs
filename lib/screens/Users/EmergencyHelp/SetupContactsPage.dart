@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
@@ -54,7 +55,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   String value4;
   String value5;
 
-
   UpdateEmergencyModel updateEmergencyModel = UpdateEmergencyModel();
   EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
 
@@ -71,16 +71,13 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
+          log("Response>>>"+jsonEncode(map));
           String msg = map[Const.MESSAGE];
           emger_ms = map["emer_msg"];
           if (map[Const.STATUS1] == Const.SUCCESS) {
             setState(() {
               print("VAHUUU>>>" + JsonEncoder().convert(map));
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
-              /*value1=emergencyHelpModel?.emergency[0]?.name??null;
-          value2=emergencyHelpModel?.emergency[1]?.name??null;
-          value3=emergencyHelpModel?.emergency[2]?.name??null;
-          value4=emergencyHelpModel?.emergency[3]?.name??null;*/
               for (int i = 0; i < emergencyHelpModel.emergency.length; i++) {
                 switch (i) {
                   case 0:
@@ -98,7 +95,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   case 4:
                     value5 = emergencyHelpModel?.emergency[4]?.name ?? null;
                     break;
-
                 }
               }
               //value5=emergencyHelpModel?.emergency[4]?.name??null;
@@ -120,19 +116,19 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            //backgroundColor: AppData.kPrimaryColor,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Row(
-              children: [
-                Text('Setup Contacts'),
-              ],
-            ),
-          ),
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        //backgroundColor: AppData.kPrimaryColor,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Row(
+          children: [
+            Text('Setup Contacts'),
+          ],
+        ),
+      ),
       body: Container(
         child: Column(
           children: [
@@ -176,54 +172,55 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                               context, emergencyHelpModel);
                                     },
                                     child: Container(
-                                        height: 60,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData
-                                                        .kPrimaryRedColor,
-                                                    width: 5))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  color: Colors.white,
-                                                  padding: EdgeInsets.all(3),
-                                                  child: Image.asset(
-                                                    "assets/Add.png",
-                                                    height: 30,
-                                                    color: Colors.red,
-                                                  )),
-                                              SizedBox(
-                                                width: spaceTab,
+                                      height: 60,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color:
+                                                      AppData.kPrimaryRedColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                color: Colors.white,
+                                                padding: EdgeInsets.all(3),
+                                                child: Image.asset(
+                                                  "assets/Add.png",
+                                                  height: 30,
+                                                  color: Colors.red,
+                                                )),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    (value1 != null)
+                                                        ? value1
+                                                        : "Add Emergency Contact",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
                                               ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      (value1 != null)
-                                                          ? value1
-                                                          : "Add Emergency Contact",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              // Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
-                                          ),
-                                        )),
+                                            ),
+                                            // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -247,9 +244,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                     onTap: () {
                                       (value2 != null)
                                           ? _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 1)
+                                              context, emergencyHelpModel, 1)
                                           : _displayTextInputDialog(
-                                          context, emergencyHelpModel);
+                                              context, emergencyHelpModel);
                                     },
                                     child: Container(
                                         height: 60,
@@ -538,8 +535,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             SizedBox(
                               height: 8,
                             ),
-
-
                             GestureDetector(
                               // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                               child: InkWell(
@@ -588,7 +583,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                   children: [
                                                     Text(
                                                       // (emergencyHelpModel != null)
-                                                      emger_ms?? "Emergency Alert ! \n I need help.",
+                                                      emger_ms ??
+                                                          "Emergency Alert ! \n I need help.",
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -640,7 +636,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
                       SizedBox(height: 10),
                       Text(
                         "Update Emergency Contact",
@@ -652,7 +647,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       SizedBox(
                         height: 20,
                       ),
-
                       TextField(
                         onChanged: (value) {
                           setState(() {
@@ -667,7 +661,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         ],
                         decoration: InputDecoration(hintText: " Name"),
                       ),
-
                       TextField(
                         onChanged: (value) {
                           setState(() {
@@ -685,7 +678,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         decoration: InputDecoration(
                             hintText: "Emergency Contact No.", counterText: ""),
                       ),
-
                       DropDown.networkDropdown(
                           "Relation", ApiFactory.RELATION_API, "relation",
                           (KeyvalueModel model) {
@@ -729,7 +721,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     updateEmergencyModel.userid = widget.model.user;
                     updateEmergencyModel.relation =
                         emergencyHelpModel.emergency[index].relId;
-                    print("Value json>>"+updateEmergencyModel.toJson().toString());
+                    print("Value json>>" +
+                        updateEmergencyModel.toJson().toString());
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
                         json: updateEmergencyModel.toJson(),
@@ -857,8 +850,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
                       updateEmergencyModel.userid = widget.model.user;
-                      updateEmergencyModel.relation =SetupContactsPage.relationmodel.key;
-                      print("Value json>>"+updateEmergencyModel.toJson1().toString());
+                      updateEmergencyModel.relation =
+                          SetupContactsPage.relationmodel.key;
+                      print("Value json>>" +
+                          updateEmergencyModel.toJson1().toString());
                       widget.model.POSTMETHOD_TOKEN(
                           api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
                           json: updateEmergencyModel.toJson1(),
@@ -877,8 +872,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             }
                           });
                     });
-
-
                   });
                 },
               ),
@@ -887,7 +880,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         });
   }
 
-  Future<void> _displayTextInputDialog2(BuildContext context,) async {
+  Future<void> _displayTextInputDialog2(
+    BuildContext context,
+  ) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -943,11 +938,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
                     emergencyMessageModel = EmergencyMessageModel();
-                     emergencyMessageModel.msg = _message.text;
-                     emergencyMessageModel.userid = widget.model.user;
+                    emergencyMessageModel.msg = _message.text;
+                    emergencyMessageModel.userid = widget.model.user;
 
-
-                    print("Value json>>"+emergencyMessageModel.toJson().toString());
+                    print("Value json>>" +
+                        emergencyMessageModel.toJson().toString());
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.POST_EMERGENCY_MESSAGE,
                         json: emergencyMessageModel.toJson(),
