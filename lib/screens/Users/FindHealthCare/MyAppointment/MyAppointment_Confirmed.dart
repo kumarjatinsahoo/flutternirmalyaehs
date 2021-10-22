@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apnt;
 import 'package:user/models/LoginResponse1.dart';
@@ -352,14 +353,14 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                     child: Padding(
                                                                       padding: const EdgeInsets.all(8.0),
                                                                       child: Image.asset(
-                                                                        'assets/images/user.png',
+                                                                        'assets/images/dprofile.png',
                                                                         height: size.height * 0.07,
                                                                         width: size.width * 0.13,
-                                                                        //fit: BoxFit.cover,
+                                                                        fit: BoxFit.cover,
                                                                       ),
                                                                     )),
                                                               ),
-                                                              SizedBox(width:10,),
+                                                              SizedBox(width:20,),
                                                               Column(
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
@@ -375,6 +376,39 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                             FontWeight
                                                                                 .bold,
                                                                         fontSize: 18),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        appointmentlist
+                                                                            .docedu ??
+                                                                            "N/A",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),  Text(
+                                                                        "  Exp ",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),  Text(
+                                                                        appointmentlist
+                                                                            .docexp??
+                                                                            "N/A",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                   SizedBox(
                                                                     height: 5,
@@ -414,11 +448,35 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         color: Colors
                                                                             .blue),
                                                                   ),
+                                                                  /*RatingBar(
+                                                                    rating: 3,
+                                                                    icon:Icon(Icons.star,size:40,color: Colors.grey,),
+                                                                    starCount: 5,
+                                                                    spacing: 8,
+                                                                    size: 20,
+                                                                    isIndicator: false,
+                                                                    allowHalfRating: true,
+                                                                    onRatingCallback: (double value,ValueNotifier<bool> isIndicator){
+                                                                      print('Number of stars-->  $value');
+                                                                      //change the isIndicator from false  to true ,the       RatingBar cannot support touch event;
+                                                                      isIndicator.value=true;
+                                                                    },
+                                                                    color: Colors.green,
+                                                                  )
+*/
+                                                                  RatingBar.readOnly(
+                                                                    filledIcon: Icons.star,
+                                                                    emptyIcon: Icons.star_border,
+                                                                    initialRating:double.tryParse(appointmentlist.docrate.toString()),
+                                                                    maxRating: 5,
+                                                                    filledColor: Colors.green,
+                                                                  )
+
                                                                 ],
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(width: 20,),
+                                                       //   SizedBox(width: 10,),
                                                           /*new Spacer(),*/
                                                           Padding(
                                                             padding:
@@ -429,7 +487,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           ),
                                                         ],
                                                       ),
-                                                      SizedBox(height: 10,),
+                                                      SizedBox(height: 20,),
                                                       Row(
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment:
@@ -452,7 +510,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           ),
                                                           Text(
                                                             /*'23-Nov-2020-11:30AM'*/
-                                                            "Nayapali,bbsr,odisha,india",
+                                                            appointmentlist.dochospital??"N/A",
                                                             overflow:
                                                             TextOverflow
                                                                 .clip,

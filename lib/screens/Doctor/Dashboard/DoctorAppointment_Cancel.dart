@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
 
@@ -9,11 +8,14 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 class DoctorAppointmentCancle extends StatefulWidget {
-   MainModel model;
+  MainModel model;
+
   DoctorAppointmentCancle({Key key, this.model}) : super(key: key);
   @override
-  _DoctorAppointmentCancleState createState() => _DoctorAppointmentCancleState();
+  _DoctorAppointmentCancleState createState() =>
+      _DoctorAppointmentCancleState();
 }
 
 class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
@@ -32,7 +34,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
     setState(() {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
-      selectedDatestr =  df.format(date).toString();
+      selectedDatestr = df.format(date).toString();
       //toThis_.text = df.format(date);
       callAPI(selectedDatestr);
     });
@@ -74,188 +76,372 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.doctor_APPOINTMENT_LIST +widget.model.user+"&date="+today+"&status="+"4",
+        api: ApiFactory.doctor_APPOINTMENT_LIST +
+            widget.model.user +
+            "&date=" +
+            today +
+            "&status=" +
+            "4",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              doctorAppointmment=DoctorAppointmment.fromJson(map);
+              doctorAppointmment = DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-             // AppData.showInSnackBar(context, msg);
+              // AppData.showInSnackBar(context, msg);
             }
           });
         });
   }
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Container(
-              child: Column(
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              //appointdate(),
+              Row(
                 children: [
-                  //appointdate(),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      InkWell(
-                        onTap: (){
-                          leftArrow();
-                        },
-                        child: Icon(
-                          CupertinoIcons.arrow_left_circle,
-                          size: 38,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            appointdate(),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){
-                          rightArrow();
-                        },
-                        child: Icon(
-                          CupertinoIcons.arrow_right_circle,
-                          size: 38,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
+                  SizedBox(
+                    width: 20,
                   ),
-                  isdata == true
-                      ? CircularProgressIndicator(
-                    backgroundColor: AppData.matruColor,
-                  )
-                      : doctorAppointmment == null || doctorAppointmment == null
-                      ? Container(
-                    child: Center(
-                      child: Column(
-                        children: [
-                          //SizedBox(height: 300,),
-                          SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
-                          Text(
-                            'No Data Found',
-                            style:
-                            TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ],
-                      ),
+                  InkWell(
+                    onTap: () {
+                      leftArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      size: 38,
+                      color: Colors.grey,
                     ),
-
-                  )
-                      :
-                  (doctorAppointmment != null)
-                      ? ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, i) {
-                        Body appointmentlist =doctorAppointmment.body[i];
-                        /* itemCount: lists.length,
-                  itemBuilder: (context, index) {*/
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5.0, right: 5.0,),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(height: 10,),
-                                  Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: 120,
-                                        //width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .center,
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    Text(appointmentlist.patname,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 18),),
-                                                    SizedBox(height: 10,),
-                                                    /*Text(appointmentlist.speciality,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-                                                    SizedBox(height: 5,),*/
-                                                    Text(
-                                                      "Patient Notes: "+appointmentlist.notes,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-                                                  ],
-                                                ),),
-                                              /*new Spacer(),*/
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  top: 15.0,),
-                                                child: Column(
-                                                  // mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .end,
-                                                  children: [
-                                                    Text(/*'Confirmed'*/appointmentlist.status,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 15,
-                                                          color: Colors.green),),
-                                                    SizedBox(height: 3,),
-                                                    Text(/*'23-Nov-2020-11:30AM'*/appointmentlist.appdate+appointmentlist.apptime,
-                                                      overflow: TextOverflow.clip,
-                                                      style: TextStyle(),),
-
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-
-                                ],
-                              ),
-
-                            ),
-                          ],
-                        );
-                      },itemCount: doctorAppointmment.body.length,
-
-                  ): Container(),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        appointdate(),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      rightArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_right_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
                 ],
               ),
-            ),
+              isdata == true
+                  ? CircularProgressIndicator(
+                      backgroundColor: AppData.matruColor,
+                    )
+                  : doctorAppointmment == null || doctorAppointmment == null
+                      ? Container(
+                          child: Center(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 300,
+                                ),
+                                Text(
+                                  'No Data Found',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : (doctorAppointmment != null)
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, i) {
+                                Body appointmentlist =
+                                    doctorAppointmment.body[i];
+                                /* itemCount: lists.length,
+                  itemBuilder: (context, index) {*/
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 5.0,
+                                        right: 5.0,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Card(
+                                            elevation: 15,
+                                            child: Container(
+
+                                                //width: double.maxFinite,
+
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: Colors.grey[300],
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Container(
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            55),
+                                                                    border: Border.all(
+                                                                        color: AppData
+                                                                            .kPrimaryColor,
+                                                                        width:
+                                                                            2.0),
+                                                                    color: Colors
+                                                                        .white),
+                                                                child:
+                                                                    ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                55),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.all(8.0),
+                                                                          child:
+                                                                              Image.asset(
+                                                                            'assets/images/user.png',
+                                                                            height:
+                                                                                size.height * 0.07,
+                                                                            width:
+                                                                                size.width * 0.13,
+                                                                            //fit: BoxFit.cover,
+                                                                          ),
+                                                                        )),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    appointmentlist
+                                                                            .patname ??
+                                                                        "N/A",
+                                                                    /*"",*/
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            18),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  /*  Text(
+                                                              appointmentlist
+                                                                  .speciality ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),*/
+                                                                  Text(
+                                                                    "Patient Notes: " +
+                                                                            appointmentlist.notes ??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style:
+                                                                        TextStyle(),
+                                                                  ),
+                                                                /*  Text(
+                                                                    appointmentlist
+                                                                            .patname ??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .blue),
+                                                                  ),*/
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            width: 20,
+                                                          ),
+                                                          /*new Spacer(),*/
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                              top: 15.0,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            /*'Confirmed'*/
+                                                            "Address : ",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15,
+                                                                color: AppData
+                                                                    .kPrimaryColor),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 3,
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            "Nayapali,bbsr,odisha,india",
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            style: TextStyle(),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            /*'Confirmed'*/
+                                                            "Date : ",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15,
+                                                                color: AppData
+                                                                    .kPrimaryColor),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 3,
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                    .appdate ??
+                                                                "N/A" +
+                                                                    appointmentlist
+                                                                        .apptime ??
+                                                                "N/A",
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            style: TextStyle(),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 5),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            /*'Confirmed'*/
+                                                            "",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15),
+                                                          ),
+                                                          Spacer(),
+                                                          Text(
+                                                            /*'Confirmed'*/
+                                                            appointmentlist
+                                                                    .status ??
+                                                                "N/A",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15,
+                                                                color: Colors
+                                                                    .yellow),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                              itemCount: doctorAppointmment.body.length,
+                            )
+                          : Container(),
+            ],
           ),
-
-
-        )
-    );
+        ),
+      ),
+    ));
   }
   Widget appointdate() {
     return Container(
@@ -276,8 +462,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                 controller: fromThis_,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintText: 'From this',
                   //labelText: 'Booking Date',
                   alignLabelWithHint: false,
@@ -286,8 +471,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                       color: Colors.blue,
                     ),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
+                  contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
@@ -299,8 +483,10 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
+
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),
@@ -318,7 +504,6 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
       },
     );
   }
- // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
-
+// style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.red),),
 
 }
