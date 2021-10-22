@@ -99,98 +99,99 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: SingleChildScrollView(
-    child: Container(
-      child: Column(
-        children: [
-          //appointdate(),
-          Row(
+        child: Container(
+          child: Column(
             children: [
-              SizedBox(
-                width: 20,
+              //appointdate(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      leftArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        appointdate(),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      rightArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_right_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
               ),
-              InkWell(
-                onTap: () {
-                  leftArrow();
-                },
-                child: Icon(
-                  CupertinoIcons.arrow_left_circle,
-                  size: 38,
-                  color: Colors.grey,
-                ),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    appointdate(),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  rightArrow();
-                },
-                child: Icon(
-                  CupertinoIcons.arrow_right_circle,
-                  size: 38,
-                  color: Colors.grey,
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-            ],
-          ),
-          isdata == true
-              ? CircularProgressIndicator(
-                  backgroundColor: AppData.matruColor,
-                )
-              : doctorAppointmment == null || doctorAppointmment == null
-                  ? Container(
-                      child: Center(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 300,
-                            ),
-                            Text(
-                              'No Data Found',
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
-                          ],
-                        ),
-                      ),
+              isdata == true
+                  ? CircularProgressIndicator(
+                      backgroundColor: AppData.matruColor,
                     )
-                  : (doctorAppointmment != null)
-                      ? ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, i) {
-                            Body appointmentlist =
-                                doctorAppointmment.body[i];
-                            /* itemCount: lists.length,
-              itemBuilder: (context, index) {*/
-                            return Column(
+                  : doctorAppointmment == null || doctorAppointmment == null
+                      ? Container(
+                          child: Center(
+                            child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 5.0,
-                                    right: 5.0,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
+                                SizedBox(
+                                  height: 300,
+                                ),
+                                Text(
+                                  'No Data Found',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : (doctorAppointmment != null)
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, i) {
+                                Body appointmentlist =
+                                    doctorAppointmment.body[i];
+                                /* itemCount: lists.length,
+                  itemBuilder: (context, index) {*/
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 5.0,
+                                        right: 5.0,
                                       ),
-                                      Card(
-                                        elevation: 15,
-                                        child: Container(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Card(
+                                            elevation: 15,
+                                            child: Container(
 
                                                 //width: double.maxFinite,
 
