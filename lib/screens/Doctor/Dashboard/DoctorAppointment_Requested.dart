@@ -310,6 +310,100 @@ class _DoctorAppointmentRequestedState
                                                                   color: Colors
                                                                       .blue),
                                                             ),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                    color: Colors.grey[300],
+                                                  ),
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      8)),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                    10.0),
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .center,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Container(
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(55),
+                                                                  border: Border.all(
+                                                                      color: AppData.kPrimaryColor,
+                                                                      width: 2.0),
+                                                                  color: Colors.white),
+                                                              child: ClipRRect(
+                                                                  borderRadius: BorderRadius.circular(55),
+                                                                  child: Padding(
+                                                                    padding: const EdgeInsets.all(8.0),
+                                                                    child: Image.asset(
+                                                                      'assets/images/profile.png',
+                                                                      height: size.height * 0.07,
+                                                                      width: size.width * 0.13,
+                                                                      fit: BoxFit.cover,
+                                                                    ),
+                                                                  )),
+                                                            ),
+                                                            SizedBox(width:10,),
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                              children: [
+                                                                Text(
+                                                                  appointmentlist
+                                                                      .patname ??
+                                                                      "N/A",
+                                                                  /*"",*/
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                      fontSize: 18),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 5,
+                                                                ),
+                                                                /*  Text(
+                                                              appointmentlist
+                                                                  .speciality ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),*/
+                                                                Text(
+                                                                  "Patient Notes: " +
+                                                                      appointmentlist
+                                                                          .notes ??
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style:
+                                                                  TextStyle(),
+                                                                ),
+                                                               /* Text(
+                                                                  appointmentlist
+                                                                      .patname ??
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .blue),
+                                                                ),
 */                                                              ],
                                                         ),
                                                       ],

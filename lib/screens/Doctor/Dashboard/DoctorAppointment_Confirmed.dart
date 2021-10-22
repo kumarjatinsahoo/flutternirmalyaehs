@@ -214,7 +214,7 @@ class _DoctorAppointmentConfirmedState
                                   elevation: 15,
                                   child: Container(
 
-                                    //width: double.maxFinite,
+                                        //width: double.maxFinite,
 
                                       decoration: BoxDecoration(
                                           color: Colors.white,
@@ -427,25 +427,25 @@ class _DoctorAppointmentConfirmedState
                                               ],
                                             ),
 
-                                          ],
-                                        ),
-                                      )),
+                                              ],
+                                            ),
+                                          )),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: doctorAppointmment.body.length,
-                )
-              : Container(),
-        ],
+                        );
+                      },
+                      itemCount: doctorAppointmment.body.length,
+                    )
+                  : Container(),
+            ],
+          ),
+        ),
       ),
-    ),
-      ),
-    );
+    ));
   }
 
   Widget appointdate() {

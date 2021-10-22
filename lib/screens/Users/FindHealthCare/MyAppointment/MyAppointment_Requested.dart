@@ -276,6 +276,140 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                             maxRating: 5,
                                                             filledColor: Colors.green,
                                                           )
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                border: Border.all(
+                                                  color: Colors.grey[300],
+                                                ),
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                    8)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  10.0),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .center,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(55),
+                                                                border: Border.all(
+                                                                    color: AppData.kPrimaryColor,
+                                                                    width: 2.0),
+                                                                color: Colors.white),
+                                                            child: ClipRRect(
+                                                                borderRadius: BorderRadius.circular(55),
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets.all(8.0),
+                                                                  child: Image.asset(
+                                                                    'assets/images/dprofile.png',
+                                                                    height: size.height * 0.07,
+                                                                    width: size.width * 0.13,
+                                                                    //fit: BoxFit.cover,
+                                                                  ),
+                                                                )),
+                                                          ),
+                                                          SizedBox(width:20,),
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                            children: [
+                                                              Text(
+                                                                appointmentlist
+                                                                    .doctorName ??
+                                                                    "N/A",
+                                                                /*"",*/
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    fontSize: 18),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    appointmentlist
+                                                                        .docedu ??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                    style:
+                                                                    TextStyle(),
+                                                                  ),  Text(
+                                                                    "  Exp ",
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                    style:
+                                                                    TextStyle(),
+                                                                  ),  Text(
+                                                                    appointmentlist
+                                                                        .docexp??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                    style:
+                                                                    TextStyle(),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Text(
+                                                                appointmentlist
+                                                                    .speciality ??
+                                                                    "N/A",
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                                style:
+                                                                TextStyle(),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Text(
+                                                                "Patient Notes: " +
+                                                                    appointmentlist
+                                                                        .notes ??
+                                                                    "N/A",
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                                style:
+                                                                TextStyle(),
+                                                              ),
+                                                              Text(
+                                                                appointmentlist
+                                                                    .patname ??
+                                                                    "N/A",
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .blue),
+                                                              ),
+                                                              RatingBar.readOnly(
+                                                                filledIcon: Icons.star,
+                                                                emptyIcon: Icons.star_border,
+                                                                initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
+                                                                maxRating: 5,
+                                                                filledColor: Colors.green,
+                                                              )
 
                                                         ],
                                                       ),
