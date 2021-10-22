@@ -285,7 +285,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                               RatingBar.readOnly(
                                                                 filledIcon: Icons.star,
                                                                 emptyIcon: Icons.star_border,
-                                                                initialRating:double.tryParse(appointmentlist.docrate.toString()),
+                                                                initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
                                                                 maxRating: 5,
                                                                 filledColor: Colors.green,
                                                               )

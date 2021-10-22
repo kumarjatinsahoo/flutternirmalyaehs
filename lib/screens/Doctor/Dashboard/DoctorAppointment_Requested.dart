@@ -249,10 +249,10 @@ class _DoctorAppointmentRequestedState
                                                                   child: Padding(
                                                                     padding: const EdgeInsets.all(8.0),
                                                                     child: Image.asset(
-                                                                      'assets/images/user.png',
+                                                                      'assets/images/profile.png',
                                                                       height: size.height * 0.07,
                                                                       width: size.width * 0.13,
-                                                                      //fit: BoxFit.cover,
+                                                                      fit: BoxFit.cover,
                                                                     ),
                                                                   )),
                                                             ),
@@ -379,19 +379,42 @@ class _DoctorAppointmentRequestedState
                                                         SizedBox(
                                                           height: 3,
                                                         ),
-                                                        Text(
-                                                          /*'23-Nov-2020-11:30AM'*/
-                                                          appointmentlist
-                                                              .appdate ??
-                                                              "N/A" +
-                                                                  appointmentlist
-                                                                      .appmonth ??
-                                                              "N/A"+appointmentlist.appyear??"N/A",
-                                                          overflow:
-                                                          TextOverflow
-                                                              .clip,
-                                                          style:
-                                                          TextStyle(),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist
+                                                                  .appdate ??
+                                                                  "N/A" ,
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              "-"+appointmentlist
+                                                                  .appmonth ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              "-"+ appointmentlist
+                                                                  .appyear ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ],
                                                     ),
