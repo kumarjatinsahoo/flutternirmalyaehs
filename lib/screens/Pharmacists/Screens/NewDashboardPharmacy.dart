@@ -62,476 +62,474 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Dashboard",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          titleSpacing: 5,
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: AppData.kPrimaryColor,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.white),
         ),
-        body:
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 7),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/pharmacyorders.png",
-                          fun: () {
-                            //AppData.showInSnackBar(context, "Coming soon");
-                            // Navigator.pushNamed(context, "/medicalrecordpage");
-                            Navigator.pushNamed(context, "/myorder");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          // ,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("My Orders",
-                            // MyLocalizations.of(context).text("My Orders"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-
-                  /* Expanded(*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/pharmacyconfirm.png",
-                          fun: () {
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            Navigator.pushNamed(context, "/ordersPharma");
-                          },
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Confirmed Order",
-                            // MyLocalizations.of(context).text("Confirmed Order"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Govternment Schemes",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/pharmacyprocessed.png",
-                          fun: () {
-                            //chooseAppointment(context, model);
-                            //Navigator.pushNamed(context, "/userAppoint");
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            /*Navigator.pushNamed(
-                                      context, "/medipedia");*/
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                            Navigator.pushNamed(context, "/processedorders");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Processed Orders",
-                            // MyLocalizations.of(context).text("Processed Orders"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Govternment Schemes",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                      ]),
-
-                ],
-              ),
-              SizedBox(height: 7,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/pharmacydelivered.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/deliverdorder");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Deliverd Order",
-/*
-                            MyLocalizations.of(context).text("Deliverd Order").toString(),
-*/
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  /*Expanded(
-                              child:*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/pharmacyinvoice.png",
-                          //icon: Icons.alarm,
-                          //icon: FontAwesomeIcons.accusoft,
-                          title: "Invoices",
-                          fun: () {
-                            AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/medicinereminder");
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Invoices",
-                            // MyLocalizations.of(context).text("Invoices"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/pharmacymonthly.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/monthloveryview");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Monthly Overview",
-                            // MyLocalizations.of(context).text("Monthly Overview"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-
-                      ]),
-                ],
-              ),
-              SizedBox(height: 50),
-
-            ],
-          ),
-        ),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
+        centerTitle: true,
+        titleSpacing: 5,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: AppData.kPrimaryColor,
+        elevation: 0,
+      ),
+      body:
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 7),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  // height: 120,
-                  color: AppData.kPrimaryColor,
-                  width: double.infinity,
-                  child: Padding(
-                    padding:
-                    EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: size.height * 0.07,
-                          width: size.width * 0.13,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(55),
-                              border:
-                              Border.all(color: Colors.white, width: 0.5),
-                              color: Colors.white),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Image.asset(
-                                'assets/images/user.png',
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                fit: BoxFit.cover,
-                              )),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/images/pharmacyorders.png",
+                        fun: () {
+                          //AppData.showInSnackBar(context, "Coming soon");
+                          // Navigator.pushNamed(context, "/medicalrecordpage");
+                          Navigator.pushNamed(context, "/myorder");
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        // ,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("My Orders",
+                          // MyLocalizations.of(context).text("My Orders"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "PHARMACY " ,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              loginResponse.body.userName??"N/A",
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
 
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
+                /* Expanded(*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/pharmacyconfirm.png",
+                        fun: () {
+                          // Navigator.pushNamed(context, "/myAppointment");
+                          Navigator.pushNamed(context, "/ordersPharma");
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("Confirmed Order",
+                          // MyLocalizations.of(context).text("Confirmed Order"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                      /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
                 ),
-                ListTile(
-                    leading: Icon(Icons.dashboard,
-                        color: Colors.grey, size: 27),
-                    title: Text('Dashboard'),
-                    selected: _selectedDestination == 0,
-                    onTap: () {
-                      selectDestination(0);
-                      Navigator.pushNamed(context, "/dashboardpharmacy");
-                    }
-                  // onTap: (){},
-                ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                      "assets/images/myprofile.png",
-                      height: 30,
-                      color: Colors.grey
-                  ),
-                  title: Text('My Profile'),
-                  selected: _selectedDestination == 1,
-                  onTap: () {
-                    selectDestination(1);
-                    Navigator.pushNamed(context, "/pharmaprofile");
-                    //Navigator.pushNamed(context, "/profileScreen1");
-                  },
-                ),
-                // Divider(),
-                /*   ListTile(
-                  leading: Image.asset(
-                    "assets/images/home.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Home'),
-                  selected: _selectedDestination == 2,
-                  onTap: () {
-                    selectDestination(2);
-                    //Navigator.pushNamed(context, "/profile");
-                    Navigator.pushNamed(context, "/dashboardpharmacy");
-                  },
-                ),*/
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                      "assets/images/account.png",
-                      height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Manage Account'),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    // Navigator.pushNamed(context, "/patientDashboard");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                      "assets/images/aboutus.png",
-                      height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('About Us'),
-                  selected: _selectedDestination == 4,
-                  onTap: () {
-                    selectDestination(4);
-                    // Navigator.pushNamed(context, "/profile");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                        "assets/images/share.png",
-                        height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Share'),
-                    selected: _selectedDestination == 5,
-                    onTap: () {
-                      selectDestination(5);
-                      // Navigator.pushNamed(context, "/dashboard1");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                        "assets/images/contact us.png",
-                        height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Contact Us'),
-                    selected: _selectedDestination == 6,
-                    onTap: () {
-                      selectDestination(6);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                        "assets/images/support.png",
-                        height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Support'),
-                    selected: _selectedDestination == 7,
-                    onTap: () {
-                      selectDestination(7);
-                      //Navigator.pushNamed(context, "/signUpForm");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                        "assets/images/reminder.png",
-                        height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Reminder'),
-                    selected: _selectedDestination == 8,
-                    onTap: () {
-                      selectDestination(8);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
-                  selected: _selectedDestination == 10,
-                  onTap: () {
-                    selectDestination(10);
-                    //Navigator.pushNamed(context, "/dashboard");
-                    // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
-                    //   _exitApp();
-                    /* else
-                      initUniqueIdentifierState();*/
-                    _exitApp();
-                  },
-                  /*  onTap: () {
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/images/pharmacyprocessed.png",
+                        fun: () {
+                          //chooseAppointment(context, model);
+                          //Navigator.pushNamed(context, "/userAppoint");
+                          // Navigator.pushNamed(context, "/myAppointment");
+                          /*Navigator.pushNamed(
+                                    context, "/medipedia");*/
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                          Navigator.pushNamed(context, "/processedorders");
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("Processed Orders",
+                          // MyLocalizations.of(context).text("Processed Orders"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                    ]),
 
-                    selectDestination(10);
-                    Navigator.pushNamed(context, "/login");
-                  },*/
-                ),
               ],
             ),
+            SizedBox(height: 7,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/pharmacydelivered.png",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "Coming Soon");
+                          Navigator.pushNamed(context, "/deliverdorder");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text("Deliverd Order",
+/*
+                          MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Health               chat",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /*Expanded(
+                            child:*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/images/pharmacyinvoice.png",
+                        //icon: Icons.alarm,
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "Invoices",
+                        fun: () {
+                          AppData.showInSnackDone(context, "Coming Soon");
+                          // Navigator.pushNamed(context, "/medicinereminder");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("Invoices",
+                          // MyLocalizations.of(context).text("Invoices"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/pharmacymonthly.png",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "Coming Soon");
+                          Navigator.pushNamed(context, "/monthloveryview");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text("Monthly Overview",
+                          // MyLocalizations.of(context).text("Monthly Overview"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+
+                    ]),
+              ],
+            ),
+            SizedBox(height: 50),
+
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                // height: 120,
+                color: AppData.kPrimaryColor,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                  EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.13,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border:
+                            Border.all(color: Colors.white, width: 0.5),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Image.asset(
+                              'assets/images/user.png',
+                              height: size.height * 0.07,
+                              width: size.width * 0.13,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "PHARMACY " ,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                            loginResponse.body.userName??"N/A",
+
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                  leading: Icon(Icons.dashboard,
+                      color: Colors.grey, size: 27),
+                  title: Text('Dashboard'),
+                  selected: _selectedDestination == 0,
+                  onTap: () {
+                    selectDestination(0);
+                    Navigator.pushNamed(context, "/dashboardpharmacy");
+                  }
+                // onTap: (){},
+              ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                    "assets/images/myprofile.png",
+                    height: 30,
+                    color: Colors.grey
+                ),
+                title: Text('My Profile'),
+                selected: _selectedDestination == 1,
+                onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/pharmaprofile");
+                  //Navigator.pushNamed(context, "/profileScreen1");
+                },
+              ),
+              // Divider(),
+              /*   ListTile(
+                leading: Image.asset(
+                  "assets/images/home.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
+                selected: _selectedDestination == 2,
+                onTap: () {
+                  selectDestination(2);
+                  //Navigator.pushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/dashboardpharmacy");
+                },
+              ),*/
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                    "assets/images/account.png",
+                    height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
+                selected: _selectedDestination == 3,
+                onTap: () {
+                  selectDestination(3);
+                  // Navigator.pushNamed(context, "/patientDashboard");
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                    "assets/images/aboutus.png",
+                    height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('About Us'),
+                selected: _selectedDestination == 4,
+                onTap: () {
+                  selectDestination(4);
+                  // Navigator.pushNamed(context, "/profile");
+                },
+              ),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                      "assets/images/share.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  onTap: () {
+                    selectDestination(5);
+                    // Navigator.pushNamed(context, "/dashboard1");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                      "assets/images/contact us.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Contact Us'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(6);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                      "assets/images/support.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Support'),
+                  selected: _selectedDestination == 7,
+                  onTap: () {
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/signUpForm");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                      "assets/images/reminder.png",
+                      height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Reminder'),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+                selected: _selectedDestination == 10,
+                onTap: () {
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/dashboard");
+                  // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                  //   _exitApp();
+                  /* else
+                    initUniqueIdentifierState();*/
+                  _exitApp();
+                },
+                /*  onTap: () {
+
+                  selectDestination(10);
+                  Navigator.pushNamed(context, "/login");
+                },*/
+              ),
+            ],
           ),
         ),
       ),

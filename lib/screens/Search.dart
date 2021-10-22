@@ -33,83 +33,81 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-          child: Scaffold(
-             appBar: AppBar(
-          title: Text(
-            'Search',
-            style: TextStyle(color: Colors.white,),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
+    return Scaffold(
+       appBar: AppBar(
+    title: Text(
+      'Search',
+      style: TextStyle(color: Colors.white,),
+    ),
+    centerTitle: true,
+    backgroundColor: AppData.kPrimaryColor,
+    iconTheme: IconThemeData(color: Colors.white),
         ),
-           body: SingleChildScrollView(
-             child: Container(
-               child: Column(
-                 children: [                   
-                Padding(
-                              padding: const EdgeInsets.only(left:20.0, right: 20.0,),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [    
-                                  /*SizedBox(height: 10,),
-                                   Text('', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-                                    SizedBox(height: 10,),*/
+     body: SingleChildScrollView(
+       child: Container(
+         child: Column(
+           children: [
+          Padding(
+                        padding: const EdgeInsets.only(left:20.0, right: 20.0,),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            /*SizedBox(height: 10,),
+                             Text('', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                              SizedBox(height: 10,),*/
 
-                                  /*Text('Request your doctor to prescribe Generic Medicine.',
-                                     overflow: TextOverflow.clip,
-                                     style: TextStyle(fontWeight: FontWeight.w600,),),*/
-                                     SizedBox(height: 30),
-                                      DropDown.staticDropdown2(
-                                  'Country',
-                                  "country",
-                                  countryList, (KeyvalueModel data) {
-                                setState(() {
-                                  
-                                });
-                              }),
-                               SizedBox(height: 5,),
+                            /*Text('Request your doctor to prescribe Generic Medicine.',
+                               overflow: TextOverflow.clip,
+                               style: TextStyle(fontWeight: FontWeight.w600,),),*/
+                               SizedBox(height: 30),
                                 DropDown.staticDropdown2(
-                                 "State",
-                                  "state",
-                                  stateList, (KeyvalueModel data) {
-                                setState(() {
-                                  
-                                });
-                              }),
-                                 
-                             SizedBox(height: 5,),
-                                 DropDown.staticDropdown2(
-                                  "District",
-                                  "state",
-                                  cityList, (KeyvalueModel data) {
-                                setState(() {
-                                  
-                                });
-                              }),
-                                  SizedBox(height: 5,),
-                                  DropDown.staticDropdown2(
-                                      "City",
-                                      "state",
-                                      cityList, (KeyvalueModel data) {
-                                    setState(() {
+                            'Country',
+                            "country",
+                            countryList, (KeyvalueModel data) {
+                          setState(() {
 
-                                    });
-                                  }),
-                                  SizedBox(height: 60,),
-                                  _submitButton(),
-                                  SizedBox(height: 10,),
-              
-                                ],),
-                            ),
-                 ],
-               ),
-             ),
-           ),
-                      
-                      
-          )  
+                          });
+                        }),
+                         SizedBox(height: 5,),
+                          DropDown.staticDropdown2(
+                           "State",
+                            "state",
+                            stateList, (KeyvalueModel data) {
+                          setState(() {
+
+                          });
+                        }),
+
+                       SizedBox(height: 5,),
+                           DropDown.staticDropdown2(
+                            "District",
+                            "state",
+                            cityList, (KeyvalueModel data) {
+                          setState(() {
+
+                          });
+                        }),
+                            SizedBox(height: 5,),
+                            DropDown.staticDropdown2(
+                                "City",
+                                "state",
+                                cityList, (KeyvalueModel data) {
+                              setState(() {
+
+                              });
+                            }),
+                            SizedBox(height: 60,),
+                            _submitButton(),
+                            SizedBox(height: 10,),
+
+                          ],),
+                      ),
+           ],
+         ),
+       ),
+     ),
+
+
     );
   }
 

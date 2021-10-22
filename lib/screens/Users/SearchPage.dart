@@ -49,122 +49,120 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Stack(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Search',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Search',
+                style: TextStyle(
+                  color: Colors.white,
                 ),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: InkWell(
-                    onTap: () {
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back)),
+            ),
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    offset: Offset(5.0, 5.0),
+                    blurRadius: 5.0,
+                    color: Colors.black87.withOpacity(0.05),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  TypeAheadField(
+                    textFieldConfiguration: TextFieldConfiguration(
+                      style: TextStyle(color: Colors.black),
+                      textInputAction: TextInputAction.search,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search',
+                        alignLabelWithHint: true,
+                        hintStyle: TextStyle(
+                            fontFamily: "Monte",
+                            fontSize: 17,
+                            color: Colors.grey),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                      ),
+                      onSubmitted: (String value) {
+                        if (value != "") {
+                          /*widget.model.searchFilter = value;
+                          Navigator.pushNamed(context, "/searchResult");*/
+                          //fetchSearchResult(value);
+                        }
+                        //AppData.showInSnackDone(context, value);
+                      },
+                    ),
+                    getImmediateSuggestions: true,
+                    suggestionsCallback: (pattern) async {
+                      return (pattern != null)
+                          ? await fetchSearchAutoComplete(pattern)
+                          : null;
+                    },
+                    hideOnLoading: true,
+                    itemBuilder: (context, Predictions suggestion) {
+                      return ListTile(
+                        leading: Icon(Icons.search),
+                        title: Text(suggestion.description),
+                      );
+                    },
+                    onSuggestionSelected: (Predictions suggestion) {
+                      //widget.model.courceName = suggestion.courseSlug;
+                      //Navigator.pushNamed(context, "/courceDetail1");
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back)),
-              ),
-            ],
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      offset: Offset(5.0, 5.0),
-                      blurRadius: 5.0,
-                      color: Colors.black87.withOpacity(0.05),
-                    ),
-                  ],
-                ),
-                child: Stack(
-                  children: [
-                    TypeAheadField(
-                      textFieldConfiguration: TextFieldConfiguration(
-                        style: TextStyle(color: Colors.black),
-                        textInputAction: TextInputAction.search,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          alignLabelWithHint: true,
-                          hintStyle: TextStyle(
-                              fontFamily: "Monte",
-                              fontSize: 17,
-                              color: Colors.grey),
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-                        ),
-                        onSubmitted: (String value) {
-                          if (value != "") {
-                            /*widget.model.searchFilter = value;
-                            Navigator.pushNamed(context, "/searchResult");*/
-                            //fetchSearchResult(value);
-                          }
-                          //AppData.showInSnackDone(context, value);
-                        },
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Icon(
+                        Icons.search,
+                        size: 27,
+                        color: Colors.grey,
                       ),
-                      getImmediateSuggestions: true,
-                      suggestionsCallback: (pattern) async {
-                        return (pattern != null)
-                            ? await fetchSearchAutoComplete(pattern)
-                            : null;
-                      },
-                      hideOnLoading: true,
-                      itemBuilder: (context, Predictions suggestion) {
-                        return ListTile(
-                          leading: Icon(Icons.search),
-                          title: Text(suggestion.description),
-                        );
-                      },
-                      onSuggestionSelected: (Predictions suggestion) {
-                        //widget.model.courceName = suggestion.courseSlug;
-                        //Navigator.pushNamed(context, "/courceDetail1");
-                        Navigator.pop(context);
-                      },
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: Icon(
-                          Icons.search,
-                          size: 27,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-              SizedBox(
-                height: 20,
-              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );

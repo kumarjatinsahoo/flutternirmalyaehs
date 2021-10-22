@@ -192,256 +192,254 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         titleSpacing: 2,
         backgroundColor: AppData.matruColor,
       ),
-      body: SafeArea(
-        child: Container(
-          color: bgColor,
-          margin: EdgeInsets.only(left: 5, right: 5),
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 3,
-                ),
-                (isSearchShow)
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Container(
-                          child: TextField(
-                            onChanged: (value) => _runFilter(value),
-                            decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.search),
-                                hintText: "Search"),
-                          ),
+      body: Container(
+        color: bgColor,
+        margin: EdgeInsets.only(left: 5, right: 5),
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 3,
+              ),
+              (isSearchShow)
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        child: TextField(
+                          onChanged: (value) => _runFilter(value),
+                          decoration: InputDecoration(
+                              suffixIcon: Icon(Icons.search),
+                              hintText: "Search"),
                         ),
-                      )
-                    : Container(),
-                SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, top: 8.0, bottom: 4),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: today,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15.0,
-                                color: Colors.black,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  _selectDate(context);
-                                },
+                      ),
+                    )
+                  : Container(),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 8.0, bottom: 4),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: today,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15.0,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
                             ),
-                            TextSpan(
-                                text: " Appointments",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15.0,
-                                    color: Colors.black)),
-                          ],
-                        ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _selectDate(context);
+                              },
+                          ),
+                          TextSpan(
+                              text: " Appointments",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15.0,
+                                  color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                color: AppData.grey,
+                height: 40.0,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      child: Text(
+                        "Reg No",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: Text(
+                        MyLocalizations.of(context).text("NAME"),
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 35,
+                      child: Text(
+                        "Age",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 60,
+                      child: Text(
+                        "Gender",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 80,
+                      child: Text(
+                        "Status",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  color: AppData.grey,
-                  height: 40.0,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 60,
-                        child: Text(
-                          "Reg No",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(width: 10,),
-                      Expanded(
-                        child: Text(
-                          MyLocalizations.of(context).text("NAME"),
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 35,
-                        child: Text(
-                          "Age",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60,
-                        child: Text(
-                          "Gender",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 80,
-                        child: Text(
-                          "Status",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                (appointModel != null &&
-                        appointModel.body != null &&
-                        appointModel.body.length > 0)
-                    ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                        itemCount: foundUser.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(vertical: 3),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    /*Expanded(
-                                      child: Text(
-                                        appointModel.appointList[index].id,
-                                        style: TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.start,
+              ),
+              (appointModel != null &&
+                      appointModel.body != null &&
+                      appointModel.body.length > 0)
+                  ? ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                      itemCount: foundUser.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 3),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  /*Expanded(
+                                    child: Text(
+                                      appointModel.appointList[index].id,
+                                      style: TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),*/
+                                  SizedBox(
+                                    width: 60,
+                                    child: Text(
+                                      foundUser[index].regNo,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
                                       ),
-                                    ),*/
-                                    SizedBox(
-                                      width: 60,
-                                      child: Text(
-                                        foundUser[index].regNo,
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: Text(
+                                      foundUser[index].patientName,
+                                      style: TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
+                                  /*Expanded(
+                                    child: Text(
+                                      appointModel.appointList[index].age,
+                                      style: TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),*/
+                                  SizedBox(
+                                    width: 35,
+                                    child: Text(
+                                      (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 60,
+                                    child: Text(
+                                      (foundUser[index].gender!=null)?foundUser[index].gender[0]:"N/A",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 80,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                dialogRegNo(context,
+                                                    foundUser[index]));
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(2.0)),
+                                          border:
+                                              Border.all(color: Colors.black),
+                                        ),
+                                        alignment: Alignment.topLeft,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 3),
+                                        child: Text(
+                                          foundUser[index].appntmntStatus,
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              decoration:
+                                                  TextDecoration.underline),
+                                          textAlign: TextAlign.start,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 10,),
-                                    Expanded(
-                                      child: Text(
-                                        foundUser[index].patientName,
-                                        style: TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                    /*Expanded(
-                                      child: Text(
-                                        appointModel.appointList[index].age,
-                                        style: TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),*/
-                                    SizedBox(
-                                      width: 35,
-                                      child: Text(
-                                        (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 60,
-                                      child: Text(
-                                        (foundUser[index].gender!=null)?foundUser[index].gender[0]:"N/A",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 80,
-                                      child: InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  dialogRegNo(context,
-                                                      foundUser[index]));
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(2.0)),
-                                            border:
-                                                Border.all(color: Colors.black),
-                                          ),
-                                          alignment: Alignment.topLeft,
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 2, horizontal: 3),
-                                          child: Text(
-                                            foundUser[index].appntmntStatus,
-                                            style: TextStyle(
-                                                color: Colors.green,
-                                                decoration:
-                                                    TextDecoration.underline),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Divider(
-                                color: Colors.grey,
-                              ),
-                            ],
-                          );
-                        })
-                    : (isDataNotAvail)
-                        ? Container(
-                            height: size.height - 100,
-                            child: Center(
-                              child: Text("Data Not Found"),
                             ),
-                          )
-                        : MyWidgets.loading(context),
-              ],
-            ),
+                            Divider(
+                              color: Colors.grey,
+                            ),
+                          ],
+                        );
+                      })
+                  : (isDataNotAvail)
+                      ? Container(
+                          height: size.height - 100,
+                          child: Center(
+                            child: Text("Data Not Found"),
+                          ),
+                        )
+                      : MyWidgets.loading(context),
+            ],
           ),
         ),
       ),

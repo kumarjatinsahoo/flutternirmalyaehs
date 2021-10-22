@@ -68,119 +68,117 @@ class _AboutUs extends State<GovetListPage3> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Government Schemes List'),
-          backgroundColor: AppData.kPrimaryColor,
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Government Schemes List'),
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Mahatma Jyotiba Phule Jan Arogya Yojana",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Objective: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Mahatma Jyotiba Phule Jan Arogya Yojana",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.blue),
-                    textAlign: TextAlign.center,
+                    AppData.govtschem3,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Applicable to:  ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Objective: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    AppData.govtschem31,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem3,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Benefits Provided: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                 AppData.govtschem32,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Required Documents:",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Applicable to:  ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    AppData.govtschem22,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem31,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Contact Details: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Benefits Provided: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    AppData.govtschem33,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                   AppData.govtschem32,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                    "Required Documents:",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem22,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                    "Contact Details: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem33,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text("https://www.jeevandayee.gov.in/MJPJAY/FrontServlet?requestType=PublicViewsRH&actionVal=AarogyasriView&page=Network%20Hospitals&%3E%3E%3CB%3ENetwork%20Hospitals%3C/B%3E&mainMenu=Hospitals&subMenu=Network%20Hospitals",
-                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
-                ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Text("https://www.jeevandayee.gov.in/MJPJAY/FrontServlet?requestType=PublicViewsRH&actionVal=AarogyasriView&page=Network%20Hospitals&%3E%3E%3CB%3ENetwork%20Hospitals%3C/B%3E&mainMenu=Hospitals&subMenu=Network%20Hospitals",
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue),),
+              ),
+            ],
           ),
         ),
       ),

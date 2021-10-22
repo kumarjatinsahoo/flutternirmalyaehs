@@ -33,74 +33,72 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          /*leading: BackButton(
-                color: Colors.white,
-              ),*/
-          title: Text(
-            'Patient Registration',
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        /*leading: BackButton(
+              color: Colors.white,
+            ),*/
+        title: Text(
+          'Patient Registration',
+          style: TextStyle(color: Colors.white),
         ),
-        body: Stack(
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Text(
-                      'Profile',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(0, "Age"),
-                    ),
-                    //SizedBox(height: size.height * 0.01,),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          /* Expanded(
-                          flex: 5,*/
-                          Text(
-                            'Gender',
-                            style: TextStyle(color: Colors.black, fontSize: 17),
-                          ),
-                          new Spacer(),
-                          /* ),*/
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: Stack(
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: formField(0, "Age"),
+                  ),
+                  //SizedBox(height: size.height * 0.01,),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        /* Expanded(
+                        flex: 5,*/
+                        Text(
+                          'Gender',
+                          style: TextStyle(color: Colors.black, fontSize: 17),
+                        ),
+                        new Spacer(),
+                        /* ),*/
 
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20.0),
-                            child: _normalToggleButton(),
-                          ),
-                        ],
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: _normalToggleButton(),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: size.height * 0.07,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: _submitButton(),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.20,
-                    ),
-                  ]),
-            )
-          ],
-        ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.07,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: _submitButton(),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.20,
+                  ),
+                ]),
+          )
+        ],
       ),
     );
   }

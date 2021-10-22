@@ -21,528 +21,527 @@ class _EmergencyRoomState extends State<EmergencyRoom> {
     double spaceTab = 20;
     double edgeInsets = 3;
 
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back, color: Colors.white)),
-                        Text(
-                          'Emergency Room ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 20,
-                              color: Colors.white),
-                        ),
-                        Icon(Icons.search, color: Colors.white),
-                      ],
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back, color: Colors.white)),
+                    Text(
+                      'Emergency Room ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
+                          color: Colors.white),
                     ),
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
+                    Icon(Icons.search, color: Colors.white),
+                  ],
                 ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          right: 10.0,
+              ),
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(
-                              height: 10,
+
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Frank Ross Pharmacy - Wipro Campus  ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "Wipro building,Salt Lake Bypass,DM Block\n"
+                                                            "Sector V,Kolkata,West Bengal 700091,India ",
+                                                        style: TextStyle(
+                                                            fontSize: 10),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
                             ),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
 
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Apollo Pharmacy',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
                                                     children: [
                                                       Text(
-                                                        'Frank Ross Pharmacy - Wipro Campus  ',
+                                                        "No 43,CF Block,Sector III,Bidhannagar\n"
+                                                            "Kolkata,West Bengal 700091,India",
                                                         style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "Wipro building,Salt Lake Bypass,DM Block\n"
-                                                                "Sector V,Kolkata,West Bengal 700091,India ",
-                                                            style: TextStyle(
-                                                                fontSize: 10),
-                                                          ),
-                                                        ],
+                                                            fontSize: 12),
                                                       )
                                                     ],
-                                                  ),
-                                                ),
-                                                // Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ),
+                                            //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
                                 ),
-
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'Apollo Pharmacy',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "No 43,CF Block,Sector III,Bidhannagar\n"
-                                                                "Kolkata,West Bengal 700091,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.kPrimaryRedColor,
-                                                      width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'MedPlus',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                // Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.kPrimaryColor,
-                                                      width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'Apollo Pharmacy',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.kPrimaryRedColor,
-                                                      width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'Frank Ross Pharmacy - Wipro Campus ',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "No 43,CF Block,Sector III,Bidhannagar\n"
-                                                                "Kolkata,West Bengal 700091,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.kPrimaryColor,
-                                                      width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'MedPlus',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                //   Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 5,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5))),
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.kPrimaryRedColor,
-                                                      width: 5))),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/medicine_reminder.png",
-                                                  height: 40,
-                                                ),
-                                                SizedBox(
-                                                  width: spaceTab,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'Apollo Pharmacy',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 15),
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
-                                                            style: TextStyle(
-                                                                fontSize: 12),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ), //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                              ],
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                            SizedBox(
-                              height: 2,
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'MedPlus',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Apollo Pharmacy',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Frank Ross Pharmacy - Wipro Campus ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "No 43,CF Block,Sector III,Bidhannagar\n"
+                                                            "Kolkata,West Bengal 700091,India",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'MedPlus',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            //   Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/medicine_reminder.png",
+                                              height: 40,
+                                            ),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Apollo Pharmacy',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        "N.225,Nayapali,IRC Village,Bhubaneswar,753003,India",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ), //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 2,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _submitButton() {

@@ -167,250 +167,252 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: AppData.kPrimaryColor,
-            title: Text(
-              "SIGN UP",
-              style: TextStyle(color: Colors.white),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(
+          "SIGN UP",
+          style: TextStyle(color: Colors.white),
+        ),
 
-            //automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
 
-          ),
-          body: Container(
-            child: Column(
-              children: [
+      ),
+      body: Container(
+        child: Column(
+          children: [
 
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
 
-                                //   padding: EdgeInsets.only(
-                                //       left: size.width * 0.20, right: size.width * 0.20),
-                                //   child: Image.asset(
-                                //     "assets/icons/sanju-vector.png",
-                                //   ),
-                                // ),
+                            //   padding: EdgeInsets.only(
+                            //       left: size.width * 0.20, right: size.width * 0.20),
+                            //   child: Image.asset(
+                            //     "assets/icons/sanju-vector.png",
+                            //   ),
+                            // ),
 
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Column(
-                                        children: [
-                                          Text("Fill in personal Information (All fields are mandatory)",
-                                            style: TextStyle(fontSize: 18, color: Colors.black),),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Organization Name",
-                                          ApiFactory.NGO_ORGANISATION_API,
-                                          "ngo",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.NGO_ORGANISATION_API);
-                                          NgoSignUpForm.ngoModel = data;
-                                        });
-                                      }),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Title",
-                                          ApiFactory.TITLE_API,
-                                          "title",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.TITLE_API);
-                                          NgoSignUpForm.titlemodel = data;
-                                        });
-                                      }),
-                                     /* SizedBox(
-                                        height: 8,
-                                      ),
-                                      formField(9, "Professional's Name"),
-
-                                      SizedBox(height: 10),
-
-                                      formFieldMobile(10, " Experience(Years)"),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      formField(11, " Address"),
-                                      SizedBox(
-                                        height: 8.0,
-                                      ),*/
-                                      formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME"),fnode1,fnode2),
-
-                                      SizedBox(height: 8.0),
-
-                                      formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE"),fnode2,fnode3),
-                                      SizedBox(
-                                        height: 8.0,
-                                      ),
-                                      formField(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Gender",
-                                          ApiFactory.GENDER_API,
-                                          "gender",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.GENDER_API);
-                                          NgoSignUpForm.genderModel = data;
-                                        });
-                                      }),
-                                      SizedBox(height: 15),
-
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: nextButton1(),
-                                      ),
-                                      // SizedBox(
-                                      //   height: 10,
-                                      // ),
-                                      // InkWell(
-                                      //     onTap: () {
-                                      //       setState(() {
-                                      //         ispartnercode = !ispartnercode;
-                                      //       });
-                                      //     },
-                                      //     child: Text(
-                                      //       MyLocalizations.of(context)
-                                      //               .text("HAVE_PARTNERCODE") +
-                                      //           "?",
-                                      //       style: TextStyle(color: Colors.blue),
-                                      //     )),
-                                      //
-                                      // SizedBox(
-                                      //   height: 10,
-                                      // ),
-                                      // Visibility(
-                                      //   visible: ispartnercode,
-                                      //   child: Padding(
-                                      //     padding:
-                                      //         const EdgeInsets.symmetric(horizontal: 25),
-                                      //     child: TextFormField(
-                                      //       decoration: InputDecoration(
-                                      //           hintText: MyLocalizations.of(context)
-                                      //               .text("PARTNERCODE"),
-                                      //           hintStyle: TextStyle(color: Colors.grey)),
-                                      //       textInputAction: TextInputAction.next,
-                                      //       keyboardType: TextInputType.text,
-                                      //       //           inputFormatters: [
-                                      //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                      //       //           ],
-                                      //     ),
-                                      //   ),
-                                      // ),
-
-                                      // Padding(
-                                      //   padding:
-                                      //       const EdgeInsets.symmetric(horizontal: 10),
-                                      //   child: Row(
-                                      //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                      //     children: [
-                                      //       Checkbox(
-                                      //         value: _checkbox,
-                                      //         onChanged: (value) {
-                                      //           setState(() {
-                                      //             _checkbox = !_checkbox;
-                                      //           });
-                                      //         },
-                                      //       ),
-                                      //       SizedBox(
-                                      //         height: 10,
-                                      //       ),
-                                      //       RichText(
-                                      //           textAlign: TextAlign.start,
-                                      //           text: TextSpan(
-                                      //             children: [
-                                      //               TextSpan(
-                                      //                 text: 'I agree to NCORDS ',
-                                      //                 /* "Welcome back",*/
-                                      //                 style: TextStyle(
-                                      //                   // fontWeight: FontWeight.w800,
-                                      //                   fontFamily: "Monte",
-                                      //                   // fontSize: 25.0,
-                                      //                   color: Colors.grey,
-                                      //                 ),
-                                      //               ),
-                                      //               TextSpan(
-                                      //                 text: 'Terms and Conditions',
-                                      //                 /* "Welcome back",*/
-                                      //                 style: TextStyle(
-                                      //                   // fontWeight: FontWeight.w500,
-                                      //                   fontFamily: "Monte",
-                                      //                   // fontSize: 25.0,
-                                      //                   color: Colors.indigo,
-                                      //                 ),
-                                      //               )
-                                      //             ],
-                                      //           )),
-                                      //     ],
-                                      //   ),
-                                      // ),
-                                      // Padding(
-                                      //   padding:
-                                      //       const EdgeInsets.symmetric(horizontal: 10),
-                                      //   child: nextButton(),
-                                      // ),
-                                      // SizedBox(
-                                      //   height: 25,
-                                      // ),
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                    children: [
+                                      Text("Fill in personal Information (All fields are mandatory)",
+                                        style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Organization Name",
+                                      ApiFactory.NGO_ORGANISATION_API,
+                                      "ngo",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.NGO_ORGANISATION_API);
+                                      NgoSignUpForm.ngoModel = data;
+                                    });
+                                  }),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Title",
+                                      ApiFactory.TITLE_API,
+                                      "title",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      NgoSignUpForm.titlemodel = data;
+                                    });
+                                  }),
+                                 /* SizedBox(
+                                    height: 8,
+                                  ),
+                                  formField(9, "Professional's Name"),
 
-                          ],),
-                      ),
-                    ],
+                                  SizedBox(height: 10),
+
+                                  formFieldMobile(10, " Experience(Years)"),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  formField(11, " Address"),
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),*/
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),
+
+                                  formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME"),fnode1,fnode2),
+
+                                  SizedBox(height: 8.0),
+
+                                  formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE"),fnode2,fnode3),
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  formField(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Gender",
+                                      ApiFactory.GENDER_API,
+                                      "gender",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.GENDER_API);
+                                      NgoSignUpForm.genderModel = data;
+                                    });
+                                  }),
+                                  SizedBox(height: 15),
+
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
+                                  // InkWell(
+                                  //     onTap: () {
+                                  //       setState(() {
+                                  //         ispartnercode = !ispartnercode;
+                                  //       });
+                                  //     },
+                                  //     child: Text(
+                                  //       MyLocalizations.of(context)
+                                  //               .text("HAVE_PARTNERCODE") +
+                                  //           "?",
+                                  //       style: TextStyle(color: Colors.blue),
+                                  //     )),
+                                  //
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
+                                  // Visibility(
+                                  //   visible: ispartnercode,
+                                  //   child: Padding(
+                                  //     padding:
+                                  //         const EdgeInsets.symmetric(horizontal: 25),
+                                  //     child: TextFormField(
+                                  //       decoration: InputDecoration(
+                                  //           hintText: MyLocalizations.of(context)
+                                  //               .text("PARTNERCODE"),
+                                  //           hintStyle: TextStyle(color: Colors.grey)),
+                                  //       textInputAction: TextInputAction.next,
+                                  //       keyboardType: TextInputType.text,
+                                  //       //           inputFormatters: [
+                                  //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                  //       //           ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: Row(
+                                  //     //  mainAxisAlignment: MainAxisAlignment.center,
+                                  //     children: [
+                                  //       Checkbox(
+                                  //         value: _checkbox,
+                                  //         onChanged: (value) {
+                                  //           setState(() {
+                                  //             _checkbox = !_checkbox;
+                                  //           });
+                                  //         },
+                                  //       ),
+                                  //       SizedBox(
+                                  //         height: 10,
+                                  //       ),
+                                  //       RichText(
+                                  //           textAlign: TextAlign.start,
+                                  //           text: TextSpan(
+                                  //             children: [
+                                  //               TextSpan(
+                                  //                 text: 'I agree to NCORDS ',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w800,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.grey,
+                                  //                 ),
+                                  //               ),
+                                  //               TextSpan(
+                                  //                 text: 'Terms and Conditions',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w500,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.indigo,
+                                  //                 ),
+                                  //               )
+                                  //             ],
+                                  //           )),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: nextButton(),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 25,
+                                  // ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+
+                      ],),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
 
 
-        )
     );
   }
   /*_
@@ -605,7 +607,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
           widget.model.ngoexperience = textEditingController[10].text;
           widget.model.ngoaddress = textEditingController[11].text;
           widget.model.ngogender = NgoSignUpForm.genderModel.key;
-          Navigator.pushNamed(context, "/ambulancesignupform2");
+          Navigator.pushNamed(context, "/ngosignupform2");
         }
       },
     );

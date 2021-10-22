@@ -68,97 +68,95 @@ class _AboutUs extends State<GovetListPage4> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Government Schemes List'),
-          backgroundColor: AppData.kPrimaryColor,
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Government Schemes List'),
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Mother and Child Tracking System",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Objective: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Mother and Child Tracking System",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.blue),
-                    textAlign: TextAlign.center,
+                    AppData.govtschem4,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Applicable to:  ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Objective: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    AppData.govtschem41,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem4,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Benefits Provided: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  AppData.govtschem42,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Required Documents:",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
                   child: Text(
-                    "Applicable to:  ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    AppData.govtschem22,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem41,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                    "Benefits Provided: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                    AppData.govtschem42,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 5),
-                  child: Text(
-                    "Required Documents:",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Text(
-                      AppData.govtschem22,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -144,48 +144,46 @@ class _SampleTrackingState extends State<SampleTracking> {
         state: currentStep >= 3 ? StepState.complete : StepState.disabled,
       ),
     ];
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Delivery Tracking',
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Delivery Tracking',
+          style: TextStyle(color: Colors.black),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: size.height * 0.30,
-                child: Image.asset(
-                  'assets/trackorder.jpg',
-                  fit: BoxFit.cover,
-                ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: size.height * 0.30,
+              child: Image.asset(
+                'assets/trackorder.jpg',
+                fit: BoxFit.cover,
               ),
-              Divider(),
-              Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Stepper(
-                    type: stepperType,
-                    physics: ScrollPhysics(),
-                    steps: steps,
-                    currentStep: currentStep,
-                    onStepTapped: (step) => tapped(step),
-                    onStepContinue: continued,
-                    onStepCancel: cancel,
-                    controlsBuilder: (BuildContext context,
-                        {VoidCallback onStepContinue,
-                        VoidCallback onStepCancel}) {
-                      return Stack(
-                        children: [SizedBox()],
-                      );
-                    },
-                  ))
-            ],
-          ),
+            ),
+            Divider(),
+            Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Stepper(
+                  type: stepperType,
+                  physics: ScrollPhysics(),
+                  steps: steps,
+                  currentStep: currentStep,
+                  onStepTapped: (step) => tapped(step),
+                  onStepContinue: continued,
+                  onStepCancel: cancel,
+                  controlsBuilder: (BuildContext context,
+                      {VoidCallback onStepContinue,
+                      VoidCallback onStepCancel}) {
+                    return Stack(
+                      children: [SizedBox()],
+                    );
+                  },
+                ))
+          ],
         ),
       ),
     );
