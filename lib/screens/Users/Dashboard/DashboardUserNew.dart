@@ -614,7 +614,7 @@ List<String> imageSliders = [
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                    height: 210,
+                    height: size.height*0.4,
                     autoPlay: true,
                     pageSnapping: true,
                     viewportFraction: 1,
