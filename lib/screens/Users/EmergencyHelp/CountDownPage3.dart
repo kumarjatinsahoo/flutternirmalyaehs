@@ -1,48 +1,26 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-import 'package:geolocator/geolocator.dart' as loca;
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/widgets/Buttons.dart';
-import 'package:user/models/LoginResponse1.dart' as session;
 import 'package:user/widgets/MyWidget.dart';
 
-class Countdown extends AnimatedWidget {
-  MainModel model;
+class CountDownPage3 extends StatefulWidget {
+  final MainModel model;
 
-  Countdown({Key key, this.animation, this.model})
-      : super(key: key, listenable: animation);
-  Animation<int> animation;
+  const CountDownPage3({Key key, this.model}) : super(key: key);
 
   @override
-  build(BuildContext context) {
-    return new Text(
-      (animation.value.toString() == "0") ? "SENT" : animation.value.toString(),
-      style: new TextStyle(
-          fontSize: (animation.value.toString() == "0") ? 100 : 150.0,
-          color: AppData.kPrimaryRedColor,
-          fontWeight: FontWeight.w500),
-    );
-  }
+  _CountDownPage3State createState() => _CountDownPage3State();
 }
 
-class CountDownPage extends StatefulWidget {
-  MainModel model;
-
-  CountDownPage({Key key, this.model});
-
-  State createState() => new _CountDownPageState();
-}
-
-class _CountDownPageState extends State<CountDownPage>
-    with TickerProviderStateMixin {
-  AnimationController _controller;
-
+class _CountDownPage3State extends State<CountDownPage3> {
   static const int kStartValue = 4;
   bool isComplete = false;
   String longitudes;
@@ -52,30 +30,47 @@ class _CountDownPageState extends State<CountDownPage>
   String cityName;
   final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
 
+  int timerCount = 3;
+
   @override
-  void initState() {
-    super.initState();
-    //loginResponse1=widget.model.loginResponse1;
-    /* longitudes = widget.model.longi;
-    latitudes = widget.model.lati;
-    cityName = widget.model.city;*/
-    _getLocationName();
-    _controller = new AnimationController(
-      vsync: this,
-      duration: new Duration(seconds: kStartValue),
-    );
-    _controller.forward(from: 0.0).whenComplete(() {
-      //pushNotification();
-      setState(() {
-        isComplete = true;
-      });
-    });
-    //_controller.
+  void dispose() {
+    // _controller.dispose();
+    super.dispose();
   }
 
+  Timer _timer;
+  int _start = 5;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 9);
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (timerCount == 0) {
+          // setState(() {
+            timer.cancel();
+          // });
+        } else {
+          // setState(() {
+            _controllerStream.add(timerCount--);
+          // });
+        }
+      },
+    );
+  }
+
+  StreamController<int> _controllerStream=StreamController<int>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   // _getLocationName();
+    startTimer();
+  }
 
   callAPI() {
-    MyWidgets.showLoading(context);
+    // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.SMS_TO_EMERGENCY +
             widget.model.user +
@@ -86,8 +81,8 @@ class _CountDownPageState extends State<CountDownPage>
             latitudes,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          // Navigator.pop(context);
           String msg = map[Const.MESSAGE];
           if (map["status"] == "success") {
             setState(() {
@@ -130,25 +125,21 @@ class _CountDownPageState extends State<CountDownPage>
     print(
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     callApi(position.latitude.toString(), position.longitude.toString());
-    /* try {
-      final coordinates =
-          new Coordinates(position.latitude, position.longitude);
-      var addresses =
-          await Geocoder.local.findAddressesFromCoordinates(coordinates);
-      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-      var first = addresses.first;
-      print("${first.featureName} : ${first.addressLine}");
-      print("${first.locality}}");
-      setState(() {
-        address = "${first.addressLine}";
-        cityName = first.locality;
-        longitudes = position.longitude.toString();
-        latitudes = position.altitude.toString();
-      });
-    } catch (e) {
-      print(e.toString());
-    }*/
   }
+
+  countDownTimer() async {
+    for (int x = timerCount; x > 0; x--) {
+      await Future.delayed(Duration(seconds: 3)).then((_) {
+        if (mounted)
+          setState(() {
+            timerCount = timerCount - 1;
+          });
+      });
+    }
+  }
+
+
+
 
   callApi(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
@@ -159,29 +150,19 @@ class _CountDownPageState extends State<CountDownPage>
           Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder>>>>>>>>>" + finder.toJson().toString());
-
           setState(() {
             address = "${finder.formattedAddress}";
-            cityName = finder.addressComponents[4].longName;
-            print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
+            cityName = finder?.addressComponents[4]?.longName ?? "";
+            // print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
             longitudes = position.longitude.toString();
             latitudes = position.altitude.toString();
           });
         });
   }
 
-  sentToServer() {
-    // widget.model.POSTMETHOD(api: api, json: json, fun: fun)
-  }
-
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      /*floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.play_arrow),
-        onPressed: () => _controller.forward(from: 0.0),
-      ),*/
-      key: _scaffoldKey1,
+    return Scaffold(
       bottomNavigationBar: Buttons.downloadButton(
           title: "Cancel",
           context: context,
@@ -190,14 +171,21 @@ class _CountDownPageState extends State<CountDownPage>
           }),
       body: new Container(
         child: new Center(
-          child: new Countdown(
-            //key: _scaffoldKey1,
-            animation: new StepTween(
-              begin: kStartValue,
-              end: 0,
-            ).animate(_controller),
-          ),
-        ),
+            child: StreamBuilder<int>(
+              stream: _controllerStream.stream,
+              builder: (context,AsyncSnapshot<int> data){
+                if(data.hasData)
+                return Text(
+                  (data == 0) ? "SENT" : data.toString(),
+                  style: new TextStyle(
+                      fontSize: (data == 0) ? 100 : 150.0,
+                      color: AppData.kPrimaryRedColor,
+                      fontWeight: FontWeight.w500),
+                );
+                else
+                  return Text("Error is: "+data.error.toString());
+              }
+            )),
       ),
     );
   }
