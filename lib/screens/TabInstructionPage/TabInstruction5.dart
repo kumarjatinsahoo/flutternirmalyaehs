@@ -154,109 +154,107 @@ class TabInstruction5State extends State<TabInstruction5> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('Tab Instruction',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                      ],
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back,color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text('Tab Instruction',
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                     ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
+                  ],
                 ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Image.asset(
-                                    "assets/TabInst_img5.jpg",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      SizedBox(height: 5,),
-                                      Column(
-                                        children: [
-                                          Text("How often do you eat vegetables, fruit or berriess?",
-                                            style: TextStyle(fontSize: 17,color: Colors.black),textAlign: TextAlign.center,),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: TextFormField(
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: TextFormField(
-                                        ),
-                                      ),
-
-                                      SizedBox(
-                                        height: 100,
-                                      ),
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: nextButton(
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                "assets/TabInst_img5.jpg",
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(height: 5,),
+                                  Column(
+                                    children: [
+                                      Text("How often do you eat vegetables, fruit or berriess?",
+                                        style: TextStyle(fontSize: 17,color: Colors.black),textAlign: TextAlign.center,),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
-                          ],),
-                      ),
-                    ],
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: TextFormField(
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: TextFormField(
+                                    ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 100,
+                                  ),
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: nextButton(
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                      ],),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        )
+          ],
+        ),
+      ),
     );
   }
   Widget mobileNoOTPSearch() {

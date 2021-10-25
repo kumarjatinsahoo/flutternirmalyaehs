@@ -48,74 +48,72 @@ class _MonthlyViewState extends State<MonthlyView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-  return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Monthly Overview',
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-               Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Container(
-                  child:SfCalendar(
-      view: CalendarView.month,      
-      monthViewSettings: const MonthViewSettings(
-          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-    )
-              ),
-               ),
-              
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 15,
-                      width: 15,
-                      color: Colors.green,
-                    ),
-                    SizedBox(width: 5,),
-                    Text('Done')
-                  ],
-                ),
-              ),
-               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 15,
-                      width: 15,
-                      color: Colors.orange,
-                    ),
-                    SizedBox(width: 5,),
-                    Text('Pending')
-                  ],
-                ),
-              ),
-              Divider(),
-              Container(
-                height: size.height * 0.35,
-                child: Image.asset(
-                  'assets/piechart.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Divider(),
-             
-            
-            ],
-          ),
-        ),
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(
+        'Monthly Overview',
+        style: TextStyle(color: Colors.white),
       ),
-    );
+      centerTitle: true,
+      backgroundColor: AppData.kPrimaryColor,
+      iconTheme: IconThemeData(color: Colors.white),
+    ),
+    body: SingleChildScrollView(
+      child: Column(
+        children: [
+           Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Container(
+              child:SfCalendar(
+  view: CalendarView.month,
+  monthViewSettings: const MonthViewSettings(
+      appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
+    )
+          ),
+           ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 15,
+                  width: 15,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 5,),
+                Text('Done')
+              ],
+            ),
+          ),
+           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 15,
+                  width: 15,
+                  color: Colors.orange,
+                ),
+                SizedBox(width: 5,),
+                Text('Pending')
+              ],
+            ),
+          ),
+          Divider(),
+          Container(
+            height: size.height * 0.35,
+            child: Image.asset(
+              'assets/piechart.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Divider(),
+
+
+        ],
+      ),
+    ),
+  );
   }
 }

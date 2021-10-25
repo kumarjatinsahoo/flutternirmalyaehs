@@ -16,112 +16,110 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
   @override
   Widget build(BuildContext context) {
      Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: Text(
-            'My Profile',
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
         ),
+        title: Text(
+          'My Profile',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+      ),
 
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top:10.0,bottom: 10.0,left: 20.0, right: 10.0),
-                    child: Container(
-                      // height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                         gradient: LinearGradient(colors: [
-                              Colors.blue[400],
-                              Colors.blue[200]
-                            ]),
-                             borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey[200]),
-                      ),                    
-                      child:  Padding(
-                        padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
-                       /* child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [*/
-                        child:Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                        Container(
-                        // height: 95,
-                        // width: 95,
-                        // decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(55),
-                        //     border: Border.all(color: Colors.white, width: 0.5),
-                        //     color: Colors.blue[50]
-                        //     ),
-                       child:ClipRRect(
-                        borderRadius: BorderRadius.circular(55),
-                          child: Image.asset(
-                            'assets/images/user.png',
-                            // height: 95,
-                            height: size.height * 0.12,
-                            width: size.width * 0.22,
-                            fit: BoxFit.cover,
-                          )),
-                        ), Text(
-                                      'BMS Lab',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(height: size.height * 0.04,),
-                                     Text(
-                                      'Varun',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    ),
-                                     Text(
-                                      '9643213455',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    ),
-                              ],
-                            ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top:10.0,bottom: 10.0,left: 20.0, right: 10.0),
+                  child: Container(
+                    // height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                       gradient: LinearGradient(colors: [
+                            Colors.blue[400],
+                            Colors.blue[200]
+                          ]),
+                           borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey[200]),
+                    ),
+                    child:  Padding(
+                      padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
+                     /* child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [*/
+                      child:Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                      Container(
+                      // height: 95,
+                      // width: 95,
+                      // decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(55),
+                      //     border: Border.all(color: Colors.white, width: 0.5),
+                      //     color: Colors.blue[50]
+                      //     ),
+                     child:ClipRRect(
+                      borderRadius: BorderRadius.circular(55),
+                        child: Image.asset(
+                          'assets/images/user.png',
+                          // height: 95,
+                          height: size.height * 0.12,
+                          width: size.width * 0.22,
+                          fit: BoxFit.cover,
+                        )),
+                      ), Text(
+                                    'BMS Lab',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white),
+                                  ),
+                                  SizedBox(height: size.height * 0.04,),
+                                   Text(
+                                    'Varun',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white),
+                                  ),
+                                   Text(
+                                    '9643213455',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white),
+                                  ),
+                            ],
+                          ),
 
-                        /*
-                            ),*/
-                         /* ],*/
-                        ),
+                      /*
+                          ),*/
+                       /* ],*/
                       ),
                     ),
-                 /* ),*/
-                  SizedBox(height: size.height * 0.04,),
-                  /*TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.orangeAccent,
-                    isScrollable: false,
-                    dragStartBehavior:DragStartBehavior.down,
-                    tabs: [
-                      Tab(text: "PROCESS",),
-                      Tab(text: "STATEMENT",),
-                      Tab(text: "REPORTS",),
-                    ],
-                  ),*/
+                  ),
+               /* ),*/
+                SizedBox(height: size.height * 0.04,),
+                /*TabBar(
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorColor: Colors.orangeAccent,
+                  isScrollable: false,
+                  dragStartBehavior:DragStartBehavior.down,
+                  tabs: [
+                    Tab(text: "PROCESS",),
+                    Tab(text: "STATEMENT",),
+                    Tab(text: "REPORTS",),
+                  ],
+                ),*/
 
-                  
-              ],
-              ),
+
+            ],
             ),
           ),
         ),

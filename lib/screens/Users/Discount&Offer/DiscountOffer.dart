@@ -289,252 +289,251 @@ class _DiscountOfferState extends State<DiscountOffer> {
     double tileSize=80;
     double spaceTab=20;
 
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            centerTitle: true,
-            title: Row(
-              children: [
-                Text(
-                  'Discount And Offer',
-                  style: TextStyle(
-                      fontSize: 20, color: Colors.white),
-                ),
-                SizedBox(width: 70),
-                Icon(Icons.search),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
+        title: Row(
+          children: [
+            Text(
+              'Discount And Offer',
+              style: TextStyle(
+                  fontSize: 20, color: Colors.white),
             ),
-          ),
-          body: Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          right: 10.0,
+            SizedBox(width: 70),
+            Icon(Icons.search),
+          ],
+        ),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(
-                              height: 10,
+                            GestureDetector(
+                              onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color:Colors.red,child: Image.asset("assets/Hospital.png",height: 40,color: Colors.white,)),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Hospital & Doctor',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.normal,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             ),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                GestureDetector(
-                                  onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(color:Colors.red,child: Image.asset("assets/Hospital.png",height: 40,color: Colors.white,)),
-                                              SizedBox(
-                                                width: spaceTab,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  'Hospital & Doctor',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
-                                              Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
+                            GestureDetector(
+                               onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color:Colors.blue,child: Image.asset("assets/DiseaseInfo.png",height: 40,)),
+                                          SizedBox(
+                                            width: spaceTab,
                                           ),
-                                        )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
+                                          Expanded(
+                                            child: Text(
+                                              'Diagnostic & Pathalogy',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(color:Colors.blue,child: Image.asset("assets/DiseaseInfo.png",height: 40,)),
-                                              SizedBox(
-                                                width: spaceTab,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  'Diagnostic & Pathalogy',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
-                                              Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
                                           ),
-                                        )),
-                                  ),
-                                ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
 
 
-                                GestureDetector(
-                                    onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(color:Colors.red,child: Image.asset("assets/Healthdays.png",height: 40,)),
-                                              SizedBox(
-                                                width: spaceTab,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  'Pharmacy',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
-                                              Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
+                            GestureDetector(
+                                onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color:Colors.red,child: Image.asset("assets/Healthdays.png",height: 40,)),
+                                          SizedBox(
+                                            width: spaceTab,
                                           ),
-                                        )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                   onTap: () =>   Navigator.pushNamed(context, "/discountofferdetails"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
+                                          Expanded(
+                                            child: Text(
+                                              'Pharmacy',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.normal,
+                                                  fontSize: 18),
                                             ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(color:Colors.blue,child: Image.asset("assets/Healttips.png",height: 40,)),
-                                              SizedBox(
-                                                width: spaceTab,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  'Shopping',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
-                                              Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
                                           ),
-                                        )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                   onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container (color:Colors.red,child: Image.asset("assets/Videos.png",height: 40,)),
-                                              SizedBox(
-                                                width: spaceTab,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  'Other Health Service',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ),
-                                              Image.asset("assets/Forwordarrow.png",height: 25,)
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              ],
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             ),
-                            SizedBox(
-                              height: 10,
+                            GestureDetector(
+                               onTap: () =>   Navigator.pushNamed(context, "/discountofferdetails"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color:Colors.blue,child: Image.asset("assets/Healttips.png",height: 40,)),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Shopping',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.normal,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                               onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container (color:Colors.red,child: Image.asset("assets/Videos.png",height: 40,)),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'Other Health Service',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.normal,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                          Image.asset("assets/Forwordarrow.png",height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _submitButton() {

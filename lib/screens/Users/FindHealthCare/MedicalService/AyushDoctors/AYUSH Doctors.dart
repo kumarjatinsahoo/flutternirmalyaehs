@@ -19,314 +19,313 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-              title: Text(
-                'AYUSH Doctors',
-                style: TextStyle(color: AppData.white),
-              ),
-              centerTitle: true,
-              backgroundColor:AppData.kPrimaryColor,
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(
+            'AYUSH Doctors',
+            style: TextStyle(color: AppData.white),
           ),
+          centerTitle: true,
+          backgroundColor:AppData.kPrimaryColor,
+      ),
 
-          body: Column(
-            children: [
-              Container(
-                child: Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          right: 10.0,
+      body: Column(
+        children: [
+          Container(
+            child: Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    widget.model.medicallserviceType = "Ayurvada";
-                                    Navigator.pushNamed(
-                                        context, "/medicalsServiceOngooglePage");
+                            InkWell(
+                              onTap: () {
+                                widget.model.medicallserviceType = "Ayurveda";
+                                Navigator.pushNamed(
+                                    context, "/medicalsServiceOngooglePage");
 
-                                    // AppData.showInSnackBar(context,"hi");
-                                  },
+                                // AppData.showInSnackBar(context,"hi");
+                              },
 
-                                  /*widget.model.apntUserType = "ayurvada";
-                                                     Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.ac_unit,
-                                                  size: 50, color: Colors.red),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Ayurvada',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
+                              /*widget.model.apntUserType = "ayurvada";
+                                                 Navigator.pushNamed(context, "/bookanAppointmentlist"),*/
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.ac_unit,
+                                              size: 50, color: Colors.red),
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        )),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    widget.model.medicallserviceType = "Homeopathy";
-                                    Navigator.pushNamed(
-                                        context, "/medicalsServiceOngooglePage");
-                                  },
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.ac_unit,
-                                                  size: 50,
-                                                  color: AppData.kPrimaryColor),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Homeopathy',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    widget.model.medicallserviceType =
-                                        "Siddha Treatment";
-                                    Navigator.pushNamed(
-                                        context, "/medicalsServiceOngooglePage");
-                                  },
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.ac_unit,
-                                                  size: 50, color: Colors.red),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Siddha Treatment',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    widget.model.medicallserviceType = "Unani";
-                                    Navigator.pushNamed(
-                                        context, "/medicalsServiceOngooglePage");
-                                  },
-                                  //onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                        height: tileSize,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                              color: Colors.grey[300],
-                                            ),
-                                            borderRadius: BorderRadius.circular(8)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.ac_unit,
-                                                  size: 50,
-                                                  color: AppData.kPrimaryColor),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Unani',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                GestureDetector(
-                                    onTap: () {
-                                      widget.model.medicallserviceType =
-                                          "Yoga & Naturopathy";
-                                      Navigator.pushNamed(
-                                          context, "/medicalsServiceOngooglePage");
-                                    },
-                                    child: Card(
-                                      elevation: 5,
-                                      child: Container(
-                                          height: tileSize,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              border: Border.all(
-                                                color: Colors.grey[300],
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
+                                          Expanded(
+                                            child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
-                                                Icon(Icons.ac_unit,
-                                                    size: 50, color: Colors.red),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        'Yoga & Naturopathy',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.normal,
-                                                            fontSize: 18),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                Text(
+                                                  'Ayurveda',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
                                                 ),
                                               ],
                                             ),
-                                          )),
+                                          ),
+                                        ],
+                                      ),
                                     )),
-                              ],
+                              ),
                             ),
-                            SizedBox(
-                              height: 10,
+                            InkWell(
+                              onTap: () {
+                                widget.model.medicallserviceType = "Homeopathy";
+                                Navigator.pushNamed(
+                                    context, "/medicalsServiceOngooglePage");
+                              },
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.ac_unit,
+                                              size: 50,
+                                              color: AppData.kPrimaryColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Homeopathy',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             ),
+                            InkWell(
+                              onTap: () {
+                                widget.model.medicallserviceType =
+                                    "Siddha Treatment";
+                                Navigator.pushNamed(
+                                    context, "/medicalsServiceOngooglePage");
+                              },
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.ac_unit,
+                                              size: 50, color: Colors.red),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Siddha Treatment',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                widget.model.medicallserviceType = "Unani";
+                                Navigator.pushNamed(
+                                    context, "/medicalsServiceOngooglePage");
+                              },
+                              //onTap: () =>   Navigator.pushNamed(context, "/setdiscount"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.ac_unit,
+                                              size: 50,
+                                              color: AppData.kPrimaryColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Unani',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                                onTap: () {
+                                  widget.model.medicallserviceType =
+                                      "Yoga & Naturopathy";
+                                  Navigator.pushNamed(
+                                      context, "/medicalsServiceOngooglePage");
+                                },
+                                child: Card(
+                                  elevation: 5,
+                                  child: Container(
+                                      height: tileSize,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border: Border.all(
+                                            color: Colors.grey[300],
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.ac_unit,
+                                                size: 50, color: Colors.red),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Yoga & Naturopathy',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 18),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                )),
                           ],
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-    ));
+        ],
+      ),
+    );
   }
 
   Widget _submitButton() {

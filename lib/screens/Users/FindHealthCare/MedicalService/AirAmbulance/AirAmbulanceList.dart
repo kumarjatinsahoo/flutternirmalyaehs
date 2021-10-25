@@ -17,319 +17,318 @@ class _AirAmbulanceListState extends State<AirAmbulanceList> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        )),
-                    Text(
-                      'Air Ambulance ',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 20,
-                          color: Colors.white),
-                    ),
-                    Icon(Icons.search, color: Colors.white),
-                  ],
+    child: Column(
+      children: [
+        Container(
+          color: AppData.kPrimaryColor,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    )),
+                Text(
+                  'Air Ambulance ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 20,
+                      color: Colors.white),
                 ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
+                Icon(Icons.search, color: Colors.white),
+              ],
             ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
+          ),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+        ),
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 5,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
-                        SizedBox(
-                          height: 5,
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 150,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.ac_unit,
+                                      size: 50,
+                                      color: Colors.red,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'King Air Ambulance Services In Pune',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
                         ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.ac_unit,
-                                          size: 50,
-                                          color: Colors.red,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'King Air Ambulance Services In Pune',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 150,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.ac_unit,
+                                        size: 50,
+                                        color: AppData.kPrimaryColor),
+                                    SizedBox(
+                                      width: 10,
                                     ),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.ac_unit,
-                                            size: 50,
-                                            color: AppData.kPrimaryColor),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'King Air Ambulance Services In Pune',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),
-                                              ),
-                                            ],
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'King Air Ambulance Services In Pune',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.ac_unit,
-                                            size: 50, color: Colors.red),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'King Air Ambulance Services In Pune',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),
-                                              ),
-                                            ],
+                                          SizedBox(
+                                            height: 5,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.ac_unit,
-                                            size: 50,
-                                            color: AppData.kPrimaryColor),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'King Air Ambulance Services In Pune',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),
-                                              ),
-                                            ],
+                                          Text(
+                                            'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
+                                        ],
                                       ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.ac_unit,
-                                            size: 50, color: Colors.red),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'King Air Ambulance Services In Pune',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
                                     ),
-                                  )),
-                            ),
-                          ],
+                                  ],
+                                ),
+                              )),
                         ),
-                        SizedBox(
-                          height: 10,
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 150,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.ac_unit,
+                                        size: 50, color: Colors.red),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'King Air Ambulance Services In Pune',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 150,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.ac_unit,
+                                        size: 50,
+                                        color: AppData.kPrimaryColor),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'King Air Ambulance Services In Pune',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 150,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.ac_unit,
+                                        size: 50, color: Colors.red),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'King Air Ambulance Services In Pune',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Chhatrapati Shivaji Maharaj Rd,Tophakhana Revenue Colony, Shivajinagara,pune,Maharashtra 411005,India',
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   Widget _submitButton() {

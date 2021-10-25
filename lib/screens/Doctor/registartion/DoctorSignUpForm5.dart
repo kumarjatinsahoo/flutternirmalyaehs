@@ -151,130 +151,107 @@ class DoctorSignUpForm5State extends State<DoctorSignUpForm5> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGNUP"),
+        centerTitle: true,
+      ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.arrow_back, color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(
-                          MyLocalizations.of(context).text("SIGNUP"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 60.0, right: 60.0),
+                        child: Image.asset(
+                          "assets/logo1.png",
+                          fit: BoxFit.fitWidth,
+                          //width: ,
+                          height: 110.0,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                    ),
                     SizedBox(
                       height: 10,
                     ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 60.0, right: 60.0),
-                            child: Image.asset(
-                              "assets/logo1.png",
-                              fit: BoxFit.fitWidth,
-                              //width: ,
-                              height: 110.0,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Card(
-                          key: _formKey,
-                          // autovalidate: _autovalidate,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Column(
-                                children: [
-                                  Text(
-                                    MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
-                                    style: TextStyle(
-                                        fontSize: 27, color: Colors.blue),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
-                                    "Your document verification process started now . Verification will be"
-                                    " completed within 24 hours and confirmation mail will be send to your registered email id.",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                child: home(),
-                              ),
-                              SizedBox(
-                                height: 8,
+                    Card(
+                      key: _formKey,
+                      // autovalidate: _autovalidate,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Text(
+                                MyLocalizations.of(context).text("WELCM_EHEALTHSYSTEM"),
+                                style: TextStyle(
+                                    fontSize: 27, color: Colors.blue),
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "Congratultions! You have successfully registered to NCORD's eHealthSystem \n\n\n"
+                                "Your document verification process started now . Verification will be"
+                                " completed within 24 hours and confirmation mail will be send to your registered email id.",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10),
+                            child: home(),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   Widget mobileNoOTPSearch() {

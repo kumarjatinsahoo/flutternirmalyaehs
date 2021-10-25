@@ -164,267 +164,265 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            /*  Padding(
+      padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
+      child:*/Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text('SIGN UP',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                        /*Align(
-                alignment: Alignment.center,
-                child: Text('SIGN UP',textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
-              ),
-              ),*/
-                      ],
+                child: Row(/*
+        mainAxisAlignment: MainAxisAlignment.start,*/
+                  children: [
+                    InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back,color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text('SIGN UP',
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                     ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                  /*  height:*/
+                    /*Align(
+            alignment: Alignment.center,
+            child: Text('SIGN UP',textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+          ),
+          ),*/
+                  ],
                 ),
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+              /*  height:*/
+            ),
 
-                /* ),*/
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+            /* ),*/
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
 
-                                //   padding: EdgeInsets.only(
-                                //       left: size.width * 0.20, right: size.width * 0.20),
-                                //   child: Image.asset(
-                                //     "assets/icons/sanju-vector.png",
-                                //   ),
-                                // ),
+                            //   padding: EdgeInsets.only(
+                            //       left: size.width * 0.20, right: size.width * 0.20),
+                            //   child: Image.asset(
+                            //     "assets/icons/sanju-vector.png",
+                            //   ),
+                            // ),
 
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Column(
-                                        children: [
-                                          Text("Fill in personal Information (All fields are mandatory)",
-                                            style: TextStyle(fontSize: 18, color: Colors.black),),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Organization Name",
-                                          ApiFactory.BlOODBANK_ORGANISATION_API,
-                                          "bloodbank",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.BlOODBANK_ORGANISATION_API);
-                                          BloodBankSignUpForm.bloodbankModel = data;
-                                        });
-                                      }),  SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Title",
-                                          ApiFactory.TITLE_API,
-                                          "title",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.TITLE_API);
-                                          BloodBankSignUpForm.titlemodel = data;
-                                        });
-                                      }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      formField(9, "Professional's Name"),
-
-                                      SizedBox(height: 10),
-
-                                      formFieldMobile(10, " Experience(Years)"),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      formField(11, " Address"),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-
-                                      DropDown.networkDropdownGetpartUser1(
-                                          "Gender",
-                                          ApiFactory.GENDER_API,
-                                          "gender",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.GENDER_API);
-                                          BloodBankSignUpForm.genderModel = data;
-                                        });
-                                      }),
-                                      SizedBox(height: 15),
-
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: nextButton1(),
-                                      ),
-                                      // SizedBox(
-                                      //   height: 10,
-                                      // ),
-                                      // InkWell(
-                                      //     onTap: () {
-                                      //       setState(() {
-                                      //         ispartnercode = !ispartnercode;
-                                      //       });
-                                      //     },
-                                      //     child: Text(
-                                      //       MyLocalizations.of(context)
-                                      //               .text("HAVE_PARTNERCODE") +
-                                      //           "?",
-                                      //       style: TextStyle(color: Colors.blue),
-                                      //     )),
-                                      //
-                                      // SizedBox(
-                                      //   height: 10,
-                                      // ),
-                                      // Visibility(
-                                      //   visible: ispartnercode,
-                                      //   child: Padding(
-                                      //     padding:
-                                      //         const EdgeInsets.symmetric(horizontal: 25),
-                                      //     child: TextFormField(
-                                      //       decoration: InputDecoration(
-                                      //           hintText: MyLocalizations.of(context)
-                                      //               .text("PARTNERCODE"),
-                                      //           hintStyle: TextStyle(color: Colors.grey)),
-                                      //       textInputAction: TextInputAction.next,
-                                      //       keyboardType: TextInputType.text,
-                                      //       //           inputFormatters: [
-                                      //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                      //       //           ],
-                                      //     ),
-                                      //   ),
-                                      // ),
-
-                                      // Padding(
-                                      //   padding:
-                                      //       const EdgeInsets.symmetric(horizontal: 10),
-                                      //   child: Row(
-                                      //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                      //     children: [
-                                      //       Checkbox(
-                                      //         value: _checkbox,
-                                      //         onChanged: (value) {
-                                      //           setState(() {
-                                      //             _checkbox = !_checkbox;
-                                      //           });
-                                      //         },
-                                      //       ),
-                                      //       SizedBox(
-                                      //         height: 10,
-                                      //       ),
-                                      //       RichText(
-                                      //           textAlign: TextAlign.start,
-                                      //           text: TextSpan(
-                                      //             children: [
-                                      //               TextSpan(
-                                      //                 text: 'I agree to NCORDS ',
-                                      //                 /* "Welcome back",*/
-                                      //                 style: TextStyle(
-                                      //                   // fontWeight: FontWeight.w800,
-                                      //                   fontFamily: "Monte",
-                                      //                   // fontSize: 25.0,
-                                      //                   color: Colors.grey,
-                                      //                 ),
-                                      //               ),
-                                      //               TextSpan(
-                                      //                 text: 'Terms and Conditions',
-                                      //                 /* "Welcome back",*/
-                                      //                 style: TextStyle(
-                                      //                   // fontWeight: FontWeight.w500,
-                                      //                   fontFamily: "Monte",
-                                      //                   // fontSize: 25.0,
-                                      //                   color: Colors.indigo,
-                                      //                 ),
-                                      //               )
-                                      //             ],
-                                      //           )),
-                                      //     ],
-                                      //   ),
-                                      // ),
-                                      // Padding(
-                                      //   padding:
-                                      //       const EdgeInsets.symmetric(horizontal: 10),
-                                      //   child: nextButton(),
-                                      // ),
-                                      // SizedBox(
-                                      //   height: 25,
-                                      // ),
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                    children: [
+                                      Text("Fill in personal Information (All fields are mandatory)",
+                                        style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Organization Name",
+                                      ApiFactory.BlOODBANK_ORGANISATION_API,
+                                      "bloodbank",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.BlOODBANK_ORGANISATION_API);
+                                      BloodBankSignUpForm.bloodbankModel = data;
+                                    });
+                                  }),  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Title",
+                                      ApiFactory.TITLE_API,
+                                      "title",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      BloodBankSignUpForm.titlemodel = data;
+                                    });
+                                  }),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  formField(9, "Professional's Name"),
 
-                          ],),
-                      ),
-                    ],
+                                  SizedBox(height: 10),
+
+                                  formFieldMobile(10, " Experience(Years)"),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  formField(11, " Address"),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+
+                                  DropDown.networkDropdownGetpartUser1(
+                                      "Gender",
+                                      ApiFactory.GENDER_API,
+                                      "gender",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.GENDER_API);
+                                      BloodBankSignUpForm.genderModel = data;
+                                    });
+                                  }),
+                                  SizedBox(height: 15),
+
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
+                                  // InkWell(
+                                  //     onTap: () {
+                                  //       setState(() {
+                                  //         ispartnercode = !ispartnercode;
+                                  //       });
+                                  //     },
+                                  //     child: Text(
+                                  //       MyLocalizations.of(context)
+                                  //               .text("HAVE_PARTNERCODE") +
+                                  //           "?",
+                                  //       style: TextStyle(color: Colors.blue),
+                                  //     )),
+                                  //
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
+                                  // Visibility(
+                                  //   visible: ispartnercode,
+                                  //   child: Padding(
+                                  //     padding:
+                                  //         const EdgeInsets.symmetric(horizontal: 25),
+                                  //     child: TextFormField(
+                                  //       decoration: InputDecoration(
+                                  //           hintText: MyLocalizations.of(context)
+                                  //               .text("PARTNERCODE"),
+                                  //           hintStyle: TextStyle(color: Colors.grey)),
+                                  //       textInputAction: TextInputAction.next,
+                                  //       keyboardType: TextInputType.text,
+                                  //       //           inputFormatters: [
+                                  //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                  //       //           ],
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: Row(
+                                  //     //  mainAxisAlignment: MainAxisAlignment.center,
+                                  //     children: [
+                                  //       Checkbox(
+                                  //         value: _checkbox,
+                                  //         onChanged: (value) {
+                                  //           setState(() {
+                                  //             _checkbox = !_checkbox;
+                                  //           });
+                                  //         },
+                                  //       ),
+                                  //       SizedBox(
+                                  //         height: 10,
+                                  //       ),
+                                  //       RichText(
+                                  //           textAlign: TextAlign.start,
+                                  //           text: TextSpan(
+                                  //             children: [
+                                  //               TextSpan(
+                                  //                 text: 'I agree to NCORDS ',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w800,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.grey,
+                                  //                 ),
+                                  //               ),
+                                  //               TextSpan(
+                                  //                 text: 'Terms and Conditions',
+                                  //                 /* "Welcome back",*/
+                                  //                 style: TextStyle(
+                                  //                   // fontWeight: FontWeight.w500,
+                                  //                   fontFamily: "Monte",
+                                  //                   // fontSize: 25.0,
+                                  //                   color: Colors.indigo,
+                                  //                 ),
+                                  //               )
+                                  //             ],
+                                  //           )),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // Padding(
+                                  //   padding:
+                                  //       const EdgeInsets.symmetric(horizontal: 10),
+                                  //   child: nextButton(),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 25,
+                                  // ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+
+                      ],),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
 
 
-        )
     );
   }
   /*_
@@ -629,7 +627,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       onTap: () {
 
 
-        Navigator.pushNamed(context, "/pharmasignupform2");
+       // Navigator.pushNamed(context, "/pharmasignupform2");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

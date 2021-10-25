@@ -132,332 +132,331 @@ class _SetReminderOtherState extends State<SetReminderOther> {
   Widget build(BuildContext context) {
    
     dateTime = DateFormat.yMd().format(DateTime.now());
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                        )),
-                    Text(
-                      'Set Reminder',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 20),
-                    ),
-                    Icon(
-                      Icons.search,
-                    ),
-                  ],
+    child: Column(
+      children: [
+        Container(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                    )),
+                Text(
+                  'Set Reminder',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 20),
                 ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
+                Icon(
+                  Icons.search,
+                ),
+              ],
             ),
-            Expanded(
-                          child: SingleChildScrollView(
-                            child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10.0,
-                    right: 10.0,
+          ),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+        ),
+        Expanded(
+                      child: SingleChildScrollView(
+                        child: Padding(
+              padding: const EdgeInsets.only(
+                left: 10.0,
+                right: 10.0,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Type',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      // SizedBox(height: 5),
-                     DropDown.staticDropdown2(
-                                MyLocalizations.of(context).text("SELECT_TYPE"),
-                                "type",
-                                schemeList, (KeyvalueModel data) {
-                              setState(() {
-                                
-                              });
-                            }),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Title',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'Please Enter Title',
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),                     
-                     
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Reminder Time',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'How Many Times a Day',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                   
-                     DropDown.staticDropdown2(
-                                "1",
-                                "times",
-                                timesList, (KeyvalueModel data) {
-                              setState(() {
-                                
-                              });
-                            }),
+                  Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Type',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  // SizedBox(height: 5),
+                 DropDown.staticDropdown2(
+                            MyLocalizations.of(context).text("SELECT_TYPE"),
+                            "type",
+                            schemeList, (KeyvalueModel data) {
+                          setState(() {
 
-                     SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                                    'Timings',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                      ),
-                                SizedBox(height: 5,),
-                      Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: 
-                              InkWell(
-                        onTap: () {
-                          _selectTime(context);
-                        },
-                        child: TextFormField(
-                          onSaved: (String val) {
-                            _setTime = val;
-                          },
-                          enabled: false,
-                          keyboardType: TextInputType.text,
-                          controller: _timeController,
-                         
-                        ),
+                          });
+                        }),
+                  SizedBox(
+                    height: 15,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Title',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: 
-                              InkWell(
-                        onTap: () {
-                          _selectTime2(context);
-                        },
-                        child: TextFormField(
-                          onSaved: (String val) {
-                            _setTime2= val;
-                          },
-                          enabled: false,
-                          keyboardType: TextInputType.text,
-                          controller: _timeController2,
-                         
-                        ),
-                    ),
-                            ),
-                            SizedBox(width: 10,),
-                             Expanded(
-                              child: 
-                              InkWell(
-                        onTap: () {
-                          _selectTime(context);
-                        },
-                        child: TextFormField(
-                          onSaved: (String val) {
-                            _setTime3 = val;
-                          },
-                          enabled: false,
-                          keyboardType: TextInputType.text,
-                          controller: _timeController,
-                         
-                        ),
-                    ),
-                            ),
-                          ],
-                        ),
+                  ),
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Please Enter Title',
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                         child: Text(
-                                    'Frequency',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                       ),
-                        SizedBox(height: 5,),
-    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Reminder Time',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'How Many Times a Day',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+
+                 DropDown.staticDropdown2(
+                            "1",
+                            "times",
+                            timesList, (KeyvalueModel data) {
+                          setState(() {
+
+                          });
+                        }),
+
+                 SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                                'Timings',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                  ),
+                            SizedBox(height: 5,),
+                  Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
                       children: [
-                        new Radio(
-                          value: 0,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
+                        Expanded(
+                          child:
+                          InkWell(
+                    onTap: () {
+                      _selectTime(context);
+                    },
+                    child: TextFormField(
+                      onSaved: (String val) {
+                        _setTime = val;
+                      },
+                      enabled: false,
+                      keyboardType: TextInputType.text,
+                      controller: _timeController,
+
+                    ),
+                ),
                         ),
-                        new Text(
-                          'Daily',
-                          style: new TextStyle(fontSize: 16.0),
+                        SizedBox(
+                          width: 10,
                         ),
-                        new Radio(
-                          value: 1,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
+                        Expanded(
+                          child:
+                          InkWell(
+                    onTap: () {
+                      _selectTime2(context);
+                    },
+                    child: TextFormField(
+                      onSaved: (String val) {
+                        _setTime2= val;
+                      },
+                      enabled: false,
+                      keyboardType: TextInputType.text,
+                      controller: _timeController2,
+
+                    ),
+                ),
                         ),
-                        new Text(
-                          'Weekly',
-                          style: new TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        new Radio(
-                          value: 2,
-                          groupValue: _radioValue,
-                          onChanged: _handleRadioValueChange,
-                        ),
-                        new Text(
-                          'Monthly',
-                          style: new TextStyle(fontSize: 16.0),
+                        SizedBox(width: 10,),
+                         Expanded(
+                          child:
+                          InkWell(
+                    onTap: () {
+                      _selectTime(context);
+                    },
+                    child: TextFormField(
+                      onSaved: (String val) {
+                        _setTime3 = val;
+                      },
+                      enabled: false,
+                      keyboardType: TextInputType.text,
+                      controller: _timeController,
+
+                    ),
+                ),
                         ),
                       ],
                     ),
-
-                    SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Start Date',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      _selectDate(context);
-                                    },
-                                    child: TextFormField(
-                                      enabled: false,
-                                      keyboardType: TextInputType.text,
-                                      controller: _dateController,
-                                      onSaved: (String val) {
-                                        _setDate = val;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'End Date',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      _selectDate(context);
-                                    },
-                                    child: TextFormField(
-                                      enabled: false,
-                                      keyboardType: TextInputType.text,
-                                      controller: _dateController,
-                                      onSaved: (String val) {
-                                        _setDate = val;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                       SizedBox(
-                        height: 15,
-                      ),
-                       Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                         child: Text(
-                                    'Add Instruction',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                       ),
-                        SizedBox(height: 5,),
-                         Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                           child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: 'Add Doctor Instructions',
-                        ),
-                      ),
-                         ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _submitButton(),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                   Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                     child: Text(
+                                'Frequency',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                   ),
+                    SizedBox(height: 5,),
+    Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    new Radio(
+                      value: 0,
+                      groupValue: _radioValue,
+                      onChanged: _handleRadioValueChange,
+                    ),
+                    new Text(
+                      'Daily',
+                      style: new TextStyle(fontSize: 16.0),
+                    ),
+                    new Radio(
+                      value: 1,
+                      groupValue: _radioValue,
+                      onChanged: _handleRadioValueChange,
+                    ),
+                    new Text(
+                      'Weekly',
+                      style: new TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    new Radio(
+                      value: 2,
+                      groupValue: _radioValue,
+                      onChanged: _handleRadioValueChange,
+                    ),
+                    new Text(
+                      'Monthly',
+                      style: new TextStyle(fontSize: 16.0),
+                    ),
+                  ],
                 ),
+
+                SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Start Date',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _selectDate(context);
+                                },
+                                child: TextFormField(
+                                  enabled: false,
+                                  keyboardType: TextInputType.text,
+                                  controller: _dateController,
+                                  onSaved: (String val) {
+                                    _setDate = val;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'End Date',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  _selectDate(context);
+                                },
+                                child: TextFormField(
+                                  enabled: false,
+                                  keyboardType: TextInputType.text,
+                                  controller: _dateController,
+                                  onSaved: (String val) {
+                                    _setDate = val;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                   SizedBox(
+                    height: 15,
+                  ),
+                   Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 10),
+                     child: Text(
+                                'Add Instruction',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                   ),
+                    SizedBox(height: 5,),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 10),
+                       child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Add Doctor Instructions',
+                    ),
+                  ),
+                     ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _submitButton(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   Widget _submitButton() {

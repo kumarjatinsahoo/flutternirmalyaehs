@@ -17,81 +17,79 @@ class _ForgotUserIDState extends State<ForgotUserID> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-          child: Scaffold(
-            /*appBar: AppBar(
-          title: Text(
-            '',
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+    return Scaffold(
+      /*appBar: AppBar(
+    title: Text(
+      '',
+      style: TextStyle(color: Colors.black),
+    ),
+    centerTitle: true,
+    backgroundColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.black),
         ),*/
-            appBar: AppBar(
-              /*leading: BackButton(
-                color: Colors.white,
-              ),*/
-              title: Text(
-                'Forgot User ID',
-                style: TextStyle(color: Colors.white),
-              ),
-              centerTitle: true,
-              backgroundColor: AppData.kPrimaryColor,
-              iconTheme: IconThemeData(color: Colors.white),
-            ),
-           body: SingleChildScrollView(
-             child: Column(
-               mainAxisAlignment: MainAxisAlignment.center,
-               crossAxisAlignment: CrossAxisAlignment.center,
-               children: [    
-                          SizedBox(height: size.height * 0.02,),                   
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: TextFormField(
-                     decoration: InputDecoration(
-                       hintText: 'Email ID',                                                 
-                     ),
-                      inputFormatters: [
-                        //UpperCaseTextFormatter(),
-                        // ignore: deprecated_member_use
-                        WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.a-zA-Z0-9.&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
-                      ],
-                 ),
-                  ),
-                 SizedBox(height: size.height * 0.02,),
-                 Text('or', style: TextStyle(fontSize: 17, ),),
-                
-                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                     child: TextFormField(
-                       maxLength: 10,
-                       keyboardType: TextInputType.number,
-                       inputFormatters: [
-                         //UpperCaseTextFormatter(),
-                         // ignore: deprecated_member_use
-                         WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                       ],
-                     decoration: InputDecoration(
-                       hintText: 'Mobile Number',                 
-                     ),
-                 ),
-                   ),
-                
-          SizedBox(height: size.height * 0.07,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _submitButton(),
-          ),
-           
-         
-         
-                          
-             ],),
+      appBar: AppBar(
+        /*leading: BackButton(
+          color: Colors.white,
+        ),*/
+        title: Text(
+          'Forgot User ID',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+     body: SingleChildScrollView(
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+                    SizedBox(height: size.height * 0.02,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+               decoration: InputDecoration(
+                 hintText: 'Email ID',
+               ),
+                inputFormatters: [
+                  //UpperCaseTextFormatter(),
+                  // ignore: deprecated_member_use
+                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.a-zA-Z0-9.&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
+                ],
            ),
-                      
-                      
-          )  
+            ),
+           SizedBox(height: size.height * 0.02,),
+           Text('or', style: TextStyle(fontSize: 17, ),),
+
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+               child: TextFormField(
+                 maxLength: 10,
+                 keyboardType: TextInputType.number,
+                 inputFormatters: [
+                   //UpperCaseTextFormatter(),
+                   // ignore: deprecated_member_use
+                   WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                 ],
+               decoration: InputDecoration(
+                 hintText: 'Mobile Number',
+               ),
+           ),
+             ),
+
+    SizedBox(height: size.height * 0.07,),
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: _submitButton(),
+    ),
+
+
+
+
+       ],),
+     ),
+
+
     );
   }
 

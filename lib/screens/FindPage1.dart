@@ -110,224 +110,223 @@ class _FindPage1State extends State<FindPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Find',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+    title: Text(
+      'Find',
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+    centerTitle: true,
+    backgroundColor: AppData.kPrimaryColor,
+    iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/bg_img.jpg",
-                      fit: BoxFit.cover,
-                      //centerSlice: ,
-                      height: 280,
-                      width: double.maxFinite,
-                    ),
-                    /*Container(
-                      height: 250.0,
-                      decoration: BoxDecoration(
-                        color: AppData.matruColor.withOpacity(0.7),
-                      ),
-                    ),*/
-                    Container(
-                      margin:
-                      EdgeInsets.only(top: 265.0, left: 8.0, right: 8.0, bottom: .0),
-                      width: double.maxFinite,
-                      height: double.maxFinite,
-                      decoration: BoxDecoration(
-                        borderRadius: new BorderRadius.only(
-                          topLeft: const Radius.circular(8.0),
-                          topRight: const Radius.circular(8.0),
-                          bottomLeft: const Radius.circular(8.0),
-                          bottomRight: const Radius.circular(8.0),
-                        ),
-                        /*image: DecorationImage(
-                    image: AssetImage(
-                      "assets/card.png",
-                    ),
-                    fit: BoxFit.fitWidth,
-                  ),*/
-                        /*gradient: LinearGradient(
-                    colors: [AppData.matruColor, Colors.black54],
-                  ),*/
-                        color: AppData.matruColor,
-                      ),
-                      child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-
-                          SizedBox(
-                    height: 20.0,
+    child: Container(
+      child: Column(
+        children: [
+          Container(
+            child: Stack(
+              children: <Widget>[
+                Image.asset(
+                  "assets/bg_img.jpg",
+                  fit: BoxFit.cover,
+                  //centerSlice: ,
+                  height: 280,
+                  width: double.maxFinite,
+                ),
+                /*Container(
+                  height: 250.0,
+                  decoration: BoxDecoration(
+                    color: AppData.matruColor.withOpacity(0.7),
                   ),
-                          Text(
-                            'Find Healthcare Provider',
-                            style:
-                            TextStyle(fontSize: 22, fontWeight: FontWeight.w300,color: Colors.white),
-                          ),
-                          NumberformField(0,''),
-                          /*AbsorbPointer(
-                            child: TextFormField(
-                              maxLines: 3,
-                              decoration: InputDecoration(
-                                  hintText: address,
-                                  hintStyle: TextStyle(color: Colors.black)),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              inputFormatters: [
-                                WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                              ],
-                            ),
-                          ),*/
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0, right: 0.0),
-                            child: SizedBox(
-                              height: 55,
-                              child: DropDown.networkDropdownGetpart4(
-                                  "Select Healthcare Provider",
-                                  ApiFactory.HEALTHPROVIDER_API,
-                                  "healthcareProvider", (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.HEALTHPROVIDER_API);
-                                  FindPage1.healthcareProvider = data;
-                                  //DoctorconsultationPage.doctorModel = null;
-                                  // UserSignUpForm.cityModel = null;
-                                    });
-                                  }),
-                            ),
-                          ),
-                          (FindPage1.healthcareProvider != null)
-                              ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: (FindPage1.healthcareProvider.key == "1" ||
-                                FindPage1.healthcareProvider.key == "4")
-                                ? SizedBox(
-                              height: 58,
-                              child: DropDown
-                                  .networkDropdownGetpart4(
-                                  " Select Speciality",
-                                  ApiFactory.SPECIALITY_API,
-                                  "speciality", (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.SPECIALITY_API);
-                                  FindPage1.specialistModel = data;
-                                  //DoctorconsultationPage.doctorModel = null;
-                                  // UserSignUpForm.cityModel = null;
+                ),*/
+                Container(
+                  margin:
+                  EdgeInsets.only(top: 265.0, left: 8.0, right: 8.0, bottom: .0),
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  decoration: BoxDecoration(
+                    borderRadius: new BorderRadius.only(
+                      topLeft: const Radius.circular(8.0),
+                      topRight: const Radius.circular(8.0),
+                      bottomLeft: const Radius.circular(8.0),
+                      bottomRight: const Radius.circular(8.0),
+                    ),
+                    /*image: DecorationImage(
+                image: AssetImage(
+                  "assets/card.png",
+                ),
+                fit: BoxFit.fitWidth,
+              ),*/
+                    /*gradient: LinearGradient(
+                colors: [AppData.matruColor, Colors.black54],
+              ),*/
+                    color: AppData.matruColor,
+                  ),
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+
+                      SizedBox(
+                height: 20.0,
+              ),
+                      Text(
+                        'Find Healthcare Provider',
+                        style:
+                        TextStyle(fontSize: 22, fontWeight: FontWeight.w300,color: Colors.white),
+                      ),
+                      NumberformField(0,''),
+                      /*AbsorbPointer(
+                        child: TextFormField(
+                          maxLines: 3,
+                          decoration: InputDecoration(
+                              hintText: address,
+                              hintStyle: TextStyle(color: Colors.black)),
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.text,
+                          inputFormatters: [
+                            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                          ],
+                        ),
+                      ),*/
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+                        child: SizedBox(
+                          height: 55,
+                          child: DropDown.networkDropdownGetpart4(
+                              "Select Healthcare Provider",
+                              ApiFactory.HEALTHPROVIDER_API,
+                              "healthcareProvider", (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.HEALTHPROVIDER_API);
+                              FindPage1.healthcareProvider = data;
+                              //DoctorconsultationPage.doctorModel = null;
+                              // UserSignUpForm.cityModel = null;
                                 });
                               }),
-                            )
-                                : Container(),
-                          )
-                              : Container(),
-
-                      SizedBox(
-                        height: 20,
+                        ),
                       ),
-                      _submitButton(),
-                      SizedBox(
-                        height: 10,),
-                        ],
-                      ),
-                      // ),
-                    ),
-                  ],
+                      (FindPage1.healthcareProvider != null)
+                          ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: (FindPage1.healthcareProvider.key == "1" ||
+                            FindPage1.healthcareProvider.key == "4")
+                            ? SizedBox(
+                          height: 58,
+                          child: DropDown
+                              .networkDropdownGetpart4(
+                              " Select Speciality",
+                              ApiFactory.SPECIALITY_API,
+                              "speciality", (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.SPECIALITY_API);
+                              FindPage1.specialistModel = data;
+                              //DoctorconsultationPage.doctorModel = null;
+                              // UserSignUpForm.cityModel = null;
+                            });
+                          }),
+                        )
+                            : Container(),
+                      )
+                          : Container(),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _submitButton(),
+                  SizedBox(
+                    height: 10,),
+                    ],
+                  ),
+                  // ),
                 ),
-              ),
-             /* Padding(
-                padding: const EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 30,
-                    ),
-
-
-
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: SizedBox(
-                        height: 58,
-                        child: DropDown.networkDropdownGetpartUserundreline(
-                            "Select Healthcare Provider",
-                            ApiFactory.HEALTHPROVIDER_API,
-                            "healthcareProvider", (KeyvalueModel data) {
-                          setState(() {
-                            print(ApiFactory.HEALTHPROVIDER_API);
-                            FindPage.healthcareProvider = data;
-                            //DoctorconsultationPage.doctorModel = null;
-                            // UserSignUpForm.cityModel = null;
-                          });
-                        }),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    (FindPage.healthcareProvider != null)
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: (FindPage.healthcareProvider.key == "1" ||
-                                    FindPage.healthcareProvider.key == "4")
-                                ? SizedBox(
-                                    height: 58,
-                                    child: DropDown
-                                        .networkDropdownGetpartUserundreline(
-                                            " Select Speciality",
-                                            ApiFactory.SPECIALITY_API,
-                                            "speciality", (KeyvalueModel data) {
-                                      setState(() {
-                                        print(ApiFactory.SPECIALITY_API);
-                                        FindPage.specialistModel = data;
-                                        //DoctorconsultationPage.doctorModel = null;
-                                        // UserSignUpForm.cityModel = null;
-                                      });
-                                    }),
-                                  )
-                                : Container(),
-                          )
-                        : Container(),
-                    DropDown.staticDropdown2(
-                        "Select Speciality", "state", cityList,
-                        (KeyvalueModel data) {
-                      setState(() {});
-                    }),
-                    SizedBox(
-                      height: 60,
-                    ),
-                    _submitButton(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),*/
-            ],
+              ],
+            ),
           ),
-        ),
+         /* Padding(
+            padding: const EdgeInsets.only(
+              left: 20.0,
+              right: 20.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+
+
+
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child: DropDown.networkDropdownGetpartUserundreline(
+                        "Select Healthcare Provider",
+                        ApiFactory.HEALTHPROVIDER_API,
+                        "healthcareProvider", (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.HEALTHPROVIDER_API);
+                        FindPage.healthcareProvider = data;
+                        //DoctorconsultationPage.doctorModel = null;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                (FindPage.healthcareProvider != null)
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: (FindPage.healthcareProvider.key == "1" ||
+                                FindPage.healthcareProvider.key == "4")
+                            ? SizedBox(
+                                height: 58,
+                                child: DropDown
+                                    .networkDropdownGetpartUserundreline(
+                                        " Select Speciality",
+                                        ApiFactory.SPECIALITY_API,
+                                        "speciality", (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.SPECIALITY_API);
+                                    FindPage.specialistModel = data;
+                                    //DoctorconsultationPage.doctorModel = null;
+                                    // UserSignUpForm.cityModel = null;
+                                  });
+                                }),
+                              )
+                            : Container(),
+                      )
+                    : Container(),
+                DropDown.staticDropdown2(
+                    "Select Speciality", "state", cityList,
+                    (KeyvalueModel data) {
+                  setState(() {});
+                }),
+                SizedBox(
+                  height: 60,
+                ),
+                _submitButton(),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ),*/
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
   Widget NumberformField(
       int index,

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
@@ -33,6 +34,8 @@ class _IdCardPageState extends State<IdCardPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Id Card"),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),

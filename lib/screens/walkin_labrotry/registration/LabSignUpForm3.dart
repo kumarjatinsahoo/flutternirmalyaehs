@@ -219,300 +219,299 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              /*  Padding(
-            padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-            child:*/
-              Container(
-                color: AppData.kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    /*
-              mainAxisAlignment: MainAxisAlignment.start,*/
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(Icons.arrow_back, color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                        child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white,
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          /*  Padding(
+        padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
+        child:*/
+          Container(
+            color: AppData.kPrimaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Row(
+                /*
+          mainAxisAlignment: MainAxisAlignment.start,*/
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back, color: Colors.white)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                    child: Text(MyLocalizations.of(context).text("SIGNUP"),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            height: 55,
+            width: MediaQuery.of(context).size.width,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 60.0, right: 60.0),
+                    child: Image.asset(
+                      "assets/logo1.png",
+                      fit: BoxFit.fitWidth,
+                      //width: ,
+                      height: 110.0,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Form(
+                  key: _formKey,
+                  autovalidate: _autovalidate,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Column(
+                        children: [
+                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                           textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black),
                           ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      formFieldaddress(8, MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      DropDown.networkDropdownGetpartUser(
+                          MyLocalizations.of(context)
+                              .text("COUNTRY") ,
+                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.COUNTRY_API);
+                              LabSignUpForm3.countryModel = data;
+                              LabSignUpForm3.stateModel = null;
+                              LabSignUpForm3.districtModel = null;
+                              LabSignUpForm3.citymodel = null;
+
+                            });
+                          }),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("STATE") ,
+                          ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.STATE_API);
+                              LabSignUpForm3.stateModel = data;
+                              LabSignUpForm3.districtModel = null;
+                              LabSignUpForm3.citymodel = null;
+                            });
+                          }),
+
+                      SizedBox(
+                        height: 5,
+                      ),
+                      DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("DIST") ,
+                          ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.DISTRICT_API);
+                              LabSignUpForm3.districtModel = data;
+                              LabSignUpForm3.citymodel = null;
+                            });
+                          }),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      DropDown.countryList(
+                          MyLocalizations.of(context)
+                              .text("CITY") ,
+                          ApiFactory.CITY_API + (LabSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                          23.0,
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.CITY_API);
+                              LabSignUpForm3.citymodel = data;
+                             // LabSignUpForm3.districtModel = null;
+                            });
+                          }),
+
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(6,MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFielEmail(11, MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      formFieldExperience(13, MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: Row(
+                          //  mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: _checkbox,
+                              onChanged: (value) {
+                                setState(() {
+                                  _checkbox = !_checkbox;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                                child:RichText(
+                                    textAlign: TextAlign.start,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                          /* "Welcome back",*/
+                                          style: TextStyle(
+                                            // fontWeight: FontWeight.w800,
+                                            fontFamily: "Monte",
+                                            // fontSize: 25.0,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+
+                                        TextSpan(
+                                          text:MyLocalizations.of(context).text(  "T&C"),
+                                          /* "Welcome back",*/
+
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "Monte",
+                                            // fontSize: 25.0,
+                                            color: AppData
+                                                .kPrimaryColor,
+                                          ),
+                                        )
+                                      ],
+                                    ))),
+                            /*Container(
+                              child: RichText(
+                                  textAlign: TextAlign.start,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                        *//* "Welcome back",*//*
+                                        style: TextStyle(
+                                          // fontWeight: FontWeight.w800,
+                                          fontFamily: "Monte",
+                                          // fontSize: 25.0,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                        MyLocalizations.of(context).text("T&C") ,
+                                        *//* "Welcome back",*//*
+                                        style: TextStyle(
+                                          // fontWeight: FontWeight.w500,
+                                          fontFamily: "Monte",
+                                          // fontSize: 25.0,
+                                          color: Colors.indigo,
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ),*/
+                          ],
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: nextButton1(),
                       ),
                     ],
                   ),
                 ),
-                height: 55,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
+                SizedBox(
+                  height: 10,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 60.0, right: 60.0),
-                        child: Image.asset(
-                          "assets/logo1.png",
-                          fit: BoxFit.fitWidth,
-                          //width: ,
-                          height: 110.0,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Form(
-                      key: _formKey,
-                      autovalidate: _autovalidate,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                               textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          formFieldaddress(8, MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          DropDown.networkDropdownGetpartUser(
-                              MyLocalizations.of(context)
-                                  .text("COUNTRY") ,
-                              ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.COUNTRY_API);
-                                  LabSignUpForm3.countryModel = data;
-                                  LabSignUpForm3.stateModel = null;
-                                  LabSignUpForm3.districtModel = null;
-                                  LabSignUpForm3.citymodel = null;
-
-                                });
-                              }),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("STATE") ,
-                              ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.STATE_API);
-                                  LabSignUpForm3.stateModel = data;
-                                  LabSignUpForm3.districtModel = null;
-                                  LabSignUpForm3.citymodel = null;
-                                });
-                              }),
-
-                          SizedBox(
-                            height: 5,
-                          ),
-                          DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("DIST") ,
-                              ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.DISTRICT_API);
-                                  LabSignUpForm3.districtModel = data;
-                                  LabSignUpForm3.citymodel = null;
-                                });
-                              }),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          DropDown.countryList(
-                              MyLocalizations.of(context)
-                                  .text("CITY") ,
-                              ApiFactory.CITY_API + (LabSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                              23.0,
-                                  (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.CITY_API);
-                                  LabSignUpForm3.citymodel = data;
-                                 // LabSignUpForm3.districtModel = null;
-                                });
-                              }),
-
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(6,MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFielEmail(11, MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          formFieldExperience(13, MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: Row(
-                              //  mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Checkbox(
-                                  value: _checkbox,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _checkbox = !_checkbox;
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Expanded(
-                                    child:RichText(
-                                        textAlign: TextAlign.start,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                              /* "Welcome back",*/
-                                              style: TextStyle(
-                                                // fontWeight: FontWeight.w800,
-                                                fontFamily: "Monte",
-                                                // fontSize: 25.0,
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-
-                                            TextSpan(
-                                              text:MyLocalizations.of(context).text(  "T&C"),
-                                              /* "Welcome back",*/
-
-                                              style: TextStyle(
-                                                //fontWeight: FontWeight.w500,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: "Monte",
-                                                // fontSize: 25.0,
-                                                color: AppData
-                                                    .kPrimaryColor,
-                                              ),
-                                            )
-                                          ],
-                                        ))),
-                                /*Container(
-                                  child: RichText(
-                                      textAlign: TextAlign.start,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                            *//* "Welcome back",*//*
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w800,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                            MyLocalizations.of(context).text("T&C") ,
-                                            *//* "Welcome back",*//*
-                                            style: TextStyle(
-                                              // fontWeight: FontWeight.w500,
-                                              fontFamily: "Monte",
-                                              // fontSize: 25.0,
-                                              color: Colors.indigo,
-                                            ),
-                                          )
-                                        ],
-                                      )),
-                                ),*/
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: nextButton1(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
-    ));
+    ),
+      ),
+    );
   }
 
   Widget mobileNoOTPSearch() {

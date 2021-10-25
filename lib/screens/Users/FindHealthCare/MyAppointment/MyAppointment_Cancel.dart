@@ -1,3 +1,4 @@
+import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:user/models/AppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -173,14 +174,14 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                     child: Padding(
                                                                       padding: const EdgeInsets.all(8.0),
                                                                       child: Image.asset(
-                                                                        'assets/images/user.png',
+                                                                        'assets/images/dprofile.png',
                                                                         height: size.height * 0.07,
                                                                         width: size.width * 0.13,
                                                                         //fit: BoxFit.cover,
                                                                       ),
                                                                     )),
                                                               ),
-                                                              SizedBox(width:10,),
+                                                              SizedBox(width:20,),
                                                               Column(
                                                                 crossAxisAlignment:
                                                                 CrossAxisAlignment
@@ -196,6 +197,39 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                         FontWeight
                                                                             .bold,
                                                                         fontSize: 18),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        appointmentlist
+                                                                            .docedu ??
+                                                                            "N/A",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),  Text(
+                                                                        "  Exp ",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),  Text(
+                                                                        appointmentlist
+                                                                            .docexp??
+                                                                            "N/A",
+                                                                        overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                        style:
+                                                                        TextStyle(),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                   SizedBox(
                                                                     height: 5,
@@ -235,11 +269,20 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                         color: Colors
                                                                             .blue),
                                                                   ),
+                                                                  RatingBar.readOnly(
+                                                                    filledIcon: Icons.star,
+                                                                    emptyIcon: Icons.star_border,
+                                                                    initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
+                                                                    maxRating: 5,
+                                                                    filledColor: Colors.green,
+                                                                  )
+
+
                                                                 ],
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(width: 20,),
+                                                        //  SizedBox(width: 10,),
                                                           /*new Spacer(),*/
                                                           Padding(
                                                             padding:
@@ -273,7 +316,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                           ),
                                                           Text(
                                                             /*'23-Nov-2020-11:30AM'*/
-                                                            "Nayapali,bbsr,odisha,india",
+                                                            appointmentlist.dochospital,
                                                             overflow:
                                                             TextOverflow
                                                                 .clip,

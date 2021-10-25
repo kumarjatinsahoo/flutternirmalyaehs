@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
@@ -1518,8 +1519,7 @@ class DropDown {
       case "cityU":
         return UserSignUpForm.cityModel;
         break;
-        break;
-      case "stateDA":
+        case "stateDA":
         return DoctorconsultationPage.stateModel;
       case "districtDA":
         return DoctorconsultationPage.distrModel;
@@ -1527,6 +1527,14 @@ class DropDown {
       case "cityDA":
         return DoctorconsultationPage.cityModel;
         break;
+        break;
+      case "state_Amb":
+        return AmbulanceSignUpForm2.stateModel;
+      case "district_Amb":
+        return AmbulanceSignUpForm2.districtModel;
+        break;
+      case "city_Amb":
+        return AmbulanceSignUpForm2.citymodel;
 
     }
   }
@@ -1785,10 +1793,20 @@ class DropDown {
           case "districtDA":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
-          case "cityDA":
+            case "cityDA":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "state_Amb":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district_Amb":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city_Amb":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+
             case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -1807,6 +1825,7 @@ class DropDown {
           case "test":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+
         }
 
         return list;

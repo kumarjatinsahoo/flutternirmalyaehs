@@ -95,423 +95,419 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Dashboard",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          titleSpacing: 5,
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: AppData.kPrimaryColor,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.white),
         ),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  // height: 120,
-                  color: AppData.kPrimaryColor,
-                  width: double.infinity,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: size.height * 0.07,
-                          width: size.width * 0.13,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(55),
-                              border:
-                                  Border.all(color: Colors.white, width: 0.5),
-                              color: Colors.white),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Image.asset(
-                                'assets/images/user.png',
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "PHARMACY " ,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              loginResponse.body.userName,
-
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                ListTile(
-                    leading: Icon(Icons.dashboard,
-                        color: Colors.grey, size: 27),
-                    title: Text('Dashboard'),
-                    selected: _selectedDestination == 0,
-                    onTap: () {
-                      selectDestination(0);
-                      Navigator.pushNamed(context, "/dashboardpharmacy");
-                    }
-                    // onTap: (){},
-                    ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/myprofile.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  title: Text('My Profile'),
-                  selected: _selectedDestination == 1,
-                  onTap: () {
-                    selectDestination(1);
-                    Navigator.pushNamed(context, "/pharmaprofile");
-                    //Navigator.pushNamed(context, "/profileScreen1");
-                  },
-                ),
-               // Divider(),
-             /*   ListTile(
-                  leading: Image.asset(
-                    "assets/images/home.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Home'),
-                  selected: _selectedDestination == 2,
-                  onTap: () {
-                    selectDestination(2);
-                    //Navigator.pushNamed(context, "/profile");
-                    Navigator.pushNamed(context, "/dashboardpharmacy");
-                  },
-                ),*/
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/account.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Manage Account'),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    // Navigator.pushNamed(context, "/patientDashboard");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/aboutus.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('About Us'),
-                  selected: _selectedDestination == 4,
-                  onTap: () {
-                    selectDestination(4);
-                    // Navigator.pushNamed(context, "/profile");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/share.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Share'),
-                    selected: _selectedDestination == 5,
-                    onTap: () {
-                      selectDestination(5);
-                      // Navigator.pushNamed(context, "/dashboard1");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/contact us.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Contact Us'),
-                    selected: _selectedDestination == 6,
-                    onTap: () {
-                      selectDestination(6);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/support.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Support'),
-                    selected: _selectedDestination == 7,
-                    onTap: () {
-                      selectDestination(7);
-                      //Navigator.pushNamed(context, "/signUpForm");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/reminder.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Reminder'),
-                    selected: _selectedDestination == 8,
-                    onTap: () {
-                      selectDestination(8);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
-                  selected: _selectedDestination == 10,
-                  onTap: () {
-                    selectDestination(10);
-                    //Navigator.pushNamed(context, "/dashboard");
-                    // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
-                    //   _exitApp();
-                    /* else
-                      initUniqueIdentifierState();*/
-                    _exitApp();
-                  },
-                  /*  onTap: () {
-
-                    selectDestination(10);
-                    Navigator.pushNamed(context, "/login");
-                  },*/
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: _dashboardnew(context),
+        centerTitle: true,
+        titleSpacing: 5,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: AppData.kPrimaryColor,
+        elevation: 0,
       ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                // height: 120,
+                color: AppData.kPrimaryColor,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.13,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border:
+                                Border.all(color: Colors.white, width: 0.5),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Image.asset(
+                              'assets/images/user.png',
+                              height: size.height * 0.07,
+                              width: size.width * 0.13,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "PHARMACY " ,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                            loginResponse.body.userName,
+
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                  leading: Icon(Icons.dashboard,
+                      color: Colors.grey, size: 27),
+                  title: Text('Dashboard'),
+                  selected: _selectedDestination == 0,
+                  onTap: () {
+                    selectDestination(0);
+                    Navigator.pushNamed(context, "/dashboardpharmacy");
+                  }
+                  // onTap: (){},
+                  ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/myprofile.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                title: Text('My Profile'),
+                selected: _selectedDestination == 1,
+                onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/pharmaprofile");
+                  //Navigator.pushNamed(context, "/profileScreen1");
+                },
+              ),
+             // Divider(),
+           /*   ListTile(
+                leading: Image.asset(
+                  "assets/images/home.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
+                selected: _selectedDestination == 2,
+                onTap: () {
+                  selectDestination(2);
+                  //Navigator.pushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/dashboardpharmacy");
+                },
+              ),*/
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/account.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
+                selected: _selectedDestination == 3,
+                onTap: () {
+                  selectDestination(3);
+                  // Navigator.pushNamed(context, "/patientDashboard");
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/aboutus.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('About Us'),
+                selected: _selectedDestination == 4,
+                onTap: () {
+                  selectDestination(4);
+                  // Navigator.pushNamed(context, "/profile");
+                },
+              ),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/share.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  onTap: () {
+                    selectDestination(5);
+                    // Navigator.pushNamed(context, "/dashboard1");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/contact us.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Contact Us'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(6);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Support'),
+                  selected: _selectedDestination == 7,
+                  onTap: () {
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/signUpForm");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/reminder.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Reminder'),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+                selected: _selectedDestination == 10,
+                onTap: () {
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/dashboard");
+                  // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                  //   _exitApp();
+                  /* else
+                    initUniqueIdentifierState();*/
+                  _exitApp();
+                },
+                /*  onTap: () {
+
+                  selectDestination(10);
+                  Navigator.pushNamed(context, "/login");
+                },*/
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: _dashboardnew(context),
     );
   }
 
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        height: double.maxFinite,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 20.0, right: 10, left: 10, bottom: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                icon: "assets/Myorder1.png",
-                                title: "My Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/myorder");
-                                  //Navigator.pushNamed(context, "/walkRegList");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                icon: "assets/ConOrder.png",
-                                title: " Confirmed Order ",
-                                fun: () {
-                                  //chooseAppointment(context);
-                                  Navigator.pushNamed(context, "/confirmorder");
-                                  },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/ProcessOrder.png",
-                                title: "Processed Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/processedorders");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+    return Container(
+      color: Colors.white,
+      height: double.maxFinite,
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 20.0, right: 10, left: 10, bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/DeliverdOrder.png",
-                              title: "Delivered Order",
+                              icon: "assets/Myorder1.png",
+                              title: "My Orders",
                               fun: () {
-                                //chooseAppointment1(context);
-                               Navigator.pushNamed(context, "/deliverdorder");
+                                Navigator.pushNamed(context, "/myorder");
+                                //Navigator.pushNamed(context, "/walkRegList");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Invoices.png",
-                                title: "Invoices",
-                                fun: () {
-
-                                //  Navigator.pushNamed(context, "/paymentcollection");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+                          ]),
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/monthlyoverview2.png",
-                              title: "Monthly Overview",
+                              icon: "assets/ConOrder.png",
+                              title: " Confirmed Order ",
                               fun: () {
-                                 Navigator.pushNamed(context, "/monthloveryview");
+                                //chooseAppointment(context);
+                                Navigator.pushNamed(context, "/confirmorder");
+                                },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              // ,
+                            ),
+                          ]),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              //icon: Icons.document_scanner,
+                              icon: "assets/ProcessOrder.png",
+                              title: "Processed Orders",
+                              fun: () {
+                                Navigator.pushNamed(context, "/processedorders");
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Discount.png",
-                                title: "Discount & Offer",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/setdiscount");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/DeliverdOrder.png",
+                            title: "Delivered Order",
+                            fun: () {
+                              //chooseAppointment1(context);
+                             Navigator.pushNamed(context, "/deliverdorder");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/chat 1.png",
-                              title: "Online Chat",
+                              //icon: Icons.document_scanner,
+                              icon: "assets/Invoices.png",
+                              title: "Invoices",
                               fun: () {
-                                //chooseAppointment1(context);
-                                  Navigator.pushNamed(context, "/onlinechats");
+
+                              //  Navigator.pushNamed(context, "/paymentcollection");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     _buildTile2(
-                    //       //icon: Icons.document_scanner,
-                    //       icon: CupertinoIcons.settings_solid,
-                    //       title: "Updation Data",
-                    //       fun: () {
-                    //         Navigator.pushNamed(context, "/testappointmentpage1");
-                    //       },
-                    //       color: AppData.BG1RED,
-                    //       bordercolor: AppData.BG1RED,
-                    //       // ,
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                ),
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTilered(
+                            icon: "assets/monthlyoverview2.png",
+                            title: "Monthly Overview",
+                            fun: () {
+                               Navigator.pushNamed(context, "/monthloveryview");
+                            },
+                            color: AppData.BG1RED,
+                            bordercolor: AppData.BG1RED,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              //icon: Icons.document_scanner,
+                              icon: "assets/Discount.png",
+                              title: "Discount & Offer",
+                              fun: () {
+                                Navigator.pushNamed(context, "/setdiscount");
+                              },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              // ,
+                            ),
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/chat 1.png",
+                            title: "Online Chat",
+                            fun: () {
+                              //chooseAppointment1(context);
+                                Navigator.pushNamed(context, "/onlinechats");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //   children: [
+                  //     _buildTile2(
+                  //       //icon: Icons.document_scanner,
+                  //       icon: CupertinoIcons.settings_solid,
+                  //       title: "Updation Data",
+                  //       fun: () {
+                  //         Navigator.pushNamed(context, "/testappointmentpage1");
+                  //       },
+                  //       color: AppData.BG1RED,
+                  //       bordercolor: AppData.BG1RED,
+                  //       // ,
+                  //     ),
+                  //   ],
+                  // ),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

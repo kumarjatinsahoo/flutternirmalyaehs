@@ -587,105 +587,104 @@ List<String> imageSliders = [
 
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        height: double.maxFinite,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 560,
-                child: PageView(
-                  controller: _controller,
-                  children: [
-                    MyPage1Widget(
-                      model: widget.model,
-                    ),
-                    MyPage2Widget(),
-                  ],
-                ),
+    return Container(
+      color: Colors.white,
+      height: double.maxFinite,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 560,
+              child: PageView(
+                controller: _controller,
+                children: [
+                  MyPage1Widget(
+                    model: widget.model,
+                  ),
+                  MyPage2Widget(),
+                ],
               ),
-              PageIndicator(
-                length: 2,
-                pageController: _controller,
-                currentColor: Colors.grey,
-                normalColor: Colors.black12,
-              ),
-              CarouselSlider(
-                options: CarouselOptions(
-                    height: size.height*0.4,
-                    autoPlay: true,
-                    pageSnapping: true,
-                    viewportFraction: 1,
-                    scrollDirection: Axis.horizontal,
-                    disableCenter: true,
-                    autoPlayInterval: Duration(seconds: 10),
-                    //autoPlayAnimationDuration: Duration(seconds: 90),
-                    pauseAutoPlayInFiniteScroll: true,
-                    onPageChanged: (index, reason) {
-                      setState(
-                        () {
-                          _currentIndex = index;
-                        },
-                      );
-                    }),
-                items: imageSliders
-                    .map((item) => InkWell(
-                          onTap: () {
-                            int index = imageSliders.indexOf(item);
-                            //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
-                            switch (index) {
-                              case 0:
-                                /*AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=CmPGUBJZqlA");
-                                break;
-                              case 1:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                                break;
-                              case 4:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=axzWoVaF4N4");
-                                break;
-                              case 7:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=ckYGlJwCmlg");
-                                break;
+            ),
+            PageIndicator(
+              length: 2,
+              pageController: _controller,
+              currentColor: Colors.grey,
+              normalColor: Colors.black12,
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                  height: 210,
+                  autoPlay: true,
+                  pageSnapping: true,
+                  viewportFraction: 1,
+                  scrollDirection: Axis.horizontal,
+                  disableCenter: true,
+                  autoPlayInterval: Duration(seconds: 10),
+                  //autoPlayAnimationDuration: Duration(seconds: 90),
+                  pauseAutoPlayInFiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                      () {
+                        _currentIndex = index;
+                      },
+                    );
+                  }),
+              items: imageSliders
+                  .map((item) => InkWell(
+                        onTap: () {
+                          int index = imageSliders.indexOf(item);
+                          //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
+                          switch (index) {
+                            case 0:
+                              /*AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
+                              AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=CmPGUBJZqlA");
+                              break;
+                            case 1:
+                              AppData.launchURL(
+                                  "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                              break;
+                            case 4:
+                              AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=axzWoVaF4N4");
+                              break;
+                            case 7:
+                              AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=ckYGlJwCmlg");
+                              break;
 
-                              case 9:
-                                AppData.launchURL(
-                                    "https://youtu.be/0eV8xuExrA4");
-                                break;
-                              case 10:
-                                AppData.launchURL(
-                                    "https://www.youtube.com/watch?v=3F5Esq71WUQ");
-                                break;
-                            }
-                          },
+                            case 9:
+                              AppData.launchURL(
+                                  "https://youtu.be/0eV8xuExrA4");
+                              break;
+                            case 10:
+                              AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=3F5Esq71WUQ");
+                              break;
+                          }
+                        },
+                        child: Container(
                           child: Container(
-                            child: Container(
-                              margin: EdgeInsets.all(10),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                child: Stack(
-                                  children: [
-                                    Image.asset(
-                                      item,
-                                      fit: BoxFit.fill,
-                                      width: 1000,
-                                      height: double.maxFinite,
-                                      //height: 100,
-                                    ),
-                                    /* Image.network(
-                                         item.bannerImage,
-                                         fit: BoxFit.fill,
-                                         width: 1000,
-                                         height: double.maxFinite,
-                                       ),*/
+                            margin: EdgeInsets.all(10),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    item,
+                                    fit: BoxFit.fill,
+                                    width: 1000,
+                                    height: double.maxFinite,
+                                    //height: 100,
+                                  ),
+                                  /* Image.network(
+                                       item.bannerImage,
+                                       fit: BoxFit.fill,
+                                       width: 1000,
+                                       height: double.maxFinite,
+                                     ),*/
 
                                     Positioned(
                                       bottom: 0,

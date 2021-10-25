@@ -213,254 +213,252 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                      ],
+                child: Row(
+                  children: [
+                    InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back,color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text(MyLocalizations.of(context).text("SIGNUP"),
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                     ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
+                  ],
                 ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                    children: [
+                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        style: TextStyle(fontSize: 18, color: Colors.black),),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5,),
+
+                                //  formFieldaddress(8, "Address"),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("COUNTRY") ,
+                                      ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.COUNTRY_API);
+                                          PharmaSignUpForm3.countryModel = data;
+                                          PharmaSignUpForm3.stateModel = null;
+
+                                        });
+                                      }),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("STATE") ,
+                                      ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.STATE_API);
+                                          PharmaSignUpForm3.stateModel = data;
+                                          PharmaSignUpForm3.districtModel = null;
+                                        });
+                                      }),
+
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("DIST") ,
+                                      ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.DISTRICT_API);
+                                          PharmaSignUpForm3.districtModel = data;
+                                          PharmaSignUpForm3.citymodel = null;
+                                        });
+                                      }),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("CITY") ,
+                                      ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.CITY_API);
+                                          PharmaSignUpForm3.citymodel = data;
+                                          // LabSignUpForm3.districtModel = null;
+                                        });
+                                      }),
+
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+                                  formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+
+                                  formFieldMobile(10,  MyLocalizations.of(context).text("MOBILE_NO")),
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+                                  formFielEmail(11, MyLocalizations.of(context).text("EMAILID")),
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Text(MyLocalizations.of(context).text("UPLOAD_PHOTO"),
+                                            style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                        ),
+
+                                      ],
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Column(
-                                        children: [
-                                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                            style: TextStyle(fontSize: 18, color: Colors.black),),
-                                        ],
-                                      ),
-                                      SizedBox(height: 5,),
-
-                                    //  formFieldaddress(8, "Address"),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("COUNTRY") ,
-                                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.COUNTRY_API);
-                                              PharmaSignUpForm3.countryModel = data;
-                                              PharmaSignUpForm3.stateModel = null;
-
-                                            });
-                                          }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("STATE") ,
-                                          ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.STATE_API);
-                                              PharmaSignUpForm3.stateModel = data;
-                                              PharmaSignUpForm3.districtModel = null;
-                                            });
-                                          }),
-
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("DIST") ,
-                                          ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.DISTRICT_API);
-                                              PharmaSignUpForm3.districtModel = data;
-                                              PharmaSignUpForm3.citymodel = null;
-                                            });
-                                          }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser(
-                                          MyLocalizations.of(context)
-                                              .text("CITY") ,
-                                          ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                                          23.0,
-                                              (KeyvalueModel data) {
-                                            setState(() {
-                                              print(ApiFactory.CITY_API);
-                                              PharmaSignUpForm3.citymodel = data;
-                                              // LabSignUpForm3.districtModel = null;
-                                            });
-                                          }),
-
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-
-                                      formFieldMobile(10,  MyLocalizations.of(context).text("MOBILE_NO")),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      formFielEmail(11, MyLocalizations.of(context).text("EMAILID")),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Text(MyLocalizations.of(context).text("UPLOAD_PHOTO"),
-                                                style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                            ),
-
-                                          ],
-                                        ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Text(
-                                              MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                  Column(
+                                    children: [
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10),
-                                        child: Row(
-                                          //  mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Checkbox(
-                                              value: _checkbox,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _checkbox = !_checkbox;
-                                                });
-                                              },
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            RichText(
-                                                textAlign: TextAlign.start,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                                      /* "Welcome back",*/
-                                                      style: TextStyle(
-                                                        // fontWeight: FontWeight.w800,
-                                                        fontFamily: "Monte",
-                                                        // fontSize: 25.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text:
-                                                      MyLocalizations.of(context).text("T&C") ,
-                                                      /* "Welcome back",*/
-                                                      style: TextStyle(
-                                                        // fontWeight: FontWeight.w500,
-                                                        fontFamily: "Monte",
-                                                        // fontSize: 25.0,
-                                                        color: Colors.indigo,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
-                                          ],
+                                        child: Text(
+                                          MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: nextButton1(),
                                       ),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      //  mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Checkbox(
+                                          value: _checkbox,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _checkbox = !_checkbox;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        RichText(
+                                            textAlign: TextAlign.start,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
+                                                  /* "Welcome back",*/
+                                                  style: TextStyle(
+                                                    // fontWeight: FontWeight.w800,
+                                                    fontFamily: "Monte",
+                                                    // fontSize: 25.0,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text:
+                                                  MyLocalizations.of(context).text("T&C") ,
+                                                  /* "Welcome back",*/
+                                                  style: TextStyle(
+                                                    // fontWeight: FontWeight.w500,
+                                                    fontFamily: "Monte",
+                                                    // fontSize: 25.0,
+                                                    color: Colors.indigo,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10,),
 
-                          ],),
-                      ),
-                    ],
+                      ],),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
 
 
-        )
     );
   }
   /*_

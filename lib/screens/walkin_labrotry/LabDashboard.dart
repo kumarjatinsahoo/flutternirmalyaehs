@@ -104,436 +104,434 @@ class _LabDashboardState extends State<LabDashboard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Dashboard",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          titleSpacing: 5,
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: AppData.kPrimaryColor,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.white),
         ),
-        body:  Container(
-          padding: EdgeInsets.symmetric(horizontal: 7),
+        centerTitle: true,
+        titleSpacing: 5,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: AppData.kPrimaryColor,
+        elevation: 0,
+      ),
+      body:  Container(
+        padding: EdgeInsets.symmetric(horizontal: 7),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon:"assets/images/registerpatient.png",
+                        iconcolor: AppData.BG2BLUE,
+                        fun: () {
+                          //AppData.showInSnackBar(context, "Coming soon");
+                          // Navigator.pushNamed(context, "/medicalrecordpage");
+                          Navigator.pushNamed(context, "/walkRegList");
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        // ,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("Register Patient",
+                          // MyLocalizations.of(context).text("My Orders"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+
+                /* Expanded(*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/appointmentlab.png",
+                        fun: () {
+                          chooseAppointment(context);
+                          // Navigator.pushNamed(context, "/myAppointment");
+                          //Navigator.pushNamed(context, "/ordersPharma");
+                        },
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("Appointment",
+                          // MyLocalizations.of(context).text("Confirmed Order"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon: "assets/images/pocreports.png",
+                        fun: () {
+                          //chooseAppointment(context, model);
+                          //Navigator.pushNamed(context, "/userAppoint");
+                          // Navigator.pushNamed(context, "/myAppointment");
+                          /*Navigator.pushNamed(
+                                    context, "/medipedia");*/
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                          Navigator.pushNamed(context, "/pocreportlist");
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("POC Reports",
+                          // MyLocalizations.of(context).text("Processed Orders"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                      alignment: Alignment.center,
+                                      child: Expanded(
+                                        child: Text(
+                                          "Govternment Schemes",
+                                          style: TextStyle(color: Colors.black),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),*/
+                    ]),
+
+              ],
+            ),
+            SizedBox(height: 7,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/testlab.png",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "Coming Soon");
+                          Navigator.pushNamed(context, "/testappointmentpage");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text("Test",
+/*
+                          MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Health               chat",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                /*Expanded(
+                            child:*/
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTileblue(
+                        icon:"assets/images/orderslab.png",
+                        //icon: FontAwesomeIcons.accusoft,
+                        title: "My Orders",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "/myOrderTest");
+                          Navigator.pushNamed(context, "/myOrderTest");
+                          // AppData.showSnack(
+                          //     context, "Coming soon", Colors.green);
+                        },
+                        color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        /* child: Expanded(*/
+                        child: Text("My Orders",
+                          // MyLocalizations.of(context).text("Invoices"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  width: 5,
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTilered(
+                        icon: "assets/images/datalab.png",
+                        fun: () {
+                          // AppData.showInSnackDone(context, "Coming Soon");
+                          Navigator.pushNamed(context, "/testappointmentpage1");
+                          //AppData.showInSnackBar(context, "Coming soon");
+                        },
+                        //color: AppData.BG2BLUE,
+                        color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,
+                        size: 100 / 3,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 35,
+                        child: Text("Updation Data",
+                          // MyLocalizations.of(context).text("Monthly Overview"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+
+                    ]),
+              ],
+            ),
+            SizedBox(height: 50),
+
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 15,
+              Container(
+                // height: 120,
+                color: AppData.kPrimaryColor,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.13,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border:
+                                Border.all(color: Colors.white, width: 0.5),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Image.asset(
+                              'assets/images/user.png',
+                              height: size.height * 0.07,
+                              width: size.width * 0.13,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Hi " + loginResponse.body.userName,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon:"assets/images/registerpatient.png",
-                          iconcolor: AppData.BG2BLUE,
-                          fun: () {
-                            //AppData.showInSnackBar(context, "Coming soon");
-                            // Navigator.pushNamed(context, "/medicalrecordpage");
-                            Navigator.pushNamed(context, "/walkRegList");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          // ,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Register Patient",
-                            // MyLocalizations.of(context).text("My Orders"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
+              ListTile(
+                  leading: Icon(Icons.dashboard),
+                  title: Text('Dashboard'),
+                  selected: _selectedDestination == 0,
+                  onTap: () {
+                    selectDestination(0);
+                    Navigator.pushNamed(context, "/patientDashboard");
+                  }
+                  // onTap: (){},
 
-                  /* Expanded(*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/appointmentlab.png",
-                          fun: () {
-                            chooseAppointment(context);
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            //Navigator.pushNamed(context, "/ordersPharma");
-                          },
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Appointment",
-                            // MyLocalizations.of(context).text("Confirmed Order"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Govternment Schemes",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
                   ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/pocreports.png",
-                          fun: () {
-                            //chooseAppointment(context, model);
-                            //Navigator.pushNamed(context, "/userAppoint");
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            /*Navigator.pushNamed(
-                                      context, "/medipedia");*/
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                            Navigator.pushNamed(context, "/pocreportlist");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("POC Reports",
-                            // MyLocalizations.of(context).text("Processed Orders"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Govternment Schemes",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                      ]),
-
-                ],
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('My Profile'),
+                selected: _selectedDestination == 1,
+                onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/labprofile");
+                  //Navigator.pushNamed(context, "/profileScreen1");
+                },
               ),
-              SizedBox(height: 7,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/testlab.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/testappointmentpage");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Test",
-/*
-                            MyLocalizations.of(context).text("Deliverd Order").toString(),
-*/
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  /*Expanded(
-                              child:*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon:"assets/images/orderslab.png",
-                          //icon: FontAwesomeIcons.accusoft,
-                          title: "My Orders",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "/myOrderTest");
-                            Navigator.pushNamed(context, "/myOrderTest");
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("My Orders",
-                            // MyLocalizations.of(context).text("Invoices"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/datalab.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/testappointmentpage1");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Updation Data",
-                            // MyLocalizations.of(context).text("Monthly Overview"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-
-                      ]),
-                ],
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Notifications'),
+                selected: _selectedDestination == 2,
+                onTap: () {
+                  selectDestination(2);
+                  // Navigator.pushNamed(context, "/Notifications");
+                },
               ),
-              SizedBox(height: 50),
+              ListTile(
+                leading: Icon(Icons.notifications),
+                selected: _selectedDestination == 3,
+                onTap: () {
+                  selectDestination(3);
+                  //Navigator.pushNamed(context, "/onlinechats");
+                },
 
+                title: Text('Online Chat'),
+                // onTap: () {
+                // },
+              ),
+              ListTile(
+                leading: Icon(Icons.help_center),
+                selected: _selectedDestination == 4,
+                onTap: () {
+                  selectDestination(4);
+                  // Navigator.pushNamed(context, "/onlinechats");
+                },
+
+                title: Text('Help'),
+                // onTap: () {
+                // },
+              ),
+              ListTile(
+                leading: Icon(Icons.share),
+                title: Text('Share'),
+                selected: _selectedDestination == 5,
+                onTap: () => selectDestination(5),
+              ),
+              ListTile(
+                  leading: Icon(Icons.collections),
+                  title: Text('My Orders'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(6);
+                    //Navigator.pushNamed(context, "/myorder");
+                  }),
+              ListTile(
+                  leading: Icon(Icons.calendar_today),
+                  title: Text('Monthly Overview'),
+                  selected: _selectedDestination == 7,
+                  onTap: () {
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/monthlyview");
+                  }),
+              ListTile(
+                  leading: Icon(Icons.healing),
+                  title: Text('Processed Orders'),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/processedorders");
+                  }),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Set Discount and Offer'),
+                selected: _selectedDestination == 9,
+                onTap: () {
+                  selectDestination(9);
+                  //Navigator.pushNamed(context, "/setdiscount");
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+                selected: _selectedDestination == 10,
+                onTap: () {
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/dashboard");
+                  // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                  //   _exitApp();
+                  /* else
+                    initUniqueIdentifierState();*/
+                  _exitApp();
+                },
+                /*  onTap: () {
+
+                  selectDestination(10);
+                  Navigator.pushNamed(context, "/login");
+                },*/
+              ),
             ],
           ),
         ),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  // height: 120,
-                  color: AppData.kPrimaryColor,
-                  width: double.infinity,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: size.height * 0.07,
-                          width: size.width * 0.13,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(55),
-                              border:
-                                  Border.all(color: Colors.white, width: 0.5),
-                              color: Colors.white),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Image.asset(
-                                'assets/images/user.png',
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Hi " + loginResponse.body.userName,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                ListTile(
-                    leading: Icon(Icons.dashboard),
-                    title: Text('Dashboard'),
-                    selected: _selectedDestination == 0,
-                    onTap: () {
-                      selectDestination(0);
-                      Navigator.pushNamed(context, "/patientDashboard");
-                    }
-                    // onTap: (){},
-
-                    ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('My Profile'),
-                  selected: _selectedDestination == 1,
-                  onTap: () {
-                    selectDestination(1);
-                    Navigator.pushNamed(context, "/labprofile");
-                    //Navigator.pushNamed(context, "/profileScreen1");
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Notifications'),
-                  selected: _selectedDestination == 2,
-                  onTap: () {
-                    selectDestination(2);
-                    // Navigator.pushNamed(context, "/Notifications");
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.notifications),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    //Navigator.pushNamed(context, "/onlinechats");
-                  },
-
-                  title: Text('Online Chat'),
-                  // onTap: () {
-                  // },
-                ),
-                ListTile(
-                  leading: Icon(Icons.help_center),
-                  selected: _selectedDestination == 4,
-                  onTap: () {
-                    selectDestination(4);
-                    // Navigator.pushNamed(context, "/onlinechats");
-                  },
-
-                  title: Text('Help'),
-                  // onTap: () {
-                  // },
-                ),
-                ListTile(
-                  leading: Icon(Icons.share),
-                  title: Text('Share'),
-                  selected: _selectedDestination == 5,
-                  onTap: () => selectDestination(5),
-                ),
-                ListTile(
-                    leading: Icon(Icons.collections),
-                    title: Text('My Orders'),
-                    selected: _selectedDestination == 6,
-                    onTap: () {
-                      selectDestination(6);
-                      //Navigator.pushNamed(context, "/myorder");
-                    }),
-                ListTile(
-                    leading: Icon(Icons.calendar_today),
-                    title: Text('Monthly Overview'),
-                    selected: _selectedDestination == 7,
-                    onTap: () {
-                      selectDestination(7);
-                      //Navigator.pushNamed(context, "/monthlyview");
-                    }),
-                ListTile(
-                    leading: Icon(Icons.healing),
-                    title: Text('Processed Orders'),
-                    selected: _selectedDestination == 8,
-                    onTap: () {
-                      selectDestination(8);
-                      //Navigator.pushNamed(context, "/processedorders");
-                    }),
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Set Discount and Offer'),
-                  selected: _selectedDestination == 9,
-                  onTap: () {
-                    selectDestination(9);
-                    //Navigator.pushNamed(context, "/setdiscount");
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
-                  selected: _selectedDestination == 10,
-                  onTap: () {
-                    selectDestination(10);
-                    //Navigator.pushNamed(context, "/dashboard");
-                    // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
-                    //   _exitApp();
-                    /* else
-                      initUniqueIdentifierState();*/
-                    _exitApp();
-                  },
-                  /*  onTap: () {
-
-                    selectDestination(10);
-                    Navigator.pushNamed(context, "/login");
-                  },*/
-                ),
-              ],
-            ),
-          ),
-        ),
-    //    body: _dashboardnew(context),
       ),
+    //    body: _dashboardnew(context),
     );
   }
 

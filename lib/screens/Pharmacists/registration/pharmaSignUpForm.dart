@@ -161,178 +161,176 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                /*  Padding(
-          padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-          child:*/Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            /*  Padding(
+      padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
+      child:*/Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only( left:15.0,right: 15.0),
 
-                    child: Row(/*
-            mainAxisAlignment: MainAxisAlignment.start,*/
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color: Colors.white)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                          child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                        ),
-                        /*Align(
-                alignment: Alignment.center,
-                child: Text('SIGN UP',textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
-              ),
-              ),*/
-                      ],
+                child: Row(/*
+        mainAxisAlignment: MainAxisAlignment.start,*/
+                  children: [
+                    InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back,color: Colors.white)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
+                      child: Text(MyLocalizations.of(context).text("SIGNUP"),
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
                     ),
-                  ),
-                  height: 55,
-                  width: MediaQuery.of(context).size.width,
-                  /*  height:*/
+                    /*Align(
+            alignment: Alignment.center,
+            child: Text('SIGN UP',textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
+          ),
+          ),*/
+                  ],
                 ),
+              ),
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+              /*  height:*/
+            ),
 
-                /* ),*/
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+            /* ),*/
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(height: 10,),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                                    child: Image.asset(
-                                      "assets/logo1.png",
-                                      fit: BoxFit.fitWidth,
-                                      //width: ,
-                                      height: 110.0,
-                                    ),
-                                  ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
 
-                                //   padding: EdgeInsets.only(
-                                //       left: size.width * 0.20, right: size.width * 0.20),
-                                //   child: Image.asset(
-                                //     "assets/icons/sanju-vector.png",
-                                //   ),
-                                // ),
+                            //   padding: EdgeInsets.only(
+                            //       left: size.width * 0.20, right: size.width * 0.20),
+                            //   child: Image.asset(
+                            //     "assets/icons/sanju-vector.png",
+                            //   ),
+                            // ),
 
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
-                                Form(
-                                  key: _formKey,
-                                  autovalidate: _autovalidate,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Column(
-                                        children: [
-                                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                            style: TextStyle(fontSize: 18, color: Colors.black),),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          MyLocalizations.of(context)
-                                              .text("ORGANIZATION_NAME") ,
-                                          ApiFactory.PHARMACY_ORGANISATION_API,
-                                          "pharmacy",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                          PharmaSignUpForm.pharmacyModel = data;
-                                        });
-                                      }),  SizedBox(
-                                        height: 5,
-                                      ),
-                                      DropDown.networkDropdownGetpartUser1(
-                                          MyLocalizations.of(context)
-                                              .text("TITLE") ,
-                                          ApiFactory.TITLE_API,
-                                          "title",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.TITLE_API);
-                                          PharmaSignUpForm.titlemodel = data;
-                                        });
-                                      }),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
-                                      SizedBox(height: 10),
-
-                                      formFieldMobile(10,  MyLocalizations.of(context).text("EXPERIENCE")),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      formField(11,MyLocalizations.of(context).text("ADDRESS")),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-
-                                      DropDown.networkDropdownGetpartUser1(
-                                          MyLocalizations.of(context)
-                                              .text("GENDER") ,
-                                          ApiFactory.GENDER_API,
-                                          "gender",
-                                          Icons.location_on_rounded,
-                                          23.0, (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.GENDER_API);
-                                          PharmaSignUpForm.genderModel = data;
-                                        });
-                                      }),
-                                      SizedBox(height: 15),
-
-                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: nextButton1(),
-                                      ),
-
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                    children: [
+                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      MyLocalizations.of(context)
+                                          .text("ORGANIZATION_NAME") ,
+                                      ApiFactory.PHARMACY_ORGANISATION_API,
+                                      "pharmacy",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.PHARMACY_ORGANISATION_API);
+                                      PharmaSignUpForm.pharmacyModel = data;
+                                    });
+                                  }),  SizedBox(
+                                    height: 5,
+                                  ),
+                                  DropDown.networkDropdownGetpartUser1(
+                                      MyLocalizations.of(context)
+                                          .text("TITLE") ,
+                                      ApiFactory.TITLE_API,
+                                      "title",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      PharmaSignUpForm.titlemodel = data;
+                                    });
+                                  }),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  formField(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
+                                  SizedBox(height: 10),
 
-                          ],),
-                      ),
-                    ],
+                                  formFieldMobile(10,  MyLocalizations.of(context).text("EXPERIENCE")),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  formField(11,MyLocalizations.of(context).text("ADDRESS")),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+
+                                  DropDown.networkDropdownGetpartUser1(
+                                      MyLocalizations.of(context)
+                                          .text("GENDER") ,
+                                      ApiFactory.GENDER_API,
+                                      "gender",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.GENDER_API);
+                                      PharmaSignUpForm.genderModel = data;
+                                    });
+                                  }),
+                                  SizedBox(height: 15),
+
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+
+                      ],),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
 
 
-        )
     );
   }
   /*_
