@@ -95,227 +95,225 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Dashboard",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          titleSpacing: 5,
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: AppData.kPrimaryColor,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.white),
         ),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  // height: 120,
-                  color: AppData.kPrimaryColor,
-                  width: double.infinity,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: size.height * 0.07,
-                          width: size.width * 0.13,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(55),
-                              border:
-                                  Border.all(color: Colors.white, width: 0.5),
-                              color: Colors.white),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(55),
-                              child: Image.asset(
-                                'assets/images/user.png',
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "PHARMACY " ,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              loginResponse.body.userName,
-
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                ListTile(
-                    leading: Icon(Icons.dashboard,
-                        color: Colors.grey, size: 27),
-                    title: Text('Dashboard'),
-                    selected: _selectedDestination == 0,
-                    onTap: () {
-                      selectDestination(0);
-                      Navigator.pushNamed(context, "/dashboardpharmacy");
-                    }
-                    // onTap: (){},
-                    ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/myprofile.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  title: Text('My Profile'),
-                  selected: _selectedDestination == 1,
-                  onTap: () {
-                    selectDestination(1);
-                    Navigator.pushNamed(context, "/pharmaprofile");
-                    //Navigator.pushNamed(context, "/profileScreen1");
-                  },
-                ),
-               // Divider(),
-             /*   ListTile(
-                  leading: Image.asset(
-                    "assets/images/home.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Home'),
-                  selected: _selectedDestination == 2,
-                  onTap: () {
-                    selectDestination(2);
-                    //Navigator.pushNamed(context, "/profile");
-                    Navigator.pushNamed(context, "/dashboardpharmacy");
-                  },
-                ),*/
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/account.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('Manage Account'),
-                  selected: _selectedDestination == 3,
-                  onTap: () {
-                    selectDestination(3);
-                    // Navigator.pushNamed(context, "/patientDashboard");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                  leading: Image.asset(
-                    "assets/images/aboutus.png",
-                    height: 30,
-                      color: Colors.grey
-                  ),
-                  // leading: Icon(Icons.person),
-                  title: Text('About Us'),
-                  selected: _selectedDestination == 4,
-                  onTap: () {
-                    selectDestination(4);
-                    // Navigator.pushNamed(context, "/profile");
-                  },
-                ),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/share.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Share'),
-                    selected: _selectedDestination == 5,
-                    onTap: () {
-                      selectDestination(5);
-                      // Navigator.pushNamed(context, "/dashboard1");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/contact us.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Contact Us'),
-                    selected: _selectedDestination == 6,
-                    onTap: () {
-                      selectDestination(6);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/support.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Support'),
-                    selected: _selectedDestination == 7,
-                    onTap: () {
-                      selectDestination(7);
-                      //Navigator.pushNamed(context, "/signUpForm");
-                    }),
-                Divider(),
-                ListTile(
-                    leading: Image.asset(
-                      "assets/images/reminder.png",
-                      height: 30,
-                        color: Colors.grey
-                    ),
-                    title: Text('Reminder'),
-                    selected: _selectedDestination == 8,
-                    onTap: () {
-                      selectDestination(8);
-                      //Navigator.pushNamed(context, "/share");
-                    }),
-                Divider(),
-                ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
-                  selected: _selectedDestination == 10,
-                  onTap: () {
-                    selectDestination(10);
-                    //Navigator.pushNamed(context, "/dashboard");
-                    // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
-                    //   _exitApp();
-                    /* else
-                      initUniqueIdentifierState();*/
-                    _exitApp();
-                  },
-                  /*  onTap: () {
-
-                    selectDestination(10);
-                    Navigator.pushNamed(context, "/login");
-                  },*/
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: _dashboardnew(context),
+        centerTitle: true,
+        titleSpacing: 5,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: AppData.kPrimaryColor,
+        elevation: 0,
       ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                // height: 120,
+                color: AppData.kPrimaryColor,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.13,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(55),
+                            border:
+                                Border.all(color: Colors.white, width: 0.5),
+                            color: Colors.white),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(55),
+                            child: Image.asset(
+                              'assets/images/user.png',
+                              height: size.height * 0.07,
+                              width: size.width * 0.13,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "PHARMACY " ,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                            loginResponse.body.userName,
+
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                  leading: Icon(Icons.dashboard,
+                      color: Colors.grey, size: 27),
+                  title: Text('Dashboard'),
+                  selected: _selectedDestination == 0,
+                  onTap: () {
+                    selectDestination(0);
+                    Navigator.pushNamed(context, "/dashboardpharmacy");
+                  }
+                  // onTap: (){},
+                  ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/myprofile.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                title: Text('My Profile'),
+                selected: _selectedDestination == 1,
+                onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/pharmaprofile");
+                  //Navigator.pushNamed(context, "/profileScreen1");
+                },
+              ),
+             // Divider(),
+           /*   ListTile(
+                leading: Image.asset(
+                  "assets/images/home.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
+                selected: _selectedDestination == 2,
+                onTap: () {
+                  selectDestination(2);
+                  //Navigator.pushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/dashboardpharmacy");
+                },
+              ),*/
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/account.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
+                selected: _selectedDestination == 3,
+                onTap: () {
+                  selectDestination(3);
+                  // Navigator.pushNamed(context, "/patientDashboard");
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Image.asset(
+                  "assets/images/aboutus.png",
+                  height: 30,
+                    color: Colors.grey
+                ),
+                // leading: Icon(Icons.person),
+                title: Text('About Us'),
+                selected: _selectedDestination == 4,
+                onTap: () {
+                  selectDestination(4);
+                  // Navigator.pushNamed(context, "/profile");
+                },
+              ),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/share.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Share'),
+                  selected: _selectedDestination == 5,
+                  onTap: () {
+                    selectDestination(5);
+                    // Navigator.pushNamed(context, "/dashboard1");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/contact us.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Contact Us'),
+                  selected: _selectedDestination == 6,
+                  onTap: () {
+                    selectDestination(6);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Support'),
+                  selected: _selectedDestination == 7,
+                  onTap: () {
+                    selectDestination(7);
+                    //Navigator.pushNamed(context, "/signUpForm");
+                  }),
+              Divider(),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/reminder.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
+                  title: Text('Reminder'),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    //Navigator.pushNamed(context, "/share");
+                  }),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+                selected: _selectedDestination == 10,
+                onTap: () {
+                  selectDestination(10);
+                  //Navigator.pushNamed(context, "/dashboard");
+                  // if (loginResponse.body.roles[0].toString().toLowerCase() == "4")
+                  //   _exitApp();
+                  /* else
+                    initUniqueIdentifierState();*/
+                  _exitApp();
+                },
+                /*  onTap: () {
+
+                  selectDestination(10);
+                  Navigator.pushNamed(context, "/login");
+                },*/
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: _dashboardnew(context),
     );
   }
 

@@ -57,128 +57,126 @@ class _OnlineChatsState extends State<OnlineChats> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Online Chat',
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Online Chat',
+          style: TextStyle(color: Colors.white),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Card(
-                child: Column(
-                  children: [
-                    Card(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          //  borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.blue[100]),
-                          color: Colors.blue[50],
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, right: 15.0, bottom: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Radio(
-                                    value: 1,
-                                    groupValue: _radioSelected,
-                                    activeColor: Colors.blue,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _radioSelected = value;
-                                        _radioVal = 'patient';
-                                      });
-                                    },
-                                  ),
-                                  Text('Patient'),
-                                  SizedBox(
-                                    width: size.width * 0.24,
-                                  ),
-                                  Radio(
-                                    value: 2,
-                                    groupValue: _radioSelected,
-                                    activeColor: Colors.pink,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _radioSelected = value;
-                                        _radioVal = 'doctor';
-                                      });
-                                    },
-                                  ),
-                                  Text('Doctor'),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Card(
+              child: Column(
+                children: [
+                  Card(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        //  borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.blue[100]),
+                        color: Colors.blue[50],
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10, right: 15.0, bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Container(
-                                  // width: 170,
-                                  width: size.width * 0.44,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: Colors.black, width: 0.8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 3.0),
-                                    child: DropDown.staticDropdown2(
-                                        'Select', "patient", patientList,
-                                        (KeyvalueModel data) {
-                                      setState(() {
-                                        // SignUpForm.genderModel = data;
-                                      });
-                                    }),
-                                  ),
+                                Radio(
+                                  value: 1,
+                                  groupValue: _radioSelected,
+                                  activeColor: Colors.blue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _radioSelected = value;
+                                      _radioVal = 'patient';
+                                    });
+                                  },
                                 ),
-                                Container(
-                                  width: size.width * 0.44,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: Colors.black, width: 0.8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 3.0),
-                                    child: DropDown.staticDropdown2(
-                                        'Select', "doctor", doctorList,
-                                        (KeyvalueModel data) {
-                                      setState(() {
-                                        // SignUpForm.genderModel = data;
-                                      });
-                                    }),
-                                  ),
+                                Text('Patient'),
+                                SizedBox(
+                                  width: size.width * 0.24,
                                 ),
+                                Radio(
+                                  value: 2,
+                                  groupValue: _radioSelected,
+                                  activeColor: Colors.pink,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _radioSelected = value;
+                                      _radioVal = 'doctor';
+                                    });
+                                  },
+                                ),
+                                Text('Doctor'),
                               ],
                             ),
-                            SizedBox(
-                              height: size.height * 0.04,
-                            ),
-                            searchButton(),
-                            SizedBox(
-                              height: size.height * 0.03,
-                            ),
-                          ],
-                        ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                // width: 170,
+                                width: size.width * 0.44,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.8)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 3.0),
+                                  child: DropDown.staticDropdown2(
+                                      'Select', "patient", patientList,
+                                      (KeyvalueModel data) {
+                                    setState(() {
+                                      // SignUpForm.genderModel = data;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              Container(
+                                width: size.width * 0.44,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.8)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 3.0),
+                                  child: DropDown.staticDropdown2(
+                                      'Select', "doctor", doctorList,
+                                      (KeyvalueModel data) {
+                                    setState(() {
+                                      // SignUpForm.genderModel = data;
+                                    });
+                                  }),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.height * 0.04,
+                          ),
+                          searchButton(),
+                          SizedBox(
+                            height: size.height * 0.03,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

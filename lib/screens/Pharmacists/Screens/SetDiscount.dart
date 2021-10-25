@@ -20,74 +20,72 @@ class _SetDisountState extends State<SetDisount> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Discounts and Offers',
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white,),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Discounts and Offers',
+          style: TextStyle(color: Colors.white),
         ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView(
-             shrinkWrap: true,
-             children: [
-               Container(
-                   height: size.height * 0.25,
-                   decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(5),
-                       border: Border.all(color: Colors.grey[200]),
-                       
-                      ),
-                   child: ClipRRect(
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white,),
+      ),
+    body: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: ListView(
+           shrinkWrap: true,
+           children: [
+             Container(
+                 height: size.height * 0.25,
+                 decoration: BoxDecoration(
                      borderRadius: BorderRadius.circular(5),
-                                        child: Image.asset('assets/discount2.jpg',
+                     border: Border.all(color: Colors.grey[200]),
+
+                    ),
+                 child: ClipRRect(
+                   borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset('assets/discount2.jpg',
 fit: BoxFit.cover,
-                     ),
-                   )
-                 ),
-                 SizedBox(height: size.height * 0.02),
-                  Container(
-                  height: size.height * 0.25,
-                   decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(5),
-                       border: Border.all(color: Colors.grey[200]),
-                       
-                      ),
-                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                                        child: Image.asset('assets/discount1.jpg',
-                     fit: BoxFit.cover,
-                     
-                     ),
-                   )
-                 ),
-           SizedBox(height: size.height * 0.02),
-            Container(
-                   height: size.height * 0.25,
-                   decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(5),
-                       border: Border.all(color: Colors.grey[200]),
-                       
-                      ),
-                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                                        child: Image.asset('assets/discount2.jpg',
-                                        fit: BoxFit.cover,
-                     
-                     ),
-                   )
-                 ),
-            
-             
-             ],
-           ),
-      ),
-      ),
+                   ),
+                 )
+               ),
+               SizedBox(height: size.height * 0.02),
+                Container(
+                height: size.height * 0.25,
+                 decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(5),
+                     border: Border.all(color: Colors.grey[200]),
+
+                    ),
+                 child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset('assets/discount1.jpg',
+                   fit: BoxFit.cover,
+
+                   ),
+                 )
+               ),
+         SizedBox(height: size.height * 0.02),
+          Container(
+                 height: size.height * 0.25,
+                 decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(5),
+                     border: Border.all(color: Colors.grey[200]),
+
+                    ),
+                 child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset('assets/discount2.jpg',
+                                      fit: BoxFit.cover,
+
+                   ),
+                 )
+               ),
+
+
+           ],
+         ),
+    ),
     );
   }
 }

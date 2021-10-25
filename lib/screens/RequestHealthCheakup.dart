@@ -139,174 +139,172 @@ class RequestHealthCheakupState extends State<RequestHealthCheakup> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-          child: Scaffold(
-            key: _scaffoldKey,
+    return Scaffold(
+      key: _scaffoldKey,
         body: SingleChildScrollView(
-          child: Container(
+    child: Container(
 
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  color:AppData.kPrimaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            color:AppData.kPrimaryColor,
 
-                  child: Padding(
-                    padding: const EdgeInsets.only( left:15.0,right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.arrow_back,color:Colors.white )),
-                        Text('Health Checkup ',
-                          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
-                        Icon(Icons.search,color:Colors.white ),
-                      ],
-                    ),
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
-                ),
-
-                SizedBox(height: size.height * 0.01,),
-
-                Image.asset(
-                  "assets/thyrocare_Logo.png",
-                  height: size.height * 0.20,
-                ),
-
-                SizedBox(height: size.height * 0.05,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: Align(
-                    alignment:Alignment.topLeft,
-                    child: RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text:"Basic Health check Up",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Monte",
-                              fontSize: 17.0,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25,top: 6),
-                  child: Align(
-                    alignment:Alignment.topLeft,
-                    child: RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text:"Worth Rs.20000",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Monte",
-                              fontSize: 17.0,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                ListView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                                children: [
-                    Form(
-                      key: _formKey,
-                      // ignore: deprecated_member_use
-                      autovalidate: _autovalidate,
-                      child: Column(
-                        children: <Widget>[
-
-                          Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 25),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: 'Fast Name',
-                                  hintStyle: TextStyle(color: Colors.grey)),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.emailAddress,
-                              //           inputFormatters: [
-                              //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                              //           ],
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 9.0),
-                            child: mobileNoOTPSearch(),
-                          ),
-                          SizedBox(
-                            height: 170,
-                          ),
-                         /* new Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: nextButton1(),
-                  ),
-                  //your elements here
+            child: Padding(
+              padding: const EdgeInsets.only( left:15.0,right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back,color:Colors.white )),
+                  Text('Health Checkup ',
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
+                  Icon(Icons.search,color:Colors.white ),
                 ],
               ),
-*/
-                           Align(
-                              alignment: FractionalOffset.bottomCenter,
-                              child:Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: nextButton1(),
-                              ),
-                            ),
+            ),
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width,
+          ),
 
+          SizedBox(height: size.height * 0.01,),
 
-                          // SizedBox(
-                          //   height: 25,
-                          // ),
-                        ],
+          Image.asset(
+            "assets/thyrocare_Logo.png",
+            height: size.height * 0.20,
+          ),
+
+          SizedBox(height: size.height * 0.05,),
+          Padding(
+            padding: const EdgeInsets.only(left: 25),
+            child: Align(
+              alignment:Alignment.topLeft,
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text:"Basic Health check Up",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Monte",
+                        fontSize: 17.0,
+                        color: Colors.grey,
                       ),
-                    ),
+                    )
                   ],
                 ),
-                /*_isSignUpLoading
-                    ? Stack(
-                        children: [
-                          new Opacity(
-                            opacity: 0.1,
-                            child: const ModalBarrier(
-                                dismissible: false, color: Colors.grey),
-                          ),
-                         *//* new Center(
-                            child: new CircularProgressIndicator(),
-                          ),*//*
-                        ],
-                      )
-                    : Container()*/
-              ],
+              ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25,top: 6),
+            child: Align(
+              alignment:Alignment.topLeft,
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text:"Worth Rs.20000",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Monte",
+                        fontSize: 17.0,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+                          children: [
+              Form(
+                key: _formKey,
+                // ignore: deprecated_member_use
+                autovalidate: _autovalidate,
+                child: Column(
+                  children: <Widget>[
+
+                    Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 25),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            hintText: 'Fast Name',
+                            hintStyle: TextStyle(color: Colors.grey)),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        //           inputFormatters: [
+                        //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                        //           ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 9.0),
+                      child: mobileNoOTPSearch(),
+                    ),
+                    SizedBox(
+                      height: 170,
+                    ),
+                   /* new Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: nextButton1(),
+            ),
+            //your elements here
+          ],
         ),
+*/
+                     Align(
+                        alignment: FractionalOffset.bottomCenter,
+                        child:Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: nextButton1(),
+                        ),
+                      ),
+
+
+                    // SizedBox(
+                    //   height: 25,
+                    // ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          /*_isSignUpLoading
+              ? Stack(
+                  children: [
+                    new Opacity(
+                      opacity: 0.1,
+                      child: const ModalBarrier(
+                          dismissible: false, color: Colors.grey),
+                    ),
+                   *//* new Center(
+                      child: new CircularProgressIndicator(),
+                    ),*//*
+                  ],
+                )
+              : Container()*/
+        ],
       ),
-    );
+    ),
+        ),
+      );
   }
   Widget nextButton1() {
     return GestureDetector(

@@ -372,6 +372,20 @@ class _MedicineList extends State<UserMedicineList> {
                                           ],
                                         ),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric( horizontal: 15 ),
+                                        child: Text(
+                                          /*'Confirmed'*/
+                                          "Previous",
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight
+                                                  .bold,
+                                              fontSize: 15,
+                                              color: AppData.kPrimaryColor
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

@@ -156,359 +156,358 @@ class AddWitnessState extends State<AddWitness> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            centerTitle: true,
-            title: Text(
-              'Add Witness',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ),
-      body: Container(
-        child: Column(
-          children: [
-
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-
-                              Container(
-                                  color: Colors.black12,
-                                  height:40,
-                                  child: Row(
-                                    children: const <Widget>[
-                                      SizedBox(
-                                          width:6),
-                                      Expanded(
-                                        child: Text(
-                                          'Witness 1',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 15),
-                                        ),
-                                      ),
-                                    ],
-                                  )),
-
-                          /*  SizedBox(
-                              height: 10,
-                            ),
-*/
-                            //   padding: EdgeInsets.only(
-                            //       left: size.width * 0.20, right: size.width * 0.20),
-                            //   child: Image.asset(
-                            //     "assets/icons/sanju-vector.png",
-                            //   ),
-                            // ),
-
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            Form(
-                              key: _formKey,
-                              // ignore: deprecated_member_use
-                              autovalidate: _autovalidate,
-                              child: Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Full Name",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[a-zA-Z ]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 3.0),
-                                      child: mobileNoOTPSearch(),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Age:Years",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9]")),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: DropDown.staticDropdown2(
-                                          "Select Relation with Donor",
-                                          "genderSignup",
-                                          genderList, (KeyvalueModel data) {
-                                        setState(() {
-                                          AddWitness.genderModel = data;
-                                        });
-                                      }),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Mobile Number",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText:
-                                                MyLocalizations.of(context)
-                                                    .text("Email ID(optional)"),
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        //           inputFormatters: [
-                                        //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //           ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Address",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9,a-zA-Z]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                        color: Colors.black12,
-                                        height:40,
-                                        child: Row(
-                                          children: const <Widget>[
-                                            SizedBox(
-                                                width:6),
-                                            Expanded(
-                                              child: Text(
-                                                'Witness 2',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black,
-                                                    fontSize: 15),
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Full Name",
-                                            hintStyle:
-                                            TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[a-zA-Z ]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(right: 3.0),
-                                      child: mobileNoOTPSearch(),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Age:Years",
-                                            hintStyle:
-                                            TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9]")),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: DropDown.staticDropdown2(
-                                          "Select Relation with Donor",
-                                          "genderSignup",
-                                          genderList, (KeyvalueModel data) {
-                                        setState(() {
-                                          AddWitness.genderModel = data;
-                                        });
-                                      }),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Mobile Number",
-                                            hintStyle:
-                                            TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText:"Email ID(optional)",
-                                            hintStyle:
-                                            TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType:
-                                        TextInputType.emailAddress,
-                                        //           inputFormatters: [
-                                        //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                        //           ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                            hintText: "Address",
-                                            hintStyle:
-                                            TextStyle(color: Colors.grey)),
-                                        textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.text,
-                                        inputFormatters: [
-                                          WhitelistingTextInputFormatter(
-                                              RegExp("[0-9,a-zA-Z]")),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: _submitButton(),
-                                    ),
-                                    SizedBox(
-                                      height: 25,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
+        title: Text(
+          'Add Witness',
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
-    ));
+      body: Container(
+    child: Column(
+      children: [
+
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+
+                          Container(
+                              color: Colors.black12,
+                              height:40,
+                              child: Row(
+                                children: const <Widget>[
+                                  SizedBox(
+                                      width:6),
+                                  Expanded(
+                                    child: Text(
+                                      'Witness 1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                ],
+                              )),
+
+                      /*  SizedBox(
+                          height: 10,
+                        ),
+*/
+                        //   padding: EdgeInsets.only(
+                        //       left: size.width * 0.20, right: size.width * 0.20),
+                        //   child: Image.asset(
+                        //     "assets/icons/sanju-vector.png",
+                        //   ),
+                        // ),
+
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        Form(
+                          key: _formKey,
+                          // ignore: deprecated_member_use
+                          autovalidate: _autovalidate,
+                          child: Expanded(
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Full Name",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-zA-Z ]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 3.0),
+                                  child: mobileNoOTPSearch(),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Age:Years",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: DropDown.staticDropdown2(
+                                      "Select Relation with Donor",
+                                      "genderSignup",
+                                      genderList, (KeyvalueModel data) {
+                                    setState(() {
+                                      AddWitness.genderModel = data;
+                                    });
+                                  }),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Mobile Number",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText:
+                                            MyLocalizations.of(context)
+                                                .text("Email ID(optional)"),
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType:
+                                        TextInputType.emailAddress,
+                                    //           inputFormatters: [
+                                    //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                    //           ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Address",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9,a-zA-Z]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                    color: Colors.black12,
+                                    height:40,
+                                    child: Row(
+                                      children: const <Widget>[
+                                        SizedBox(
+                                            width:6),
+                                        Expanded(
+                                          child: Text(
+                                            'Witness 2',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Full Name",
+                                        hintStyle:
+                                        TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-zA-Z ]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.only(right: 3.0),
+                                  child: mobileNoOTPSearch(),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Age:Years",
+                                        hintStyle:
+                                        TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: DropDown.staticDropdown2(
+                                      "Select Relation with Donor",
+                                      "genderSignup",
+                                      genderList, (KeyvalueModel data) {
+                                    setState(() {
+                                      AddWitness.genderModel = data;
+                                    });
+                                  }),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Mobile Number",
+                                        hintStyle:
+                                        TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText:"Email ID(optional)",
+                                        hintStyle:
+                                        TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType:
+                                    TextInputType.emailAddress,
+                                    //           inputFormatters: [
+                                    //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                                    //           ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Address",
+                                        hintStyle:
+                                        TextStyle(color: Colors.grey)),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9,a-zA-Z]")),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: _submitButton(),
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+      ),
+    );
   }
 
   /*_

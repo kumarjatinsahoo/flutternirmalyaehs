@@ -119,138 +119,137 @@ class _ChemistsPageState extends State<ChemistsPage> {
     double spaceTab = 20;
     double edgeInsets = 3;
 
-    return SafeArea(
-        child: Scaffold(
-          body:
-          (chemistsLocationWise!=null)?
-          Container(
-        child: Padding(
-          padding: const EdgeInsets.all(13.0),
-          child: SingleChildScrollView(
-              child: Column(
-                children: [
+    return Scaffold(
+      body:
+      (chemistsLocationWise!=null)?
+      Container(
+    child: Padding(
+      padding: const EdgeInsets.all(13.0),
+      child: SingleChildScrollView(
+          child: Column(
+            children: [
 
-                  (chemistsLocationWise != null)
-                      ? ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    // controller: _scrollController,
-                    shrinkWrap: true,
-                    itemBuilder: (context, i) {
-                      if (i == chemistsLocationWise.body.length) {
-                        return (chemistsLocationWise.body.length % 10 == 0)
-                            ? CupertinoActivityIndicator()
-                            : Container();
-                      }
-                      Body patient = chemistsLocationWise.body[i];
-                      return Container(
-                        child:GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5))),
-                              child: Container(
-                                 /* height: tileSize,
-                                  width: double.maxFinite,*/
-                                 /* if (position % 2 == 0) {  //  is even
-                                convertView = LayoutInflater.from(getContext()).inflate(R.layout.even_layout, parent, false);
+              (chemistsLocationWise != null)
+                  ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                // controller: _scrollController,
+                shrinkWrap: true,
+                itemBuilder: (context, i) {
+                  if (i == chemistsLocationWise.body.length) {
+                    return (chemistsLocationWise.body.length % 10 == 0)
+                        ? CupertinoActivityIndicator()
+                        : Container();
+                  }
+                  Body patient = chemistsLocationWise.body[i];
+                  return Container(
+                    child:GestureDetector(
+                      // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        elevation: 5,
+                        child: ClipPath(
+                          clipper: ShapeBorderClipper(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5))),
+                          child: Container(
+                             /* height: tileSize,
+                              width: double.maxFinite,*/
+                             /* if (position % 2 == 0) {  //  is even
+                            convertView = LayoutInflater.from(getContext()).inflate(R.layout.even_layout, parent, false);
 
-                            } else {    //  is odd
-                        convertView = LayoutInflater.from(getContext()).inflate(R.layout.odd_layout, parent, false);
-                        }*/
-                                  decoration:( i % 2 == 0)?BoxDecoration(
-                                      border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))):BoxDecoration(
-                                      border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(13.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      children: [
-                                        (patient.image!= null)
-                                            ? Material(
-                                          elevation: 5.0,
-                                          shape: CircleBorder(),
-                                          child: CircleAvatar(
-                                            radius: 40.0,
-                                            backgroundImage: NetworkImage(
-                                                (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/patient.image)),
-                                          ),
-                                        )
-                                            : SizedBox(
-                                          height: 85,
-                                          child: Image.asset(
-                                            "assets/images/sanja.png",
-                                          ),
-                                        ),
-                                       /* Image.asset(
-                                          "assets/medicine_reminder.png",
-                                          height: 40,
-                                        ),*/
-                                        SizedBox(
-                                          width: spaceTab,
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                        } else {    //  is odd
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.odd_layout, parent, false);
+                    }*/
+                              decoration:( i % 2 == 0)?BoxDecoration(
+                                  border: Border(left: BorderSide(color: AppData.kPrimaryRedColor, width: 5))):BoxDecoration(
+                                  border: Border(left: BorderSide(color: AppData.kPrimaryColor, width: 5))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(13.0),
+                                child: Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    (patient.image!= null)
+                                        ? Material(
+                                      elevation: 5.0,
+                                      shape: CircleBorder(),
+                                      child: CircleAvatar(
+                                        radius: 40.0,
+                                        backgroundImage: NetworkImage(
+                                            (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/patient.image)),
+                                      ),
+                                    )
+                                        : SizedBox(
+                                      height: 85,
+                                      child: Image.asset(
+                                        "assets/images/sanja.png",
+                                      ),
+                                    ),
+                                   /* Image.asset(
+                                      "assets/medicine_reminder.png",
+                                      height: 40,
+                                    ),*/
+                                    SizedBox(
+                                      width: spaceTab,
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              patient.name ??"N/A",
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            Column(
                                               children: [
                                                 Text(
-                                                  patient.name ??"N/A",
+                                                 /* "No 43,CF Block,Sector III,Bidhannagar\n"
+                                                      "Kolkata,West Bengal 700091,India",*/
+                                                  patient.address+  patient.pin??"N/A",
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Text(
-                                                     /* "No 43,CF Block,Sector III,Bidhannagar\n"
-                                                          "Kolkata,West Bengal 700091,India",*/
-                                                      patient.address+  patient.pin??"N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 13),
-                                                    )
-                                                  ],
+                                                      fontSize: 13),
                                                 )
                                               ],
-                                            ),
-                                          ),
+                                            )
+                                          ],
                                         ),
-                                        //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                      ],
+                                      ),
                                     ),
-                                  )),
-                            ),
-                          ),
+                                    //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                  ],
+                                ),
+                              )),
                         ),
-                      );
-                    },
-                    itemCount: chemistsLocationWise.body.length,
-                  ): Container(),
-                ],
-              ),
+                      ),
+                    ),
+                  );
+                },
+                itemCount: chemistsLocationWise.body.length,
+              ): Container(),
+            ],
           ),
-        ),
-          ): Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            alignment: Alignment.center,
-            child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+      ),
+    ),
+      ): Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        alignment: Alignment.center,
+        child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
 
 
-          ),
+      ),
 
-        ));
+    );
   }
 
   Widget _submitButton() {

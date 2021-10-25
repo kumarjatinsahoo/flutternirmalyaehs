@@ -40,187 +40,185 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          /*leading: BackButton(
-                color: Colors.white,
-              ),*/
-          title: Text(
-            'Patient Registration',
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        /*leading: BackButton(
+              color: Colors.white,
+            ),*/
+        title: Text(
+          'Patient Registration',
+          style: TextStyle(color: Colors.white),
         ),
-        body: Stack(
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Text(
-                      'Profile',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: NumberformField(0, "Height(CM)"),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: NumberformField(1, "Weight(kg)"),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: formField(2, "Email(OPTIONAL)"),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: adharaformField(3, "Aadhaar(OPTIONAL)"),
-                    ),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: Stack(
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: NumberformField(0, "Height(CM)"),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: NumberformField(1, "Weight(kg)"),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: formField(2, "Email(OPTIONAL)"),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: adharaformField(3, "Aadhaar(OPTIONAL)"),
+                  ),
 
-                    /* Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 7.0),
-                      child: SizedBox(
-                        height: 45,
-                        child: DropDown.networkDropdownGetpart(
-                            "State", ApiFactory.STATE_API, "state",
-                                (KeyvalueModel data) {
+                  /* Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10.0, bottom: 7.0),
+                    child: SizedBox(
+                      height: 45,
+                      child: DropDown.networkDropdownGetpart(
+                          "State", ApiFactory.STATE_API, "state",
+                              (KeyvalueModel data) {
+                            setState(() {
+                              PatientRegistration3.stateModel = data;
+                              */ /*PartnerSignUpForm.cityModel = null;*/ /*
+                            });
+                          }),
+                    ),
+                  ),*/
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: SizedBox(
+                      height: 55,
+                      child: DropDown.networkDropdownGetpart4(
+                          "Country", ApiFactory.COUNTRY_API, "country",
+                              (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.COUNTRY_API);
+                              PatientRegistration3.countryModel = data;
+                              PatientRegistration3.stateModel = null;
+                            });
+                          }),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  (PatientRegistration3.countryModel != null)
+                      ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 10.0, bottom: 7.0),
+                          child: SizedBox(
+                            height: 55,
+                            child: DropDown.networkDropdownGetpart4(
+                                "State",
+                                ApiFactory.STATE_API +
+                                    PatientRegistration3.countryModel.key,
+                                "state", (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.stateModel = data;
-                                */ /*PartnerSignUpForm.cityModel = null;*/ /*
                               });
                             }),
-                      ),
-                    ),*/
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: SizedBox(
-                        height: 55,
-                        child: DropDown.networkDropdownGetpart4(
-                            "Country", ApiFactory.COUNTRY_API, "country",
-                                (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.COUNTRY_API);
-                                PatientRegistration3.countryModel = data;
-                                PatientRegistration3.stateModel = null;
-                              });
-                            }),
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    (PatientRegistration3.countryModel != null)
-                        ? Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, right: 10.0, bottom: 7.0),
-                            child: SizedBox(
-                              height: 55,
-                              child: DropDown.networkDropdownGetpart4(
-                                  "State",
-                                  ApiFactory.STATE_API +
-                                      PatientRegistration3.countryModel.key,
-                                  "state", (KeyvalueModel data) {
-                                setState(() {
-                                  PatientRegistration3.stateModel = data;
-                                });
-                              }),
-                            ),
-                          )
-                        : Container(),
+                          ),
+                        )
+                      : Container(),
 
-                    SizedBox(
-                      height: size.height * 0.01,
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  (PatientRegistration3.stateModel != null)
+                      ? Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10.0, bottom: 7.0),
+                    child: SizedBox(
+                      height: 55,
+                      child: DropDown.networkDropdownGetpart4(
+                          "District",
+                          ApiFactory.DISTRICT_API +
+                              PatientRegistration3.stateModel.key,
+                          "districtid", (KeyvalueModel data) {
+                        setState(() {
+                          PatientRegistration3.districtModel = data;
+                        });
+                      }),
                     ),
-                    (PatientRegistration3.stateModel != null)
-                        ? Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 7.0),
-                      child: SizedBox(
-                        height: 55,
-                        child: DropDown.networkDropdownGetpart4(
-                            "District",
-                            ApiFactory.DISTRICT_API +
-                                PatientRegistration3.stateModel.key,
-                            "districtid", (KeyvalueModel data) {
-                          setState(() {
-                            PatientRegistration3.districtModel = data;
-                          });
-                        }),
+                  )
+                      : Container(),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  (PatientRegistration3.districtModel != null)
+                      ? Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10.0, bottom: 7.0),
+                    child: SizedBox(
+                      height: 55,
+                      child: DropDown.networkDropdownGetpart4(
+                          "City",
+                          ApiFactory.CITY_API +
+                              PatientRegistration3.districtModel.key,
+                          "city", (KeyvalueModel data) {
+                        setState(() {
+                          PatientRegistration3.cityModel = data;
+                        });
+                      }),
+                    ),
+                  )
+                      : Container(),
+                  SizedBox(
+                    height: size.height * 0.07,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: _submitButton(),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.20,
+                  ),
+                  /*Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: FloatingActionButton(
+                        child: Icon(Icons.arrow_back_ios),
+                        backgroundColor: Colors.orange,
+                        heroTag: 1,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, "/patientRegistration2");
+                          //do something on press
+                        },
                       ),
-                    )
-                        : Container(),
-                    SizedBox(
-                      height: size.height * 0.01,
                     ),
-                    (PatientRegistration3.districtModel != null)
-                        ? Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, bottom: 7.0),
-                      child: SizedBox(
-                        height: 55,
-                        child: DropDown.networkDropdownGetpart4(
-                            "City",
-                            ApiFactory.CITY_API +
-                                PatientRegistration3.districtModel.key,
-                            "city", (KeyvalueModel data) {
-                          setState(() {
-                            PatientRegistration3.cityModel = data;
-                          });
-                        }),
-                      ),
-                    )
-                        : Container(),
-                    SizedBox(
-                      height: size.height * 0.07,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: _submitButton(),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.20,
-                    ),
-                    /*Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: FloatingActionButton(
-                          child: Icon(Icons.arrow_back_ios),
-                          backgroundColor: Colors.orange,
-                          heroTag: 1,
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, "/patientRegistration2");
-                            //do something on press
-                          },
-                        ),
-                      ),
-                    )*/
-                  ]),
-            )
-          ],
-        ),
+                  )*/
+                ]),
+          )
+        ],
       ),
     );
   }

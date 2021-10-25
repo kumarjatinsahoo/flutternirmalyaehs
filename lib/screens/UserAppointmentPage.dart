@@ -162,254 +162,252 @@ class _UserAppointmentPageState extends State<UserAppointmentPage> {
         titleSpacing: 2,
         backgroundColor: AppData.matruColor,
       ),
-      body: SafeArea(
-        child: Container(
-          color: bgColor,
-          margin: EdgeInsets.only(left: 5, right: 5),
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, top: 8.0, bottom: 4),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: today,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15.0,
-                                color: Colors.black,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  _selectDate(context);
-                                },
+      body: Container(
+        color: bgColor,
+        margin: EdgeInsets.only(left: 5, right: 5),
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 8.0, bottom: 4),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: today,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15.0,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
                             ),
-                            TextSpan(
-                                text: " Appointments",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15.0,
-                                    color: Colors.black)),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _selectDate(context);
+                              },
+                          ),
+                          TextSpan(
+                              text: " Appointments",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15.0,
+                                  color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                          child: MyWidgets.toggleButton2("NEW", () {}),
+                          onTap: () {
+                            MyWidgets.showLoading(context);
+                            widget.model.GETMETHODCALL_TOKEN(
+                                api:
+                                    ApiFactory.GET_BENE_DETAILS + beneficiary,
+                                token: widget.model.token,
+                                fun: (Map<String, dynamic> map) {
+                                  setState(() {
+                                    // Navigator.of(context).pop();
+                                    //String msg = map[Const.MESSAGE];
+                                    if (map[Const.CODE] == Const.SUCCESS) {
+                                      UserDetailsModel userModel =
+                                          UserDetailsModel.fromJson(map);
+                                      widget.model.userModel = userModel;
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              UserAppointmentTest(
+                                            model: widget.model,
+                                          ),
+                                        ),
+                                      ).then((value) {
+                                        if (value) {
+                                          //callAPI(today);
+                                        }
+                                      });
+                                    } else {
+                                      //Navigator.of(context).pop();
+                                      AppData.showInSnackBar(
+                                          context, map[Const.MESSAGE]);
+                                    }
+                                  });
+                                });
+                          }),
+                      MyWidgets.toggleButton1("REPORTS", () {
+                        AppData.showInSnackBar(context, "Reports click");
+                      }),
+                    ],
+                  ),
+
+                  /*InkWell(
+                    onTap: () {
+                      setState(() {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              dialogaddShift(context),
+                        );
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 8.0,
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(7, 1, 6, 1),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "NEW",
+                              style: TextStyle(
+                                  fontSize: 13, color: Colors.black),
+                            ),
+                            Text(
+                              "+",
+                              style: TextStyle(
+                                  fontSize: 17, color: Colors.black),
+                            )
                           ],
                         ),
                       ),
                     ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                            child: MyWidgets.toggleButton2("NEW", () {}),
-                            onTap: () {
-                              MyWidgets.showLoading(context);
-                              widget.model.GETMETHODCALL_TOKEN(
-                                  api:
-                                      ApiFactory.GET_BENE_DETAILS + beneficiary,
-                                  token: widget.model.token,
-                                  fun: (Map<String, dynamic> map) {
-                                    setState(() {
-                                      // Navigator.of(context).pop();
-                                      //String msg = map[Const.MESSAGE];
-                                      if (map[Const.CODE] == Const.SUCCESS) {
-                                        UserDetailsModel userModel =
-                                            UserDetailsModel.fromJson(map);
-                                        widget.model.userModel = userModel;
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                UserAppointmentTest(
-                                              model: widget.model,
-                                            ),
-                                          ),
-                                        ).then((value) {
-                                          if (value) {
-                                            //callAPI(today);
-                                          }
-                                        });
-                                      } else {
-                                        //Navigator.of(context).pop();
-                                        AppData.showInSnackBar(
-                                            context, map[Const.MESSAGE]);
-                                      }
-                                    });
-                                  });
-                            }),
-                        MyWidgets.toggleButton1("REPORTS", () {
-                          AppData.showInSnackBar(context, "Reports click");
-                        }),
-                      ],
-                    ),
-
-                    /*InkWell(
-                      onTap: () {
-                        setState(() {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogaddShift(context),
-                          );
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 8.0,
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(7, 1, 6, 1),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "NEW",
-                                style: TextStyle(
-                                    fontSize: 13, color: Colors.black),
-                              ),
-                              Text(
-                                "+",
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
-                              )
-                            ],
-                          ),
-                        ),
+                  )*/
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                color: AppData.grey,
+                height: 40.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(13.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Seriel No",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
                       ),
-                    )*/
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  color: AppData.grey,
-                  height: 40.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(13.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Seriel No",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          ("Date"),
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Text(
-                          "Status",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                      Spacer(),
+                      Text(
+                        ("Date"),
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        "Status",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
-                (appointModel != null &&
-                        appointModel.body != null &&
-                        appointModel.body.length > 0)
-                    ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                        itemCount: appointModel.body.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(vertical: 3),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        width: 60,
-                                        child: Text(
-                                          appointModel.body[index].regNo,
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        appointModel.body[index].appntmntDate,
-                                        style: TextStyle(color: Colors.black),
+              ),
+              (appointModel != null &&
+                      appointModel.body != null &&
+                      appointModel.body.length > 0)
+                  ? ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                      itemCount: appointModel.body.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 3),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      width: 60,
+                                      child: Text(
+                                        appointModel.body[index].regNo,
                                         textAlign: TextAlign.start,
-                                      ),
-                                      Spacer(),
-                                      InkWell(
-                                        // onTap: () {
-                                        //   showDialog(
-                                        //     context: context,
-                                        //     builder: (BuildContext context) =>
-                                        //         changeStatus(
-                                        //             context,
-                                        //             appointModel.body[index],
-                                        //             index),
-                                        //   );
-                                        // },
-                                        child: Container(
-                                          child: Text(
-                                            appointModel
-                                                .body[index].appntmntStatus,
-                                            style: TextStyle(
-                                                color: Colors.green,
-                                                decoration:
-                                                    TextDecoration.underline),
-                                            textAlign: TextAlign.start,
-                                          ),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      appointModel.body[index].appntmntDate,
+                                      style: TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Spacer(),
+                                    InkWell(
+                                      // onTap: () {
+                                      //   showDialog(
+                                      //     context: context,
+                                      //     builder: (BuildContext context) =>
+                                      //         changeStatus(
+                                      //             context,
+                                      //             appointModel.body[index],
+                                      //             index),
+                                      //   );
+                                      // },
+                                      child: Container(
+                                        child: Text(
+                                          appointModel
+                                              .body[index].appntmntStatus,
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              decoration:
+                                                  TextDecoration.underline),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Divider(
-                                color: Colors.grey,
-                              ),
-                            ],
-                          );
-                        })
-                    : (isDataNotAvail)
-                        ? Container(
-                            height: size.height - 100,
-                            child: Center(
-                              child: Text("Data Not Found"),
                             ),
-                          )
-                        : MyWidgets.loading(context),
-              ],
-            ),
+                            Divider(
+                              color: Colors.grey,
+                            ),
+                          ],
+                        );
+                      })
+                  : (isDataNotAvail)
+                      ? Container(
+                          height: size.height - 100,
+                          child: Center(
+                            child: Text("Data Not Found"),
+                          ),
+                        )
+                      : MyWidgets.loading(context),
+            ],
           ),
         ),
       ),

@@ -207,195 +207,194 @@ class MedicationAddScreenState extends State<MedicationAddScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text("Medication"),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+    title: Text("Medication"),
+    centerTitle: true,
+    backgroundColor: AppData.kPrimaryColor,
+    iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
+    child: Column(
+      children: [
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
+                        SizedBox(height: 10),
+                        Text(
+                          widget.model.appointmentlist.patname??""
+                         /* "Medicine"*/,
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 20),
+                        ),
                         SizedBox(
                           height: 10,
                         ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            SizedBox(height: 10),
-                            Text(
-                              widget.model.appointmentlist.patname??""
-                             /* "Medicine"*/,
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 0, right: 0),
-                              child: SizedBox(
-                                height: 58,
-                                child: DropDown.networkDropdownGetpartUser(
-                                    "Medicine",
-                                    ApiFactory.MEDICINE_API,
-                                    "medicine",
-                                    Icons.fiber_manual_record,
-                                    23.0, (KeyvalueModel data) {
-                                  setState(() {
-                                    print(ApiFactory.MEDICINE_API);
-                                    MedicationAddScreen.medicinModel = data;
-                                    textEditingController[0].text =
-                                        MedicationAddScreen.medicinModel.code;
-
-                                    /* userModel.country=data.key;
-                                                    userModel.countryCode=data.code;*/
-                                  });
-                                }),
-                              ),
-                            ),
-                            fromField1(0, "Type", TextInputAction.next,
-                                TextInputType.text, firstname_, lastname_, "Type"),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            statedatefrom(),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            enddateform(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Morning: ',
-                                    style: TextStyle(fontSize: 17.0),
-                                  ),
-                                  Checkbox(
-                                    checkColor: Colors.white,
-                                    activeColor: Colors.blue,
-                                    value: this._checkbox,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        this._checkbox = value;
-                                        if (_checkbox = true) {
-                                          _checkboxstr = "1";
-                                          // AppData.showInSnackBar(context,_checkboxstr );
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //Divider(height: 2,color: Colors.black),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Afternoon ',
-                                    style: TextStyle(fontSize: 17.0),
-                                  ),
-                                  Checkbox(
-                                    checkColor: Colors.white,
-                                    activeColor: Colors.blue,
-                                    value: this._checkbox1,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        this._checkbox1 = value;
-                                        if (_checkbox1 = true) {
-                                          _checkboxstr1 = "1";
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            //Divider(height: 2,color: Colors.black),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Evening ',
-                                    style: TextStyle(fontSize: 17.0),
-                                  ),
-                                  Checkbox(
-                                    checkColor: Colors.white,
-                                    activeColor: Colors.blue,
-                                    value: this._checkbox2,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        this._checkbox2 = value;
-                                        if (_checkbox2 = true) {
-                                          _checkboxstr2 = "1";
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            fromAddress(
-                                1,
-                                "Remark",
-                                TextInputAction.next,
-                                TextInputType.text,
-                                lastname_,
-                                null,
-                                "reasonforchoiceofDr"),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child:  _submitButton(),
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child: DropDown.networkDropdownGetpartUser(
+                                "Medicine",
+                                ApiFactory.MEDICINE_API,
+                                "medicine",
+                                Icons.fiber_manual_record,
+                                23.0, (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.MEDICINE_API);
+                                MedicationAddScreen.medicinModel = data;
+                                textEditingController[0].text =
+                                    MedicationAddScreen.medicinModel.code;
+
+                                /* userModel.country=data.key;
+                                                userModel.countryCode=data.code;*/
+                              });
+                            }),
+                          ),
                         ),
+                        fromField1(0, "Type", TextInputAction.next,
+                            TextInputType.text, firstname_, lastname_, "Type"),
                         SizedBox(
-                          height: 25,
+                          height: 10,
                         ),
+                        statedatefrom(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        enddateform(),
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Morning: ',
+                                style: TextStyle(fontSize: 17.0),
+                              ),
+                              Checkbox(
+                                checkColor: Colors.white,
+                                activeColor: Colors.blue,
+                                value: this._checkbox,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    this._checkbox = value;
+                                    if (_checkbox = true) {
+                                      _checkboxstr = "1";
+                                      // AppData.showInSnackBar(context,_checkboxstr );
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        //Divider(height: 2,color: Colors.black),
+
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Afternoon ',
+                                style: TextStyle(fontSize: 17.0),
+                              ),
+                              Checkbox(
+                                checkColor: Colors.white,
+                                activeColor: Colors.blue,
+                                value: this._checkbox1,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    this._checkbox1 = value;
+                                    if (_checkbox1 = true) {
+                                      _checkboxstr1 = "1";
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        //Divider(height: 2,color: Colors.black),
+
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Evening ',
+                                style: TextStyle(fontSize: 17.0),
+                              ),
+                              Checkbox(
+                                checkColor: Colors.white,
+                                activeColor: Colors.blue,
+                                value: this._checkbox2,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    this._checkbox2 = value;
+                                    if (_checkbox2 = true) {
+                                      _checkboxstr2 = "1";
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        fromAddress(
+                            1,
+                            "Remark",
+                            TextInputAction.next,
+                            TextInputType.text,
+                            lastname_,
+                            null,
+                            "reasonforchoiceofDr"),
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child:  _submitButton(),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   Widget statedatefrom() {

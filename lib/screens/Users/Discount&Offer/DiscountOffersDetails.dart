@@ -17,358 +17,115 @@ class _DiscountOffersDetailsState extends State<DiscountOffersDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: Column(
-              children: [
-                Container(
-                  color: AppData.kPrimaryColor,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: AppData.white,
-                            )),
-                        Text(
-                          'Discount Offers ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 20,
-                              color: AppData.white),
-                        ),
-                        Icon(Icons.search, color: AppData.white),
-                      ],
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              color: AppData.kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: AppData.white,
+                        )),
+                    Text(
+                      'Discount Offers ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20,
+                          color: AppData.white),
                     ),
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
+                    Icon(Icons.search, color: AppData.white),
+                  ],
                 ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          right: 10.0,
+              ),
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ListView(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: [
-                                GestureDetector(
-                                 // onTap: () => Navigator.pushNamed(context, "/insuranceDetalis"),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    shadowColor: Colors.grey,
-                                    elevation: 10,
-                                    child: ClipPath(
-                                      clipper: ShapeBorderClipper(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(5))),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData.matruColor,
-                                                      width: 5))),
-                                          width: double.maxFinite,
-                                          /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                    child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        'Upto 35% Discount on Medical Books.',
-                                                        style: TextStyle(
-                                                            fontSize: 17),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        'Medilord.com',
-                                                        style: TextStyle(
-                                                            fontSize: 17,fontWeight: FontWeight.bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                              ],
+                            GestureDetector(
+                             // onTap: () => Navigator.pushNamed(context, "/insuranceDetalis"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                shadowColor: Colors.grey,
+                                elevation: 10,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(5))),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.matruColor,
+                                                  width: 5))),
+                                      width: double.maxFinite,
+                                      /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
                                             ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  shadowColor: Colors.grey,
-                                  elevation: 10,
-                                  child: ClipPath(
-                                    clipper: ShapeBorderClipper(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5))),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData.kPrimaryRedColor,
-                                                    width: 5))),
-                                        width: double.maxFinite,
-                                        /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.red,)
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Upto 35% Discount on Medical Books.',
+                                                    style: TextStyle(
+                                                        fontSize: 17),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Medilord.com',
+                                                    style: TextStyle(
+                                                        fontSize: 17,fontWeight: FontWeight.bold),
+                                                  ),
+                                                ],
                                               ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Upto 30% Discount on Products.',
-                                                      style: TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      'Medilord.com',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 17),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
-                                            ],
-                                          ),
-                                        )),
-                                  ),
+                                            ),
+                                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                          ],
+                                        ),
+                                      )),
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  shadowColor: Colors.grey,
-                                  elevation: 10,
-                                  child: ClipPath(
-                                    clipper: ShapeBorderClipper(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5))),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData.kPrimaryColor,
-                                                    width: 5))),
-                                        width: double.maxFinite,
-                                        /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Upto 30% Discount on Pathology Test.',
-                                                      style: TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      'Sagar Diagnostics',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 17),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  shadowColor: Colors.grey,
-                                  elevation: 10,
-                                  child: ClipPath(
-                                    clipper: ShapeBorderClipper(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5))),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData.kPrimaryRedColor,
-                                                    width: 5))),
-                                        width: double.maxFinite,
-                                        /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.red,)
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Upto 25% Discount on Medicine.',
-                                                      style: TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      'Appolo Pharmacy',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 17),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  shadowColor: Colors.grey,
-                                  elevation: 10,
-                                  child: ClipPath(
-                                    clipper: ShapeBorderClipper(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5))),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                left: BorderSide(
-                                                    color: AppData.matruColor,
-                                                    width: 5))),
-                                        width: double.maxFinite,
-                                        /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Flat 10% Discount on Indus Health Care',
-                                                      style: TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      'Indus Health',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 17),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                             SizedBox(
                               height: 5,
@@ -382,7 +139,8 @@ class _DiscountOffersDetailsState extends State<DiscountOffersDetails> {
                               child: ClipPath(
                                 clipper: ShapeBorderClipper(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5))),
+                                        borderRadius:
+                                        BorderRadius.circular(5))),
                                 child: Container(
                                     decoration: BoxDecoration(
                                         border: Border(
@@ -406,7 +164,7 @@ class _DiscountOffersDetailsState extends State<DiscountOffersDetails> {
                                               CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Flat 20% Discount on Pathology Test',
+                                                  'Upto 30% Discount on Products.',
                                                   style: TextStyle(
                                                       fontSize: 17),
                                                 ),
@@ -414,9 +172,190 @@ class _DiscountOffersDetailsState extends State<DiscountOffersDetails> {
                                                   height: 5,
                                                 ),
                                                 Text(
-                                                  'SRL Diagnostics',
+                                                  'Medilord.com',
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              shadowColor: Colors.grey,
+                              elevation: 10,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5))),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryColor,
+                                                width: 5))),
+                                    width: double.maxFinite,
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Upto 30% Discount on Pathology Test.',
+                                                  style: TextStyle(
+                                                      fontSize: 17),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Sagar Diagnostics',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              shadowColor: Colors.grey,
+                              elevation: 10,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5))),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryRedColor,
+                                                width: 5))),
+                                    width: double.maxFinite,
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.red,)
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Upto 25% Discount on Medicine.',
+                                                  style: TextStyle(
+                                                      fontSize: 17),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Appolo Pharmacy',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              shadowColor: Colors.grey,
+                              elevation: 10,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5))),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.matruColor,
+                                                width: 5))),
+                                    width: double.maxFinite,
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.blue,)
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Flat 10% Discount on Indus Health Care',
+                                                  style: TextStyle(
+                                                      fontSize: 17),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Indus Health',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.bold,
                                                       fontSize: 17),
                                                 ),
                                               ],
@@ -430,14 +369,74 @@ class _DiscountOffersDetailsState extends State<DiscountOffersDetails> {
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          shadowColor: Colors.grey,
+                          elevation: 10,
+                          child: ClipPath(
+                            clipper: ShapeBorderClipper(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            color: AppData.kPrimaryRedColor,
+                                            width: 5))),
+                                width: double.maxFinite,
+                                /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          child: Image.asset("assets/Healttips.png",height: 50,width: 50,color: Colors.red,)
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Flat 20% Discount on Pathology Test',
+                                              style: TextStyle(
+                                                  fontSize: 17),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'SRL Diagnostics',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                    ],
+                                  ),
+                                )),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _submitButton() {

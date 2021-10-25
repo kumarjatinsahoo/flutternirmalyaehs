@@ -31,92 +31,91 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        /*leading: BackButton(
-                 color: Colors.white,
-               ),*/
-        title: Text(
-          'Forgot Password',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+    /*leading: BackButton(
+             color: Colors.white,
+           ),*/
+    title: Text(
+      'Forgot Password',
+      style: TextStyle(color: Colors.white),
+    ),
+    centerTitle: true,
+    backgroundColor: AppData.kPrimaryColor,
+    iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                controller: newpwd,
-                decoration: InputDecoration(
-                  hintText: 'New Password',
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.01,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                controller: cnfpwd,
-                decoration: InputDecoration(
-                  hintText: 'Confirm Password',
-                ),
-              ),
-            ),
-            /*  SizedBox(height: size.height * 0.01,),
-                Text('or', style: TextStyle(fontSize: 17, ),),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: TextFormField(
-                    controller: _mobileno,
-                    maxLength: 10,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      //UpperCaseTextFormatter(),
-                      // ignore: deprecated_member_use
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
-                    decoration: InputDecoration(
-                      hintText: 'Mobile Number',
-
-
-                    ),
-                  ),
-                ),
-*/
-            SizedBox(
-              height: size.height * 0.05,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _submitButton(),
-            ),
-            SizedBox(
-              height: size.height * 0.09,
-            ),
-            /*  InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, "/forgotuserid");
-                  },
-                  child: Text('Forgot User id?'.toUpperCase(), style: TextStyle(
-                    fontSize: 15,
-
-                  ),),
-                ),*/
-          ],
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: size.height * 0.02,
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: TextFormField(
+            controller: newpwd,
+            decoration: InputDecoration(
+              hintText: 'New Password',
+            ),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: TextFormField(
+            controller: cnfpwd,
+            decoration: InputDecoration(
+              hintText: 'Confirm Password',
+            ),
+          ),
+        ),
+        /*  SizedBox(height: size.height * 0.01,),
+            Text('or', style: TextStyle(fontSize: 17, ),),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                controller: _mobileno,
+                maxLength: 10,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  //UpperCaseTextFormatter(),
+                  // ignore: deprecated_member_use
+                  WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                ],
+                decoration: InputDecoration(
+                  hintText: 'Mobile Number',
+
+
+                ),
+              ),
+            ),
+*/
+        SizedBox(
+          height: size.height * 0.05,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: _submitButton(),
+        ),
+        SizedBox(
+          height: size.height * 0.09,
+        ),
+        /*  InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, "/forgotuserid");
+              },
+              child: Text('Forgot User id?'.toUpperCase(), style: TextStyle(
+                fontSize: 15,
+
+              ),),
+            ),*/
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   popup(String msg, BuildContext context) {

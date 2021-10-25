@@ -17,410 +17,409 @@ class _BookanAppointmentlistState extends State<BookanAppointmentlist> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        child: Column(
-          children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Text(
-                      'Book an Appointment',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 20,
-                          color: Colors.white),
-                    ),
-                    Icon(Icons.search, color: Colors.white),
-                  ],
+    child: Column(
+      children: [
+        Container(
+          color: AppData.kPrimaryColor,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.arrow_back, color: Colors.white)),
+                Text(
+                  'Book an Appointment',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 20,
+                      color: Colors.white),
                 ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
+                Icon(Icons.search, color: Colors.white),
+              ],
             ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      right: 10.0,
+          ),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+        ),
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
-                        SizedBox(
-                          height: 10,
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 130,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.account_circle_rounded,
+                                          size: 50, color: Colors.red),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Ms. Mansi Patwaardhan',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Surgeon',
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(),
+                                            ),
+                                            Row(children: [
+                                              Icon(Icons.add_location,
+                                                  size: 20),
+                                              Expanded(
+                                                child: Text(
+                                                  '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
+                                                  overflow:
+                                                      TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                              )
+                                            ]),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(children: [
+                                    Text(
+                                      'Call Now',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Book Appointment',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ]),
+                                ]),
+                              )),
                         ),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 130,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(children: [
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.account_circle_rounded,
-                                              size: 50, color: Colors.red),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Ms. Mansi Patwaardhan',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  'Surgeon',
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(),
-                                                ),
-                                                Row(children: [
-                                                  Icon(Icons.add_location,
-                                                      size: 20),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                  )
-                                                ]),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 130,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.account_circle_rounded,
+                                        size: 50,
+                                        color: AppData.kPrimaryColor,
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        width: 10,
                                       ),
-                                      Row(children: [
-                                        Text(
-                                          'Call Now',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Book Appointment',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ]),
-                                    ]),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 130,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(children: [
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.account_circle_rounded,
-                                            size: 50,
-                                            color: AppData.kPrimaryColor,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Ms. Mansi Patwaardhan',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  'Surgeon',
-                                                  overflow: TextOverflow.clip,
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Ms. Mansi Patwaardhan',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Surgeon',
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(),
+                                            ),
+                                            Row(children: [
+                                              Icon(Icons.add_location,
+                                                  size: 20),
+                                              Expanded(
+                                                child: Text(
+                                                  '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
+                                                  overflow:
+                                                      TextOverflow.clip,
                                                   style: TextStyle(),
                                                 ),
-                                                Row(children: [
-                                                  Icon(Icons.add_location,
-                                                      size: 20),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                  )
-                                                ]),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                              )
+                                            ]),
+                                          ],
+                                        ),
                                       ),
-                                      SizedBox(
-                                        height: 10,
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(children: [
+                                    Text(
+                                      'Call Now',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                        color: Colors.red,
                                       ),
-                                      Row(children: [
-                                        Text(
-                                          'Call Now',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Book Appointment',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ]),
-                                    ]),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 130,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(children: [
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.account_circle_rounded,
-                                            size: 50,
-                                            color: Colors.red,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Ms. Mansi Patwaardhan',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  'Surgeon',
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(),
-                                                ),
-                                                Row(children: [
-                                                  Icon(Icons.add_location,
-                                                      size: 20),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                  )
-                                                ]),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(children: [
-                                        Text(
-                                          'Call Now',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Book Appointment',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ]),
-                                    ]),
-                                  )),
-                            ),
-                            Card(
-                              elevation: 5,
-                              child: Container(
-                                  height: 130,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.grey[300],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(children: [
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.account_circle_rounded,
-                                              size: 50,
-                                              color: AppData.kPrimaryColor),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Ms. Mansi Patwaardhan',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  'Surgeon',
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(),
-                                                ),
-                                                Row(children: [
-                                                  Icon(Icons.add_location,
-                                                      size: 20),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                  )
-                                                ]),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(children: [
-                                        Text(
-                                          'Call Now',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Book Appointment',
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ]),
-                                    ]),
-                                  )),
-                            ),
-                          ],
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Book Appointment',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ]),
+                                ]),
+                              )),
                         ),
-                        SizedBox(
-                          height: 10,
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 130,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.account_circle_rounded,
+                                        size: 50,
+                                        color: Colors.red,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Ms. Mansi Patwaardhan',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Surgeon',
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(),
+                                            ),
+                                            Row(children: [
+                                              Icon(Icons.add_location,
+                                                  size: 20),
+                                              Expanded(
+                                                child: Text(
+                                                  '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
+                                                  overflow:
+                                                      TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                              )
+                                            ]),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(children: [
+                                    Text(
+                                      'Call Now',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Book Appointment',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ]),
+                                ]),
+                              )),
+                        ),
+                        Card(
+                          elevation: 5,
+                          child: Container(
+                              height: 130,
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.grey[300],
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.account_circle_rounded,
+                                          size: 50,
+                                          color: AppData.kPrimaryColor),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Ms. Mansi Patwaardhan',
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                      FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Surgeon',
+                                              overflow: TextOverflow.clip,
+                                              style: TextStyle(),
+                                            ),
+                                            Row(children: [
+                                              Icon(Icons.add_location,
+                                                  size: 20),
+                                              Expanded(
+                                                child: Text(
+                                                  '926,FCROAD,SHIVAJINAGAR,ADJUCENT TO TUKARAM PADUKA CHOWK',
+                                                  overflow:
+                                                      TextOverflow.clip,
+                                                  style: TextStyle(),
+                                                ),
+                                              )
+                                            ]),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(children: [
+                                    Text(
+                                      'Call Now',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Book Appointment',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ]),
+                                ]),
+                              )),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 
   Widget _submitButton() {
