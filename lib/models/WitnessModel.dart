@@ -1,41 +1,31 @@
 import 'package:flutter/cupertino.dart';
 
-class ItemModel {
-  /*String donorName,
+class WitnessModel {
+  String donorName,
       donorType,
-      typeUserName,  qty,rcvquantity;
-  private String donorName;
-  private String donorType;
-  private String typeUserName;
-  private String dob;
-  private String age;
-  private String bldGr;
-  private String mob;
-  private String email;
-  private String address;
-  private String patientId;
-  ItemModel();
-  ItemModel.fromJson(Map<String, dynamic> json) {
-    itemno = json['itemno'];
-    itemnm = json['itemnm'];
-    desc = json['desc'];
-    price = json['price'];
-    qty = json['qty'];
-    rcvquantity = json['rcvquantity'];
+      typeUserName,relation , age,mob,address,email;
+
+  WitnessModel();
+  WitnessModel.fromJson(Map<String, dynamic> json) {
+    donorName = json['donorName'];
+    donorType = json['donorType'];
+    typeUserName = json['typeUserName'];
+    age = json['age'];
+    address = json['address'];
+    email = json['email'];
+    relation = json['relation'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['itemid'] = this.itemno.toString();
-    data['itemnm'] = this.itemnm.toString();
-    data['desc'] = this.desc.toString();
-    data['price'] = this.price.toString();
-    data['qty'] = this.qty.toString();
-    data['rcvquantity'] = this.rcvquantity.toString();
+    data['donorName'] = this.donorName.toString();
+    data['donorType'] = this.donorType.toString();
+    data['typeUserName'] = this.typeUserName.toString();
+    data['age'] = this.age.toString();
+    data['address'] = this.address.toString();
+    data['email'] = this.email.toString();
+    data['relation'] = this.relation.toString();
     return data;
   }
 
-  @override
-  String toString() {
-    return 'ItemModel{itemno: $itemno, itemnm: $itemnm, desc: $desc, qty: $qty,rcvquantity:$rcvquantity,price:$price}';
-  }*/
+
 }

@@ -13,6 +13,7 @@ import 'package:user/models/TissueModel.dart'as tissue;
 import 'package:user/models/OrganModel.dart'as organ;
 import 'package:user/models/OrganModel.dart';
 import 'package:user/models/TissueModel.dart';
+import 'package:user/models/WitnessModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -34,6 +35,7 @@ class DonorApplication extends StatefulWidget {
   static KeyvalueModel bloodgroupModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
+  static KeyvalueModel relationmodel = null;
 
   DonorApplication({
     Key key,
@@ -94,7 +96,7 @@ class DonorApplicationState extends State<DonorApplication> {
   List<tissue.Body> selectetissue = [];
   organ.OrganModel organModel;
   List<organ.Body> selectedorgan = [];
-
+  List<WitnessModel> witnessModle = [];
   List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
@@ -104,6 +106,7 @@ class DonorApplicationState extends State<DonorApplication> {
   var pngBytes;
   String selectDob;
   KeyvalueModel selectedKey = null;
+
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
@@ -584,7 +587,7 @@ class DonorApplicationState extends State<DonorApplication> {
           ),
          ListView.builder(
             itemBuilder: (context, i) {
-              tissue.Body body = tissueModel.body[i];
+             //= witnessModle[i];
               // widget.model.medicinelist = ;
               return Padding(
                 padding: const EdgeInsets.only(left: 8.0),
@@ -593,28 +596,24 @@ class DonorApplicationState extends State<DonorApplication> {
                   dense: true,
                   //font change
                   title: new Text(
-                    body.name??"N/A",
+                    witnessModle[i].donorName??"N/A",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5),
                   ),
-                  value: body.isChecked,
+                  value: isChecked,
                   onChanged: (val) {
                     setState(() {
-                      body.isChecked = val;
-                      if (val)
-                        selectetissue.add(body);
-                      else
-                        selectetissue
-                            .remove(body);
+                      isChecked = val;
                     });
                   },
-
                 ),
+
+
               );
             },
-            itemCount: tissueModel.body.length,
+            itemCount: witnessModle.length,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
           ),
@@ -636,7 +635,7 @@ class DonorApplicationState extends State<DonorApplication> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
-    //ItemModel witness = ItemModel();
+   // WitnessModel witness = WitnessModel();
     //DoctorMedicationlistModel item = DoctorMedicationlistModel();
     /*textEditingController[0].text = "";
     textEditingController[1].text = "";
@@ -707,27 +706,32 @@ class DonorApplicationState extends State<DonorApplication> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      "Blood Group",
-                      ApiFactory.BLOODGROUP_API,
-                      "bloodgroup", (KeyvalueModel data) {
-                    setState(() {
-                      print(ApiFactory.BLOODGROUP_API);
-                      DonorApplication.bloodgroupModel = data;
-                      DonorApplication.bloodgroupModel = null;
-                    });
-                  }),
-                ),
+
                 SizedBox(
                   height: 10,
                 ),
-               /* Padding(
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 10),
+              child: DropDown.networkDropdownGetpartUserundreline(
+                    "Relation", ApiFactory.RELATION_API, "relation",
+                        (KeyvalueModel model) {
+                      setState(() {
+
+                        DonorApplication.relationmodel = model;
+
+                      });
+                    }),),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
+                    controller: textEditingController[7],
                     decoration: InputDecoration(
+
                         hintText: "Mobile Number",
                         hintStyle:
                         TextStyle(color: Colors.grey)),
@@ -738,15 +742,12 @@ class DonorApplicationState extends State<DonorApplication> {
                           RegExp("[0-9]")),
                     ],
                   ),
-                ),*/
-                SizedBox(
-                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[7],
+                    controller: textEditingController[8],
                     decoration: InputDecoration(
                         hintText:
                         MyLocalizations.of(context)
@@ -768,7 +769,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[8],
+                    controller: textEditingController[9],
                     decoration: InputDecoration(
                         hintText: "Address",
                         hintStyle:
@@ -802,46 +803,24 @@ class DonorApplicationState extends State<DonorApplication> {
         ),
         new FlatButton(
           onPressed: () {
-             if (_checkbox == false &&
-                _checkbox1 == false &&
-                _checkbox2 == false) {
-              AppData.showInSnackBar(
-                  context, "Please checked terms and Condition");
-            } else if (textEditingController[2].text == '') {
+              if (textEditingController[5].text == '') {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
-              //NomineeModel nomineeModel = NomineeModel();
-             /* item.userid = widget.model.appointmentlist.userid;
-              item.appno = widget.model.appointmentlist.doctorName; //appno
-              //item.mednaid = Medicationlist.medicinModel.key;
-              item.medname = Medicationlist.medicinModel.key;
-              item.duration = textEditingController[1].text;
-              item.remarks = textEditingController[2].text;
-              item.doctor = widget.model.user;
-              item.morning = _checkboxstr.toString();
-              item.afternoon = _checkboxstr1.toString();
-              item.evening = _checkboxstr2.toString();
-              print("API NAME>>>>" + ApiFactory.POST_MEDICATION);
-              print("TO POST>>>>" + jsonEncode(item.toJson()));
-              MyWidgets.showLoading(context);
-              widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.POST_MEDICATION,
-                  json: item.toJson(),
-                  token: widget.model.token,
-                  fun: (Map<String, dynamic> map) {
-                    Navigator.pop(context);
-                    if (map[Const.STATUS] == Const.SUCCESS) {
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
-                      callAPI();
-                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
-                    } else {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                    }
-                  });*/
+               WitnessModel witness = WitnessModel();
+               witness.donorName = textEditingController[5].text;
+               witness.donorType = textEditingController[6].text;
+               witness.typeUserName = textEditingController[6].text;
+               witness.relation = DonorApplication.relationmodel.key;
+               witness.age = textEditingController[6].text;
+               witness.mob = textEditingController[7].text;
+               witness.email = textEditingController[8].text;
+               witness.address = textEditingController[9].text;
+
+
               //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
 
               setState(() {
-                //medicinlist.add(item);
+                witnessModle.add(witness);
               });
             }
             Navigator.of(context).pop();
