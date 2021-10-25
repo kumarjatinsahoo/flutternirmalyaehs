@@ -31,6 +31,9 @@ class DoctorAppointmment {
 }
 
 class Body {
+  String age;
+  String gender;
+  String address;
   String userid;
   String doctorName;
   String speciality;
@@ -42,19 +45,25 @@ class Body {
   String appyear;
   String patname;
 
-  Body(
-      {this.userid,
-        this.doctorName,
-        this.speciality,
-        this.appdate,
-        this.apptime,
-        this.notes,
-        this.status,
-        this.appmonth,
-        this.appyear,
-        this.patname});
+  Body({
+    this.age,
+    this.gender,
+    this.address,
+    this.userid,
+    this.doctorName,
+    this.speciality,
+    this.appdate,
+    this.apptime,
+    this.notes,
+    this.status,
+    this.appmonth,
+    this.appyear,
+    this.patname});
 
   Body.fromJson(Map<String, dynamic> json) {
+    age = json['age'].toString();
+    gender = json['gender'].toString();
+    address = json['address'].toString();
     userid = json['userid'].toString();
     doctorName = json['doctorName'].toString();
     speciality = json['speciality'].toString();
@@ -69,6 +78,9 @@ class Body {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['age'] = this.age;
+    data['gender'] = this.gender;
+    data['address'] = this.address;
     data['userid'] = this.userid;
     data['doctorName'] = this.doctorName;
     data['speciality'] = this.speciality;

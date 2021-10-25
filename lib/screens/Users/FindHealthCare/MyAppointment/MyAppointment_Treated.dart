@@ -129,12 +129,12 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                         /* itemCount: lists.length,
                           itemBuilder: (context, index) {*/
                         return InkWell(
-                            onTap: () {
-                              widget.model.userappointment = appointmentlist;
-
-
-                              Navigator.pushNamed(context, "/usermedicinelist");
-                            },
+                            // onTap: () {
+                            //   widget.model.userappointment = appointmentlist;
+                            //
+                            //
+                            //   Navigator.pushNamed(context, "/usermedicinelist");
+                            // },
                             child:   Column(
                               children: [
                                 Padding(
@@ -378,14 +378,31 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                   Row(
                                                     // mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
-                                                      Text(
-                                                        /*'Confirmed'*/
-                                                        "Show prescription",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold,
-                                                            fontSize: 15,color:AppData.kPrimaryColor),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          widget.model.userappointment = appointmentlist;
+
+
+                                                          Navigator.pushNamed(context, "/usermedicinelist");
+                                                        },
+                                                        child: Material(
+                                                          elevation: 5,
+                                                          color: AppData.kPrimaryColor,
+                                                          borderRadius: BorderRadius.circular(10.0),
+                                                          child: MaterialButton(
+                                                            minWidth: 90,
+                                                            height: 40.0,
+                                                          child: Text(
+                                                            /*'Confirmed'*/
+                                                            "Show prescription",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                fontSize: 15,color:Colors.white),
+                                                          ),
+                                                        ),
+                                                        ),
                                                       ),
                                                       Spacer(),
                                                       Text(
