@@ -602,6 +602,17 @@ class DonorApplicationState extends State<DonorApplication> {
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5),
                   ),
+                   /* InkWell(
+                      onTap: () {
+                        setState(() {
+                          itemModel.remove(data);
+                        });
+                      },
+                      child: Icon(
+                        Icons.remove_circle,
+                        // color: Colors.red,
+                      ),
+                    ),*/
                   value: isChecked,
                   onChanged: (val) {
                     setState(() {
