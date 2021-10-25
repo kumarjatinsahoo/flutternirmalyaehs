@@ -187,6 +187,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -321,6 +332,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       //items: maritalStatus,
       selectedItem: getData(callFrom),
       onFind: (String filter) async {
@@ -442,6 +464,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -518,6 +551,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -675,6 +719,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -755,6 +810,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       //label: label,
       showSearchBox: true,
       selectedItem: getData(callFrom),
@@ -861,6 +927,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       label: label,
       showSearchBox: true,
       //items: maritalStatus,
@@ -921,6 +998,17 @@ class DropDown {
                     style: TextStyle(color: Colors.black),
                   )));
         },
+        emptyBuilder:( context, searchEntry){
+          return  Material(
+            child:Center(
+              child: Text(
+                "No Data Found",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          );
+        } ,
+
         dropdownSearchDecoration: InputDecoration(
             // filled: true,
             icon: Icon(
@@ -1005,6 +1093,17 @@ class DropDown {
                     style: TextStyle(color: Colors.black),
                   )));
         },
+        emptyBuilder:( context, searchEntry){
+          return  Material(
+            child:Center(
+              child: Text(
+                "No Data Found",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          );
+        } ,
+
         dropdownSearchDecoration: InputDecoration(
           // filled: true,
           isDense: true,
@@ -1065,6 +1164,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppData.kPrimaryColor, width: 2),
@@ -1106,6 +1216,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.grey),
@@ -1153,6 +1274,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.grey),
@@ -1204,7 +1336,18 @@ class DropDown {
                   "No Data Found",
                   style: TextStyle(color: Colors.black),
                 )));
-      },
+      },emptyBuilder:( context, searchEntry){
+      return  Material(
+        child:Center(
+          child: Text(
+            "No Data Found",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      );
+    } ,
+
+
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           labelText: label,
@@ -1289,6 +1432,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       onFind: (String filter) async {
         var response = await Dio().get(
           API,
@@ -1333,6 +1487,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           labelText: label,
@@ -1381,6 +1546,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
           hintText: label,
           //alignLabelWithHint: true,
@@ -1441,6 +1617,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -1664,15 +1851,7 @@ class DropDown {
           ),
         );
       },
-      /*emptyBuilder: (context, value, v) {
-        return Container(
-          alignment: Alignment.center,
-          child: Text(
-            "No Data Found",
-            style: TextStyle(color: Colors.black),
-          ),
-        );
-      },*/
+
       emptyBuilder:( context, searchEntry){
         return  Material(
             child:Center(
@@ -1849,6 +2028,17 @@ class DropDown {
           ),
         );
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       showSearchBox: true,
       selectedItem: getData11(callFrom),
       onFind: (String filter) async {
@@ -1986,6 +2176,17 @@ class DropDown {
           ),
         );
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       selectedItem: getData(callFrom),
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -2053,6 +2254,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       popupItemBuilder: (context, value, isSucc) {
         return Column(
           children: [
@@ -2136,6 +2348,17 @@ class DropDown {
         ),
       ),
       hint: label,
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         icon: Icon(
@@ -2234,6 +2457,17 @@ class DropDown {
                       style: TextStyle(color: Colors.black),
                     )));
           },
+          emptyBuilder:( context, searchEntry){
+            return  Material(
+              child:Center(
+                child: Text(
+                  "No Data Found",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            );
+          } ,
+
           showSearchBox: true,
           selectedItem: getData(callFrom),
           onFind: (String filter) async {
@@ -2345,6 +2579,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       showSearchBox: true,
       onFind: (String filter) async {
         print("DROP DOWN API?????" + ApiFactory.FIND_HEALTH_PROVIDER1);
@@ -2391,6 +2636,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
          icon: Icon(
@@ -2489,6 +2745,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         /* icon: Icon(
@@ -2596,6 +2863,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -2730,6 +3008,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -2814,6 +3103,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
@@ -2910,6 +3210,17 @@ class DropDown {
                     style: TextStyle(color: Colors.black),
                   )));
         },
+        emptyBuilder:( context, searchEntry){
+          return  Material(
+            child:Center(
+              child: Text(
+                "No Data Found",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          );
+        } ,
+
         hint: label,
         dropdownSearchDecoration: InputDecoration(
           // filled: true,
@@ -2985,6 +3296,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
         isDense: true,
@@ -3062,6 +3384,17 @@ class DropDown {
                   style: TextStyle(color: Colors.black),
                 )));
       },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
