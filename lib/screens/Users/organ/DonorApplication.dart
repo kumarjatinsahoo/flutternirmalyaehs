@@ -19,7 +19,6 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
-
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../providers/app_data.dart';
@@ -92,9 +91,11 @@ class DonorApplicationState extends State<DonorApplication> {
   TextEditingController _email = TextEditingController();
   FocusNode emailFocus_ = FocusNode();
   tissue.TissueModel tissueModel;
+  List<tissue.Body> selectetissue = [];
   organ.OrganModel organModel;
-  List<bool> dropdownError = [false, false, false];
+  List<organ.Body> selectedorgan = [];
 
+  List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
   File _imageCertificate;
@@ -171,7 +172,7 @@ class DonorApplicationState extends State<DonorApplication> {
   }
   tissuecallAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.ORGAN_API,
+      api: ApiFactory.TISSUE_API,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];
@@ -196,9 +197,10 @@ class DonorApplicationState extends State<DonorApplication> {
       },
     );
   }
+
   organcallAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.TISSUE_API ,
+      api: ApiFactory.ORGAN_API ,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];
@@ -206,7 +208,7 @@ class DonorApplicationState extends State<DonorApplication> {
         if (map[Const.CODE] == Const.SUCCESS) {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
-            tissueModel = OrganModel.fromJson(map) as tissue.TissueModel;
+            organModel = OrganModel.fromJson(map);
           });
         } else {
           setState(() {
@@ -245,185 +247,175 @@ class DonorApplicationState extends State<DonorApplication> {
     child: SingleChildScrollView(
       child: Column(
         children: [
-          ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Form(
-                key: _formKey,
-                // ignore: deprecated_member_use
-                autovalidate: _autovalidate,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[0],
-                        decoration: InputDecoration(
-                            hintText: "Person Name",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(
-                              RegExp("[a-zA-Z ]")),
-                        ],
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[0],
+              decoration: InputDecoration(
+                  hintText: "Person Name",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                    RegExp("[a-zA-Z ]")),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 3.0),
+            child: mobileNoOTPSearch(),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+             /* Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[2],
+              decoration: InputDecoration(
+                  hintText: "Date Of Birth",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                    RegExp("[a-zA-Z,0-9 ]")),
+              ],
+            ),
+          ),*/
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[1],
+              decoration: InputDecoration(
+                  hintText: "Age:Years",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp("[0-9]")),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: DropDown.networkDropdownGetpartUserundreline(
+                "Blood Group",
+                ApiFactory.BLOODGROUP_API,
+                "bloodgroup", (KeyvalueModel data) {
+              setState(() {
+                print(ApiFactory.BLOODGROUP_API);
+                DonorApplication.bloodgroupModel = data;
+                DonorApplication.bloodgroupModel = null;
+              });
+            }),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[2],
+              decoration: InputDecoration(
+                  hintText: "Mobile Number",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp("[0-9]")),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[3],
+              decoration: InputDecoration(
+                  hintText: "Email ID(optional)",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
+              //           inputFormatters: [
+              //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+              //           ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextFormField(
+              controller: textEditingController[4],
+              decoration: InputDecoration(
+                  hintText: "Address",
+                  hintStyle: TextStyle(color: Colors.grey)),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                    RegExp("[0-9,a-zA-Z]")),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+                color: Colors.black26,
+                height: 40,
+                child: Row(
+                  children: const <Widget>[
+                    SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Organ(s)',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            fontSize: 15),
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 3.0),
-                      child: mobileNoOTPSearch(),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[2],
-                        decoration: InputDecoration(
-                            hintText: "Date Of Birth",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(
-                              RegExp("[a-zA-Z,0-9 ]")),
-                        ],
+                    SizedBox(width: 40),
+                    Expanded(
+                      child: Text(
+                        'Tissue(s)',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            fontSize: 15),
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[3],
-                        decoration: InputDecoration(
-                            hintText: "Age:Years",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: DropDown.networkDropdownGetpartUserundreline(
-                          "Blood Group",
-                          ApiFactory.BLOODGROUP_API,
-                          "bloodgroup", (KeyvalueModel data) {
-                        setState(() {
-                          print(ApiFactory.BLOODGROUP_API);
-                          DonorApplication.bloodgroupModel = data;
-                          DonorApplication.bloodgroupModel = null;
-                        });
-                      }),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[5],
-                        decoration: InputDecoration(
-                            hintText: "Mobile Number",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[6],
-                        decoration: InputDecoration(
-                            hintText: "Email ID(optional)",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        //           inputFormatters: [
-                        //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                        //           ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        controller: textEditingController[7],
-                        decoration: InputDecoration(
-                            hintText: "Address",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(
-                              RegExp("[0-9,a-zA-Z]")),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Container(
-                          color: Colors.black12,
-                          height: 40,
-                          child: Row(
-                            children: const <Widget>[
-                              SizedBox(width: 6),
-                              Expanded(
-                                child: Text(
-                                  'Organ(s)',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                      fontSize: 15),
-                                ),
-                              ),
-                              SizedBox(width: 40),
-                              Expanded(
-                                child: Text(
-                                  'Tissue(s)',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                      fontSize: 15),
-                                ),
-                              ),
-                            ],
-                          )),
-                    ),
+                  ],
+                )),
+          ),
 
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: Column(children: [
-                            /* (medicineListModel != null)
-                                                 ?*/
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 5,
+            ),
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: Column(
+                          children: [
                             CheckboxListTile(
                               activeColor: Colors.blue[300],
                               dense: true,
@@ -442,82 +434,11 @@ class DonorApplicationState extends State<DonorApplication> {
                                 });
                               },
                             ),
-                           /* ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              // controller: _scrollController,
-                              shrinkWrap: true,
-                              itemBuilder: (context, i) {
-                                if (i == tissueModel.body.length) {
-                                  return (tissueModel.body.length % 10 == 0)
-                                      ? CupertinoActivityIndicator()
-                                      : Container();
-                                }
-                                organ.Body body = tissueModel.body[i];
-
-                                // Print("mediiiicinie"+$body);
-                                return Container(
-                                  child: GestureDetector(
-                                    // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                    // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          *//* (!body.reqstatus)
-                                                  ? *//*
-                                          CheckboxListTile(
-                                            activeColor: Colors.blue[300],
-                                            dense: true,
-                                            //font change
-                                            title: new Text(
-                                              tissueModel.body[i].name??"N/A",
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 0.5),
-                                            ),
-                                            value: body.isChecked,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                body.isChecked = val;
-                                                *//* if (val)
-                                                      selectedMedicine.add(body);
-                                                    else
-                                                      selectedMedicine
-                                                          .remove(body);*//*
-                                              });
-                                            },
-                                          ),
-                                          *//*: Container(), Text(
-                                            organTissueModel.body[i].name??"N/A",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    letterSpacing: 0.5),
-                                              ),*//*
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          SizedBox(
-                                            width: 15,
-                                          ),
-
-
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              itemCount: tissueModel.body.length,
-                            )*/
                           ])),
-                          Expanded(
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
+                  Expanded(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
                             CheckboxListTile(
                               activeColor: Colors.blue[300],
                               dense: true,
@@ -536,297 +457,176 @@ class DonorApplicationState extends State<DonorApplication> {
                                 });
                               },
                             ),
-                                 /*   ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      // controller: _scrollController,
-                                      shrinkWrap: true,
-                                      itemBuilder: (context, i) {
-                                        if (i == tissueModel.body.length) {
-                                          return (tissueModel.body.length % 10 == 0)
-                                              ? CupertinoActivityIndicator()
-                                              : Container();
-                                        }
-                                        organ.Body body = tissueModel.body[i];
-
-                                        // Print("mediiiicinie"+$body);
-                                        return Container(
-                                          child: GestureDetector(
-                                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                children: [
-                                                 *//* (!body.reqstatus)
-                                                      ? *//*
-                                                      CheckboxListTile(
-                                                    activeColor: Colors.blue[300],
-                                                    dense: true,
-                                                    //font change
-                                                    title: new Text(
-                                                      tissueModel.body[i].name??"N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w600,
-                                                          letterSpacing: 0.5),
-                                                    ),
-                                                    value: body.isChecked,
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        body.isChecked = val;
-                                                       *//* if (val)
-                                                          selectedMedicine.add(body);
-                                                        else
-                                                          selectedMedicine
-                                                              .remove(body);*//*
-                                                      });
-                                                    },
-                                                  ),
-                                                      *//*: Container(), Text(
-                                                organTissueModel.body[i].name??"N/A",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight: FontWeight.w600,
-                                                        letterSpacing: 0.5),
-                                                  ),*//*
-                                                  SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 15,
-                                                  ),
-
-
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      itemCount: tissueModel.body.length,
-                                    ),*/
 
                           ])),
-                        ],
+                ],
+              ),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Flexible(
+                child: ListView.builder(
+                  itemBuilder: (context, i) {
+                    organ.Body body = organModel.body[i];
+                    // widget.model.medicinelist = ;
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: CheckboxListTile(
+                        activeColor: Colors.blue[300],
+                        dense: true,
+                        //font change
+                        title: new Text(
+                          body.name??"N/A",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5),
+                        ),
+                        value: body.isChecked,
+                        onChanged: (val) {
+                          setState(() {
+                            body.isChecked = val;
+                            if (val)
+                              selectedorgan.add(body);
+                            else
+                              selectedorgan
+                                  .remove(body);
+                          });
+                        },
+
+                      ),
+                    );
+                  },
+                  itemCount: organModel.body.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ),
+              Flexible(
+                child: ListView.builder(
+                  itemBuilder: (context, i) {
+                    tissue.Body body = tissueModel.body[i];
+                    // widget.model.medicinelist = ;
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: CheckboxListTile(
+                        activeColor: Colors.blue[300],
+                        dense: true,
+                        //font change
+                        title: new Text(
+                          body.name??"N/A",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5),
+                        ),
+                        value: body.isChecked,
+                        onChanged: (val) {
+                          setState(() {
+                            body.isChecked = val;
+                            if (val)
+                              selectetissue.add(body);
+                            else
+                              selectetissue
+                                  .remove(body);
+                          });
+                        },
+
+                      ),
+                    );
+                  },
+                  itemCount: tissueModel.body.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              color: Colors.black26,
+              height: 40,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      "Add Witness",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  //Spacer(),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            dialogaddnomination(context),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Icon(
+                        Icons.add_box,
                       ),
                     ),
+                  ),
+                ],
+              ),
 
-                    /* Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10, ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: Row(
-                                          */ /* ,*/ /*
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox2,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox2 = !_checkbox2;
+            ),
+          ),
+         ListView.builder(
+            itemBuilder: (context, i) {
+              tissue.Body body = tissueModel.body[i];
+              // widget.model.medicinelist = ;
+              return Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CheckboxListTile(
+                  activeColor: Colors.blue[300],
+                  dense: true,
+                  //font change
+                  title: new Text(
+                    body.name??"N/A",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5),
+                  ),
+                  value: body.isChecked,
+                  onChanged: (val) {
+                    setState(() {
+                      body.isChecked = val;
+                      if (val)
+                        selectetissue.add(body);
+                      else
+                        selectetissue
+                            .remove(body);
+                    });
+                  },
 
-                                                  });
-                                                },
-                                              ),
-                                              new Text(
-                                                'LIVER',
-                                                style: new TextStyle(
-                                                    fontSize: 16.0,
-                                                    color: Colors.black),
-                                              ),
-                                            ])),
-                                    Expanded(
-                                      child: Row(
-                                        */ /*  mainAxisAlignment:
-                                              MainAxisAlignment.center,*/ /*
-                                          children: [
-                                            Checkbox(
-                                              value: _checkbox3,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _checkbox3 = !_checkbox3;
-                                                });
-                                              },
-                                            ),
-                                            new Text(
-                                              'BONES',
-                                              style: new TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.black),
-                                            ),
-                                          ]),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10, ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: Row(
-                                          */ /* ,*/ /*
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox4,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox4 = !_checkbox4;
-                                                  });
-                                                },
-                                              ),
-                                              new Text(
-                                                'KIDNEYS',
-                                                style: new TextStyle(
-                                                    fontSize: 16.0,
-                                                    color: Colors.black),
-                                              ),
-                                            ])),
-                                    Expanded(
-                                      child: Row(
-                                        */ /*  mainAxisAlignment:
-                                              MainAxisAlignment.center,*/ /*
-                                          children: [
-                                            Checkbox(
-                                              value: _checkbox5,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _checkbox5 = !_checkbox5;
-                                                });
-                                              },
-                                            ),
-                                            new Text(
-                                              'HEART VALVES',
-                                              style: new TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.black),
-                                            ),
-                                          ]),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10, ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: Row(
-                                          */ /* ,*/ /*
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox6,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox6 = !_checkbox6;
-                                                  });
-                                                },
-                                              ),
-                                              new Text(
-                                                'HEART',
-                                                style: new TextStyle(
-                                                    fontSize: 16.0,
-                                                    color: Colors.black),
-                                              ),
-                                            ])),
-                                    Expanded(
-                                      child: Row(
-                                        */ /*  mainAxisAlignment:
-                                              MainAxisAlignment.center,*/ /*
-                                          children: [
-                                            Checkbox(
-                                              value: _checkbox7,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _checkbox7= !_checkbox7;
-                                                });
-                                              },
-                                            ),
-                                            new Text(
-                                              'SKIN',
-                                              style: new TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.black),
-                                            ),
-                                          ]),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10, ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: Row(
-                                          */ /* ,*/ /*
-                                            children: [
-                                              Checkbox(
-                                                value: _checkbox8,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _checkbox8 = !_checkbox8;
-                                                  });
-                                                },
-                                              ),
-                                              new Text(
-                                                'INTESTINE',
-                                                style: new TextStyle(
-                                                    fontSize: 16.0,
-                                                    color: Colors.black),
-                                              ),
-                                            ])),
-                                    Expanded(
-                                      child: Row(
-                                        */ /*  mainAxisAlignment:
-                                              MainAxisAlignment.center,*/ /*
-                                          children: [
-                                            Checkbox(
-                                              value: _checkbox9,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _checkbox9 = !_checkbox9;
-                                                });
-                                              },
-                                            ),
-                                            new Text(
-                                              'EYES',
-                                              style: new TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.black),
-                                            ),
-                                          ]),
-                                    ),
-                                  ],
-                                ),
-                              ),*/
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: _submitButton(),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                  ],
                 ),
-              )
-            ],
+              );
+            },
+            itemCount: tissueModel.body.length,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: _submitButton(),
+          ),
+          SizedBox(
+            height: 25,
           ),
         ],
       ),
@@ -835,13 +635,225 @@ class DonorApplicationState extends State<DonorApplication> {
     );
   }
 
-  /*_
-            ],
-          ),
-        ),
+  Widget dialogaddnomination(BuildContext context) {
+    //ItemModel witness = ItemModel();
+    //DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    /*textEditingController[0].text = "";
+    textEditingController[1].text = "";
+    textEditingController[2].text = "";
+    _checkbox = false;
+    _checkbox1 = false;
+    _checkbox2 = false;*/
+    //Nomine
+    return AlertDialog(
+      contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+      //title: const Text(''),
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                //_buildAboutText(),
+                //_buildLogoAttribution(),
+                Text("Add Witness"),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
+
+                  child: TextFormField(
+                    controller: textEditingController[5],
+                    decoration: InputDecoration(
+                        hintText: "Full Name",
+                        hintStyle:
+                        TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(
+                          RegExp("[a-zA-Z ]")),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 3.0),
+                  child: mobileNoOTPSearch(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
+                  child: TextFormField(
+                    controller: textEditingController[6],
+                    decoration: InputDecoration(
+                        hintText: "Age:Years",
+                        hintStyle:
+                        TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(
+                          RegExp("[0-9]")),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      "Blood Group",
+                      ApiFactory.BLOODGROUP_API,
+                      "bloodgroup", (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.BLOODGROUP_API);
+                      DonorApplication.bloodgroupModel = data;
+                      DonorApplication.bloodgroupModel = null;
+                    });
+                  }),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+               /* Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Mobile Number",
+                        hintStyle:
+                        TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(
+                          RegExp("[0-9]")),
+                    ],
+                  ),
+                ),*/
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
+                  child: TextFormField(
+                    controller: textEditingController[7],
+                    decoration: InputDecoration(
+                        hintText:
+                        MyLocalizations.of(context)
+                            .text("Email ID(optional)"),
+                        hintStyle:
+                        TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType:
+                    TextInputType.emailAddress,
+                    //           inputFormatters: [
+                    //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                    //           ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10),
+                  child: TextFormField(
+                    controller: textEditingController[8],
+                    decoration: InputDecoration(
+                        hintText: "Address",
+                        hintStyle:
+                        TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(
+                          RegExp("[0-9,a-zA-Z]")),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          );
+        },
       ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            textEditingController[0].text = "";
+            textEditingController[1].text = "";
+            textEditingController[2].text = "";
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Cancel'),
+        ),
+        new FlatButton(
+          onPressed: () {
+             if (_checkbox == false &&
+                _checkbox1 == false &&
+                _checkbox2 == false) {
+              AppData.showInSnackBar(
+                  context, "Please checked terms and Condition");
+            } else if (textEditingController[2].text == '') {
+              AppData.showInSnackBar(context, "Please enter remark");
+            } else {
+              //NomineeModel nomineeModel = NomineeModel();
+             /* item.userid = widget.model.appointmentlist.userid;
+              item.appno = widget.model.appointmentlist.doctorName; //appno
+              //item.mednaid = Medicationlist.medicinModel.key;
+              item.medname = Medicationlist.medicinModel.key;
+              item.duration = textEditingController[1].text;
+              item.remarks = textEditingController[2].text;
+              item.doctor = widget.model.user;
+              item.morning = _checkboxstr.toString();
+              item.afternoon = _checkboxstr1.toString();
+              item.evening = _checkboxstr2.toString();
+              print("API NAME>>>>" + ApiFactory.POST_MEDICATION);
+              print("TO POST>>>>" + jsonEncode(item.toJson()));
+              MyWidgets.showLoading(context);
+              widget.model.POSTMETHOD_TOKEN(
+                  api: ApiFactory.POST_MEDICATION,
+                  json: item.toJson(),
+                  token: widget.model.token,
+                  fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      callAPI();
+                      //popup(context, "Medicine Added Successfully",map[Const.BODY]);
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  });*/
+              //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
+
+              setState(() {
+                //medicinlist.add(item);
+              });
+            }
+            Navigator.of(context).pop();
+            /*controller[0].text="";
+             controller[1].text="";*/
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Save'),
+        ),
+      ],
     );
-  }*/
+  }
   Widget viewMode() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1185,8 +1197,8 @@ class DonorApplicationState extends State<DonorApplication> {
                 focusNode: fnode7,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
-                maxLength: 10,
-                keyboardType: TextInputType.number,
+
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   // border: InputBorder.none,
                   counterText: "",
