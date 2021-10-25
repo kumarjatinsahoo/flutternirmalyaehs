@@ -36,12 +36,13 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
             children: [
                Text('Medication'),
               Spacer(),
-              InkWell(
+            /*  InkWell(
                   onTap: (){
                      userid=widget.model.appointmentlist.userid;
                     Navigator.pushNamed(context, "/showemr");
                   },
-                  child: Text('Show Emr',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)),
+                  child: Text('Show Emr',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
+              ),*/
             ],
           ),
           backgroundColor: AppData.kPrimaryColor,
