@@ -271,6 +271,20 @@ String formattedDate;
                           padding: const EdgeInsets.only(left: 0, right: 0),
                           child: SizedBox(
                             height: 58,
+                            /*  child: DropDown.networkDropdownAWWList
+                                ("Country",
+                              ApiFactory.COUNTRY_API,
+                              "country",
+                             (KeyvalueModel data) {
+                            setState(() {
+                              print(ApiFactory.COUNTRY_API);
+                              DoctorconsultationPage.countryModel = data;
+                              DoctorconsultationPage.stateModel = null;
+
+                              DoctorconsultationPage.distrModel = null;
+                              DoctorconsultationPage.cityModel = null;
+                            });
+                          }),*/
                             child: DropDown.networkDropdownGetpartUser(
                                 "Country",
                                 ApiFactory.COUNTRY_API,
@@ -280,10 +294,7 @@ String formattedDate;
                               setState(() {
                                 print(ApiFactory.COUNTRY_API);
                                 DoctorconsultationPage.countryModel = data;
-                                /* userModel.country=data.key;
-                                                    userModel.countryCode=data.code;*/
                                 DoctorconsultationPage.stateModel = null;
-
                                 DoctorconsultationPage.distrModel = null;
                                 DoctorconsultationPage.cityModel = null;
                               });
