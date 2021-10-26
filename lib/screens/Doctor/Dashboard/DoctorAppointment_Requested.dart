@@ -458,6 +458,25 @@ class _DoctorAppointmentRequestedState
                                                         CrossAxisAlignment
                                                             .end,
                                                         children: [
+                                                          Column(
+                                                            children: [
+                                                              Text(
+                                                                /*'Confirmed'*/
+                                                                appointmentlist
+                                                                    .status ??
+                                                                    "N/A",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    fontSize: 15,
+                                                                    color: Colors
+                                                                        .yellow[600]),
+                                                              ),
+                                                              SizedBox(height: 20,)
+                                                            ],
+                                                          ),
+                                                          Spacer(),
                                                           InkWell(
                                                             onTap: () {
                                                               widget.model.GETMETHODCALL_TOKEN(
@@ -470,16 +489,19 @@ class _DoctorAppointmentRequestedState
                                                                     setState(() {
                                                                       String msg = map[Const.MESSAGE];
                                                                       if (map[Const.CODE] == Const.SUCCESS) {
-                                                                        Navigator.of(context).pop();
-                                                                        Navigator.of(context).pop();
+                                                                      //  Navigator.of(context).pop();
+                                                                        //Navigator.of(context).pop();
                                                                         doctorAppointmment =
                                                                             DoctorAppointmment.fromJson(map);
-                                                                        AppData.showInSnackBar(context, msg);
+                                                                       // AppData.showInSnackBar(context, msg);
+                                                                         Navigator.of(context).pop();
+
+                                                                       // Navigator.pushNamed(context, "/dashDoctor");
 
                                                                         // appointModel = lab.LabBookModel.fromJson(map);
                                                                       } else {
                                                                         // isDataNotAvail = true;
-                                                                        AppData.showInSnackBar(context, msg);
+                                                                        //AppData.showInSnackBar(context, msg);
                                                                       }
                                                                     });
                                                                   });
@@ -523,12 +545,14 @@ class _DoctorAppointmentRequestedState
                                                                       if (map[Const.CODE] == Const.SUCCESS) {
                                                                         doctorAppointmment =
                                                                             DoctorAppointmment.fromJson(map);
-                                                                        AppData.showInSnackBar(context, msg);
-                                                                        Navigator.of(context).pop();
+                                                                       // AppData.showInSnackBar(context, msg);
+                                                                       Navigator.of(context).pop();
+                                                                     //   Navigator.pushNamed(context, "/dashDoctor");
+
                                                                         // appointModel = lab.LabBookModel.fromJson(map);
                                                                       } else {
                                                                         // isDataNotAvail = true;
-                                                                        AppData.showInSnackBar(context, msg);
+                                                                       // AppData.showInSnackBar(context, msg);
                                                                       }
                                                                     });
                                                                   });
@@ -557,25 +581,7 @@ class _DoctorAppointmentRequestedState
                                                               ),
                                                             ),
                                                           ),
-                                                          Spacer(),
-                                                          Column(
-                                                            children: [
-                                                              Text(
-                                                                /*'Confirmed'*/
-                                                                appointmentlist
-                                                                    .status ??
-                                                                    "N/A",
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                    fontSize: 15,
-                                                                    color: Colors
-                                                                        .yellow[600]),
-                                                              ),
-                                                              SizedBox(height: 20,)
-                                                            ],
-                                                          ),
+
                                                         ],
                                                       ),
                                                     ),

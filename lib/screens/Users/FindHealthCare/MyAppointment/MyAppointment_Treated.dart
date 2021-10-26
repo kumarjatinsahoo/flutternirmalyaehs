@@ -262,7 +262,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                             color:
                                                                                 Colors.black),
                                                                       ),
-                                                                      Text(
+                                                                      (appointmentlist.docexp ==
+                                                                          null)
+                                                                     ? Text(
                                                                         "  Exp ",
                                                                         overflow:
                                                                             TextOverflow.clip,
@@ -271,8 +273,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                                 13,
                                                                             color:
                                                                                 Colors.black),
-                                                                      ),
-                                                                      Text(
+                                                                      ):Container(),
+                                                                      (appointmentlist.docexp == null)
+                                                                      ?Text(
                                                                         appointmentlist.docexp ??
                                                                             "N/A",
                                                                         overflow:
@@ -282,7 +285,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                                 13,
                                                                             color:
                                                                                 Colors.black),
-                                                                      ),
+                                                                      ):Container(),
                                                                     ],
                                                                   ),
                                                                   SizedBox(

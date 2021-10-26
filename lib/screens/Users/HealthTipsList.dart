@@ -92,13 +92,13 @@ class _HealthTipsListState extends State<HealthTipsList> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Image.asset("assets/logo1.png",height: 40,),
+                              Image.asset("assets/logo1.png",height: 40,color: Color(0xFF006CE2),),
                               Padding(
                                 padding: const EdgeInsets.only(left:8.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("eHealthSystem",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),),
+                                    Text("eHealthSystem",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF006CE2),),),
                                     Text("5 days ago"),
                                   ],
                                 ),
@@ -116,19 +116,19 @@ class _HealthTipsListState extends State<HealthTipsList> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Icon(Icons.visibility,color: Colors.blue,size: 16,),
+                              Icon(Icons.visibility,color: Color(0xFF006CE2),size: 16,),
                               SizedBox(width: 5),
                               Text("250",style: TextStyle(fontSize: 12),),
                               SizedBox(width: 20),
-                              Icon(Icons.thumb_up,color: Colors.blue,size: 16),
+                              Icon(Icons.thumb_up,color: Color(0xFF006CE2),size: 16),
                               SizedBox(width: 5),
                               Text("95",style: TextStyle(fontSize: 12),),
                               SizedBox(width: 20),
-                              Icon(Icons.message,color: Colors.blue,size: 16),
+                              Icon(Icons.message,color: Color(0xFF006CE2),size: 16),
                               SizedBox(width: 5),
                               Text("45",style: TextStyle(fontSize: 12),),
                               SizedBox(width: 20),
-                              Icon(Icons.share,color: Colors.blue,size: 16),
+                              Icon(Icons.share,color: Color(0xFF006CE2),size: 16),
                               SizedBox(width: 5),
                               Text("28",style: TextStyle(fontSize: 12),),
                             ],

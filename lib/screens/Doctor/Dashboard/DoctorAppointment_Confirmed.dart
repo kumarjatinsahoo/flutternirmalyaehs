@@ -133,15 +133,15 @@ class _DoctorAppointmentConfirmedState
                       color: Colors.grey,
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        appointdate(),
-                      ],
-                    ),
+                  Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      appointdate(),
+                    ],
                   ),
+                  Spacer(),
                   InkWell(
                     onTap: () {
                       rightArrow();
@@ -490,6 +490,26 @@ class _DoctorAppointmentConfirmedState
                                                               CrossAxisAlignment
                                                                   .end,
                                                           children: [
+                                                            Column(
+                                                              children: [
+                                                                Text(
+                                                                  /*'Confirmed'*/
+                                                                  appointmentlist
+                                                                      .status ??
+                                                                      "N/A",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                      fontSize: 15,
+                                                                      color: Colors
+                                                                          .green),
+                                                                ),
+                                                                SizedBox(height: 20,)
+                                                              ],
+                                                            ),
+                                                            Spacer(),
+
                                                             InkWell(
                                                               onTap:(){
                                                                 widget.model.patientseHealthCard =
@@ -559,26 +579,8 @@ class _DoctorAppointmentConfirmedState
                                                                 ),
                                                               ),
                                                             ),
-                                                            Spacer(),
 
-                                                            Column(
-                                                              children: [
-                                                                Text(
-                                                                  /*'Confirmed'*/
-                                                                  appointmentlist
-                                                                          .status ??
-                                                                      "N/A",
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize: 15,
-                                                                      color: Colors
-                                                                          .green),
-                                                                ),
-                                                                SizedBox(height: 20,)
-                                                              ],
-                                                            ),
+
                                                           ],
                                                         ),
                                                       ],
@@ -607,35 +609,33 @@ class _DoctorAppointmentConfirmedState
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-      child: Expanded(
-        child: InkWell(
-          onTap: () {
-            print("Click done");
-            _selectDate(context);
-          },
-          child: AbsorbPointer(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: TextFormField(
-                autofocus: false,
-                controller: fromThis_,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: 'From this',
-                  //labelText: 'Booking Date',
-                  alignLabelWithHint: false,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
+      child: InkWell(
+        onTap: () {
+          print("Click done");
+          _selectDate(context);
+        },
+        child: AbsorbPointer(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: TextFormField(
+              autofocus: false,
+              controller: fromThis_,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.calendar_today),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: 'From this',
+                //labelText: 'Booking Date',
+                alignLabelWithHint: false,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
                   ),
-                  contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
+                ),
+                contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                    width: 1.0,
                   ),
                 ),
               ),

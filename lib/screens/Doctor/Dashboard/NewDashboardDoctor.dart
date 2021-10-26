@@ -129,7 +129,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
       appBar:
       AppBar(centerTitle: true,
           title: Text("Dashboard"),
-          backgroundColor: Color(0xFF0F6CE1)),
+          backgroundColor: AppData.kPrimaryColor),
       body:
       Container(
         padding: EdgeInsets.symmetric(horizontal: 7),
