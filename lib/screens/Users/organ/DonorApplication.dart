@@ -812,7 +812,7 @@ class DonorApplicationState extends State<DonorApplication> {
                         hintStyle:
                         TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     maxLength: 10,
 
                     inputFormatters: [
