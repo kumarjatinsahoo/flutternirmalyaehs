@@ -48,6 +48,7 @@ import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
 import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/Users/organ/Organ1Page.dart';
@@ -465,7 +466,7 @@ class _MyAppState extends State<MyApp> {
               '/deliveredorder': (context) => SampleTracking(
                     model: _model,
                   ),
-             /* '/pinview': (context) => PinView(
+              /* '/pinview': (context) => PinView(
                     model: _model,
                   ),*/
               '/support': (context) => SupportScreen(
@@ -573,10 +574,10 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/medipedia': (context) => MedipediaPage(
                     model: _model,
-              ),
+                  ),
               '/govetschemeslist': (context) => GovernmentSchemesList(
                     model: _model,
-              ),
+                  ),
               '/discountofferdetails': (context) => DiscountOffersDetails(
                     model: _model,
                   ),
@@ -664,9 +665,12 @@ class _MyAppState extends State<MyApp> {
               '/walkRegList': (context) => WalkinRegisterListPage(
                     model: _model,
                   ),
+              '/medicinelisturl': (context) => UserMedicineUrl(
+                    model: _model,
+                  ),
 
               //////////////////DOCTOR USER//////////////////////
-           /*   '/dashDoctor': (context) => DasboardDoctor(
+              /*   '/dashDoctor': (context) => DasboardDoctor(
                     model: _model,
                   ),*/
               '/dashDoctor': (context) => NewDashboardDoctor(
@@ -758,20 +762,20 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ngo': (context) => NgoSignUpForm(
                     model: _model,
                   ),
               '/ngosignupform2': (context) => NgoSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bloodbank': (context) => BloodBankSignUpForm(
                     model: _model,
                   ),
               '/bloodbanksignupform2': (context) => BloodBankSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 
               '/covidMobile': (context) => CovidMobilePage(
                     model: _model,
@@ -799,7 +803,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/videos': (context) => VideosPage(
                     model: _model,
-              ),
+                  ),
               '/healthtipslist': (context) => HealthTipsList(
                     model: _model,
                   ),
@@ -826,48 +830,49 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/organ4': (context) => Organ4Page(
                     model: _model,
-              ),
+                  ),
               '/govetschem1': (context) => GovetListPage1(
                     model: _model,
-              ),
+                  ),
               '/govetschem2': (context) => GovetListPage2(
                     model: _model,
-              ),
+                  ),
               '/govetschem3': (context) => GovetListPage3(
                     model: _model,
-              ),
+                  ),
               '/govetschem4': (context) => GovetListPage4(
                     model: _model,
-              ),
+                  ),
               '/govetschem5': (context) => GovetListPage5(
                     model: _model,
-              ),
+                  ),
               '/govetschem6': (context) => GovetListPage6(
                     model: _model,
-              ),
+                  ),
               '/govetschem7': (context) => GovetListPage7(
-                    model: _model, ),
+                    model: _model,
+                  ),
               '/govetschem8': (context) => GovetListPage8(
                     model: _model,
                   ),
               '/qrViewExample1': (context) => QRViewExample1(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/labDash': (context) => DashboardLabortory(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/myOrderTest': (context) => MyOrdersLab(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/confirmOrder': (context) => OrdersTabLab(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ordersPharma': (context) => OrdersTabPharmacy(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/cnfpwd': (context) => ConfirmPassword(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
