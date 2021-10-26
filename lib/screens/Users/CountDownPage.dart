@@ -66,6 +66,7 @@ class _CountDownPageState extends State<CountDownPage>
     );
     _controller.forward(from: 0.0).whenComplete(() {
       //pushNotification();
+      callAPI();
       setState(() {
         isComplete = true;
       });

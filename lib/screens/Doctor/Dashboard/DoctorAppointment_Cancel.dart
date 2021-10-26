@@ -240,9 +240,9 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                               Image.asset(
                                                                             'assets/images/profile.png',
                                                                             height:
-                                                                                size.height * 0.07,
+                                                                                size.height * 0.10,
                                                                             width:
-                                                                                size.width * 0.13,
+                                                                                size.width * 0.20,
                                                                             fit: BoxFit.cover,
                                                                           ),
                                                                         )),
@@ -265,10 +265,10 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                             FontWeight
                                                                                 .bold,
                                                                         fontSize:
-                                                                            18),
+                                                                            15),
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   /*  Text(
                                                               appointmentlist
@@ -291,7 +291,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                         TextOverflow
                                                                             .clip,
                                                                     style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize:13),
                                                                   ),
                                                                   SizedBox(height:3),
                                                                   Text(
@@ -303,7 +303,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                     TextOverflow
                                                                         .clip,
                                                                     style:
-                                                                    TextStyle(),
+                                                                    TextStyle(fontSize:13),
                                                                   ),
                                                                   SizedBox(height:3),
                                                                   Text(
@@ -315,7 +315,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                     TextOverflow
                                                                         .clip,
                                                                     style:
-                                                                    TextStyle(),
+                                                                    TextStyle(fontSize:13),
                                                                   ),
                                                                 /*  Text(
                                                                     appointmentlist
@@ -336,13 +336,13 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                             width: 20,
                                                           ),
                                                           /*new Spacer(),*/
-                                                          Padding(
+                                                          /*Padding(
                                                             padding:
                                                                 const EdgeInsets
                                                                     .only(
                                                               top: 15.0,
                                                             ),
-                                                          ),
+                                                          ),*/
                                                         ],
                                                       ),
                                                       SizedBox(

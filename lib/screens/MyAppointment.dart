@@ -56,7 +56,7 @@ class _MyAppointmentState extends State<MyAppointment> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: /*"Confirmed"*/ "COFIRMED",
+                text: /*"Confirmed"*/ "CONFIRMED",
               ),
               Tab(
                 text: /*"Requested"*/ "REQUESTED",

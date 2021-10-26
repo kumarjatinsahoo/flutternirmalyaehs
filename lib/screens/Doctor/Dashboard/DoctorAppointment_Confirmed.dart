@@ -267,8 +267,8 @@ class _DoctorAppointmentConfirmedState
                                                                             child:
                                                                                 Image.asset(
                                                                               'assets/images/profile.png',
-                                                                              height: size.height * 0.07,
-                                                                              width: size.width * 0.13,
+                                                                              height: size.height * 0.10,
+                                                                              width: size.width * 0.20,
                                                                               fit: BoxFit.cover,
                                                                             ),
                                                                           )),
@@ -290,10 +290,10 @@ class _DoctorAppointmentConfirmedState
                                                                           fontWeight: FontWeight
                                                                               .bold,
                                                                           fontSize:
-                                                                              18),
+                                                                              15),
                                                                     ),
                                                                     SizedBox(
-                                                                      height: 5,
+                                                                      height: 3,
                                                                     ),
                                                                     /*  Text(
                                                               appointmentlist
@@ -316,7 +316,7 @@ class _DoctorAppointmentConfirmedState
                                                                           TextOverflow
                                                                               .clip,
                                                                       style:
-                                                                          TextStyle(),
+                                                                          TextStyle(fontSize:13),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
@@ -329,7 +329,7 @@ class _DoctorAppointmentConfirmedState
                                                                           TextOverflow
                                                                               .clip,
                                                                       style:
-                                                                          TextStyle(),
+                                                                          TextStyle(fontSize:13),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
@@ -342,7 +342,7 @@ class _DoctorAppointmentConfirmedState
                                                                           TextOverflow
                                                                               .clip,
                                                                       style:
-                                                                          TextStyle(),
+                                                                          TextStyle(fontSize:13),
                                                                     ),
                                                                     /*  Text(
                                                               appointmentlist

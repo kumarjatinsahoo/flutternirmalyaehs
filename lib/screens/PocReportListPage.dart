@@ -24,6 +24,8 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
   int currentMax = 1;
   static const platform = AppData.channel;
+ // List<MedicinlistModel> medicinlist = [];
+  List<Body> selectedMedicine = [];
 
   @override
   void initState() {
@@ -47,7 +49,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LIST + "?page=" + i.toString()+"&search=",
+        api: ApiFactory.POC_REPORT_LISTT + "?page=" + i.toString()+"&search=",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -75,6 +77,16 @@ class _PocReportListPageState extends State<PocReportListPage> {
             Text(
               "POC Report List",
               style: TextStyle(color: Colors.white),
+            ),
+            Spacer(),
+            InkWell(
+              onTap:(){
+
+              } ,
+              child: Text(
+                "Send SMS",
+                style: TextStyle(color: Colors.white,fontSize: 15),
+              ),
             ),
             Spacer(),
             InkWell(
@@ -140,12 +152,34 @@ class _PocReportListPageState extends State<PocReportListPage> {
                       //AppData.launchURL(patient.reportUrl);
                       //callUrl("");
                     },
+                      title:  CheckboxListTile(
+                        activeColor: Colors.blue[300],
+                        //dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
 
-                    title: Text(
+                        //font change
+                        title: new Text(
+                          (i + 1).toString() + ". " + patient.name + " ",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                        value: patient.isChecked,
+                        onChanged: (val) {
+                          setState(() {
+                            patient.isChecked = val;
+                            if (val)
+                              selectedMedicine.add;
+                            else
+                              selectedMedicine
+                                  .remove;
+                          });
+                        },
+                      ),
+                   /* title: Text(
                       (i + 1).toString() + ". " + patient.name + " ",
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
+                    ),*/
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

@@ -175,8 +175,8 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                       padding: const EdgeInsets.all(8.0),
                                                                       child: Image.asset(
                                                                         'assets/images/dprofile.png',
-                                                                        height: size.height * 0.07,
-                                                                        width: size.width * 0.13,
+                                                                        height: size.height * 0.10,
+                                                                        width: size.width * 0.20,
                                                                         //fit: BoxFit.cover,
                                                                       ),
                                                                     )),
@@ -187,19 +187,36 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                                 children: [
-                                                                  Text(
-                                                                    appointmentlist
-                                                                        .doctorName ??
-                                                                        "N/A",
-                                                                    /*"",*/
-                                                                    style: TextStyle(
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                        fontSize: 18),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        appointmentlist
+                                                                            .doctorName ??
+                                                                            "N/A",
+                                                                        /*"",*/
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                            fontSize: 15),
+                                                                      ),
+
+                                                                      (appointmentlist.patname== "Registered Doctor")
+                                                                          ? Container(
+                                                                        width: 80,
+                                                                        height: 30,
+                                                                        child: Icon(
+                                                                          Icons.check_circle,
+                                                                          size: 20,
+                                                                          color: AppData.kPrimaryColor,
+                                                                        ),
+                                                                      )
+                                                                          : Container(
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Row(
                                                                     children: [
@@ -211,14 +228,14 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),  Text(
                                                                         "  Exp ",
                                                                         overflow:
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),  Text(
                                                                         appointmentlist
                                                                             .docexp??
@@ -227,12 +244,12 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Text(
                                                                     appointmentlist
@@ -242,10 +259,10 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                     TextOverflow
                                                                         .clip,
                                                                     style:
-                                                                    TextStyle(),
+                                                                    TextStyle(fontSize: 13),
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Text(
                                                                     "Patient Notes: " +
@@ -256,9 +273,12 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                     TextOverflow
                                                                         .clip,
                                                                     style:
-                                                                    TextStyle(),
+                                                                    TextStyle(fontSize: 13),
                                                                   ),
-                                                                  Text(
+                                                                  SizedBox(
+                                                                    height: 3,
+                                                                  ),
+                                                                /*  Text(
                                                                     appointmentlist
                                                                         .patname ??
                                                                         "N/A",
@@ -267,14 +287,15 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                                         .clip,
                                                                     style: TextStyle(
                                                                         color: Colors
-                                                                            .blue),
-                                                                  ),
+                                                                            .blue,fontSize: 13),
+                                                                  ),*/
                                                                   RatingBar.readOnly(
                                                                     filledIcon: Icons.star,
                                                                     emptyIcon: Icons.star_border,
                                                                     initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
                                                                     maxRating: 5,
                                                                     filledColor: Colors.green,
+                                                                    size: 20.00,
                                                                   )
 
 
@@ -332,15 +353,18 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                         CrossAxisAlignment
                                                             .end,
                                                         children: [
-                                                          Text(
-                                                            /*'Confirmed'*/
-                                                            "Date : ",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                fontSize: 15,
-                                                                color: AppData.kPrimaryColor
+                                                          Container(
+                                                            width:75,
+                                                            child: Text(
+                                                              /*'Confirmed'*/
+                                                              "Date : ",
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                                  fontSize: 15,
+                                                                  color: AppData.kPrimaryColor
+                                                              ),
                                                             ),
                                                           ),
                                                           SizedBox(

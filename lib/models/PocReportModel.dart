@@ -43,6 +43,7 @@ class Body {
   String thpId;
   String thpName;
   String name;
+  bool isChecked=false;
   String mobile;
   String gender;
   String age;
