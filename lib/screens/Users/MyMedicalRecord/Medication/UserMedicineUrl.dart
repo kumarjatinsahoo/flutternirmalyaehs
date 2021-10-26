@@ -6,15 +6,15 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 
-class IdCardPage extends StatefulWidget {
+class UserMedicineUrl extends StatefulWidget {
   final MainModel model;
-  const IdCardPage({Key key,this.model}) : super(key: key);
+  const UserMedicineUrl({Key key,this.model}) : super(key: key);
 
   @override
-  _IdCardPageState createState() => _IdCardPageState();
+  _UserMedicineUrlState createState() => _UserMedicineUrlState();
 }
 
-class _IdCardPageState extends State<IdCardPage> {
+class _UserMedicineUrlState extends State<UserMedicineUrl> {
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
   String id;
@@ -33,7 +33,7 @@ class _IdCardPageState extends State<IdCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Medicine"),
+        title: Text("Id Card"),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),

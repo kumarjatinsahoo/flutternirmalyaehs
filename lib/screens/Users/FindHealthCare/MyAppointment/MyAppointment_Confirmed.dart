@@ -342,7 +342,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                         children: [
                                                           Row(
                                                             children: [
-                                                              Container(
+                                                             /* Container(
                                                                 decoration: BoxDecoration(
                                                                     borderRadius: BorderRadius.circular(55),
                                                                     border: Border.all(
@@ -360,39 +360,57 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         //fit: BoxFit.cover,
                                                                       ),
                                                                     )),
+                                                              ),*/
+                                                              CircleAvatar(
+                                                                radius: 50,
+                                                                foregroundColor:
+                                                                Colors
+                                                                    .white,
+                                                                child:
+                                                                Image.asset(
+                                                                  'assets/images/dprofile.png',
+                                                                  height:
+                                                                  size.height *
+                                                                      0.10,
+                                                                  width:
+                                                                  size.width *
+                                                                      0.20,
+                                                                  //fit: BoxFit.cover,
+                                                                ),
                                                               ),
-                                                              SizedBox(width:20,),
+                                                              SizedBox(
+                                                                width: 20,
+                                                              ),
                                                               Column(
                                                                 crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                                 children: [
                                                                   Row(
                                                                     children: [
                                                                       Text(
-                                                                        appointmentlist
-                                                                                .doctorName ??
+                                                                        appointmentlist.doctorName ??
                                                                             "N/A",
                                                                         /*"",*/
                                                                         style: TextStyle(
                                                                             fontWeight:
-                                                                                FontWeight
-                                                                                    .bold,
+                                                                            FontWeight.bold,
                                                                             fontSize: 15),
                                                                       ),
-
-                                                                        (appointmentlist.patname== "Registered Doctor")
-                                                                            ? Container(
-                                                                          width: 80,
-                                                                          height: 30,
-                                                                          child: Icon(
-                                                                            Icons.check_circle,
-                                                                            size: 20,
-                                                                            color: AppData.kPrimaryColor,
-                                                                          ),
-                                                                        )
-                                                                            : Container(
+                                                                      SizedBox(
+                                                                        width:
+                                                                        5,
+                                                                      ),
+                                                                      (appointmentlist.patname ==
+                                                                          "Registered Doctor")
+                                                                          ? Container(
+                                                                        child: Icon(
+                                                                          Icons.check_circle,
+                                                                          size: 16,
+                                                                          color: AppData.kPrimaryColor,
                                                                         ),
+                                                                      )
+                                                                          : Container(),
                                                                     ],
                                                                   ),
                                                                   SizedBox(
@@ -401,31 +419,40 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                   Row(
                                                                     children: [
                                                                       Text(
-                                                                        appointmentlist
-                                                                            .docedu ??
+                                                                        appointmentlist.docedu ??
                                                                             "N/A",
                                                                         overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                        style:
-                                                                        TextStyle(fontSize: 13),
-                                                                      ),  Text(
+                                                                        TextOverflow.clip,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                            13,
+                                                                            color:
+                                                                            Colors.black),
+                                                                      ),
+                                                                      (appointmentlist.docexp ==
+                                                                          null)
+                                                                          ? Text(
                                                                         "  Exp ",
                                                                         overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                        style:
-                                                                        TextStyle(fontSize: 13),
-                                                                      ),  Text(
-                                                                        appointmentlist
-                                                                            .docexp??
+                                                                        TextOverflow.clip,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                            13,
+                                                                            color:
+                                                                            Colors.black),
+                                                                      ):Container(),
+                                                                      (appointmentlist.docexp == null)
+                                                                          ?Text(
+                                                                        appointmentlist.docexp ??
                                                                             "N/A",
                                                                         overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                        style:
-                                                                        TextStyle(fontSize: 13),
-                                                                      ),
+                                                                        TextOverflow.clip,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                            13,
+                                                                            color:
+                                                                            Colors.black),
+                                                                      ):Container(),
                                                                     ],
                                                                   ),
                                                                   SizedBox(
@@ -433,115 +460,80 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                   ),
                                                                   Text(
                                                                     appointmentlist
-                                                                            .speciality ??
+                                                                        .speciality ??
                                                                         "N/A",
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                    style:
-                                                                        TextStyle(fontSize: 13),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 3,
-                                                                  ),
-                                                                  Text(
-                                                                    "Patient Notes: " +
-                                                                            appointmentlist
-                                                                                .notes ??
-                                                                        "N/A",
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                    style:
-                                                                        TextStyle(fontSize: 13),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 3,
-                                                                  ),
-                                                                /*  Text(
-                                                                    appointmentlist
-                                                                            .patname ??
-                                                                        "N/A",
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .clip,
+                                                                    TextOverflow
+                                                                        .clip,
                                                                     style: TextStyle(
+                                                                        fontSize:
+                                                                        13,
                                                                         color: Colors
-                                                                            .blue,fontSize: 13),
+                                                                            .black),
                                                                   ),
-*/                                                                  /*RatingBar(
-                                                                    rating: 3,
-                                                                    icon:Icon(Icons.star,size:40,color: Colors.grey,),
-                                                                    starCount: 5,
-                                                                    spacing: 8,
-                                                                    size: 20,
-                                                                    isIndicator: false,
-                                                                    allowHalfRating: true,
-                                                                    onRatingCallback: (double value,ValueNotifier<bool> isIndicator){
-                                                                      print('Number of stars-->  $value');
-                                                                      //change the isIndicator from false  to true ,the       RatingBar cannot support touch event;
-                                                                      isIndicator.value=true;
-                                                                    },
-                                                                    color: Colors.green,
+                                                                  SizedBox(
+                                                                    height: 3,
+                                                                  ),
+                                                                  /*  Text(
+                                                                appointmentlist
+                                                                    .patname ??
+                                                                    "N/A",
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .blue,fontSize: 13),
+                                                              ),*/
+                                                                  Row(
+                                                                    children: [
+                                                                      RatingBar
+                                                                          .readOnly(
+                                                                        filledIcon:
+                                                                        Icons.star,
+                                                                        emptyIcon:
+                                                                        Icons.star_border,
+                                                                        initialRating:
+                                                                        double.tryParse(appointmentlist.docrate.toString()) ??
+                                                                            0,
+                                                                        maxRating:
+                                                                        5,
+                                                                        filledColor:
+                                                                        Colors.green,
+                                                                        size:
+                                                                        23.00,
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width:
+                                                                        5,
+                                                                      ),
+                                                                      Text(
+                                                                        double.tryParse(appointmentlist.docrate.toString())
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                            FontWeight.w700),
+                                                                      )
+                                                                    ],
                                                                   )
-*/
-                                                                  RatingBar.readOnly(
-                                                                    filledIcon: Icons.star,
-                                                                    emptyIcon: Icons.star_border,
-                                                                    initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
-                                                                    maxRating: 5,
-                                                                    filledColor: Colors.green,
-                                                                    size: 20.00,
-                                                                  )
-
                                                                 ],
                                                               ),
                                                             ],
                                                           ),
-                                                       //   SizedBox(width: 10,),
+                                                          //  SizedBox(width: 10,),
                                                           /*new Spacer(),*/
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsets
-                                                                    .only(
+                                                            const EdgeInsets
+                                                                .only(
                                                               top: 15.0,
                                                             ),
                                                           ),
                                                         ],
                                                       ),
-                                                      SizedBox(height: 20,),
-                                                      Row(
-                                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .end,
-                                                        children: [
-                                                          Text(
-                                                            /*'Confirmed'*/
-                                                            "Address : ",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                fontSize: 15,
-                                                                color: AppData.kPrimaryColor
-                                                                    ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 3,
-                                                          ),
-                                                          Text(
-                                                            /*'23-Nov-2020-11:30AM'*/
-                                                            appointmentlist.dochospital??"N/A",
-                                                            overflow:
-                                                            TextOverflow
-                                                                .clip,
-                                                            style:
-                                                            TextStyle(),
-                                                          ),
-                                                        ],
+                                                      SizedBox(
+                                                        height: 10,
                                                       ),
-                                                      SizedBox(height: 10,),
                                                       Row(
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment:
@@ -549,22 +541,65 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             .end,
                                                         children: [
                                                           Container(
-                                                            width:75,
+                                                            width: 110,
                                                             child: Text(
                                                               /*'Confirmed'*/
-                                                              "Date : ",
+                                                              "Address",
                                                               style: TextStyle(
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                                  fontSize: 15,
-                                                                  color: AppData.kPrimaryColor
-                                                                      ),
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize: 15,
+                                                              ),
                                                             ),
                                                           ),
-                                                          SizedBox(
-                                                            height: 3,
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                .dochospital,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
                                                           ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      /* Text(
+                                                    "Patient Notes: " +
+                                                        appointmentlist
+                                                            .notes ??
+                                                        "N/A",
+                                                    overflow:
+                                                    TextOverflow
+                                                        .clip,
+                                                    style:
+                                                    TextStyle(fontSize: 13),
+                                                  ),*/
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .end,
+                                                        children: [
+                                                          Container(
+                                                            width: 110,
+                                                            child: Text(
+                                                              /*'Confirmed'*/
+                                                              "Date",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize: 15,),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
                                                           Text(
                                                             /*'23-Nov-2020-11:30AM'*/
                                                             appointmentlist
@@ -576,12 +611,48 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             overflow:
                                                             TextOverflow
                                                                 .clip,
-                                                            style:
-                                                            TextStyle(),
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
                                                           ),
                                                         ],
                                                       ),
-                                                      SizedBox(height:5),
+                                                      SizedBox(height: 10),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .end,
+                                                        children: [
+                                                          Container(
+                                                            width: 110,
+                                                            child: Text(
+                                                              /*'Confirmed'*/
+                                                              "Patient Notes",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize: 15,),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                .notes,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 15,
+                                                      ),
                                                       Row(
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment:
