@@ -132,7 +132,6 @@ class _LabDashboardState extends State<LabDashboard> {
                     children: [
                       _buildTileblue(
                         icon:"assets/images/registerpatient.png",
-                        iconcolor: AppData.BG2BLUE,
                         fun: () {
                           //AppData.showInSnackBar(context, "Coming soon");
                           // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -384,7 +383,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
+                     /* Container(
                         height: size.height * 0.07,
                         width: size.width * 0.13,
                         decoration: BoxDecoration(
@@ -400,6 +399,25 @@ class _LabDashboardState extends State<LabDashboard> {
                               width: size.width * 0.13,
                               fit: BoxFit.cover,
                             )),
+                      ),*/
+                      CircleAvatar(
+                        radius: 35,
+                        foregroundColor:
+                        Colors
+                            .white,
+                        backgroundColor: Colors.white,
+
+                        child:
+                        Image.asset(
+                          'assets/images/user.png',
+                          height:
+                          size.height *
+                              0.07,
+                          width:
+                          size.width *
+                              0.13,
+                          //fit: BoxFit.cover,
+                        ),
                       ),
                       SizedBox(
                         width: 20,
@@ -1133,6 +1151,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     fit: BoxFit.fitWidth,
                     width: 50,
                     height: 50.0,
+                    color: AppData.kPrimaryRedColor,
                   ),
                 ),
 
@@ -1147,12 +1166,12 @@ class _LabDashboardState extends State<LabDashboard> {
 
 
 
-  Widget _buildTileblue({String icon,
+  Widget _buildTileblue({
     /*IconData icon,*/
+    String icon,
     String title,
     double size,
     Color bordercolor,
-    Color iconcolor,
     Color color,
     Function fun}) {
     return InkWell(
@@ -1191,6 +1210,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       fit: BoxFit.fitWidth,
                       width: 50,
                       height: 50.0,
+                      color:AppData.kPrimaryColor,
                     )),
               ],
             ),
