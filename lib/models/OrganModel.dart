@@ -2,7 +2,7 @@ class OrganModel {
   List<Body> body;
   String message;
   String code;
-  Null total;
+  String total;
 
   OrganModel({this.body, this.message, this.code, this.total});
 

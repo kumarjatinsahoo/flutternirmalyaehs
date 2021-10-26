@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/AddOrganDonModel.dart';
 import 'package:user/models/TissueModel.dart'as tissue;
 import 'package:user/models/OrganModel.dart'as organ;
 import 'package:user/models/OrganModel.dart';
@@ -36,6 +38,7 @@ class DonorApplication extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel relationmodel = null;
+  static List<KeyvalueModel> UserType1 = [];
 
   DonorApplication({
     Key key,
@@ -52,6 +55,7 @@ class DonorApplication extends StatefulWidget {
 enum PayMode1 { cash, cheque, online }
 
 class DonorApplicationState extends State<DonorApplication> {
+
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -106,7 +110,18 @@ class DonorApplicationState extends State<DonorApplication> {
   var pngBytes;
   String selectDob;
   KeyvalueModel selectedKey = null;
-
+  KeyvalueModel selectedUser;
+  KeyvalueModel selectedUser1;
+  List<KeyvalueModel> UserType = [
+    KeyvalueModel(key: "S", name: "S/o"),
+    KeyvalueModel(key: "D", name: "D/o"),
+    KeyvalueModel(key: "W", name: "W/o"),
+  ];
+  List<KeyvalueModel> UserType1 = [
+    KeyvalueModel(key: "S", name: "S/o"),
+    KeyvalueModel(key: "D", name: "D/o"),
+    KeyvalueModel(key: "W", name: "W/o"),
+  ];
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
@@ -160,6 +175,8 @@ class DonorApplicationState extends State<DonorApplication> {
     DonorApplication.districtModel = null;
     DonorApplication.blockModel = null;
     DonorApplication.genderModel = null;
+    selectedUser=UserType[0];
+    selectedUser1=UserType1[0];
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -254,7 +271,7 @@ class DonorApplicationState extends State<DonorApplication> {
             height: 10,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: textEditingController[0],
               decoration: InputDecoration(
@@ -269,14 +286,14 @@ class DonorApplicationState extends State<DonorApplication> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 3.0),
             child: mobileNumber(),
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
              /* Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -294,10 +311,10 @@ class DonorApplicationState extends State<DonorApplication> {
             ),
           ),*/
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: textEditingController[2],
               decoration: InputDecoration(
@@ -311,10 +328,10 @@ class DonorApplicationState extends State<DonorApplication> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: DropDown.networkDropdownGetpartUserundreline(
                 "Blood Group",
                 ApiFactory.BLOODGROUP_API,
@@ -327,10 +344,10 @@ class DonorApplicationState extends State<DonorApplication> {
             }),
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: textEditingController[3],
               decoration: InputDecoration(
@@ -344,10 +361,10 @@ class DonorApplicationState extends State<DonorApplication> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: textEditingController[4],
               decoration: InputDecoration(
@@ -360,8 +377,12 @@ class DonorApplicationState extends State<DonorApplication> {
               //           ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+          SizedBox(
+            height: 8,
+          ),
+
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
               controller: textEditingController[5],
               decoration: InputDecoration(
@@ -501,7 +522,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       ),
                     );
                   },
-                  itemCount:organModel.body.length ,
+                  itemCount:organModel.body.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                 ),
@@ -539,7 +560,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       ),
                     );
                   },
-                  itemCount: tissueModel.body.length,
+                  itemCount: tissueModel.body.length??0,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                 ),
@@ -719,6 +740,7 @@ class DonorApplicationState extends State<DonorApplication> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
+    WitnessModel witness = WitnessModel();
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -784,7 +806,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 ),
 
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -793,13 +815,12 @@ class DonorApplicationState extends State<DonorApplication> {
                     "Relation", ApiFactory.RELATION_API, "relation",
                         (KeyvalueModel model) {
                       setState(() {
-
                         DonorApplication.relationmodel = model;
 
                       });
                     }),),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -814,12 +835,14 @@ class DonorApplicationState extends State<DonorApplication> {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     maxLength: 10,
-
                     inputFormatters: [
                       WhitelistingTextInputFormatter(
                           RegExp("[0-9]")),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -841,7 +864,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -872,21 +895,43 @@ class DonorApplicationState extends State<DonorApplication> {
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-            textEditingController[0].text = "";
-            textEditingController[1].text = "";
-            textEditingController[2].text = "";
+            textEditingController[6].text = "";
+            textEditingController[7].text = "";
+            textEditingController[8].text = "";
+            textEditingController[9].text = "";
+            textEditingController[10].text = "";
+            textEditingController[11].text = "";
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Cancel'),
         ),
         new FlatButton(
           onPressed: () {
-              if (textEditingController[5].text == '') {
-              AppData.showInSnackBar(context, "Please enter remark");
+            if (textEditingController[6].text == "" ||
+                textEditingController[6].text == null) {
+              AppData.showInSnackBar(context, "Please enter Person Name");
+            } else if (textEditingController[7].text != "" &&
+                textEditingController[7].text == null) {
+              AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
+            } else if (textEditingController[8].text == "" ||
+                textEditingController[8].text == null) {
+              AppData.showInSnackBar(context, "Please enter Age:Years");
+            } else if (DonorApplication.relationmodel == null ||
+                DonorApplication.relationmodel == "") {
+              AppData.showInSnackBar(context, "Please select blood Relation");
+            } else if (textEditingController[9].text != "" &&
+                textEditingController[9].text.length != 10) {
+              AppData.showInSnackBar(context, "Please enter Mobile No");
+            } else if (textEditingController[10].text != '' &&
+                !AppData.isValidEmail(textEditingController[10].text)) {
+              AppData.showInSnackBar(context, "Please enter a valid E-mail");
+            } else if (textEditingController[11].text != "" &&
+                textEditingController[11].text == null) {
+              AppData.showInSnackBar(context, "Please enter Address");
             } else {
                WitnessModel witness = WitnessModel();
                witness.donorName = textEditingController[6].text;
-               witness.donorType = textEditingController[6].text;
+               witness.donorType = "W";
                witness.typeUserName = textEditingController[7].text;
                witness.relation = DonorApplication.relationmodel.key;
                witness.age = textEditingController[8].text;
@@ -1089,76 +1134,98 @@ class DonorApplicationState extends State<DonorApplication> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "Next".toUpperCase(),
-      context: context,
-      fun: () {
-        Navigator.pushNamed(context, "/addWitness");
-      /*  if (textEditingController[0].text == "" ||
-            textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter Person Name");
-        } else if (textEditingController[1].text != "" &&
-            textEditingController[1].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
-        } else if (textEditingController[2].text != "" &&
-            textEditingController[2].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter Dob");
-        } else if (textEditingController[3].text == "" ||
-            textEditingController[3].text == null) {
-          AppData.showInSnackBar(context, "Please enter Age:Years");
-        } else if (DonorApplication.bloodgroupModel == null ||
-            DonorApplication.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select blood group");
-        } else if (textEditingController[5].text != "" &&
-            textEditingController[5].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (textEditingController[6].text != "" &&
-            textEditingController[6].text == null) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
-        } else if (textEditingController[7].text != "" &&
-            textEditingController[7].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
-        } else {
-          Navigator.pushNamed(context, "/addWitness");
-*/
-          /* MyWidgets.showLoading(context);
-          PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
-          pharmaSignupModel.organizationid = pharmaorganisation;
-          pharmaSignupModel.titleid = pharmatitle;
-          pharmaSignupModel.docname = pharmaprofessional;
-          pharmaSignupModel.experience =  pharmaexperience;
-          pharmaSignupModel.gender =  pharmagender;
-          pharmaSignupModel.address =  pharmaaddress;
-          // pharmaSignupModel.address = textEditingController[8].t Idext;
-          pharmaSignupModel.countryid = PharmaSignUpForm3.countryModel.key;
-          pharmaSignupModel.stateid = PharmaSignUpForm3.stateModel.key;
-          pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
-          pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
-          pharmaSignupModel.pincode = textEditingController[5].text;
-          //  pharmaSignupModel.homephone = textEditingController[4].text;
-          //pharmaSignupModel.officephone = textEditingController[6].text;
-          pharmaSignupModel.mobno = textEditingController[10].text;
-          pharmaSignupModel.email = textEditingController[11].text;
-          //pharmaSignupModel.alteremail = textEditingController[12].text;
-          pharmaSignupModel.role="7";
-          pharmaSignupModel.speciality="32";*/
-          /*  print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
-          widget.model.POSTMETHOD(
-              api: ApiFactory.PHARMACY_REGISTRATION,
-              json: pharmaSignupModel.toJson(),
-              fun: (Map<String, dynamic> map) {
-                Navigator.pop(context);
-                if (map[Const.STATUS] == Const.SUCCESS) {
-                  //popup(context, map[Const.MESSAGE]);
-                } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                }
-              });*/
-          // AppData.showInSnackBar(context, "add Successfully");
+        text: "Next".toUpperCase(),
+        context: context,
+        fun: () {
+          //Navigator.pushNamed(context, "/addWitness");
+          if (textEditingController[0].text == "" ||
+              textEditingController[0].text == null) {
+            AppData.showInSnackBar(context, "Please enter Person Name");
+          } else if (textEditingController[1].text != "" &&
+              textEditingController[1].text.length != 10) {
+            AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
+          /*} else if (textEditingController[2].text != "" &&
+              textEditingController[2].text.length != 10) {
+            AppData.showInSnackBar(context, "Please enter Dob");*/
+          } else if (textEditingController[2].text == "" ||
+              textEditingController[2].text == null) {
+            AppData.showInSnackBar(context, "Please enter Age:Years");
+          } else if (DonorApplication.bloodgroupModel == null ||
+              DonorApplication.bloodgroupModel == "") {
+            AppData.showInSnackBar(context, "Please select Blood Group");
+          } else if (textEditingController[3].text != "" &&
+              textEditingController[3].text.length != 10) {
+            AppData.showInSnackBar(context, "Please enter Mobile No");
+          } else if (textEditingController[4].text != '' &&
+              !AppData.isValidEmail(textEditingController[4].text)) {
+            AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          } else if (textEditingController[5].text != "" &&
+              textEditingController[5].text == null) {
+            AppData.showInSnackBar(context, "Please enter Address");
+          } else {
+           // Navigator.pushNamed(context, "/addWitness");
+            MyWidgets.showLoading(context);
+            AddOrganDonModel addOrganDonModel = AddOrganDonModel();
+            addOrganDonModel.patientId = widget.model.user;
+            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
+            addOrganDonModel.donorName = textEditingController[0].text;
+            addOrganDonModel.mob = textEditingController[1].text;
+            addOrganDonModel.email = textEditingController[2].text;
 
+            // AppData.showInSnackBar(context, "add Successfully");
+            /*widget.model.POSTMETHOD1(
+                api: ApiFactory.POST_ORGAN_DONOR,
+                token: widget.model.token,
+                json: Map<addOrganDonModel>,
+                fun: (Map<String, dynamic> map) {
+                  Navigator.pop(context);
+                  if (map[Const.STATUS] == Const.SUCCESS) {
+                    popup(context, map[Const.MESSAGE]);
+                  } else {
+                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  }
+                });*/
 
-      },
+          }
+        }
     );
   }
+ /* saveDb() {
+    Map<String, dynamic> map = {
+      //"regNo": loginRes.ashadtls[0].id,
+      "patientId": widget.model.user,
+      "donorName": textEditingController[0].text.toString(),
+      "typeUserName": DoctorconsultationPage.timeModel.name*//*"23:10"*//**//*time*//*,
+      "dob": DoctorconsultationPage.timeModel.code,//validitytime.text,
+      "age": DoctorconsultationPage.doctorModel.key.toString(),
+      "mob": textEditingController[1].text,
+      "email": DoctorconsultationPage.hospitalModel.key,
+      "address": DoctorconsultationPage.hospitalModel.key,
+      "organList": DoctorconsultationPage.hospitalModel.key,
+    };
+
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_ORGAN_DONOR,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            popup(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
+    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
 
   //Navigator.pushNamed(context, "/navigation");
   /*if (_loginId.text == "" || _loginId.text == null) {
@@ -1172,6 +1239,34 @@ class DonorApplicationState extends State<DonorApplication> {
   //     },
   //   );
   // }
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
 
   Widget nextButton() {
     return GestureDetector(
@@ -1205,7 +1300,7 @@ class DonorApplicationState extends State<DonorApplication> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-          const EdgeInsets.only(top: 0.0, left: 10.0, right: 5.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -1217,27 +1312,31 @@ class DonorApplicationState extends State<DonorApplication> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: DropdownButton<String>(
-                // hint: Text("Select Device"),
+              child: DropdownButton<KeyvalueModel>(
                 underline: Container(
                   color: Colors.grey,
                 ),
-                value: AppData.currentSelectedValue1,
-                isDense: true,
-                onChanged: (newValue) {
-                  setState(() {
-                    AppData.currentSelectedValue1 = newValue;
-                  });
-                  print(AppData.currentSelectedValue1);
-                },
-                items: AppData.catagoryFormat.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
+            value: selectedUser,
+               isDense: true,
+           onChanged: (KeyvalueModel newValue) {
+          setState(() {
+            selectedUser = newValue;
+          });
+        },
+
+        items: UserType.map((KeyvalueModel value) {
+          return new DropdownMenuItem<KeyvalueModel>(
+            value: value,
+             child:new Text(
+               value.name,
+              style: new TextStyle(color: Colors.black),
             ),
+          );
+
+        }).toList(),
+      ),
+      ),
+
             Container(
               height: 35.0,
               width: 1.0,
@@ -1299,27 +1398,42 @@ class DonorApplicationState extends State<DonorApplication> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: DropdownButton<String>(
+             child: /*DropdownButton<KeyvalueModel>(
+               items: UserType
+                   .map((data) => DropdownMenuItem<KeyvalueModel>(
+                 child: Text(data.name),
+                 value: data,
+               ))
+                   .toList(),
+               onChanged: (KeyvalueModel value) {
+                 setState(() => selectedUser = value);
+               },
+              // hint: Text('Select Key'),
+             ),*/ DropdownButton<KeyvalueModel>(
                 // hint: Text("Select Device"),
                 underline: Container(
                   color: Colors.grey,
                 ),
-                value: AppData.currentSelectedValue1,
+                value: selectedUser1,
                 isDense: true,
                 onChanged: (newValue) {
                   setState(() {
-                    AppData.currentSelectedValue1 = newValue;
+                    selectedUser1 = newValue;
                   });
-                  print(AppData.currentSelectedValue1);
+                  print(selectedUser1);
                 },
-                items: AppData.catagoryFormat.map((String value) {
-                  return DropdownMenuItem<String>(
+                items: UserType1.map((KeyvalueModel value) {
+                  return DropdownMenuItem<KeyvalueModel>(
                     value: value,
-                    child: Text(value),
+                    child:new Text(
+                      value.name,
+                      style: new TextStyle(color: Colors.black),
+                    ),
                   );
                 }).toList(),
               ),
             ),
+
             Container(
               height: 35.0,
               width: 1.0,
