@@ -251,8 +251,8 @@ class _DoctorAppointmentRequestedState
                                                                     padding: const EdgeInsets.all(8.0),
                                                                     child: Image.asset(
                                                                       'assets/images/profile.png',
-                                                                      height: size.height * 0.07,
-                                                                      width: size.width * 0.13,
+                                                                      height: size.height * 0.10,
+                                                                      width: size.width * 0.20,
                                                                       fit: BoxFit.cover,
                                                                     ),
                                                                   )),
@@ -272,10 +272,10 @@ class _DoctorAppointmentRequestedState
                                                                       fontWeight:
                                                                       FontWeight
                                                                           .bold,
-                                                                      fontSize: 18),
+                                                                      fontSize: 15),
                                                                 ),
                                                                 SizedBox(
-                                                                  height: 5,
+                                                                  height: 3,
                                                                 ),
                                                                 /*  Text(
                                                               appointmentlist
@@ -299,7 +299,7 @@ class _DoctorAppointmentRequestedState
                                                                   TextOverflow
                                                                       .clip,
                                                                   style:
-                                                                  TextStyle(),
+                                                                  TextStyle(fontSize: 13),
                                                                 ),
                                                                 Text(
                                                                   "Age : " +
@@ -310,7 +310,7 @@ class _DoctorAppointmentRequestedState
                                                                   TextOverflow
                                                                       .clip,
                                                                   style:
-                                                                  TextStyle(),
+                                                                  TextStyle(fontSize: 13),
                                                                 ),
                                                                 SizedBox(height:3),
                                                                 Text(
@@ -322,7 +322,7 @@ class _DoctorAppointmentRequestedState
                                                                   TextOverflow
                                                                       .clip,
                                                                   style:
-                                                                  TextStyle(),
+                                                                  TextStyle(fontSize: 13),
                                                                 ),
                                                                /* Text(
                                                                   appointmentlist

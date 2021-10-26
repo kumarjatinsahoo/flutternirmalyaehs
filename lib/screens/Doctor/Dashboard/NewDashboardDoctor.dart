@@ -536,7 +536,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                   /* Container(
                       height: size.height * 0.07,
                       width: size.width * 0.13,
                       decoration: BoxDecoration(
@@ -551,6 +551,25 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                             width: size.width * 0.13,
                             //fit: BoxFit.cover,
                           )),
+                    ),*/
+                    CircleAvatar(
+                      radius: 35,
+                      foregroundColor:
+                      Colors
+                          .white,
+                      backgroundColor: Colors.white,
+
+                      child:
+                      Image.asset(
+                        'assets/images/user.png',
+                        height:
+                        size.height *
+                            0.07,
+                        width:
+                        size.width *
+                            0.13,
+                        //fit: BoxFit.cover,
+                      ),
                     ),
                     SizedBox(
                       width: 20,

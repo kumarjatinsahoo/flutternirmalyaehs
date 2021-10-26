@@ -540,7 +540,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               //     context, emergencyHelpModel, 5)
                               //     : _displayTextInputDialog2(
                               //     context, emergencyHelpModel);
-                              _displayTextInputDialog2(context);
+                             // _displayTextInputDialog2(context);
                             },
                             child: Card(
                               shape: RoundedRectangleBorder(

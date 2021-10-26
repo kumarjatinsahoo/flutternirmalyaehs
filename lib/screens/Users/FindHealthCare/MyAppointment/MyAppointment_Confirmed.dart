@@ -130,15 +130,16 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                       color: Colors.grey,
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        appointdate(),
-                      ],
-                    ),
+                  Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      appointdate(),
+                    ],
                   ),
+                  Spacer(),
+
                   InkWell(
                     onTap: () {
                       rightArrow();
@@ -354,9 +355,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                       padding: const EdgeInsets.all(8.0),
                                                                       child: Image.asset(
                                                                         'assets/images/dprofile.png',
-                                                                        height: size.height * 0.07,
-                                                                        width: size.width * 0.13,
-                                                                        fit: BoxFit.cover,
+                                                                        height: size.height * 0.10,
+                                                                        width: size.width * 0.20,
+                                                                        //fit: BoxFit.cover,
                                                                       ),
                                                                     )),
                                                               ),
@@ -366,19 +367,36 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Text(
-                                                                    appointmentlist
-                                                                            .doctorName ??
-                                                                        "N/A",
-                                                                    /*"",*/
-                                                                    style: TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize: 18),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        appointmentlist
+                                                                                .doctorName ??
+                                                                            "N/A",
+                                                                        /*"",*/
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight
+                                                                                    .bold,
+                                                                            fontSize: 15),
+                                                                      ),
+
+                                                                        (appointmentlist.patname== "Registered Doctor")
+                                                                            ? Container(
+                                                                          width: 80,
+                                                                          height: 30,
+                                                                          child: Icon(
+                                                                            Icons.check_circle,
+                                                                            size: 20,
+                                                                            color: AppData.kPrimaryColor,
+                                                                          ),
+                                                                        )
+                                                                            : Container(
+                                                                        ),
+                                                                    ],
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Row(
                                                                     children: [
@@ -390,14 +408,14 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),  Text(
                                                                         "  Exp ",
                                                                         overflow:
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),  Text(
                                                                         appointmentlist
                                                                             .docexp??
@@ -406,12 +424,12 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         TextOverflow
                                                                             .clip,
                                                                         style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Text(
                                                                     appointmentlist
@@ -421,10 +439,10 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         TextOverflow
                                                                             .clip,
                                                                     style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                   ),
                                                                   SizedBox(
-                                                                    height: 5,
+                                                                    height: 3,
                                                                   ),
                                                                   Text(
                                                                     "Patient Notes: " +
@@ -435,9 +453,12 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                         TextOverflow
                                                                             .clip,
                                                                     style:
-                                                                        TextStyle(),
+                                                                        TextStyle(fontSize: 13),
                                                                   ),
-                                                                  Text(
+                                                                  SizedBox(
+                                                                    height: 3,
+                                                                  ),
+                                                                /*  Text(
                                                                     appointmentlist
                                                                             .patname ??
                                                                         "N/A",
@@ -446,9 +467,9 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                             .clip,
                                                                     style: TextStyle(
                                                                         color: Colors
-                                                                            .blue),
+                                                                            .blue,fontSize: 13),
                                                                   ),
-                                                                  /*RatingBar(
+*/                                                                  /*RatingBar(
                                                                     rating: 3,
                                                                     icon:Icon(Icons.star,size:40,color: Colors.grey,),
                                                                     starCount: 5,
@@ -470,6 +491,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                     initialRating:double.tryParse(appointmentlist.docrate.toString())??0,
                                                                     maxRating: 5,
                                                                     filledColor: Colors.green,
+                                                                    size: 20.00,
                                                                   )
 
                                                                 ],
@@ -526,16 +548,19 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                         CrossAxisAlignment
                                                             .end,
                                                         children: [
-                                                          Text(
-                                                            /*'Confirmed'*/
-                                                            "Date : ",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                fontSize: 15,
-                                                                color: AppData.kPrimaryColor
-                                                                    ),
+                                                          Container(
+                                                            width:75,
+                                                            child: Text(
+                                                              /*'Confirmed'*/
+                                                              "Date : ",
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                                  fontSize: 15,
+                                                                  color: AppData.kPrimaryColor
+                                                                      ),
+                                                            ),
                                                           ),
                                                           SizedBox(
                                                             height: 3,
