@@ -273,7 +273,7 @@ class DonorApplicationState extends State<DonorApplication> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 3.0),
-            child: mobileNoOTPSearch(),
+            child: mobileNumber(),
           ),
           SizedBox(
             height: 10,
@@ -299,7 +299,7 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              controller: textEditingController[1],
+              controller: textEditingController[2],
               decoration: InputDecoration(
                   hintText: "Age:Years",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -332,7 +332,7 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              controller: textEditingController[2],
+              controller: textEditingController[3],
               decoration: InputDecoration(
                   hintText: "Mobile Number",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -349,7 +349,7 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              controller: textEditingController[3],
+              controller: textEditingController[4],
               decoration: InputDecoration(
                   hintText: "Email ID(optional)",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -363,7 +363,7 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              controller: textEditingController[4],
+              controller: textEditingController[5],
               decoration: InputDecoration(
                   hintText: "Address",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -501,7 +501,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       ),
                     );
                   },
-                  itemCount: organModel.body.length,
+                  itemCount:organModel.body.length ,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                 ),
@@ -590,37 +590,110 @@ class DonorApplicationState extends State<DonorApplication> {
              //= witnessModle[i];
               // widget.model.medicinelist = ;
               return Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: CheckboxListTile(
-                  activeColor: Colors.blue[300],
-                  dense: true,
-                  //font change
-                  title: new Text(
-                    witnessModle[i].donorName??"N/A",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5),
+                padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+               child:Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
-                   /* InkWell(
-                      onTap: () {
-                        setState(() {
-                          itemModel.remove(data);
-                        });
-                      },
-                      child: Icon(
-                        Icons.remove_circle,
-                        // color: Colors.red,
-                      ),
-                    ),*/
-                  value: isChecked,
-                  onChanged: (val) {
-                    setState(() {
-                      isChecked = val;
-                    });
-                  },
+                  shadowColor: Colors.grey,
+                  elevation: 4,
+                  child: ClipPath(
+                    clipper: ShapeBorderClipper(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(5))),
+                    child: Container(
+                        height: 100,
+                        width: double.maxFinite,
+                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      /*'ICIC Prudential Pvt.Ltd'*/"Witness Name :"+ witnessModle[i].donorName,
+                                      style: TextStyle(
+
+
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                   /* Text(
+                                      "WitnessName :"+witnessModle[i].typeUserName,
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),*/
+                                    Text(
+                                      "Mobile No. :"+ witnessModle[i].mob,
+                                      style: TextStyle(
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    Text(
+                                      "Relation. :"+ witnessModle[i].relation,
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                          color: Colors.grey),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    Text(
+                                      "Address:"+ witnessModle[i].address,
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                          color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    witnessModle.remove(i);
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.remove_circle,
+                                  // color: Colors.red,
+                                ),
+                              ),
+                              /*Image.asset(
+                                "assets/forwardarrow.png",
+                                fit: BoxFit.fitWidth,
+                                *//*width: 50,*//*
+                                height: 30,
+                              ),*/
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
+                        )),
+                    /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                          ),*/
+                  ),
                 ),
 
+                /* */
 
               );
             },
@@ -646,15 +719,6 @@ class DonorApplicationState extends State<DonorApplication> {
   }
 
   Widget dialogaddnomination(BuildContext context) {
-   // WitnessModel witness = WitnessModel();
-    //DoctorMedicationlistModel item = DoctorMedicationlistModel();
-    /*textEditingController[0].text = "";
-    textEditingController[1].text = "";
-    textEditingController[2].text = "";
-    _checkbox = false;
-    _checkbox1 = false;
-    _checkbox2 = false;*/
-    //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -676,7 +740,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       horizontal: 10),
 
                   child: TextFormField(
-                    controller: textEditingController[5],
+                    controller: textEditingController[6],
                     decoration: InputDecoration(
                         hintText: "Full Name",
                         hintStyle:
@@ -695,7 +759,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 Padding(
                   padding:
                   const EdgeInsets.only(right: 3.0),
-                  child: mobileNoOTPSearch(),
+                  child:  witnmobileNumber() ,
                 ),
                 SizedBox(
                   height: 10,
@@ -704,13 +768,14 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[6],
+                    controller: textEditingController[8],
                     decoration: InputDecoration(
                         hintText: "Age:Years",
                         hintStyle:
                         TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
+
                     inputFormatters: [
                       WhitelistingTextInputFormatter(
                           RegExp("[0-9]")),
@@ -740,14 +805,16 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[7],
+                    controller: textEditingController[9],
                     decoration: InputDecoration(
-
+                        counterText: "",
                         hintText: "Mobile Number",
                         hintStyle:
                         TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
+                    maxLength: 10,
+
                     inputFormatters: [
                       WhitelistingTextInputFormatter(
                           RegExp("[0-9]")),
@@ -758,7 +825,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[8],
+                    controller: textEditingController[10],
                     decoration: InputDecoration(
                         hintText:
                         MyLocalizations.of(context)
@@ -780,7 +847,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[9],
+                    controller: textEditingController[11],
                     decoration: InputDecoration(
                         hintText: "Address",
                         hintStyle:
@@ -818,14 +885,14 @@ class DonorApplicationState extends State<DonorApplication> {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
                WitnessModel witness = WitnessModel();
-               witness.donorName = textEditingController[5].text;
+               witness.donorName = textEditingController[6].text;
                witness.donorType = textEditingController[6].text;
-               witness.typeUserName = textEditingController[6].text;
+               witness.typeUserName = textEditingController[7].text;
                witness.relation = DonorApplication.relationmodel.key;
-               witness.age = textEditingController[6].text;
-               witness.mob = textEditingController[7].text;
-               witness.email = textEditingController[8].text;
-               witness.address = textEditingController[9].text;
+               witness.age = textEditingController[8].text;
+               witness.mob = textEditingController[9].text;
+               witness.email = textEditingController[10].text;
+               witness.address = textEditingController[11].text;
 
 
               //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
@@ -901,10 +968,7 @@ class DonorApplicationState extends State<DonorApplication> {
             child: Container(
               // padding: EdgeInsets.only(left: 2),
               height: 50.0,
-              // decoration: BoxDecoration(
-              //     color: AppData.kPrimaryLightColor,
-              //     borderRadius: BorderRadius.circular(20),
-              //     border: Border.all(color: Colors.black, width: 0.3)),
+
               child: mobileNumber(),
             ),
           ),
@@ -1219,7 +1283,88 @@ class DonorApplicationState extends State<DonorApplication> {
       ),
     );
   }
+  Widget witnmobileNumber() {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 10.0, right: 5.0, bottom: 0.0),
+      child: Container(
+        // decoration: BoxDecoration(
+        //   color: AppData.kPrimaryLightColor,
+        //   borderRadius: BorderRadius.circular(29),
+        //   /*border: Border.all(
+        //        color: Colors.black,width: 0.3)*/
+        // ),
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: DropdownButton<String>(
+                // hint: Text("Select Device"),
+                underline: Container(
+                  color: Colors.grey,
+                ),
+                value: AppData.currentSelectedValue1,
+                isDense: true,
+                onChanged: (newValue) {
+                  setState(() {
+                    AppData.currentSelectedValue1 = newValue;
+                  });
+                  print(AppData.currentSelectedValue1);
+                },
+                items: AppData.catagoryFormat.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+            Container(
+              height: 35.0,
+              width: 1.0,
+              color: Colors.grey.withOpacity(0.5),
+              margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+            ),
+            new Expanded(
+              child: TextFormField(
+                enabled: widget.isConfirmPage ? false : true,
+                controller: textEditingController[7],
+                focusNode: fnode7,
+                cursorColor: AppData.kPrimaryColor,
+                textInputAction: TextInputAction.next,
 
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  // border: InputBorder.none,
+                  counterText: "",
+                  hintText: "S/O,D/O,W/O",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    error[4] = true;
+                    return null;
+                  }
+                  error[4] = false;
+                  return null;
+                },
+                onFieldSubmitted: (value) {
+                  // print(error[2]);
+                  error[4] = false;
+                  setState(() {});
+                  AppData.fieldFocusChange(context, fnode7, fnode8);
+                },
+                onSaved: (value) {
+                  //userPersonalForm.phoneNumber = value;
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
