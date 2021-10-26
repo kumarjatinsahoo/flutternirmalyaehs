@@ -4,7 +4,7 @@ class ApiFactory {
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
- //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -159,6 +159,7 @@ class ApiFactory {
       MAIN_URL + 'view-doctor-appointment-list?userid=';
   static String doctor_MEDICINE_LIST =
       MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
+  static String MEDICAL_PRESCRIPTION =  MAIN_URL + 'view-user-medical-prescription?userid=';
   static String doctor_TEST_LIST =
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =

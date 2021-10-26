@@ -33,6 +33,7 @@ class OrganModel {
 class Body {
   String key;
   String name;
+  bool isChecked=false;
 
   Body({this.key, this.name});
 
