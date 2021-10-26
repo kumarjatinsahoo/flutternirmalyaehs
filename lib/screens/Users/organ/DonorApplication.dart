@@ -289,11 +289,15 @@ class DonorApplicationState extends State<DonorApplication> {
             height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 3.0),
+            padding: const EdgeInsets.only(right: 0.0),
             child: mobileNumber(),
           ),
           SizedBox(
             height: 8,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: dob(),
           ),
              /* Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -316,12 +320,14 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: textEditingController[2],
+              controller: textEditingController[3],
               decoration: InputDecoration(
+                  counterText: "",
                   hintText: "Age:Years",
                   hintStyle: TextStyle(color: Colors.grey)),
               textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
+              maxLength: 3,
+              keyboardType: TextInputType.number,
               inputFormatters: [
                 WhitelistingTextInputFormatter(RegExp("[0-9]")),
               ],
@@ -349,12 +355,14 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: textEditingController[3],
+              controller: textEditingController[4],
               decoration: InputDecoration(
+                counterText: "",
                   hintText: "Mobile Number",
                   hintStyle: TextStyle(color: Colors.grey)),
               textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
+              maxLength: 10,
               inputFormatters: [
                 WhitelistingTextInputFormatter(RegExp("[0-9]")),
               ],
@@ -366,7 +374,7 @@ class DonorApplicationState extends State<DonorApplication> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: textEditingController[4],
+              controller: textEditingController[5],
               decoration: InputDecoration(
                   hintText: "Email ID(optional)",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -384,7 +392,7 @@ class DonorApplicationState extends State<DonorApplication> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: textEditingController[5],
+              controller: textEditingController[6],
               decoration: InputDecoration(
                   hintText: "Address",
                   hintStyle: TextStyle(color: Colors.grey)),
@@ -639,7 +647,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                   CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      /*'ICIC Prudential Pvt.Ltd'*/"Witness Name :"+ witnessModle[i].donorName,
+                                      "Witness Name :"+ witnessModle[i].donorName,
                                       style: TextStyle(
 
 
@@ -648,16 +656,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                     SizedBox(
                                       height: 4,
                                     ),
-                                   /* Text(
-                                      "WitnessName :"+witnessModle[i].typeUserName,
-                                      style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.bold,
-                                          fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),*/
+
                                     Text(
                                       "Mobile No. :"+ witnessModle[i].mob,
                                       style: TextStyle(
@@ -667,7 +666,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                       height: 4,
                                     ),
                                     Text(
-                                      "Relation. :"+ witnessModle[i].relation,
+                                      "age. :"+ witnessModle[i].age,
                                       overflow: TextOverflow.clip,
                                       style: TextStyle(
                                           color: Colors.grey),
@@ -688,11 +687,14 @@ class DonorApplicationState extends State<DonorApplication> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    witnessModle.remove(i);
+                                    //witnessModle.remove(i);
+                                    witnessModle.remove(
+                                        witnessModle[
+                                        i]);
                                   });
                                 },
                                 child: Icon(
-                                  Icons.remove_circle,
+                                  Icons.delete_forever,
                                   // color: Colors.red,
                                 ),
                               ),
@@ -755,14 +757,14 @@ class DonorApplicationState extends State<DonorApplication> {
                 //_buildLogoAttribution(),
                 Text("Add Witness"),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
 
                   child: TextFormField(
-                    controller: textEditingController[6],
+                    controller: textEditingController[7],
                     decoration: InputDecoration(
                         hintText: "Full Name",
                         hintStyle:
@@ -776,7 +778,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 Padding(
                   padding:
@@ -784,20 +786,22 @@ class DonorApplicationState extends State<DonorApplication> {
                   child:  witnmobileNumber() ,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[8],
+                    controller: textEditingController[9],
                     decoration: InputDecoration(
+                        counterText: "",
                         hintText: "Age:Years",
                         hintStyle:
                         TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
-
+                    maxLength: 3,
                     inputFormatters: [
                       WhitelistingTextInputFormatter(
                           RegExp("[0-9]")),
@@ -826,7 +830,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[9],
+                    controller: textEditingController[10],
                     decoration: InputDecoration(
                         counterText: "",
                         hintText: "Mobile Number",
@@ -848,7 +852,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[10],
+                    controller: textEditingController[11],
                     decoration: InputDecoration(
                         hintText:
                         MyLocalizations.of(context)
@@ -870,7 +874,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[11],
+                    controller: textEditingController[12],
                     decoration: InputDecoration(
                         hintText: "Address",
                         hintStyle:
@@ -895,49 +899,49 @@ class DonorApplicationState extends State<DonorApplication> {
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-            textEditingController[6].text = "";
             textEditingController[7].text = "";
             textEditingController[8].text = "";
             textEditingController[9].text = "";
             textEditingController[10].text = "";
             textEditingController[11].text = "";
+            textEditingController[12].text = "";
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Cancel'),
         ),
         new FlatButton(
           onPressed: () {
-            if (textEditingController[6].text == "" ||
-                textEditingController[6].text == null) {
-              AppData.showInSnackBar(context, "Please enter Person Name");
-            } else if (textEditingController[7].text != "" &&
+            if (textEditingController[7].text == "" ||
                 textEditingController[7].text == null) {
-              AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
-            } else if (textEditingController[8].text == "" ||
+              AppData.showInSnackBar(context, "Please enter Person Name");
+            } else if (textEditingController[8].text != "" &&
                 textEditingController[8].text == null) {
+              AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
+            } else if (textEditingController[9].text == "" ||
+                textEditingController[9].text == null) {
               AppData.showInSnackBar(context, "Please enter Age:Years");
             } else if (DonorApplication.relationmodel == null ||
                 DonorApplication.relationmodel == "") {
               AppData.showInSnackBar(context, "Please select blood Relation");
-            } else if (textEditingController[9].text != "" &&
-                textEditingController[9].text.length != 10) {
+            } else if (textEditingController[10].text != "" &&
+                textEditingController[10].text.length != 10) {
               AppData.showInSnackBar(context, "Please enter Mobile No");
-            } else if (textEditingController[10].text != '' &&
-                !AppData.isValidEmail(textEditingController[10].text)) {
+            } else if (textEditingController[11].text != '' &&
+                !AppData.isValidEmail(textEditingController[11].text)) {
               AppData.showInSnackBar(context, "Please enter a valid E-mail");
-            } else if (textEditingController[11].text != "" &&
-                textEditingController[11].text == null) {
+            } else if (textEditingController[12].text != "" &&
+                textEditingController[12].text == null) {
               AppData.showInSnackBar(context, "Please enter Address");
             } else {
                WitnessModel witness = WitnessModel();
-               witness.donorName = textEditingController[6].text;
+               witness.donorName = textEditingController[7].text;
                witness.donorType = "W";
-               witness.typeUserName = textEditingController[7].text;
+               witness.typeUserName = textEditingController[8].text;
                witness.relation = DonorApplication.relationmodel.key;
-               witness.age = textEditingController[8].text;
-               witness.mob = textEditingController[9].text;
-               witness.email = textEditingController[10].text;
-               witness.address = textEditingController[11].text;
+               witness.age = textEditingController[9].text;
+               witness.mob = textEditingController[10].text;
+               witness.email = textEditingController[11].text;
+               witness.address = textEditingController[12].text;
 
 
               //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
@@ -947,6 +951,12 @@ class DonorApplicationState extends State<DonorApplication> {
               });
             }
             Navigator.of(context).pop();
+            textEditingController[7].text = "";
+            textEditingController[8].text = "";
+            textEditingController[9].text = "";
+            textEditingController[10].text = "";
+            textEditingController[11].text = "";
+            textEditingController[12].text = "";
             /*controller[0].text="";
              controller[1].text="";*/
           },
@@ -1141,42 +1151,48 @@ class DonorApplicationState extends State<DonorApplication> {
           if (textEditingController[0].text == "" ||
               textEditingController[0].text == null) {
             AppData.showInSnackBar(context, "Please enter Person Name");
-          } else if (textEditingController[1].text != "" &&
-              textEditingController[1].text.length != 10) {
+          } else if (textEditingController[1].text == "" ||
+              textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
-          /*} else if (textEditingController[2].text != "" &&
-              textEditingController[2].text.length != 10) {
-            AppData.showInSnackBar(context, "Please enter Dob");*/
-          } else if (textEditingController[2].text == "" ||
+          } else if (textEditingController[2].text != "" &&
               textEditingController[2].text == null) {
+            AppData.showInSnackBar(context, "Please enter Dob");
+          } else if (textEditingController[3].text == "" ||
+              textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age:Years");
           } else if (DonorApplication.bloodgroupModel == null ||
               DonorApplication.bloodgroupModel == "") {
             AppData.showInSnackBar(context, "Please select Blood Group");
-          } else if (textEditingController[3].text != "" &&
-              textEditingController[3].text.length != 10) {
+          } else if (textEditingController[4].text != "" &&
+              textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter Mobile No");
-          } else if (textEditingController[4].text != '' &&
-              !AppData.isValidEmail(textEditingController[4].text)) {
+          } else if (textEditingController[5].text != '' &&
+              !AppData.isValidEmail(textEditingController[5].text)) {
             AppData.showInSnackBar(context, "Please enter a valid E-mail");
-          } else if (textEditingController[5].text != "" &&
-              textEditingController[5].text == null) {
+          } else if (textEditingController[6].text != "" &&
+              textEditingController[6].text == null) {
             AppData.showInSnackBar(context, "Please enter Address");
           } else {
            // Navigator.pushNamed(context, "/addWitness");
             MyWidgets.showLoading(context);
             AddOrganDonModel addOrganDonModel = AddOrganDonModel();
             addOrganDonModel.patientId = widget.model.user;
-            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.donorName = textEditingController[0].text;
-            addOrganDonModel.mob = textEditingController[1].text;
-            addOrganDonModel.email = textEditingController[2].text;
+            //addOrganDonModel.donorType =  DonorApplication.UserType.key;
+            addOrganDonModel.typeUserName = textEditingController[1].text;
+            addOrganDonModel.dob = textEditingController[2].text;
+            addOrganDonModel.age = textEditingController[3].text;
+            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
+            addOrganDonModel.mob = textEditingController[4].text;
+            addOrganDonModel.email = textEditingController[5].text;
+            addOrganDonModel.address = textEditingController[6].text;
+            addOrganDonModel.witnessList = witnessModle;
 
             // AppData.showInSnackBar(context, "add Successfully");
-            /*widget.model.POSTMETHOD1(
+            widget.model.POSTMETHOD1(
                 api: ApiFactory.POST_ORGAN_DONOR,
                 token: widget.model.token,
-                json: Map<addOrganDonModel>,
+                json:addOrganDonModel.toJson(),
                 fun: (Map<String, dynamic> map) {
                   Navigator.pop(context);
                   if (map[Const.STATUS] == Const.SUCCESS) {
@@ -1184,7 +1200,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   } else {
                     AppData.showInSnackBar(context, map[Const.MESSAGE]);
                   }
-                });*/
+                });
 
           }
         }
@@ -1347,7 +1363,7 @@ class DonorApplicationState extends State<DonorApplication> {
               child: TextFormField(
                 enabled: widget.isConfirmPage ? false : true,
                 controller: textEditingController[1],
-                focusNode: fnode7,
+              /*  focusNode: fnode7,*/
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
 
@@ -1370,7 +1386,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   // print(error[2]);
                   error[4] = false;
                   setState(() {});
-                  AppData.fieldFocusChange(context, fnode7, fnode8);
+                  //AppData.fieldFocusChange(context, fnode7, fnode8);
                 },
                 onSaved: (value) {
                   //userPersonalForm.phoneNumber = value;
@@ -1443,8 +1459,8 @@ class DonorApplicationState extends State<DonorApplication> {
             new Expanded(
               child: TextFormField(
                 enabled: widget.isConfirmPage ? false : true,
-                controller: textEditingController[7],
-                focusNode: fnode7,
+                controller: textEditingController[8],
+               // focusNode: fnode8,
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
 
@@ -1467,7 +1483,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   // print(error[2]);
                   error[4] = false;
                   setState(() {});
-                  AppData.fieldFocusChange(context, fnode7, fnode8);
+                  //AppData.fieldFocusChange(context, fnode7, fnode8);
                 },
                 onSaved: (value) {
                   //userPersonalForm.phoneNumber = value;
@@ -1496,7 +1512,7 @@ class DonorApplicationState extends State<DonorApplication> {
               // borderRadius: BorderRadius.circular(29),
               border: Border(
                 bottom: BorderSide(
-                  width: 2.0,
+                  width: 1.0,
                   color: Colors.grey,
                 ),
                 // border: Border.all(color: Colors.black, width: 0.3)
@@ -1531,11 +1547,11 @@ class DonorApplicationState extends State<DonorApplication> {
                 hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
+                /*prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
                   color: AppData.kPrimaryColor,
-                ),
+                ),*/
               ),
             ),
           ),

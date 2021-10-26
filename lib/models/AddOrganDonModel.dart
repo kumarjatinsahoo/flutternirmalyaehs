@@ -28,6 +28,13 @@ class AddOrganDonModel {
     patientId = json['patientId'];
     address = json['address'];
     donorType = json['donorType'];
+    typeUserName = json['typeUserName'];
+    dob = json['dob'];
+    age = json['age'];
+    bldGr = json['bldGr'];
+    mob = json['mob'];
+    email = json['email'];
+    address = json['address'];
 
     if (json['item_details'] != null) {
       witnessList = new List<WitnessModel>();
@@ -42,6 +49,11 @@ class AddOrganDonModel {
     data['patientId'] = this.patientId;
     data['address'] = this.address;
     data['donorType'] = this.donorType;
+    data['dob'] = this.dob;
+    data['age'] = this.age;
+    data['bldGr'] = this.bldGr;
+    data['mob'] = this.mob;
+    data['address'] = this.address;
 
     if (this.witnessList != null) {
       data['item_details'] =
