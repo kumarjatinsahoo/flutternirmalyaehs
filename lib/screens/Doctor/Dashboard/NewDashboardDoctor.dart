@@ -839,6 +839,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     fit: BoxFit.fitWidth,
                     width: 50,
                     height: 70.0,
+                    color: AppData.kPrimaryRedColor,
+
                   ),
                 ),
 
@@ -894,6 +896,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       fit: BoxFit.fitWidth,
                       width: 50,
                       height: 70.0,
+                      color: AppData.kPrimaryColor,
+
                     )),
               ],
             ),
