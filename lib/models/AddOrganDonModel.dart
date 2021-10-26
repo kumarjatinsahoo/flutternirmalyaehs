@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:user/models/TissueModel.dart';
 import 'package:user/models/WitnessModel.dart';
+
+import 'OrganModel.dart';
 
 
 
@@ -17,8 +20,8 @@ class AddOrganDonModel {
 
 
 
- // List<ItemModel> organList;
- // List<ItemModel> tissueList;
+ List<String> organList;
+ List<String> tissueList;
   List<WitnessModel> witnessList;
   AddOrganDonModel();
 
@@ -58,6 +61,15 @@ class AddOrganDonModel {
     if (this.witnessList != null) {
       data['item_details'] =
           this.witnessList.map((v) => v.toJson()).toList();
+    }
+    if (this.organList != null) {
+      data['organList'] =
+          this.organList.map((v) => v).toList();
+    }
+
+    if (this.tissueList != null) {
+      data['tissueList'] =
+          this.tissueList.map((v) => v).toList();
     }
     return data;
   }
