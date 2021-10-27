@@ -632,8 +632,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               onTap: () {
                 // Navigator.pop(context);
 
-                AppData.launchURL("tel://" +
-                    emergencyHelpModel.ambulance);
+                AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
               },
               child: Text(
                             'Call Ambulance ',
