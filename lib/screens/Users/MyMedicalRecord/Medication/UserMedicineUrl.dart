@@ -33,7 +33,7 @@ class _UserMedicineUrlState extends State<UserMedicineUrl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Id Card"),
+        title: Text("Medicine"),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
@@ -41,7 +41,7 @@ class _UserMedicineUrlState extends State<UserMedicineUrl> {
         padding: EdgeInsets.symmetric(horizontal: 15),
         child:
         WebView(
-          initialUrl: 'https://ehealthsystem.com/download-ehealthcard?userid='+id,
+         // initialUrl: 'https://ehealthsystem.com/download-ehealthcard?userid='+id,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
           },

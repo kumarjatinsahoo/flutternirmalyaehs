@@ -1,10 +1,11 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-//  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+// static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
+  //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -161,6 +162,7 @@ class ApiFactory {
   static String doctor_MEDICINE_LIST =
       MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String MEDICAL_PRESCRIPTION =  MAIN_URL + 'view-user-medical-prescription?userid=';
+  static String TEST_PRESCRIPTION =  MAIN_URL + 'view-user-test-prescription?userid=';
   static String doctor_TEST_LIST =
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =

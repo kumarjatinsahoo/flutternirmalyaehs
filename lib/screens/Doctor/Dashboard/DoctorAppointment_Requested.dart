@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
@@ -301,7 +304,8 @@ class _DoctorAppointmentRequestedState
                                                                   style:
                                                                   TextStyle(fontSize: 13),
                                                                 ),
-                                                                Text(
+                                                                (appointmentlist.age==null)
+                                                                ?Text(
                                                                   "Age : " +
                                                                       appointmentlist
                                                                           .age ??
@@ -311,9 +315,20 @@ class _DoctorAppointmentRequestedState
                                                                       .clip,
                                                                   style:
                                                                   TextStyle(fontSize: 13),
+                                                                ):Container(
+                                                                  child:Text(
+                                                                    "Age: " +
+                                                                        "N/A",
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                    style:
+                                                                    TextStyle(fontSize: 13),
+                                                                  ),
                                                                 ),
                                                                 SizedBox(height:3),
-                                                                Text(
+                                                                (appointmentlist.gender==null)
+                                                               ? Text(
                                                                   "Gender: " +
                                                                       appointmentlist
                                                                           .gender ??
@@ -323,6 +338,16 @@ class _DoctorAppointmentRequestedState
                                                                       .clip,
                                                                   style:
                                                                   TextStyle(fontSize: 13),
+                                                                ):Container(
+                                                                    child:Text(
+                                                                      "Gender: " +
+                                                                          "N/A",
+                                                                      overflow:
+                                                                      TextOverflow
+                                                                          .clip,
+                                                                      style:
+                                                                      TextStyle(fontSize: 13),
+                                                                ),
                                                                 ),
                                                                /* Text(
                                                                   appointmentlist
@@ -357,8 +382,8 @@ class _DoctorAppointmentRequestedState
                                                       CrossAxisAlignment
                                                           .end,
                                                       children: [
-                                                        Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                        Container(
+                                                          width:80,
                                                           child: Text(
                                                             /*'Confirmed'*/
                                                             "Address : ",
@@ -374,7 +399,10 @@ class _DoctorAppointmentRequestedState
 
                                                         Container(
                                                           width: 250,
-                                                          child: Text(
+                                                          child:
+                                                          (appointmentlist.address==null)
+
+                                                         ? Text(
 
                                                             /*'23-Nov-2020-11:30AM'*/
                                                             appointmentlist.address??"N/A"  ,
@@ -383,73 +411,72 @@ class _DoctorAppointmentRequestedState
                                                                 .clip,
                                                             style:
                                                             TextStyle(),
-                                                          ),
+                                                          ):Container(child:Text("N/A"))
                                                         ),
                                                       ],
                                                     ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Row(
-                                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .end,
-                                                        children: [
-                                                          Container(
-                                                            width:80,
-                                                            child: Text(
+                                                    Row(
+                                                      // mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .end,
+                                                      children: [
+                                                        Container(
+                                                          width:80,
+                                                          child: Text(
 
-                                                              /*'Confirmed'*/
-                                                              "Date : ",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                                  fontSize: 15,
-                                                                  color: AppData.kPrimaryColor
-                                                              ),
+                                                            /*'Confirmed'*/
+                                                            "Date : ",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                fontSize: 15,
+                                                                color: AppData.kPrimaryColor
                                                             ),
                                                           ),
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                /*'23-Nov-2020-11:30AM'*/
-                                                                appointmentlist
-                                                                    .appdate ??
-                                                                    "N/A" ,
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                                style:
-                                                                TextStyle(),
-                                                              ),
-                                                              Text(
-                                                                /*'23-Nov-2020-11:30AM'*/
-                                                                "-"+appointmentlist
-                                                                    .appmonth ??
-                                                                    "N/A",
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                                style:
-                                                                TextStyle(),
-                                                              ),
-                                                              Text(
-                                                                /*'23-Nov-2020-11:30AM'*/
-                                                                "-"+ appointmentlist
-                                                                    .appyear ??
-                                                                    "N/A",
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                                style:
-                                                                TextStyle(),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist
+                                                                  .appdate ??
+                                                                  "N/A" ,
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              "-"+appointmentlist
+                                                                  .appmonth ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              "-"+ appointmentlist
+                                                                  .appyear ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
+                                                    SizedBox(height:10),
+
                                                     Padding(
                                                       padding: const EdgeInsets.all(5.0),
                                                       child: Row(
@@ -540,12 +567,13 @@ class _DoctorAppointmentRequestedState
                                                                       "4",
                                                                   token: widget.model.token,
                                                                   fun: (Map<String, dynamic> map) {
+                                                                    log(">>>>>>>reject response<<<<<<<" + jsonEncode(map));
                                                                     setState(() {
                                                                       String msg = map[Const.MESSAGE];
                                                                       if (map[Const.CODE] == Const.SUCCESS) {
                                                                         doctorAppointmment =
                                                                             DoctorAppointmment.fromJson(map);
-                                                                       // AppData.showInSnackBar(context, msg);
+                                                                       AppData.showInSnackBar(context, msg);
                                                                        Navigator.of(context).pop();
                                                                      //   Navigator.pushNamed(context, "/dashDoctor");
 
