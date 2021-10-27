@@ -55,21 +55,22 @@ class _QrcodePageState extends State<QrcodePage> {
                 ),
               ),
             ),
-           /* Align(
-              alignment: Alignment.center,
+            Align(
+              alignment: Alignment.bottomCenter,
               child: Container(
-                *//*  decoration: BoxDecoration(
+                  /*decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white),*//*
-                padding: EdgeInsets.all(4),
-                child: Image.asset(
+                      color: Colors.white),*/
+                padding: EdgeInsets.only(bottom: 100),
+                  child:Text(loginResponse1.body.user)
+               /* child: Image.asset(
                   "assets/logo1.png",
                   width: 50,
                   height: 50,
                   color: Colors.black,
-                ),
+                ),*/
               ),
-            ),*/
+            ),
           ],
         ),
       ),
