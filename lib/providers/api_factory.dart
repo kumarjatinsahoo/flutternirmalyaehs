@@ -55,6 +55,7 @@ class ApiFactory {
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
+  static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';
 
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';
@@ -62,6 +63,7 @@ class ApiFactory {
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String FORGOT_OTP = MAIN_URL + 'forgot-password-get-otp';
+  static String FORGOT_USERID = MAIN_URL + 'forgot-userid-get-otp';
   static String CHNG_PASS = MAIN_URL + 'change-password';
   static String DOCTER_AVAILABLE =
       MAIN_URL + 'doctor-available-by-date?doctor=';
@@ -131,7 +133,8 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
   static String POST_EMERGENCY_MESSAGE =
       MAIN_URL + 'post-user-emergency-message';
-  static String POC_REPORT_LIST = MAIN_URL + 'view-medteltest-list';
+  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list';
+  static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list';
   static String UPDATE_EMERGENCY_CONTACT =
       MAIN_URL + 'post-emergency-contact-api';
   static String EMERGENCY_HELP =
@@ -159,6 +162,7 @@ class ApiFactory {
   static String doctor_MEDICINE_LIST =
       MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
   static String MEDICAL_PRESCRIPTION =  MAIN_URL + 'view-user-medical-prescription?userid=';
+  static String TEST_PRESCRIPTION =  MAIN_URL + 'view-user-test-prescription?userid=';
   static String doctor_TEST_LIST =
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =

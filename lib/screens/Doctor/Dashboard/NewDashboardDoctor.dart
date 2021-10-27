@@ -129,7 +129,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
       appBar:
       AppBar(centerTitle: true,
           title: Text("Dashboard"),
-          backgroundColor: Color(0xFF0F6CE1)),
+          backgroundColor: AppData.kPrimaryColor),
       body:
       Container(
         padding: EdgeInsets.symmetric(horizontal: 7),
@@ -536,7 +536,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                   /* Container(
                       height: size.height * 0.07,
                       width: size.width * 0.13,
                       decoration: BoxDecoration(
@@ -551,6 +551,25 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                             width: size.width * 0.13,
                             //fit: BoxFit.cover,
                           )),
+                    ),*/
+                    CircleAvatar(
+                      radius: 35,
+                      foregroundColor:
+                      Colors
+                          .white,
+                      backgroundColor: Colors.white,
+
+                      child:
+                      Image.asset(
+                        'assets/images/user.png',
+                        height:
+                        size.height *
+                            0.07,
+                        width:
+                        size.width *
+                            0.13,
+                        //fit: BoxFit.cover,
+                      ),
                     ),
                     SizedBox(
                       width: 20,
@@ -820,6 +839,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     fit: BoxFit.fitWidth,
                     width: 50,
                     height: 70.0,
+                    color: AppData.kPrimaryRedColor,
+
                   ),
                 ),
 
@@ -875,6 +896,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       fit: BoxFit.fitWidth,
                       width: 50,
                       height: 70.0,
+                      color: AppData.kPrimaryColor,
+
                     )),
               ],
             ),

@@ -165,113 +165,119 @@ class _MedicineList extends State<UserMedicineList1> {
                         }*/
                         medicine.Body body = medicineListModel.body[i];
                        // widget.model.medicinelist = ;
-                        return Container(
+                        return InkWell(
+                          onTap: (){
+                          //  Navigator.pushNamed(context, "/medicinelisturl");
 
-                          child: GestureDetector(
-                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist")
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(3.0),
-                              ),
-                              elevation: 3,
-                              child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                              shape: RoundedRectangleBorder(
-                              borderRadius:
-                              BorderRadius.circular(5))),
-                              child: Container(
-                                decoration: (i % 2 == 0)
-                                    ? BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color: AppData
-                                                .kPrimaryRedColor,
-                                            width: 4)))
-                                    : BoxDecoration(
-                                    border: Border(
-                                        left: BorderSide(
-                                            color:
-                                            AppData.kPrimaryColor,
-                                            width: 4))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                   Text(body?.drName ??
+                          },
+                          child: Container(
+
+                            child: GestureDetector(
+                              // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                              // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist")
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(3.0),
+                                ),
+                                elevation: 3,
+                                child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(5))),
+                                child: Container(
+                                  decoration: (i % 2 == 0)
+                                      ? BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color: AppData
+                                                  .kPrimaryRedColor,
+                                              width: 4)))
+                                      : BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color:
+                                              AppData.kPrimaryColor,
+                                              width: 4))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                     Text(body?.drName ??
+                                                    "N/A",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                    letterSpacing: 0.5),
+                                              ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+
+                                        Row(
+                                          // mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .end,
+                                          children: [
+                                            Text(
+                                              /*'Confirmed'*/
+                                              "Precription Date",
+                                              style: TextStyle(
+
+                                                  fontSize: 14,color: Colors
+                                                  .grey),
+                                            ),
+                                            Spacer(),
+                                            Text(
+                                              /*'Confirmed'*/
+                                              body
+                                                  .meddate ??
                                                   "N/A",
                                               style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                  letterSpacing: 0.5),
+
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .grey),
                                             ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Row(
+                                          // mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .end,
+                                          children: [
+                                            Text(
+                                              "Dosage",
+                                              style: TextStyle(
 
-                                      Row(
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment
-                                            .end,
-                                        children: [
-                                          Text(
-                                            /*'Confirmed'*/
-                                            "Precription Date",
-                                            style: TextStyle(
+                                                  fontSize: 14,color: Colors
+                                                  .grey),
+                                            ),
+                                            Spacer(),
+                                            Text(
+                                              /*'Confirmed'*/
+                                              body.status ??
+                                                  "N/A",
+                                              style: TextStyle(
 
-                                                fontSize: 14,color: Colors
-                                                .grey),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            /*'Confirmed'*/
-                                            body
-                                                .meddate ??
-                                                "N/A",
-                                            style: TextStyle(
-
-                                                fontSize: 14,
-                                                color: Colors
-                                                    .grey),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Row(
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment
-                                            .end,
-                                        children: [
-                                          Text(
-                                            "Dosage",
-                                            style: TextStyle(
-
-                                                fontSize: 14,color: Colors
-                                                .grey),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            /*'Confirmed'*/
-                                            body.status ??
-                                                "N/A",
-                                            style: TextStyle(
-
-                                                fontSize: 14,
-                                                color: Colors
-                                                    .grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .grey),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                                ),
                               ),
                             ),
                           ),

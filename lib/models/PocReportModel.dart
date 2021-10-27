@@ -43,6 +43,8 @@ class Body {
   String thpId;
   String thpName;
   String name;
+  String phc;
+  bool isChecked=false;
   String mobile;
   String gender;
   String age;
@@ -56,6 +58,7 @@ class Body {
         this.thpId,
         this.thpName,
         this.name,
+        this.phc,
         this.mobile,
         this.gender,
         this.age,
@@ -68,6 +71,7 @@ class Body {
     medteluniqueid = json['medteluniqueid'];
     thpId = json['thp_id'];
     thpName = json['thp_name'];
+    phc = json['phc'];
     name = json['name'];
     mobile = json['mobile'];
     gender = json['gender'];
@@ -89,6 +93,7 @@ class Body {
     data['thp_id'] = this.thpId;
     data['thp_name'] = this.thpName;
     data['name'] = this.name;
+    data['phc'] = this.phc;
     data['mobile'] = this.mobile;
     data['gender'] = this.gender;
     data['age'] = this.age;

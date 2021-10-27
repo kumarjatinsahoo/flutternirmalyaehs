@@ -15,6 +15,7 @@ import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/EmergencyHelp/CountDownPage1.dart';
 import 'package:user/screens/Users/EmergencyHelp/CountDownPage3.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
@@ -50,6 +51,7 @@ import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
 import 'package:user/screens/Users/SearchPage.dart';
 import 'package:user/screens/Users/VideosPage.dart';
 import 'package:user/screens/Users/organ/Organ1Page.dart';
@@ -97,7 +99,7 @@ import 'package:user/screens/Users/organ/DonorApplication.dart';
 import 'screens/Users/EmergencyHelp/EmergencyHelp.dart';
 import 'screens/Users/EmergencyRoom.dart';
 import 'package:user/screens/ForgotPassword.dart';
-import 'package:user/screens/ForgotUserID.dart';
+import 'package:user/screens/Users/UserId/ForgotUserID.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStoresList.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovtSchemes.dart';
@@ -666,6 +668,9 @@ class _MyAppState extends State<MyApp> {
               '/walkRegList': (context) => WalkinRegisterListPage(
                     model: _model,
                   ),
+              '/medicinelisturl': (context) => UserMedicineUrl(
+                    model: _model,
+                  ),
 
               //////////////////DOCTOR USER//////////////////////
            /*   '/dashDoctor': (context) => DasboardDoctor(
@@ -868,6 +873,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/cnfpwd': (context) => ConfirmPassword(
+                    model: _model,
+                  ),
+              '/qrcode': (context) => QrcodePage(
                 model: _model,
               ),
             },

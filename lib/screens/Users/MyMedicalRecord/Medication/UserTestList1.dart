@@ -11,8 +11,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MedicalPrescriptionModel.dart'as medicine;
+import 'package:user/models/MedicalPrescriptionModel.dart';
 import 'package:user/models/MedicinModel.dart';
-import 'package:user/models/MedicineListModel.dart' as medicine;
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/models/UserListModel.dart' as test;
 import 'package:user/models/UserListModel.dart';
@@ -48,6 +49,8 @@ List<TextEditingController> textEditingController = [
 class _MedicineList extends State<UserTestList1> {
   DateTime selectedDate = DateTime.now();
   test.UserListModel userListModel;
+  medicine.MedicalPrescriptionModel medicineListModel;
+
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -80,23 +83,26 @@ class _MedicineList extends State<UserTestList1> {
     callAPI();
   }
 
+
   callAPI() {
+    log("Api call>>"+ApiFactory.TEST_PRESCRIPTION + loginResponse1.body.user);
     widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.doctor_TEST_LIST + loginResponse1.body.user,
+      api: ApiFactory.TEST_PRESCRIPTION +loginResponse1.body.user,
       token: widget.model.token,
       fun: (Map<String, dynamic> map) {
         String msg = map[Const.MESSAGE];
+        //String msg = map[Const.MESSAGE];
         if (map[Const.CODE] == Const.SUCCESS) {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
-            userListModel = UserListModel.fromJson(map);
+            medicineListModel = MedicalPrescriptionModel.fromJson(map);
           });
         } else {
           setState(() {
             isDataNoFound = true;
           });
           //isDataNotAvail = true;
-         // AppData.showInSnackBar(context, msg);
+          //AppData.showInSnackBar(context, msg);
         }
       },
     );
@@ -140,208 +146,162 @@ class _MedicineList extends State<UserTestList1> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-      (userListModel != null)
-    ?    Container(
-    child: SingleChildScrollView(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              /* DropDown.networkDropdownGetpartUserrrr(
-                  "Choose Pharmacy",
-                  ApiFactory.PHARMACY_LIST,
-                  "choosepharmacy", (KeyvalueModel data) {
-                setState(() {
-                  print(ApiFactory.GENDER_API);
-                  UserMedicineList.pharmacyModel = data;
-                });
-              }, mapK),
-              SizedBox(
-                height: 15,
-              ),*/
-              (userListModel != null)
-                  ? ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      // controller: _scrollController,
-                      shrinkWrap: true,
-                      itemBuilder: (context, i) {
-                        /*  if (i == userListModel.body.length) {
-                          return (userListModel.body.length % 10 == 0)
+      (medicineListModel != null)
+          ?Container(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  (medicineListModel != null)
+                      ? ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    // controller: _scrollController,
+                    shrinkWrap: true,
+                    itemBuilder: (context, i) {
+                      /* if (i == medicineListModel.body.length) {
+                          return (medicineListModel.body.length % 10 == 0)
                               ? CupertinoActivityIndicator()
                               : Container();
                         }*/
-                        test.Body body = userListModel.body[i];
-                        widget.model.testList = body;
-                        return Container(
+                      medicine.Body body = medicineListModel.body[i];
+                      // widget.model.medicinelist = ;
+                      return InkWell(
+                        onTap: (){
+                        //  Navigator.pushNamed(context, "/medicinelisturl");
+
+                        },
+                        child: Container(
+
                           child: GestureDetector(
                             // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist")
                             child: Card(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(3.0),
                               ),
-                              elevation: 5,
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment:
+                              elevation: 3,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5))),
+                                child: Container(
+                                  decoration: (i % 2 == 0)
+                                      ? BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color: AppData
+                                                  .kPrimaryRedColor,
+                                              width: 4)))
+                                      : BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color:
+                                              AppData.kPrimaryColor,
+                                              width: 4))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
                                       CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      userListModel.body[i].testname ?? "N/A",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 0.5),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                          "Doctor: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            body.doctor ?? "N/A",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                      children: [
+                                        Text(body?.drName ??
+                                            "N/A",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 0.5),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
 
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Appoint no: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            body.appno ?? "N/A",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
+                                        Row(
+                                          // mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .end,
+                                          children: [
+                                            Text(
+                                              /*'Confirmed'*/
+                                              "Precription Date",
+                                              style: TextStyle(
+
+                                                  fontSize: 14,color: Colors
+                                                  .grey),
+                                            ),
+                                            Spacer(),
+                                            Text(
+                                              /*'Confirmed'*/
+                                              body
+                                                  .meddate ??
+                                                  "N/A",
+                                              style: TextStyle(
+
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .grey),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Row(
+                                          // mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .end,
+                                          children: [
+                                            Text(
+                                              "Dosage",
+                                              style: TextStyle(
+
+                                                  fontSize: 14,color: Colors
+                                                  .grey),
+                                            ),
+                                            Spacer(),
+                                            Text(
+                                              /*'Confirmed'*/
+                                              body.status ??
+                                                  "N/A",
+                                              style: TextStyle(
+
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .grey),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Type: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            body.testgroup ?? "N/A",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Remark: ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            body.remarks ?? "N/A",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      },
-                      itemCount: userListModel.body.length,
-                    )
-                  : Container(),
-              SizedBox(
-                height: 10,
+                        ),
+                      );
+                    },
+                    itemCount: medicineListModel.body.length,
+                  )
+                      : Container(),
+
+
+
+                ],
               ),
-              (selectedTest != null && selectedTest.length > 0)
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: nextButton(),
-                    )
-                  : Container(),
-              /*Material(
-                elevation: 5,
-                color: const Color(0xFF0F6CE1),
-                borderRadius: BorderRadius.circular(10.0),
-                child: MaterialButton(
-                  onPressed: () {},
-                  minWidth: 350,
-                  height: 40.0,
-                  child: Text(
-                    " SUBMIT ",
-                    style: TextStyle(color: Colors.white, fontSize: 17.0),
-                  ),
-                ),
-              ),*/
-            ],
+            ),
           ),
         ),
-      ),
-    ),
       ): Container(
-    width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size.height,
-    alignment: Alignment.center,
-    child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        alignment: Alignment.center,
+        child: (isDataNoFound) ? Text("Data Not Found"):
+        callAPI(),
 
 
       ),
@@ -350,14 +310,14 @@ class _MedicineList extends State<UserTestList1> {
 
   Widget nextButton() {
     return GestureDetector(
-      onTap: () {
+      /* onTap: () {
         showDialog(
           context: context,
           builder: (BuildContext context) => dialogaddnomination(context),
-        );
-        //AppData.showInSnackBar(context, "Please select Title");
-        //validate();
-      },
+        )},*/
+      //AppData.showInSnackBar(context, "Please select Title");
+      //validate();
+
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 9.0, right: 9.0),
@@ -370,7 +330,7 @@ class _MedicineList extends State<UserTestList1> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
             "SUBMIT",

@@ -112,15 +112,15 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                           color: Colors.grey,
                         ),
                       ),
-                      Expanded(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            appointdate(),
-                          ],
-                        ),
+                      Spacer(),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          appointdate(),
+                        ],
                       ),
+                      Spacer(),
                       InkWell(
                         onTap: (){
                           rightArrow();
@@ -227,8 +227,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                   padding: const EdgeInsets.all(8.0),
                                                                   child: Image.asset(
                                                                     'assets/images/profile.png',
-                                                                    height: size.height * 0.07,
-                                                                    width: size.width * 0.13,
+                                                                    height: size.height * 0.10,
+                                                                    width: size.width * 0.20,
                                                                     fit: BoxFit.cover,
                                                                   ),
                                                                 )),
@@ -248,10 +248,10 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                     fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                    fontSize: 18),
+                                                                    fontSize: 15),
                                                               ),
                                                               SizedBox(
-                                                                height: 5,
+                                                                height: 3,
                                                               ),
                                                               /*  Text(
                                                               appointmentlist
@@ -278,7 +278,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextStyle(),
                                                               ),
                                                               SizedBox(height:3),
-                                                              Text(
+                                                              (appointmentlist.age==null)
+                                                                  ?Text(
                                                                 "Age : " +
                                                                     appointmentlist
                                                                         .age ??
@@ -287,10 +288,21 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextOverflow
                                                                     .clip,
                                                                 style:
-                                                                TextStyle(),
+                                                                TextStyle(fontSize: 13),
+                                                              ):Container(
+                                                                child:Text(
+                                                                  "Age: " +
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style:
+                                                                  TextStyle(fontSize: 13),
+                                                                ),
                                                               ),
                                                               SizedBox(height:3),
-                                                              Text(
+                                                              (appointmentlist.gender==null)
+                                                                  ? Text(
                                                                 "Gender: " +
                                                                     appointmentlist
                                                                         .gender ??
@@ -299,20 +311,30 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextOverflow
                                                                     .clip,
                                                                 style:
-                                                                TextStyle(),
+                                                                TextStyle(fontSize: 13),
+                                                              ):Container(
+                                                                child:Text(
+                                                                  "Gender: " +
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style:
+                                                                  TextStyle(fontSize: 13),
+                                                                ),
                                                               ),
-                                                            /*  Text(
-                                                                appointmentlist
-                                                                    .patname ??
-                                                                    "N/A",
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .blue),
-                                                              ),*/
-                                                            ],
+                                                              /* Text(
+                                                                  appointmentlist
+                                                                      .patname ??
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .blue),
+                                                                ),
+*/                                                              ],
                                                           ),
                                                         ],
                                                       ),
@@ -334,8 +356,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                     CrossAxisAlignment
                                                         .end,
                                                     children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
+                                                      Container(
+                                                        width:80,
                                                         child: Text(
                                                           /*'Confirmed'*/
                                                           "Address : ",
@@ -350,33 +372,97 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       ),
 
                                                       Container(
-                                                        width:250,
-                                                        child: Text(
-                                                          /*'23-Nov-2020-11:30AM'*/
-                                                         appointmentlist.address??"N/A",
-                                                          overflow:
-                                                          TextOverflow
-                                                              .clip,
-                                                          style:
-                                                          TextStyle(),
-                                                        ),
+                                                          width: 250,
+                                                          child:
+                                                          (appointmentlist.address==null)
+
+                                                              ? Text(
+
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist.address??"N/A"  ,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ):Container(child:Text("N/A"))
                                                       ),
                                                     ],
                                                   ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Row(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .end,
-                                                      children: [
-                                                        Container(
-                                                          width:80,
+                                                  Row(
+                                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .end,
+                                                    children: [
+                                                      Container(
+                                                        width:80,
+                                                        child: Text(
 
-                                                          child: Text(
+                                                          /*'Confirmed'*/
+                                                          "Date : ",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold,
+                                                              fontSize: 15,
+                                                              color: AppData.kPrimaryColor
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                .appdate ??
+                                                                "N/A" ,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            "-"+appointmentlist
+                                                                .appmonth ??
+                                                                "N/A",
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            "-"+ appointmentlist
+                                                                .appyear ??
+                                                                "N/A",
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height:10),
+                                                  Row(
+                                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .end,
+                                                    children: [
+                                                      Column(
+                                                        children: [
+                                                          Text(
                                                             /*'Confirmed'*/
-                                                            "Date : ",
+                                                            appointmentlist
+                                                                .status ??
+                                                                "N/A",
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                 FontWeight
@@ -385,55 +471,11 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 color: AppData.kPrimaryColor
                                                             ),
                                                           ),
-                                                        ),
+                                                          SizedBox(height: 20,)
+                                                        ],
+                                                      ),
+                                                      Spacer(),
 
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              appointmentlist
-                                                                  .appdate ??
-                                                                  "N/A" ,
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              "-"+appointmentlist
-                                                                  .appmonth ??
-                                                                  "N/A",
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              "-"+ appointmentlist
-                                                                  .appyear ??
-                                                                  "N/A",
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  SizedBox(height:5),
-                                                  Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .end,
-                                                    children: [
                                                       InkWell(
                                                         onTap:(){
                                                           widget.model.patientseHealthCard =
@@ -503,26 +545,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Spacer(),
 
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            /*'Confirmed'*/
-                                                            appointmentlist
-                                                                .status ??
-                                                                "N/A",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                fontSize: 15,
-                                                                color: AppData.kPrimaryColor
-                                                                    ),
-                                                          ),
-                                                          SizedBox(height: 20,)
-                                                        ],
-                                                      ),
+
                                                     ],
                                                   ),
 
@@ -553,37 +577,35 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-      child: Expanded(
-        child: InkWell(
-          onTap: () {
-            print("Click done");
-            _selectDate(context);
-          },
-          child: AbsorbPointer(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: TextFormField(
-                autofocus: false,
-                controller: fromThis_,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.calendar_today),
-                  floatingLabelBehavior:
-                  FloatingLabelBehavior.always,
-                  hintText: 'From this',
-                  //labelText: 'Booking Date',
-                  alignLabelWithHint: false,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
+      child: InkWell(
+        onTap: () {
+          print("Click done");
+          _selectDate(context);
+        },
+        child: AbsorbPointer(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: TextFormField(
+              autofocus: false,
+              controller: fromThis_,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.calendar_today),
+                floatingLabelBehavior:
+                FloatingLabelBehavior.always,
+                hintText: 'From this',
+                //labelText: 'Booking Date',
+                alignLabelWithHint: false,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 4, right: 4),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
+                ),
+                contentPadding:
+                EdgeInsets.only(left: 10, top: 4, right: 4),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                    width: 1.0,
                   ),
                 ),
               ),
