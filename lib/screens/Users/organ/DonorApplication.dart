@@ -1257,7 +1257,7 @@ class DonorApplicationState extends State<DonorApplication> {
             log("Post json>>>>"+jsonEncode(addOrganDonModel.toJson()));
 
             //AppData.showInSnackBar(context, "add Successfully");
-            /*widget.model.POSTMETHOD1(
+            widget.model.POSTMETHOD1(
                 api: ApiFactory.POST_ORGAN_DONOR,
                 token: widget.model.token,
                 json: addOrganDonModel.toJson(),
@@ -1268,7 +1268,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   } else {
                     AppData.showInSnackBar(context, map[Const.MESSAGE]);
                   }
-                });*/
+                });
           }
         });
   }
@@ -1354,7 +1354,7 @@ class DonorApplicationState extends State<DonorApplication> {
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
-        validate();
+       // validate();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -1402,6 +1402,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 value: selectedUser,
                 isDense: true,
                 onChanged: (KeyvalueModel newValue) {
+                  DonorApplication.genderModel=newValue;
                   setState(() {
                     selectedUser = newValue;
                     DonorApplication.genderModel=selectedUser;
@@ -1642,7 +1643,7 @@ class DonorApplicationState extends State<DonorApplication> {
       ),
       onTap: () {
         setState(() {});
-        validate();
+        //validate();
       },
     );
   }
@@ -1666,57 +1667,5 @@ class DonorApplicationState extends State<DonorApplication> {
     );
   }
 
-  validate() async {
-    _formKey.currentState.validate();
 
-    if (error[0] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_FIRST_NAME"));
-      FocusScope.of(context).requestFocus(fnode1);
-    } else if (error[1] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
-      FocusScope.of(context).requestFocus(fnode2);
-    } else if (DonorApplication.genderModel == null ||
-        DonorApplication.genderModel == "") {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
-      FocusScope.of(context).requestFocus(fnode4);
-    } else if (textEditingController[5].text == '') {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_AADHAAR_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode4);
-    } else if (error[3] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_FATHER_NAME"));
-      FocusScope.of(context).requestFocus(fnode6);
-    } else if (error[2] == true) {
-      AppData.showInSnackBar(
-          context, MyLocalizations.of(context).text("PLEASE_ENTER_DOB"));
-      FocusScope.of(context).requestFocus(fnode3);
-    } else if (error[4] == true) {
-      AppData.showInSnackBar(context,
-          MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
-      FocusScope.of(context).requestFocus(fnode7);
-    } else if (DonorApplication.districtModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (DonorApplication.blockModel == null) {
-      AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
-    } else {
-      _formKey.currentState.save();
-
-      if (isOnline) {
-        setState(() {
-          _isSignUpLoading = true;
-        });
-        await Future.delayed(const Duration(seconds: 2), () {
-          setState(() {
-            _isSignUpLoading = false;
-          });
-        });
-      } else {
-        AppData.showInSnackBar(context, "INTERNET_CONNECTION");
-      }
-    }
-  }
 }
