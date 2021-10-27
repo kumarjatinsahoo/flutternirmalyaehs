@@ -4,8 +4,8 @@ class ApiFactory {
 // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
- // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -27,7 +27,6 @@ class ApiFactory {
 
   static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
-
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
@@ -64,6 +63,7 @@ class ApiFactory {
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String FORGOT_OTP = MAIN_URL + 'forgot-password-get-otp';
+  static String FORGOT_USERID = MAIN_URL + 'forgot-userid-get-otp';
   static String CHNG_PASS = MAIN_URL + 'change-password';
   static String DOCTER_AVAILABLE =
       MAIN_URL + 'doctor-available-by-date?doctor=';

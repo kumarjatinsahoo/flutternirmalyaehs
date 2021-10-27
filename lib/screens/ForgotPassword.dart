@@ -102,7 +102,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         SizedBox(
           height: size.height * 0.09,
         ),
-        /* InkWell(
+         InkWell(
          onTap: (){
            Navigator.pushNamed(context, "/forgotuserid");
          },
@@ -111,7 +111,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                    ),),
         ),
-     */
       ],
     ),
       ),

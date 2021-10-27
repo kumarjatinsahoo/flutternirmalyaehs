@@ -516,7 +516,7 @@ class _DoctorAppointmentRequestedState
                                                                     setState(() {
                                                                       String msg = map[Const.MESSAGE];
                                                                       if (map[Const.CODE] == Const.SUCCESS) {
-                                                                      //  Navigator.of(context).pop();
+                                                                       Navigator.of(context).pop();
                                                                         //Navigator.of(context).pop();
                                                                         doctorAppointmment =
                                                                             DoctorAppointmment.fromJson(map);
@@ -571,10 +571,10 @@ class _DoctorAppointmentRequestedState
                                                                     setState(() {
                                                                       String msg = map[Const.MESSAGE];
                                                                       if (map[Const.CODE] == Const.SUCCESS) {
+                                                                        Navigator.of(context).pop();
                                                                         doctorAppointmment =
                                                                             DoctorAppointmment.fromJson(map);
                                                                        AppData.showInSnackBar(context, msg);
-                                                                       Navigator.of(context).pop();
                                                                      //   Navigator.pushNamed(context, "/dashDoctor");
 
                                                                         // appointModel = lab.LabBookModel.fromJson(map);
