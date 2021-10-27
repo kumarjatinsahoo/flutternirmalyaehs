@@ -34,7 +34,9 @@ class Body {
   String key;
   String name;
   bool isChecked=false;
-
+ /* String code;
+  String image;
+  String language;*/
   Body({this.key, this.name});
 
   Body.fromJson(Map<String, dynamic> json) {
@@ -44,8 +46,8 @@ class Body {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['name'] = this.name;
+    data['key'] = this.key.toString();
+    data['name'] = this.name.toString();
     return data;
   }
 }

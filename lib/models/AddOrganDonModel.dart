@@ -29,7 +29,7 @@ class AddOrganDonModel {
 
   AddOrganDonModel.fromJson(Map<String, dynamic> json) {
     patientId = json['patientId'];
-    address = json['address'];
+    donorName = json['donorName'];
     donorType = json['donorType'];
     typeUserName = json['typeUserName'];
     dob = json['dob'];
@@ -39,9 +39,9 @@ class AddOrganDonModel {
     email = json['email'];
     address = json['address'];
 
-    if (json['item_details'] != null) {
+    if (json['witnessList'] != null) {
       witnessList = new List<WitnessModel>();
-      json['item_details'].forEach((v) {
+      json['witnessList'].forEach((v) {
         witnessList.add(new WitnessModel.fromJson(v));
       });
     }
@@ -50,16 +50,18 @@ class AddOrganDonModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['patientId'] = this.patientId;
-    data['address'] = this.address;
+    data['donorName'] = this.donorName;
+    data['typeUserName'] = this.typeUserName;
     data['donorType'] = this.donorType;
     data['dob'] = this.dob;
     data['age'] = this.age;
     data['bldGr'] = this.bldGr;
     data['mob'] = this.mob;
+    data['email'] = this.email;
     data['address'] = this.address;
 
     if (this.witnessList != null) {
-      data['item_details'] =
+      data['witnessList'] =
           this.witnessList.map((v) => v.toJson()).toList();
     }
     if (this.organList != null) {

@@ -176,7 +176,7 @@ class DonorApplicationState extends State<DonorApplication> {
     super.initState();
     DonorApplication.districtModel = null;
     DonorApplication.blockModel = null;
-    DonorApplication.genderModel = null;
+    //DonorApplication.genderModel = null;
     selectedUser = UserType[0];
     selectedUser1 = UserType1[0];
     /*setState(() {
@@ -492,7 +492,7 @@ class DonorApplicationState extends State<DonorApplication> {
               ),
               Row(
                 children: <Widget>[
-                  Flexible(
+                  (organModel!=null)? Flexible(
                     child: ListView.builder(
                       itemBuilder: (context, i) {
                         organ.Body body = organModel.body[i];
@@ -530,8 +530,8 @@ class DonorApplicationState extends State<DonorApplication> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                     ),
-                  ),
-                  Flexible(
+                  ):Container(),
+                  (tissueModel!=null)? Flexible(
                     child: ListView.builder(
                       itemBuilder: (context, i) {
                         tissue.Body body = tissueModel.body[i];
@@ -569,7 +569,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                     ),
-                  ),
+                  ):Container(),
                 ],
               ),
               Padding(
@@ -761,10 +761,106 @@ class DonorApplicationState extends State<DonorApplication> {
                 SizedBox(
                   height: 8,
                 ),
-                Padding(
+            Padding(
+              //padding: const EdgeInsets.all(8.0),
+              padding:
+              const EdgeInsets.only(top: 0.0, left: 10.0, right: 5.0, bottom: 0.0),
+              child: Container(
+                // decoration: BoxDecoration(
+                //   color: AppData.kPrimaryLightColor,
+                //   borderRadius: BorderRadius.circular(29),
+                //   /*border: Border.all(
+                //        color: Colors.black,width: 0.3)*/
+                // ),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child:
+                      /*DropdownButton<KeyvalueModel>(
+               items: UserType
+                   .map((data) => DropdownMenuItem<KeyvalueModel>(
+                 child: Text(data.name),
+                 value: data,
+               ))
+                   .toList(),
+               onChanged: (KeyvalueModel value) {
+                 setState(() => selectedUser = value);
+               },
+              // hint: Text('Select Key'),
+             ),*/
+                      DropdownButton<KeyvalueModel>(
+                        // hint: Text("Select Device"),
+                        underline: Container(
+                          color: Colors.grey,
+                        ),
+                        value: selectedUser1,
+                        isDense: true,
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedUser1 = newValue;
+                          });
+                          print(selectedUser1);
+                        },
+                        items: UserType1.map((KeyvalueModel value) {
+                          return DropdownMenuItem<KeyvalueModel>(
+                            value: value,
+                            child: new Text(
+                              value.name,
+                              style: new TextStyle(color: Colors.black),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                      height: 35.0,
+                      width: 1.0,
+                      color: Colors.grey.withOpacity(0.5),
+                      margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                    ),
+                    new Expanded(
+                      child: TextFormField(
+                        enabled: widget.isConfirmPage ? false : true,
+                        controller: textEditingController[8],
+                        // focusNode: fnode8,
+                        cursorColor: AppData.kPrimaryColor,
+                        textInputAction: TextInputAction.next,
+
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          // border: InputBorder.none,
+                          counterText: "",
+                          hintText: "S/O,D/O,W/O",
+                          hintStyle: TextStyle(color: Colors.grey),
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            error[4] = true;
+                            return null;
+                          }
+                          error[4] = false;
+                          return null;
+                        },
+                        onFieldSubmitted: (value) {
+                          // print(error[2]);
+                          error[4] = false;
+                          setState(() {});
+                          //AppData.fieldFocusChange(context, fnode7, fnode8);
+                        },
+                        onSaved: (value) {
+                          //userPersonalForm.phoneNumber = value;
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+                /*Padding(
                   padding: const EdgeInsets.only(right: 3.0),
                   child: witnmobileNumber(),
-                ),
+                ),*/
                 SizedBox(
                   height: 8,
                 ),
@@ -877,6 +973,7 @@ class DonorApplicationState extends State<DonorApplication> {
         ),
         new FlatButton(
           onPressed: () {
+    setState(() {
             if (textEditingController[7].text == "" ||
                 textEditingController[7].text == null) {
               AppData.showInSnackBar(context, "Please enter Person Name");
@@ -915,6 +1012,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 witnessModle.add(witness);
               });
             }
+    });
             Navigator.of(context).pop();
             textEditingController[7].text = "";
             textEditingController[8].text = "";
@@ -1126,9 +1224,9 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age:Years");
-          /*} else if (DonorApplication.bloodgroupModel == null ||
+          } else if (DonorApplication.bloodgroupModel == null ||
               DonorApplication.bloodgroupModel == "") {
-            AppData.showInSnackBar(context, "Please select Blood Group");*/
+            AppData.showInSnackBar(context, "Please select Blood Group");
           } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter Mobile No");
@@ -1144,11 +1242,11 @@ class DonorApplicationState extends State<DonorApplication> {
             AddOrganDonModel addOrganDonModel = AddOrganDonModel();
             addOrganDonModel.patientId = widget.model.user;
             addOrganDonModel.donorName = textEditingController[0].text;
-            //addOrganDonModel.donorType =  DonorApplication.UserType.key;
+            addOrganDonModel.donorType = DonorApplication.genderModel.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
             addOrganDonModel.dob = textEditingController[2].text;
             addOrganDonModel.age = textEditingController[3].text;
-            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
+            addOrganDonModel.bldGr =DonorApplication.bloodgroupModel.key;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
             addOrganDonModel.address = textEditingController[6].text;
@@ -1158,8 +1256,8 @@ class DonorApplicationState extends State<DonorApplication> {
 
             log("Post json>>>>"+jsonEncode(addOrganDonModel.toJson()));
 
-            AppData.showInSnackBar(context, "add Successfully");
-            widget.model.POSTMETHOD1(
+            //AppData.showInSnackBar(context, "add Successfully");
+            /*widget.model.POSTMETHOD1(
                 api: ApiFactory.POST_ORGAN_DONOR,
                 token: widget.model.token,
                 json: addOrganDonModel.toJson(),
@@ -1170,7 +1268,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   } else {
                     AppData.showInSnackBar(context, map[Const.MESSAGE]);
                   }
-                });
+                });*/
           }
         });
   }
@@ -1306,6 +1404,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 onChanged: (KeyvalueModel newValue) {
                   setState(() {
                     selectedUser = newValue;
+                    DonorApplication.genderModel=selectedUser;
                   });
                 },
                 items: UserType.map((KeyvalueModel value) {

@@ -8,6 +8,7 @@ class WitnessModel {
   WitnessModel.fromJson(Map<String, dynamic> json) {
     donorName = json['donorName'];
     donorType = json['donorType'];
+    mob = json['mob'];
     typeUserName = json['typeUserName'];
     age = json['age'];
     address = json['address'];
@@ -21,6 +22,7 @@ class WitnessModel {
     data['donorType'] = this.donorType.toString();
     data['typeUserName'] = this.typeUserName.toString();
     data['age'] = this.age.toString();
+    data['mob'] = this.mob.toString();
     data['address'] = this.address.toString();
     data['email'] = this.email.toString();
     data['relation'] = this.relation.toString();
@@ -33,6 +35,7 @@ class WitnessModel {
     data['donorType'] = this.donorType.toString();
     data['typeUserName'] = this.typeUserName.toString();
     data['age'] = this.age.toString();
+    data['mob'] = this.mob.toString();
     data['address'] = this.address.toString();
     data['email'] = this.email.toString();
     data['relation'] = this.relation.toString();
