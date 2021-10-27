@@ -152,6 +152,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //Spacer(),
             Align(
               alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right:70.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/qrcode");
+                  },
+                  child: Icon(Icons.qr_code_outlined),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
               child: InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, "/idCard");

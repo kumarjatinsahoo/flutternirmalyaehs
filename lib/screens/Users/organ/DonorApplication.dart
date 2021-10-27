@@ -121,6 +121,21 @@ class DonorApplicationState extends State<DonorApplication> {
     KeyvalueModel(key: "D", name: "D/o"),
     KeyvalueModel(key: "W", name: "W/o"),
   ];
+  List<KeyvalueModel> _dropdownItems = [
+    KeyvalueModel(key: "S", name: "S/o"),
+    KeyvalueModel(key: "D", name: "D/o"),
+    KeyvalueModel(key: "W", name: "W/o"),
+  ];
+  List<KeyvalueModel> _dropdownItems1 = [
+    KeyvalueModel(key: "S", name: "S/o"),
+    KeyvalueModel(key: "D", name: "D/o"),
+    KeyvalueModel(key: "W", name: "W/o"),
+  ];
+
+  List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems;
+  KeyvalueModel _selectedItem;
+  List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems1;
+  KeyvalueModel _selectedItem1;
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
@@ -179,6 +194,10 @@ class DonorApplicationState extends State<DonorApplication> {
     //DonorApplication.genderModel = null;
     selectedUser = UserType[0];
     selectedUser1 = UserType1[0];
+    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+    _selectedItem = _dropdownMenuItems[0].value;
+    _dropdownMenuItems1 = buildDropDownMenuItems(_dropdownItems1);
+    _selectedItem1 = _dropdownMenuItems1[0].value;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -192,7 +211,30 @@ class DonorApplicationState extends State<DonorApplication> {
     organcallAPI();
     tissuecallAPI();
   }
-
+  List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems(List listItems) {
+    List<DropdownMenuItem<KeyvalueModel>> items = List();
+    for (KeyvalueModel listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(listItem.name),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
+  List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems1(List listItems) {
+    List<DropdownMenuItem<KeyvalueModel>> items = List();
+    for (KeyvalueModel listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(listItem.name),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
   tissuecallAPI() {
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.TISSUE_API,
@@ -777,19 +819,19 @@ class DonorApplicationState extends State<DonorApplication> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child:
-                      /*DropdownButton<KeyvalueModel>(
-               items: UserType
-                   .map((data) => DropdownMenuItem<KeyvalueModel>(
-                 child: Text(data.name),
-                 value: data,
-               ))
-                   .toList(),
-               onChanged: (KeyvalueModel value) {
-                 setState(() => selectedUser = value);
-               },
-              // hint: Text('Select Key'),
-             ),*/
                       DropdownButton<KeyvalueModel>(
+                          underline: Container(
+                            color: Colors.grey,
+                          ),
+                          value: _selectedItem1,
+                          items: _dropdownMenuItems1,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedItem1= value;
+                            });
+                          }),
+                    ),
+                      /*DropdownButton<KeyvalueModel>(
                         // hint: Text("Select Device"),
                         underline: Container(
                           color: Colors.grey,
@@ -812,7 +854,7 @@ class DonorApplicationState extends State<DonorApplication> {
                           );
                         }).toList(),
                       ),
-                    ),
+                    ),*/
                     Container(
                       height: 35.0,
                       width: 1.0,
@@ -998,7 +1040,7 @@ class DonorApplicationState extends State<DonorApplication> {
             } else {
               WitnessModel witness = WitnessModel();
               witness.donorName = textEditingController[7].text;
-              witness.donorType = "W";
+              witness.donorType = _selectedItem1.key;
               witness.typeUserName = textEditingController[8].text;
               witness.relation = DonorApplication.relationmodel.key;
               witness.age = textEditingController[9].text;
@@ -1242,7 +1284,7 @@ class DonorApplicationState extends State<DonorApplication> {
             AddOrganDonModel addOrganDonModel = AddOrganDonModel();
             addOrganDonModel.patientId = widget.model.user;
             addOrganDonModel.donorName = textEditingController[0].text;
-            addOrganDonModel.donorType = DonorApplication.genderModel.key;
+            addOrganDonModel.donorType = _selectedItem.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
             addOrganDonModel.dob = textEditingController[2].text;
             addOrganDonModel.age = textEditingController[3].text;
@@ -1395,13 +1437,24 @@ class DonorApplicationState extends State<DonorApplication> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: DropdownButton<KeyvalueModel>(
+              child:DropdownButton<KeyvalueModel>(
+                  underline: Container(
+                    color: Colors.grey,
+                  ),
+                  value: _selectedItem,
+                  items: _dropdownMenuItems,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedItem = value;
+                    });
+                  }),
+              /*DropdownButton<KeyvalueModel>(
                 underline: Container(
                   color: Colors.grey,
                 ),
                 value: selectedUser,
                 isDense: true,
-                onChanged: (KeyvalueModel newValue) {
+                onChanged:(KeyvalueModel newValue) {
                   DonorApplication.genderModel=newValue;
                   setState(() {
                     selectedUser = newValue;
@@ -1417,7 +1470,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     ),
                   );
                 }).toList(),
-              ),
+              ),*/
             ),
             Container(
               height: 35.0,
