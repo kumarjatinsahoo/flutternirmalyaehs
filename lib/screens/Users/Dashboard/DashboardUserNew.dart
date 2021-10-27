@@ -631,7 +631,7 @@ List<String> imageSliders = [
             ),
             CarouselSlider(
               options: CarouselOptions(
-                  height: 210,
+                  height: size.height*0.3,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -704,76 +704,76 @@ List<String> imageSliders = [
                                        height: double.maxFinite,
                                      ),*/
 
-                                  Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Color.fromARGB(200, 0, 0, 0),
-                                            Color.fromARGB(0, 0, 0, 0)
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color.fromARGB(200, 0, 0, 0),
+                                              Color.fromARGB(0, 0, 0, 0)
+                                            ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter,
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              (imageSliders.indexOf(item) + 1)
+                                                      .toString() +
+                                                  "/" +
+                                                  imageSliders.length
+                                                      .toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13.0,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
                                           ],
-                                          begin: Alignment.bottomCenter,
-                                          end: Alignment.topCenter,
                                         ),
                                       ),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 20.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            (imageSliders.indexOf(item) + 1)
-                                                    .toString() +
-                                                "/" +
-                                                imageSliders.length
-                                                    .toString(),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              fontWeight: FontWeight.w200,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                     ),
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: (imageSliders.indexOf(item) == 4 ||
-                                            imageSliders.indexOf(item) == 7 ||
-                                            imageSliders.indexOf(item) == 0 ||
-                                            imageSliders.indexOf(item) == 1 ||
-                                            imageSliders.indexOf(item) == 9 ||
-                                            imageSliders.indexOf(item) == 10)
-                                        ? Icon(
-                                            Icons.play_circle_fill,
-                                            color: Colors.white,
-                                            size: 45,
-                                          )
-                                        : Container(),
-                                  ),
-                                ],
+                                    Positioned(
+                                      top: 0,
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: (imageSliders.indexOf(item) == 4 ||
+                                              imageSliders.indexOf(item) == 7 ||
+                                              imageSliders.indexOf(item) == 0 ||
+                                              imageSliders.indexOf(item) == 1 ||
+                                              imageSliders.indexOf(item) == 9 ||
+                                              imageSliders.indexOf(item) == 10)
+                                          ? Icon(
+                                              Icons.play_circle_fill,
+                                              color: Colors.white,
+                                              size: 45,
+                                            )
+                                          : Container(),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-          ],
+                        ))
+                    .toList(),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
   }
 
   void _onItemTapped(int index) {

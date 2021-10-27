@@ -157,34 +157,33 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       return Column(
                         children: [
                           ListTile(
-                            title: Text(
-                              list[i].name,
-                              style: TextStyle(color: Colors.black),
-                            ),
-
+                              title: Text(
+                                list[i].name,
+                                style: TextStyle(color: Colors.black),
+                              ),
                               subtitle: Text(
-                              list[i].relation,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            trailing: InkWell(
-                              onTap: () {
-                                AppData.launchURL("tel://" + list[i].mobile);
-                              },
-                              child: Icon(Icons.call, color: Colors.black),
-                            ),
+                                list[i].relation,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              trailing: InkWell(
+                                onTap: () {
+                                  AppData.launchURL("tel://" + list[i].mobile);
+                                },
+                                child: Icon(Icons.call, color: Colors.black),
+                              ),
                               onTap: () {
                                 // call setstate
-                                setState(() { // new line
+                                setState(() {
+                                  // new line
                                   // change the bool variable based on the index
                                   AppData.launchURL("tel://" + list[i].mobile);
                                 });
-                              }
-                          ),
-                          (i == list.length - 1)? Container():Divider(height: 1,color: Colors.black54),
-
+                              }),
+                          (i == list.length - 1)
+                              ? Container()
+                              : Divider(height: 1, color: Colors.black54),
                         ],
                       );
-
                     },
                     itemCount: list.length,
                   ),
@@ -269,15 +268,17 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       },
                       child: Icon(Icons.settings))),
               Align(
-                  alignment: Alignment.topLeft,
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ))),
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
           automaticallyImplyLeading: false,
@@ -418,22 +419,22 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 ]),
                           ),
                           new Spacer(),
-
-                    InkWell(
-                      onTap: () {
-                        // Navigator.pop(context);
-                        AppData.launchURL("tel://" +
-                            emergencyHelpModel.emergency[0].mobile);
-                      },child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Call Emergency ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black),
-                            ),
-                          )),
+                          InkWell(
+                              onTap: () {
+                                // Navigator.pop(context);
+                                AppData.launchURL("tel://" +
+                                    emergencyHelpModel.emergency[0].mobile);
+                              },
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Call Emergency ',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black),
+                                ),
+                              )),
                           new Spacer(),
                           Container(
                               child: Row(children: [
@@ -628,20 +629,20 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               ])),
                           new Spacer(),
                           /*  Expanded(child:*/
-            InkWell(
-              onTap: () {
-                // Navigator.pop(context);
+                          InkWell(
+                              onTap: () {
+                                // Navigator.pop(context);
 
-                AppData.launchURL("tel://" +
-                    emergencyHelpModel.ambulance);
-              },
-              child: Text(
-                            'Call Ambulance ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.black),
-                          )),
+                                AppData.launchURL(
+                                    "tel://" + emergencyHelpModel.ambulance);
+                              },
+                              child: Text(
+                                'Call Ambulance ',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.black),
+                              )),
                           /* ),*/
                           new Spacer(),
                           Row(
@@ -760,19 +761,19 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               ])),
                           new Spacer(),
                           /*  Expanded(child:*/
-            InkWell(
-              onTap: () {
-                //Navigator.pop(context);
-                AppData.launchURL(
-                    "tel://" + emergencyHelpModel.police);
-                        },
-                    child:Text(
-                            'Call Police ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.black),
-                          )),
+                          InkWell(
+                              onTap: () {
+                                //Navigator.pop(context);
+                                AppData.launchURL(
+                                    "tel://" + emergencyHelpModel.police);
+                              },
+                              child: Text(
+                                'Call Police ',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.black),
+                              )),
                           /* ),*/
                           new Spacer(),
                           Row(
