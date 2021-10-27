@@ -33,7 +33,7 @@ class _IdCardPageState extends State<IdCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Medicine"),
+        title: Text("Id Card"),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),

@@ -229,7 +229,19 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                 SizedBox(
                                   height: 9,
                                 ),
-                                (patient.thpId == "")
+                                Text(
+                                  patient.phc ?? "N/A",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
+                                SizedBox(
+                                  height: 9,
+                                ),
+                                (patient.thpName=="")
+                                ?(patient.thpId == "")
                                     ? Container()
                                     : Text(
                                         patient.thpName ?? "N/A",
@@ -238,7 +250,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                             fontSize: 13,
                                             fontWeight: FontWeight.bold),
                                         textAlign: TextAlign.start,
-                                      ),
+                                      ):Container(),
+
                               ],
                             ),
                           ],

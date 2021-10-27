@@ -278,7 +278,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextStyle(),
                                                               ),
                                                               SizedBox(height:3),
-                                                              Text(
+                                                              (appointmentlist.age==null)
+                                                                  ?Text(
                                                                 "Age : " +
                                                                     appointmentlist
                                                                         .age ??
@@ -287,10 +288,21 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextOverflow
                                                                     .clip,
                                                                 style:
-                                                                TextStyle(fontSize:13),
+                                                                TextStyle(fontSize: 13),
+                                                              ):Container(
+                                                                child:Text(
+                                                                  "Age: " +
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style:
+                                                                  TextStyle(fontSize: 13),
+                                                                ),
                                                               ),
                                                               SizedBox(height:3),
-                                                              Text(
+                                                              (appointmentlist.gender==null)
+                                                                  ? Text(
                                                                 "Gender: " +
                                                                     appointmentlist
                                                                         .gender ??
@@ -299,20 +311,30 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 TextOverflow
                                                                     .clip,
                                                                 style:
-                                                                TextStyle(fontSize:13),
+                                                                TextStyle(fontSize: 13),
+                                                              ):Container(
+                                                                child:Text(
+                                                                  "Gender: " +
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style:
+                                                                  TextStyle(fontSize: 13),
+                                                                ),
                                                               ),
-                                                            /*  Text(
-                                                                appointmentlist
-                                                                    .patname ??
-                                                                    "N/A",
-                                                                overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .blue),
-                                                              ),*/
-                                                            ],
+                                                              /* Text(
+                                                                  appointmentlist
+                                                                      .patname ??
+                                                                      "N/A",
+                                                                  overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .blue),
+                                                                ),
+*/                                                              ],
                                                           ),
                                                         ],
                                                       ),
@@ -334,8 +356,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                     CrossAxisAlignment
                                                         .end,
                                                     children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
+                                                      Container(
+                                                        width:80,
                                                         child: Text(
                                                           /*'Confirmed'*/
                                                           "Address : ",
@@ -350,84 +372,84 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       ),
 
                                                       Container(
-                                                        width:250,
-                                                        child: Text(
-                                                          /*'23-Nov-2020-11:30AM'*/
-                                                         appointmentlist.address??"N/A",
-                                                          overflow:
-                                                          TextOverflow
-                                                              .clip,
-                                                          style:
-                                                          TextStyle(),
-                                                        ),
+                                                          width: 250,
+                                                          child:
+                                                          (appointmentlist.address==null)
+
+                                                              ? Text(
+
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist.address??"N/A"  ,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ):Container(child:Text("N/A"))
                                                       ),
                                                     ],
                                                   ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Row(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .end,
-                                                      children: [
-                                                        Container(
-                                                          width:80,
+                                                  Row(
+                                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .end,
+                                                    children: [
+                                                      Container(
+                                                        width:80,
+                                                        child: Text(
 
-                                                          child: Text(
-                                                            /*'Confirmed'*/
-                                                            "Date : ",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                fontSize: 15,
-                                                                color: AppData.kPrimaryColor
-                                                            ),
+                                                          /*'Confirmed'*/
+                                                          "Date : ",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold,
+                                                              fontSize: 15,
+                                                              color: AppData.kPrimaryColor
                                                           ),
                                                         ),
-
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              appointmentlist
-                                                                  .appdate ??
-                                                                  "N/A" ,
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              "-"+appointmentlist
-                                                                  .appmonth ??
-                                                                  "N/A",
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                            Text(
-                                                              /*'23-Nov-2020-11:30AM'*/
-                                                              "-"+ appointmentlist
-                                                                  .appyear ??
-                                                                  "N/A",
-                                                              overflow:
-                                                              TextOverflow
-                                                                  .clip,
-                                                              style:
-                                                              TextStyle(),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                .appdate ??
+                                                                "N/A" ,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            "-"+appointmentlist
+                                                                .appmonth ??
+                                                                "N/A",
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            "-"+ appointmentlist
+                                                                .appyear ??
+                                                                "N/A",
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
-                                                  SizedBox(height:5),
+                                                  SizedBox(height:10),
                                                   Row(
                                                     // mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment:
