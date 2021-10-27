@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:user/models/KeyvalueModel.dart';
 
 class AppData {
   static String ODISHA = 'ODISHA';
@@ -60,6 +61,15 @@ class AppData {
     "+60" /*, "+80", "+78"*/
   ];
   static List<String> catagoryFormat = ["S/o", "D/o", "W/o"];
+
+
+  static List<KeyvalueModel> catagoryFormat1 = [
+    KeyvalueModel(key: "S", name: "S/o"),
+    KeyvalueModel(key: "D", name: "D/o"),
+    KeyvalueModel(key: "W", name: "W/o"),
+
+  ];
+  static KeyvalueModel currentSelectedValue2 = catagoryFormat1[0];
   static String selectedLanguage;
 
   static setSelectedLan(lan) {
