@@ -47,7 +47,7 @@ class _WalkPatient extends State<DocWalkPatient> {
         title: Text('Walk in Patient '),
       ),
       body: Container(
-        height: 450,
+        height: 300,
         child: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Card(
@@ -111,7 +111,7 @@ class _WalkPatient extends State<DocWalkPatient> {
                       SizedBox(height: 15,),
                       _scanButton(),
                       SizedBox(height: 10,),
-                      Row(
+                    /*  Row(
                         children: [
                           Container(
                             width: 120,
@@ -136,14 +136,14 @@ class _WalkPatient extends State<DocWalkPatient> {
                             ),
                           ),
                         ],
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
 
 
                 //      SizedBox(height: 6),
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
@@ -177,8 +177,8 @@ class _WalkPatient extends State<DocWalkPatient> {
                       ),
                     ],
                   ),
-                ),
-                SizedBox(height: 20),
+                ),*/
+               // SizedBox(height: 20),
                 Material(
                   elevation: 5,
                   color: const Color(0xFF0F6CE1),
@@ -205,7 +205,7 @@ class _WalkPatient extends State<DocWalkPatient> {
                                 builder: (context) => new ShowEmr(model:widget.model)));*/
                       }
                     },
-                    minWidth: 350,
+                    minWidth: 200,
                     height: 40.0,
                     child: Text(
                       "Show EMR",
@@ -214,9 +214,6 @@ class _WalkPatient extends State<DocWalkPatient> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 7,
-                )
               ],
             ),
           ),
@@ -227,7 +224,7 @@ class _WalkPatient extends State<DocWalkPatient> {
 
   Widget _scanButton() {
     return MyWidgets.outlinedButton(
-      text: "SCAN",
+      text: "QR SCAN",
       context: context,
       fun: () {
         Navigator.pop(context);

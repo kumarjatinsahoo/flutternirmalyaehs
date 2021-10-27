@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/ForgetUseridModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 // import 'package:user/models/CredentialModel.dart';
@@ -31,6 +32,7 @@ class UseridtPinView extends StatefulWidget {
   LoginResponse1 loginData;
   String userId;
   String otp;
+  ForgotUseridModel userResponse;
 
   // final bool isGuestCheckOut;
 
@@ -38,7 +40,7 @@ class UseridtPinView extends StatefulWidget {
     Key key,
     this.model,
     this.loginData,
-    this.userId,
+    this.userResponse,
     this.otp,
   }) : super(key: key);
 
@@ -474,7 +476,7 @@ class _UseridtPinViewState extends State<UseridtPinView> with SingleTickerProvid
                               MaterialPageRoute(
                                 builder: (BuildContext context) => UserList(
                                   model: widget.model,
-                                  userId: widget.userId,
+
                                 ),
                               ),
                             );

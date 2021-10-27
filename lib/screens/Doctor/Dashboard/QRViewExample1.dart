@@ -96,12 +96,15 @@ class _QRViewExample1State extends State<QRViewExample1> {
                     ),
                     MaterialButton(
                       child: Text(
-                        "Search",
+                        "Submit",
                         style: TextStyle(color: Colors.white),
                       ),
                       color: AppData.kPrimaryColor,
                       onPressed: () {
-                        //widget.model.regNoValue = _regNo.text;
+                        widget.model.regNoValue = _regNo.text;
+
+
+
                         /*  if (widget.model.QR_FROM == Const.USER_CALL) {
                          // widget.model.searchQr = _regNo.text;
                           Navigator.pushReplacement(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
@@ -15,9 +17,9 @@ import 'package:user/models/LoginResponse1.dart' as session;
 
 class UserList extends StatefulWidget {
   MainModel model;
-  final String userId;
 
-  UserList({Key key, this.model,this.userId}) : super(key: key);
+
+  UserList({Key key, this.model}) : super(key: key);
 
   @override
   _UserListState createState() => _UserListState();
@@ -25,7 +27,6 @@ class UserList extends StatefulWidget {
 
 class _UserListState extends State<UserList> {
   var selectedMinValue;
-  ForgotUseridModel forgotUseridModel;
   bool isDataNotAvail = false;
   final ScrollController _scrollController = ScrollController();
 
@@ -33,6 +34,8 @@ class _UserListState extends State<UserList> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
+  ForgotUseridModel userResponse;
+
   Position position;
   String longi, lati, city, addr, healthpro, type, medicallserviceType
   ;
@@ -43,7 +46,7 @@ class _UserListState extends State<UserList> {
   void initState() {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-
+    userResponse=widget.model.userResponse;
     //callAPI();
   }
 
@@ -95,7 +98,9 @@ class _UserListState extends State<UserList> {
                 shrinkWrap: true,
                 //controller: _scrollController,
                 itemBuilder: (context, i) {
-                  //Results patient = googlePlaceModel.results[i];
+
+                  // Results patient = googlePlaceModel.results[i];
+                 // userResponse.body userreponse=userResponse.body[i];
                   /* print(
                       "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
                           i.toString() +
@@ -188,7 +193,7 @@ class _UserListState extends State<UserList> {
                     ),
                   );
                 },
-                itemCount: 2,
+                itemCount:userResponse.body.length??0,
               )
               //: Container(),
             ],
