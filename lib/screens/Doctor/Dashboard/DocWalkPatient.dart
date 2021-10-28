@@ -1,9 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/WalkinPinView.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -23,9 +29,12 @@ class _WalkPatient extends State<DocWalkPatient> {
   final myController = TextEditingController();
   final myControllerpass = TextEditingController();
   LoginResponse1 loginResponse;
-
+String uhid;
   @override
   void initState() {
+    uhid=widget.model.regNoValue;
+    myController.text=uhid;
+
 
     super.initState();
     _descriptionFocus = FocusNode();
@@ -95,7 +104,8 @@ class _WalkPatient extends State<DocWalkPatient> {
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
 
-                                    border: InputBorder.none, hintText: ' '),
+                                    border: InputBorder.none, hintText: ' ', counterText: "",
+                                ),
                               ),
                             ),
                           ),
@@ -195,9 +205,41 @@ class _WalkPatient extends State<DocWalkPatient> {
                       }
 
                       else {
+                        var sendData;
+                          sendData = {"key": myController.text, "name": "Mobile number"};
                         widget.model.patientseHealthCard = myController.text;
-                        Navigator.pushNamed(context, "/showemr");
+                        MyWidgets.showLoading(context);
+                        widget.model.POSTMETHOD(
+                            api: ApiFactory.FORGOT_OTP,
+                            json: sendData,
+                            fun: (Map<String, dynamic> map) {
+                              Navigator.pop(context);
+                              log("LOGIN RESPONSE>>>>" + jsonEncode(map));
+                              //AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                              if (map[Const.CODE] == Const.SUCCESS) {
+                                setState(() {
+/*                                  forgotUseridModel = ForgotUseridModel.fromJson(map);
+                                  widget.model.userResponse = forgotUseridModel;*/
+                                  log("userid response " + jsonEncode(map));
+                                  String otp = map["body"]["code"];
 
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) => WalkinPinView(
+                                        model: widget.model,
+                                        otp: otp,
+                                        uhid: myController.text,
+
+                                      ),
+                                    ),
+                                  );
+                                });
+                              } else {
+                                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                              }
+                            });
 
                         /* Navigator.push(
                             context,

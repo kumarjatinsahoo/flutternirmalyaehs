@@ -119,20 +119,14 @@ class _ForgotUserIDState extends State<ForgotUserID> {
       context: context,
       fun: () {
         if (_mobileno.text == "" && _emailid.text == "") {
-          AppData.showInSnackBar(context, "Please enter Emailid No or Mobile no");
-        }
-        else {
+          AppData.showInSnackBar(
+              context, "Please enter Emailid No or Mobile no");
+        } else {
           var sendData;
-          if(_emailid.text!="") {
-            sendData = {
-              "key": _emailid.text,
-              "name": "email id"
-            };
-          }else{
-            sendData = {
-              "key": _mobileno.text,
-              "name": "Mobile number"
-            };
+          if (_emailid.text != "") {
+            sendData = {"key": _emailid.text, "name": "email id"};
+          } else {
+            sendData = {"key": _mobileno.text, "name": "Mobile number"};
           }
           widget.model.phnNo = _mobileno.text;
           MyWidgets.showLoading(context);
@@ -145,12 +139,10 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
-                     forgotUseridModel
-                    =   ForgotUseridModel
-                        .fromJson(map);
-                     widget.model.userResponse = forgotUseridModel ;
-log("userid response "+jsonEncode(map));
-                     String otp=map["body"]["code"];
+                    forgotUseridModel = ForgotUseridModel.fromJson(map);
+                    widget.model.userResponse = forgotUseridModel;
+                    log("userid response " + jsonEncode(map));
+                    String otp = map["body"]["code"];
 
                     Navigator.push(
                       context,

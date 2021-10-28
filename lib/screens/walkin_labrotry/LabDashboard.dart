@@ -364,6 +364,17 @@ class _LabDashboardState extends State<LabDashboard> {
               ],
             ),
             SizedBox(height: 50),
+            _buildTile(
+              icon: "assets/images/labbanner.jpg",
+              fun: () {
+                // AppData.showInSnackDone(context, "Coming Soon");
+                // Navigator.pushNamed(context, "/discountoffer");
+                //AppData.showInSnackBar(context, "Coming soon");
+              },
+              //color: AppData.BG2BLUE,
+              color: AppData.white,
+              bordercolor: AppData.white,
+            ),
 
           ],
         ),
@@ -1220,4 +1231,55 @@ class _LabDashboardState extends State<LabDashboard> {
       ),
     );
   }
-}
+
+  Widget _buildTile({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+
+        /* decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(2.0),
+              topRight: Radius.circular(2.0),
+              bottomLeft: Radius.circular(2.0),
+              bottomRight: Radius.circular(2.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 0.5,
+            )
+        ),*/
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      fit: BoxFit.fitWidth,
+
+                    )),
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }}
