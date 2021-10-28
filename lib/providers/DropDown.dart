@@ -9,6 +9,7 @@ import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
+import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
@@ -284,7 +285,179 @@ class DropDown {
       },
     ));
   }
+  static networkDropdownlabler(
+      String label, final String API, String callFrom, Function fun) {
+    return inputFieldContainer(DropdownSearch<KeyvalueModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      dropdownSearchDecoration: InputDecoration(
+          hintText: label,
+          labelText: label,
+          labelStyle: TextStyle(
+              color: Colors.grey,
+              fontSize: 17,
+              // fontStyle: FontStyle.italic,
+              decoration: TextDecoration.underline
+          ),
+         // disabledBorder: InputBorder.none,
+          contentPadding:
+          EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          /*enabledBorder: const OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+    ),*/
+     /* border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+          borderRadius: BorderRadius.circular(29)),
 
+        focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(29)),
+        borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+      ),*/
+      ),
+     /* dropdownSearchDecoration: InputDecoration(
+        labelText: "Emergency Contact Name",
+        labelStyle: TextStyle(
+            color: Colors.grey,
+            fontSize: 17,
+            // fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline
+        ),
+        // filled: true,
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),*/
+      errorBuilder: (cg, value, v) {
+        return Material(
+            child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "No Data Found",
+                  style: TextStyle(color: Colors.black),
+                )));
+      },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
+      label: label,
+      showSearchBox: true,
+      //items: maritalStatus,
+      selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        var response = await Dio().get(
+          //"http://5d85ccfb1e61af001471bf60.mockapi.io/user",
+          API,
+          //queryParameters: {"filter": filter},
+        );
+        //var models = response.data;
+        final statejsonResponse = response.data;
+        var list;
+        // var list = List<KeyvalueModel>.from(jsonResponse.map((i) => KeyvalueModel.fromsJson(i)));
+        switch (callFrom) {
+          case "district":
+            list = KeyvalueModel.fromJsonList(response.data);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data);
+            break;
+          case "block":
+            list = KeyvalueModel.fromJsonList(response.data["districtList"]);
+            break;
+          case "relation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "title":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            break;
+          case "speciality":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "admequipment":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "gender":
+            List<KeyvalueModel> listS = [];
+            listS.add(KeyvalueModel(name: "MALE", key: "1"));
+            listS.add(KeyvalueModel(name: "FEMALE", key: "2"));
+            listS.add(KeyvalueModel(name: "TRANSGENDER", key: "3"));
+            list = listS;
+            break;
+          case "ageproof":
+            list = KeyvalueModel.fromJsonList(response.data["districtList"]);
+            break;
+        }
+        return list;
+      },
+      //itemAsString: (KeyvalueModel u) => u.userAsString(),
+      onChanged: (KeyvalueModel data) {
+        fun(data);
+        switch (callFrom) {
+          case "district":
+            selectedKey = data;
+            break;
+          case "block":
+            selectedKey1 = data;
+            break;
+          case "gender":
+            gender = data;
+            break;
+          case "ageproof":
+            ageProof = data;
+            break;
+          case "bloodgroup":
+            bloodgroupmodel = data;
+            break;
+          case "relation":
+            relationmodel = data;
+            break;
+          case "speciality":
+            specialitymodel = data;
+            break;
+        }
+        //selectedKey = data;
+      },
+    ));
+  }
   static networkDropdownPost(
       String label, final String API, String callFrom, Function fun) {
     return inputFieldContainer(DropdownSearch<KeyvalueModel>(
@@ -1658,13 +1831,13 @@ class DropDown {
     ));
   }
 
-  static KeyvalueModel getData(String callFor) {
+  static KeyvalueModel  getData(String callFor) {
     switch (callFor) {
-      case "district":
-        return selectedKey;
+      case "speciality":
+        return ProfileScreen.specialitymodel;
         break;
-      case "block":
-        return selectedKey1;
+      case "relation":
+        return ProfileScreen.relationmodel;
         break;
       case "state":
         return GenericStores.stateModel;
@@ -1673,6 +1846,9 @@ class DropDown {
         break;
       case "city":
         return GenericStores.cityModel;
+        break;
+      case "bloodgroup":
+        return  ProfileScreen.bloodgroupmodel;
         break;
     }
   }
