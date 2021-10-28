@@ -315,6 +315,7 @@ List<String> imageSliders = [
       body: _dashboardnew(context),
       drawer: Drawer(
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: [
               Container(
