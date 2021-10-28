@@ -75,258 +75,277 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
         elevation: 0,
       ),
       body:
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: 7),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 15,
+      Stack(
+        children: [
+        Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            child: Image.asset(
+              "assets/images/pharmacybanner.jpg",
+              // width: size.width,
+              // fit: BoxFit.cover,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/images/pharmacyorders.png",
-                        fun: () {
-                          //AppData.showInSnackBar(context, "Coming soon");
-                          // Navigator.pushNamed(context, "/medicalrecordpage");
-                          Navigator.pushNamed(context, "/myorder");
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        // ,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("My Orders",
-                          // MyLocalizations.of(context).text("My Orders"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
+          ),
+          SizedBox(height:3),
 
-                /* Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/pharmacyconfirm.png",
-                        fun: () {
-                          // Navigator.pushNamed(context, "/myAppointment");
-                          Navigator.pushNamed(context, "/ordersPharma");
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("Confirmed Order",
-                          // MyLocalizations.of(context).text("Confirmed Order"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+        ],
+      ),
+         Container(
+          padding: EdgeInsets.symmetric(horizontal: 7),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/images/pharmacyorders.png",
+                          fun: () {
+                            //AppData.showInSnackBar(context, "Coming soon");
+                            // Navigator.pushNamed(context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/myorder");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          // ,
                         ),
-                      ),
-                      /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/images/pharmacyprocessed.png",
-                        fun: () {
-                          //chooseAppointment(context, model);
-                          //Navigator.pushNamed(context, "/userAppoint");
-                          // Navigator.pushNamed(context, "/myAppointment");
-                          /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                          Navigator.pushNamed(context, "/processedorders");
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("Processed Orders",
-                          // MyLocalizations.of(context).text("Processed Orders"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 5,
                         ),
-                      ),
-                      /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                    ]),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("My Orders",
+                            // MyLocalizations.of(context).text("My Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
 
-              ],
-            ),
-            SizedBox(height: 7,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/pharmacydelivered.png",
-                        fun: () {
-                          // AppData.showInSnackDone(context, "Coming Soon");
-                          Navigator.pushNamed(context, "/deliverdorder");
-                          //AppData.showInSnackBar(context, "Coming soon");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text("Deliverd Order",
-/*
-                          MyLocalizations.of(context).text("Deliverd Order").toString(),
-*/
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                  /* Expanded(*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/pharmacyconfirm.png",
+                          fun: () {
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            Navigator.pushNamed(context, "/ordersPharma");
+                          },
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
                         ),
-                      ),
-                      /*Align(
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Confirmed Order",
+                            // MyLocalizations.of(context).text("Confirmed Order"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
                                         alignment: Alignment.center,
                                         child: Expanded(
                                           child: Text(
-                                            "Health               chat",
+                                            "Govternment Schemes",
                                             style: TextStyle(color: Colors.black),
                                             textAlign: TextAlign.center,
                                           ),
                                         )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(
-                            child:*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/images/pharmacyinvoice.png",
-                        //icon: Icons.alarm,
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "Invoices",
-                        fun: () {
-                          AppData.showInSnackDone(context, "Coming Soon");
-                          // Navigator.pushNamed(context, "/medicinereminder");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("Invoices",
-                          // MyLocalizations.of(context).text("Invoices"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/images/pharmacyprocessed.png",
+                          fun: () {
+                            //chooseAppointment(context, model);
+                            //Navigator.pushNamed(context, "/userAppoint");
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                            Navigator.pushNamed(context, "/processedorders");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
                         ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/pharmacymonthly.png",
-                        fun: () {
-                          // AppData.showInSnackDone(context, "Coming Soon");
-                          Navigator.pushNamed(context, "/monthloveryview");
-                          //AppData.showInSnackBar(context, "Coming soon");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text("Monthly Overview",
-                          // MyLocalizations.of(context).text("Monthly Overview"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 5,
                         ),
-                      ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Processed Orders",
+                            // MyLocalizations.of(context).text("Processed Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
 
-                    ]),
-              ],
-            ),
-            SizedBox(height: 50),
+                ],
+              ),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/pharmacydelivered.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/deliverdorder");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Deliverd Order",
+/*
+                            MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  /*Expanded(
+                              child:*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/images/pharmacyinvoice.png",
+                          //icon: Icons.alarm,
+                          //icon: FontAwesomeIcons.accusoft,
+                          title: "Invoices",
+                          fun: () {
+                            AppData.showInSnackDone(context, "Coming Soon");
+                            // Navigator.pushNamed(context, "/medicinereminder");
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Invoices",
+                            // MyLocalizations.of(context).text("Invoices"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/pharmacymonthly.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/monthloveryview");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Monthly Overview",
+                            // MyLocalizations.of(context).text("Monthly Overview"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+
+                      ]),
+                ],
+              ),
+              SizedBox(height: 50),
 
 
-          ],
+            ],
+          ),
         ),
+      ]
       ),
       drawer: Drawer(
         child: SingleChildScrollView(
@@ -804,17 +823,17 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
             ],
           ),
           SizedBox(height: 50),
-          _buildTile(
-            icon: "assets/images/pharmacybanner.jpg",
-            fun: () {
-              // AppData.showInSnackDone(context, "Coming Soon");
-              // Navigator.pushNamed(context, "/discountoffer");
-              //AppData.showInSnackBar(context, "Coming soon");
-            },
-            //color: AppData.BG2BLUE,
-            color: AppData.white,
-            bordercolor: AppData.white,
-          ),
+          // _buildTile(
+          //   icon: "assets/images/pharmacybanner.jpg",
+          //   fun: () {
+          //     // AppData.showInSnackDone(context, "Coming Soon");
+          //     // Navigator.pushNamed(context, "/discountoffer");
+          //     //AppData.showInSnackBar(context, "Coming soon");
+          //   },
+          //   //color: AppData.BG2BLUE,
+          //   color: AppData.white,
+          //   bordercolor: AppData.white,
+          // ),
 
         ],
       ),

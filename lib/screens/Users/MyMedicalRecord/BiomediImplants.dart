@@ -296,7 +296,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         // }),
 
                         DropDown.networkDropdownGetpartUser1(
-                            " NAME",
+                            "Name",
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -441,7 +441,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                hintText:("  Date of Birth"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

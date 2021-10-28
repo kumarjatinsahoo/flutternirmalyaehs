@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -10,12 +11,14 @@ import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 
 class NewDashboardDoctor extends StatefulWidget {
   MainModel model;
+
   NewDashboardDoctor({Key key, this.model}) : super(key: key);
+
   @override
   _NewDashboardDoctorState createState() => _NewDashboardDoctorState();
 }
-SharedPref sharedPref = SharedPref();
 
+SharedPref sharedPref = SharedPref();
 
 chooseAppointment(BuildContext context) {
   return showDialog(
@@ -82,9 +85,8 @@ chooseAppointment(BuildContext context) {
         );
       });
 }
-Widget _Tilered({IconData icon,
-  String title,
-  Function fun}) {
+
+Widget _Tilered({IconData icon, String title, Function fun}) {
   return InkWell(
     onTap: fun,
     child: Container(
@@ -93,18 +95,23 @@ Widget _Tilered({IconData icon,
       child: Row(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, color: Colors.grey, size: 35,),
+          Icon(
+            icon,
+            color: Colors.grey,
+            size: 35,
+          ),
           SizedBox(
             width: 20,
           ),
           Text(title,
-              style: TextStyle(/*fontWeight: FontWeight.w300,*/
+              style: TextStyle(
+                  /*fontWeight: FontWeight.w300,*/
                   fontSize: 17,
-                  color: Colors.black), textAlign: TextAlign.center),
+                  color: Colors.black),
+              textAlign: TextAlign.center),
           //Icon(Icons.search, color: Colors.white),
         ],
       ),
-
     ),
   );
 }
@@ -126,414 +133,422 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar:
-      AppBar(centerTitle: true,
+      appBar: AppBar(
+          centerTitle: true,
           title: Text("Dashboard"),
           backgroundColor: AppData.kPrimaryColor),
-      body:
-      SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 7),
-          child: Column(
-            children: [
-              /*     Container(
-                height: 560,
-                child: PageView(
-                  controller: _controller,
-                  children: [
-                    MyPage1Widget(
-                      model: widget.model,
-                    ),
-                  ],
-                ),
-              ),*/
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/dprofile.png",
-                          fun: () {
-                            //AppData.showInSnackBar(context, "Coming soon");
-                            // Navigator.pushNamed(context, "/medicalrecordpage");
-                            Navigator.pushNamed(context, "/docMyProf");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          // ,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("My Profile",
-                           // MyLocalizations.of(context).text("MY_PROFILE"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
+      body: Stack(
+       // fit: StackFit.expand,
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.max,
+           mainAxisAlignment: MainAxisAlignment.end,
+           children: [
+             Container(
+               child: Image.asset(
+                 "assets/images/doctorbanner.jpg",
+                 // width: size.width,
+                 // fit: BoxFit.cover,
+               ),
+             ),
+             SizedBox(height:3),
 
-                  /* Expanded(*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/appointment.png",
-                          fun: () {
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            Navigator.pushNamed(context, "/doctorAppointment");
-                          },
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Appointment",
-                           // MyLocalizations.of(context).text("APPOINTMENT"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/walk.png",
-                          fun: () {
-                            //chooseAppointment(context, model);
-                            //Navigator.pushNamed(context, "/userAppoint");
-                            // Navigator.pushNamed(context, "/myAppointment");
-                            /*Navigator.pushNamed(
-                                        context, "/medipedia");*/
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                            Navigator.pushNamed(context, "/docWalkInReg");
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Walk in Patient",
-                           // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                      ]),
-
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/emergency.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/discountoffer");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Emergency Access",
-                            //MyLocalizations.of(context).text("EMERGENCY ACCESS"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                            alignment: Alignment.center,
-                                            child: Expanded(
-                                              child: Text(
-                                                "Health               chat",
-                                                style: TextStyle(color: Colors.black),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  /*Expanded(
-                                child:*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/shareapnt.png",
-                          //icon: Icons.alarm,
-                          //icon: FontAwesomeIcons.accusoft,
-                          title: "Share_appointment",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/medicinereminder");
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                          },
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Share Appointment",
-                           // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/mypatient.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/discountoffer");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("My Patient",
-                            //MyLocalizations.of(context).text("MY_PATIENT"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                            alignment: Alignment.center,
-                                            child: Expanded(
-                                              child: Text(
-                                                "Health               chat",
-                                                style: TextStyle(color: Colors.black),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )),*/
-                      ]),
-                ],
-              ),
-              SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTileblue(
-                          icon: "assets/images/monthlyoverview.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/discountoffer");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.BG2BLUE,
-                          bordercolor: AppData.BG2BLUE,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text("Monthly Overview",
-                           // MyLocalizations.of(context).text("Monthly Overview"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                            alignment: Alignment.center,
-                                            child: Expanded(
-                                              child: Text(
-                                                "Health               chat",
-                                                style: TextStyle(color: Colors.black),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )),*/
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  /*Expanded(
-                                child:*/
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilered(
-                          icon: "assets/images/video.png",
-                          //icon: Icons.alarm,
-                          //icon: FontAwesomeIcons.accusoft,
-                          title: "Video Consulation",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/medicinereminder");
-                            // AppData.showSnack(
-                            //     context, "Coming soon", Colors.green);
-                          },
-                          color: AppData.BG1RED,
-                          bordercolor: AppData.BG1RED,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          /* child: Expanded(*/
-                          child: Text("Video Consultation",
-                           // MyLocalizations.of(context).text("Video Consulation"),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ]),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildTilewhite(
-                          icon: "assets/images/mypatient.png",
-                          fun: () {
-                            // AppData.showInSnackDone(context, "Coming Soon");
-                            // Navigator.pushNamed(context, "/discountoffer");
-                            //AppData.showInSnackBar(context, "Coming soon");
-                          },
-                          //color: AppData.BG2BLUE,
-                          color: AppData.white,
-                          bordercolor: AppData.white,
-                          size: 100 / 3,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 35,
-                          child: Text(MyLocalizations.of(context).text(""),
-                            textAlign: TextAlign.center,
-                            //overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        /*Align(
-                                            alignment: Alignment.center,
-                                            child: Expanded(
-                                              child: Text(
-                                                "Health               chat",
-                                                style: TextStyle(color: Colors.black),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )),*/
-                      ]),
-                ],
-              ),
-              SizedBox(height: 50),
-
-              _buildTile(
-                icon: "assets/images/doctorbanner.jpg",
-                fun: () {
-                  // AppData.showInSnackDone(context, "Coming Soon");
-                  // Navigator.pushNamed(context, "/discountoffer");
-                  //AppData.showInSnackBar(context, "Coming soon");
-                },
-                //color: AppData.BG2BLUE,
-                color: AppData.white,
-                bordercolor: AppData.white,
-              ),
-
-            ],
+           ],
           ),
-        ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7),
+            child: Column(
+              children: [
+                Container(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTileblue(
+                                  icon: "assets/images/dprofile.png",
+                                  fun: () {
+                                    //AppData.showInSnackBar(context, "Coming soon");
+                                    // Navigator.pushNamed(context, "/medicalrecordpage");
+                                    Navigator.pushNamed(
+                                        context, "/docMyProf");
+                                  },
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
+                                  // ,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  /* child: Expanded(*/
+                                  child: Text(
+                                    "My Profile",
+                                    // MyLocalizations.of(context).text("MY_PROFILE"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+
+                          /* Expanded(*/
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilered(
+                                  icon: "assets/images/appointment.png",
+                                  fun: () {
+                                    // Navigator.pushNamed(context, "/myAppointment");
+                                    Navigator.pushNamed(
+                                        context, "/doctorAppointment");
+                                  },
+                                  color: AppData.BG1RED,
+                                  bordercolor: AppData.BG1RED,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  /* child: Expanded(*/
+                                  child: Text(
+                                    "Appointment",
+                                    // MyLocalizations.of(context).text("APPOINTMENT"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                  alignment: Alignment.center,
+                                                  child: Expanded(
+                                                    child: Text(
+                                                      "Govternment Schemes",
+                                                      style: TextStyle(color: Colors.black),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  )),*/
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTileblue(
+                                  icon: "assets/images/walk.png",
+                                  fun: () {
+                                    //chooseAppointment(context, model);
+                                    //Navigator.pushNamed(context, "/userAppoint");
+                                    // Navigator.pushNamed(context, "/myAppointment");
+                                    /*Navigator.pushNamed(
+                                                context, "/medipedia");*/
+                                    // AppData.showSnack(
+                                    //     context, "Coming soon", Colors.green);
+                                    Navigator.pushNamed(
+                                        context, "/docWalkInReg");
+                                  },
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  /* child: Expanded(*/
+                                  child: Text(
+                                    "Walk in Patient",
+                                    // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                  alignment: Alignment.center,
+                                                  child: Expanded(
+                                                    child: Text(
+                                                      "Govternment Schemes",
+                                                      style: TextStyle(color: Colors.black),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  )),*/
+                              ]),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilered(
+                                  icon: "assets/images/emergency.png",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    //AppData.showInSnackBar(context, "Coming soon");
+                                  },
+                                  //color: AppData.BG2BLUE,
+                                  color: AppData.BG1RED,
+                                  bordercolor: AppData.BG1RED,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  child: Text(
+                                    "Emergency Access",
+                                    //MyLocalizations.of(context).text("EMERGENCY ACCESS"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          /*Expanded(
+                                        child:*/
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTileblue(
+                                  icon: "assets/images/shareapnt.png",
+                                  //icon: Icons.alarm,
+                                  //icon: FontAwesomeIcons.accusoft,
+                                  title: "Share_appointment",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/medicinereminder");
+                                    // AppData.showSnack(
+                                    //     context, "Coming soon", Colors.green);
+                                  },
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  /* child: Expanded(*/
+                                  child: Text(
+                                    "Share Appointment",
+                                    // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilered(
+                                  icon: "assets/images/mypatient.png",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    //AppData.showInSnackBar(context, "Coming soon");
+                                  },
+                                  //color: AppData.BG2BLUE,
+                                  color: AppData.BG1RED,
+                                  bordercolor: AppData.BG1RED,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  child: Text(
+                                    "My Patient",
+                                    //MyLocalizations.of(context).text("MY_PATIENT"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
+                              ]),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTileblue(
+                                  icon: "assets/images/monthlyoverview.png",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    //AppData.showInSnackBar(context, "Coming soon");
+                                  },
+                                  //color: AppData.BG2BLUE,
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  child: Text(
+                                    "Monthly Overview",
+                                    // MyLocalizations.of(context).text("Monthly Overview"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          /*Expanded(
+                                        child:*/
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilered(
+                                  icon: "assets/images/video.png",
+                                  //icon: Icons.alarm,
+                                  //icon: FontAwesomeIcons.accusoft,
+                                  title: "Video Consulation",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/medicinereminder");
+                                    // AppData.showSnack(
+                                    //     context, "Coming soon", Colors.green);
+                                  },
+                                  color: AppData.BG1RED,
+                                  bordercolor: AppData.BG1RED,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  /* child: Expanded(*/
+                                  child: Text(
+                                    "Video Consultation",
+                                    // MyLocalizations.of(context).text("Video Consulation"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ]),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildTilewhite(
+                                  icon: "assets/images/mypatient.png",
+                                  fun: () {
+                                    // AppData.showInSnackDone(context, "Coming Soon");
+                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    //AppData.showInSnackBar(context, "Coming soon");
+                                  },
+                                  //color: AppData.BG2BLUE,
+                                  color: AppData.white,
+                                  bordercolor: AppData.white,
+                                  size: 100 / 3,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 100,
+                                  height: 35,
+                                  child: Text(
+                                    MyLocalizations.of(context).text(""),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
+                              ]),
+                        ],
+                      ),
+                      SizedBox(height: 50),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -550,7 +565,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                   /* Container(
+                    /* Container(
                       height: size.height * 0.07,
                       width: size.width * 0.13,
                       decoration: BoxDecoration(
@@ -568,20 +583,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     ),*/
                     CircleAvatar(
                       radius: 35,
-                      foregroundColor:
-                      Colors
-                          .white,
+                      foregroundColor: Colors.white,
                       backgroundColor: Colors.white,
-
-                      child:
-                      Image.asset(
+                      child: Image.asset(
                         'assets/images/user.png',
-                        height:
-                        size.height *
-                            0.07,
-                        width:
-                        size.width *
-                            0.13,
+                        height: size.height * 0.07,
+                        width: size.width * 0.13,
                         //fit: BoxFit.cover,
                       ),
                     ),
@@ -610,9 +617,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/myprofile.png', fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/myprofile.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -639,9 +645,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/dash.png', fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/dash.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -666,9 +671,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/aboutus.png', fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/aboutus.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -693,9 +697,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/share.png', fit: BoxFit.cover)
-                    ), VerticalDivider(
+                        child: Image.asset('assets/images/share.png',
+                            fit: BoxFit.cover)),
+                    VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
                     ),
@@ -719,9 +723,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/contact.png', fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/contact.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -747,7 +750,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       width: 30,
                       height: 30,
                       child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
-                      Icon(
+                          Icon(
                         Icons.qr_code,
                         color: AppData.menublueColor,
                         size: 30.0,
@@ -779,9 +782,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset(
-                            'assets/images/logout.png', fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/logout.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -798,8 +800,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 sharedPref.remove(Const.IS_LOGIN);
                 sharedPref.remove(Const.LOGIN_DATA);
                 sharedPref.remove(Const.IS_REG_SERVER);
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(
+                Navigator.of(context).pushNamedAndRemoveUntil(
                     '/login', (Route<dynamic> route) => false);
                 //  _exitApp();
               },
@@ -810,12 +811,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
     );
   }
 
-  Widget _buildTilered({String icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTilered(
+      {String icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -826,7 +828,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         width: 100,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -837,8 +839,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
             border: Border.all(
               color: AppData.kPrimaryRedColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
@@ -854,26 +855,24 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     width: 50,
                     height: 70.0,
                     color: AppData.kPrimaryRedColor,
-
                   ),
                 ),
-
               ],
             ),
-
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTileblue({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTileblue(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -883,7 +882,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         width: 100,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -894,8 +893,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
             border: Border.all(
               color: AppData.kPrimaryColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
@@ -911,30 +909,30 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       width: 50,
                       height: 70.0,
                       color: AppData.kPrimaryColor,
-
                     )),
               ],
             ),
-
           ],
         ),
       ),
     );
   }
-  Widget _buildTile({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+
+  Widget _buildTile(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
 
-       /* decoration: BoxDecoration(
+        /* decoration: BoxDecoration(
 
           /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
@@ -954,7 +952,6 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
-
               children: <Widget>[
                 Align(
                     alignment: Alignment.center,
@@ -962,25 +959,23 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       /* "assets/logo1.png"*/
                       icon,
                       fit: BoxFit.fitWidth,
-
                     )),
               ],
             ),
-
           ],
         ),
       ),
     );
   }
 
-
-  Widget _buildTilewhite({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTilewhite(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -990,7 +985,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         width: 1,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(0.0),
               topRight: Radius.zero,
@@ -1001,8 +996,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
             border: Border.all(
               color: AppData.white,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
@@ -1020,13 +1014,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     )),
               ],
             ),
-
           ],
         ),
       ),
     );
   }
 }
+
 abstract class MyPage1Widget extends StatelessWidget {
   var widget;
   double _height = 85;
