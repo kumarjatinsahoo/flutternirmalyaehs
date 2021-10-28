@@ -102,6 +102,12 @@ class ApiFactory {
     return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
 
+  static String googleMapUrl(
+      {String longi, String lati}) {
+    return "https://www.google.com/maps/search/?api=1&query=$lati%2C$longi";
+    // return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+  }
+
 
   static String GOOGLE_QUERY_API1="https://maps.googleapis.com/maps/api/place/textsearch/json?radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&query=";
 

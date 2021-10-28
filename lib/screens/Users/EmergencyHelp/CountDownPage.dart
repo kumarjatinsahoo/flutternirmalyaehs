@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
+import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -51,6 +56,7 @@ class _CountDownPageState extends State<CountDownPage>
   Position position;
   String cityName;
   final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
+  EmergencyHelpModel emergencyHelpModel;
 
   @override
   void dispose() {
@@ -58,15 +64,21 @@ class _CountDownPageState extends State<CountDownPage>
     super.dispose();
   }
 
+  List<String> userMobList=[];
+
+  session.LoginResponse1 loginResponse1;
   @override
   void initState() {
     super.initState();
+    loginResponse1=widget.model.loginResponse1;
+    callEmergency();
     _controller = new AnimationController(
       vsync: this,
       duration: new Duration(seconds: kStartValue),
     );
     _controller.forward(from: 0.0).whenComplete(() {
-      callAPI();
+      _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
+      //callAPI();
     });
   }
 
@@ -118,32 +130,32 @@ class _CountDownPageState extends State<CountDownPage>
         });
   }
 
-
-
-  _getLocationName() async {
-    Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
-    this.position = position;
-    debugPrint('location: ${position.latitude}');
-    print(
-        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
-    callApi(position.latitude.toString(), position.longitude.toString());
+  void _sendSMS(String message, List<String> recipents) async {
+    String _result = await sendSMS(message: message, recipients: recipents)
+        .catchError((onError) {
+      print(onError);
+    });
+    print(_result);
   }
 
-  callApi(lat, longi) {
-    print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-    widget.model.GETMETHODCALL(
-        api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
+  callEmergency() {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
-          ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
-          print("finder>>>>>>>>>" + finder.toJson().toString());
+          print("Value is>>>>" + JsonEncoder().convert(map));
           setState(() {
-            address = "${finder.formattedAddress}";
-            cityName = finder.addressComponents[4].longName;
-            print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
-            longitudes = position.longitude.toString();
-            latitudes = position.altitude.toString();
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              userMobList=[];
+              emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+              emergencyHelpModel.emergency.forEach((element) {
+                userMobList.add(element.mobile);
+              });
+            } else {
+              //isDataNotAvail = true;
+              // AppData.showInSnackBar(context, msg);
+            }
           });
         });
   }

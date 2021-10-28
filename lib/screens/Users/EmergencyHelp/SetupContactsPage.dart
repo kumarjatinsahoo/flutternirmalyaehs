@@ -655,7 +655,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
-                        decoration: InputDecoration(hintText: " Name"),
+                        decoration: InputDecoration(hintText: "Name"),
                       ),
                       TextField(
                         onChanged: (value) {
@@ -784,7 +784,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
-                        decoration: InputDecoration(hintText: " Name"),
+                        decoration: InputDecoration(hintText: "Name"),
                       ),
                       TextField(
                         onChanged: (value) {
