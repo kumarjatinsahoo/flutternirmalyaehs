@@ -21,7 +21,6 @@ class _TestReportState extends State<TestReport> {
 
   @override
   void initState() {
-    //loginResponse = widget.model.loginResponse1;
     super.initState();
     pdfUrl = "https://docs.google.com/viewer?url="+widget.model.pdfUrl;
     print(">>>>>>PDF URL TEST REPORT????>>" + pdfUrl);

@@ -75,6 +75,63 @@ class _DocMyProfileState extends State<DocMyProfile> {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
+          /* leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),*/
+          automaticallyImplyLeading: false,
+          title: Stack(
+            children: [
+              Center(
+                child: Text(
+                  'My Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              //Spacer(),
+           /*   Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right:10.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/qrcode");
+                    },
+                    child: Icon(Icons.qr_code_outlined),
+                  ),
+                ),
+              ),*/
+              /*Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/idCard");
+                  },
+                  child: Text(
+                    "ID CARD",
+                    style: TextStyle(
+                      fontSize: 14,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),*/
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back),
+                ),
+              )
+            ],
+          ),
+          backgroundColor: AppData.kPrimaryColor,
+          //centerTitle: true,
+          // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+        ),
+        /*appBar: AppBar(
           title: Text("User Profile"),
           titleSpacing: 2,
           elevation: 0,
@@ -87,7 +144,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
               Navigator.pop(context);
             },
           ),
-        ),
+        ),*/
         body:
          (profileModel1 != null)
              ? Container(

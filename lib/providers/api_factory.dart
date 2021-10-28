@@ -1,7 +1,7 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
@@ -100,6 +100,12 @@ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String GOOGLE_QUERY_API(
       {String longi, String lati, String healthpro, String type}) {
     return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+  }
+
+  static String googleMapUrl(
+      {String longi, String lati}) {
+    return "https://www.google.com/maps/search/?api=1&query=$lati%2C$longi";
+    // return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
 
 

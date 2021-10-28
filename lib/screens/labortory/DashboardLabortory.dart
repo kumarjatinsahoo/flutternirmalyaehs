@@ -108,16 +108,17 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
         elevation: 0,
       ),
       drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Column(
+        child: ListView(
+        /*child: SingleChildScrollView(*/
+        /*  child: Column(*/
             children: [
               Container(
                 // height: 120,
                 color: AppData.kPrimaryColor,
-                width: double.infinity,
+               // width: double.infinity,
                 child: Padding(
                   padding:
-                      EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                      EdgeInsets.only(left: 30.0, top: 20.0, bottom: 30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -166,8 +167,11 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                 ),
               ),
               ListTile(
-                  leading: Icon(Icons.dashboard,
-                      color: Colors.grey, size: 27),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.dashboard,
+                        color: Colors.grey, size: 27),
+                  ),
                   title: Text('Dashboard'),
                   selected: _selectedDestination == 0,
                   onTap: () {
@@ -178,10 +182,13 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   ),
               Divider(),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/myprofile.png",
-                  height: 30,
-                    color: Colors.grey
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    "assets/images/myprofile.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
                 ),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
@@ -208,11 +215,14 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                 },
               ),*/
               Divider(),
-              ListTile(
-                leading: Image.asset(
-                  "assets/images/account.png",
-                  height: 30,
-                    color: Colors.grey
+             /* ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    "assets/images/account.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
                 ),
                 // leading: Icon(Icons.person),
                 title: Text('Manage Account'),
@@ -221,13 +231,16 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   selectDestination(3);
                   // Navigator.pushNamed(context, "/patientDashboard");
                 },
-              ),
+              ),*/
               Divider(),
               ListTile(
-                leading: Image.asset(
-                  "assets/images/aboutus.png",
-                  height: 30,
-                    color: Colors.grey
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    "assets/images/aboutus.png",
+                    height: 30,
+                      color: Colors.grey
+                  ),
                 ),
                 // leading: Icon(Icons.person),
                 title: Text('About Us'),
@@ -239,10 +252,13 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
               ),
               Divider(),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/share.png",
-                    height: 30,
-                      color: Colors.grey
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset(
+                      "assets/images/share.png",
+                      height: 30,
+                        color: Colors.grey
+                    ),
                   ),
                   title: Text('Share'),
                   selected: _selectedDestination == 5,
@@ -252,10 +268,13 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   }),
               Divider(),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/contact us.png",
-                    height: 30,
-                      color: Colors.grey
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset(
+                      "assets/images/contact us.png",
+                      height: 30,
+                        color: Colors.grey
+                    ),
                   ),
                   title: Text('Contact Us'),
                   selected: _selectedDestination == 6,
@@ -265,10 +284,13 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   }),
               Divider(),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/support.png",
-                    height: 30,
-                      color: Colors.grey
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset(
+                      "assets/images/support.png",
+                      height: 30,
+                        color: Colors.grey
+                    ),
                   ),
                   title: Text('Support'),
                   selected: _selectedDestination == 7,
@@ -278,10 +300,13 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   }),
               Divider(),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/reminder.png",
-                    height: 30,
-                      color: Colors.grey
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset(
+                      "assets/images/reminder.png",
+                      height: 30,
+                        color: Colors.grey
+                    ),
                   ),
                   title: Text('Reminder'),
                   selected: _selectedDestination == 8,
@@ -291,7 +316,10 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
                   }),
               Divider(),
               ListTile(
-                leading: Icon(Icons.logout),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.logout),
+                ),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
@@ -311,7 +339,7 @@ class _DashboardLabortoryState extends State<DashboardLabortory> {
               ),
             ],
           ),
-        ),
+
       ),
       body: _dashboardnew(context),
     );
