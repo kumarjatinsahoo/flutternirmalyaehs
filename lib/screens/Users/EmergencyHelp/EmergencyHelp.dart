@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import '../../../models/LoginResponse1.dart';
 import '../../../providers/Const.dart';
 
@@ -115,6 +116,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         loginResponse1.body.user +
         "\n" +
         loginResponse1.body.token);
+
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
         token: widget.model.token,
@@ -674,12 +676,13 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
 
                                 InkWell(
                                     onTap: () {
+                                      MyWidgets.showLoading(context);
                                       widget.model.GETMETHODCAL(
                                           api: ApiFactory.GOOGLE_QUERY_API(
                                               lati: latitude,
                                               longi: longitude,
                                               healthpro: "Ambulance"),
-                                          fun: (Map<String, dynamic> map) {
+                                           fun: (Map<String, dynamic> map) {
                                             setState(() {
                                               //String msg = map[Const.MESSAGE];
                                               //if (map["status"] == "ok") {
