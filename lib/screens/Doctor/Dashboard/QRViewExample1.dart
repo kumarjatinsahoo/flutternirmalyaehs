@@ -96,53 +96,21 @@ class _QRViewExample1State extends State<QRViewExample1> {
                     ),
                     MaterialButton(
                       child: Text(
-                        "Search",
+                        "Submit",
                         style: TextStyle(color: Colors.white),
                       ),
                       color: AppData.kPrimaryColor,
                       onPressed: () {
-                        //widget.model.regNoValue = _regNo.text;
-                        /*  if (widget.model.QR_FROM == Const.USER_CALL) {
-                         // widget.model.searchQr = _regNo.text;
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder:*//* (context) => QrSearchListPage(
-                                model: widget.model,
-                              ),*//*
-                            ),
-                          );
-                        } else {
-                          MyWidgets.showLoading(context);
-                          widget.model.GETMETHODCALL(
-                              api: ApiFactory.GET_BENE_DETAILS + _regNo.text,
-                              fun: (Map<String, dynamic> map) {
-                                setState(() {
-                                  Navigator.of(context).pop();
-                                  String msg = map[Const.MESSAGE];
-                                  if (map[Const.STATUS] == Const.SUCCESS) {
-                                    *//*Navigator.of(context).pop();
-                        AppData.showInSnackBar(context, msg);*//*
-                                    UserDetailsModel userModel =
-                                        UserDetailsModel.fromJson(map);
-                                    widget.model.userModel = userModel;
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            CreateAppointmentLab(
-                                          model: widget.model,
-                                        ),
-                                      ),
-                                    );
-                                  } else {
-                                    //Navigator.of(context).pop();
-                                    AppData.showInSnackBar(context, msg);
-                                  }
-                                });
-                              });
-                        }*/
-                      },
+                        if (_regNo.text == null ||
+                            _regNo.text == "") {
+                          AppData.showInSnackBar(context, "Please Scan Reg no");
+                        } else{
+                          widget.model.regNoValue = _regNo.text.toString();
+                          print("regnooooooo"+_regNo.text.toString());
+                          Navigator.pushNamed(context, "/docWalkInReg",);
+                        }
+
+                        },
                     ),
                   ],
                 ),

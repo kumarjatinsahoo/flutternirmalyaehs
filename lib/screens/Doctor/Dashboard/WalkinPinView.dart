@@ -21,34 +21,37 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/ConfirmPassword.dart';
+import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 import 'package:user/screens/Users/UserId/UserList.dart';
 // import 'package:user/scoped-model/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class UseridtPinView extends StatefulWidget {
+class WalkinPinView extends StatefulWidget {
   // final String email;
   MainModel model;
   LoginResponse1 loginData;
   String userId;
   String otp;
+  String uhid;
   ForgotUseridModel userResponse;
 
   // final bool isGuestCheckOut;
 
-  UseridtPinView({
+  WalkinPinView({
     Key key,
     this.model,
     this.loginData,
     this.userResponse,
     this.otp,
+    this.uhid,
   }) : super(key: key);
 
   @override
-  _UseridtPinViewState createState() => new _UseridtPinViewState();
+  _WalkinPinViewState createState() => new _WalkinPinViewState();
 }
 
-class _UseridtPinViewState extends State<UseridtPinView> with SingleTickerProviderStateMixin {
+class _WalkinPinViewState extends State<WalkinPinView> with SingleTickerProviderStateMixin {
   // Constants
   final int time = 120;
   AnimationController _controller;
@@ -474,8 +477,9 @@ class _UseridtPinViewState extends State<UseridtPinView> with SingleTickerProvid
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (BuildContext context) => UserList(
+                                builder: (BuildContext context) => ShowEmr(
                                   model: widget.model,
+                                  uhid:widget.uhid,
 
                                 ),
                               ),
