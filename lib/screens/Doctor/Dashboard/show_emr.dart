@@ -23,8 +23,9 @@ import 'package:user/screens/Doctor/Dashboard/Showemr/TreatmentTracker.dart';
 
 class ShowEmr extends StatefulWidget {
   MainModel model;
+  String uhid;
 
-  ShowEmr({Key key, this.model}) : super(key: key);
+  ShowEmr({Key key, this.model,this.uhid}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ShowEmr();
@@ -50,7 +51,9 @@ class _ShowEmr extends State<ShowEmr> {
     _focusNode = FocusNode();
     //eHealthCardno="5093626841904641";
     eHealthCardno = widget.model.patientseHealthCard;
-    eHealthCardnoo= widget.model.userid;
+    eHealthCardno = widget.uhid;
+    widget.uhid=widget.model.patientseHealthCard;
+    // eHealthCardnoo= widget.model.userid;
     //print('userrrrrrrrr>>>>>>>>>>>>>>>>>>>:$eHealthCardnoo');
    // eHealthCardnoo=widget.model.userid;
     //callPERSONALAPI(eHealthCardno);

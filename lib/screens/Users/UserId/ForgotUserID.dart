@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
+import 'package:user/models/ForgetUseridModel.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -24,6 +26,8 @@ class ForgotUserID extends StatefulWidget {
 
 class _ForgotUserIDState extends State<ForgotUserID> {
   var selectedMinValue;
+  ForgotUseridModel forgotUseridModel;
+
   TextEditingController _mobileno = new TextEditingController();
   TextEditingController _emailid = new TextEditingController();
 
@@ -115,20 +119,14 @@ class _ForgotUserIDState extends State<ForgotUserID> {
       context: context,
       fun: () {
         if (_mobileno.text == "" && _emailid.text == "") {
-          AppData.showInSnackBar(context, "Please enter Emailid No or Mobile no");
-        }
-        else {
+          AppData.showInSnackBar(
+              context, "Please enter Emailid No or Mobile no");
+        } else {
           var sendData;
-          if(_emailid.text!="") {
-            sendData = {
-              "key": _emailid.text,
-              "name": "email id"
-            };
-          }else{
-            sendData = {
-              "key": _mobileno.text,
-              "name": "Mobile number"
-            };
+          if (_emailid.text != "") {
+            sendData = {"key": _emailid.text, "name": "email id"};
+          } else {
+            sendData = {"key": _mobileno.text, "name": "Mobile number"};
           }
           widget.model.phnNo = _mobileno.text;
           MyWidgets.showLoading(context);
@@ -141,18 +139,17 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
+                    forgotUseridModel = ForgotUseridModel.fromJson(map);
+                    widget.model.userResponse = forgotUseridModel;
+                    log("userid response " + jsonEncode(map));
+                    String otp = map["body"]["code"];
 
-/*                    String emailid=map["body"]["key"];
-                    String otp=map["body"]["code"];
-                    */
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => UseridtPinView(
                           model: widget.model,
-
-                         /* userId: emailid,
-                          otp: otp,*/
+                          otp: otp,
                         ),
                       ),
                     );

@@ -364,14 +364,27 @@ class _LabDashboardState extends State<LabDashboard> {
               ],
             ),
             SizedBox(height: 50),
+            _buildTile(
+              icon: "assets/images/labbanner.jpg",
+              fun: () {
+                // AppData.showInSnackDone(context, "Coming Soon");
+                // Navigator.pushNamed(context, "/discountoffer");
+                //AppData.showInSnackBar(context, "Coming soon");
+              },
+              //color: AppData.BG2BLUE,
+              color: AppData.white,
+              bordercolor: AppData.white,
+            ),
 
           ],
         ),
       ),
       drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
+      /*   child: ListView(*/
+    child: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+    child: Column(
+      children: <Widget>[
               Container(
                 // height: 120,
                 color: AppData.kPrimaryColor,
@@ -433,8 +446,12 @@ class _LabDashboardState extends State<LabDashboard> {
                   ),
                 ),
               ),
+
               ListTile(
-                  leading: Icon(Icons.dashboard),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.dashboard),
+                  ),
                   title: Text('Dashboard'),
                   selected: _selectedDestination == 0,
                   onTap: () {
@@ -445,7 +462,10 @@ class _LabDashboardState extends State<LabDashboard> {
 
                   ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.person),
+                ),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
                 onTap: () {
@@ -455,7 +475,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.person),
+                ),
                 title: Text('Notifications'),
                 selected: _selectedDestination == 2,
                 onTap: () {
@@ -464,7 +487,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.notifications),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.notifications),
+                ),
                 selected: _selectedDestination == 3,
                 onTap: () {
                   selectDestination(3);
@@ -476,7 +502,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 // },
               ),
               ListTile(
-                leading: Icon(Icons.help_center),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.help_center),
+                ),
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
@@ -488,13 +517,19 @@ class _LabDashboardState extends State<LabDashboard> {
                 // },
               ),
               ListTile(
-                leading: Icon(Icons.share),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.share),
+                ),
                 title: Text('Share'),
                 selected: _selectedDestination == 5,
                 onTap: () => selectDestination(5),
               ),
               ListTile(
-                  leading: Icon(Icons.collections),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.collections),
+                  ),
                   title: Text('My Orders'),
                   selected: _selectedDestination == 6,
                   onTap: () {
@@ -502,7 +537,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
-                  leading: Icon(Icons.calendar_today),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.calendar_today),
+                  ),
                   title: Text('Monthly Overview'),
                   selected: _selectedDestination == 7,
                   onTap: () {
@@ -510,7 +548,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
-                  leading: Icon(Icons.healing),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.healing),
+                  ),
                   title: Text('Processed Orders'),
                   selected: _selectedDestination == 8,
                   onTap: () {
@@ -518,7 +559,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.home),
+                ),
                 title: Text('Set Discount and Offer'),
                 selected: _selectedDestination == 9,
                 onTap: () {
@@ -527,7 +571,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.logout),
+                ),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
@@ -545,9 +592,10 @@ class _LabDashboardState extends State<LabDashboard> {
                   Navigator.pushNamed(context, "/login");
                 },*/
               ),
+
             ],
           ),
-        ),
+    ),
       ),
     //    body: _dashboardnew(context),
     );
@@ -1220,4 +1268,55 @@ class _LabDashboardState extends State<LabDashboard> {
       ),
     );
   }
-}
+
+  Widget _buildTile({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+
+        /* decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(2.0),
+              topRight: Radius.circular(2.0),
+              bottomLeft: Radius.circular(2.0),
+              bottomRight: Radius.circular(2.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 0.5,
+            )
+        ),*/
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      fit: BoxFit.fitWidth,
+
+                    )),
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }}

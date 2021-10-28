@@ -314,6 +314,7 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         ),
       ),
       body: _dashboardnew(context),
+
     );
   }
 
@@ -327,188 +328,172 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 20.0, right: 10, left: 10, bottom: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                icon: "assets/Myorder1.png",
-                                title: "My Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/myorder");
-                                  //Navigator.pushNamed(context, "/walkRegList");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                icon: "assets/ConOrder.png",
-                                title: " Confirmed Order ",
-                                fun: () {
-                                  //chooseAppointment(context);
-                                  Navigator.pushNamed(context, "/ordersPharma");
-                                  },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/ProcessOrder.png",
-                                title: "Processed Orders",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/processedorders");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 20.0, right: 10, left: 10, bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/DeliverdOrder.png",
-                              title: "Deliverd Order",
+                              icon: "assets/Myorder1.png",
+                              title: "My Orders",
                               fun: () {
-                                //chooseAppointment1(context);
-                               Navigator.pushNamed(context, "/deliverdorder");
+                                Navigator.pushNamed(context, "/myorder");
+                                //Navigator.pushNamed(context, "/walkRegList");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTileblue(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Invoices.png",
-                                title: "Invoices",
-                                fun: () {
-
-                                //  Navigator.pushNamed(context, "/paymentcollection");
-                                },
-                                color: AppData.BG2BLUE,
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+                          ]),
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/monthlyoverview2.png",
-                              title: "Monthly Overview",
+                              icon: "assets/ConOrder.png",
+                              title: " Confirmed Order ",
                               fun: () {
-                                 Navigator.pushNamed(context, "/monthloveryview");
+                                //chooseAppointment(context);
+                                Navigator.pushNamed(context, "/ordersPharma");
+                                },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              // ,
+                            ),
+                          ]),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              //icon: Icons.document_scanner,
+                              icon: "assets/ProcessOrder.png",
+                              title: "Processed Orders",
+                              fun: () {
+                                Navigator.pushNamed(context, "/processedorders");
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildTilered(
-                                //icon: Icons.document_scanner,
-                                icon: "assets/Discount.png",
-                                title: "Discount & Offer",
-                                fun: () {
-                                  Navigator.pushNamed(context, "/setdiscount");
-                                },
-                                color: AppData.BG1RED,
-                                bordercolor: AppData.BG1RED,
-                                // ,
-                              ),
-                            ]),
-                        Column(
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/DeliverdOrder.png",
+                            title: "Deliverd Order",
+                            fun: () {
+                              //chooseAppointment1(context);
+                             Navigator.pushNamed(context, "/deliverdorder");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/chat 1.png",
-                              title: "Online Chat",
+                              //icon: Icons.document_scanner,
+                              icon: "assets/Invoices.png",
+                              title: "Invoices",
                               fun: () {
-                                //chooseAppointment1(context);
-                                  Navigator.pushNamed(context, "/onlinechats");
+
+                              //  Navigator.pushNamed(context, "/paymentcollection");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
                               // ,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     _buildTile2(
-                    //       //icon: Icons.document_scanner,
-                    //       icon: CupertinoIcons.settings_solid,
-                    //       title: "Updation Data",
-                    //       fun: () {
-                    //         Navigator.pushNamed(context, "/testappointmentpage1");
-                    //       },
-                    //       color: AppData.BG1RED,
-                    //       bordercolor: AppData.BG1RED,
-                    //       // ,
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                ),
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTilered(
+                            icon: "assets/monthlyoverview2.png",
+                            title: "Monthly Overview",
+                            fun: () {
+                               Navigator.pushNamed(context, "/monthloveryview");
+                            },
+                            color: AppData.BG1RED,
+                            bordercolor: AppData.BG1RED,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTilered(
+                              //icon: Icons.document_scanner,
+                              icon: "assets/Discount.png",
+                              title: "Discount & Offer",
+                              fun: () {
+                                Navigator.pushNamed(context, "/setdiscount");
+                              },
+                              color: AppData.BG1RED,
+                              bordercolor: AppData.BG1RED,
+                              // ,
+                            ),
+                          ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/chat 1.png",
+                            title: "Online Chat",
+                            fun: () {
+                              //chooseAppointment1(context);
+                                Navigator.pushNamed(context, "/onlinechats");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            // ,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                ],
               ),
-            )
+            ),
+
           ],
         ),
       ),
@@ -915,4 +900,55 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
       ),
     );
   }
-}
+
+  Widget _buildTile({String icon,
+    /*IconData icon,*/
+    String title,
+    double size,
+    Color bordercolor,
+    Color color,
+    Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+
+        /* decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(2.0),
+              topRight: Radius.circular(2.0),
+              bottomLeft: Radius.circular(2.0),
+              bottomRight: Radius.circular(2.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryColor,
+              width: 0.5,
+            )
+        ),*/
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      fit: BoxFit.fitWidth,
+
+                    )),
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }}
