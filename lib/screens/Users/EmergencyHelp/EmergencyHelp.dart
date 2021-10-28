@@ -211,8 +211,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 360,
+                  height: 200,
                   child: ListView.separated(
+                    shrinkWrap: true,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
@@ -682,7 +683,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                               lati: latitude,
                                               longi: longitude,
                                               healthpro: "Ambulance"),
-                                           fun: (Map<String, dynamic> map) {
+                                          fun: (Map<String, dynamic> map) {
                                             setState(() {
                                               //String msg = map[Const.MESSAGE];
                                               //if (map["status"] == "ok") {
