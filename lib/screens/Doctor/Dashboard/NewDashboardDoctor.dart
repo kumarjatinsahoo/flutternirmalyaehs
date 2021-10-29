@@ -301,6 +301,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 _buildTilered(
                                   icon: "assets/images/emergency.png",
                                   fun: () {
+                                    Navigator.pushNamed(
+                                        context, "/docWalkInReg");
                                     // AppData.showInSnackDone(context, "Coming Soon");
                                     // Navigator.pushNamed(context, "/discountoffer");
                                     //AppData.showInSnackBar(context, "Coming soon");
