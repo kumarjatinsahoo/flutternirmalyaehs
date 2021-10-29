@@ -138,20 +138,14 @@ class _AllergicListListState extends State<AllergicListList> {
           : allergicModel == null || allergicModel == null
           ? Container(
         child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 300,),
-              Text(
-                'No Data Found',
-                style:
-                TextStyle(color: Colors.black, fontSize: 15),
-              ),
-            ],
+          child: Text(
+            'No Data Found',
+            style:
+            TextStyle(color: Colors.black, fontSize: 15),
           ),
         ),
 
-      )
-          :
+      ) :
        Container(
               child: SingleChildScrollView(
                 child: (allergicModel != null)

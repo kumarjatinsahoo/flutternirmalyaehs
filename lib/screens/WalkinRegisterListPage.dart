@@ -24,6 +24,7 @@ class WalkinRegisterListPage extends StatefulWidget {
 class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
   patientSuf.PatientListModel regDataModel;
   LoginResponse1 loginResponse;
+  bool isdata = false;
 
   //ScrollController _scrollController = ScrollController();
   int currentMax = 1;
@@ -98,7 +99,24 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-      body: (regDataModel != null)
+      body:
+      isdata == true
+          ? CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      )
+          : regDataModel == null || regDataModel == null
+          ? Container(
+        child: Center(
+          child: Text(
+            'No Data Found',
+            style:
+            TextStyle(color: Colors.black, fontSize: 15),
+          ),
+        ),
+
+      ) :
+
+      (regDataModel != null)
           ? ListView.builder(
               // controller: _scrollController,
               itemBuilder: (context, i) {
@@ -141,7 +159,12 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
                           textAlign: TextAlign.start,
                         ),
                         Text(
-                          patient.stateName,
+                          patient.stateName ??"N/A",
+                          style: TextStyle(color: Colors.grey),
+                          textAlign: TextAlign.end,
+                        ),
+                        Text(
+                          patient.enteredBy??"N/A",
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),

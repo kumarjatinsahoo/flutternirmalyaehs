@@ -291,6 +291,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                               ]),
                         ],
                       ),
+                      SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -619,34 +620,6 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/myprofile.png',
-                            fit: BoxFit.cover)),
-                    VerticalDivider(
-                      thickness: 1,
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
-              ),
-              title: Text("My Profile"),
-              onTap: () {
-                Navigator.pop(context);
-
-                // Navigator.pushNamed(context, "/qrViewExample1");
-              },
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            ListTile(
-              leading: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                        width: 30,
-                        height: 30,
                         child: Image.asset('assets/images/dash.png',
                             fit: BoxFit.cover)),
                     VerticalDivider(
@@ -673,6 +646,34 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
+                        child: Image.asset('assets/images/myprofile.png',
+                            fit: BoxFit.cover)),
+                    VerticalDivider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+              title: Text("My Profile"),
+              onTap: () {
+                Navigator.pushNamed(
+                    context, "/docMyProf");
+              },
+            ),
+            SizedBox(
+              height: 8,
+            ),
+
+            ListTile(
+              leading: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        width: 30,
+                        height: 30,
                         child: Image.asset('assets/images/aboutus.png',
                             fit: BoxFit.cover)),
                     VerticalDivider(
@@ -685,6 +686,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
               title: Text("About Us"),
               onTap: () {
                 Navigator.pop(context);
+
+                Navigator.pushNamed(context, '/aboutus');
+
               },
             ),
             SizedBox(
@@ -710,7 +714,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
               ),
               title: Text("Share"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/emergencydetails");
               },
             ),
             SizedBox(
@@ -736,13 +740,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
               ),
               title: Text("Contact Us"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/contactus");
               },
             ),
             SizedBox(
               height: 8,
             ),
-            ListTile(
+         /*   ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -751,7 +755,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                       width: 30,
                       height: 30,
-                      child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
+                      child: *//*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*//*
                           Icon(
                         Icons.qr_code,
                         color: AppData.menublueColor,
@@ -771,7 +775,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 Navigator.pushNamed(context, "/qrViewExample1");
                 //Navigator.pop(context);
               },
-            ),
+            ),*/
             SizedBox(
               height: 8,
             ),
