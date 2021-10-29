@@ -97,6 +97,7 @@ class _AllergicListListState extends State<AllergicListList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("ALLERGIC")),
         /* leading: Icon(
@@ -406,9 +407,9 @@ class _AllergicListListState extends State<AllergicListList> {
                             AllergicListList.typeModel = data;
                           });
                         }),
-                        SizedBox(
+                        /*SizedBox(
                           height: 5,
-                        ),
+                        ),*/
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context)
                                 .text("ALLERGEN") ,
@@ -421,9 +422,9 @@ class _AllergicListListState extends State<AllergicListList> {
                             AllergicListList.nameModel = data;
                           });
                         }),
-                        SizedBox(
+                       /* SizedBox(
                           height: 5,
-                        ),
+                        ),*/
                         DropDown.networkDrop(
                             MyLocalizations.of(context)
                                 .text("SEVERTY") ,
@@ -434,11 +435,11 @@ class _AllergicListListState extends State<AllergicListList> {
                           });
                         }),
                         SizedBox(
-                          height: 15,
+                          height: 8,
                         ),
                         formField(1,"   Reaction"),
                         SizedBox(
-                          height: 15,
+                          height: 8,
                         ),
                         formField(2,"   Updated By"),
                       ],

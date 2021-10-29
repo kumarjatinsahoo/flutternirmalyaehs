@@ -93,19 +93,83 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
+        *//* leading: Icon(
+          Icons.menu,
+        ),*//*
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        displayTextInputDialog(context),
+                  );
+                  // callAPI();
+                },
+                child: Icon(
+                  Icons.add_circle_outline_sharp,
+                  size: 26.0,
+                ),
+              )),
+          *//*Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: Icon(
+                    Icons.more_vert
+                ),
+              )
+          ),*//*
+        ],
+      ),*/
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Row(
+          title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
+            actions: <Widget>[
+        Padding(
+        padding: EdgeInsets.only(right: 20.0),
+        child:InkWell(
+            onTap: () {
+              displayTextInputDialog(context);
+            },
+          child: Icon(
+            Icons.add_circle_outline_sharp,
+            size: 26.0,
+          ),),
+      /* GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) =>
+                  displayTextInputDialog(context),
+            );
+            // callAPI();
+          },
+          child: Icon(
+            Icons.add_circle_outline_sharp,
+            size: 26.0,
+          ),
+        )*/),
+  ]
+          /* Row(
+
             children: [
-              Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-              Spacer(),
+             ),
+              *//*Spacer(),*//*
               InkWell(
                   onTap: () {
                     displayTextInputDialog(context);
                   },
                   child: Icon(Icons.add_circle_outline)),
             ],
-          ),
+          ),*/
         ),
         body:
         isdata == true
@@ -186,7 +250,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                               //SizedBox(height: 2),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 10.0, top: 10, right: 10.0),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -210,7 +274,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                               // SizedBox(height: 5),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 10.0, top: 10, right: 10.0),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -306,9 +370,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             BiomediImplants.admequipmentmodel = data;
                           });
                         }),
-                        SizedBox(height: 5),
+                        SizedBox(height: 8),
                         dob(),
-                        SizedBox(height: 5),
+                        SizedBox(height: 8),
 
                         formField(1, "  Reason"),
 
@@ -447,7 +511,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color:Colors.grey,
                 ),
               ),
             ),

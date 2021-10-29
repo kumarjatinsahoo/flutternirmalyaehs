@@ -28,6 +28,7 @@ class _UserMedicineList extends State<UserMedicineTab1> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text(MyLocalizations.of(context).text("MEDICATION")),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
