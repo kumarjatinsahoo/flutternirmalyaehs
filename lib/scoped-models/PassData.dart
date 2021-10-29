@@ -1,5 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
-import 'package:user/models/ForgetUseridModel.dart';
+import 'package:user/models/ForgetUseridModel.dart'as forgotuser;
 import 'package:user/models/PharmacyorderModel.dart'as cnfrm;
 import 'package:user/models/UserListModel.dart'as test;
 import 'package:user/models/UserDetailsModel.dart';
@@ -16,7 +16,6 @@ class PassData extends Model {
   String apntUserType;
   String apntType;
   UserDetailsModel userModel;
-  ForgotUseridModel userResponse;
 
   String slempid;
   String fromdate;
@@ -88,6 +87,7 @@ class PassData extends Model {
   String medicallserviceType;
   String placeId;
   doc.Body appointmentlist;
+  forgotuser.Body forgotuserid;
 /////
 String pharmaorganisation;
 String pharmartitle;
