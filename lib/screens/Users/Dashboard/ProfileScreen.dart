@@ -19,6 +19,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
+import 'package:user/providers/text_field_container.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -116,6 +117,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
+              ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                  key: patientProfileModel.body.bloodGroupId,
+                  name: patientProfileModel.body.bloodGroup);
+              ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.eRelationId,
+                  name: patientProfileModel.body.eRelation);
+              ProfileScreen.specialitymodel = KeyvalueModel(
+                  key: patientProfileModel.body.specialityId,
+                  name: patientProfileModel.body.speciality);
+
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -1102,20 +1113,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    /*_fname.text =patientProfileModel.body.fName.toString() ;
-    _lname.text = patientProfileModel.body.lName.toString();
-    textEditingController[2].text = patientProfileModel.body.dob.toString();
-   // ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";
-  //  ProfileScreen.gendermodel.key=patientProfileModel.body.gender.toString()??"N/A";
-    _eName.text = patientProfileModel.body.eName.toString();
-    //ProfileScreen.relationmodel=patientProfileModel.body.eRelation.toString()??"N/A";
-    _eMobile.text = patientProfileModel.body.mobile.toString();
-    _fDoctor.text = patientProfileModel.body.fDoctor.toString();
-    //ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
-    _docMobile.text=patientProfileModel.body.docMobile.toString();
+
+    /*ProfileScreen.relationmodel.key=patientProfileModel.body.eRelation.toString()??"N/A";
+    ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
+    ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";*/
+    _eMobile.text = patientProfileModel.body.eMobile.toString()??"N/A";
+    _fDoctor.text = patientProfileModel.body.fDoctor.toString()??"N/A";
+    _eName.text = patientProfileModel.body.eName.toString()??"N?A";
+    _docMobile.text=patientProfileModel.body.docMobile.toString()??"N/A";
+    textEditingController[2].text = patientProfileModel.body.dob.toString()??"N/A";
+
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
     updateProfileModel.id = patientProfileModel.body.id.toString();
-*/
+
+
+
+
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -1187,126 +1201,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          /*  Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              height: 83,
-                              width: 83,
-                              child: Stack(
-                                //mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  (pathUsr != null)
-                                      ? Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage:
-                                      FileImage(pathUsr),
-                                    ),
-                                  )
-                                      : Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage: NetworkImage(
-                                          AppData.defaultImgUrl),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomRight,
-                                    child: InkWell(
-                                      onTap: () {
-
-                                        _settingModalBottomSheet(context);
-                                      },
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color: AppData.kPrimaryColor,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),*/
-                        /*  TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                              });
-                            },
-                            controller: _fname,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z ]")),
-                            ],
-                            decoration: InputDecoration(hintText: "First Name"),
-                          ),
-                          TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                                updateProfileModel.lName = value;
-                              });
-                            },
-                            controller: _lname,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z ]")),
-                            ],
-                            decoration: InputDecoration(hintText: "Last Name"),
-                          ),*/
 
                           dob(),
-                          DropDown.networkDropdown(
+
+                          DropDown.networkDropdownlabler(
                               "Blood Group",
                               ApiFactory.BLOODGROUP_API,
                               "bloodgroup", (KeyvalueModel model) {
                             setState(() {
-                              // patientProfileModel.body.bloodGroup= model.key;
+                               patientProfileModel.body.bloodGroupId= model.key;
                               patientProfileModel.body.bloodGroup = model.name;
                               ProfileScreen.bloodgroupmodel = model;
-                              updateProfileModel.bloodGroup = model.key;
+                             // updateProfileModel.bloodGroup = model.key;
                             });
                           }),
-                          Divider(
+                         /* Divider(
                             height: 2,
                             color: Colors.black,
                           ),
-
-                        /*  DropDown.networkDropdown(
-                              "Gender", ApiFactory.GENDER_API, "gender",
-                              (KeyvalueModel model) {
-                            setState(() {
-                              patientProfileModel.body.gender = model.name;
-                              ProfileScreen.gendermodel = model;
-                              updateProfileModel.gender = model.key;
-                            });
-                          }),
-                          Divider(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-*/
-                          // TextField(
-                          //   onChanged: (value) {
-                          //     setState(() {
-                          //       valueText = value;
-                          //     });
-                          //   },
-                          //   controller: _mobile,
-                          //   decoration: InputDecoration(hintText: "Mobile No"),
-                          // ),
+*/                // formField(_fDoctor,"Emergency Contact Name"),
                           TextField(
                             onChanged: (value) {
                               setState(() {
                                 valueText = value;
-                                updateProfileModel.eName = value;
+                                //updateProfileModel.eName = value;
                               });
                             },
                             controller: _eName,
@@ -1315,24 +1233,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   RegExp("[a-zA-Z ]")),
                             ],
                             decoration: InputDecoration(
-                                hintText: "Emergency Contact Name"),
+                                hintText: "Emergency Contact Name",
+                              labelText: "Emergency Contact Name",
+                              labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                  // fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline
+
+                              ),
+                               // contentPadding: EdgeInsets.fromLTRB( 0, 0,  70, 20.70),
+                                contentPadding: EdgeInsets.only(bottom: 20.0),
+                                isDense: true
+                              /*contentPadding:
+                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),*/
+                            ),
+
+
                           ),
-                          DropDown.networkDropdown(
+                          DropDown.networkDropdownlabler(
                               "Relation", ApiFactory.RELATION_API, "relation",
                               (KeyvalueModel model) {
                             setState(() {
+                              patientProfileModel.body.eRelationId = model.key;
                               patientProfileModel.body.eRelation = model.name;
                               ProfileScreen.relationmodel = model;
-                              updateProfileModel.eRelation = model.key;
+                             // updateProfileModel.eRelation = model.key;
                             });
                           }),
-                          Divider(height: 2, color: Colors.black),
+                       /*   Divider(height: 2, color: Colors.black),*/
 
                           TextField(
                             onChanged: (value) {
                               setState(() {
                                 valueText = value;
-                                updateProfileModel.eMobile = value;
+                               // updateProfileModel.eMobile = value;
                               });
                             },
                             keyboardType: TextInputType.number,
@@ -1345,6 +1280,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             maxLength: 10,
                             decoration: new InputDecoration(
                               hintText: "Emergency Contact No.",
+                              labelText: "Emergency Contact No.",
+                              labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                 // fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline,
+
+                              ),
+                              contentPadding:
+                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
                               counterText: "",
                             ),
                           ),
@@ -1353,7 +1298,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onChanged: (value) {
                               setState(() {
                                 valueText = value;
-                                updateProfileModel.fName = value;
+                                //updateProfileModel.fName = value;
                               });
                             },
                             controller: _fDoctor,
@@ -1362,7 +1307,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   RegExp("[a-zA-Z ]")),
                             ],
                             decoration: InputDecoration(
-                                hintText: "Family Doctor's Name"),
+                                hintText: "Family Doctor's Name",labelText: "Family Doctor's Name",
+                              labelStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 17,
+                                // fontStyle: FontStyle.italic,
+                                decoration: TextDecoration.underline
+                              ),
+                              contentPadding:
+                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),),
+
                           ),
                           // TextField(
                           //   onChanged: (value) {
@@ -1373,26 +1327,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //   controller: _speciality,
                           //   decoration: InputDecoration(hintText: "Speciality"),
                           // ),
-                          DropDown.networkDropdown(
+                          DropDown.networkDropdownlabler(
                               "Speciality",
                               ApiFactory.SPECIALITY_API,
                               "speciality", (KeyvalueModel model) {
                             setState(() {
+                              patientProfileModel.body.specialityId = model.key;
                               patientProfileModel.body.speciality = model.name;
                               ProfileScreen.specialitymodel = model;
-                              updateProfileModel.speciality = model.key;
+                              //updateProfileModel.speciality = model.key;
                             });
                           }),
-                          Divider(
+                          /*Divider(
                             height: 2,
                             color: Colors.black,
-                          ),
+                          ),*/
 
                           TextField(
                             onChanged: (value) {
                               setState(() {
                                 valueText = value;
-                                updateProfileModel.docMobile = value;
+                                //updateProfileModel.docMobile = value;
                               });
                             },
                             controller: _docMobile,
@@ -1403,7 +1358,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                             decoration: new InputDecoration(
                               hintText: " Doctors Mobile No",
+                              labelText: "Doctors Mobile No",
+                              labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 17,
+                                  // fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline
+                              ),
+                              contentPadding:
+                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
                               counterText: "",
+                              //counterText: "",
                             ),
                           ),
                         ],
@@ -1434,56 +1399,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    /*codeDialog = valueText;
-                    Navigator.pop(context);*/
-                    /*if (_fname.text == null || _fname.text == "") {
-                      AppData.showInSnackBar(context, "Please enter firstname");
-                    } else if (_gender.text == null || _gender.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Gender");
-                    } else if (_docMobile.text == null ||
-                        _docMobile.text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Contact Details");
-                    } else if (_eName.text == null || _eName.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
-                    } else if (_eRelation.text == null ||
-                        _eRelation.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Relation");
-                    } else if (_eMobile.text == null || _eMobile.text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Mobile Number");
-                    } else if (_fDoctor.text == null || _fDoctor.text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Doctors Name");
-                    } else if (_speciality.text == null ||
-                        _speciality.text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Speciality");
-                    } else if (_lname.text == null || _lname.text == "") {
-                      AppData.showInSnackBar(context, "Please enter last name");
-                    } else {*/
-                    /* _fname.text =patientProfileModel.body.fName.toString() ;
-                    _lname.text = patientProfileModel.body.lName.toString();
-                    textEditingController[2].text = patientProfileModel.body.dob.toString();
-                    // ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";
-                    //  ProfileScreen.gendermodel.key=patientProfileModel.body.gender.toString()??"N/A";
-                    _eName.text = patientProfileModel.body.eName.toString();
-                    //ProfileScreen.relationmodel=patientProfileModel.body.eRelation.toString()??"N/A";
-                    _eMobile.text = patientProfileModel.body.mobile.toString();
-                    _fDoctor.text = patientProfileModel.body.fDoctor.toString();
-                    //ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
-                    _docMobile.text=patientProfileModel.body.docMobile.toString();
-                    updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
-                    updateProfileModel.id = patientProfileModel.body.id.toString();*/
                     log("profile  MODEL SEND>>>>" +
                         jsonEncode(updateProfileModel.toJson()));
 
-                    updateProfileModel.fName = _fname.text;
-                    updateProfileModel.lName = _lname.text;
                     updateProfileModel.eCardNo = patientProfileModel.body.id;
-                    updateProfileModel.fDoctor = _fDoctor.text;
-                    updateProfileModel.fDoctor = _fDoctor.text;
                     updateProfileModel.id = patientProfileModel.body.id;
+                    updateProfileModel.dob = textEditingController[2].text;
+                    updateProfileModel.bloodGroup = ProfileScreen.bloodgroupmodel.key;
+                    //Emergency
+                    updateProfileModel.eName=_eName.text;
+                    updateProfileModel.eMobile =_eMobile.text ;
+                    updateProfileModel.eRelation = ProfileScreen.relationmodel.key;
+                    //doctor
+                    updateProfileModel.fDoctor = _fDoctor.text;
+                    updateProfileModel.speciality = ProfileScreen.specialitymodel.key;
+                    updateProfileModel.docMobile=_docMobile.text;
+
+
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.USER_UPDATEPROFILE,
                         json: updateProfileModel.toJson(),
@@ -1533,7 +1465,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ]).show();
   }
-
+  Widget formField(TextEditingController controller, String hint) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10,right: 10),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontFamily: "DINReg",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: TextFormField(
+            controller: controller,
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+           // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+            style: TextStyle(fontSize: 13),
+            decoration: InputDecoration(
+              //hintText: hint,
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                border: InputBorder.none,
+                contentPadding:
+                EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+            onChanged: (newValue) {},
+          ),
+        ),
+      ],
+    );
+  }
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -1567,14 +1531,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 //userPersonalForm.dob = value;
                 selectDob = value;
               },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[2] = true;
-                  return null;
-                }
-                error[2] = false;
-                return null;
-              },
+
               onFieldSubmitted: (value) {
                 error[2] = false;
                 // print("error>>>" + error[2].toString());
@@ -1584,6 +1541,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
               decoration: InputDecoration(
                 hintText: MyLocalizations.of(context).text("DOB1"),
+                /*labelText: "Family Doctor's Name",
+                labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 17,
+                    // fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline
+                ),*/
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -1613,7 +1577,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         error[2] = false;
         textEditingController[2].value =
             TextEditingValue(text: df.format(picked));
-        updateProfileModel.dob = df.format(picked);
+        //updateProfileModel.dob = df.format(picked);
       });
   }
 

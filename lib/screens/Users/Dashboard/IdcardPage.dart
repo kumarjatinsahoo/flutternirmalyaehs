@@ -33,9 +33,67 @@ class _IdCardPageState extends State<IdCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Id Card"),
-        centerTitle: true,
+        /* leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),*/
+        automaticallyImplyLeading: false,
+        title: Stack(
+          children: [
+            Center(
+              child: Text(
+                'Id Card',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            //Spacer(),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right:70.0),
+                child: InkWell(
+                  onTap: () {
+                    //Navigator.pushNamed(context, "/qrcode");
+                  },
+                  child: Icon(Icons.share),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right:70.0),
+                child: InkWell(
+                  onTap: () {
+                    //Navigator.pushNamed(context, "/qrcode");
+                  },
+                  child: Icon(Icons.share),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap: () {
+                },
+                child: Icon(Icons.download),
+
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back),
+              ),
+            )
+          ],
+        ),
         backgroundColor: AppData.kPrimaryColor,
+        //centerTitle: true,
+        // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),

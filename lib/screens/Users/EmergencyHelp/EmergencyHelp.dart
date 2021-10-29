@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import '../../../models/LoginResponse1.dart';
 import '../../../providers/Const.dart';
 
@@ -115,6 +116,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         loginResponse1.body.user +
         "\n" +
         loginResponse1.body.token);
+
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
         token: widget.model.token,
@@ -209,8 +211,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 360,
+                  height: 200,
                   child: ListView.separated(
+                    shrinkWrap: true,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
@@ -674,6 +677,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
 
                                 InkWell(
                                     onTap: () {
+                                      MyWidgets.showLoading(context);
                                       widget.model.GETMETHODCAL(
                                           api: ApiFactory.GOOGLE_QUERY_API(
                                               lati: latitude,

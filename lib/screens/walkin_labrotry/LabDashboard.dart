@@ -116,273 +116,295 @@ class _LabDashboardState extends State<LabDashboard> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
-      body:  Container(
-        padding: EdgeInsets.symmetric(horizontal: 7),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 15,
+      body:
+      Stack(
+        children: [
+        Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            child: Image.asset(
+              "assets/images/doctorbanner.jpg",
+              // width: size.width,
+              // fit: BoxFit.cover,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon:"assets/images/registerpatient.png",
-                        fun: () {
-                          //AppData.showInSnackBar(context, "Coming soon");
-                          // Navigator.pushNamed(context, "/medicalrecordpage");
-                          Navigator.pushNamed(context, "/walkRegList");
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        // ,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("Register Patient",
-                          // MyLocalizations.of(context).text("My Orders"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
+          ),
+          SizedBox(height:3),
 
-                /* Expanded(*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/appointmentlab.png",
-                        fun: () {
-                          chooseAppointment(context);
-                          // Navigator.pushNamed(context, "/myAppointment");
-                          //Navigator.pushNamed(context, "/ordersPharma");
-                        },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("Appointment",
-                          // MyLocalizations.of(context).text("Confirmed Order"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+        ],
+      ),
+      Container(
+          padding: EdgeInsets.symmetric(horizontal: 7),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon:"assets/images/registerpatient.png",
+                          fun: () {
+                            //AppData.showInSnackBar(context, "Coming soon");
+                            // Navigator.pushNamed(context, "/medicalrecordpage");
+                            Navigator.pushNamed(context, "/walkRegList");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          // ,
                         ),
-                      ),
-                      /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon: "assets/images/pocreports.png",
-                        fun: () {
-                          //chooseAppointment(context, model);
-                          //Navigator.pushNamed(context, "/userAppoint");
-                          // Navigator.pushNamed(context, "/myAppointment");
-                          /*Navigator.pushNamed(
-                                    context, "/medipedia");*/
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                          Navigator.pushNamed(context, "/pocreportlist");
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("POC Reports",
-                          // MyLocalizations.of(context).text("Processed Orders"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 5,
                         ),
-                      ),
-                      /*Align(
-                                      alignment: Alignment.center,
-                                      child: Expanded(
-                                        child: Text(
-                                          "Govternment Schemes",
-                                          style: TextStyle(color: Colors.black),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),*/
-                    ]),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Register Patient",
+                            // MyLocalizations.of(context).text("My Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
 
-              ],
-            ),
-            SizedBox(height: 7,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/testlab.png",
-                        fun: () {
-                          // AppData.showInSnackDone(context, "Coming Soon");
-                          Navigator.pushNamed(context, "/testappointmentpage");
-                          //AppData.showInSnackBar(context, "Coming soon");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text("Test",
-/*
-                          MyLocalizations.of(context).text("Deliverd Order").toString(),
-*/
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                  /* Expanded(*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/appointmentlab.png",
+                          fun: () {
+                            chooseAppointment(context);
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            //Navigator.pushNamed(context, "/ordersPharma");
+                          },
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
                         ),
-                      ),
-                      /*Align(
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("Appointment",
+                            // MyLocalizations.of(context).text("Confirmed Order"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
                                         alignment: Alignment.center,
                                         child: Expanded(
                                           child: Text(
-                                            "Health               chat",
+                                            "Govternment Schemes",
                                             style: TextStyle(color: Colors.black),
                                             textAlign: TextAlign.center,
                                           ),
                                         )),*/
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                /*Expanded(
-                            child:*/
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTileblue(
-                        icon:"assets/images/orderslab.png",
-                        //icon: FontAwesomeIcons.accusoft,
-                        title: "My Orders",
-                        fun: () {
-                          // AppData.showInSnackDone(context, "/myOrderTest");
-                          Navigator.pushNamed(context, "/myOrderTest");
-                          // AppData.showSnack(
-                          //     context, "Coming soon", Colors.green);
-                        },
-                        color: AppData.BG2BLUE,
-                        bordercolor: AppData.BG2BLUE,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        /* child: Expanded(*/
-                        child: Text("My Orders",
-                          // MyLocalizations.of(context).text("Invoices"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon: "assets/images/pocreports.png",
+                          fun: () {
+                            //chooseAppointment(context, model);
+                            //Navigator.pushNamed(context, "/userAppoint");
+                            // Navigator.pushNamed(context, "/myAppointment");
+                            /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                            Navigator.pushNamed(context, "/pocreportlist");
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
                         ),
-                      ),
-                    ]),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildTilered(
-                        icon: "assets/images/datalab.png",
-                        fun: () {
-                          // AppData.showInSnackDone(context, "Coming Soon");
-                          Navigator.pushNamed(context, "/testappointmentpage1");
-                          //AppData.showInSnackBar(context, "Coming soon");
-                        },
-                        //color: AppData.BG2BLUE,
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
-                        size: 100 / 3,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        width: 100,
-                        height: 35,
-                        child: Text("Updation Data",
-                          // MyLocalizations.of(context).text("Monthly Overview"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 5,
                         ),
-                      ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("POC Reports",
+                            // MyLocalizations.of(context).text("Processed Orders"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                      ]),
 
-                    ]),
-              ],
-            ),
-            SizedBox(height: 50),
-            _buildTile(
-              icon: "assets/images/labbanner.jpg",
-              fun: () {
-                // AppData.showInSnackDone(context, "Coming Soon");
-                // Navigator.pushNamed(context, "/discountoffer");
-                //AppData.showInSnackBar(context, "Coming soon");
-              },
-              //color: AppData.BG2BLUE,
-              color: AppData.white,
-              bordercolor: AppData.white,
-            ),
+                ],
+              ),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/testlab.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/testappointmentpage");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Test",
+/*
+                            MyLocalizations.of(context).text("Deliverd Order").toString(),
+*/
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  /*Expanded(
+                              child:*/
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTileblue(
+                          icon:"assets/images/orderslab.png",
+                          //icon: FontAwesomeIcons.accusoft,
+                          title: "My Orders",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "/myOrderTest");
+                            Navigator.pushNamed(context, "/myOrderTest");
+                            // AppData.showSnack(
+                            //     context, "Coming soon", Colors.green);
+                          },
+                          color: AppData.BG2BLUE,
+                          bordercolor: AppData.BG2BLUE,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          /* child: Expanded(*/
+                          child: Text("My Orders",
+                            // MyLocalizations.of(context).text("Invoices"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ]),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildTilered(
+                          icon: "assets/images/datalab.png",
+                          fun: () {
+                            // AppData.showInSnackDone(context, "Coming Soon");
+                            Navigator.pushNamed(context, "/testappointmentpage1");
+                            //AppData.showInSnackBar(context, "Coming soon");
+                          },
+                          //color: AppData.BG2BLUE,
+                          color: AppData.BG1RED,
+                          bordercolor: AppData.BG1RED,
+                          size: 100 / 3,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 100,
+                          height: 35,
+                          child: Text("Updation Data",
+                            // MyLocalizations.of(context).text("Monthly Overview"),
+                            textAlign: TextAlign.center,
+                            //overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
 
-          ],
+                      ]),
+                ],
+              ),
+              SizedBox(height: 50),
+              // _buildTile(
+              //   icon: "assets/images/labbanner.jpg",
+              //   fun: () {
+              //     // AppData.showInSnackDone(context, "Coming Soon");
+              //     // Navigator.pushNamed(context, "/discountoffer");
+              //     //AppData.showInSnackBar(context, "Coming soon");
+              //   },
+              //   //color: AppData.BG2BLUE,
+              //   color: AppData.white,
+              //   bordercolor: AppData.white,
+              // ),
+
+            ],
+          ),
         ),
+      ]
       ),
       drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
+      /*   child: ListView(*/
+    child: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+    child: Column(
+      children: <Widget>[
               Container(
                 // height: 120,
                 color: AppData.kPrimaryColor,
@@ -444,8 +466,12 @@ class _LabDashboardState extends State<LabDashboard> {
                   ),
                 ),
               ),
+
               ListTile(
-                  leading: Icon(Icons.dashboard),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.dashboard),
+                  ),
                   title: Text('Dashboard'),
                   selected: _selectedDestination == 0,
                   onTap: () {
@@ -456,7 +482,10 @@ class _LabDashboardState extends State<LabDashboard> {
 
                   ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.person),
+                ),
                 title: Text('My Profile'),
                 selected: _selectedDestination == 1,
                 onTap: () {
@@ -466,7 +495,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.person),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.person),
+                ),
                 title: Text('Notifications'),
                 selected: _selectedDestination == 2,
                 onTap: () {
@@ -475,7 +507,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.notifications),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.notifications),
+                ),
                 selected: _selectedDestination == 3,
                 onTap: () {
                   selectDestination(3);
@@ -487,7 +522,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 // },
               ),
               ListTile(
-                leading: Icon(Icons.help_center),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.help_center),
+                ),
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
@@ -499,13 +537,19 @@ class _LabDashboardState extends State<LabDashboard> {
                 // },
               ),
               ListTile(
-                leading: Icon(Icons.share),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.share),
+                ),
                 title: Text('Share'),
                 selected: _selectedDestination == 5,
                 onTap: () => selectDestination(5),
               ),
               ListTile(
-                  leading: Icon(Icons.collections),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.collections),
+                  ),
                   title: Text('My Orders'),
                   selected: _selectedDestination == 6,
                   onTap: () {
@@ -513,7 +557,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/myorder");
                   }),
               ListTile(
-                  leading: Icon(Icons.calendar_today),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.calendar_today),
+                  ),
                   title: Text('Monthly Overview'),
                   selected: _selectedDestination == 7,
                   onTap: () {
@@ -521,7 +568,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/monthlyview");
                   }),
               ListTile(
-                  leading: Icon(Icons.healing),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Icon(Icons.healing),
+                  ),
                   title: Text('Processed Orders'),
                   selected: _selectedDestination == 8,
                   onTap: () {
@@ -529,7 +579,10 @@ class _LabDashboardState extends State<LabDashboard> {
                     //Navigator.pushNamed(context, "/processedorders");
                   }),
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.home),
+                ),
                 title: Text('Set Discount and Offer'),
                 selected: _selectedDestination == 9,
                 onTap: () {
@@ -538,7 +591,10 @@ class _LabDashboardState extends State<LabDashboard> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout),
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(Icons.logout),
+                ),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
@@ -556,9 +612,10 @@ class _LabDashboardState extends State<LabDashboard> {
                   Navigator.pushNamed(context, "/login");
                 },*/
               ),
+
             ],
           ),
-        ),
+    ),
       ),
     //    body: _dashboardnew(context),
     );

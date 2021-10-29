@@ -489,7 +489,17 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                       ),
                     ],
                   ),
-
+                  _buildTile(
+                    icon: "assets/images/pharmacybanner.jpg",
+                    fun: () {
+                      // AppData.showInSnackDone(context, "Coming Soon");
+                      // Navigator.pushNamed(context, "/discountoffer");
+                      //AppData.showInSnackBar(context, "Coming soon");
+                    },
+                    //color: AppData.BG2BLUE,
+                    color: AppData.white,
+                    bordercolor: AppData.white,
+                  ),
                 ],
               ),
             ),

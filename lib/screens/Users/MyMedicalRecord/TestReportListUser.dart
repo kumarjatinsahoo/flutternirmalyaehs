@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,6 +86,15 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
         });
   }
 
+
+  getProperLink(String url){
+    List<String> mainUrl=url.split("&id2=");
+    List<String> date=mainUrl[1].split("-");
+    String value=mainUrl[0]+"&id2="+date[2]+"-"+date[1]+"-"+date[0];
+    log("URL iS>>>>>>>>"+value);
+    return value;
+  }
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -161,7 +172,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                               Navigator.pushNamed(context, "/testReport");*/
                             print(">>>>>>PDF URL TEST REPORT????>>" +
                                 patient.reportUrl);
-                            AppData.launchURL(patient.reportUrl);
+                            //AppData.launchURL(patient.reportUrl);
+                            AppData.launchURL(getProperLink(patient.reportUrl));
                           } else {
                             AppData.showInSnackBar(
                                 context, "Data Not Available");

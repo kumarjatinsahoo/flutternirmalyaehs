@@ -162,7 +162,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.red,
+                                              color:Colors.blue,
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Vitalsigns.png",
@@ -211,7 +211,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.blue,
+                                              color: Colors.red,
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Immunizationimg.png",
@@ -267,7 +267,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.red,
+                                              color: Colors.blue,
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Allergicimg.png",
@@ -323,7 +323,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.blue,
+                                              color: Colors.red,
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Biomedicalimg.png",
@@ -379,10 +379,10 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.red,
+                                              color: Colors.blue,
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
-                                                "assets/images/Healthchartimg.png",
+                                                "assets/images/userhealth.png",
                                                 height: 40,
                                               )),
                                           SizedBox(
@@ -443,7 +443,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                             color: Colors.red,
                                             padding: EdgeInsets.all(3),
                                             child: Image.asset(
-                                              "assets/images/Healthchartimg.png",
+                                              "assets/images/usertest.png",
                                               height: 40,
                                             ),
                                           ),

@@ -191,7 +191,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               Container(color: Colors.blue,
                                                 padding: EdgeInsets.all(3),
                                                 child: Icon(
-                                                    Icons.date_range_rounded,
+                                                    Icons.date_range,
                                                     size: 40,
                                                     color: Colors.white),
                                               ),

@@ -43,6 +43,16 @@ class _AllergicListListState extends State<AllergicListList> {
     new TextEditingController(),
     new TextEditingController(),
   ];
+  FocusNode fnode1 = new FocusNode();
+  FocusNode fnode2 = new FocusNode();
+  FocusNode fnode3 = new FocusNode();
+  FocusNode fnode4 = new FocusNode();
+  FocusNode fnode5 = new FocusNode();
+  FocusNode fnode6 = new FocusNode();
+  FocusNode fnode7 = new FocusNode();
+  FocusNode fnode8 = new FocusNode();
+  FocusNode fnode9 = new FocusNode();
+
   List<KeyvalueModel> severitylist = [
     KeyvalueModel(name: "High", key: "High"),
     KeyvalueModel(name: "Medium", key: "Medium"),
@@ -202,7 +212,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                   children: [
                                                     Container(
                                                       width: 100,
-                                                      child: Text(MyLocalizations.of(context).text("NAME"),
+                                                      child: Text("Name",
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.black,
@@ -386,8 +396,7 @@ class _AllergicListListState extends State<AllergicListList> {
                           height: 15,
                         ),
                         DropDown.networkDropdownGetpartUser1(
-                            MyLocalizations.of(context)
-                                .text("NAME") ,
+                            "Name" ,
                             ApiFactory.TYPE_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -427,11 +436,11 @@ class _AllergicListListState extends State<AllergicListList> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField(1,MyLocalizations.of(context).text("REACTION")),
+                        formField(1,"   Reaction"),
                         SizedBox(
                           height: 15,
                         ),
-                        formField(2,MyLocalizations.of(context).text("UPDATED_BY")),
+                        formField(2,"   Updated By"),
                       ],
                     ),
                   ),
@@ -473,9 +482,13 @@ class _AllergicListListState extends State<AllergicListList> {
             } else if (textEditingController[1].text == "" ||
                 textEditingController[1].text == null) {
               AppData.showInSnackBar(context, "Please enter Reaction");
+              FocusScope.of(context).requestFocus(fnode1);
+
             } else if (textEditingController[2].text == "" ||
                 textEditingController[2].text == null) {
               AppData.showInSnackBar(context, "Please enter Updated by");
+              FocusScope.of(context).requestFocus(fnode2);
+
             } else {
               MyWidgets.showLoading(context);
               AllergicPostModel allergicmodel = AllergicPostModel();
