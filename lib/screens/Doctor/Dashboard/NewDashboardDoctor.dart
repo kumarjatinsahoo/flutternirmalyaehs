@@ -135,7 +135,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          title: Text(MyLocalizations.of(context).text("DASHBOARD")),
+          title: Text("Dashboard"),
           backgroundColor: AppData.kPrimaryColor),
       body: Stack(
        // fit: StackFit.expand,
@@ -189,8 +189,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   /* child: Expanded(*/
-                                  child: Text(MyLocalizations.of(context).text("MY_PROFILE"),textAlign: TextAlign.center),
+                                  child: Text(
+                                    "My Profile",
+                                    // MyLocalizations.of(context).text("MY_PROFILE"),
+                                    textAlign: TextAlign.center,
+                                    //overflow: TextOverflow.ellipsis,
                                   ),
+                                ),
                               ]),
                           SizedBox(
                             width: 5,
@@ -220,11 +225,21 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                     MyLocalizations.of(context).text("APPOINTMENT"),
+                                    "Appointment",
+                                    // MyLocalizations.of(context).text("APPOINTMENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                                /*Align(
+                                                  alignment: Alignment.center,
+                                                  child: Expanded(
+                                                    child: Text(
+                                                      "Govternment Schemes",
+                                                      style: TextStyle(color: Colors.black),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  )),*/
                               ]),
                           SizedBox(
                             width: 5,
@@ -258,14 +273,25 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                   MyLocalizations.of(context).text("WALK_IN_PATIENT"),
+                                    "Walk in Patient",
+                                    // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                                /*Align(
+                                                  alignment: Alignment.center,
+                                                  child: Expanded(
+                                                    child: Text(
+                                                      "Govternment Schemes",
+                                                      style: TextStyle(color: Colors.black),
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  )),*/
                               ]),
                         ],
                       ),
+                      SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -294,21 +320,35 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    MyLocalizations.of(context).text("EMERGENCY_ACCESS"),
+                                    "Emergency Access",
+                                    //MyLocalizations.of(context).text("EMERGENCY ACCESS"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
                               ]),
                           SizedBox(
                             width: 5,
                           ),
+                          /*Expanded(
+                                        child:*/
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _buildTileblue(
                                   icon: "assets/images/shareapnt.png",
+                                  //icon: Icons.alarm,
+                                  //icon: FontAwesomeIcons.accusoft,
                                   title: "Share_appointment",
                                   fun: () {
                                     // AppData.showInSnackDone(context, "Coming Soon");
@@ -328,7 +368,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                     MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
+                                    "Share Appointment",
+                                    // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -360,7 +401,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    MyLocalizations.of(context).text("MY_PATIENT"),
+                                    "My Patient",
+                                    //MyLocalizations.of(context).text("MY_PATIENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -404,11 +446,21 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    MyLocalizations.of(context).text("Monthly Overview"),
+                                    "Monthly Overview",
+                                    // MyLocalizations.of(context).text("Monthly Overview"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                                /*Align(
+                                                    alignment: Alignment.center,
+                                                    child: Expanded(
+                                                      child: Text(
+                                                        "Health               chat",
+                                                        style: TextStyle(color: Colors.black),
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    )),*/
                               ]),
                           SizedBox(
                             width: 5,
@@ -442,7 +494,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                     MyLocalizations.of(context).text("Video Consulation"),
+                                    "Video Consultation",
+                                    // MyLocalizations.of(context).text("Video Consulation"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -567,7 +620,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/myprofile.png',
+                        child: Image.asset('assets/images/dash.png',
                             fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
@@ -576,11 +629,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("MY_PROFILE")),
+              title: Text("Dashboard"),
               onTap: () {
                 Navigator.pop(context);
-
-                // Navigator.pushNamed(context, "/qrViewExample1");
               },
             ),
             SizedBox(
@@ -595,7 +646,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/dash.png',
+                        child: Image.asset('assets/images/myprofile.png',
                             fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
@@ -604,14 +655,16 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("DASHBOARD")),
+              title: Text("My Profile"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(
+                    context, "/docMyProf");
               },
             ),
             SizedBox(
               height: 8,
             ),
+
             ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -630,9 +683,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("ABOUT_US")),
+              title: Text("About Us"),
               onTap: () {
                 Navigator.pop(context);
+
+                Navigator.pushNamed(context, '/aboutus');
+
               },
             ),
             SizedBox(
@@ -656,9 +712,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("SHARE")),
+              title: Text("Share"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/emergencydetails");
               },
             ),
             SizedBox(
@@ -682,15 +738,15 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("CONTACT_US")),
+              title: Text("Contact Us"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "/contactus");
               },
             ),
             SizedBox(
               height: 8,
             ),
-            ListTile(
+         /*   ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -699,7 +755,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     Container(
                       width: 30,
                       height: 30,
-                      child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
+                      child: *//*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*//*
                           Icon(
                         Icons.qr_code,
                         color: AppData.menublueColor,
@@ -713,13 +769,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("QR_SEARCH")),
+              title: Text("Qr Search"),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, "/qrViewExample1");
                 //Navigator.pop(context);
               },
-            ),
+            ),*/
             SizedBox(
               height: 8,
             ),
@@ -741,7 +797,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text(MyLocalizations.of(context).text("LOGOUT")),
+              title: Text("Logout"),
               onTap: () {
                 // selectDestination(9);
                 sharedPref.save(Const.IS_LOGIN, false.toString());

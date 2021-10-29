@@ -467,7 +467,7 @@ List<String> imageSliders = [
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    Navigator.pushNamed(context, "/support");
+                    Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
               ListTile(
