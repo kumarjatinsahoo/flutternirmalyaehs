@@ -140,10 +140,12 @@
   "REACTION": "Reaction",
   "UPDATED_BY": "Updated by",
   "ADD_ALLERGIC": "ADD ALLERGIC",
-  "DATE": "",
-  "RESON": "",
-  "ADD_DETAILS": "",
-  "BOOK_APPOINTMENT": "",
+  "NO_DATA_FOUND": "No Data Found",
+  "DATE": "Date",
+  "DATE_IMPLANT": "Date Of Implant",
+  "REASON": "Reason",
+  "ADD_DETAILS": "Add details",
+  "BOOK_APPOINTMENT": "Book Appointment",
   "MY_APPOINTMENT": "",
   "FIND": "",
   "MEDICAL_SERVICE": "",
@@ -154,7 +156,7 @@
   "HEALTHCARE_PROVIDER": "",
   "SEARCH": "",
   "AYUSH_DOCTOR": "",
-  "DONOR_ORGANISATION": "",
+  "DONOR_ORGANIZATION": "",
   "LIFESTYLE_SOLUTION": "",
   "TREATMENT_CENTER": "",
   "AIR_AMBULANCE": "",
@@ -176,14 +178,15 @@
   "CARDIOLOGY": "",
   "DIABETIC": "",
   "NEUROLOGY": "",
+  "OPTHALMOLOGY": "",
   "NEPHROLOGY": "",
-  "OPHTHALMOLOGY": "",
   "BOOK_HEARSE_VAN": "",
   "BOOOK_MORTUARY_FREEZER": "",
   "BOOK_PRIEST": "",
   "BOOK_REPATRIATION": "",
   "BOOK_FUNERAL_HALL": "",
   "DISPERSAL_ASHES&UMS": "",
+
   "CALL_EMERGENCY": "",
   "CALL_AMBULANCE": "",
   "CALL_POLICE": "",
@@ -215,6 +218,13 @@
   "SKIN": "",
   "EYE_BALL": "",
   "BLOOD_VESSELS": "",
+  "FIND_GENERIC_STORE": " ",
+  "FIND_HEALTH_SCHEMES": " ",
+  "": " ",
+  "": " ",
+
+
+
 
 
 
