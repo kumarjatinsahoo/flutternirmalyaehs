@@ -31,6 +31,7 @@ class _MyAppointmentState extends State<MyAppointment> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('My Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[

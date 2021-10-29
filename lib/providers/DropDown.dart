@@ -1831,7 +1831,7 @@ class DropDown {
     ));
   }
 
-  static KeyvalueModel  getData(String callFor) {
+  static KeyvalueModel getData(String callFor) {
     switch (callFor) {
       case "speciality":
         return ProfileScreen.specialitymodel;
@@ -1898,6 +1898,10 @@ class DropDown {
         break;
       case "city_Amb":
         return AmbulanceSignUpForm2.citymodel;
+      case "doctor":
+        return DoctorconsultationPage.doctorModel;
+      case "hospital":
+        return DoctorconsultationPage.hospitalModel;
 
     }
   }
@@ -2095,6 +2099,9 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
           case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "specialityapp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -3352,6 +3359,10 @@ class DropDown {
           case "relation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "bloodgroupdn":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
         }
 
         return list;

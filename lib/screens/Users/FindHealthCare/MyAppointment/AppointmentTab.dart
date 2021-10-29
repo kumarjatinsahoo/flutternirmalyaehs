@@ -29,6 +29,7 @@ class _MyAppointmentTab extends State<MyAppointmentTab> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Book Appointment'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[

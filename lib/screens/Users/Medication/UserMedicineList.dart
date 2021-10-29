@@ -150,9 +150,7 @@ class _MedicineList extends State<UserMedicineList> {
         child: Scaffold(
       body:
       isdata == true
-          ? CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )
+          ? MyWidgets.showLoading(context)
           : medicineListModel == null || medicineListModel == null
           ? Container(
         child: Center(

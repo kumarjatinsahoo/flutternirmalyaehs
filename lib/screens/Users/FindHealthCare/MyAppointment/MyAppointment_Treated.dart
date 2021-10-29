@@ -59,7 +59,23 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
         callAPI(selectedDatestr);
       });
   }
+  leftArrow() {
+    setState(() {
+      selectedDate = selectedDate.subtract(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
 
+  rightArrow() {
+    setState(() {
+      selectedDate = selectedDate.add(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
@@ -98,7 +114,47 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              appointdate(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      leftArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      appointdate(),
+                    ],
+                  ),
+                  Spacer(),
+
+                  InkWell(
+                    onTap: () {
+                      rightArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_right_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+
               isdata == true
                   ? CircularProgressIndicator(
                       backgroundColor: AppData.matruColor,
