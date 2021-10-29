@@ -301,9 +301,7 @@ String formattedDate;
                             }),
                           ),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
+
                         (DoctorconsultationPage.countryModel != null)
                             ? Padding(
                                 padding: const EdgeInsets.only(
@@ -388,7 +386,7 @@ String formattedDate;
                             child: DropDown.networkDropdownGetpartUser(
                                 "Speciality",
                                 ApiFactory.SPECIALITY_API,
-                                "speciality",
+                                "specialityapp",
                                 Icons.work_outlined,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
@@ -406,7 +404,7 @@ String formattedDate;
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
+                                  child: DropDown.countryList(
                                       "Doctor",
                                        ApiFactory.DOCTOOR_API +
                                           DoctorconsultationPage
@@ -438,7 +436,7 @@ String formattedDate;
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
+                                  child: DropDown.countryList(
                                       "Hospital",
                                       ApiFactory.HOSPITAL_API +
                                           DoctorconsultationPage
@@ -463,12 +461,10 @@ String formattedDate;
                               )
                             : Container(),
                         SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         appointdate(),
-                        SizedBox(
-                          height: 10,
-                        ),
+
                         //comultationTime(),
                         (appointmentdate.text.toString() != null||appointmentdate.text.toString()  != "")&&( DoctorconsultationPage.doctorModel!=null)
                             ? Padding(
@@ -477,8 +473,8 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.networkDropdownGetpartUser11(
-                                      "Time", ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&date=" + appointmentdate.text.toString(),
-                                     /* "Time", ApiFactory.DOCTER_AVAILABLE+
+                                      "Time",ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&date=" + appointmentdate.text.toString(),
+                                     /*"Time", ApiFactory.DOCTER_AVAILABLE+
                                       DoctorconsultationPage.doctorModel.key+
                                       "&appointdate=" + appointmentdate.text.toString()+
                                       "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,*/

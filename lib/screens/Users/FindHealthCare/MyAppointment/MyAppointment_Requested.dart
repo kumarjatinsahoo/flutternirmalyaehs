@@ -1,4 +1,5 @@
 import 'package:custom_rating_bar/custom_rating_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:user/models/AppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -58,6 +59,23 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
         callAPI(selectedDatestr);
       });
   }
+  leftArrow() {
+    setState(() {
+      selectedDate = selectedDate.subtract(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
+
+  rightArrow() {
+    setState(() {
+      selectedDate = selectedDate.add(Duration(days: 1));
+      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
+      selectedDatestr = df.format(selectedDate).toString();
+      callAPI(selectedDatestr);
+    });
+  }
 
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
@@ -92,7 +110,47 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              appointdate(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      leftArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      appointdate(),
+                    ],
+                  ),
+                  Spacer(),
+
+                  InkWell(
+                    onTap: () {
+                      rightArrow();
+                    },
+                    child: Icon(
+                      CupertinoIcons.arrow_right_circle,
+                      size: 38,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+
               isdata == true
                   ? CircularProgressIndicator(
                 backgroundColor: AppData.matruColor,
@@ -378,7 +436,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       Text(
                                                         /*'23-Nov-2020-11:30AM'*/
                                                         appointmentlist
-                                                            .dochospital,
+                                                            .dochospital??"N/A",
                                                         overflow:
                                                         TextOverflow
                                                             .clip,
@@ -424,11 +482,9 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       Text(
                                                         /*'23-Nov-2020-11:30AM'*/
                                                         appointmentlist
-                                                            .appdate ??
-                                                            "N/A" +
+                                                            .appdate ??"N/A" +
                                                                 appointmentlist
-                                                                    .apptime ??
-                                                            "N/A",
+                                                                    .apptime ??"N/A",
                                                         overflow:
                                                         TextOverflow
                                                             .clip,
@@ -461,7 +517,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                                                       Text(
                                                         /*'23-Nov-2020-11:30AM'*/
                                                         appointmentlist
-                                                            .notes,
+                                                            .notes??"N/A",
                                                         overflow:
                                                         TextOverflow
                                                             .clip,

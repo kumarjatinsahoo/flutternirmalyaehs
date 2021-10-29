@@ -46,6 +46,7 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text(widget.model.healthproname),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[

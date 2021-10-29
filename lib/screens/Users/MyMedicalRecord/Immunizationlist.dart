@@ -20,9 +20,10 @@ class _ImmunizationlistState extends State<Immunizationlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-    backgroundColor: AppData.kPrimaryColor,
-    title: Text(MyLocalizations.of(context).text("IMMUNIZATION")),
-    actions: <Widget>[
+        centerTitle: true,
+     backgroundColor: AppData.kPrimaryColor,
+     title: Text(MyLocalizations.of(context).text("IMMUNIZATION")),
+     actions: <Widget>[
       Padding(
           padding: EdgeInsets.only(right: 20.0),
           child: GestureDetector(
