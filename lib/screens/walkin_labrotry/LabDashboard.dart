@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:unique_identifier/unique_identifier.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -400,29 +401,26 @@ class _LabDashboardState extends State<LabDashboard> {
       ]
       ),
       drawer: Drawer(
-      /*   child: ListView(*/
-    child: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-    child: Column(
-      children: <Widget>[
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
               Container(
                 // height: 120,
                 color: AppData.kPrimaryColor,
                 width: double.infinity,
                 child: Padding(
-                  padding:
-                      EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
+                  padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                     /* Container(
+                      /*  Container(
                         height: size.height * 0.07,
                         width: size.width * 0.13,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(55),
-                            border:
-                                Border.all(color: Colors.white, width: 0.5),
+                            border: Border.all(color: Colors.white, width: 0.5),
                             color: Colors.white),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(55),
@@ -430,7 +428,7 @@ class _LabDashboardState extends State<LabDashboard> {
                               'assets/images/user.png',
                               height: size.height * 0.07,
                               width: size.width * 0.13,
-                              fit: BoxFit.cover,
+                              //fit: BoxFit.cover,
                             )),
                       ),*/
                       CircleAvatar(
@@ -439,7 +437,6 @@ class _LabDashboardState extends State<LabDashboard> {
                         Colors
                             .white,
                         backgroundColor: Colors.white,
-
                         child:
                         Image.asset(
                           'assets/images/user.png',
@@ -455,145 +452,126 @@ class _LabDashboardState extends State<LabDashboard> {
                       SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        "Hi " + loginResponse.body.userName,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
+                      Expanded(
+                        child: Text(
+                          "Hi " + loginResponse.body.userName ?? "N/A",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-
               ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Icon(Icons.dashboard),
-                  ),
-                  title: Text('Dashboard'),
+                  leading: Icon(Icons.dashboard,
+                      color: AppData.menublueColor, size: 27),
+                  title: Text(MyLocalizations.of(context).text("DASHBOARD"),),
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
-                    Navigator.pushNamed(context, "/patientDashboard");
+                    Navigator.pop(context);
+                    //Navigator.pushNamed(context, "/dashboard");
+                    // Navigator.pushNamed(context, "/dashboard1");
                   }
-                  // onTap: (){},
+                // onTap: (){},
 
-                  ),
+              ),
               ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.person),
+                leading: Image.asset(
+                  "assets/images/myprofile.png",
+                  height: 30,
+                  //color: Colors.redAccent,
                 ),
-                title: Text('My Profile'),
+                title: Text(MyLocalizations.of(context).text("MY_PROFILE"),),
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
                   Navigator.pushNamed(context, "/labprofile");
-                  //Navigator.pushNamed(context, "/profileScreen1");
                 },
               ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.person),
+              /* ListTile(
+                leading: Image.asset(
+                  "assets/images/home.png",
+                  height: 30,
                 ),
-                title: Text('Notifications'),
+                // leading: Icon(Icons.person),
+                title: Text('Home'),
                 selected: _selectedDestination == 2,
                 onTap: () {
                   selectDestination(2);
-                  // Navigator.pushNamed(context, "/Notifications");
+                  //Navigator.pushNamed(context, "/profile");
+                 // Navigator.pushNamed(context, "/dashboardpharmacy");
                 },
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.notifications),
+              ),*/
+              /* ListTile(
+                leading: Image.asset(
+                  "assets/images/account.png",
+                  height: 30,
                 ),
+                // leading: Icon(Icons.person),
+                title: Text('Manage Account'),
                 selected: _selectedDestination == 3,
                 onTap: () {
                   selectDestination(3);
-                  //Navigator.pushNamed(context, "/onlinechats");
+                  // Navigator.pushNamed(context, "/patientDashboard");
                 },
-
-                title: Text('Online Chat'),
-                // onTap: () {
-                // },
-              ),
+              ),*/
               ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.help_center),
+                leading: Image.asset(
+                  "assets/images/aboutus.png",
+                  height: 30,
                 ),
+                // leading: Icon(Icons.person),
+                title: Text(MyLocalizations.of(context).text("ABOUT_US")),
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
-                  // Navigator.pushNamed(context, "/onlinechats");
+                  Navigator.pushNamed(context, "/aboutus");
+                  //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
-
-                title: Text('Help'),
-                // onTap: () {
-                // },
               ),
               ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.share),
-                ),
-                title: Text('Share'),
-                selected: _selectedDestination == 5,
-                onTap: () => selectDestination(5),
-              ),
-              ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Icon(Icons.collections),
+                  leading: Image.asset(
+                    "assets/images/share.png",
+                    height: 30,
                   ),
-                  title: Text('My Orders'),
+                  title: Text(MyLocalizations.of(context).text("SHARE")),
+                  selected: _selectedDestination == 5,
+                  onTap: () {
+                    selectDestination(5);
+                    //Navigator.pushNamed(context, "/dashboard1");
+                    Navigator.pushNamed(context, "/emergencydetails");
+                  }),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/contact us.png",
+                    height: 30,
+                  ),
+                  title: Text(MyLocalizations.of(context).text("CONTACT_US")),
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    //Navigator.pushNamed(context, "/myorder");
+                    Navigator.pushNamed(context, "/contactus");
+                    //Navigator.pushNamed(context, "/discountoffer");
                   }),
               ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Icon(Icons.calendar_today),
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
                   ),
-                  title: Text('Monthly Overview'),
+                  title: Text(MyLocalizations.of(context).text("SUPPORT")),
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    //Navigator.pushNamed(context, "/monthlyview");
+                    Navigator.pushNamed(context, "/support");
                   }),
               ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Icon(Icons.healing),
-                  ),
-                  title: Text('Processed Orders'),
-                  selected: _selectedDestination == 8,
-                  onTap: () {
-                    selectDestination(8);
-                    //Navigator.pushNamed(context, "/processedorders");
-                  }),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.home),
-                ),
-                title: Text('Set Discount and Offer'),
-                selected: _selectedDestination == 9,
-                onTap: () {
-                  selectDestination(9);
-                  //Navigator.pushNamed(context, "/setdiscount");
-                },
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.logout),
+                leading: Image.asset(
+                  "assets/images/logout.png",
+                  height: 30,
                 ),
                 title: Text('Logout'),
                 selected: _selectedDestination == 10,
