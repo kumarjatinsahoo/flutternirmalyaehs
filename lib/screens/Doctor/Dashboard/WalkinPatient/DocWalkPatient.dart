@@ -9,7 +9,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/Doctor/Dashboard/WalkinPinView.dart';
+import 'package:user/screens/Doctor/Dashboard/WalkinPatient/WalkinPinView.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -51,7 +51,7 @@ String uhid;
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
       appBar: AppBar(
-        backgroundColor: Color(0xFF0F6CE1),
+        backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
         title: Text('Walk in Patient '),
       ),
@@ -191,7 +191,7 @@ String uhid;
                // SizedBox(height: 20),
                 Material(
                   elevation: 5,
-                  color: const Color(0xFF0F6CE1),
+                  color: AppData.kPrimaryColor,
                   borderRadius: BorderRadius.circular(10.0),
                   child: MaterialButton(
                     onPressed: () {

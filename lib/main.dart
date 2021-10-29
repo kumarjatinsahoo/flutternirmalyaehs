@@ -9,8 +9,9 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
+import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
-import 'package:user/screens/Doctor/Dashboard/QRViewExample1.dart';
+import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
@@ -81,9 +82,9 @@ import 'package:user/screens/Doctor/Dashboard/Appointment1.dart';
 import 'package:user/screens/Doctor/Dashboard/DasboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/DocAppointmentMangement.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
-import 'package:user/screens/Doctor/Dashboard/DocWalkPatient.dart';
+import 'package:user/screens/Doctor/Dashboard/WalkinPatient/DocWalkPatient.dart';
 import 'package:user/screens/Doctor/Dashboard/DoctorMedicationTab.dart';
-import 'package:user/screens/Doctor/Dashboard/EmergencyAccess.dart';
+import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/EmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/screens/Doctor/Dashboard/PrintReportWebVIEW.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -136,7 +137,6 @@ import 'package:user/screens/Patient/PatientRegistration4.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
-import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
@@ -692,7 +692,10 @@ class _MyAppState extends State<MyApp> {
               '/docWalkInReg': (context) => DocWalkPatient(
                     model: _model,
                   ),
-              '/emegencyAc': (context) => EmergencyAccess(
+              '/emegencyAccess': (context) => EmergencyAccess(
+                    model: _model,
+                  ),
+              '/qrEmergencyAccess': (context) => QrEmergencyAccess(
                     model: _model,
                   ),
               '/printRep': (context) => PrintReportWebView(
