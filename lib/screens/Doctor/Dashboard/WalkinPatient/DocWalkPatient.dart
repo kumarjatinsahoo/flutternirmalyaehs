@@ -51,7 +51,7 @@ String uhid;
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
       appBar: AppBar(
-        backgroundColor: Color(0xFF0F6CE1),
+        backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
         title: Text('Walk in Patient '),
       ),
@@ -191,7 +191,7 @@ String uhid;
                // SizedBox(height: 20),
                 Material(
                   elevation: 5,
-                  color: const Color(0xFF0F6CE1),
+                  color: AppData.kPrimaryColor,
                   borderRadius: BorderRadius.circular(10.0),
                   child: MaterialButton(
                     onPressed: () {

@@ -9,6 +9,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
+import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
@@ -691,7 +692,10 @@ class _MyAppState extends State<MyApp> {
               '/docWalkInReg': (context) => DocWalkPatient(
                     model: _model,
                   ),
-              '/emegencyAc': (context) => EmergencyAccess(
+              '/emegencyAccess': (context) => EmergencyAccess(
+                    model: _model,
+                  ),
+              '/qrEmergencyAccess': (context) => QrEmergencyAccess(
                     model: _model,
                   ),
               '/printRep': (context) => PrintReportWebView(

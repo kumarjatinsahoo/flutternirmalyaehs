@@ -302,7 +302,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   icon: "assets/images/emergency.png",
                                   fun: () {
                                     Navigator.pushNamed(
-                                        context, "/docWalkInReg");
+                                        context, "/emegencyAccess");
                                     // AppData.showInSnackDone(context, "Coming Soon");
                                     // Navigator.pushNamed(context, "/discountoffer");
                                     //AppData.showInSnackBar(context, "Coming soon");

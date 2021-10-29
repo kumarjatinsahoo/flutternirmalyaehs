@@ -125,7 +125,7 @@ class _LabDashboardState extends State<LabDashboard> {
         children: [
           Container(
             child: Image.asset(
-              "assets/images/doctorbanner.jpg",
+              "assets/images/labbanner.jpg",
               // width: size.width,
               // fit: BoxFit.cover,
             ),
