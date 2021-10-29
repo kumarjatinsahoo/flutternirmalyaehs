@@ -138,7 +138,6 @@ import 'package:user/screens/Patient/PatientRegistration4.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
-import 'package:user/screens/PinView.dart';
 import 'package:user/screens/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
