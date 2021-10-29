@@ -23,6 +23,7 @@ class DocMyProfile extends StatefulWidget {
 
 class _DocMyProfileState extends State<DocMyProfile> {
   String loAd = "Loading..";
+
   //Body model;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
@@ -35,6 +36,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     callAPI();
     //model = widget.model.model;
   }
+
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.USER_PROFILE + loginResponse.body.user,
@@ -47,7 +49,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
               profileModel1 = ProfileModel1.fromJson(map);
-
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -84,12 +85,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
             children: [
               Center(
                 child: Text(
-                  'My Profile',
+                  MyLocalizations.of(context).text("MY_PROFILE"),
                   style: TextStyle(color: Colors.white),
                 ),
               ),
               //Spacer(),
-           /*   Align(
+              /*   Align(
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right:10.0),
@@ -145,142 +146,148 @@ class _DocMyProfileState extends State<DocMyProfile> {
             },
           ),
         ),*/
-        body:
-         (profileModel1 != null)
-             ? Container(
-          height: double.maxFinite,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 120.0,
-                      decoration: BoxDecoration(
-                        color: AppData.matruColor.withOpacity(0.7),
-                      ),
-                    ),
-                    _buildHeader(context)
-                  ],
-                ),
-                const SizedBox(height: 10.0),
-                Container(
-                  padding: const EdgeInsets.only(left: 20.0, bottom: 4.0),
-                  alignment: Alignment.topLeft,
-                  child: Text("User Information",
-                   // MyLocalizations.of(context).text("USER_INFORMATION").toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Card(
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.all(15),
-                    child: Column(
-                      children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            ...ListTile.divideTiles(
-                              color: Colors.grey,
-                              tiles: [
-                                ListTile(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 4),
-                                  leading: Icon(Icons.calendar_today),
-                                  title: Text("BIRTH DATE"),
-                                  subtitle: Text(profileModel1.body.birthdate??"N/A"),
-                                ), ListTile(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 4),
-                                  leading: Icon(Icons.person),
-                                  title: Text("GENDER"),
-                                  subtitle: Text( profileModel1.body.gender??"N/A"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.book),
-                                  title: Text(
-                                    "EDUCATION",
-                                  ),
-                                  subtitle: Text(profileModel1.body.education??"N/A"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.face),
-                                  title: Text(
-                                    "SPECIALITY",
-                                  ),
-                                  subtitle: Text(profileModel1.body.speciality??"N/A"),
-                                ),
-
-                                ListTile(
-                                  leading: Icon(Icons.email),
-                                  title: Text("ORGANIZATION"),
-                                  subtitle: Text("NIRMALYA"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.contact_phone),
-                                  title: Text("IMA NO"),
-                                  subtitle: Text( profileModel1.body.imano??"N/A"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.info_outline),
-                                  title: Text(
-                                    "PAN CARD NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.pancardno),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.info_outline),
-                                  title: Text(
-                                    "PASSPORT NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.passportno??"N/A"),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.info_outline),
-                                  title: Text(
-                                    "VOTER CARD NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.votercardno??"N/A"),
-                                ), ListTile(
-                                  leading: Icon(Icons.filter),
-                                  title: Text(
-                                    "LICENCE NO",
-                                  ),
-                                  subtitle: Text(profileModel1.body.licenceno??"N/A"),
-                                ),
-
-                              ],
+        body: (profileModel1 != null)
+            ? Container(
+                height: double.maxFinite,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 120.0,
+                            decoration: BoxDecoration(
+                              color: AppData.matruColor.withOpacity(0.7),
                             ),
-                          ],
-                        )
-                      ],
-                    ),
+                          ),
+                          _buildHeader(context)
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Container(
+                        padding: const EdgeInsets.only(left: 20.0, bottom: 4.0),
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                         MyLocalizations.of(context).text("USER_INFORMATION").toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      Card(
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.all(15),
+                          child: Column(
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  ...ListTile.divideTiles(
+                                    color: Colors.grey,
+                                    tiles: [
+                                      ListTile(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 4),
+                                        leading: Icon(Icons.calendar_today),
+                                        title: Text(MyLocalizations.of(context).text("DOB1").toUpperCase()),
+                                        subtitle: Text(
+                                            profileModel1.body.birthdate ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 4),
+                                        leading: Icon(Icons.person),
+                                        title: Text(MyLocalizations.of(context).text("GENDER").toUpperCase()),
+                                        subtitle: Text(
+                                            profileModel1.body.gender ?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.book),
+                                        title: Text(MyLocalizations.of(context).text("EDUCATION").toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.education ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.face),
+                                        title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.speciality ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.email),
+                                        title: Text(MyLocalizations.of(context).text("ORGANIZATION").toUpperCase()),
+                                        subtitle: Text("NIRMALYA"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.contact_phone),
+                                        title: Text(MyLocalizations.of(context).text("IMA_NO").toUpperCase()),
+                                        subtitle: Text(
+                                            profileModel1.body.imano ?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.info_outline),
+                                        title: Text(MyLocalizations.of(context).text("PAN_CARD_NO").toUpperCase(),
+                                        ),
+                                        subtitle:
+                                            Text(profileModel1.body.pancardno),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.info_outline),
+                                        title: Text(MyLocalizations.of(context).text("PASSPORT_NO").toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.passportno ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.info_outline),
+                                        title: Text(MyLocalizations.of(context).text("VOTER_CARD_NO").toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.votercardno ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.filter),
+                                        title: Text(MyLocalizations.of(context).text("LICENCE_NO").toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.licenceno ??
+                                                "N/A"),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      SizedBox(
+                        height: 13,
+                      )
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 3,
-                ),
-                SizedBox(
-                  height: 13,
-                )
-              ],
-            ),
-          ),
-        )
+              )
             : Center(
-          child: Text(
-            loAd,
-            style: TextStyle(color: Colors.black, fontSize: 23),
-          ),
-        )
-    );
+                child: Text(
+                  loAd,
+                  style: TextStyle(color: Colors.black, fontSize: 23),
+                ),
+              ));
   }
-
 
   Container _buildHeader(BuildContext context) {
     return Container(
@@ -291,7 +298,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
         children: <Widget>[
           Container(
             margin:
-            EdgeInsets.only(top: 40.0, left: 40.0, right: 40.0, bottom: .0),
+                EdgeInsets.only(top: 40.0, left: 40.0, right: 40.0, bottom: .0),
             width: double.maxFinite,
             height: 200,
             decoration: BoxDecoration(
@@ -319,7 +326,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   height: 45.0,
                 ),*/
                 Text(
-                  profileModel1.body.name??"N/A",
+                  profileModel1.body.name ?? "N/A",
                   style: Theme.of(context)
                       .textTheme
                       .title
@@ -330,13 +337,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   height: 6.0,
                 ),
                 Text(
-                  "AADHAAR NO" +
-                      ": " +
-                      profileModel1.body.aadhaar??"N/A",
+                  "AADHAAR NO" + ": " + profileModel1.body.aadhaar ?? "N/A",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
                 ),
-
               ],
             ),
             // ),

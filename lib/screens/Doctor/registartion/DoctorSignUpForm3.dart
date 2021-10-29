@@ -197,7 +197,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGNUP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(
@@ -240,6 +240,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                       Column(
                         children: [
                           Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 18, color: Colors.black),
                           ),
@@ -252,21 +253,25 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                       SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        children: [
-                          Text(MyLocalizations.of(context).text("ROLE"),
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                          Column(
-                            children: [
-                              Text(MyLocalizations.of(context).text("DOCTOR"),
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.black),
-                              ),
-                            ],
-                          )
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Row(
+                          children: [
+                            Text(MyLocalizations.of(context).text("ROLE :"),
+                              style: TextStyle(
+                                  fontSize: 20, color: Colors.black),
+                            ),
+                            SizedBox(width: 25),
+                            Column(
+                              children: [
+                                Text(MyLocalizations.of(context).text("DOCTOR"),
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(height: 11),
                       Padding(
