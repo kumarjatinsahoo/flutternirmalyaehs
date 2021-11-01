@@ -275,8 +275,10 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                                     width: 25,
                                                     height: 25,
                                                     child: Image.asset(
-                                                        'assets/images/phonegoogle.png',
-                                                        fit: BoxFit.cover)),
+                                                        'assets/images/googlecall.png',
+                                                        fit: BoxFit.cover,
+                                                        color: Color(0xFFCF3564)
+                                                    )),
                                                 // child: Icon(Icons.phone_outlined,color: AppData.kPrimaryRedColor)),
                                                 SizedBox(
                                                   height: 10,
@@ -286,7 +288,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15,
-                                                    color: Colors.redAccent,
+                                                    color: Color(0xFFCF3564),
                                                   ),
                                                 ),
                                               ],
@@ -321,8 +323,10 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                               width: 25,
                                               height: 25,
                                               child: Image.asset(
-                                                  'assets/images/directiongoogle.png',
-                                                  fit: BoxFit.cover)),
+                                                  'assets/images/googledirection.png',
+                                                  fit: BoxFit.cover,
+                                                  color: Color(0xFF2372B6)
+                                              )),
                                           SizedBox(
                                             height: 10,
                                           ),
@@ -331,7 +335,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
-                                                color: Colors.blueAccent),
+                                                color: Color(0xFF2372B6)),
                                           ),
                                         ],
                                       ),
@@ -352,8 +356,10 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                               width: 25,
                                               height: 25,
                                               child: Image.asset(
-                                                  'assets/images/sharegoogle.png',
-                                                  fit: BoxFit.cover)),
+                                                  'assets/images/share.png',
+                                                  fit: BoxFit.cover,
+                                              color:Color(0xFFCF3564)
+                                              )),
                                           SizedBox(
                                             height: 10,
                                           ),
@@ -362,7 +368,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
-                                                color: Colors.redAccent),
+                                                color: Color(0xFFCF3564)),
                                           ),
                                         ],
                                       ),
@@ -385,8 +391,11 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                                     width: 25,
                                                     height: 25,
                                                     child: Image.asset(
-                                                        'assets/images/websitegoogle.png',
-                                                        fit: BoxFit.cover)),
+                                                        'assets/images/googlewebsite.png',
+                                                        fit: BoxFit.cover,
+                                                        color: Color(0xFF2372B6)
+
+                                                    )),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -395,7 +404,7 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 15,
-                                                      color: Colors.blueAccent),
+                                                      color: Color(0xFF2372B6)),
                                                 ),
                                               ],
                                             ),

@@ -102,7 +102,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summery",
+            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summary",
               style: TextStyle(color: AppData.white),
             ),
             centerTitle: true,
@@ -156,7 +156,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                             print(">>>>>>PDF URL TEST REPORT????>>" +
                                 patient.reportUrl);
                             //AppData.launchURL(patient.reportUrl);
-                            AppData.launchURL(getProperLink(patient.reportUrl));
+                            AppData.launchURL(patient.reportUrl);
                           } else {
                             AppData.showInSnackBar(
                                 context, "Data Not Available");
@@ -190,7 +190,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                 Text(
                                   /*'2016'*/
                                   splitedText[0],
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 15),
                                 ),
                               ],
                             ),

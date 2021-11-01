@@ -127,7 +127,7 @@ import 'screens/walkin_labrotry/Screen/TestAppointmentPage1.dart';
 import 'package:user/screens/TestReportListUser.dart';
 import 'screens/Users/MyMedicalRecord/TestReportListUser.dart';
 import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dart';
-import 'package:user/screens/Users/GoogleSearchDetails.dart';
+import 'package:user/screens/Users/FindHealthCare/Find/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/Dashboard/IdcardPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
