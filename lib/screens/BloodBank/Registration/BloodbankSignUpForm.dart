@@ -168,6 +168,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         title: Text("SIGN UP"),
+        centerTitle: true,
       ),
       body: Container(
         child: Column(
@@ -267,7 +268,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
 
                                   SizedBox(height: 8),
 
-                                  formFieldMobile(
+                                  experience(
                                       10, "Experience(Years)", fnode2, fnode3),
                                   SizedBox(
                                     height: 8,
@@ -969,7 +970,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   //     ),
   //   );
   // }
-  Widget formFieldMobile(
+  Widget experience(
       int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -991,7 +992,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 10,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
