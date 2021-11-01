@@ -111,7 +111,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
                           fit: BoxFit.contain,
                           width: size.width,
                         ),
-                        Divider(),
+                      /*  Divider(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -144,7 +144,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
                             Icon(Icons.bookmark,color: Colors.black,size: 20),
                             Icon(Icons.share,color: Colors.black,size: 20),
                           ],
-                        ),SizedBox(height: 10,)
+                        ),*/SizedBox(height: 10,)
                       ],
                     ),
                   );

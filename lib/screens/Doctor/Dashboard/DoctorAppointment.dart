@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('My Appointment'),
+          title:Text(MyLocalizations.of(context).text("MY_APPOINTMENT")),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
            /* IconButton(
@@ -56,17 +57,17 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: /*"Requested"*/ "REQUESTED",
+                text: MyLocalizations.of(context).text("REQUESTED") ,
 
               ),
               Tab(
-                text: /*"Confirmed"*/ "CONFIRMED",
+                text: MyLocalizations.of(context).text("CONFIRMED") ,
               ),
               Tab(
-                text: /*"Cancelled"*/ "CANCELLED",
+                text: MyLocalizations.of(context).text("CANCELLED"),
               ),
               Tab(
-                text: /*"Treated"*/ "TREATED",
+                text: MyLocalizations.of(context).text("TREATED") ,
               ),
             ],
           ),
@@ -93,7 +94,8 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
           backgroundColor: AppData.kPrimaryColor,
           elevation: 5,
           splashColor: Colors.grey,
-        ),*/ /*
+        ),*/
+    /*
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -114,7 +116,8 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
             child: Container(
               child: Column(
                 children: [
-                  */ /*Padding(
+                  */
+    /*Padding(
                     padding: const EdgeInsets.only(top:0.0,bottom: 0.0,left: 0.0, right: 0.0),
                     child: Container(
                       // height: 100,
@@ -129,9 +132,11 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                       ),
                       child:  Padding(
                         padding: const EdgeInsets.only(left:20.0,right: 20,top: 10,bottom: 10),
-                        child: */ /**/ /*Row(
+                        child: */ /**/
+    /*Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [*/ /**/ /*
+                          children: [*/ /**/
+    /*
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,

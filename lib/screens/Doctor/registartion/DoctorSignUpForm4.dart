@@ -185,7 +185,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     education = widget.model.education;
     speciality = widget.model.speciality;
     dateofbirth = widget.model.dateofbirth;
-     bloodgroup=widget.model.bloodgroup;
+    bloodgroup = widget.model.bloodgroup;
     gender = widget.model.gender;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
@@ -212,67 +212,73 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGNUP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(
-    child: SingleChildScrollView(
-      child: Column(
-        children: [
-
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 10,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 60.0, right: 60.0),
-                    child: Image.asset(
-                      "assets/logo1.png",
-                      fit: BoxFit.fitWidth,
-                      //width: ,
-                      height: 110.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Form(
-                  key: _formKey,
-                  autovalidate: _autovalidate,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                        child: Image.asset(
+                          "assets/logo1.png",
+                          fit: BoxFit.fitWidth,
+                          //width: ,
+                          height: 110.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Form(
+                      key: _formKey,
+                      autovalidate: _autovalidate,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Text(
+                                MyLocalizations.of(context)
+                                    .text("FILL_IN_PERSONAL_INFORMATION"),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
-
-                      DropDown.networkDropdownGetpartUser(
-                          MyLocalizations.of(context)
-                              .text("COUNTRY") ,
-                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
+                          SizedBox(
+                            height: 5,
+                          ),
+                          formFieldaddress(
+                              8,
+                              MyLocalizations.of(context).text("ADDRESS"),
+                              fnode1,
+                              fnode2),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context).text("COUNTRY"),
+                              ApiFactory.COUNTRY_API,
+                              "country",
+                              Icons.location_on_rounded,
+                              23.0, (KeyvalueModel data) {
                             setState(() {
                               print(ApiFactory.COUNTRY_API);
                               DoctorSignUpForm4.countryModel = data;
@@ -535,76 +541,46 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                           text:MyLocalizations.of(context).text(  "T&C"),
                                           /* "Welcome back",*/
 
-                                          style: TextStyle(
-                                             //fontWeight: FontWeight.w500,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: AppData
-                                                .kPrimaryColor,
-                                          ),
-                                        )
-                                      ],
-                                    ))),
-                           /* RichText(
-                                textAlign: TextAlign.start,
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                      *//* "Welcome back",*//*
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.w800,
-                                        fontFamily: "Monte",
-                                        // fontSize: 25.0,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text:MyLocalizations.of(context).text("T&C") ,
-                                      *//* "Welcome back",*//*
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.w500,
-                                        fontFamily: "Monte",
-                                        // fontSize: 25.0,
-                                        color: Colors.indigo,
-                                      ),
-                                    )
-                                  ],
-                                )),*/
-                          ],
-                        ),
-                      ),
-                      showErrorMessage ?
-                      Container(
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(80.0)
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData.kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                              ],
+                            ),
                           ),
-                          child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text('Please accept the terms and conditions to proceed...')
-                          )
-                      )
-          :
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10),
-                        child: nextButton1(),
+                          showErrorMessage
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius:
+                                          BorderRadius.circular(80.0)),
+                                  child: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Text(
+                                          'Please accept the terms and conditions to proceed...')))
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: nextButton1(),
+                                ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -761,77 +737,63 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
 
   Widget nextButton1() {
     return GestureDetector(
-      onTap: ()
-    {
-      if (textEditingController[8].text == "" ||
-          textEditingController[8].text == null) {
-        AppData.showInSnackBar(context, "Please enter Address");
-        FocusScope.of(context).requestFocus(fnode1);
-      } else if (DoctorSignUpForm4.countryModel == null ||
-          DoctorSignUpForm4.countryModel == "") {
-        AppData.showInSnackBar(context, "Please select Country");
-      } else if (DoctorSignUpForm4.stateModel == null ||
-          DoctorSignUpForm4.stateModel == "") {
-        AppData.showInSnackBar(context, "Please select State");
-      } else if (DoctorSignUpForm4.districtModel == null ||
-          DoctorSignUpForm4.districtModel == "") {
-        AppData.showInSnackBar(context, "Please select District");
-      }else if (DoctorSignUpForm4.cityModel == null ||
-          DoctorSignUpForm4.cityModel == "") {
-        AppData.showInSnackBar(context, "Please select City");
-      }else if (textEditingController[5].text == "" ||
-          textEditingController[5].text == null) {
-        AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
-        FocusScope.of(context).requestFocus(fnode2);
-      }else if (textEditingController[4].text != ""  &&
-          textEditingController[4].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid Home Phone");
-        FocusScope.of(context).requestFocus(fnode3);
-      }else if (textEditingController[9].text != "" &&
-          textEditingController[9].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid Office Phone");
-        FocusScope.of(context).requestFocus(fnode4);
-      }else if (textEditingController[10].text == "" ||
-          textEditingController[10].text == null) {
-        AppData.showInSnackBar(context, "Please enter Mobile Number");
-        FocusScope.of(context).requestFocus(fnode5);
-      }else if (textEditingController[10].text != "" &&
-          textEditingController[10].text.length != 10) {
-        AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
-        FocusScope.of(context).requestFocus(fnode5);
-      }else if (textEditingController[11].text == "" ||
-          textEditingController[11].text == null) {
-        AppData.showInSnackBar(context, "Please enter E-mail Id");
-        FocusScope.of(context).requestFocus(fnode6);
-      } else if (textEditingController[11].text != ""&&
-          !AppData.isValidEmail(textEditingController[11].text)) {
-        AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
-        FocusScope.of(context).requestFocus(fnode6);
-      }else if (textEditingController[12].text != "" &&
-          !AppData.isValidEmail(textEditingController[12].text)) {
-        AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
-        FocusScope.of(context).requestFocus(fnode7);
-      }else if (textEditingController[13].text == "" ||
-          textEditingController[13].text == null) {
-        AppData.showInSnackBar(context, "Please enter Experience");
-        FocusScope.of(context).requestFocus(fnode8);
-      }else if (_checkbox == false) {
-        AppData.showInSnackBar(context, "Please checked Terms and Condition");
-      }
-    //  else if (_checkbox != true) {
-    //     setState(() =>
-    //         AppData.showInSnackBar(context, "Please select Checkbox")
-    //     );
-    //
-    // }
-
-        /*else if (textEditingController[12].text == "" ||
-            textEditingController[12].text == null) {
-          AppData.showInSnackBar(context, "Please enter Alternate emailid");
-        } else if (textEditingController[12].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Alternate emailid ");
-        } */
-    else {
+      onTap: () {
+        if (textEditingController[8].text == "" ||
+            textEditingController[8].text == null) {
+          AppData.showInSnackBar(context, "Please enter Address");
+          FocusScope.of(context).requestFocus(fnode1);
+        } else if (DoctorSignUpForm4.countryModel == null ||
+            DoctorSignUpForm4.countryModel == "") {
+          AppData.showInSnackBar(context, "Please select Country");
+        } else if (DoctorSignUpForm4.stateModel == null ||
+            DoctorSignUpForm4.stateModel == "") {
+          AppData.showInSnackBar(context, "Please select State");
+        } else if (DoctorSignUpForm4.districtModel == null ||
+            DoctorSignUpForm4.districtModel == "") {
+          AppData.showInSnackBar(context, "Please select District");
+        } else if (DoctorSignUpForm4.cityModel == null ||
+            DoctorSignUpForm4.cityModel == "") {
+          AppData.showInSnackBar(context, "Please select City");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+          FocusScope.of(context).requestFocus(fnode2);
+        } else if (textEditingController[4].text != "" &&
+            textEditingController[4].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter a valid Home Phone");
+          FocusScope.of(context).requestFocus(fnode3);
+        } else if (textEditingController[9].text != "" &&
+            textEditingController[9].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter a valid Office Phone");
+          FocusScope.of(context).requestFocus(fnode4);
+        } else if (textEditingController[10].text == "" ||
+            textEditingController[10].text == null) {
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
+          FocusScope.of(context).requestFocus(fnode5);
+        } else if (textEditingController[10].text != "" &&
+            textEditingController[10].text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+          FocusScope.of(context).requestFocus(fnode5);
+        } else if (textEditingController[11].text == "" ||
+            textEditingController[11].text == null) {
+          AppData.showInSnackBar(context, "Please enter E-mail Id");
+          FocusScope.of(context).requestFocus(fnode6);
+        } else if (textEditingController[11].text != "" &&
+            !AppData.isValidEmail(textEditingController[11].text)) {
+          AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
+          FocusScope.of(context).requestFocus(fnode6);
+        } else if (textEditingController[12].text != "" &&
+            !AppData.isValidEmail(textEditingController[12].text)) {
+          AppData.showInSnackBar(
+              context, "Please enter a valid alternate E-mail Id");
+          FocusScope.of(context).requestFocus(fnode7);
+        } else if (textEditingController[13].text == "" ||
+            textEditingController[13].text == null) {
+          AppData.showInSnackBar(context, "Please enter Experience");
+          FocusScope.of(context).requestFocus(fnode8);
+        } else if (_checkbox == false) {
+          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+        } else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
           doctorModel.stateid = DoctorSignUpForm4.stateModel.key;
@@ -1231,23 +1193,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+
   Widget formFieldaddress(
-      int index,
-      String hint,  FocusNode currentfn, FocusNode nextFn
-      ) {
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -1257,16 +1214,13 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 15),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
             focusNode: currentfn,
-            textAlignVertical:
-            TextAlignVertical.center,
+            textAlignVertical: TextAlignVertical.center,
             onFieldSubmitted: (value) {
               print("ValueValue" + error[index].toString());
 
@@ -1284,23 +1238,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+
   Widget formFielEmail(
-      int index,
-      String hint, FocusNode currentfn, FocusNode nextFn
-      ) {
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -1310,9 +1259,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 15),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
@@ -1337,22 +1284,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
-  Widget formFieldzip(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn
 
-      ) {
+  Widget formFieldzip(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black,width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1367,17 +1310,16 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   maxLength: 6,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
-                    hintText:hint,
-                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintText: hint,
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
@@ -1395,21 +1337,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+
   Widget formFieldExperience(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn
-      ) {
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black,width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1424,17 +1363,16 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   maxLength: 3,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
-                    hintText:hint,
-                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintText: hint,
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
@@ -1452,21 +1390,18 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+
   Widget formFieldMobile(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn
-      ) {
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black, width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1481,23 +1416,21 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   maxLength: 10,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
                     setState(() {});
-                     AppData.fieldFocusChange(context, currentfn, nextFn);
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
                   },
                   onSaved: (value) {
                     //userPersonalForm.phoneNumber = value;
@@ -1510,6 +1443,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       ),
     );
   }
+
   popup(BuildContext context, String message) {
     return Alert(
         context: context,
@@ -1530,7 +1464,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             ),
             onPressed: () {
               Navigator.pushNamed(context, "/login");
-
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

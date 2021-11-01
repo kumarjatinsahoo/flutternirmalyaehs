@@ -10,6 +10,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class TestReportListUser1 extends StatefulWidget {
   MainModel model;
@@ -61,6 +62,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
   }
 */
   callAPI(int i) {
+    // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.POC_REPORT_LIST +
             "?page=" +
@@ -79,6 +81,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                 pocReportModel.addMore(map);
               }
             } else {
+              isdata=true;
              // isDataNotAvail = true;
               //if (i == 1) AppData.showInSnackBar(context, msg);
             }
@@ -99,37 +102,17 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summery",
+            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summary",
               style: TextStyle(color: AppData.white),
             ),
             centerTitle: true,
             backgroundColor:AppData.kPrimaryColor,
         ),
-        body: SingleChildScrollView(
-      physics: ScrollPhysics(),
+        body: (pocReportModel != null)? SingleChildScrollView(
+     // physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
-          isdata == true
-              ? CircularProgressIndicator(
-            backgroundColor: AppData.matruColor,
-          )
-              : pocReportModel == null || pocReportModel == null
-              ? Container(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(height: 300,),
-                  Text(
-                    'No Data Found',
-                    style:
-                    TextStyle(color: Colors.black, fontSize: 15),
-                  ),
-                ],
-              ),
-            ),
 
-          )
-              :
           (pocReportModel != null)
               ? ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -173,7 +156,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                             print(">>>>>>PDF URL TEST REPORT????>>" +
                                 patient.reportUrl);
                             //AppData.launchURL(patient.reportUrl);
-                            AppData.launchURL(getProperLink(patient.reportUrl));
+                            AppData.launchURL(patient.reportUrl);
                           } else {
                             AppData.showInSnackBar(
                                 context, "Data Not Available");
@@ -207,7 +190,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                                 Text(
                                   /*'2016'*/
                                   splitedText[0],
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 15),
                                 ),
                               ],
                             ),
@@ -285,7 +268,21 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
               : Container(),
         ],
       ),
-    ));
+    ):Container(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 300,),
+                (isdata)? Text(
+                  'No Data Found',
+                  style:
+                  TextStyle(color: Colors.black, fontSize: 15),
+                ):CircularProgressIndicator(),
+              ],
+            ),
+          ),
+
+        ));
     /*body: ListTile(
         onTap: () {
         },

@@ -74,7 +74,6 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -134,7 +133,6 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   ];
   List<KeyvalueModel> districtList = [
     KeyvalueModel(name: "india", key: "1"),
-
   ];
 
   @override
@@ -143,6 +141,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
     BloodBankSignUpForm.districtModel = null;
     BloodBankSignUpForm.blockModel = null;
     BloodBankSignUpForm.genderModel = null;
+    BloodBankSignUpForm.bloodbankModel = null;
+    BloodBankSignUpForm.titlemodel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -165,54 +165,29 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGN UP"),
+        centerTitle: true,
+      ),
       body: Container(
         child: Column(
           children: [
-            /*  Padding(
-      padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-      child:*/Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                child: Row(/*
-        mainAxisAlignment: MainAxisAlignment.start,*/
-                  children: [
-                    InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back,color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                      child: Text('SIGN UP',
-                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                    ),
-                    /*Align(
-            alignment: Alignment.center,
-            child: Text('SIGN UP',textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),
-          ),
-          ),*/
-                  ],
-                ),
-              ),
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-              /*  height:*/
-            ),
-
-            /* ),*/
             Expanded(
               child: ListView(
                 shrinkWrap: true,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left:10.0, right: 10.0,),
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         ListView(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
@@ -220,7 +195,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                             Align(
                               alignment: Alignment.center,
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                                padding: const EdgeInsets.only(
+                                    left: 60.0, right: 60.0),
                                 child: Image.asset(
                                   "assets/logo1.png",
                                   fit: BoxFit.fitWidth,
@@ -251,8 +227,11 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                 children: <Widget>[
                                   Column(
                                     children: [
-                                      Text("Fill in personal Information (All fields are mandatory)",
-                                        style: TextStyle(fontSize: 18, color: Colors.black),),
+                                      Text(
+                                        "Fill in personal Information (All fields are mandatory)",
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.black),
+                                      ),
                                     ],
                                   ),
                                   SizedBox(
@@ -265,7 +244,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
-                                      print(ApiFactory.BlOODBANK_ORGANISATION_API);
+                                      print(ApiFactory
+                                          .BlOODBANK_ORGANISATION_API);
                                       BloodBankSignUpForm.bloodbankModel = data;
                                     });
                                   }),
@@ -283,15 +263,17 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField(9, "Professional's Name",fnode1,fnode2),
+                                  formField(
+                                      9, "Professional's Name", fnode1, fnode2),
 
                                   SizedBox(height: 8),
 
-                                  formFieldMobile(10, "Experience(Years)",fnode2,fnode3),
+                                  experience(
+                                      10, "Experience(Years)", fnode2, fnode3),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField(11, "Address",fnode3,null),
+                                  formField(11, "Address", fnode3, null),
 
                                   DropDown.networkDropdownGetpartUser1(
                                       "Gender",
@@ -306,7 +288,9 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                   }),
                                   SizedBox(height: 15),
 
-                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
                                     child: nextButton1(),
                                   ),
                                   // SizedBox(
@@ -406,9 +390,11 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                             )
                           ],
                         ),
-                        SizedBox(height: 10,),
-
-                      ],),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -416,10 +402,9 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
           ],
         ),
       ),
-
-
     );
   }
+
   /*_
             ],
           ),
@@ -429,13 +414,10 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   }*/
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          BloodBankSignUpForm.genderModel = model;
-        });
+        (KeyvalueModel model) {
+      BloodBankSignUpForm.genderModel = model;
+    });
   }
-
-
-
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -515,7 +497,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -580,30 +562,25 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       fun: () {
         if (BloodBankSignUpForm.bloodbankModel == null ||
             BloodBankSignUpForm.bloodbankModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization");
-        }
-        else if (BloodBankSignUpForm.titlemodel == null ||
+          AppData.showInSnackBar(context, "Please select Organization Name");
+        } else if (BloodBankSignUpForm.titlemodel == null ||
             BloodBankSignUpForm.titlemodel == "") {
           AppData.showInSnackBar(context, "Please select Title");
-        }
-        else if (textEditingController[9].text == "" ||
+        } else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's name");
-        }
-        else if (textEditingController[10].text == "" ||
+          AppData.showInSnackBar(context, "Please enter Professional's Name");
+        } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
-        }
-        else if (textEditingController[11].text == "" ||
+        } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
-        }
-        else if (BloodBankSignUpForm.genderModel == null ||
+        } else if (BloodBankSignUpForm.genderModel == null ||
             BloodBankSignUpForm.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
-        }
-        else {
-          widget.model.bloodbankorganisation = BloodBankSignUpForm.bloodbankModel.key;
+        } else {
+          widget.model.bloodbankorganisation =
+              BloodBankSignUpForm.bloodbankModel.key;
           widget.model.bloodbanktitle = BloodBankSignUpForm.titlemodel.key;
           widget.model.bloodbankprofessional = textEditingController[9].text;
           widget.model.bloodbankexperience = textEditingController[10].text;
@@ -619,13 +596,11 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   Widget nextButtonn() {
     return GestureDetector(
       onTap: () {
-
-
-       // Navigator.pushNamed(context, "/pharmasignupform2");
+        // Navigator.pushNamed(context, "/pharmasignupform2");
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
+        margin: EdgeInsets.only(left: 180, right: 0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
             borderRadius: BorderRadius.circular(10.0),
@@ -635,7 +610,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("NEXT"),
             textAlign: TextAlign.center,
@@ -663,7 +638,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SIGN_BTN"),
             textAlign: TextAlign.center,
@@ -678,7 +653,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -730,7 +705,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (value) {
@@ -854,7 +829,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (BloodBankSignUpForm.genderModel == null || BloodBankSignUpForm.genderModel == "") {
+    } else if (BloodBankSignUpForm.genderModel == null ||
+        BloodBankSignUpForm.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -896,18 +872,14 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
     }
   }
 
-
-
-
   Widget mobileNumber1(int index, String hint, mobileModel) {
     return Container(
       margin:
-      const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 11.0, left: 8.0, right: 8.0, bottom: 0.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(7),
-          border:
-          Border.all(color: AppData.matruColor, width: 3)),
+          border: Border.all(color: AppData.matruColor, width: 3)),
       child: Row(
         children: <Widget>[
           Padding(
@@ -998,21 +970,17 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
   //     ),
   //   );
   // }
-  Widget formFieldMobile(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn
-      ) {
+  Widget experience(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black, width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
@@ -1024,21 +992,19 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 10,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
@@ -1056,23 +1022,18 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       ),
     );
   }
+
   Widget formField(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn
-      ) {
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -1082,19 +1043,15 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
-            textAlignVertical:
-            TextAlignVertical.center,
+            textAlignVertical: TextAlignVertical.center,
             inputFormatters: [
-              WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z ]")),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
             ],
             onFieldSubmitted: (value) {
               setState(() {});
@@ -1138,6 +1095,5 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
 //   );
 // }
 //
-
 
 }
