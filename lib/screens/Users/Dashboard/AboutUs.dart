@@ -55,7 +55,6 @@ class _AboutUs extends State<AboutUs> {
 
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

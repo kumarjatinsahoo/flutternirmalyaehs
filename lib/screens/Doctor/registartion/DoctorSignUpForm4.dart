@@ -212,14 +212,13 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGNUP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(
     child: SingleChildScrollView(
       child: Column(
         children: [
-
           Padding(
             padding: const EdgeInsets.only(
               left: 10.0,
@@ -256,6 +255,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                       Column(
                         children: [
                           Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black),
@@ -555,32 +555,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                         )
                                       ],
                                     ))),
-                           /* RichText(
-                                textAlign: TextAlign.start,
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                      *//* "Welcome back",*//*
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.w800,
-                                        fontFamily: "Monte",
-                                        // fontSize: 25.0,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text:MyLocalizations.of(context).text("T&C") ,
-                                      *//* "Welcome back",*//*
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.w500,
-                                        fontFamily: "Monte",
-                                        // fontSize: 25.0,
-                                        color: Colors.indigo,
-                                      ),
-                                    )
-                                  ],
-                                )),*/
                           ],
                         ),
                       ),
@@ -594,8 +568,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               padding: EdgeInsets.all(10.0),
                               child: Text('Please accept the terms and conditions to proceed...')
                           )
-                      )
-          :
+                      ) :
 
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -827,19 +800,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       }else if (_checkbox == false) {
         AppData.showInSnackBar(context, "Please checked Terms and Condition");
       }
-    //  else if (_checkbox != true) {
-    //     setState(() =>
-    //         AppData.showInSnackBar(context, "Please select Checkbox")
-    //     );
-    //
-    // }
-
-        /*else if (textEditingController[12].text == "" ||
-            textEditingController[12].text == null) {
-          AppData.showInSnackBar(context, "Please enter Alternate emailid");
-        } else if (textEditingController[12].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter Alternate emailid ");
-        } */
     else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;

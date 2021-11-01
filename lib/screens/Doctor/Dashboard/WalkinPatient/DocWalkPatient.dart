@@ -53,7 +53,7 @@ String uhid;
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text('Walk in Patient '),
+        title: Text(MyLocalizations.of(context).text("WALK_IN_PATIENT")),
       ),
       body: Container(
         height: 300,
@@ -83,8 +83,7 @@ String uhid;
                             children: [
                               Container(
                                 width: 120,
-                                child: Text(
-                                  "UHID No",
+                                child: Text(MyLocalizations.of(context).text("UHID_NO"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
