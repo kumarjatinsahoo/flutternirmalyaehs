@@ -266,9 +266,9 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                             ],
                           )
                         ],
-                      SizedBox(
+                    /*  SizedBox(
                         height: 5,
-                      ),
+                      ),*/
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Row(
