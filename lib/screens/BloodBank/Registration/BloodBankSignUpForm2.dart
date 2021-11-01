@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -191,6 +192,9 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
   @override
   void initState() {
     super.initState();
+    BloodBankSignUpForm2.countryModel = null;
+    BloodBankSignUpForm2.stateModel = null;
+    BloodBankSignUpForm2.citymodel = null;
     BloodBankSignUpForm2.districtModel = null;
     BloodBankSignUpForm2.blockModel = null;
     BloodBankSignUpForm2.genderModel = null;
@@ -218,6 +222,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -225,6 +230,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         title: Text("SIGN UP"),
+        centerTitle: true,
       ),
       body: Container(
         child: Column(
@@ -283,11 +289,6 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                     height: 5,
                                   ),
 
-                                  //  formFieldaddress(8, "Address"),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-
                                   DropDown.networkDropdownGetpartUser(
                                       "Country",
                                       ApiFactory.COUNTRY_API,
@@ -300,9 +301,6 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                       BloodBankSignUpForm2.stateModel = null;
                                     });
                                   }),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
                                   DropDown.networkDropdownGetpartUser(
                                       "State",
                                       ApiFactory.STATE_API +
@@ -319,9 +317,6 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                     });
                                   }),
 
-                                  SizedBox(
-                                    height: 5,
-                                  ),
                                   DropDown.networkDropdownGetpartUser(
                                       "District",
                                       ApiFactory.DISTRICT_API +
@@ -337,9 +332,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                       BloodBankSignUpForm2.citymodel = null;
                                     });
                                   }),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
+
                                   DropDown.networkDropdownGetpartUser(
                                       "City",
                                       ApiFactory.CITY_API +
@@ -357,20 +350,20 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   }),
 
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
                                   formFieldzip(5, "Enter Zip/Pin Code :",fnode1,fnode2),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
 
                                   formFieldMobile(10, "Mobile Number :",fnode2,fnode3),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
-                                  formFielEmail(11, "Email Id :",fnode3,null),
+                                  formFieldEmail(11, "Email Id :",fnode3,null),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
                                   Container(
                                     child: Row(
@@ -417,8 +410,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                               left: 10, right: 10),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Container(
@@ -656,31 +648,31 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       fun: () {
         if (BloodBankSignUpForm2.countryModel == null ||
             BloodBankSignUpForm2.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
+          AppData.showInSnackBar(context, "Please select Country");
         } else if (BloodBankSignUpForm2.stateModel == null ||
             BloodBankSignUpForm2.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (BloodBankSignUpForm2.districtModel == null ||
             BloodBankSignUpForm2.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
         } else if (BloodBankSignUpForm2.citymodel == null ||
             BloodBankSignUpForm2.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select city");
+          AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Pin");
+          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile number");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
         } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email id");
+          AppData.showInSnackBar(context, "Please enter Email Id");
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid e-Mail");
         } else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please checked terms and Condition");
         } else {
@@ -1253,7 +1245,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       ),
     );
   }
-  Widget formFielEmail(
+  Widget formFieldEmail(
       int index,
       String hint,FocusNode currentfn, FocusNode nextFn,
       ) {
@@ -1305,6 +1297,9 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       ),
     );
   }
+
+
+
   Widget formFieldMobile(
       int index,
       String hint,FocusNode currentfn, FocusNode nextFn
@@ -1381,14 +1376,15 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {Navigator.pop(context), getCerificateImage()},
+                  onTap: () => {Navigator.pop(context),
+                    getCerificateImage()},
                 ),
                 new ListTile(
                     leading: new Icon(Icons.file_copy),
                     title: new Text('Document'),
                     onTap: () => {
                           Navigator.pop(context),
-                          getCameraImage(),
+                      getPdfAndUpload(),
                         }),
               ],
             ),
@@ -1446,4 +1442,27 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       userModel.profileImage = base64Encode(enc);
     });
   }
+
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: ['pdf','docx'], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if(file != null) {
+      setState(() {
+        idproof = file.path;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+
 }
