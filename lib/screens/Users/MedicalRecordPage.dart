@@ -28,6 +28,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("MEDICAL_RECORD1")),
       ),

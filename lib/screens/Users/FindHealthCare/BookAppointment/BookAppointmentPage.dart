@@ -307,8 +307,8 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                             child: DropDown.networkDropdownGetpartUser(
                                 "Speciality",
                                 ApiFactory.SPECIALITY_API,
-                                "speciality",
-                                Icons.mail,
+                                "specialityapp",
+                                Icons.work_outlined,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.SPECIALITY_API);
@@ -319,7 +319,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                             }),
                           ),
                         ),
-                        SizedBox(height:10),
+                      /*  SizedBox(height:10),*/
                        /* (BookAppointmentPage.specialistModel != null)
                        ? Padding(
                          padding: const EdgeInsets.all(8.0),
@@ -460,11 +460,11 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                             : Container(),
 
                     SizedBox(
-                      height: 10,),
+                      height: 8,),
                         appointdate(),
-                        SizedBox(
+                        /*SizedBox(
                           height: 10,
-                        ),
+                        ),*/
                         //comultationTime(),
                         (appointmentdate.text.toString() != null ||
                                     appointmentdate.text.toString() != "") &&
@@ -586,19 +586,19 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
    // _formKey.currentState.validate();
    if (BookAppointmentPage.specialistModel == null ||
         BookAppointmentPage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select specialist");
+      AppData.showInSnackBar(context, "Please select Specialist");
     } else if (BookAppointmentPage.doctorModel == null ||
         BookAppointmentPage.doctorModel == "") {
-      AppData.showInSnackBar(context, "Please select doctor");
+      AppData.showInSnackBar(context, "Please select Doctor");
     /*} else if (BookAppointmentPage.hospitalModel == null ||
         BookAppointmentPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");*/
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your appointmentdate");
+      AppData.showInSnackBar(context, "Please select your Appointment Date");
     } else if (BookAppointmentPage.timeModel == null) {
-      AppData.showInSnackBar(context, "Please select time");
+      AppData.showInSnackBar(context, "Please select Time");
     } else if (!isValidtime) {
-      AppData.showInSnackBar(context, "Please select valid time");
+      AppData.showInSnackBar(context, "Please select valid Time");
     } else {
       sendServer();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -982,7 +982,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey,
                 ),
               ),
             ),

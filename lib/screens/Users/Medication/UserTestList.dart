@@ -92,7 +92,7 @@ class _MedicineList extends State<UserTestList> {
           });
         } else {
           //isDataNotAvail = true;
-          AppData.showInSnackBar(context, msg);
+          //AppData.showInSnackBar(context, msg);
         }
       },
     );
@@ -159,9 +159,9 @@ class _MedicineList extends State<UserTestList> {
         child: Scaffold(
       body:
       isdata == true
-          ? CircularProgressIndicator(
+          ? MyWidgets.showLoading(context)/* CircularProgressIndicator(
         backgroundColor: AppData.matruColor,
-      )
+      )*/
           : userListModel == null || userListModel == null
           ? Container(
         child: Center(

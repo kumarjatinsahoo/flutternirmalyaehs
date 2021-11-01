@@ -27,6 +27,7 @@ class _UserMedicineList extends State<UserMedicineTab> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Medication'),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[

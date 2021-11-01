@@ -522,7 +522,8 @@ class _DoctorAppointmentConfirmedState
                                                             InkWell(
                                                               onTap:(){
                                                                 widget.model.patientseHealthCard =
-                                                                    appointmentlist.userid;                                                                Navigator.pushNamed(context, "/showemr");
+                                                                    appointmentlist.userid;
+                                                                Navigator.pushNamed(context, "/showemr");
                                                               },
                                                               child: Material(
                                                                 elevation: 5,

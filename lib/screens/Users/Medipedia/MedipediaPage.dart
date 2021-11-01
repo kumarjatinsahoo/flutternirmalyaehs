@@ -26,7 +26,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
         centerTitle: true,
         title: Text('Medipedia'),
       actions: <Widget>[
-        Padding(
+       /* Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
@@ -34,7 +34,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                 Icons.search,
                 size: 26.0,
               ),
-            )),
+            )),*/
       ],
       ),
       body: Container(

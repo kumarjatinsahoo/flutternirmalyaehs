@@ -117,13 +117,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
-              ProfileScreen.bloodgroupmodel = KeyvalueModel(
+              ProfileScreen.bloodgroupmodel = /*(patientProfileModel=null) ??*/KeyvalueModel(
                   key: patientProfileModel.body.bloodGroupId,
                   name: patientProfileModel.body.bloodGroup);
-              ProfileScreen.relationmodel = KeyvalueModel(
+              ProfileScreen.relationmodel =/*(patientProfileModel=null) ??*/ KeyvalueModel(
                   key: patientProfileModel.body.eRelationId,
                   name: patientProfileModel.body.eRelation);
-              ProfileScreen.specialitymodel = KeyvalueModel(
+              ProfileScreen.specialitymodel = /*(patientProfileModel=null) ??*/KeyvalueModel(
                   key: patientProfileModel.body.specialityId,
                   name: patientProfileModel.body.speciality);
 
@@ -292,7 +292,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       : Material(
                                           elevation: 5.0,
                                           shape: CircleBorder(),
-                                          child: CircleAvatar(
+                                          child:
+                                          CircleAvatar(
                                             radius: 40.0,
                                             backgroundImage: NetworkImage(
                                                 (patientProfileModel?.body
@@ -1204,7 +1205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           dob(),
 
-                          DropDown.networkDropdownlabler(
+                          (patientProfileModel=null)??DropDown.networkDropdownlabler(
                               "Blood Group",
                               ApiFactory.BLOODGROUP_API,
                               "bloodgroup", (KeyvalueModel model) {
@@ -1251,7 +1252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
                           ),
-                          DropDown.networkDropdownlabler(
+                          (patientProfileModel=null)?? DropDown.networkDropdownlabler(
                               "Relation", ApiFactory.RELATION_API, "relation",
                               (KeyvalueModel model) {
                             setState(() {
@@ -1327,7 +1328,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //   controller: _speciality,
                           //   decoration: InputDecoration(hintText: "Speciality"),
                           // ),
-                          DropDown.networkDropdownlabler(
+                          (patientProfileModel=null)??DropDown.networkDropdownlabler(
                               "Speciality",
                               ApiFactory.SPECIALITY_API,
                               "speciality", (KeyvalueModel model) {

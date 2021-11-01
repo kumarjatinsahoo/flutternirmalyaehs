@@ -476,6 +476,7 @@ class _UseridtPinViewState extends State<UseridtPinView> with SingleTickerProvid
                               MaterialPageRoute(
                                 builder: (BuildContext context) => UserList(
                                   model: widget.model,
+                                  userlist:widget.userResponse,
 
                                 ),
                               ),

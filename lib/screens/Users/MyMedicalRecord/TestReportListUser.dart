@@ -99,7 +99,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-            title: Text(MyLocalizations.of(context).text("Visit Summery"),
+            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summery",
               style: TextStyle(color: AppData.white),
             ),
             centerTitle: true,
