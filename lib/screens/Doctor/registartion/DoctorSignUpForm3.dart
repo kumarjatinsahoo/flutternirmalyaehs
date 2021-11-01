@@ -246,12 +246,10 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         ],
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 8,
                       ),
                       formField1(8,MyLocalizations.of(context).text("EDUCATION")),
-                      SizedBox(
-                        height: 5,
-                      ),
+
                       Row(
                         children: [
                           Text(MyLocalizations.of(context).text("ROLE"),
@@ -268,7 +266,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           )
                         ],
                       ),
-                      SizedBox(height: 11),
+                      SizedBox(height: 8),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -293,9 +291,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         height: 8,
                       ),
                       dob(),
-                      SizedBox(
-                        height: 5,
-                      ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -314,9 +310,9 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           }),
                         ),
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: 5,
-                      ),
+                      ),*/
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -338,7 +334,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -266,9 +266,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                         height: 5,
                       ),
                       formFieldaddress(8,MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
-                      SizedBox(
-                        height: 5,
-                      ),
+
                       DropDown.networkDropdownGetpartUser(
                           MyLocalizations.of(context)
                               .text("COUNTRY") ,
@@ -284,9 +282,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
 
                             });
                           }),
-                      SizedBox(
-                        height: 5,
-                      ),
+
                       (DoctorSignUpForm4.countryModel != null)
                           ?  DropDown.countryList(
                           MyLocalizations.of(context)
@@ -302,9 +298,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                             });
                           }): Container(),
 
-                      SizedBox(
-                        height: 5,
-                      ),
                       (DoctorSignUpForm4.stateModel != null)
                           ?  DropDown.countryList(
                           MyLocalizations.of(context)
@@ -318,9 +311,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               DoctorSignUpForm4.cityModel = null;
                             });
                           }): Container(),
-                      SizedBox(
-                        height: 5,
-                      ),
                       (DoctorSignUpForm4.districtModel != null)
                           ? DropDown.countryList(
                           MyLocalizations.of(context)
@@ -462,32 +452,33 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               ),
                             )
                           : Container(),*/
+
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFieldMobile(9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFielEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
                       SizedBox(
-                        height: 13,
+                        height: 8,
                       ),
                       formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
                       SizedBox(
