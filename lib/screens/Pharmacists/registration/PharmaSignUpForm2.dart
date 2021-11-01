@@ -177,35 +177,14 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
+        centerTitle: true,
+      ),
       body: Container(
         child: Column(
           children: [
-            /*  Padding(
-      padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-      child:*/Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                child: Row(/*
-        mainAxisAlignment: MainAxisAlignment.start,*/
-                  children: [
-                    InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back,color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                      child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                    ),
-                  ],
-                ),
-              ),
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-            ),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
@@ -241,31 +220,33 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Column(
-                                    children: [
-                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                        style: TextStyle(fontSize: 18, color: Colors.black),),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                          style: TextStyle(fontSize: 18, color: Colors.black),),
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 8,
                                   ),
-                                  formField(8, MyLocalizations.of(context).text("EDUCATION")),
+                                  formField1(8, MyLocalizations.of(context).text("EDUCATION")),
                                   SizedBox(
-                                    height: 5,
+                                    height: 8,
                                   ),
-                                  Row(
-                                    children: [
-                                      Text(MyLocalizations.of(context).text("ROLE"),
-                                        style: TextStyle(fontSize: 20, color: Colors.black),),
-                                      SizedBox(width: 80),
-                                      Column(
-                                        children: [
-                                          Text(MyLocalizations.of(context).text("PHARMACIST"),
-                                            style: TextStyle(fontSize: 20, color: Colors.black),),
-                                        ],
-                                      )
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(MyLocalizations.of(context).text("ROLE"),
+                                          style: TextStyle(fontSize: 20, color: Colors.black),),
+                                        SizedBox(width: 80),
+                                        Text(MyLocalizations.of(context).text("PHARMACIST"),
+                                          style: TextStyle(fontSize: 20, color: Colors.black),)
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(
                                       height: 11
@@ -288,9 +269,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                     height: 8,
                                   ),
                                   dob(),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
+
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("BLOODGROUP") ,
@@ -303,9 +282,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       PharmaSignUpForm2.bloodgroupModel = data;
                                     });
                                   }),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
+
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("GENDER") ,
@@ -319,103 +296,11 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                     });
                                   }),
                                   SizedBox(
-                                    height: 5,
+                                    height: 15,
                                   ),
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: nextButton1(),
                                   ),
-                                  // SizedBox(
-                                  //   height: 10,
-                                  // ),
-                                  // InkWell(
-                                  //     onTap: () {
-                                  //       setState(() {
-                                  //         ispartnercode = !ispartnercode;
-                                  //       });
-                                  //     },
-                                  //     child: Text(
-                                  //       MyLocalizations.of(context)
-                                  //               .text("HAVE_PARTNERCODE") +
-                                  //           "?",
-                                  //       style: TextStyle(color: Colors.blue),
-                                  //     )),
-                                  //
-                                  // SizedBox(
-                                  //   height: 10,
-                                  // ),
-                                  // Visibility(
-                                  //   visible: ispartnercode,
-                                  //   child: Padding(
-                                  //     padding:
-                                  //         const EdgeInsets.symmetric(horizontal: 25),
-                                  //     child: TextFormField(
-                                  //       decoration: InputDecoration(
-                                  //           hintText: MyLocalizations.of(context)
-                                  //               .text("PARTNERCODE"),
-                                  //           hintStyle: TextStyle(color: Colors.grey)),
-                                  //       textInputAction: TextInputAction.next,
-                                  //       keyboardType: TextInputType.text,
-                                  //       //           inputFormatters: [
-                                  //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                                  //       //           ],
-                                  //     ),
-                                  //   ),
-                                  // ),
-
-                                  // Padding(
-                                  //   padding:
-                                  //       const EdgeInsets.symmetric(horizontal: 10),
-                                  //   child: Row(
-                                  //     //  mainAxisAlignment: MainAxisAlignment.center,
-                                  //     children: [
-                                  //       Checkbox(
-                                  //         value: _checkbox,
-                                  //         onChanged: (value) {
-                                  //           setState(() {
-                                  //             _checkbox = !_checkbox;
-                                  //           });
-                                  //         },
-                                  //       ),
-                                  //       SizedBox(
-                                  //         height: 10,
-                                  //       ),
-                                  //       RichText(
-                                  //           textAlign: TextAlign.start,
-                                  //           text: TextSpan(
-                                  //             children: [
-                                  //               TextSpan(
-                                  //                 text: 'I agree to NCORDS ',
-                                  //                 /* "Welcome back",*/
-                                  //                 style: TextStyle(
-                                  //                   // fontWeight: FontWeight.w800,
-                                  //                   fontFamily: "Monte",
-                                  //                   // fontSize: 25.0,
-                                  //                   color: Colors.grey,
-                                  //                 ),
-                                  //               ),
-                                  //               TextSpan(
-                                  //                 text: 'Terms and Conditions',
-                                  //                 /* "Welcome back",*/
-                                  //                 style: TextStyle(
-                                  //                   // fontWeight: FontWeight.w500,
-                                  //                   fontFamily: "Monte",
-                                  //                   // fontSize: 25.0,
-                                  //                   color: Colors.indigo,
-                                  //                 ),
-                                  //               )
-                                  //             ],
-                                  //           )),
-                                  //     ],
-                                  //   ),
-                                  // ),
-                                  // Padding(
-                                  //   padding:
-                                  //       const EdgeInsets.symmetric(horizontal: 10),
-                                  //   child: nextButton(),
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 25,
-                                  // ),
                                 ],
                               ),
                             )
@@ -594,23 +479,23 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
       fun: () {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Education name");
+          AppData.showInSnackBar(context, "Please Enter Education Name");
         }
         else if (PharmaSignUpForm2.specialistModel == null ||
             PharmaSignUpForm2.specialistModel == "") {
-          AppData.showInSnackBar(context, "Please select Speciality");
+          AppData.showInSnackBar(context, "Please Select Speciality");
         }
         else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please enter Date of birth");
+          AppData.showInSnackBar(context, "Please Enter Date of Birth");
         }
         else if (PharmaSignUpForm2.bloodgroupModel == null ||
             PharmaSignUpForm2.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select blood group");
+          AppData.showInSnackBar(context, "Please Select Blood Group");
         }
         else if (PharmaSignUpForm2.genderModel == null ||
             PharmaSignUpForm2.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select gender");
+          AppData.showInSnackBar(context, "Please Select Gender");
         } else {
           // widget.model.pharmaeducation = textEditingController[8].text;
           // widget.model.pharmaspeciality = PharmaSignUpForm2.specialistModel.key;
@@ -820,7 +705,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                 prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -972,24 +857,56 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
     );
   }
 
-  Widget formField(int index, String hint,) {
-    return TextFieldContainer(
-      child: TextFormField(
-        controller: textEditingController[index],
-        textInputAction: TextInputAction.done,
-        keyboardType:TextInputType.text,
-        /* decoration: BoxDecoration(11
-          color: AppData.kPrimaryLightColor,
-          //color: Color(0x45283e81),
-          borderRadius: BorderRadius.circular(29),
-        ),*/
-        style: TextStyle(fontSize: 13),
-        decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-        onChanged: (newValue) {},
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
+          ),
+        ),
       ),
     );
   }

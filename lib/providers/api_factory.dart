@@ -16,7 +16,7 @@ class ApiFactory {
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
   static String TISSUE_API = MAIN_URL + 'get-tissue-list';
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
-  static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-org-list';
+  static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
   static String AMBULANCE_ORGANISATION_API =
       MAIN_URL + 'get-ambulance-org-list';
   static String BlOODBANK_ORGANISATION_API =

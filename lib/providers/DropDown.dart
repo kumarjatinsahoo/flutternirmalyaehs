@@ -9,6 +9,7 @@ import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
+import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
@@ -1860,6 +1861,7 @@ class DropDown {
         break;
       case "state":
         return LabSignUpForm3.stateModel;
+        break;
       case "district":
         return LabSignUpForm3.districtModel;
         break;
@@ -1868,6 +1870,7 @@ class DropDown {
         break;
       case "stated":
         return DoctorSignUpForm4.stateModel;
+        break;
       case "districtd":
         return DoctorSignUpForm4.districtModel;
         break;
@@ -1876,6 +1879,7 @@ class DropDown {
         break;
       case "stateU":
         return UserSignUpForm.stateModel;
+        break;
       case "districtU":
         return UserSignUpForm.districtModel;
         break;
@@ -1884,24 +1888,36 @@ class DropDown {
         break;
         case "stateDA":
         return DoctorconsultationPage.stateModel;
+        break;
       case "districtDA":
         return DoctorconsultationPage.distrModel;
         break;
       case "cityDA":
         return DoctorconsultationPage.cityModel;
         break;
-        break;
       case "state_Amb":
         return AmbulanceSignUpForm2.stateModel;
+        break;
       case "district_Amb":
         return AmbulanceSignUpForm2.districtModel;
         break;
       case "city_Amb":
         return AmbulanceSignUpForm2.citymodel;
+        break;
       case "doctor":
         return DoctorconsultationPage.doctorModel;
+        break;
       case "hospital":
         return DoctorconsultationPage.hospitalModel;
+        break;
+      case "stateph":
+        return PharmaSignUpForm3.stateModel;
+        break;
+      case "districtph":
+        return PharmaSignUpForm3.districtModel;
+        break;
+      case "cityph":
+        return PharmaSignUpForm3.citymodel;
 
     }
   }
@@ -2316,6 +2332,15 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["timelist"]);
             break;
           case "test":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "stateph":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "districtph":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "cityph":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
 

@@ -277,7 +277,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                       children: [
                                         Text(
                                           MyLocalizations.of(context)
-                                              .text("SPECIALITY :"),
+                                              .text("SPECIALITY"),
                                           style: TextStyle(
                                               fontSize: 20, color: Colors.black),
                                         ),

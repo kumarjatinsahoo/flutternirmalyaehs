@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/PharamacistSignupModel.dart';
 import 'package:user/models/PharmacyRegistrationModel.dart';
+import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -112,6 +115,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   String labofficeph;
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
+  UserRegistrationModel userModel = UserRegistrationModel();
+  String profilePath = null,
+      idproof = null;
+
 
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
@@ -179,7 +186,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   @override
   void initState() {
     super.initState();
+    PharmaSignUpForm3.countryModel = null;
+    PharmaSignUpForm3.stateModel = null;
     PharmaSignUpForm3.districtModel = null;
+    PharmaSignUpForm3.citymodel = null;
     PharmaSignUpForm3.blockModel = null;
     PharmaSignUpForm3.genderModel = null;
     pharmaorganisation = widget.model.pharmaorganisation;
@@ -214,32 +224,14 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
+        centerTitle: true,
+      ),
       body: Container(
         child: Column(
           children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only( left:15.0,right: 15.0),
-
-                child: Row(
-                  children: [
-                    InkWell(
-                        onTap: (){
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back,color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                      child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white,),),
-                    ),
-                  ],
-                ),
-              ),
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-            ),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
@@ -275,11 +267,14 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Column(
-                                    children: [
-                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                        style: TextStyle(fontSize: 18, color: Colors.black),),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                          style: TextStyle(fontSize: 18, color: Colors.black),),
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(height: 5,),
 
@@ -298,32 +293,32 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           print(ApiFactory.COUNTRY_API);
                                           PharmaSignUpForm3.countryModel = data;
                                           PharmaSignUpForm3.stateModel = null;
+                                          PharmaSignUpForm3.districtModel = null;
+                                          PharmaSignUpForm3.citymodel = null;
 
                                         });
                                       }),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  DropDown.networkDropdownGetpartUser(
+
+                                  DropDown.countryList(
                                       MyLocalizations.of(context)
                                           .text("STATE") ,
-                                      ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
+                                      ApiFactory.STATE_API +(PharmaSignUpForm3?.countryModel?.key??""),
+                                      "stateph", Icons.location_on_rounded,
                                       23.0,
                                           (KeyvalueModel data) {
                                         setState(() {
                                           print(ApiFactory.STATE_API);
                                           PharmaSignUpForm3.stateModel = data;
                                           PharmaSignUpForm3.districtModel = null;
+                                          PharmaSignUpForm3.citymodel = null;
                                         });
                                       }),
 
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  DropDown.networkDropdownGetpartUser(
+                                  DropDown.countryList(
                                       MyLocalizations.of(context)
                                           .text("DIST") ,
-                                      ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
+                                      ApiFactory.DISTRICT_API +(PharmaSignUpForm3?.stateModel?.key??""),
+                                      "districtph", Icons.location_on_rounded,
                                       23.0,
                                           (KeyvalueModel data) {
                                         setState(() {
@@ -332,13 +327,12 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           PharmaSignUpForm3.citymodel = null;
                                         });
                                       }),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  DropDown.networkDropdownGetpartUser(
+
+                                  DropDown.countryList(
                                       MyLocalizations.of(context)
                                           .text("CITY") ,
-                                      ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
+                                      ApiFactory.CITY_API + (PharmaSignUpForm3?.districtModel?.key??""),
+                                      "cityph", Icons.location_on_rounded,
                                       23.0,
                                           (KeyvalueModel data) {
                                         setState(() {
@@ -349,34 +343,22 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                       }),
 
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
                                   formFieldzip(5, MyLocalizations.of(context).text("ENTER_ZIP_CODE")),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
 
                                   formFieldMobile(10,  MyLocalizations.of(context).text("MOBILE_NO")),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
                                   formFielEmail(11, MyLocalizations.of(context).text("EMAILID")),
                                   SizedBox(
-                                    height: 13,
+                                    height: 8,
                                   ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(MyLocalizations.of(context).text("UPLOAD_PHOTO"),
-                                            style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
+                                  Row(
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -385,11 +367,69 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
                                           style: TextStyle(
                                               fontSize: 20,
-                                              color: Colors.black),
+                                              color: AppData.kPrimaryColor),
+                                        ),
+                                      ),
+                                      SizedBox(width: 30),
+                                      Material(
+                                        elevation: 3,
+                                        color: AppData.kPrimaryColor,
+                                        borderRadius:
+                                        BorderRadius.circular(5.0),
+                                        child: MaterialButton(
+                                          onPressed: () {
+                                            _settingModalBottomSheet(context);
+                                          },
+                                          minWidth: 120,
+                                          height: 40.0,
+                                          child: Text(
+                                            "Upload",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 17.0),
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  (idproof != null)
+                                      ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Text(
+                                              "Report Path :" + idproof,
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          child: SizedBox(
+                                              width: 50.0,
+                                              child: Icon(Icons.clear)),
+                                          onTap: () {
+                                            setState(() {
+                                              idproof = null;
+                                              // registrationModel.profilePhotoBase64 =
+                                              null;
+                                              //registrationModel.profilePhotoExt =
+                                              null;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
@@ -407,33 +447,37 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        RichText(
-                                            textAlign: TextAlign.start,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                                  /* "Welcome back",*/
-                                                  style: TextStyle(
-                                                    // fontWeight: FontWeight.w800,
-                                                    fontFamily: "Monte",
-                                                    // fontSize: 25.0,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                  MyLocalizations.of(context).text("T&C") ,
-                                                  /* "Welcome back",*/
-                                                  style: TextStyle(
-                                                    // fontWeight: FontWeight.w500,
-                                                    fontFamily: "Monte",
-                                                    // fontSize: 25.0,
-                                                    color: Colors.indigo,
-                                                  ),
-                                                )
-                                              ],
-                                            )),
+                                        Expanded(
+                                            child: RichText(
+                                                textAlign: TextAlign.start,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: MyLocalizations.of(context)
+                                                          .text("AGREE_EHEALTHSYSTEM"),
+                                                      /* "Welcome back",*/
+                                                      style: TextStyle(
+                                                        // fontWeight: FontWeight.w800,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: MyLocalizations.of(context)
+                                                          .text("T&C"),
+                                                      /* "Welcome back",*/
+
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.w500,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: "Monte",
+                                                        // fontSize: 25.0,
+                                                        color: AppData.kPrimaryColor,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ))),
                                       ],
                                     ),
                                   ),
@@ -505,16 +549,22 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   }
 
   Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
+    var image = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
 
     setState(() {
       _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
+      idproof = _fileName;
+      userModel.profileImage = base64Encode(enc);
     });
   }
 
@@ -621,35 +671,35 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       fun: () {
     if (PharmaSignUpForm3.countryModel == null ||
             PharmaSignUpForm3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select country");
+          AppData.showInSnackBar(context, "Please select Country");
         } else if (PharmaSignUpForm3.stateModel == null ||
             PharmaSignUpForm3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select state");
+          AppData.showInSnackBar(context, "Please select State");
         } else if (PharmaSignUpForm3.districtModel == null ||
             PharmaSignUpForm3.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
         }else if (PharmaSignUpForm3.citymodel == null ||
             PharmaSignUpForm3.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select city");
+          AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Pin");
+          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile number");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
         }else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid mobile number");
+          AppData.showInSnackBar(context, "Please enter a valid Mobile No");
         }else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email id");
+          AppData.showInSnackBar(context, "Please enter Email Id");
         }
     else if (textEditingController[11].text != ""&&
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
         }
     else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked terms and Condition");
+          AppData.showInSnackBar(context, "Please checked Terms and Condition");
         }
         else {
           MyWidgets.showLoading(context);
@@ -1195,7 +1245,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1236,6 +1286,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       ),
     );
   }
+
   Widget formFielEmail(
       int index,
       String hint,
@@ -1246,7 +1297,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       child: Container(
         height: 50,
         padding:
-        EdgeInsets.symmetric(horizontal: 10),
+        EdgeInsets.symmetric(horizontal: 18),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius:
@@ -1293,7 +1344,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1335,38 +1386,95 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       ),
     );
   }
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
+
+
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {Navigator.pop(context),
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+
+  Future getCameraImage() async {
+    // File pathUsr=null;
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    try {
+      var image = await ImagePicker.pickImage(
+          source: ImageSource.camera, imageQuality: 50);
+
+      // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+      if (image != null) {
+        var enc = await image.readAsBytes();
+        String _path = image.path;
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          // widget.model.patientimg =base64Encode(enc);
+          // widget.model.patientimgtype =extName;
+          _imageCertificate = image;
+          idproof = _fileName;
+          // Print("pathhh"+idproof);
+          userModel.profileImage = base64Encode(enc);
+        });
+      }
+    } catch (e) {
+      print("Error>>in" + e.toString());
+    }
+  }
+
+
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: ['pdf','docx'], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if(file != null) {
+      setState(() {
+        idproof = file.path;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
 
 
 }

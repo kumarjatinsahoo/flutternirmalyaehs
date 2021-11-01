@@ -279,9 +279,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               MyLocalizations.of(context).text("ADDRESS"),
                               fnode1,
                               fnode2),
-                          SizedBox(
-                            height: 5,
-                          ),
+
                           DropDown.networkDropdownGetpartUser(
                               MyLocalizations.of(context).text("COUNTRY"),
                               ApiFactory.COUNTRY_API,
@@ -296,9 +294,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               LabSignUpForm3.citymodel = null;
                             });
                           }),
-                          SizedBox(
-                            height: 5,
-                          ),
+
                           DropDown.countryList(
                               MyLocalizations.of(context).text("STATE"),
                               ApiFactory.STATE_API +
@@ -313,9 +309,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               LabSignUpForm3.citymodel = null;
                             });
                           }),
-                          SizedBox(
-                            height: 5,
-                          ),
+
                           DropDown.countryList(
                               MyLocalizations.of(context).text("DIST"),
                               ApiFactory.DISTRICT_API +
@@ -329,9 +323,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               LabSignUpForm3.citymodel = null;
                             });
                           }),
-                          SizedBox(
-                            height: 5,
-                          ),
+
                           DropDown.countryList(
                               MyLocalizations.of(context).text("CITY"),
                               ApiFactory.CITY_API +
@@ -346,7 +338,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                             });
                           }),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFieldzip(
                               5,
@@ -355,7 +347,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode2,
                               fnode3),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFieldMobile(
                               4,
@@ -364,7 +356,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode3,
                               fnode4),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFieldMobile(
                               6,
@@ -373,7 +365,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode4,
                               fnode5),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFieldMobile(
                               10,
@@ -381,7 +373,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode5,
                               fnode6),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFielEmail(
                               11,
@@ -389,7 +381,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode6,
                               fnode7),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFielEmail(
                               12,
@@ -397,7 +389,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode7,
                               fnode8),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           formFieldExperience(
                               13,
@@ -405,7 +397,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               fnode8,
                               null),
                           SizedBox(
-                            height: 13,
+                            height: 8,
                           ),
                           Column(
                             children: [
@@ -1348,7 +1340,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 3,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
