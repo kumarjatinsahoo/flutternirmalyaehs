@@ -476,6 +476,68 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                     )),
                               ),
                             ),
+                            GestureDetector(
+                              onTap: () {
+                                /*AppData.launchURL(
+                                "http://docs.google.com/gview?embedded=true&url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=" +
+                                    "");*/
+                               /* Navigator.pushNamed(
+                                    context, "/testReportListUser1");*/
+                              },
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                            8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            color: Color(0xFF2372B6),
+                                            padding: EdgeInsets.all(3),
+                                            child: Image.asset(
+                                              "assets/images/usertest.png",
+                                              height: 40,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text("Upload Document",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
                            /*  GestureDetector(
                               //onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                               child: Card(
