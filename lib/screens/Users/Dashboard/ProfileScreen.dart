@@ -292,7 +292,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       : Material(
                                           elevation: 5.0,
                                           shape: CircleBorder(),
-                                          child: CircleAvatar(
+                                          child:
+                                          CircleAvatar(
                                             radius: 40.0,
                                             backgroundImage: NetworkImage(
                                                 (patientProfileModel?.body

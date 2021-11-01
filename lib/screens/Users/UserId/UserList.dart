@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
+import 'package:user/models/ForgetUseridModel.dart'as forgotuser;
 import 'package:user/models/ForgetUseridModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 
@@ -17,9 +18,10 @@ import 'package:user/models/LoginResponse1.dart' as session;
 
 class UserList extends StatefulWidget {
   MainModel model;
+  ForgotUseridModel userlist;
 
 
-  UserList({Key key, this.model}) : super(key: key);
+  UserList({Key key, this.model,this.userlist}) : super(key: key);
 
   @override
   _UserListState createState() => _UserListState();
@@ -34,7 +36,6 @@ class _UserListState extends State<UserList> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  ForgotUseridModel userResponse;
 
   Position position;
   String longi, lati, city, addr, healthpro, type, medicallserviceType
@@ -46,7 +47,7 @@ class _UserListState extends State<UserList> {
   void initState() {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    userResponse=widget.model.userResponse;
+    forgotuser.Body  userlist=widget.model.forgotuserid;
     //callAPI();
   }
 
@@ -98,6 +99,7 @@ class _UserListState extends State<UserList> {
                 shrinkWrap: true,
                 //controller: _scrollController,
                 itemBuilder: (context, i) {
+forgotuser.Body user=widget.userlist.body[i];
 
                   // Results patient = googlePlaceModel.results[i];
                  // userResponse.body userreponse=userResponse.body[i];
@@ -155,10 +157,16 @@ class _UserListState extends State<UserList> {
                                         Material(
                                           elevation: 5.0,
                                           shape: CircleBorder(),
-                                          child: CircleAvatar(
+                                          child:
+                                          CircleAvatar(
                                             radius: 40.0,
                                             backgroundImage: NetworkImage(
-                                                ""),
+                                                (user
+                                                    ?.image !=
+                                                    null)
+                                                    ? user
+                                                    ?.image
+                                                    : AppData.defaultImgUrl),
                                           ),
                                         ),
                                         //:
@@ -176,7 +184,7 @@ class _UserListState extends State<UserList> {
                                           width: spaceTab,
                                         ),
                                         Text(
-                                          "Ipsita",
+                                          user.name??"N/A",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18),
@@ -193,7 +201,7 @@ class _UserListState extends State<UserList> {
                     ),
                   );
                 },
-                itemCount:userResponse.body.length??0,
+                itemCount:widget.userlist.body.length,
               )
               //: Container(),
             ],

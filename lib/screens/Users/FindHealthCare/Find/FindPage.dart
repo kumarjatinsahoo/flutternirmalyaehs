@@ -334,10 +334,10 @@ class _FindPageState extends State<FindPage> {
             child: Stack(
               children: <Widget>[
                 Image.asset(
-                  "assets/bg_img.jpg",
+                  "assets/images/findbooktop.jpg",
                   fit: BoxFit.cover,
                   //centerSlice: ,
-                  height: 280,
+                  height: 350,
                   width: double.maxFinite,
                 ),
                 /*Container(
@@ -348,7 +348,7 @@ class _FindPageState extends State<FindPage> {
                 ),*/
                 Container(
                   margin: EdgeInsets.only(
-                      top: 265.0, left: 8.0, right: 8.0, bottom: .0),
+                      top: 250.0, left: 8.0, right: 8.0, bottom: .0),
                   width: double.maxFinite,
                   /* height: 300,*/
                   decoration: BoxDecoration(

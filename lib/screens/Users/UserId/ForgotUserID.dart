@@ -40,7 +40,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
              color: Colors.white,
            ),*/
         title: Text(
-          'Forgot Password',
+          'User Id',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -131,7 +131,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
           widget.model.phnNo = _mobileno.text;
           MyWidgets.showLoading(context);
           widget.model.POSTMETHOD(
-              api: ApiFactory.FORGOT_OTP,
+              api: ApiFactory.FORGOT_USERID,
               json: sendData,
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
@@ -140,9 +140,10 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     forgotUseridModel = ForgotUseridModel.fromJson(map);
-                    widget.model.userResponse = forgotUseridModel;
+                    //widget.model.userResponse = forgotUseridModel;
                     log("userid response " + jsonEncode(map));
                     String otp = map["body"]["code"];
+                   // ForgotUseridModel forgotUseridModel = map["body"];
 
                     Navigator.push(
                       context,
@@ -150,6 +151,8 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                         builder: (BuildContext context) => UseridtPinView(
                           model: widget.model,
                           otp: otp,
+                          userResponse: forgotUseridModel,
+
                         ),
                       ),
                     );
