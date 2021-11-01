@@ -950,7 +950,7 @@ class DropDown {
   static Widget newContainer2(child) {
     return Padding(
       padding:
-      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      const EdgeInsets.only(top: 8.0, left: 0.0, right: 0.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 0),
         decoration: BoxDecoration(
