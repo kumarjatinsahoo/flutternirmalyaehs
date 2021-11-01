@@ -179,352 +179,206 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGN UP"),
+        centerTitle: true,
+      ),
       body: Container(
-    child: SingleChildScrollView(
-      child: Column(
-        children: [
-          /*  Padding(
-        padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-        child:*/
-          Container(
-            color: AppData.kPrimaryColor,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Row(
-                /*
-          mainAxisAlignment: MainAxisAlignment.start,*/
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListView(
+                shrinkWrap: true,
                 children: [
-                  InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.arrow_back, color: Colors.white)),
                   Padding(
-                    padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                    child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 60.0, right: 60.0),
+                                child: Image.asset(
+                                  "assets/logo1.png",
+                                  fit: BoxFit.fitWidth,
+                                  //width: ,
+                                  height: 110.0,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Form(
+                              key: _formKey,
+                              autovalidate: _autovalidate,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                    children: [
+                                      Text(
+                                        MyLocalizations.of(context).text(
+                                            "FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.black),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+                                  formField1(
+                                      8,
+                                      MyLocalizations.of(context)
+                                          .text("EDUCATION")),
+                                  SizedBox(
+                                    height: 13,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          MyLocalizations.of(context)
+                                              .text("ROLE"),
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.black),
+                                        ),
+                                        SizedBox(width: 80),
+                                        Text(
+                                          MyLocalizations.of(context)
+                                              .text("PATHOLOGIST"),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          MyLocalizations.of(context)
+                                              .text("SPECIALITY :"),
+                                          style: TextStyle(
+                                              fontSize: 20, color: Colors.black),
+                                        ),
+                                        SizedBox(width: 35),
+                                        Text(
+                                          MyLocalizations.of(context)
+                                              .text("PATHOLOGIST"),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  dob(),
+
+                                  // Padding(
+                                  //   padding: const EdgeInsets.symmetric(horizontal: 0),
+                                  //   child: DropDown.staticDropdown3(
+                                  //       MyLocalizations.of(context)
+                                  //           .text("BLOOD_GROUP"),
+                                  //       "bloodgroup",
+                                  //       BloodGroup, (KeyvalueModel data) {
+                                  //     setState(() {
+                                  //       LabSignUpForm2.bloodgroupModel = data;
+                                  //     });
+                                  //   }),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 0),
+                                    child: SizedBox(
+                                      height: 58,
+                                      child:
+                                          DropDown.networkDropdownGetpartUser(
+                                              MyLocalizations.of(context)
+                                                  .text("BLOODGROUP"),
+                                              ApiFactory.BLOODGROUP_API,
+                                              "bloodgroup",
+                                              Icons.bloodtype,
+                                              23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          print(ApiFactory.BLOODGROUP_API);
+                                          LabSignUpForm2.bloodgroupModel = data;
+                                        });
+                                      }),
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 0),
+                                    child: SizedBox(
+                                      height: 58,
+                                      child:
+                                          DropDown.networkDropdownGetpartUser(
+                                              MyLocalizations.of(context)
+                                                  .text("GENDER"),
+                                              ApiFactory.GENDER_API,
+                                              "gender",
+                                              Icons.wc_outlined,
+                                              23.0, (KeyvalueModel data) {
+                                        setState(() {
+                                          /* print(ApiFactory.GENDER_API);
+                                      DoctorSignUpForm3.genderModel = data;
+                                      userModel.title = data.key;*/
+                                          print(ApiFactory.GENDER_API);
+                                          LabSignUpForm2.genderModel = data;
+                                          // UserSignUpForm.cityModel = null;
+                                        });
+                                      }),
+                                    ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: nextButton1(),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-            height: 55,
-            width: MediaQuery.of(context).size.width,
-          ),
-          ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 60.0, right: 60.0),
-                            child: Image.asset(
-                              "assets/logo1.png",
-                              fit: BoxFit.fitWidth,
-                              //width: ,
-                              height: 110.0,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Form(
-                          key: _formKey,
-                          autovalidate: _autovalidate,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Column(
-                                children: [
-                                  Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 13,
-                              ),
-                              formField1(8, MyLocalizations.of(context).text("EDUCATION")),
-                              SizedBox(
-                                height: 13,
-                              ),
-                              Row(
-                                children: [
-                                  Text(MyLocalizations.of(context).text("ROLE"),
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),SizedBox(width: 80),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        MyLocalizations.of(context).text("PATHOLOGIST"),
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 11),
-                              Row(
-                                children: [
-                                  Text(MyLocalizations.of(context).text("SPECIALITY"),
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),SizedBox(width: 30),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        MyLocalizations.of(context).text("PATHOLOGIST"),
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              dob(),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(horizontal: 0),
-                              //   child: DropDown.staticDropdown3(
-                              //       MyLocalizations.of(context)
-                              //           .text("BLOOD_GROUP"),
-                              //       "bloodgroup",
-                              //       BloodGroup, (KeyvalueModel data) {
-                              //     setState(() {
-                              //       LabSignUpForm2.bloodgroupModel = data;
-                              //     });
-                              //   }),
-                              // ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 0),
-                                child: SizedBox(
-                                  height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      MyLocalizations.of(context)
-                                          .text("BLOODGROUP") ,
-                                      ApiFactory.BLOODGROUP_API,
-                                      "bloodgroup",
-                                      Icons.bloodtype,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(ApiFactory.BLOODGROUP_API);
-                                      LabSignUpForm2.bloodgroupModel = data;
-                                    });
-                                  }),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 0),
-                                child: SizedBox(
-                                  height: 58,
-                                  child: DropDown.networkDropdownGetpartUser(
-                                      MyLocalizations.of(context)
-                                          .text("GENDER") ,
-                                      ApiFactory.GENDER_API,
-                                      "gender",
-                                      Icons.wc_outlined,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                     /* print(ApiFactory.GENDER_API);
-                                      DoctorSignUpForm3.genderModel = data;
-                                      userModel.title = data.key;*/
-                                      print(ApiFactory.GENDER_API);
-                                      LabSignUpForm2.genderModel = data;
-                                      // UserSignUpForm.cityModel = null;
-                                    });
-                                  }),
-                                ),
-                              ),
-                              /*DropDown.networkDropdownGetpartUser1(
-                                  MyLocalizations.of(context)
-                                      .text("BLOODGROUP") ,
-                                  ApiFactory.BLOODGROUP_API,
-                                  "bloodgroup",
-                                  Icons.location_on_rounded,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.BLOODGROUP_API);
-                                  LabSignUpForm2.bloodgroupModel = data;
-                                });
-                              }),*/
-                              SizedBox(
-                                height: 5,
-                              ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(horizontal: 0),
-                              //   child: DropDown.staticDropdown3(
-                              //       MyLocalizations.of(context)
-                              //           .text("GENDER"),
-                              //       "Gender",
-                              //       Gender, (KeyvalueModel data) {
-                              //     setState(() {
-                              //       LabSignUpForm2.genderModel = data;
-                              //     });
-                              //   }),
-                              // ),
-                            /*  DropDown.networkDropdownGetpartUser1(
-                                  MyLocalizations.of(context)
-                                      .text("GENDER") ,
-                                  ApiFactory.GENDER_API,
-                                  "gender",
-                                  Icons.location_on_rounded,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.GENDER_API);
-                                  LabSignUpForm2.genderModel = data;
-                                });
-                              }),*/
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                child: nextButton1(),
-                              ),
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
-                              // InkWell(
-                              //     onTap: () {
-                              //       setState(() {
-                              //         ispartnercode = !ispartnercode;
-                              //       });
-                              //     },
-                              //     child: Text(
-                              //       MyLocalizations.of(context)
-                              //               .text("HAVE_PARTNERCODE") +
-                              //           "?",
-                              //       style: TextStyle(color: Colors.blue),
-                              //     )),
-                              //
-                              // SizedBox(
-                              //   height: 10,
-                              // ),
-                              // Visibility(
-                              //   visible: ispartnercode,
-                              //   child: Padding(
-                              //     padding:
-                              //         const EdgeInsets.symmetric(horizontal: 25),
-                              //     child: TextFormField(
-                              //       decoration: InputDecoration(
-                              //           hintText: MyLocalizations.of(context)
-                              //               .text("PARTNERCODE"),
-                              //           hintStyle: TextStyle(color: Colors.grey)),
-                              //       textInputAction: TextInputAction.next,
-                              //       keyboardType: TextInputType.text,
-                              //       //           inputFormatters: [
-                              //       //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                              //       //           ],
-                              //     ),
-                              //   ),
-                              // ),
-
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsets.symmetric(horizontal: 10),
-                              //   child: Row(
-                              //     //  mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: [
-                              //       Checkbox(
-                              //         value: _checkbox,
-                              //         onChanged: (value) {
-                              //           setState(() {
-                              //             _checkbox = !_checkbox;
-                              //           });
-                              //         },
-                              //       ),
-                              //       SizedBox(
-                              //         height: 10,
-                              //       ),
-                              //       RichText(
-                              //           textAlign: TextAlign.start,
-                              //           text: TextSpan(
-                              //             children: [
-                              //               TextSpan(
-                              //                 text: 'I agree to NCORDS ',
-                              //                 /* "Welcome back",*/
-                              //                 style: TextStyle(
-                              //                   // fontWeight: FontWeight.w800,
-                              //                   fontFamily: "Monte",
-                              //                   // fontSize: 25.0,
-                              //                   color: Colors.grey,
-                              //                 ),
-                              //               ),
-                              //               TextSpan(
-                              //                 text: 'Terms and Conditions',
-                              //                 /* "Welcome back",*/
-                              //                 style: TextStyle(
-                              //                   // fontWeight: FontWeight.w500,
-                              //                   fontFamily: "Monte",
-                              //                   // fontSize: 25.0,
-                              //                   color: Colors.indigo,
-                              //                 ),
-                              //               )
-                              //             ],
-                              //           )),
-                              //     ],
-                              //   ),
-                              // ),
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsets.symmetric(horizontal: 10),
-                              //   child: nextButton(),
-                              // ),
-                              // SizedBox(
-                              //   height: 25,
-                              // ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -1058,23 +912,20 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       ),
     );
   }
+
   Widget formField1(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -1084,16 +935,13 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
             focusNode: fnode1,
-            textAlignVertical:
-            TextAlignVertical.center,
+            textAlignVertical: TextAlignVertical.center,
             onFieldSubmitted: (value) {
               print("ValueValue" + error[index].toString());
 
@@ -1111,7 +959,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       ),
     );
   }
-
 
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(

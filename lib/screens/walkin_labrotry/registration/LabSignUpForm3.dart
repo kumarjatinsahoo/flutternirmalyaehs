@@ -44,7 +44,6 @@ class LabSignUpForm3 extends StatefulWidget {
   static KeyvalueModel stateModel = null;
   static KeyvalueModel citymodel = null;
 
-
   LabSignUpForm3({
     Key key,
     @required this.updateTab,
@@ -185,7 +184,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     labdname = widget.model.labprofessionalname;
     labeducation = widget.model.labeducation;
     labdob = widget.model.labdob;
-    labbloodgrp=widget.model.labbloodgroup;
+    labbloodgrp = widget.model.labbloodgroup;
     labgender = widget.model.labgender;
     // labaddress = widget.model.labaddress;
     // labcountryid = widget.model.labcountry;
@@ -220,116 +219,93 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("SIGN UP"),
+        centerTitle: true,
+      ),
       body: Container(
-    child: SingleChildScrollView(
-      child: Column(
-        children: [
-          /*  Padding(
-        padding: const EdgeInsets.only( left:5.0,right: 5.0,top: 5.0),
-        child:*/
-          Container(
-            color: AppData.kPrimaryColor,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Row(
-                /*
-          mainAxisAlignment: MainAxisAlignment.start,*/
-                children: [
-                  InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.arrow_back, color: Colors.white)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 80.0, right: 40.0),
-                    child: Text(MyLocalizations.of(context).text("SIGNUP"),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20,
-                        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60.0, right: 60.0),
+                        child: Image.asset(
+                          "assets/logo1.png",
+                          fit: BoxFit.fitWidth,
+                          //width: ,
+                          height: 110.0,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            height: 55,
-            width: MediaQuery.of(context).size.width,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 60.0, right: 60.0),
-                    child: Image.asset(
-                      "assets/logo1.png",
-                      fit: BoxFit.fitWidth,
-                      //width: ,
-                      height: 110.0,
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Form(
-                  key: _formKey,
-                  autovalidate: _autovalidate,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                           textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black),
+                    Form(
+                      key: _formKey,
+                      autovalidate: _autovalidate,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Text(
+                                MyLocalizations.of(context)
+                                    .text("FILL_IN_PERSONAL_INFORMATION"),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      formFieldaddress(8, MyLocalizations.of(context).text("ADDRESS"),fnode1,fnode2),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      DropDown.networkDropdownGetpartUser(
-                          MyLocalizations.of(context)
-                              .text("COUNTRY") ,
-                          ApiFactory.COUNTRY_API, "country", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
+                          SizedBox(
+                            height: 5,
+                          ),
+                          formFieldaddress(
+                              8,
+                              MyLocalizations.of(context).text("ADDRESS"),
+                              fnode1,
+                              fnode2),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropDown.networkDropdownGetpartUser(
+                              MyLocalizations.of(context).text("COUNTRY"),
+                              ApiFactory.COUNTRY_API,
+                              "country",
+                              Icons.location_on_rounded,
+                              23.0, (KeyvalueModel data) {
                             setState(() {
                               print(ApiFactory.COUNTRY_API);
                               LabSignUpForm3.countryModel = data;
                               LabSignUpForm3.stateModel = null;
                               LabSignUpForm3.districtModel = null;
                               LabSignUpForm3.citymodel = null;
-
                             });
                           }),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("STATE") ,
-                          ApiFactory.STATE_API +(LabSignUpForm3?.countryModel?.key??""), "state", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropDown.countryList(
+                              MyLocalizations.of(context).text("STATE"),
+                              ApiFactory.STATE_API +
+                                  (LabSignUpForm3?.countryModel?.key ?? ""),
+                              "state",
+                              Icons.location_on_rounded,
+                              23.0, (KeyvalueModel data) {
                             setState(() {
                               print(ApiFactory.STATE_API);
                               LabSignUpForm3.stateModel = data;
@@ -337,138 +313,169 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               LabSignUpForm3.citymodel = null;
                             });
                           }),
-
-                      SizedBox(
-                        height: 5,
-                      ),
-                      DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("DIST") ,
-                          ApiFactory.DISTRICT_API +(LabSignUpForm3?.stateModel?.key??""), "district", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropDown.countryList(
+                              MyLocalizations.of(context).text("DIST"),
+                              ApiFactory.DISTRICT_API +
+                                  (LabSignUpForm3?.stateModel?.key ?? ""),
+                              "district",
+                              Icons.location_on_rounded,
+                              23.0, (KeyvalueModel data) {
                             setState(() {
                               print(ApiFactory.DISTRICT_API);
                               LabSignUpForm3.districtModel = data;
                               LabSignUpForm3.citymodel = null;
                             });
                           }),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("CITY") ,
-                          ApiFactory.CITY_API + (LabSignUpForm3?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
+                          SizedBox(
+                            height: 5,
+                          ),
+                          DropDown.countryList(
+                              MyLocalizations.of(context).text("CITY"),
+                              ApiFactory.CITY_API +
+                                  (LabSignUpForm3?.districtModel?.key ?? ""),
+                              "city",
+                              Icons.location_on_rounded,
+                              23.0, (KeyvalueModel data) {
                             setState(() {
                               print(ApiFactory.CITY_API);
                               LabSignUpForm3.citymodel = data;
-                             // LabSignUpForm3.districtModel = null;
+                              // LabSignUpForm3.districtModel = null;
                             });
                           }),
-
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFieldMobile(6,MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFielEmail(11, MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      formFieldExperience(13, MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black),
-                            ),
+                          SizedBox(
+                            height: 13,
                           ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10),
-                        child: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Checkbox(
-                              value: _checkbox,
-                              onChanged: (value) {
-                                setState(() {
-                                  _checkbox = !_checkbox;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Expanded(
-                                child:RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w800,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
+                          formFieldzip(
+                              5,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_ZIP_CODE"),
+                              fnode2,
+                              fnode3),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFieldMobile(
+                              4,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_HOME_PHONE"),
+                              fnode3,
+                              fnode4),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFieldMobile(
+                              6,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_OFFICE_PHONE"),
+                              fnode4,
+                              fnode5),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFieldMobile(
+                              10,
+                              MyLocalizations.of(context).text("MOBILE_NO"),
+                              fnode5,
+                              fnode6),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFielEmail(
+                              11,
+                              MyLocalizations.of(context).text("EMAILID"),
+                              fnode6,
+                              fnode7),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFielEmail(
+                              12,
+                              MyLocalizations.of(context).text("ALTER_EMAILID"),
+                              fnode7,
+                              fnode8),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          formFieldExperience(
+                              13,
+                              MyLocalizations.of(context).text("EXPERIENCE"),
+                              fnode8,
+                              null),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("UPLOAD_DOCUMENT"),
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              //  mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Checkbox(
+                                  value: _checkbox,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _checkbox = !_checkbox;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Expanded(
+                                    child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: MyLocalizations.of(context)
+                                                  .text("AGREE_EHEALTHSYSTEM"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: MyLocalizations.of(context)
+                                                  .text("T&C"),
+                                              /* "Welcome back",*/
 
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text(  "T&C"),
-                                          /* "Welcome back",*/
-
-                                          style: TextStyle(
-                                            //fontWeight: FontWeight.w500,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: AppData
-                                                .kPrimaryColor,
-                                          ),
-                                        )
-                                      ],
-                                    ))),
-                            /*Container(
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: AppData.kPrimaryColor,
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                                /*Container(
                               child: RichText(
                                   textAlign: TextAlign.start,
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
                                         text: MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                        *//* "Welcome back",*//*
+                                        */ /* "Welcome back",*/ /*
                                         style: TextStyle(
                                           // fontWeight: FontWeight.w800,
                                           fontFamily: "Monte",
@@ -479,7 +486,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                       TextSpan(
                                         text:
                                         MyLocalizations.of(context).text("T&C") ,
-                                        *//* "Welcome back",*//*
+                                        */ /* "Welcome back",*/ /*
                                         style: TextStyle(
                                           // fontWeight: FontWeight.w500,
                                           fontFamily: "Monte",
@@ -490,26 +497,25 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                     ],
                                   )),
                             ),*/
-                          ],
-                        ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: nextButton1(),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10),
-                        child: nextButton1(),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -678,17 +684,16 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   //   );
   // }
 
-
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text:MyLocalizations.of(context).text("SUBMIT"),
+      text: MyLocalizations.of(context).text("SUBMIT"),
       context: context,
       fun: () {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
           FocusScope.of(context).requestFocus(fnode1);
-        }else if (LabSignUpForm3.countryModel == null ||
+        } else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
           AppData.showInSnackBar(context, "Please select Country");
         } else if (LabSignUpForm3.stateModel == null ||
@@ -697,59 +702,59 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         } else if (LabSignUpForm3.districtModel == null ||
             LabSignUpForm3.districtModel == "") {
           AppData.showInSnackBar(context, "Please select District");
-        }else if (LabSignUpForm3.citymodel == null ||
+        } else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
           AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
           FocusScope.of(context).requestFocus(fnode2);
-        }else if (textEditingController[4].text != ""  &&
+        } else if (textEditingController[4].text != "" &&
             textEditingController[4].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid Home Phone");
           FocusScope.of(context).requestFocus(fnode3);
-        }else if (textEditingController[6].text != "" &&
+        } else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid Office Phone");
           FocusScope.of(context).requestFocus(fnode4);
-        }else if (textEditingController[10].text == "" ||
+        } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");
           FocusScope.of(context).requestFocus(fnode5);
-        }else if (textEditingController[10].text != "" &&
+        } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
           FocusScope.of(context).requestFocus(fnode5);
-        }else if (textEditingController[11].text == "" ||
+        } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter E-mail Id");
           FocusScope.of(context).requestFocus(fnode6);
-        } else if (textEditingController[11].text != ""&&
+        } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
           FocusScope.of(context).requestFocus(fnode6);
-        }else if (textEditingController[12].text != "" &&
+        } else if (textEditingController[12].text != "" &&
             !AppData.isValidEmail(textEditingController[12].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid alternate E-mail Id");
+          AppData.showInSnackBar(
+              context, "Please enter a valid alternate E-mail Id");
           FocusScope.of(context).requestFocus(fnode7);
-        }else if (textEditingController[13].text == "" || textEditingController[13].text == null) {
+        } else if (textEditingController[13].text == "" ||
+            textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);
-        }
-        else if (_checkbox == false) {
+        } else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please checked Terms and Condition");
-        }
-         else {
+        } else {
           MyWidgets.showLoading(context);
           LabSignupModel labSignupModel = LabSignupModel();
           labSignupModel.organizationid = labid;
           labSignupModel.titleid = labtitleid;
           labSignupModel.docname = labdname;
-          labSignupModel.educationid =  labeducation;
+          labSignupModel.educationid = labeducation;
           //labSignupModel.speciality = labspecialty;
-          labSignupModel.dob =  labdob;
-          labSignupModel.bloodgroup =  labbloodgrp;
-          labSignupModel.gender =  labgender;
+          labSignupModel.dob = labdob;
+          labSignupModel.bloodgroup = labbloodgrp;
+          labSignupModel.gender = labgender;
           labSignupModel.address = textEditingController[8].text;
           labSignupModel.countryid = LabSignUpForm3.countryModel.key;
           labSignupModel.stateid = LabSignUpForm3.stateModel.key;
@@ -762,10 +767,11 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           labSignupModel.email = textEditingController[11].text;
           labSignupModel.alteremail = textEditingController[12].text;
           labSignupModel.experience = textEditingController[13].text;
-          labSignupModel.role="8";
-          labSignupModel.speciality="25";
+          labSignupModel.role = "8";
+          labSignupModel.speciality = "25";
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ labSignupModel.toJson().toString());
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+              labSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.LAB_SIGNUP,
               json: labSignupModel.toJson(),
@@ -777,28 +783,29 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-              // fun: (Map<String, dynamic> map){
-              //   String msg = map["message"].toString();
-              //   String userid = map["body"].toString();
-              //   if (map["code"] == "success"){
-              //     popup(msg, context,userid,labmobile);
-              //   }
-              //   else {
-              //     AppData.showInSnackBar(context, msg);
-              //   }
-              // }
-              // );
+          // fun: (Map<String, dynamic> map){
+          //   String msg = map["message"].toString();
+          //   String userid = map["body"].toString();
+          //   if (map["code"] == "success"){
+          //     popup(msg, context,userid,labmobile);
+          //   }
+          //   else {
+          //     AppData.showInSnackBar(context, msg);
+          //   }
+          // }
+          // );
           //Navigator.pushNamed(context, "/labsignup4");
         }
       },
     );
   }
+
   popup(BuildContext context, String message) {
     return Alert(
         context: context,
         title: message,
         desc:
-        "Now you can login through your mobile no and password is: User@123",
+            "Now you can login through your mobile no and password is: User@123",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -829,14 +836,16 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               widget.model.patienStatecode = null;
               widget.model.patienStatekey = null;
               widget.model.patientimgtype = null;
-              Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  "/login", (Route<dynamic> route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
   }
- /* popup(BuildContext context, String message) {
+
+  /* popup(BuildContext context, String message) {
     return Alert(
         context: context,
         //title: "Success",
@@ -1263,23 +1272,22 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+
   Widget formFieldaddress(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn,
-      ) {
+    int index,
+    String hint,
+    FocusNode currentfn,
+    FocusNode nextFn,
+  ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -1289,16 +1297,13 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 15),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             focusNode: currentfn,
             controller: textEditingController[index],
-            textAlignVertical:
-            TextAlignVertical.center,
+            textAlignVertical: TextAlignVertical.center,
             onFieldSubmitted: (value) {
               print("ValueValue" + error[index].toString());
 
@@ -1307,7 +1312,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               });
               AppData.fieldFocusChange(context, currentfn, nextFn);
             },
-           /* inputFormatters: [
+            /* inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
             ],*/
@@ -1316,21 +1321,22 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+
   Widget formFieldExperience(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn,
-      ) {
+    int index,
+    String hint,
+    FocusNode currentfn,
+    FocusNode nextFn,
+  ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black,width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1345,17 +1351,16 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   maxLength: 3,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
-                    hintText:hint,
-                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintText: hint,
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
@@ -1373,23 +1378,22 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+
   Widget formFielEmail(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn,
-      ) {
+    int index,
+    String hint,
+    FocusNode currentfn,
+    FocusNode nextFn,
+  ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding:
-        EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-          BorderRadius.circular(5),
-          border: Border.all(
-              color: Colors.black, width: 0.3),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -1399,9 +1403,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(
-                  color: AppData.hintColor,
-                  fontSize: 15),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
@@ -1413,9 +1415,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
               setState(() {});
               AppData.fieldFocusChange(context, currentfn, nextFn);
             },
-           /* textAlignVertical:
+            /* textAlignVertical:
             TextAlignVertical.center,*/
-             /*inputFormatters: [
+            /*inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
             ],*/
@@ -1424,21 +1426,22 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+
   Widget formFieldzip(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn,
-      ) {
+    int index,
+    String hint,
+    FocusNode currentfn,
+    FocusNode nextFn,
+  ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
-         decoration: BoxDecoration(
-          color: AppData.white,
-          borderRadius: BorderRadius.circular(5),
-      border: Border.all(
-               color: Colors.black,width: 0.3)
-        ),
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1453,17 +1456,16 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   maxLength: 6,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
-                    hintText:hint,
-                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintText: hint,
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
@@ -1481,21 +1483,22 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
       ),
     );
   }
+
   Widget formFieldMobile(
-      int index,
-      String hint,FocusNode currentfn, FocusNode nextFn,
-      ) {
+    int index,
+    String hint,
+    FocusNode currentfn,
+    FocusNode nextFn,
+  ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black, width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
@@ -1510,18 +1513,16 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   maxLength: 10,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
-
                   onFieldSubmitted: (value) {
                     // print(error[2]);
                     error[4] = false;
