@@ -78,7 +78,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                     Container(color:Colors.blue,child: Image.asset("assets/DiseaseInfo.png",height: 40,)),
+                                     Container(color:Color(0xFF2372B6),child: Image.asset("assets/DiseaseInfo.png",height: 40,)),
                                       SizedBox(
                                         width: spaceTab,
                                       ),
@@ -117,7 +117,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Container(color:Colors.red,child: Image.asset("assets/Healthdays.png",height: 40,)),
+                                      Container(color:Color(0xFFCF3564),child: Image.asset("assets/Healthdays.png",height: 40,)),
                                       SizedBox(
                                         width: spaceTab,
                                       ),
@@ -158,7 +158,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Container(color:Colors.blue,child: Image.asset("assets/Healttips.png",height: 40,)),
+                                      Container(color:Color(0xFF2372B6),child: Image.asset("assets/Healttips.png",height: 40,)),
                                       SizedBox(
                                         width: spaceTab,
                                       ),
@@ -196,7 +196,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                    Container (color:Colors.red,child: Image.asset("assets/Videos.png",height: 40,)),
+                                    Container (color:Color(0xFFCF3564),child: Image.asset("assets/Videos.png",height: 40,)),
                                       SizedBox(
                                         width: spaceTab,
                                       ),

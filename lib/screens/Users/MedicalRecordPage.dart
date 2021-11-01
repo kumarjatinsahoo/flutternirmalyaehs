@@ -112,7 +112,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                           Container(
                                               height: 45,
                                               width: 45,
-                                              color: Colors.red,
+                                              color: Color(0xFFCF3564),
                                               padding: EdgeInsets.all(6),
                                               child: Image.asset(
                                                 "assets/intro/generic_medicine2.png",
@@ -163,7 +163,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color:Colors.blue,
+                                              color:Color(0xFF2372B6),
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Vitalsigns.png",
@@ -212,7 +212,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.red,
+                                              color: Color(0xFFCF3564),
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Immunizationimg.png",
@@ -268,7 +268,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.blue,
+                                              color: Color(0xFF2372B6),
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Allergicimg.png",
@@ -324,7 +324,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.red,
+                                              color: Color(0xFFCF3564),
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/Biomedicalimg.png",
@@ -380,7 +380,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                              color: Colors.blue,
+                                              color: Color(0xFF2372B6),
                                               padding: EdgeInsets.all(3),
                                               child: Image.asset(
                                                 "assets/images/userhealth.png",
@@ -441,7 +441,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                         CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                            color: Colors.red,
+                                            color: Color(0xFFCF3564),
                                             padding: EdgeInsets.all(3),
                                             child: Image.asset(
                                               "assets/images/usertest.png",

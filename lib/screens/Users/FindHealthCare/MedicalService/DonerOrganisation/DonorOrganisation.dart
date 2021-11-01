@@ -73,7 +73,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                       CrossAxisAlignment.center,
                                   children: [
                                     Icon(Icons.ac_unit,
-                                        size: 50, color: Colors.red),
+                                        size: 50, color: Color(0xFFCF3564)),
                                     SizedBox(
                                       width: 10,
                                     ),
@@ -127,7 +127,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                   children: [
                                     Icon(Icons.ac_unit,
                                         size: 50,
-                                        color: AppData.kPrimaryColor),
+                                        color: Color(0xFF2372B6)),
                                     SizedBox(
                                       width: 10,
                                     ),
