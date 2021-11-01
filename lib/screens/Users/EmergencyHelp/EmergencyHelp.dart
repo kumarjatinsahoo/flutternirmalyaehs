@@ -416,7 +416,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     width: 2,
                                     child: Divider(
                                       thickness: 21,
-                                      color: Colors.red,
+                                      color: Color(0xFFCF3564),
                                     ),
                                   ),
                                 ]),
@@ -451,14 +451,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: Icon(
                                     Icons.phone_in_talk,
-                                    color: Colors.red,
+                                    color: Color(0xFFCF3564),
                                   ),
                                 )),
                             Container(
                               width: 2,
                               child: Divider(
                                 thickness: 21,
-                                color: Colors.red,
+                                color: Color(0xFFCF3564),
                               ),
                             ),
                             InkWell(
@@ -476,7 +476,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                       left: 10.0, right: 10.0),
                                   child: Icon(
                                     Icons.info,
-                                    color: Colors.red,
+                                    color: Color(0xFFCF3564),
                                   ),
                                 )),
                           ]))
@@ -625,7 +625,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                   width: 2,
                                   child: Divider(
                                     thickness: 21,
-                                    color: AppData.kPrimaryColor,
+                                    color: Color(0xFF2372B6),
                                   ),
                                 ),
                                 /* SizedBox(width: 100,),*/
@@ -663,14 +663,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
-                                        color: AppData.kPrimaryColor,
+                                        color: Color(0xFF2372B6),
                                       ),
                                     )),
                                 Container(
                                   width: 2,
                                   child: Divider(
                                     thickness: 21,
-                                    color: AppData.kPrimaryColor,
+                                    color: Color(0xFF2372B6),
                                   ),
                                 ),
                                 /* SizedBox(width: 100,),*/
@@ -712,7 +712,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           left: 10.0, right: 10.0),
                                       child: Icon(
                                         Icons.info,
-                                        color: AppData.kPrimaryColor,
+                                        color: Color(0xFF2372B6),
                                       ),
                                     )),
                               ]) /*),*/
@@ -758,7 +758,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                   width: 2,
                                   child: Divider(
                                     thickness: 21,
-                                    color: Colors.red,
+                                    color: Color(0xFFCF3564),
                                   ),
                                 ),
                                 /* SizedBox(width: 100,),*/
@@ -794,14 +794,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
-                                        color: Colors.red,
+                                        color: Color(0xFFCF3564),
                                       ),
                                     )),
                                 Container(
                                   width: 2,
                                   child: Divider(
                                     thickness: 21,
-                                    color: Colors.red,
+                                    color: Color(0xFFCF3564),
                                   ),
                                 ),
                                 /* SizedBox(width: 100,),*/
@@ -814,7 +814,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           left: 10.0, right: 10.0),
                                       child: Icon(
                                         Icons.info,
-                                        color: Colors.red,
+                                        color: Color(0xFFCF3564),
                                       ),
                                     )),
                               ]) /*),*/

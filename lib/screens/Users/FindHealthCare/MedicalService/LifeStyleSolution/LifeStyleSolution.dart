@@ -67,7 +67,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                            child: Row(
                                              crossAxisAlignment: CrossAxisAlignment.center,
                                              children: [
-                                               Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                               Icon(Icons.ac_unit, size: 50,color: Color(0xFFCF3564)),
                                                SizedBox(width: 10,),
                                                Expanded(
                                                        child: Column(
@@ -111,7 +111,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                child: Row(
                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                  children: [
-                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   Icon(Icons.ac_unit, size: 50,color: Color(0xFF2372B6)),
                                                    SizedBox(width: 10,),
                                                    Expanded(
                                                      child: Column(
@@ -154,7 +154,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                child: Row(
                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                  children: [
-                                                   Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                   Icon(Icons.ac_unit, size: 50,color: Color(0xFFCF3564)),
                                                    SizedBox(width: 10,),
                                                    Expanded(
                                                      child: Column(
@@ -196,7 +196,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                child: Row(
                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                  children: [
-                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   Icon(Icons.ac_unit, size: 50,color: Color(0xFF2372B6)),
                                                    SizedBox(width: 10,),
                                                    Expanded(
                                                      child: Column(
@@ -238,7 +238,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                child: Row(
                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                  children: [
-                                                   Icon(Icons.ac_unit, size: 50,color: Colors.red),
+                                                   Icon(Icons.ac_unit, size: 50,color: Color(0xFFCF3564)),
                                                    SizedBox(width: 10,),
                                                    Expanded(
                                                      child: Column(
@@ -281,7 +281,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                                child: Row(
                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                  children: [
-                                                   Icon(Icons.ac_unit, size: 50,color: AppData.kPrimaryColor),
+                                                   Icon(Icons.ac_unit, size: 50,color: Color(0xFF2372B6)),
                                                    SizedBox(width: 10,),
                                                    Expanded(
                                                      child: Column(

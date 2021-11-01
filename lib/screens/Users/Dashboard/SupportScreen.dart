@@ -50,7 +50,7 @@ class _SupportScreenState extends State<SupportScreen> {
                   Container(
                     color: Colors.blueGrey,
                     child: Image.asset(
-                      "assets/chat-banner.jpg",
+                      "assets/supportbanner.jpg",
                       fit: BoxFit.fitWidth,
                     ),
                   ),
