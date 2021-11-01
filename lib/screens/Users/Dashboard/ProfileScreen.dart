@@ -1226,6 +1226,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
 
                           dob("Dob"),
+                     Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Blood Group",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
 
                           DropDown.networkDropdownlabler1(
                               "Blood Group",
@@ -1238,7 +1255,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               // updateProfileModel.bloodGroup = model.key;
                             });
                           }),
+                          ]),
                           formField(_eName,"Emergency Contact Name"),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Relation",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
 
                           DropDown.networkDropdownlabler1(
                               "Relation", ApiFactory.RELATION_API, "relation",
@@ -1250,10 +1285,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               // updateProfileModel.eRelation = model.key;
                             });
                           }),
+              ]),
                           /*   Divider(height: 2, color: Colors.black),*/
                           formFieldMobileno(_eMobile,"Emergency Contact No."),
                           formField(_fDoctor,"Family Doctor's Name"),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Relation",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
 
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
                           DropDown.networkDropdownlabler1(
                               "Speciality",
                               ApiFactory.SPECIALITY_API,
@@ -1264,6 +1316,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               //updateProfileModel.speciality = model.key;
                             });
                           }),
+                          ]),
                           /*Divider(
                             height: 2,
                             color: Colors.black,
@@ -1526,7 +1579,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 0, right: 5,bottom: 10),
+                padding: const EdgeInsets.only(left: 0, right: 5,bottom: 8),
                 child: Text(
                   hint,
                   textAlign: TextAlign.left,

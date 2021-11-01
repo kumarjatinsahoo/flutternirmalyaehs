@@ -494,8 +494,8 @@ class DropDown {
         floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: EdgeInsets.all(0),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(29)),
-          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderSide: BorderSide(width: 1, color: AppData.kPrimaryLightColor),
         ),
       ),
 
@@ -953,11 +953,12 @@ class DropDown {
       padding:
       const EdgeInsets.only(top: 8.0, left: 0.0, right: 0.0, bottom: 0.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 0),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.black, width: 0.3)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(2),
+          border: Border.all(color: Colors.grey, width: 1),
+        ),
         child: child,
       ),
     );
