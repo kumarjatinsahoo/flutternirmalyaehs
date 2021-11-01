@@ -290,9 +290,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                       }),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
+
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 0),
@@ -317,7 +315,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 8,
                               ),
                               formField1(1,MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
                               SizedBox(

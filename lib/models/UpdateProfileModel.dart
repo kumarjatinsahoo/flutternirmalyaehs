@@ -7,6 +7,7 @@ class UpdateProfileModel {
   String bloodGroup;
   String eName;
   String eRelation;
+  String address;
   String eMobile;
   String fDoctor;
   String speciality;
@@ -28,6 +29,7 @@ class UpdateProfileModel {
         this.eRelation,
         this.eMobile,
         this.fDoctor,
+        this.address,
         this.speciality,
         this.id,
         this.docMobile,
@@ -47,6 +49,7 @@ class UpdateProfileModel {
     eRelation = json['eRelation'];
     eMobile = json['eMobile'];
     fDoctor = json['fDoctor'];
+    address = json['address'];
     id = json['id'];
     speciality = json['speciality'];
     docMobile = json['docMobile'];
@@ -67,6 +70,7 @@ class UpdateProfileModel {
     data['lName'] = this.lName;
     data['dob'] = this.dob;
     data['gender'] = this.gender;
+    data['address'] = this.address;
     data['bloodGroup'] = this.bloodGroup;
     data['eName'] = this.eName;
     data['eRelation'] = this.eRelation;

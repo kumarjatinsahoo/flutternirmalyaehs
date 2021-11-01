@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   FocusNode fnode5 = new FocusNode();
 
   TextEditingController _fname = TextEditingController();
-  TextEditingController _lname = TextEditingController();
+  TextEditingController _address = TextEditingController();
   TextEditingController _dob = TextEditingController();
   TextEditingController _bloodGroup = TextEditingController();
   TextEditingController _id = TextEditingController();
@@ -103,7 +103,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     // comeFrom = widget.model.apntUserType;
     loginResponse1 = widget.model.loginResponse1;
+    /*?? "N/A"*/;
     //_controller = TabController(length: 3);
+
+    // updateProfileModel.eCardNo =patientProfileModel.body.eCardNo;
+    /*patientProfileModel.body=null?textEditingController[2].text =
+        myFormatDate(patientProfileModel.body.dob.toString()):N/A*/
     callApi();
   }
 
@@ -117,16 +122,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
-              ProfileScreen.bloodgroupmodel = /*(patientProfileModel=null) ??*/KeyvalueModel(
-                  key: patientProfileModel.body.bloodGroupId,
-                  name: patientProfileModel.body.bloodGroup);
-              ProfileScreen.relationmodel =/*(patientProfileModel=null) ??*/ KeyvalueModel(
-                  key: patientProfileModel.body.eRelationId,
-                  name: patientProfileModel.body.eRelation);
-              ProfileScreen.specialitymodel = /*(patientProfileModel=null) ??*/KeyvalueModel(
-                  key: patientProfileModel.body.specialityId,
-                  name: patientProfileModel.body.speciality);
 
+              if (patientProfileModel?.body?.bloodGroup != null) {
+                ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                    key: patientProfileModel.body.bloodGroupId,
+                    name: patientProfileModel.body.bloodGroup);
+              }else{
+                ProfileScreen.bloodgroupmodel=null;
+              }
+
+              if (patientProfileModel?.body?.eRelation != null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                    key: patientProfileModel.body.eRelationId,
+                    name: patientProfileModel.body.eRelation);
+              }else{
+                ProfileScreen.relationmodel=null;
+              }
+
+              if (patientProfileModel?.body?.speciality != null) {
+                ProfileScreen.specialitymodel = KeyvalueModel(
+                    key: patientProfileModel.body.specialityId,
+                    name: patientProfileModel.body.speciality);
+              }else{
+                ProfileScreen.specialitymodel=null;
+              }
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -147,7 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         splashColor: Colors.grey,
       ),*/
       appBar: AppBar(
-       /* leading: IconButton(
+        /* leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),*/
@@ -164,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right:70.0),
+                padding: const EdgeInsets.only(right: 70.0),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/qrcode");
@@ -232,7 +251,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               InkWell(
                                   onTap: () {
-                                    _displayTextInputDialog(context);
+                                    if (patientProfileModel != null) {
+                                      _displayTextInputDialog(context);
+                                    } else {
+                                      AppData.showInSnackBar(context,
+                                          "Please wait until we are fetching your data");
+                                    }
                                   },
                                   child: Icon(
                                     Icons.edit,
@@ -285,15 +309,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           shape: CircleBorder(),
                                           child: CircleAvatar(
                                             radius: 40.0,
-                                            backgroundImage:
-                                                FileImage(pathUsr),
+                                            backgroundImage: FileImage(pathUsr),
                                           ),
                                         )
                                       : Material(
                                           elevation: 5.0,
                                           shape: CircleBorder(),
-                                          child:
-                                          CircleAvatar(
+                                          child: CircleAvatar(
                                             radius: 40.0,
                                             backgroundImage: NetworkImage(
                                                 (patientProfileModel?.body
@@ -472,8 +494,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //unselectedLabelColor: AppData.kPrimaryRedColor,
                           tabs: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Text('Details'.toUpperCase(),
                                   style: TextStyle(
                                       color: Colors.black,
@@ -481,8 +502,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontSize: 13)),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Text(
                                   'Emergency Contacts'
                                       .toUpperCase()
@@ -493,8 +513,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       fontSize: 13)),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 12),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Text('Family Doctors'.toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -513,11 +532,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                             height: 280.0,
                             child: TabBarView(
-                              children: [
-                                rowValue(),
-                                rowValue1(),
-                                rowValue2()
-                              ],
+                              children: [rowValue(), rowValue1(), rowValue2()],
                             ))
                       ],
                     ))
@@ -785,7 +800,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                         patientProfileModel?.body?.address ??"N/A",
+                        patientProfileModel?.body?.address ?? "N/A",
                         style: TextStyle(fontSize: 14
                             //fontWeight: FontWeight.w500,
                             // color: AppData.kPrimaryColor,
@@ -1113,23 +1128,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Future<void> _displayTextInputDialog(BuildContext context) async {
+  myFormatDate(String date) {
+    if (date != null && date.contains("-")) {
+      List<String> myList = date.split("-");
+      return myList[0] + "/" + myList[1] + "/" + myList[2];
+    } else {
+      return "N/A";
+    }
+  }
 
+  Future<void> _displayTextInputDialog(BuildContext context) async {
     /*ProfileScreen.relationmodel.key=patientProfileModel.body.eRelation.toString()??"N/A";
     ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
     ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";*/
-    _eMobile.text = patientProfileModel.body.eMobile.toString()??"N/A";
-    _fDoctor.text = patientProfileModel.body.fDoctor.toString()??"N/A";
-    _eName.text = patientProfileModel.body.eName.toString()??"N?A";
-    _docMobile.text=patientProfileModel.body.docMobile.toString()??"N/A";
-    textEditingController[2].text = patientProfileModel.body.dob.toString()??"N/A";
 
+    _eMobile.text = patientProfileModel.body.eMobile.toString() ?? "N/A";
+    _fDoctor.text = patientProfileModel.body.fDoctor.toString() ?? "N/A";
+    _eName.text = patientProfileModel.body.eName.toString() ?? "N?A";
+    _docMobile.text = patientProfileModel.body.docMobile.toString() ?? "N/A";
+    _address.text = patientProfileModel.body.address.toString() ?? "N/A";
+    textEditingController[2].text = (patientProfileModel != null)
+        ? myFormatDate(patientProfileModel.body.dob.toString())
+        : "N/A";
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
     updateProfileModel.id = patientProfileModel.body.id.toString();
-
-
-
-
 
     return showDialog(
         context: context,
@@ -1146,7 +1168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -1203,175 +1225,106 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 20,
                           ),
 
-                          dob(),
+                          dob("Dob"),
+                     Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Blood Group",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
 
-                          (patientProfileModel=null)??DropDown.networkDropdownlabler(
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+
+                          DropDown.networkDropdownlabler1(
                               "Blood Group",
                               ApiFactory.BLOODGROUP_API,
                               "bloodgroup", (KeyvalueModel model) {
                             setState(() {
-                               patientProfileModel.body.bloodGroupId= model.key;
-                              patientProfileModel.body.bloodGroup = model.name;
                               ProfileScreen.bloodgroupmodel = model;
-                             // updateProfileModel.bloodGroup = model.key;
+                              patientProfileModel.body.bloodGroupId = model.key;
+                              patientProfileModel.body.bloodGroup = model.name;
+                              // updateProfileModel.bloodGroup = model.key;
                             });
                           }),
-                         /* Divider(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-*/                // formField(_fDoctor,"Emergency Contact Name"),
-                          TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                                //updateProfileModel.eName = value;
-                              });
-                            },
-                            controller: _eName,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z ]")),
-                            ],
-                            decoration: InputDecoration(
-                                hintText: "Emergency Contact Name",
-                              labelText: "Emergency Contact Name",
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 17,
-                                  // fontStyle: FontStyle.italic,
-                                  decoration: TextDecoration.underline
+                          ]),
+                          formField(_eName,"Emergency Contact Name"),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Relation",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
 
-                              ),
-                               // contentPadding: EdgeInsets.fromLTRB( 0, 0,  70, 20.70),
-                                contentPadding: EdgeInsets.only(bottom: 20.0),
-                                isDense: true
-                              /*contentPadding:
-                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),*/
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
                             ),
-
-
                           ),
-                          (patientProfileModel=null)?? DropDown.networkDropdownlabler(
+
+                          DropDown.networkDropdownlabler1(
                               "Relation", ApiFactory.RELATION_API, "relation",
                               (KeyvalueModel model) {
                             setState(() {
+                              ProfileScreen.relationmodel = model;
                               patientProfileModel.body.eRelationId = model.key;
                               patientProfileModel.body.eRelation = model.name;
-                              ProfileScreen.relationmodel = model;
-                             // updateProfileModel.eRelation = model.key;
+                              // updateProfileModel.eRelation = model.key;
                             });
                           }),
-                       /*   Divider(height: 2, color: Colors.black),*/
+              ]),
+                          /*   Divider(height: 2, color: Colors.black),*/
+                          formFieldMobileno(_eMobile,"Emergency Contact No."),
+                          formField(_fDoctor,"Family Doctor's Name"),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
+                            child: Text(
+                              "Relation",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
 
-                          TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                               // updateProfileModel.eMobile = value;
-                              });
-                            },
-                            keyboardType: TextInputType.number,
-                            controller: _eMobile,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                RegExp("[0-9]"),
-                              ),
-                            ],
-                            maxLength: 10,
-                            decoration: new InputDecoration(
-                              hintText: "Emergency Contact No.",
-                              labelText: "Emergency Contact No.",
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 17,
-                                 // fontStyle: FontStyle.italic,
-                                  decoration: TextDecoration.underline,
-
-                              ),
-                              contentPadding:
-                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
-                              counterText: "",
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
                             ),
                           ),
-
-                          TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                                //updateProfileModel.fName = value;
-                              });
-                            },
-                            controller: _fDoctor,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(
-                                  RegExp("[a-zA-Z ]")),
-                            ],
-                            decoration: InputDecoration(
-                                hintText: "Family Doctor's Name",labelText: "Family Doctor's Name",
-                              labelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 17,
-                                // fontStyle: FontStyle.italic,
-                                decoration: TextDecoration.underline
-                              ),
-                              contentPadding:
-                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),),
-
-                          ),
-                          // TextField(
-                          //   onChanged: (value) {
-                          //     setState(() {
-                          //       valueText = value;
-                          //     });
-                          //   },
-                          //   controller: _speciality,
-                          //   decoration: InputDecoration(hintText: "Speciality"),
-                          // ),
-                          (patientProfileModel=null)??DropDown.networkDropdownlabler(
+                          DropDown.networkDropdownlabler1(
                               "Speciality",
                               ApiFactory.SPECIALITY_API,
                               "speciality", (KeyvalueModel model) {
                             setState(() {
-                              patientProfileModel.body.specialityId = model.key;
-                              patientProfileModel.body.speciality = model.name;
                               ProfileScreen.specialitymodel = model;
+
                               //updateProfileModel.speciality = model.key;
                             });
                           }),
+                          ]),
                           /*Divider(
                             height: 2,
                             color: Colors.black,
                           ),*/
+                          formFieldMobileno(_docMobile,"Doctors Mobile No"),
+                          formFieldAddress(_address,"Address"),
 
-                          TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                valueText = value;
-                                //updateProfileModel.docMobile = value;
-                              });
-                            },
-                            controller: _docMobile,
-                            maxLength: 10,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
-                            ],
-                            decoration: new InputDecoration(
-                              hintText: " Doctors Mobile No",
-                              labelText: "Doctors Mobile No",
-                              labelStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 17,
-                                  // fontStyle: FontStyle.italic,
-                                  decoration: TextDecoration.underline
-                              ),
-                              contentPadding:
-                              EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
-                              counterText: "",
-                              //counterText: "",
-                            ),
-                          ),
+
                         ],
                       ),
                     ),
@@ -1386,6 +1339,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
+                    callApi();
                     Navigator.pop(context);
                   });
                 },
@@ -1400,22 +1354,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    log("profile  MODEL SEND>>>>" +
-                        jsonEncode(updateProfileModel.toJson()));
+                    /*log("profile  MODEL SEND>>>>" +
+                        jsonEncode(updateProfileModel.toJson()));*/
 
-                    updateProfileModel.eCardNo = patientProfileModel.body.id;
-                    updateProfileModel.id = patientProfileModel.body.id;
+                    //updateProfileModel.id = patientProfileModel.body.id;
                     updateProfileModel.dob = textEditingController[2].text;
-                    updateProfileModel.bloodGroup = ProfileScreen.bloodgroupmodel.key;
+                    updateProfileModel.bloodGroup =
+                        ProfileScreen.bloodgroupmodel.key;
+                    updateProfileModel.address = _address.text;
                     //Emergency
-                    updateProfileModel.eName=_eName.text;
-                    updateProfileModel.eMobile =_eMobile.text ;
-                    updateProfileModel.eRelation = ProfileScreen.relationmodel.key;
+                    updateProfileModel.eName = _eName.text;
+                    updateProfileModel.eMobile = _eMobile.text;
+                    updateProfileModel.eRelation =
+                        ProfileScreen.relationmodel.key;
                     //doctor
                     updateProfileModel.fDoctor = _fDoctor.text;
-                    updateProfileModel.speciality = ProfileScreen.specialitymodel.key;
-                    updateProfileModel.docMobile=_docMobile.text;
+                    updateProfileModel.speciality =
+                        ProfileScreen.specialitymodel.key;
+                    updateProfileModel.docMobile = _docMobile.text;
 
+                    log("Post json>>>>" +
+                        jsonEncode(updateProfileModel.toJson()));
 
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.USER_UPDATEPROFILE,
@@ -1425,10 +1384,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.pop(context);
                           if (map[Const.STATUS] == Const.SUCCESS) {
                             // popup(context, map[Const.MESSAGE]);
-                            AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                            //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+
                             callApi();
                           } else {
-                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            callApi();
                           }
                         });
                     // }
@@ -1466,40 +1429,232 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ]).show();
   }
-  Widget formField(TextEditingController controller, String hint) {
+
+
+  Widget formFieldMobileno(TextEditingController controller, String hint) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10,right: 10),
+          padding: const EdgeInsets.only(left: 0, right: 5),
           child: Text(
             hint,
             style: TextStyle(
                 color: Colors.black,
-                fontFamily: "DINReg",
+                fontSize: 13,
+                fontFamily: "",
                 fontWeight: FontWeight.w400),
           ),
         ),
         TextFieldContainer(
-          child: TextFormField(
-            controller: controller,
-            textInputAction: TextInputAction.done,
-            keyboardType: TextInputType.number,
-           // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
-            style: TextStyle(fontSize: 13),
-            decoration: InputDecoration(
-              //hintText: hint,
-                hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-                border: InputBorder.none,
-                contentPadding:
-                EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-            onChanged: (newValue) {},
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: controller,
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+            ),
           ),
         ),
       ],
     );
   }
-  Widget dob() {
+  Widget formFieldAddress(TextEditingController controller, String hint) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: controller,
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              /*inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],*/
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formField(TextEditingController controller, String hint) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: controller,
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                    RegExp("[a-zA-Z ]")),
+              ],
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget dob(String hint) {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: GestureDetector(
+        onTap: () => _selectDate(
+          context,
+        ),
+        child: AbsorbPointer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 0, right: 5,bottom: 8),
+                child: Text(
+                  hint,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontFamily: "",
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              Container(
+                // margin: EdgeInsets.symmetric(vertical: 10),
+                alignment: Alignment.center,
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(2),
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                // width: size.width * 0.8,
+                /*decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(3),
+                    border: Border.all(color: Colors.grey, width: 0.3)),*/
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: TextFormField(
+                    //focusNode: fnode4,
+                    //enabled: !widget.isConfirmPage ? false : true,
+                    controller:textEditingController[2],
+                    keyboardType: TextInputType.datetime,
+                    textAlign: TextAlign.left,
+                    textAlignVertical: TextAlignVertical.center,
+                    onSaved: (value) {
+                      // registrationModel.dathOfBirth = value;
+                    },
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        error[3] = true;
+                        return null;
+                      }
+                      error[3] = false;
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      error[3] = false;
+                      // print("error>>>" + error[2].toString());
+
+                      setState(() {});
+                      // AppData.fieldFocusChange(context, fnode4, fnode5);
+                    },
+                    decoration: InputDecoration(
+                      hintText: //"Last Period Date",
+                      "Appointment Date",
+                      border: InputBorder.none,
+                      //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                      suffixIcon: Icon(
+                        Icons.calendar_today,
+                        size: 18,
+                        color:Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget dob1() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -1522,6 +1677,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
+
             child: TextFormField(
               focusNode: fnode3,
               // enabled: !widget.isConfirmPage ? false : true,

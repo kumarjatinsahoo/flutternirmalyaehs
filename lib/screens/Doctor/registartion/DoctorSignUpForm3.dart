@@ -247,9 +247,26 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         ],
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 8,
                       ),
                       formField1(8,MyLocalizations.of(context).text("EDUCATION")),
+
+                      Row(
+                        children: [
+                          Text(MyLocalizations.of(context).text("ROLE"),
+                            style: TextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                          Column(
+                            children: [
+                              Text(MyLocalizations.of(context).text("DOCTOR"),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -273,7 +290,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 11),
+                      SizedBox(height: 8),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -298,9 +315,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         height: 8,
                       ),
                       dob(),
-                      SizedBox(
-                        height: 5,
-                      ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -319,9 +334,9 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           }),
                         ),
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: 5,
-                      ),
+                      ),*/
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: SizedBox(
@@ -343,7 +358,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
