@@ -122,24 +122,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
-
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,
                     name: patientProfileModel.body.bloodGroup);
               }else{
                 ProfileScreen.bloodgroupmodel=null;
-              }
-
-              if (patientProfileModel?.body?.eRelation != null) {
+              }if (patientProfileModel?.body?.eRelation != null) {
                 ProfileScreen.relationmodel = KeyvalueModel(
                     key: patientProfileModel.body.eRelationId,
                     name: patientProfileModel.body.eRelation);
               }else{
                 ProfileScreen.relationmodel=null;
-              }
-
-              if (patientProfileModel?.body?.speciality != null) {
+              }if (patientProfileModel?.body?.speciality != null) {
                 ProfileScreen.specialitymodel = KeyvalueModel(
                     key: patientProfileModel.body.specialityId,
                     name: patientProfileModel.body.speciality);
@@ -1146,10 +1141,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _fDoctor.text = patientProfileModel.body.fDoctor.toString() ?? "N/A";
     _eName.text = patientProfileModel.body.eName.toString() ?? "N?A";
     _docMobile.text = patientProfileModel.body.docMobile.toString() ?? "N/A";
-    _address.text = patientProfileModel.body.address.toString() ?? "N/A";
+    _address.text =(patientProfileModel != null)||(patientProfileModel.body.address==null)?patientProfileModel.body.address.toString():"N/A";
     textEditingController[2].text = (patientProfileModel != null)
-        ? myFormatDate(patientProfileModel.body.dob.toString())
-        : "N/A";
+        ? myFormatDate(patientProfileModel.body.dob.toString()): "N/A";
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
     updateProfileModel.id = patientProfileModel.body.id.toString();
 
@@ -1224,8 +1218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 20,
                           ),
-
-                          dob("Dob"),
+                          dob("DOB"),
                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
