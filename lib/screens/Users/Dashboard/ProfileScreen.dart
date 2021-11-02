@@ -1361,8 +1361,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
          //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
        } else if (_docMobile.text != "" && _docMobile.text.length != 10)  {
          AppData.showInSnackBar(context, "Please enter valid Family Doctor's No");
-
-          } else {
+       } else {
            updateProfileModel.dob = textEditingController[2].text;
            updateProfileModel.bloodGroup =
                ProfileScreen.bloodgroupmodel.key;
