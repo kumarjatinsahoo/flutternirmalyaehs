@@ -15,6 +15,8 @@ class DonorOrganisation extends StatefulWidget {
 class _DonorOrganisationState extends State<DonorOrganisation> {
   var selectedMinValue;
   double tileSize = 80;
+  double spaceTab = 20;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,30 +72,39 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
                                   crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  CrossAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.ac_unit,
-                                        size: 50, color: Color(0xFFCF3564)),
+                                    Container(color: AppData.kPrimaryRedColor,
+                                      padding: EdgeInsets.all(3),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          "assets/blood-donation.png",),
+                                      ),
+                                    ),
                                     SizedBox(
-                                      width: 10,
+                                      width: spaceTab,
                                     ),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Blood Donation',
                                             style: TextStyle(
                                                 fontWeight:
-                                                    FontWeight.normal,
+                                                FontWeight.normal,
                                                 fontSize: 18),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    Image.asset(
+                                      "assets/Forwordarrow.png",
+                                      height: 25,)
                                   ],
                                 ),
                               )),
@@ -123,31 +134,41 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
                                   crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  CrossAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.ac_unit,
-                                        size: 50,
-                                        color: Color(0xFF2372B6)),
+                                    Container(color:AppData.kPrimaryBlueColor,
+                                      padding: EdgeInsets.all(3),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                        "assets/bone-marrow.png"
+                                          ,
+                                        ),
+                                      ),
+                                    ),
                                     SizedBox(
-                                      width: 10,
+                                      width: spaceTab,
                                     ),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Bone Marrow Registry',
                                             style: TextStyle(
                                                 fontWeight:
-                                                    FontWeight.normal,
+                                                FontWeight.normal,
                                                 fontSize: 18),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    Image.asset(
+                                      "assets/Forwordarrow.png",
+                                      height: 25,)
                                   ],
                                 ),
                               )),
