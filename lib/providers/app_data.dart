@@ -34,9 +34,9 @@ class AppData {
   static Color black2 = Color(0xFF2D3645);
 
   static Color kPrimaryRedColor = Color(0xFFCF3564);
+  static Color kPrimaryBlueColor = Color(0xFF2372B6);
 
   static Color klightRedColor = Color(0xFFFEF9F6);
-
   static Color matruColor = Color(0xFF2372B6);
   static Color kPrimaryLightColor = Color(0xFFe9f7ea);
   static Color bluLightColor = Color(0xFF80daff);

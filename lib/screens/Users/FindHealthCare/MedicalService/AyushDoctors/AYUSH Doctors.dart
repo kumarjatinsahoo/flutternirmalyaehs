@@ -16,6 +16,8 @@ class AYUSHDoctors extends StatefulWidget {
 class _AYUSHDoctorsState extends State<AYUSHDoctors> {
   var selectedMinValue;
   double tileSize = 80;
+  double spaceTab = 20;
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,30 +79,40 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.ac_unit,
-                                              size: 50, color: Color(0xFFCF3564)),
+                                          Container(color: AppData.kPrimaryRedColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                  "assets/ayurveda.png",
+                                                  ),
+                                            ),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Ayurveda',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.normal,
+                                                      FontWeight.normal,
                                                       fontSize: 18),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
                                         ],
                                       ),
                                     )),
@@ -127,31 +139,40 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.ac_unit,
-                                              size: 50,
-                                              color: Color(0xFF2372B6)),
+                                          Container(color: AppData.kPrimaryBlueColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                "assets/homeopathy.png",
+                                              ),
+                                            ),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Homeopathy',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.normal,
+                                                      FontWeight.normal,
                                                       fontSize: 18),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
                                         ],
                                       ),
                                     )),
@@ -179,30 +200,40 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.ac_unit,
-                                              size: 50, color: Color(0xFFCF3564)),
+                                          Container(color: AppData.kPrimaryRedColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                "assets/diagnostic.png",
+                                              ),
+                                            ),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Siddha Treatment',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.normal,
+                                                      FontWeight.normal,
                                                       fontSize: 18),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
                                         ],
                                       ),
                                     )),
@@ -230,31 +261,40 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.ac_unit,
-                                              size: 50,
-                                              color: Color(0xFF2372B6)),
+                                          Container(color: AppData.kPrimaryBlueColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image.asset(
+                                                "assets/repatriation.png",
+                                              ),
+                                            ),
+                                          ),
                                           SizedBox(
-                                            width: 10,
+                                            width: spaceTab,
                                           ),
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Unani',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.normal,
+                                                      FontWeight.normal,
                                                       fontSize: 18),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
                                         ],
                                       ),
                                     )),
@@ -283,30 +323,40 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                         padding: const EdgeInsets.all(10.0),
                                         child: Row(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.ac_unit,
-                                                size: 50, color: Color(0xFFCF3564)),
+                                            Container(color: AppData.kPrimaryRedColor,
+                                              padding: EdgeInsets.all(3),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Image.asset(
+                                                  "assets/yoga.png",
+                                                ),
+                                              ),
+                                            ),
                                             SizedBox(
-                                              width: 10,
+                                              width: spaceTab,
                                             ),
                                             Expanded(
                                               child: Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    'Yoga & Naturopathy',
+                                                    'Yoga & Natureopathy',
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.normal,
+                                                        FontWeight.normal,
                                                         fontSize: 18),
                                                   ),
                                                 ],
                                               ),
                                             ),
+                                            Image.asset(
+                                              "assets/Forwordarrow.png",
+                                              height: 25,)
                                           ],
                                         ),
                                       )),

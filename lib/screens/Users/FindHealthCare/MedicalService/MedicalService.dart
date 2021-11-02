@@ -112,7 +112,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Icon(Icons.medical_services_outlined,
-                                          size: 50, color: Color(0xFFCF3564)),
+                                          size: 50, color: AppData.kPrimaryRedColor),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -160,7 +160,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                     children: [
                                       Icon(Icons.accessible_forward,
                                           size: 50,
-                                          color: Color(0xFF2372B6)),
+                                          color: AppData.kPrimaryBlueColor),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -207,7 +207,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Icon(Icons.style,
-                                          size: 50, color: Color(0xFFCF3564)),
+                                          size: 50, color: AppData.kPrimaryRedColor),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -255,7 +255,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                     children: [
                                       Icon(Icons.center_focus_weak_sharp,
                                           size: 50,
-                                          color: Color(0xFF2372B6)),
+                                          color: AppData.kPrimaryBlueColor),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -309,7 +309,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Icon(Icons.airplanemode_active,
-                                          size: 50, color: Color(0xFFCF3564)),
+                                          size: 50, color: AppData.kPrimaryRedColor),
                                       SizedBox(
                                         width: 10,
                                       ),
@@ -357,7 +357,7 @@ class _MedicalServiceState extends State<MedicalService> {
                                     children: [
                                       Icon(Icons.pregnant_woman_sharp,
                                           size: 50,
-                                          color: Color(0xFF2372B6)),
+                                          color: AppData.kPrimaryBlueColor),
                                       SizedBox(
                                         width: 10,
                                       ),

@@ -124,7 +124,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                         children: [
-                                          Container(color: Color(0xFFCF3564),
+                                          Container(color: AppData.kPrimaryRedColor,
                                             padding: EdgeInsets.all(3),
                                             child: Icon(Icons.date_range,
                                                 size: 40,
@@ -188,7 +188,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                         children: [
-                                          Container(color: Color(0xFF2372B6),
+                                          Container(color: AppData.kPrimaryBlueColor,
                                             padding: EdgeInsets.all(3),
                                             child: Icon(
                                                 Icons.date_range_rounded,
@@ -245,7 +245,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                         children: [
-                                          Container(color: Color(0xFFCF3564),
+                                          Container(color: AppData.kPrimaryRedColor,
                                             padding: EdgeInsets.all(3),
                                             child: Icon(
                                                 Icons.search_rounded,
@@ -302,7 +302,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                         children: [
-                                          Container(color: Color(0xFF2372B6),
+                                          Container(color: AppData.kPrimaryBlueColor,
                                             padding: EdgeInsets.all(3),
                                             child: Icon(
                                                 Icons

@@ -39,13 +39,13 @@ class _HealthTipsListState extends State<HealthTipsList> {
     "assets/health_tips/HealthTips14.jpeg",
     "assets/health_tips/HealthTips15.jpeg",
     "assets/health_tips/HealthTips16.jpeg",
-    "assets/health_tips/HealthTips17.jpeg",
+    /*"assets/health_tips/HealthTips17.jpeg",
     "assets/health_tips/HealthTips18.jpeg",
     "assets/health_tips/HealthTips19.jpeg",
     "assets/health_tips/HealthTips20.jpeg",
     "assets/health_tips/HealthTips21.jpeg",
     "assets/health_tips/HealthTips22.jpeg",
-    "assets/health_tips/HealthTips23.jpeg",
+    "assets/health_tips/HealthTips23.jpeg",*/
   ];
   List dataSourceList;
 
@@ -111,7 +111,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
                           fit: BoxFit.contain,
                           width: size.width,
                         ),
-                      /*  Divider(),
+                        Divider(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -144,7 +144,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
                             Icon(Icons.bookmark,color: Colors.black,size: 20),
                             Icon(Icons.share,color: Colors.black,size: 20),
                           ],
-                        ),*/SizedBox(height: 10,)
+                        ),SizedBox(height: 10,)
                       ],
                     ),
                   );
