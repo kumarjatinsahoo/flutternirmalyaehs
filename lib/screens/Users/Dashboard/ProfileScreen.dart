@@ -1289,7 +1289,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
                             child: Text(
-                              "Relation",
+                              "Speciality",
                               textAlign: TextAlign.left,
                               style: TextStyle(
 
@@ -1347,47 +1347,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    /*log("profile  MODEL SEND>>>>" +
-                        jsonEncode(updateProfileModel.toJson()));*/
+       /*  if (_eMobile.text != "" && _eMobile.text.length != 10) {
+           ScaffoldMessenger.of(context)
+               .showSnackBar(SnackBar(content: Text("My amazing message! O.o")));
+*/
+       if (_eMobile.text == "" || _eMobile.text == null) {
+         AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
+         //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
+       } else if (_eMobile.text != "" && _eMobile.text.length != 10)  {
+       AppData.showInSnackBar(context, "Please enter valid Emergency Contact No.");}
+       else if (_eMobile.text == "" || _eMobile.text == null) {
+         AppData.showInSnackBar(context, "Please enter Family Doctor's No");
+         //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
+       } else if (_docMobile.text != "" && _docMobile.text.length != 10)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor's No");
 
-                    //updateProfileModel.id = patientProfileModel.body.id;
-                    updateProfileModel.dob = textEditingController[2].text;
-                    updateProfileModel.bloodGroup =
-                        ProfileScreen.bloodgroupmodel.key;
-                    updateProfileModel.address = _address.text;
-                    //Emergency
-                    updateProfileModel.eName = _eName.text;
-                    updateProfileModel.eMobile = _eMobile.text;
-                    updateProfileModel.eRelation =
-                        ProfileScreen.relationmodel.key;
-                    //doctor
-                    updateProfileModel.fDoctor = _fDoctor.text;
-                    updateProfileModel.speciality =
-                        ProfileScreen.specialitymodel.key;
-                    updateProfileModel.docMobile = _docMobile.text;
+          } else {
+           updateProfileModel.dob = textEditingController[2].text;
+           updateProfileModel.bloodGroup =
+               ProfileScreen.bloodgroupmodel.key;
+           updateProfileModel.address = _address.text;
+           //Emergency
+           updateProfileModel.eName = _eName.text;
+           updateProfileModel.eMobile = _eMobile.text;
+           updateProfileModel.eRelation =
+               ProfileScreen.relationmodel.key;
+           //doctor
+           updateProfileModel.fDoctor = _fDoctor.text;
+           updateProfileModel.speciality =
+               ProfileScreen.specialitymodel.key;
+           updateProfileModel.docMobile = _docMobile.text;
 
-                    log("Post json>>>>" +
-                        jsonEncode(updateProfileModel.toJson()));
+           log("Post json>>>>" +
+               jsonEncode(updateProfileModel.toJson()));
 
-                    widget.model.POSTMETHOD_TOKEN(
-                        api: ApiFactory.USER_UPDATEPROFILE,
-                        json: updateProfileModel.toJson(),
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          Navigator.pop(context);
-                          if (map[Const.STATUS] == Const.SUCCESS) {
-                            // popup(context, map[Const.MESSAGE]);
-                            //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
+           widget.model.POSTMETHOD_TOKEN(
+               api: ApiFactory.USER_UPDATEPROFILE,
+               json: updateProfileModel.toJson(),
+               token: widget.model.token,
+               fun: (Map<String, dynamic> map) {
+                 Navigator.pop(context);
+                 if (map[Const.STATUS] == Const.SUCCESS) {
+                   // popup(context, map[Const.MESSAGE]);
+                   //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
+                   AppData.showInSnackDone(
+                       context, map[Const.MESSAGE]);
 
-                            callApi();
-                          } else {
-                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                            callApi();
-                          }
-                        });
-                    // }
+                   callApi();
+                 } else {
+                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                   callApi();
+                 }
+               });
+         }
                   });
                 },
               ),
