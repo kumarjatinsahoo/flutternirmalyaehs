@@ -70,7 +70,8 @@ class _ContactScreenState extends State<ContactScreen> {
                               icon: CupertinoIcons.phone_fill),
                           SizedBox(height: 5,),
                           buildTile(
-                              name: "Address".toUpperCase(),
+
+                          name: "Address".toUpperCase(),
                               value: AppData.address,
                               icon: Icons.location_on_rounded),
                           SizedBox(height: 5,),

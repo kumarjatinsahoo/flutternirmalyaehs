@@ -814,8 +814,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             textEditingController[9].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid Office Phone");
           FocusScope.of(context).requestFocus(fnode4);
-        } else if (textEditingController[10].text == "" ||
-            textEditingController[10].text == null) {
+        } else if (textEditingController[10].text == "" || textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");
           FocusScope.of(context).requestFocus(fnode5);
         } else if (textEditingController[10].text != "" &&
