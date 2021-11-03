@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -74,7 +75,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   String dateofbirth;
   String bloodgroup;
   String gender;
+
   DoctorRegistrationModel doctorModel = DoctorRegistrationModel();
+  String profilePath = null,
+      idproof = null;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -490,7 +494,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                       SizedBox(
                         height: 13,
                       ),
-                      Column(
+                      Row(
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -500,10 +504,67 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   color: Colors.black),
                             ),
                           ),
+                          SizedBox(width: 30),
+                          Material(
+                            elevation: 3,
+                            color: AppData.kPrimaryColor,
+                            borderRadius:
+                            BorderRadius.circular(5.0),
+                            child: MaterialButton(
+                              onPressed: () {
+                                _settingModalBottomSheet(context);
+                              },
+                              minWidth: 120,
+                              height: 40.0,
+                              child: Text(
+                                "Upload",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.0),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          (idproof != null)
+                              ? Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    child: Text(
+                                      "Report Path :" + idproof,
+                                      style: TextStyle(
+                                          color: Colors.green),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  child: SizedBox(
+                                      width: 50.0,
+                                      child: Icon(Icons.clear)),
+                                  onTap: () {
+                                    setState(() {
+                                      idproof = null;
+                                      // registrationModel.profilePhotoBase64 =
+                                      null;
+                                      //registrationModel.profilePhotoExt =
+                                      null;
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          )
+                              : Container(),
                       Padding(
-
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10),
                         child: Row(
@@ -518,6 +579,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 });
                               },
                             ),
+
                             SizedBox(
                               height: 10,
                             ),
@@ -623,20 +685,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         ),
       ],
     );
-  }
-
-  Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
-
-    setState(() {
-      _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
-    });
   }
 
   Future getImage() async {
@@ -1469,4 +1517,113 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           ),
         ]).show();
   }
+
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {Navigator.pop(context),
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+
+  Future getCameraImage() async {
+    // File pathUsr=null;
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    try {
+      var image = await ImagePicker.pickImage(
+          source: ImageSource.camera, imageQuality: 50);
+
+      // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+      if (image != null) {
+        var enc = await image.readAsBytes();
+        String _path = image.path;
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          // widget.model.patientimg =base64Encode(enc);
+          // widget.model.patientimgtype =extName;
+          _imageCertificate = image;
+          idproof = _fileName;
+          // Print("pathhh"+idproof);
+          userModel.profileImage = base64Encode(enc);
+        });
+      }
+    } catch (e) {
+      print("Error>>in" + e.toString());
+    }
+  }
+
+
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: ['pdf','docx'], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if(file != null) {
+      setState(() {
+        idproof = file.path;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+
+  Future getCerificateImage() async {
+    var image = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      _imageCertificate = image;
+      idproof = _fileName;
+      userModel.profileImage = base64Encode(enc);
+    });
+  }
+
 }

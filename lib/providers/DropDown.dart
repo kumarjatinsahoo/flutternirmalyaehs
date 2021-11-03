@@ -9,6 +9,7 @@ import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
+import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
@@ -2079,6 +2080,15 @@ class DropDown {
         break;
       case "cityph":
         return PharmaSignUpForm3.citymodel;
+        break;
+      case "state_Ngo":
+        return NgoSignUpForm2.stateModel;
+        break;
+      case "district_Ngo":
+        return NgoSignUpForm2.districtModel;
+        break;
+      case "city_Ngo":
+        return NgoSignUpForm2.citymodel;
 
     }
   }
@@ -2279,6 +2289,9 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "specialityapp":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country_Ngo":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -2502,6 +2515,15 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "cityph":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district_Ngo":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state_Ngo":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city_Ngo":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
 
