@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/gestures.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
@@ -32,6 +34,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title:Text(MyLocalizations.of(context).text("MY_APPOINTMENT")),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[

@@ -1362,7 +1362,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   maxLength: 3,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
