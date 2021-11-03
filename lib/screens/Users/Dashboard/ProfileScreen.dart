@@ -122,24 +122,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
-
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,
                     name: patientProfileModel.body.bloodGroup);
               }else{
                 ProfileScreen.bloodgroupmodel=null;
-              }
-
-              if (patientProfileModel?.body?.eRelation != null) {
+              }if (patientProfileModel?.body?.eRelation != null) {
                 ProfileScreen.relationmodel = KeyvalueModel(
                     key: patientProfileModel.body.eRelationId,
                     name: patientProfileModel.body.eRelation);
               }else{
                 ProfileScreen.relationmodel=null;
-              }
-
-              if (patientProfileModel?.body?.speciality != null) {
+              }if (patientProfileModel?.body?.speciality != null) {
                 ProfileScreen.specialitymodel = KeyvalueModel(
                     key: patientProfileModel.body.specialityId,
                     name: patientProfileModel.body.speciality);
@@ -1146,10 +1141,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _fDoctor.text = patientProfileModel.body.fDoctor.toString() ?? "N/A";
     _eName.text = patientProfileModel.body.eName.toString() ?? "N?A";
     _docMobile.text = patientProfileModel.body.docMobile.toString() ?? "N/A";
-    _address.text = patientProfileModel.body.address.toString() ?? "N/A";
+    _address.text =(patientProfileModel != null)||(patientProfileModel.body.address==null)?patientProfileModel.body.address.toString():"N/A";
     textEditingController[2].text = (patientProfileModel != null)
-        ? myFormatDate(patientProfileModel.body.dob.toString())
-        : "N/A";
+        ? myFormatDate(patientProfileModel.body.dob.toString()): "N/A";
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
     updateProfileModel.id = patientProfileModel.body.id.toString();
 
@@ -1224,8 +1218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: 20,
                           ),
-
-                          dob("Dob"),
+                          dob("DOB"),
                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1296,7 +1289,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 0, right: 5,bottom: 0),
                             child: Text(
-                              "Relation",
+                              "Speciality",
                               textAlign: TextAlign.left,
                               style: TextStyle(
 
@@ -1354,47 +1347,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    /*log("profile  MODEL SEND>>>>" +
-                        jsonEncode(updateProfileModel.toJson()));*/
+       /*  if (_eMobile.text != "" && _eMobile.text.length != 10) {
+           ScaffoldMessenger.of(context)
+               .showSnackBar(SnackBar(content: Text("My amazing message! O.o")));
+*/
+       if (_eMobile.text == "" || _eMobile.text == null) {
+         AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
+         //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
+       } else if (_eMobile.text != "" && _eMobile.text.length != 10)  {
+       AppData.showInSnackBar(context, "Please enter valid Emergency Contact No.");}
+       else if (_eMobile.text == "" || _eMobile.text == null) {
+         AppData.showInSnackBar(context, "Please enter Family Doctor's No");
+         //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
+       } else if (_docMobile.text != "" && _docMobile.text.length != 10)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor's No");
+       } else {
+           updateProfileModel.dob = textEditingController[2].text;
+           updateProfileModel.bloodGroup =
+               ProfileScreen.bloodgroupmodel.key;
+           updateProfileModel.address = _address.text;
+           //Emergency
+           updateProfileModel.eName = _eName.text;
+           updateProfileModel.eMobile = _eMobile.text;
+           updateProfileModel.eRelation =
+               ProfileScreen.relationmodel.key;
+           //doctor
+           updateProfileModel.fDoctor = _fDoctor.text;
+           updateProfileModel.speciality =
+               ProfileScreen.specialitymodel.key;
+           updateProfileModel.docMobile = _docMobile.text;
 
-                    //updateProfileModel.id = patientProfileModel.body.id;
-                    updateProfileModel.dob = textEditingController[2].text;
-                    updateProfileModel.bloodGroup =
-                        ProfileScreen.bloodgroupmodel.key;
-                    updateProfileModel.address = _address.text;
-                    //Emergency
-                    updateProfileModel.eName = _eName.text;
-                    updateProfileModel.eMobile = _eMobile.text;
-                    updateProfileModel.eRelation =
-                        ProfileScreen.relationmodel.key;
-                    //doctor
-                    updateProfileModel.fDoctor = _fDoctor.text;
-                    updateProfileModel.speciality =
-                        ProfileScreen.specialitymodel.key;
-                    updateProfileModel.docMobile = _docMobile.text;
+           log("Post json>>>>" +
+               jsonEncode(updateProfileModel.toJson()));
 
-                    log("Post json>>>>" +
-                        jsonEncode(updateProfileModel.toJson()));
+           widget.model.POSTMETHOD_TOKEN(
+               api: ApiFactory.USER_UPDATEPROFILE,
+               json: updateProfileModel.toJson(),
+               token: widget.model.token,
+               fun: (Map<String, dynamic> map) {
+                 Navigator.pop(context);
+                 if (map[Const.STATUS] == Const.SUCCESS) {
+                   // popup(context, map[Const.MESSAGE]);
+                   //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
+                   AppData.showInSnackDone(
+                       context, map[Const.MESSAGE]);
 
-                    widget.model.POSTMETHOD_TOKEN(
-                        api: ApiFactory.USER_UPDATEPROFILE,
-                        json: updateProfileModel.toJson(),
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          Navigator.pop(context);
-                          if (map[Const.STATUS] == Const.SUCCESS) {
-                            // popup(context, map[Const.MESSAGE]);
-                            //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
-
-                            callApi();
-                          } else {
-                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                            callApi();
-                          }
-                        });
-                    // }
+                   callApi();
+                 } else {
+                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                   callApi();
+                 }
+               });
+         }
                   });
                 },
               ),
