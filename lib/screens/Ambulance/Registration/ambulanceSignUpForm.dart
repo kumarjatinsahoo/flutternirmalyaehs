@@ -303,7 +303,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                       fnode1,
                                       fnode2),
                                   SizedBox(height: 8.0),
-                                  formFieldMobile(
+                                  formFieldExperience(
                                       10,
                                       MyLocalizations.of(context)
                                           .text("EXPERIENCE"),
@@ -318,10 +318,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                           .text("ADDRESS"),
                                       fnode3,
                                       null),
-                                  /* SizedBox(
-                                    height: 5,
-                                  ),
-*/
+
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("GENDER"),
@@ -859,7 +856,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
   //     ),
   //   );
   // }
-  Widget formFieldMobile(
+  Widget formFieldExperience(
       int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
@@ -881,7 +878,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 10,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9 ]")),

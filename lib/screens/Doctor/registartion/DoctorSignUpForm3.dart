@@ -251,22 +251,6 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                       ),
                       formField1(8,MyLocalizations.of(context).text("EDUCATION")),
 
-                      Row(
-                        children: [
-                          Text(MyLocalizations.of(context).text("ROLE"),
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                          Column(
-                            children: [
-                              Text(MyLocalizations.of(context).text("DOCTOR"),
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.black),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -274,7 +258,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Row(
                           children: [
-                            Text(MyLocalizations.of(context).text("ROLE :"),
+                            Text(MyLocalizations.of(context).text("ROLE"),
                               style: TextStyle(
                                   fontSize: 20, color: Colors.black),
                             ),

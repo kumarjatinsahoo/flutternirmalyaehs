@@ -293,56 +293,119 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                   SizedBox(height: 10,),
 
 
+                                  // DropDown.networkDropdownGetpartUser(
+                                  //     "Country", ApiFactory.COUNTRY_API, "country_Ngo", Icons.location_on_rounded,
+                                  //     23.0,
+                                  //         (KeyvalueModel data) {
+                                  //       setState(() {
+                                  //         print(ApiFactory.COUNTRY_API);
+                                  //         NgoSignUpForm2.countryModel = data;
+                                  //         NgoSignUpForm2.stateModel = null;
+                                  //         NgoSignUpForm2.districtModel = null;
+                                  //         NgoSignUpForm2.citymodel = null;
+                                  //
+                                  //       });
+                                  //     }),
+
                                   DropDown.networkDropdownGetpartUser(
-                                      "Country", ApiFactory.COUNTRY_API, "country_Ngo", Icons.location_on_rounded,
-                                      23.0,
-                                          (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.COUNTRY_API);
-                                          NgoSignUpForm2.countryModel = data;
-                                          NgoSignUpForm2.stateModel = null;
-                                          NgoSignUpForm2.districtModel = null;
-                                          NgoSignUpForm2.citymodel = null;
+                                      MyLocalizations.of(context).text("COUNTRY"),
+                                      ApiFactory.COUNTRY_API,
+                                      "country",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      NgoSignUpForm2.countryModel = data;
+                                      NgoSignUpForm2.stateModel = null;
+                                      NgoSignUpForm2.districtModel = null;
+                                      NgoSignUpForm2.citymodel = null;
+                                    });
+                                  }),
 
-                                        });
-                                      }),
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("STATE"),
+                                      ApiFactory.STATE_API +
+                                          (NgoSignUpForm2?.countryModel?.key ?? ""),
+                                      "state_Ngo",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.STATE_API);
+                                      NgoSignUpForm2.stateModel = data;
+                                      NgoSignUpForm2.districtModel = null;
+                                      NgoSignUpForm2.citymodel = null;
+                                    });
+                                  }),
 
-                                  (NgoSignUpForm2.countryModel != null)
-                                      ?DropDown.networkDropdownGetpartUser(
-                                      "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state_Ngo", Icons.location_on_rounded,
-                                      23.0,
-                                          (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.STATE_API);
-                                          NgoSignUpForm2.stateModel = data;
-                                          NgoSignUpForm2.districtModel = null;
-                                          NgoSignUpForm2.citymodel = null;
-                                        });
-                                      }):Container(),
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("DIST"),
+                                      ApiFactory.DISTRICT_API +
+                                          (NgoSignUpForm2?.stateModel?.key ?? ""),
+                                      "district_Ngo",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.DISTRICT_API);
+                                      NgoSignUpForm2.districtModel = data;
+                                      NgoSignUpForm2.citymodel = null;
+                                    });
+                                  }),
 
-                                  (NgoSignUpForm2.stateModel != null)
-                                      ?DropDown.networkDropdownGetpartUser(
-                                      "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""), "district_Ngo", Icons.location_on_rounded,
-                                      23.0,
-                                          (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.DISTRICT_API);
-                                          NgoSignUpForm2.districtModel = data;
-                                          NgoSignUpForm2.citymodel = null;
-                                        });
-                                      }):Container(),
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("CITY"),
+                                      ApiFactory.CITY_API +
+                                          (NgoSignUpForm2?.districtModel?.key ?? ""),
+                                      "city_Ngo",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.CITY_API);
+                                      NgoSignUpForm2.citymodel = data;
+                                      // LabSignUpForm3.districtModel = null;
+                                    });
+                                  }),
 
-                                  (NgoSignUpForm2.districtModel != null)
-                                      ?DropDown.networkDropdownGetpartUser(
-                                      "City", ApiFactory.CITY_API + (NgoSignUpForm2?.districtModel?.key??""), "city", Icons.location_on_rounded,
-                                      23.0,
-                                          (KeyvalueModel data) {
-                                        setState(() {
-                                          print(ApiFactory.CITY_API);
-                                          NgoSignUpForm2.citymodel = data;
-                                          // LabSignUpForm3.districtModel = null;
-                                        });
-                                      }):Container(),
+
+                                  // (NgoSignUpForm2.countryModel != null)
+                                  //     ?DropDown.networkDropdownGetpartUser(
+                                  //     "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state_Ngo", Icons.location_on_rounded,
+                                  //     23.0,
+                                  //         (KeyvalueModel data) {
+                                  //       setState(() {
+                                  //         print(ApiFactory.STATE_API);
+                                  //         NgoSignUpForm2.stateModel = data;
+                                  //         NgoSignUpForm2.districtModel = null;
+                                  //         NgoSignUpForm2.citymodel = null;
+                                  //       });
+                                  //     }):Container(),
+
+                                  //
+                                  // (NgoSignUpForm2.stateModel != null)
+                                  //     ?DropDown.networkDropdownGetpartUser(
+                                  //     "District", ApiFactory.DISTRICT_API +(NgoSignUpForm2?.stateModel?.key??""),
+                                  //     "district_Ngo", Icons.location_on_rounded,
+                                  //     23.0,
+                                  //         (KeyvalueModel data) {
+                                  //       setState(() {
+                                  //         print(ApiFactory.DISTRICT_API);
+                                  //         NgoSignUpForm2.districtModel = data;
+                                  //         NgoSignUpForm2.citymodel = null;
+                                  //       });
+                                  //     }):Container(),
+                                  //
+                                  // (NgoSignUpForm2.districtModel != null)
+                                  //     ?DropDown.networkDropdownGetpartUser(
+                                  //     "City", ApiFactory.CITY_API + (NgoSignUpForm2?.districtModel?.key??""),
+                                  //     "city", Icons.location_on_rounded,
+                                  //     23.0,
+                                  //         (KeyvalueModel data) {
+                                  //       setState(() {
+                                  //         print(ApiFactory.CITY_API);
+                                  //         NgoSignUpForm2.citymodel = data;
+                                  //         // LabSignUpForm3.districtModel = null;
+                                  //       });
+                                  //     }):Container(),
+
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -690,7 +753,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
           AppData.showInSnackBar(context, "Please select City");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Pin");
+          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile No");

@@ -283,7 +283,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
 
                                   SizedBox(height: 8.0),
 
-                                  formFieldMobile(10, MyLocalizations.of(context).text("EXPERIENCE"),fnode2,fnode3),
+                                  formFieldExperience(10, MyLocalizations.of(context).text("EXPERIENCE"),fnode2,fnode3),
                                   SizedBox(
                                     height: 8.0,
                                   ),
@@ -1038,7 +1038,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
   //     ),
   //   );
   // }
-  Widget formFieldMobile(
+  Widget formFieldExperience(
       int index,
       String hint,FocusNode currentfn, FocusNode nextFn
       ) {
@@ -1064,7 +1064,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 10,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(
