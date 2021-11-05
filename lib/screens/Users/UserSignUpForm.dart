@@ -1196,7 +1196,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }
     else if (_checkbox == false) {
-      AppData.showInSnackBar(context, "Please checked Terms and Condition");
+      AppData.showInSnackBar(context, "Please check Terms and Condition");
     }
     else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
