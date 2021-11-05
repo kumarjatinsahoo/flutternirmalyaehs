@@ -578,7 +578,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 });
                               },
                             ),
-
                             SizedBox(
                               height: 10,
                             ),
