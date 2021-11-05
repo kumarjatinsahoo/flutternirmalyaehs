@@ -506,7 +506,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                             color: AppData.kPrimaryBlueColor,
                                             padding: EdgeInsets.all(3),
                                             child: Image.asset(
-                                              "assets/images/usertest.png",
+                                              "assets/images/up-arrow.png",
                                               height: 40,
                                             ),
                                           ),
