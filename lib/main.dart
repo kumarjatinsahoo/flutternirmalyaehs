@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
@@ -140,7 +141,7 @@ import 'package:user/screens/Patient/PatientRegistration4.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Pharmacists/registration/pharmaSignUpForm.dart';
-import 'package:user/screens/PocReportListPage.dart';
+import 'package:user/screens/walkin_labrotry/Screen/PocReportListPage.dart';
 import 'screens/Pharmacists/Screens/ProcessedOrders.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/ProfileScreen1.dart';
@@ -883,6 +884,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/qrcode': (context) => QrcodePage(
+                model: _model,
+              ),
+              '/ambulancedash': (context) => AmbulanceDashboard(
                 model: _model,
               ),
               '/bookAmbulancelist': (context) => BookAmbulancelist(
