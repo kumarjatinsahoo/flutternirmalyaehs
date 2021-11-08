@@ -1,10 +1,10 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
- //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+ static String MAIN_URL = "http://192.168.43.254:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
@@ -63,6 +63,7 @@ class ApiFactory {
   static String ORGANIZATION_API = MAIN_URL + 'get-all-organization-list';
   static String HEALTHPROVIDER_API = MAIN_URL + 'get-health-provider-list';
   static String FORGOT_OTP = MAIN_URL + 'forgot-password-get-otp';
+  static String EMERGENCY_OTP = MAIN_URL + 'get-otp-emergency-access?userid=';
   static String FORGOT_USERID = MAIN_URL + 'forgot-userid-get-otp';
   static String CHNG_PASS = MAIN_URL + 'change-password';
   static String DOCTER_AVAILABLE =
