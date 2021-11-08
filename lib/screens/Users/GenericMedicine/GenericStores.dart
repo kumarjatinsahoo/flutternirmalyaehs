@@ -85,16 +85,12 @@ class _GenericStoresState extends State<GenericStores> {
             ),
             Text(
               'Find Generic Medical Store',
-              style:
-                  TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+              style:TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
             ),
-            SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: 5,),
             Text(
               'Request your doctor to prescribe Generic Medicine.',
-              style:
-                  TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              style:TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 35),
             /*DropDown.staticDropdown2('India', "country", countryList,
