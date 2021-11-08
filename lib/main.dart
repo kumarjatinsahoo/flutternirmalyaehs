@@ -17,6 +17,8 @@ import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Users/BookAmbulance/BookAmbulance.dart';
+import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
@@ -883,6 +885,13 @@ class _MyAppState extends State<MyApp> {
               '/qrcode': (context) => QrcodePage(
                 model: _model,
               ),
+              '/bookAmbulancelist': (context) => BookAmbulancelist(
+                model: _model,
+              ),
+              '/bookAmbulancePage': (context) => BookAmbulancePage(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
