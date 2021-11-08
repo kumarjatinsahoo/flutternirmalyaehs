@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
@@ -885,6 +886,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/ambulancedash': (context) => AmbulanceDashboard(
+                model: _model,
+              ),
+              '/allambulance': (context) => AllAmbulance(
                 model: _model,
               ),
             },
