@@ -200,22 +200,6 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                   SizedBox(
                     height: size.height * 0.20,
                   ),
-                  /*Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: FloatingActionButton(
-                        child: Icon(Icons.arrow_back_ios),
-                        backgroundColor: Colors.orange,
-                        heroTag: 1,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, "/patientRegistration2");
-                          //do something on press
-                        },
-                      ),
-                    ),
-                  )*/
                 ]),
           )
         ],
