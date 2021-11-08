@@ -729,7 +729,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
           FocusScope.of(context).requestFocus(fnode3);
         }
         else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+          AppData.showInSnackBar(context, "Please check Terms and Condition");
         }
         else {
           MyWidgets.showLoading(context);

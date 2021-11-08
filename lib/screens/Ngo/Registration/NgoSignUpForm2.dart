@@ -767,7 +767,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid Email Id");
         }else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+          AppData.showInSnackBar(context, "Please check Terms and Condition");
         }
         else {
           MyWidgets.showLoading(context);
