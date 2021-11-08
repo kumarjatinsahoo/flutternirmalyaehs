@@ -674,7 +674,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid e-Mail");
         } else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked terms and Condition");
+          AppData.showInSnackBar(context, "Please check terms and Condition");
         } else {
           MyWidgets.showLoading(context);
           PharmacyRegistrationModel pharmaSignupModel =

@@ -181,7 +181,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGNUP"),
+        title: Text("SIGN UP"),
         centerTitle: true,
       ),
       body: Container(
@@ -411,7 +411,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                       });
                                     },
                                   ),
-                                  Text(MyLocalizations.of(context).text("PATHOLOGYLAB")),
+                                  Text(MyLocalizations.of(context).text("PATHOLOGY_LAB")),
                                 ],
                               ),
                               SizedBox(height: 5),
