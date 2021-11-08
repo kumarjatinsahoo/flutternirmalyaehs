@@ -150,7 +150,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon:"assets/images/registerpatient.png",
+                              icon:"assets/images/all.png",
                               fun: () {
                                 //AppData.showInSnackBar(context, "Coming soon");
                                 // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -184,7 +184,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/images/appointmentlab.png",
+                              icon: "assets/images/request.png",
                               fun: () {
                                 chooseAppointment(context);
                                 // Navigator.pushNamed(context, "/myAppointment");
@@ -225,7 +225,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTileblue(
-                              icon: "assets/images/pocreports.png",
+                              icon: "assets/images/accept.png",
                               fun: () {
                                 //chooseAppointment(context, model);
                                 //Navigator.pushNamed(context, "/userAppoint");
@@ -275,7 +275,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildTilered(
-                              icon: "assets/images/testlab.png",
+                              icon: "assets/images/reject.png",
                               fun: () {
                                 // AppData.showInSnackDone(context, "Coming Soon");
                                 Navigator.pushNamed(context, "/testappointmentpage");
@@ -319,7 +319,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildTileblue(
+                            _buildTilewhite(
                               icon:"assets/images/orderslab.png",
                               //icon: FontAwesomeIcons.accusoft,
                               title: "My Orders",
@@ -329,8 +329,8 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                                 // AppData.showSnack(
                                 //     context, "Coming soon", Colors.green);
                               },
-                              color: AppData.BG2BLUE,
-                              bordercolor: AppData.BG2BLUE,
+                              color: AppData.white,
+                              bordercolor: AppData.white ,
                               size: 100 / 3,
                             ),
                             SizedBox(
@@ -340,7 +340,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                               width: 100,
                               height: 35,
                               /* child: Expanded(*/
-                              child: Text("My Orders",
+                              child: Text("",
                                 // MyLocalizations.of(context).text("Invoices"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,
@@ -354,7 +354,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _buildTilered(
+                            _buildTilewhite(
                               icon: "assets/images/datalab.png",
                               fun: () {
                                 // AppData.showInSnackDone(context, "Coming Soon");
@@ -362,8 +362,8 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                                 //AppData.showInSnackBar(context, "Coming soon");
                               },
                               //color: AppData.BG2BLUE,
-                              color: AppData.BG1RED,
-                              bordercolor: AppData.BG1RED,
+                              color: AppData.white,
+                              bordercolor: AppData.white,
                               size: 100 / 3,
                             ),
                             SizedBox(
@@ -372,7 +372,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                             Container(
                               width: 100,
                               height: 35,
-                              child: Text("Updation Data",
+                              child: Text("",
                                 // MyLocalizations.of(context).text("Monthly Overview"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,
@@ -1152,6 +1152,57 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
     sharedPref.remove(Const.IS_REG_SERVER);
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+  Widget _buildTilewhite(
+      {String icon,
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: 1,
+        width: 1,
+        decoration: BoxDecoration(
+
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(0.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(0.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.white,
+              width: 1.0,
+            )),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      fit: BoxFit.fitWidth,
+                      width: 1,
+                      height: 1,
+                    )),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildTilered({String icon,
