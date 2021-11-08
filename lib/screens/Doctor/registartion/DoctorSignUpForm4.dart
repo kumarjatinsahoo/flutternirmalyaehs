@@ -77,8 +77,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
   String gender;
 
   DoctorRegistrationModel doctorModel = DoctorRegistrationModel();
-  String profilePath = null,
-      idproof = null;
+  String profilePath = null, idproof = null;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -179,7 +178,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     DoctorSignUpForm4.countryModel = null;
     DoctorSignUpForm4.stateModel = null;
     DoctorSignUpForm4.cityModel = null;
-
 
     DoctorSignUpForm4.blockModel = null;
     DoctorSignUpForm4.genderModel = null;
@@ -289,52 +287,58 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               DoctorSignUpForm4.stateModel = null;
                               DoctorSignUpForm4.districtModel = null;
                               DoctorSignUpForm4.cityModel = null;
-
                             });
                           }),
-
-                      (DoctorSignUpForm4.countryModel != null)
-                          ?  DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("STATE") ,
-                          ApiFactory.STATE_API +(DoctorSignUpForm4?.countryModel?.key??""), "stated", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.STATE_API);
-                              DoctorSignUpForm4.stateModel = data;
-                              DoctorSignUpForm4.districtModel = null;
-                              DoctorSignUpForm4.cityModel = null;
-                            });
-                          }): Container(),
-
-                      (DoctorSignUpForm4.stateModel != null)
-                          ?  DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("DIST") ,
-                          ApiFactory.DISTRICT_API +(DoctorSignUpForm4?.stateModel?.key??""), "districtd", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.DISTRICT_API);
-                              DoctorSignUpForm4.districtModel = data;
-                              DoctorSignUpForm4.cityModel = null;
-                            });
-                          }): Container(),
-                      (DoctorSignUpForm4.districtModel != null)
-                          ? DropDown.countryList(
-                          MyLocalizations.of(context)
-                              .text("CITY") ,
-                          ApiFactory.CITY_API + (DoctorSignUpForm4?.districtModel?.key??""), "cityd", Icons.location_on_rounded,
-                          23.0,
-                              (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.CITY_API);
-                              DoctorSignUpForm4.cityModel = data;
-                              // LabSignUpForm3.districtModel = null;
-                            });
-                          }): Container(),
-                    /*  Padding(
+                          (DoctorSignUpForm4.countryModel != null)
+                              ? DropDown.countryList(
+                                  MyLocalizations.of(context).text("STATE"),
+                                  ApiFactory.STATE_API +
+                                      (DoctorSignUpForm4?.countryModel?.key ??
+                                          ""),
+                                  "stated",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.STATE_API);
+                                    DoctorSignUpForm4.stateModel = data;
+                                    DoctorSignUpForm4.districtModel = null;
+                                    DoctorSignUpForm4.cityModel = null;
+                                  });
+                                })
+                              : Container(),
+                          (DoctorSignUpForm4.stateModel != null)
+                              ? DropDown.countryList(
+                                  MyLocalizations.of(context).text("DIST"),
+                                  ApiFactory.DISTRICT_API +
+                                      (DoctorSignUpForm4?.stateModel?.key ??
+                                          ""),
+                                  "districtd",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.DISTRICT_API);
+                                    DoctorSignUpForm4.districtModel = data;
+                                    DoctorSignUpForm4.cityModel = null;
+                                  });
+                                })
+                              : Container(),
+                          (DoctorSignUpForm4.districtModel != null)
+                              ? DropDown.countryList(
+                                  MyLocalizations.of(context).text("CITY"),
+                                  ApiFactory.CITY_API +
+                                      (DoctorSignUpForm4?.districtModel?.key ??
+                                          ""),
+                                  "cityd",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                  setState(() {
+                                    print(ApiFactory.CITY_API);
+                                    DoctorSignUpForm4.cityModel = data;
+                                    // LabSignUpForm3.districtModel = null;
+                                  });
+                                })
+                              : Container(),
+                          /*  Padding(
                         padding: const EdgeInsets.only(
                             left: 0, right: 0),
                         child: SizedBox(
@@ -361,7 +365,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           }),
                         ),
                       ),*/
-                     /* SizedBox(
+                          /* SizedBox(
                         height: 5,
                       ),
                       (DoctorSignUpForm4.countryModel != null)
@@ -463,143 +467,174 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                             )
                           : Container(),*/
 
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode2,fnode3),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFieldMobile(4, MyLocalizations.of(context).text("ENTER_HOME_PHONE"),fnode3,fnode4),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFieldMobile(9, MyLocalizations.of(context).text("ENTER_OFFICE_PHONE"),fnode4,fnode5),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFieldMobile(10, MyLocalizations.of(context).text("MOBILE_NO"),fnode5,fnode6),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFielEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode6,fnode7),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFielEmail(12,MyLocalizations.of(context).text("ALTER_EMAILID"),fnode7,fnode8),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      formFieldExperience(13,MyLocalizations.of(context).text("EXPERIENCE"),fnode8,null),
-                      SizedBox(
-                        height: 13,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black),
-                            ),
+                          SizedBox(
+                            height: 8,
                           ),
-                          SizedBox(width: 30),
-                          Material(
-                            elevation: 3,
-                            color: AppData.kPrimaryColor,
-                            borderRadius:
-                            BorderRadius.circular(5.0),
-                            child: MaterialButton(
-                              onPressed: () {
-                                _settingModalBottomSheet(context);
-                              },
-                              minWidth: 120,
-                              height: 40.0,
-                              child: Text(
-                                "Upload",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17.0),
+                          formFieldzip(
+                              5,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_ZIP_CODE"),
+                              fnode2,
+                              fnode3),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFieldMobile(
+                              4,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_HOME_PHONE"),
+                              fnode3,
+                              fnode4),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFieldMobile(
+                              9,
+                              MyLocalizations.of(context)
+                                  .text("ENTER_OFFICE_PHONE"),
+                              fnode4,
+                              fnode5),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFieldMobile(
+                              10,
+                              MyLocalizations.of(context).text("MOBILE_NO"),
+                              fnode5,
+                              fnode6),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFielEmail(
+                              11,
+                              MyLocalizations.of(context).text("EMAILID"),
+                              fnode6,
+                              fnode7),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFielEmail(
+                              12,
+                              MyLocalizations.of(context).text("ALTER_EMAILID"),
+                              fnode7,
+                              fnode8),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          formFieldExperience(
+                              13,
+                              MyLocalizations.of(context).text("EXPERIENCE"),
+                              fnode8,
+                              null),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("UPLOAD_DOCUMENT"),
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
                               ),
-                            ),
+                              SizedBox(width: 30),
+                              Material(
+                                elevation: 3,
+                                color: AppData.kPrimaryColor,
+                                borderRadius: BorderRadius.circular(5.0),
+                                child: MaterialButton(
+                                  onPressed: () {
+                                    _settingModalBottomSheet(context);
+                                  },
+                                  minWidth: 120,
+                                  height: 40.0,
+                                  child: Text(
+                                    "Upload",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17.0),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
                           SizedBox(
                             height: 10,
                           ),
                           (idproof != null)
                               ? Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    child: Text(
-                                      "Report Path :" + idproof,
-                                      style: TextStyle(
-                                          color: Colors.green),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  child: SizedBox(
-                                      width: 50.0,
-                                      child: Icon(Icons.clear)),
-                                  onTap: () {
-                                    setState(() {
-                                      idproof = null;
-                                      // registrationModel.profilePhotoBase64 =
-                                      null;
-                                      //registrationModel.profilePhotoExt =
-                                      null;
-                                    });
-                                  },
-                                )
-                              ],
-                            ),
-                          )
-                              : Container(),  
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10),
-                        child: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Checkbox(
-                              value: _checkbox,
-                              onChanged: (value) {
-                                setState(() {
-                                  _checkbox = !_checkbox;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Expanded(
-                                child:RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w800,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.grey,
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          child: Text(
+                                            "Report Path :" + idproof,
+                                            style:
+                                                TextStyle(color: Colors.green),
                                           ),
                                         ),
-
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text(  "T&C"),
-                                          /* "Welcome back",*/
+                                      ),
+                                      InkWell(
+                                        child: SizedBox(
+                                            width: 50.0,
+                                            child: Icon(Icons.clear)),
+                                        onTap: () {
+                                          setState(() {
+                                            idproof = null;
+                                            // registrationModel.profilePhotoBase64 =
+                                            null;
+                                            //registrationModel.profilePhotoExt =
+                                            null;
+                                          });
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : Container(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              //  mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Checkbox(
+                                  value: _checkbox,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _checkbox = !_checkbox;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Expanded(
+                                    child: RichText(
+                                        textAlign: TextAlign.start,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: MyLocalizations.of(context)
+                                                  .text("AGREE_EHEALTHSYSTEM"),
+                                              /* "Welcome back",*/
+                                              style: TextStyle(
+                                                // fontWeight: FontWeight.w800,
+                                                fontFamily: "Monte",
+                                                // fontSize: 25.0,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: MyLocalizations.of(context)
+                                                  .text("T&C"),
+                                              /* "Welcome back",*/
 
                                               style: TextStyle(
                                                 //fontWeight: FontWeight.w500,
@@ -812,7 +847,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             textEditingController[9].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid Office Phone");
           FocusScope.of(context).requestFocus(fnode4);
-        } else if (textEditingController[10].text == "" || textEditingController[10].text == null) {
+        } else if (textEditingController[10].text == "" ||
+            textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");
           FocusScope.of(context).requestFocus(fnode5);
         } else if (textEditingController[10].text != "" &&
@@ -1407,16 +1443,12 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   textInputAction: TextInputAction.next,
                   maxLength: 3,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
-                  ],
+                  inputFormatters:[WhitelistingTextInputFormatter(RegExp("[0-9]")),],
                   decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle:
-                        TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintStyle:TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
                   onFieldSubmitted: (value) {
                     // print(error[2]);
@@ -1516,7 +1548,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         ]).show();
   }
 
-
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1528,22 +1559,21 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
                     onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
-                    }),
+                          Navigator.pop(context),
+                          getCameraImage(),
+                        }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {Navigator.pop(context),
-                    getCerificateImage()},
+                  onTap: () => {Navigator.pop(context), getCerificateImage()},
                 ),
                 new ListTile(
                     leading: new Icon(Icons.file_copy),
                     title: new Text('Document'),
                     onTap: () => {
-                      Navigator.pop(context),
-                      getPdfAndUpload(),
-                    }),
+                          Navigator.pop(context),
+                          getPdfAndUpload(),
+                        }),
               ],
             ),
           );
@@ -1581,11 +1611,13 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     }
   }
 
-
   Future getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
-      allowedExtensions: ['pdf','docx'], //here you can add any of extention what you need to pick
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
     );
     var enc = await file.readAsBytes();
     String _path = file.path;
@@ -1595,7 +1627,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
 
-    if(file != null) {
+    if (file != null) {
       setState(() {
         idproof = file.path;
         //userModel. = base64Encode(enc);
@@ -1623,5 +1655,4 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       userModel.profileImage = base64Encode(enc);
     });
   }
-
 }

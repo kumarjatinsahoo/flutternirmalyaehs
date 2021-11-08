@@ -1,4 +1,4 @@
-class EmergencyHelpModel {
+ class EmergencyHelpModel {
   String police;
   List<Emergency> emergency;
   String ambulance;

@@ -433,7 +433,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                               ),
                             ],
                           ),
-                          SizedBox(width: 30),
+                         SizedBox(width: 30),
                           (idproof != null)
                               ? Padding(
                                   padding: const EdgeInsets.only(

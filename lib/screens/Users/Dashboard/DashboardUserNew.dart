@@ -2241,6 +2241,35 @@ class MyPage2Widget extends StatelessWidget {
                     SizedBox(
                       width: 15,
                     ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/health_checkup.png",
+                            //icon: Icons.search,
+                            //icon: FontAwesomeIcons.accusoft,
+                            title: "Book Ambulance",
+                            fun: () {
+                              //AppData.showInSnackDone(context, "Coming Soon");
+                              Navigator.pushNamed(context, "/bookAmbulancelist");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            //size: (size.width - 130) / 3,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            child: Text("Book Ambulance",
+                              textAlign: TextAlign.center,
+                              //overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ]),
                   ],
                 ),
               ],
