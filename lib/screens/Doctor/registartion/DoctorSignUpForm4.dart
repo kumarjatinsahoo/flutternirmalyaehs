@@ -563,7 +563,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                               ],
                             ),
                           )
-                              : Container(),
+                              : Container(),  
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10),
@@ -571,7 +571,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           //  mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Checkbox(
-
                               value: _checkbox,
                               onChanged: (value) {
                                 setState(() {
@@ -579,7 +578,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 });
                               },
                             ),
-
                             SizedBox(
                               height: 10,
                             ),

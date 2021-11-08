@@ -699,7 +699,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
         }
     else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+          AppData.showInSnackBar(context, "Please check Terms and Condition");
         }
         else {
           MyWidgets.showLoading(context);

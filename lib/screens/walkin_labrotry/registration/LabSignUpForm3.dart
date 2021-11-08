@@ -735,7 +735,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);
         } else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+          AppData.showInSnackBar(context, "Please check Terms and Condition");
         } else {
           MyWidgets.showLoading(context);
           LabSignupModel labSignupModel = LabSignupModel();
@@ -775,18 +775,6 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
               });
-          // fun: (Map<String, dynamic> map){
-          //   String msg = map["message"].toString();
-          //   String userid = map["body"].toString();
-          //   if (map["code"] == "success"){
-          //     popup(msg, context,userid,labmobile);
-          //   }
-          //   else {
-          //     AppData.showInSnackBar(context, msg);
-          //   }
-          // }
-          // );
-          //Navigator.pushNamed(context, "/labsignup4");
         }
       },
     );
