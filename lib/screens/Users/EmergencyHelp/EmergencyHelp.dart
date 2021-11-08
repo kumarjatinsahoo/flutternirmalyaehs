@@ -196,7 +196,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
 
+
   showUserList1(BuildContext context, List<Results> results) {
+
     return showDialog(
         context: context,
         barrierDismissible: true,
@@ -211,31 +213,32 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 //contentPadding: EdgeInsets.only(top: 10.0),
                 content: Container(
-                  height: 200,
-                  child: ListView.separated(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: ListView.builder(
                     shrinkWrap: true,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(color: Colors.black54),
                     itemBuilder: (context, i) {
-                      return ListTile(
-                          title: Text(
-                            results[i].name,
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          /*subtitle: Text(
-                            results[i].relation,
-                            style: TextStyle(color: Colors.black),
-                          ),*/
-                          trailing: InkWell(
-                            onTap: () {
-                              //Navigator.pop(context);
-                              /*AppData.launchURL("tel://" +
-                                  results[i].mobile);*/
-                            },
-                            child: Icon(Icons.call, color: Colors.black),
-                          ));
+                      return Column(
+                        children: [
+                      ListTile(
+                      title: Text(
+                      results[i].name,
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      trailing: InkWell(
+                      onTap: () {
+                      //  AppData.launchURL("tel://" + list[i].mobile);
+                      },
+                      child: Icon(Icons.call, color: Colors.black),
+                      )
+                      ),
+                        (i == results.length - 1)
+                          ? Container()
+                          : Divider(height: 1, color: Colors.black54),
+                      ]
+                      ,);
                     },
-                    itemCount: 5,
+                    itemCount: results.length,
                   ),
                 ),
               );

@@ -33,6 +33,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
   void initState() {
     uhid=widget.model.regNoValue;
     myController.text=uhid;
+    loginResponse = widget.model.loginResponse1;
 
 
     super.initState();
@@ -204,13 +205,12 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                       }
 
                       else {
-                        var sendData;
-                        sendData = {"key": myController.text, "name": "Mobile number"};
+                       // var sendData;
+                        //sendData = {"key": myController.text, "name": "Mobile number"};
                         widget.model.patientseHealthCard = myController.text;
                         MyWidgets.showLoading(context);
-                        widget.model.POSTMETHOD(
-                            api: ApiFactory.FORGOT_OTP,
-                            json: sendData,
+                        widget.model.GETMETHODCALL(
+                            api: ApiFactory.EMERGENCY_OTP+widget.model.patientseHealthCard+"&drid="+loginResponse.body.user,
                             fun: (Map<String, dynamic> map) {
                               Navigator.pop(context);
                               log("LOGIN RESPONSE>>>>" + jsonEncode(map));
@@ -220,9 +220,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
 /*                                  forgotUseridModel = ForgotUseridModel.fromJson(map);
                                   widget.model.userResponse = forgotUseridModel;*/
                                   log("userid response " + jsonEncode(map));
-                                  String otp = map["body"]["code"];
-
-
+                                  String otp = map["body"][0]["code"].toString();
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -230,7 +228,6 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                                         model: widget.model,
                                         otp: otp,
                                         uhid: myController.text,
-
                                       ),
                                     ),
                                   );

@@ -28,6 +28,9 @@ class PocReportModel {
     data['total'] = this.total;
     return data;
   }
+  toJson1(List<Body> list) {
+    return list.map((v) => v.toJson()).toList();
+  }
 
   addMore(Map<String, dynamic> json) {
     if (json['body'] != null) {
