@@ -10,6 +10,7 @@ class ApiFactory {
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
+  static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
@@ -47,6 +48,7 @@ class ApiFactory {
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
+  static String POST_AMBULANCEDETAILS= MAIN_URL + 'post-ambulance-details';
   static String POST_MEDICATION = MAIN_URL + 'post-user-medication-doctor';
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
   static String USER_PROFILE = MAIN_URL + 'other-user-profile?userid=';
@@ -134,6 +136,8 @@ class ApiFactory {
   static String AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
@@ -142,6 +146,7 @@ class ApiFactory {
       MAIN_URL + 'post-user-emergency-message';
   static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list';
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list';
+  static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
   static String UPDATE_EMERGENCY_CONTACT =
       MAIN_URL + 'post-emergency-contact-api';
   static String EMERGENCY_HELP =
@@ -174,6 +179,8 @@ class ApiFactory {
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
+  static String ambulance_APPOINTMENT_status =
+      MAIN_URL + 'change-ambulance-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
@@ -187,6 +194,7 @@ class ApiFactory {
   static String ORDER_DETAILS_LAB =
       MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
+  static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
   static String CHANGE_STATUS_PHARMACY = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String CHANGE_STATUS_LAB = MAIN_URL + 'change-lab-status?orderid=';
   static String HEALTH_CHART =

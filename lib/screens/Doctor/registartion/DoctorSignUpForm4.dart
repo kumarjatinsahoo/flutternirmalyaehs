@@ -1310,16 +1310,12 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   textInputAction: TextInputAction.next,
                   maxLength: 2,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
-                  ],
+                  inputFormatters:[WhitelistingTextInputFormatter(RegExp("[0-9]")),],
                   decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle:
-                        TextStyle(color: AppData.hintColor, fontSize: 15),
+                    hintStyle:TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
                   onFieldSubmitted: (value) {
                     // print(error[2]);
