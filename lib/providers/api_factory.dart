@@ -1,9 +1,9 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
-  static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+// static String MAIN_URL = "http://192.168.43.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
@@ -136,6 +136,8 @@ class ApiFactory {
   static String AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
+  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
@@ -144,6 +146,7 @@ class ApiFactory {
       MAIN_URL + 'post-user-emergency-message';
   static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list';
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list';
+  static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
   static String UPDATE_EMERGENCY_CONTACT =
       MAIN_URL + 'post-emergency-contact-api';
   static String EMERGENCY_HELP =
@@ -176,6 +179,8 @@ class ApiFactory {
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
+  static String ambulance_APPOINTMENT_status =
+      MAIN_URL + 'change-ambulance-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';

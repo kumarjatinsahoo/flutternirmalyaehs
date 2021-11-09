@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:user/models/PharmacyorderModel.dart'as oderlist;
+import 'package:user/models/AmbulanceAllModel.dart' as ambulanceall;
+import 'package:user/models/AmbulanceAllModel.dart';
+import 'package:user/models/PharmacyorderModel.dart' as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -27,6 +28,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
   bool isdata = false;
 
   oderlist.PharmacyorderModel pharmacyorderModel;
+  ambulanceall.AmbulanceAllModel ambulanceallmodel;
+
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -37,23 +40,23 @@ class _AllAmbulanceState extends State<AllAmbulance> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
-   // callAPI();
+    callAPI();
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.ORDER_LIST + loginResponse.body.user,
-        userId: loginResponse.body.user,
-        token: widget.model.token,
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user,
+        // userId: loginResponse.body.user,
+        // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
+                ambulanceallmodel =
+                    ambulanceall.AmbulanceAllModel.fromJson(map);
               });
-
             } else {
               isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
@@ -66,320 +69,224 @@ class _AllAmbulanceState extends State<AllAmbulance> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Ambulance',
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          title: Text(
+            'Ambulance',
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          backgroundColor: AppData.kPrimaryColor,
+          //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        //leading: Icon(Icons.arrow_back, color: Colors.black),
-
-      ),
-      body:
-
-     SingleChildScrollView(
-        child: ListView.builder(
-          //physics: NeverScrollableScrollPhysics(),
-          // controller: _scrollController,
-          shrinkWrap: true,
-          itemBuilder: (context, i) {
-           /* if (i == pharmacyorderModel.body.length) {
-              return (pharmacyorderModel.body.length % 10 == 0)
-                  ? CupertinoActivityIndicator()
-                  : Container();
-            }
-            oderlist.Body body = pharmacyorderModel.body[i];*/
-            return Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
-              child: Card(
-                child: Container(
-                  //height: height * 0.30,
-                  // color: Colors.grey[200],
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              Colors.blueGrey[50],
-                              Colors.blue[50]
-                            ])),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10.0, right: 10.0, top: 10, bottom: 5),
-                          child: InkWell(
-                            onTap: () {
-                             /* widget.model.pharmacyorderModel=body;
+        body: (ambulanceallmodel != null)
+            ? SingleChildScrollView(
+                child: (ambulanceallmodel != null)
+                    ? ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        // controller: _scrollController,
+                        shrinkWrap: true,
+                        itemBuilder: (context, i) {
+                          if (i == ambulanceallmodel.body.length) {
+                            return (ambulanceallmodel.body.length % 10 == 0)
+                                ? CupertinoActivityIndicator()
+                                : Container();
+                          }
+                          ambulanceall.Body body = ambulanceallmodel.body[i];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 15, top: 15),
+                            child: Card(
+                              child: Container(
+                                //height: height * 0.30,
+                                // color: Colors.grey[200],
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(colors: [
+                                        Colors.blueGrey[50],
+                                        Colors.blue[50]
+                                      ])),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10.0,
+                                            right: 10.0,
+                                            top: 10,
+                                            bottom: 5),
+                                        child: InkWell(
+                                          onTap: () {
+                                            /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
-                            },
-                            child: Expanded(
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.person,
-                                        size: 14,
-                                        color: Colors.blue,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Name",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.location_on_rounded,
-                                        size: 15,
-                                        color: Colors.blue,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "From",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        " ",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.location_on_rounded,
-                                        size: 15,
-                                        color: Colors.blue,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "To",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        " ",
-                                        textAlign: TextAlign.right,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Patient Notes: ',
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(width: 5,),
-                                      Text(
-                                        'Patient Notes: ',
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        ' ',
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Spacer(),
-                                      InkWell(
-                                        onTap: () {
-                                           showDialog(
-                                    context: context,
-                                    builder: (BuildContext
-                                    context) =>
-                                        changeStatus(context),
-                                  );
-                                          // widget.model.userappointment = appointmentlist;
+                                          },
+                                          child: Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "Name ",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                    Spacer(),
+                                                    Text(
+                                                      body.patientName,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "From",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                    Spacer(),
+                                                    Text(
+                                                      body.fromLocation,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "Destination",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                    Spacer(),
+                                                    Text(
+                                                      body.toDestination,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.01,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Patient Notes',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                    Spacer(),
+                                                    Text(
+                                                      body.patientNote,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      ' ',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    Spacer(),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              changeStatus(
+                                                                  context,
+                                                                  body.orderId),
+                                                        );
+                                                        // widget.model.userappointment = appointmentlist;
 
-
-                            //  Navigator.pushNamed(context, "/usermedicinelist");
-                                        },
-                                        child: MaterialButton(
-                                          child: Text(
-                                            /*'Confirmed'*/
-                                            "Status",
-                                            style: TextStyle(
-                                                fontWeight:
-                                                FontWeight
-                                                    .bold,
-                                                fontSize:
-                                                15,
-                                                color: Colors
-                                                    .white),
+                                                        //  Navigator.pushNamed(context, "/usermedicinelist");
+                                                      },
+                                                      child: MaterialButton(
+                                                        child: Text(
+                                                          /*'Confirmed'*/
+                                                          "Status",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 15,
+                                                              color: AppData
+                                                                  .kPrimaryBlueColor),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
+                        //itemCount:5,
+                        itemCount: ambulanceallmodel.body.length,
+                      )
+                    : Container(),
+              )
+            : Container(
+                child: Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 300,
                       ),
-                      //Spacer(),
-                    /*  Padding(
-                        padding: const EdgeInsets.only(top: 10,
-                            left: 10.0, right: 10.0, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                  rejectApi(body.orderid);
-
-                                },
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: Colors.red[900]),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Reject',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    disabledColor: Colors.red[900],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                  acceptApi(body.orderid);
-                                },
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: Colors.blue),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Accept',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    disabledColor: Colors.blue[600],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )*/
+                      (isdata)
+                          ? Text(
+                              'No Data Found',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            )
+                          : CircularProgressIndicator(),
                     ],
                   ),
                 ),
-              ),
-            );
-          },
-          itemCount:5,
-         // itemCount: pharmacyorderModel.body.length,
-        ),
-      ),
-          // : Container(),
-    );
+              ));
   }
 
-  rejectApi(String orderid) {
-    MyWidgets.showLoading(context);
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.CHANGE_STATUS_LAB +orderid+"&status=6",
-        token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
-          setState(() {
-            log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              // pocReportModel = PocReportModel.fromJson(map);
-              //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
-              //  AppData.showInSnackBar(context, msg);
-              callAPI();
 
-            } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
-            }
-          });
-        });
-  }
-
-  acceptApi(String orderid) {
-    MyWidgets.showLoading(context);
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.CHANGE_STATUS_LAB +orderid+"&status=4",
-        token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
-          setState(() {
-            log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              callAPI();
-              AppData.showInSnackDone(context, msg);
-            } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
-            }
-          });
-        });
-  }
-  Widget changeStatus(BuildContext context) {
+  Widget changeStatus(BuildContext context, String orderid) {
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
     return AlertDialog(
@@ -401,8 +308,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-             /*   Text(
-                  *//*"Lisa Rani"*//*
+                /*   Text(
+                  */ /*"Lisa Rani"*/ /*
                   patname,
                   style: TextStyle(
                     color: Colors.black,
@@ -413,14 +320,14 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                   height: 20,
                 ),
                 ListTile(
-                  title: Text("Confirm"),
+                  title: Text("Accept"),
                   leading: Icon(Icons.check),
                   onTap: () {
-                   /* widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +
-                            doctorName +
-                            "&appstatus=" +
-                            "2",
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.ambulance_APPOINTMENT_status +
+                            orderid +
+                            "&status=" +
+                            "4",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
@@ -428,8 +335,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                             if (map[Const.CODE] == Const.SUCCESS) {
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
-                              doctorAppointmment =
-                                  DoctorAppointmment.fromJson(map);
+                              ambulanceallmodel =
+                                  AmbulanceAllModel.fromJson(map);
                               AppData.showInSnackBar(context, msg);
 
                               // appointModel = lab.LabBookModel.fromJson(map);
@@ -438,7 +345,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                               AppData.showInSnackBar(context, msg);
                             }
                           });
-                        });*/
+                        });
                     //updateApi(userName.id.toString(), "0", i);
                   },
                 ),
@@ -446,30 +353,31 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                   height: 2,
                 ),
                 ListTile(
-                  title: Text("Cancel"),
+                  title: Text("Reject"),
                   leading: Icon(Icons.cancel_outlined),
                   onTap: () {
-                   /* widget.model.GETMETHODCALL_TOKEN(
-                        api: ApiFactory.user_APPOINTMENT_status +
-                            doctorName +
-                            "&appstatus=" +
-                            "4",
+                    widget.model.GETMETHODCALL_TOKEN(
+                        api: ApiFactory.ambulance_APPOINTMENT_status +
+                            orderid +
+                            "&status=" +
+                            "6",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
                             String msg = map[Const.MESSAGE];
                             if (map[Const.CODE] == Const.SUCCESS) {
-                              doctorAppointmment =
-                                  DoctorAppointmment.fromJson(map);
-                              AppData.showInSnackBar(context, msg);
                               Navigator.of(context).pop();
-                              // appointModel = lab.LabBookModel.fromJson(map);
+                              Navigator.of(context).pop();
+                              ambulanceallmodel =
+                                  AmbulanceAllModel.fromJson(map);
+                              AppData.showInSnackBar(context, msg);
+
                             } else {
                               // isDataNotAvail = true;
                               AppData.showInSnackBar(context, msg);
                             }
                           });
-                        });*/
+                        });
                     //updateApi(userName.id.toString(), "1", i);
                   },
                 ),
@@ -500,5 +408,4 @@ class _AllAmbulanceState extends State<AllAmbulance> {
       ],
     );
   }
-
 }

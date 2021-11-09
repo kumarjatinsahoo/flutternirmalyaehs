@@ -75,36 +75,28 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
 
   sendSmsAPI() {
-
-    //String s=pocReportModel.toJson1(selectPocreport).toString();
     var v={
       pocReportModel.toJson1(selectPocreport).toString()
     };
-
-    log("Poc result     "+jsonEncode(pocReportModel.toJson1(selectPocreport)));
-
-
-
-   /* widget.model.POSTMETHOD_TOKEN(
-        api: ApiFactory.POC_REPORT_LISTT + "?page=" + i.toString() + "&search=",
+   // log("Poc result     "+jsonEncode(pocReportModel.toJson1(selectPocreport)));
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.POC_REPORT_SMS,
         token: widget.model.token,
         json: pocReportModel.toJson1(selectPocreport),
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              if (i == 1) {
-                pocReportModel = PocReportModel.fromJson(map);
-                //Navigator.pop(context);
-              } else {
-                pocReportModel.addMore(map);
-              }
+               //pocReportModel = PocReportModel.fromJson(map);
+               Navigator.pushNamed(context, "/patientDashboard");
+
+              //Navigator.pop(context);
             } else {
-              isDataNotAvail = true;
-              if (i == 1) AppData.showInSnackBar(context, msg);
+            //  isDataNotAvail = true;
+             // if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
-        });*/
+        });
   }
 
   Widget build(BuildContext context) {
@@ -179,42 +171,35 @@ class _PocReportListPageState extends State<PocReportListPage> {
                   ),
                   child: ListTile(
                     onTap: () {
-                      if (patient.reportUrl != null) {
+                     /* if (patient.reportUrl != null) {
                         AppData.launchURL(patient.reportUrl);
                       } else {
                         AppData.showInSnackBar(context, "Data Not Available");
                       }
-                      //AppData.launchURL(patient.reportUrl);
+*/                      //AppData.launchURL(patient.reportUrl);
                       //callUrl("");
                     },
 
                     leading: SizedBox(
                       width: 25,
                       height: 15,
-                      child: InkWell(
-                        onTap: () {
-                          //  AppData.launchURL("tel://" + list[i].mobile);
-                        },
+                      child: Checkbox(
+                          value: patient.isChecked,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          activeColor: AppData.kPrimaryBlueColor,
+                          onChanged: (bool val) {
+                            setState(() {
+                              patient.isChecked = val;
+                              if (val) {
+                                selectPocreport.add(patient);
+                              }
 
-                        child: Checkbox(
-                            value: patient.isChecked,
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            activeColor: AppData.kPrimaryBlueColor,
-                            onChanged: (bool val) {
-                              setState(() {
-                                patient.isChecked = val;
-                                if (val) {
-                                  selectPocreport.add(patient);
-                                }
-
-                                else {
-                                  selectPocreport.remove(patient);
-                                }
-                              });
-                            }),
-                        //  child: Icon(Icons.call, color: Colors.black),
-                      ),
+                              else {
+                                selectPocreport.remove(patient);
+                              }
+                            });
+                          }),
                     ),
                     /*title:
               Text(
@@ -223,52 +208,61 @@ class _PocReportListPageState extends State<PocReportListPage> {
                     color: Colors.black, fontWeight: FontWeight.bold),
               ),*/
                     subtitle: SizedBox(
+                      child: InkWell(
+                        onTap:() {
+                      if (patient.reportUrl != null) {
+                      AppData.launchURL(patient.reportUrl);
+                      } else {
+                      AppData.showInSnackBar(context, "Data Not Available");
+                      }
+                      },
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            (i + 1).toString() + ". " + patient.name + " ",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          (patient.thpId == "")
-                              ? Container()
-                              : Text(
-                                  patient.thpName ?? "",
-                                  style: TextStyle(color: Colors.grey),
-                                  textAlign: TextAlign.start,
-                                ),
-                          Text(
-                            patient.patientUniqueid,
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end,
-                          ),
-                          Text(
-                            patient.mobile ?? "",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end,
-                          ),
-                          Text(
-                            patient.gender ?? "",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end,
-                          ),
-                          Text(
-                            patient.age ?? "",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end,
-                          ),
-                          Text(
-                            patient.screeningDate ?? "",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end,
-                          ),
-                        ],
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              (i + 1).toString() + ". " + patient.name + " ",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            (patient.thpId == "")
+                                ? Container()
+                                : Text(
+                                    patient.thpName ?? "",
+                                    style: TextStyle(color: Colors.grey),
+                                    textAlign: TextAlign.start,
+                                  ),
+                            Text(
+                              patient.patientUniqueid,
+                              style: TextStyle(color: Colors.grey),
+                              textAlign: TextAlign.end,
+                            ),
+                            Text(
+                              patient.mobile ?? "",
+                              style: TextStyle(color: Colors.grey),
+                              textAlign: TextAlign.end,
+                            ),
+                            Text(
+                              patient.gender ?? "",
+                              style: TextStyle(color: Colors.grey),
+                              textAlign: TextAlign.end,
+                            ),
+                            Text(
+                              patient.age ?? "",
+                              style: TextStyle(color: Colors.grey),
+                              textAlign: TextAlign.end,
+                            ),
+                            Text(
+                              patient.screeningDate ?? "",
+                              style: TextStyle(color: Colors.grey),
+                              textAlign: TextAlign.end,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     //leading: SizedBox(width:20,child: Text((i+1).toString(),style: TextStyle(color: Colors.black),)),
