@@ -269,12 +269,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           ),
                           formFieldaddress(
                               8,
-                              MyLocalizations.of(context).text("ADDRESS"),
-                              fnode1,
-                              fnode2),
-                          SizedBox(
-                            height: 5,
-                          ),
+                              MyLocalizations.of(context).text("ADDRESS"), fnode1, fnode2),
+
                           DropDown.networkDropdownGetpartUser(
                               MyLocalizations.of(context).text("COUNTRY"),
                               ApiFactory.COUNTRY_API,
@@ -338,135 +334,6 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   });
                                 })
                               : Container(),
-                          /*  Padding(
-                        padding: const EdgeInsets.only(
-                            left: 0, right: 0),
-                        child: SizedBox(
-                          height: 58,
-                          child:
-                              DropDown.networkDropdownGetpartUser(
-                                  MyLocalizations.of(context)
-                                      .text("COUNTRY") ,
-                                  ApiFactory.COUNTRY_API,
-                                  "country",
-                                  Icons.location_on_rounded,
-                                  23.0, (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.COUNTRY_API);
-                              DoctorSignUpForm4.countryModel = data;
-                              userModel.country = data.key;
-                              userModel.countryCode = data.code;
-                              DoctorSignUpForm4.stateModel = null;
-                              DoctorSignUpForm4.districtModel = null;
-                              DoctorSignUpForm4.cityModel = null;
-
-
-                            });
-                          }),
-                        ),
-                      ),*/
-                          /* SizedBox(
-                        height: 5,
-                      ),
-                      (DoctorSignUpForm4.countryModel != null)
-                          ? Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 0, bottom: 0),
-                              child: SizedBox(
-                                height: 58,
-                                child: DropDown
-                                    .countryList(
-                                    MyLocalizations.of(context)
-                                        .text("STATE") ,
-                                        ApiFactory.STATE_API +
-                                            DoctorSignUpForm4
-                                                .countryModel.key,
-                                        "state",
-                                        Icons.location_on_rounded,
-                                        23.0,
-                                        (KeyvalueModel data) {
-                                  setState(() {
-                                    DoctorSignUpForm4.stateModel =
-                                        data;
-                                    userModel.state = data.key;
-                                    userModel.stateCode =
-                                        data.code;
-                                    DoctorSignUpForm4.districtModel = null;
-                                    DoctorSignUpForm4.cityModel = null;
-
-
-      //                                  DoctorSignUpForm4.stateModel=data.reset();
-
-                                  });
-                                }),
-                              ),
-                            )
-                          : Container(),
-                      (DoctorSignUpForm4.stateModel != null)
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 0),
-                              child: SizedBox(
-                                height: 58,
-                                child: DropDown
-                                    .countryList(
-                                    MyLocalizations.of(context)
-                                        .text("DIST") ,
-                                        ApiFactory.DISTRICT_API +
-                                            DoctorSignUpForm4
-                                                .stateModel.key,
-                                        "district",
-                                        Icons.location_on_rounded,
-                                        23.0,
-                                        (KeyvalueModel data) {
-                                  setState(() {
-                                    print(
-                                        ApiFactory.DISTRICT_API +
-                                            DoctorSignUpForm4
-                                                .stateModel.key);
-                                    DoctorSignUpForm4
-                                        .districtModel = data;
-                                    // userModel.district=data.key;
-                                    // userModel.st=data.code;
-                                    // UserSignUpForm.cityModel = null;
-                                    DoctorSignUpForm4.cityModel = null;
-                                  });
-                                }),
-                              ),
-                            )
-                          : Container(),
-                      (DoctorSignUpForm4.districtModel != null)
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 0),
-                              child: SizedBox(
-                                height: 58,
-                                child: DropDown
-                                    .countryList(
-                                    MyLocalizations.of(context)
-                                        .text("CITY") ,
-                                        ApiFactory.CITY_API +
-                                            DoctorSignUpForm4
-                                                .districtModel
-                                                .key,
-                                        "city",
-                                        Icons.location_on_rounded,
-                                        23.0,
-                                        (KeyvalueModel data) {
-                                  setState(() {
-                                    print(ApiFactory.CITY_API +
-                                        DoctorSignUpForm4
-                                            .districtModel.key);
-                                    DoctorSignUpForm4.cityModel = data;
-
-                                    // DoctorSignUpForm4.cityModel =
-                                    //     null;
-                                  });
-                                }),
-                              ),
-                            )
-                          : Container(),*/
-
                           SizedBox(
                             height: 8,
                           ),
@@ -577,7 +444,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                           child: Text(
                                             "Report Path :" + idproof,
                                             style:
-                                                TextStyle(color: Colors.green),
+                                            TextStyle(color: Colors.green),
                                           ),
                                         ),
                                       ),
@@ -600,7 +467,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                 )
                               : Container(),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 1),
                             child: Row(
                               //  mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -873,7 +740,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);
         } else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please checked Terms and Condition");
+          AppData.showInSnackBar(context, "Please Check Terms And Condition");
         } else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
@@ -1441,7 +1308,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                   focusNode: currentfn,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 3,
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   inputFormatters:[WhitelistingTextInputFormatter(RegExp("[0-9]")),],
                   decoration: InputDecoration(
