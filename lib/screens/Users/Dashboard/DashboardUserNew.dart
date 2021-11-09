@@ -2246,7 +2246,7 @@ class MyPage2Widget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _buildTileblue(
-                            icon: "assets/health_checkup.png",
+                            icon: "assets/ambulance.png",
                             //icon: Icons.search,
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Book Ambulance",
