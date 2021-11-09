@@ -75,9 +75,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
 
   sendSmsAPI() {
-    var v={
-      pocReportModel.toJson1(selectPocreport).toString()
-    };
+
    // log("Poc result     "+jsonEncode(pocReportModel.toJson1(selectPocreport)));
     widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.POC_REPORT_SMS,
