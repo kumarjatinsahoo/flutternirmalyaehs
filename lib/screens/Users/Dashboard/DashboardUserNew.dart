@@ -2145,7 +2145,6 @@ class MyPage1Widget extends StatelessWidget {
 class MyPage2Widget extends StatelessWidget {
   double _height = 85;
   double _width;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
