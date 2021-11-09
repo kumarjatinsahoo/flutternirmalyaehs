@@ -488,8 +488,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/labDash',
                           (Route<dynamic> route) => false);
-                    }
-                    else if (loginResponse.body.roles[0] ==
+                    } else if (loginResponse.body.roles[0] ==
                         "12".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/ambulancedash',

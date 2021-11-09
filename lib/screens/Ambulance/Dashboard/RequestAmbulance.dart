@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:user/models/AmbulanceAllModel.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/AmbulanceAppointment.dart'as ambulanceappoint;
+import 'package:user/widgets/MyWidget.dart';
 
 class RequestAmbulance extends StatefulWidget {
   final MainModel model;
@@ -68,15 +69,17 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Requested',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        body: (ambulanceAppointmentModel != null)
-            ? SingleChildScrollView(
+        body:
+        // (ambulanceAppointmentModel != null)
+        //     ?
+        SingleChildScrollView(
           child: (ambulanceAppointmentModel != null)
               ? ListView.builder(
             physics: NeverScrollableScrollPhysics(),
@@ -115,124 +118,186 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                 /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
                               },
-                              child: Expanded(
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Name ",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Name ",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.patientName,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                        textAlign:
+                                        TextAlign.right,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "From",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.fromLocation,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Destination",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.toDestination,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Patient Notes',
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.patientNote,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            rejectApi(orderid);
+                                            callAPI();
+                                          },
+                                          child: Container(
+                                            height: size.height * 0.06,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.red[900]),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                'Reject',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.red[900],
+                                            ),
                                           ),
                                         ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientName,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                          textAlign:
-                                          TextAlign.right,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "From",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                                      ),
+                                    Spacer(),
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            acceptApi(orderid);
+                                          },
+                                          child: Container(
+                                            height: size.height * 0.06,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.blue),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                'Accept',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.blue[600],
+                                            ),
                                           ),
                                         ),
-                                        Spacer(),
-                                        Text(
-                                          body.fromLocation,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Destination",
-                                          style: TextStyle(
+                                      ),
+                                    ],
+                                  ),
+                               /*   Row(
+                                    children: [
+                                      Text(
+                                        ' ',
+                                        style: TextStyle(
                                             fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.toDestination,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Patient Notes',
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientNote,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          ' ',
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight.w600),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          /*'Confirmed'*/
-                                          body.status,
-                                          textAlign: TextAlign.right,
+                                            FontWeight.w600),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        *//*'Confirmed'*//*
+                                        body.status,
+                                        textAlign: TextAlign.right,
 
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight
-                                                  .bold,
-                                              fontSize: 15,
-                                              color: AppData
-                                                  .kPrimaryBlueColor),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                        style: TextStyle(
+                                            fontWeight:
+                                            FontWeight
+                                                .bold,
+                                            fontSize: 15,
+                                            color: AppData
+                                                .kPrimaryBlueColor),
+                                      ),
+                                    ],
+                                  ),*/
+                                ],
                               ),
                             ),
                           ),
@@ -247,8 +312,8 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
             itemCount: ambulanceAppointmentModel.body.length,
           )
               : Container(),
-        )
-            : Container(
+        ),
+          /*  : Container(
           child: Center(
             child: Column(
               children: [
@@ -265,7 +330,8 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
               ],
             ),
           ),
-        ));
+        )*/
+    );
   }
 
 
@@ -395,4 +461,80 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
       ],
     );
   }
+  rejectApi(String orderid) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.ambulance_APPOINTMENT_status +
+            orderid +
+            "&status=" +
+            "6",
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+        //  setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              popup(msg, context);
+
+            } else {
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        //});
+  }
+
+  acceptApi(String orderid,) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.ambulance_APPOINTMENT_status +
+            orderid +
+            "&status=" +
+            "4",
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+         // setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+             // Navigator.of(context).pop();
+              // appointModel = lab.LabBookModel.fromJson(map);
+              popup(msg, context);
+            } else {
+              // isDataNotAvail = true;
+             AppData.showInSnackBar(context, msg);
+            }
+          //});
+        });
+  }
+
+  popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: (){
+              //Navigator.pop(context, true);
+             Navigator.pop(context, true);
+             callAPI();
+
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
 }
+
+
