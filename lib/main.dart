@@ -6,8 +6,11 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
+import 'package:user/screens/Ambulance/Dashboard/RejectAmbulance.dart';
+import 'package:user/screens/Ambulance/Dashboard/RequestAmbulance.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
@@ -891,6 +894,12 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/allambulance': (context) => AllAmbulance(
+                model: _model,
+              ),'/requestambulance': (context) => RequestAmbulance(
+                model: _model,
+              ),'/acceptambulance': (context) => AcceptAmbulance(
+                model: _model,
+              ),'/rejectambulance': (context) => RejectAmbulance(
                 model: _model,
               ),
               '/bookAmbulancelist': (context) => BookAmbulancelist(

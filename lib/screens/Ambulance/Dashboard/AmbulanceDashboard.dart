@@ -126,7 +126,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
               children: [
                 Container(
                   child: Image.asset(
-                    "assets/images/labbanner.jpg",
+                    "assets/images/ambulancebnr.jpg",
                     // width: size.width,
                     // fit: BoxFit.cover,
                   ),
@@ -189,6 +189,8 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                                 //chooseAppointment(context);
                                 // Navigator.pushNamed(context, "/myAppointment");
                                 //Navigator.pushNamed(context, "/ordersPharma");
+                                Navigator.pushNamed(context, "/requestambulance");
+
                               },
                               color: AppData.BG1RED,
                               bordercolor: AppData.BG1RED,
@@ -227,6 +229,8 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                             _buildTileblue(
                               icon: "assets/images/accept.png",
                               fun: () {
+                                Navigator.pushNamed(context, "/acceptambulance");
+
                                 //chooseAppointment(context, model);
                                 //Navigator.pushNamed(context, "/userAppoint");
                                 // Navigator.pushNamed(context, "/myAppointment");
@@ -277,6 +281,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                             _buildTilered(
                               icon: "assets/images/reject.png",
                               fun: () {
+                                Navigator.pushNamed(context, "/rejectambulance");
                                 //Navigator.pushNamed(context, "/testappointmentpage");
                                 //AppData.showInSnackBar(context, "Coming soon");
                               },
