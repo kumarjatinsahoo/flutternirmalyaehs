@@ -40,9 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  static final List<String> languageCodesList =
-      application.supportedLanguagesCodes;
+  static final List<String> languageCodesList = application.supportedLanguagesCodes;
   static final List<String> languagesList = application.supportedLanguages;
 
   final Map<dynamic, dynamic> languagesMap = {
@@ -462,37 +460,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
 
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.userMobile);
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
 
                     if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/patientDashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "1".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "2".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "7".toLowerCase()) {
+                    } else if(loginResponse.body.roles[0] == "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy',
-                          (Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0] ==
-                        "8".toLowerCase()) {
+                          '/dashboardpharmacy',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/labDash',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "12".toLowerCase()) {
                           '/labDash',
                           (Route<dynamic> route) => false);
                     } else if (loginResponse.body.roles[0] ==
                         "12".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/ambulancedash',
-                          (Route<dynamic> route) => false);
+                          '/ambulancedash',(Route<dynamic> route) => false);
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
                     }

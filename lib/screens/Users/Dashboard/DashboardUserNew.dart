@@ -2145,7 +2145,6 @@ class MyPage1Widget extends StatelessWidget {
 class MyPage2Widget extends StatelessWidget {
   double _height = 85;
   double _width;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -2246,7 +2245,7 @@ class MyPage2Widget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _buildTileblue(
-                            icon: "assets/health_checkup.png",
+                            icon: "assets/ambulance.png",
                             //icon: Icons.search,
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Book Ambulance",

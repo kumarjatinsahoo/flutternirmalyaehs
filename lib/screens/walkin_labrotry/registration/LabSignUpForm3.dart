@@ -424,8 +424,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                   },
                                   minWidth: 120,
                                   height: 40.0,
-                                  child: Text(
-                                    "Upload",
+                                  child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 17.0),
                                   ),
@@ -446,7 +445,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                       Expanded(
                                         child: Container(
                                           child: Text(
-                                            "Report Path :" + idproof,
+                                            "Report Path :"+ idproof,
                                             style:
                                                 TextStyle(color: Colors.green),
                                           ),
@@ -1564,39 +1563,6 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     );
   }
 
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
-
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1614,7 +1580,8 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {Navigator.pop(context), getCerificateImage()},
+                  onTap: () => {Navigator.pop(context),
+                    getCerificateImage()},
                 ),
                 new ListTile(
                     leading: new Icon(Icons.file_copy),
