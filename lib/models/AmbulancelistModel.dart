@@ -45,7 +45,7 @@ class Body {
   String patientNote;
   String ambulanceId;
   String ambulanceName;
-  Null orderId;
+  String orderId;
 
   Body(
       {this.patientId,

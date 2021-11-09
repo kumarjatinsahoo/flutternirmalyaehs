@@ -121,6 +121,10 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   bool bldpressure = false;
   bool anemia = false;
   String opdId;
+  String fromlatitudes;
+  String toatitudes;
+  String fromllongitudes;
+  String tolongitudes;
 
   Future<Null> _selectDate(
     BuildContext context,
@@ -352,6 +356,10 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 },
                                 onSuggestionSelected: (Predictions suggestion) {
                                   fromPlace.text=suggestion.description;
+                                  //address = "${suggestion.description}";
+                                  //longitudes = suggestion.longitude.toString();
+                                  //latitudes = position.altitude.toString();
+                                  locationData(suggestion.placeId);
                                 },
                               ),
                             ),
@@ -418,6 +426,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 },
                                 onSuggestionSelected: (Predictions suggestion) {
                                   toPlace.text=suggestion.description;
+                                  locationData1(suggestion.placeId);
                                 },
                               ),
                             ),
@@ -429,7 +438,6 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                         appointdate(),
 
                         //comultationTime(),
-
                         fromAddress(
                             1,
                             "Reason for choice of Doctor",
@@ -504,9 +512,44 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                     googlePlacesSearch.result.geometry.location.lat.toString() +
                     "<<<<" +
                     googlePlacesSearch.result.geometry.location.lng.toString());
-                latitudes =
+                fromlatitudes =
                     googlePlacesSearch.result.geometry.location.lat.toString();
-                longitudes =
+                fromllongitudes=
+                    googlePlacesSearch.result.geometry.location.lng.toString();
+              });
+            } else {
+              //isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
+  }
+  locationData1(placeId) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              setState(() {
+                GooglePlacesSearchModel googlePlacesSearch =
+                GooglePlacesSearchModel.fromJson(map);
+                log("Print Select Value>>>>" +
+                    googlePlacesSearch.result.geometry.location.lat.toString() +
+                    "<<<<" +
+                    googlePlacesSearch.result.geometry.location.lng.toString());
+                toatitudes =
+                    googlePlacesSearch.result.geometry.location.lat.toString();
+                tolongitudes=
                     googlePlacesSearch.result.geometry.location.lng.toString();
               });
             } else {
@@ -605,6 +648,10 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
       "ambulanceId":BookAmbulancePage.ambulancenameModel.key,
       "fromLocation":fromPlace.text,
       "toDestination":toPlace.text,
+      "fromLongitude":fromllongitudes,
+      "fromLatitude":fromlatitudes,
+      "toLongitude":tolongitudes,
+      "toLatitude":toatitudes,
       "bookedDate": appointmentdate.text.toString(),
       "patientNote": textEditingController[1].text,
       "patientId": widget.model.user,
