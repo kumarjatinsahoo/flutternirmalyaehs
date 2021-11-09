@@ -40,7 +40,7 @@ class BookAmbulancePage extends StatefulWidget {
 
   BookAmbulancePage({Key key, this.model}) : super(key: key);
 
-  static KeyvalueModel countryModel = null;
+  static KeyvalueModel ambulancenameModel = null;
   static KeyvalueModel stateModel = null;
   static KeyvalueModel distrModel = null;
   static KeyvalueModel cityModel = null;
@@ -121,6 +121,10 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   bool bldpressure = false;
   bool anemia = false;
   String opdId;
+  String fromlatitudes;
+  String toatitudes;
+  String fromllongitudes;
+  String tolongitudes;
 
   Future<Null> _selectDate(
     BuildContext context,
@@ -177,7 +181,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   void initState() {
     super.initState();
     comeFrom = widget.model.apntUserType;
-    BookAmbulancePage.countryModel = null;
+    BookAmbulancePage.ambulancenameModel = null;
     BookAmbulancePage.stateModel = null;
     BookAmbulancePage.doctorModel = null;
     BookAmbulancePage.cityModel = null;
@@ -284,16 +288,14 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
                                 "Ambulance Name",
-                                ApiFactory.COUNTRY_API,
-                                "country",
+                                ApiFactory.AMBULANCE_API,
+                                "ambulancename",
                                 Icons.location_on_rounded,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.COUNTRY_API);
-                                BookAmbulancePage.countryModel = data;
-                                BookAmbulancePage.stateModel = null;
-                                BookAmbulancePage.distrModel = null;
-                                BookAmbulancePage.cityModel = null;
+                                print(ApiFactory.AMBULANCE_API);
+                                BookAmbulancePage.ambulancenameModel = data;
+
                               });
                             }),
                           ),
@@ -354,6 +356,10 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 },
                                 onSuggestionSelected: (Predictions suggestion) {
                                   fromPlace.text=suggestion.description;
+                                  //address = "${suggestion.description}";
+                                  //longitudes = suggestion.longitude.toString();
+                                  //latitudes = position.altitude.toString();
+                                  locationData(suggestion.placeId);
                                 },
                               ),
                             ),
@@ -420,6 +426,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 },
                                 onSuggestionSelected: (Predictions suggestion) {
                                   toPlace.text=suggestion.description;
+                                  locationData1(suggestion.placeId);
                                 },
                               ),
                             ),
@@ -431,7 +438,6 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                         appointdate(),
 
                         //comultationTime(),
-
                         fromAddress(
                             1,
                             "Reason for choice of Doctor",
@@ -506,9 +512,44 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                     googlePlacesSearch.result.geometry.location.lat.toString() +
                     "<<<<" +
                     googlePlacesSearch.result.geometry.location.lng.toString());
-                latitudes =
+                fromlatitudes =
                     googlePlacesSearch.result.geometry.location.lat.toString();
-                longitudes =
+                fromllongitudes=
+                    googlePlacesSearch.result.geometry.location.lng.toString();
+              });
+            } else {
+              //isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
+  }
+  locationData1(placeId) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              setState(() {
+                GooglePlacesSearchModel googlePlacesSearch =
+                GooglePlacesSearchModel.fromJson(map);
+                log("Print Select Value>>>>" +
+                    googlePlacesSearch.result.geometry.location.lat.toString() +
+                    "<<<<" +
+                    googlePlacesSearch.result.geometry.location.lng.toString());
+                toatitudes =
+                    googlePlacesSearch.result.geometry.location.lat.toString();
+                tolongitudes=
                     googlePlacesSearch.result.geometry.location.lng.toString();
               });
             } else {
@@ -576,33 +617,16 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
 
   validate() async {
     _formKey.currentState.validate();
-    if (BookAmbulancePage.countryModel == null ||
-        BookAmbulancePage.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
-    } else if (BookAmbulancePage.stateModel == null ||
-        BookAmbulancePage.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select State");
-    } else if (BookAmbulancePage.distrModel == null ||
-        BookAmbulancePage.distrModel == "") {
-      AppData.showInSnackBar(context, "Please select District");
-    } else if (BookAmbulancePage.cityModel == null ||
-        BookAmbulancePage.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select City");
-    } else if (BookAmbulancePage.specialistModel == null ||
-        BookAmbulancePage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select Speciality");
-    } else if (BookAmbulancePage.doctorModel == null ||
-        BookAmbulancePage.doctorModel == "") {
-      AppData.showInSnackBar(context, "Please select Doctor");
-    } else if (BookAmbulancePage.hospitalModel == null ||
-        BookAmbulancePage.hospitalModel == "") {
-      AppData.showInSnackBar(context, "Please select Hospital");
+    if (BookAmbulancePage.ambulancenameModel == null ||
+        BookAmbulancePage.ambulancenameModel == "") {
+      AppData.showInSnackBar(context, "Please select Ambulance Nme");
+    } else if (fromPlace.text == "" || appointmentdate.text == null) {
+      AppData.showInSnackBar(context, "Please select your From Place");
+    } else if (toPlace.text == "" || toPlace.text == null) {
+      AppData.showInSnackBar(context, "Please select your To Place");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your Appointment Date");
-    } else if ( BookAmbulancePage.timeModel==null) {
-      AppData.showInSnackBar(context, "Please select Time");
-    }  else if (!isValidtime) {
-      AppData.showInSnackBar(context, "Please select valid Time");
+      AppData.showInSnackBar(context, "Please select Date");
+
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -621,15 +645,22 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
 
   saveDb() {
     Map<String, dynamic> map = {
-      //"regNo": loginRes.ashadtls[0].id,
-      "userid": widget.model.user,
-      "date": appointmentdate.text.toString(),
-      "time": BookAmbulancePage.timeModel.name/*"23:10"*//*time*/,
-      "opdid": BookAmbulancePage.timeModel.code,//validitytime.text,
-      "doctor": BookAmbulancePage.doctorModel.key.toString(),
-      "notes": textEditingController[1].text,
-      "hospitalid": BookAmbulancePage.hospitalModel.key,
+      "ambulanceId":BookAmbulancePage.ambulancenameModel.key,
+      "fromLocation":fromPlace.text,
+      "toDestination":toPlace.text,
+      "fromLongitude":fromllongitudes,
+      "fromLatitude":fromlatitudes,
+      "toLongitude":tolongitudes,
+      "toLatitude":toatitudes,
+      "bookedDate": appointmentdate.text.toString(),
+      "patientNote": textEditingController[1].text,
+      "patientId": widget.model.user,
+
+
+
     };
+
+
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
     // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
@@ -637,7 +668,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
     // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
-        api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_AMBULANCEDETAILS,
         token: widget.model.token,
         json: map,
         fun: (Map<String, dynamic> map) {
