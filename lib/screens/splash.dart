@@ -178,6 +178,9 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/dashboard', (Route<dynamic> route) => false);
+        } else if(loginResponse1.body.roles[0] == "7".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardpharmacy',(Route<dynamic> route) => false);
         }else if (loginResponse1.body.roles[0] == "2".toLowerCase()) {
           /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
           Navigator.of(context).pushNamedAndRemoveUntil('/dashDoctor', (Route<dynamic> route) => false);
