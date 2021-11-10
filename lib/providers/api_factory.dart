@@ -144,7 +144,7 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
   static String POST_EMERGENCY_MESSAGE =
       MAIN_URL + 'post-user-emergency-message';
-  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list';
+  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?userid=';
   // static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
    static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';

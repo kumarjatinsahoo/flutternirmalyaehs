@@ -208,9 +208,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                               dialogRegNo(context),
                         );
                       }),
-                      MyWidgets.toggleButton1("REPORTS", () {
+                     /* MyWidgets.toggleButton1("REPORTS", () {
                         AppData.showInSnackBar(context, "Reports click");
-                      }),
+                      }),*/
                     ],
                   ),
 
