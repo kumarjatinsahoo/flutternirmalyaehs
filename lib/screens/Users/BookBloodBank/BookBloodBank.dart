@@ -551,16 +551,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   saveDb() {
     Map<String, dynamic> map = {
-     /* "ambulanceId":BookBloodBankPage.bloodbankModel.key,
-      "fromLocation":fromPlace.text,
-      "toDestination":toPlace.text,
-      "fromLongitude":fromllongitudes,
-      "fromLatitude":fromlatitudes,
-      "toLongitude":tolongitudes,
-      "toLatitude":toatitudes,
-      "bookedDate": appointmentdate.text.toString(),
-      "patientNote": textEditingController[1].text,
-      "patientId": widget.model.user,*/
+
 
 
       "bloodBankId": BookBloodBankPage.bloodbankModel.key,
@@ -579,7 +570,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
     // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
-        api: ApiFactory.POST_AMBULANCEDETAILS,
+        api: ApiFactory.POST_BlOODBANKDETAILS,
         token: widget.model.token,
         json: map,
         fun: (Map<String, dynamic> map) {
