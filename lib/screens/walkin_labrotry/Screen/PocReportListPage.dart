@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart'as poclogin;
 import 'package:user/models/PocReportModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -21,11 +22,13 @@ class PocReportListPage extends StatefulWidget {
 }
 
 class _PocReportListPageState extends State<PocReportListPage> {
+  poclogin.LoginResponse1 loginResponse1;
   PocReportModel pocReportModel;
   bool isDataNotAvail = false;
   ScrollController _scrollController = ScrollController();
   bool checkBoxValue = false;
   int currentMax = 1;
+
   static const platform = AppData.channel;
 
   // List<MedicinlistModel> medicinlist = [];
@@ -34,8 +37,8 @@ class _PocReportListPageState extends State<PocReportListPage> {
   @override
   void initState() {
     super.initState();
+    loginResponse1 = widget.model.loginResponse1;
     callAPI(currentMax);
-
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -53,7 +56,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LISTT + "?page=" + i.toString() + "&search=",
+        api: ApiFactory.POC_REPORT_LISTT +loginResponse1.body.user+ "&page=" + i.toString() + "&search=",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
