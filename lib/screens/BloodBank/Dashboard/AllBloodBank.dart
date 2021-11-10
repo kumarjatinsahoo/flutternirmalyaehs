@@ -166,7 +166,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "From",
+                                                      "Blood Group",
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -175,7 +175,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                     ),
                                                     Spacer(),
                                                     Text(
-                                                      "body.fromLocation",
+                                                      body.bloodGrName,
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -187,7 +187,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "Destination",
+                                                      "Date",
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -196,7 +196,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                     ),
                                                     Spacer(),
                                                     Text(
-                                                      "body.toDestination",
+                                                      body.bookedDate,
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -226,7 +226,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-                                                Row(
+                                               /* Row(
                                                   children: [
                                                     Text(
                                                       ' ',
@@ -251,7 +251,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                       },
                                                       child: MaterialButton(
                                                         child: Text(
-                                                          /*'Confirmed'*/
+                                                          *//*'Confirmed'*//*
                                                           "Status",
                                                           style: TextStyle(
                                                               fontWeight:
@@ -264,7 +264,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                       ),
                                                     ),
                                                   ],
-                                                ),
+                                                ),*/
                                               ],
                                             ),
                                           ),

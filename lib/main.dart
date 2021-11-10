@@ -11,7 +11,11 @@ import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
 import 'package:user/screens/Ambulance/Dashboard/RejectAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/RequestAmbulance.dart';
+import 'package:user/screens/BloodBank/Dashboard/AcceptBloodBank.dart';
+import 'package:user/screens/BloodBank/Dashboard/AllBloodBank.dart';
 import 'package:user/screens/BloodBank/Dashboard/BloodBankDashboard.dart';
+import 'package:user/screens/BloodBank/Dashboard/RejectBloodBank.dart';
+import 'package:user/screens/BloodBank/Dashboard/RequestBloodBank.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
@@ -903,6 +907,15 @@ class _MyAppState extends State<MyApp> {
               ),'/acceptambulance': (context) => AcceptAmbulance(
                 model: _model,
               ),'/rejectambulance': (context) => RejectAmbulance(
+                model: _model,
+              ),
+              '/allbloodbank': (context) => AllBloodBank(
+                model: _model,
+              ),'/requestbloodbank': (context) => RequestBloodBank(
+                model: _model,
+              ),'/acceptbloodbank': (context) => AcceptBloodBank(
+                model: _model,
+              ),'/rejectbloodbank': (context) => RejectBloodBank(
                 model: _model,
               ),
               '/bookAmbulancelist': (context) => BookAmbulancelist(
