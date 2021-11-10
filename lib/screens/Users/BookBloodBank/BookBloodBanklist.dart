@@ -61,8 +61,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.AMBULANCE_LIST + loginResponse.body.user,
         userId: loginResponse.body.user,
-        token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
+        token: widget.model.token,        fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];

@@ -79,6 +79,21 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
         body:
         // (ambulanceAppointmentModel != null)
         //     ?
+        isdata == true
+            ? CircularProgressIndicator(
+          backgroundColor: AppData.matruColor,
+        )
+            : ambulanceAppointmentModel == null || ambulanceAppointmentModel == null
+            ? Container(
+          child: Center(
+            child: Text(
+              'No Data Found',
+              style:
+              TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+
+        ):
         SingleChildScrollView(
           child: (ambulanceAppointmentModel != null)
               ? ListView.builder(
