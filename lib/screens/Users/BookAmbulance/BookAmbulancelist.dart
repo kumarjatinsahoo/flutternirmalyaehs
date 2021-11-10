@@ -72,7 +72,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
             } else {
               setState(() {
                 //isDataNoFound = true;
-                AppData.showInSnackBar(context, msg);
+               // AppData.showInSnackBar(context, msg);
 
               });
             }
@@ -119,7 +119,21 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
           ),*/
         ],
       ),
-body: (ambulancelistModel != null)?
+body: isdata == true
+    ? CircularProgressIndicator(
+  backgroundColor: AppData.matruColor,
+)
+    : ambulancelistModel == null || ambulancelistModel == null
+    ? Container(
+  child: Center(
+    child: Text(
+      'No Data Found',
+      style:
+      TextStyle(color: Colors.black, fontSize: 15),
+    ),
+  ),
+
+):
 SingleChildScrollView(
 
   child:(ambulancelistModel != null)? ListView.builder(
@@ -384,22 +398,7 @@ SingleChildScrollView(
     //itemCount:5,
     itemCount: ambulancelistModel.body.length,
   ): Container(),
-)   :Container(
-  child: Center(
-    child: Column(
-      children: [
-        SizedBox(height: 300,),
-        (isdata)? Text(
-          'No Data Found',
-          style:
-          TextStyle(color: Colors.black, fontSize: 15),
-        ):CircularProgressIndicator(),
-      ],
-    ),
-  ),
-
-),
-
+)
 
     );
   }

@@ -97,7 +97,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
               foundUser = appointModel.body;
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });

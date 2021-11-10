@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
-import 'package:user/models/LoginResponse1.dart'as poclogin;
+import 'package:user/models/LoginResponse1.dart' as poclogin;
 import 'package:user/models/PocReportModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -28,6 +28,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
   ScrollController _scrollController = ScrollController();
   bool checkBoxValue = false;
   int currentMax = 1;
+  bool isdata = false;
 
   static const platform = AppData.channel;
 
@@ -56,7 +57,11 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LISTT +loginResponse1.body.user+ "&page=" + i.toString() + "&search=",
+        api: ApiFactory.POC_REPORT_LISTT +
+            loginResponse1.body.user +
+            "&page=" +
+            i.toString() +
+            "&search=",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -76,10 +81,8 @@ class _PocReportListPageState extends State<PocReportListPage> {
         });
   }
 
-
   sendSmsAPI() {
-
-   // log("Poc result     "+jsonEncode(pocReportModel.toJson1(selectPocreport)));
+    // log("Poc result     "+jsonEncode(pocReportModel.toJson1(selectPocreport)));
     widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.POC_REPORT_SMS,
         token: widget.model.token,
@@ -88,13 +91,13 @@ class _PocReportListPageState extends State<PocReportListPage> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-               //pocReportModel = PocReportModel.fromJson(map);
-               Navigator.pushNamed(context, "/patientDashboard");
+              //pocReportModel = PocReportModel.fromJson(map);
+              Navigator.pushNamed(context, "/patientDashboard");
 
               //Navigator.pop(context);
             } else {
-            //  isDataNotAvail = true;
-             // if (i == 1) AppData.showInSnackBar(context, msg);
+              //  isDataNotAvail = true;
+              // if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -112,9 +115,10 @@ class _PocReportListPageState extends State<PocReportListPage> {
             Spacer(),
             InkWell(
               onTap: () {
-                if(selectPocreport.length>10 || selectPocreport.length==0){
+                if (selectPocreport.length > 10 ||
+                    selectPocreport.length == 0) {
                   AppData.showInSnackBar(context, "Please select 10 reports");
-                }else{
+                } else {
                   //AppData.showInSnackDone(context, "Working");
                   sendSmsAPI();
                 }
@@ -172,12 +176,12 @@ class _PocReportListPageState extends State<PocReportListPage> {
                   ),
                   child: ListTile(
                     onTap: () {
-                     /* if (patient.reportUrl != null) {
+                      /* if (patient.reportUrl != null) {
                         AppData.launchURL(patient.reportUrl);
                       } else {
                         AppData.showInSnackBar(context, "Data Not Available");
                       }
-*/                      //AppData.launchURL(patient.reportUrl);
+*/ //AppData.launchURL(patient.reportUrl);
                       //callUrl("");
                     },
 
@@ -194,9 +198,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                               patient.isChecked = val;
                               if (val) {
                                 selectPocreport.add(patient);
-                              }
-
-                              else {
+                              } else {
                                 selectPocreport.remove(patient);
                               }
                             });
@@ -210,14 +212,15 @@ class _PocReportListPageState extends State<PocReportListPage> {
               ),*/
                     subtitle: SizedBox(
                       child: InkWell(
-                        onTap:() {
-                      if (patient.reportUrl != null) {
-                      AppData.launchURL(patient.reportUrl);
-                      } else {
-                      AppData.showInSnackBar(context, "Data Not Available");
-                      }
-                      },
-                      child: Column(
+                        onTap: () {
+                          if (patient.reportUrl != null) {
+                            AppData.launchURL(patient.reportUrl);
+                          } else {
+                            AppData.showInSnackBar(
+                                context, "Data Not Available");
+                          }
+                        },
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -273,7 +276,23 @@ class _PocReportListPageState extends State<PocReportListPage> {
               },
               itemCount: pocReportModel.body.length + 1,
             )
-          : Container(),
+          : Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 300,
+                    ),
+                    (isdata)
+                        ? Text(
+                            'No Data Found',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          )
+                        : CircularProgressIndicator(),
+                  ],
+                ),
+              ),
+            ),
     );
     /*body: ListTile(
         onTap: () {
