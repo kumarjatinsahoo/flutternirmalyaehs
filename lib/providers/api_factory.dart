@@ -50,6 +50,7 @@ class ApiFactory {
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_AMBULANCEDETAILS= MAIN_URL + 'post-ambulance-details';
+  static String POST_BlOODBANKDETAILS= MAIN_URL + 'post-bloodbank-details';
   static String POST_MEDICATION = MAIN_URL + 'post-user-medication-doctor';
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
   static String USER_PROFILE = MAIN_URL + 'other-user-profile?userid=';
