@@ -154,7 +154,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
                               fun: () {
                                 //AppData.showInSnackBar(context, "Coming soon");
                                 // Navigator.pushNamed(context, "/medicalrecordpage");
-                                Navigator.pushNamed(context, "/allambulance");
+                                Navigator.pushNamed(context, "/allbloodbank");
                               },
                               color: AppData.BG2BLUE,
                               bordercolor: AppData.BG2BLUE,
@@ -189,7 +189,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
                                 //chooseAppointment(context);
                                 // Navigator.pushNamed(context, "/myAppointment");
                                 //Navigator.pushNamed(context, "/ordersPharma");
-                                Navigator.pushNamed(context, "/requestambulance");
+                                Navigator.pushNamed(context, "/requestbloodbank");
 
                               },
                               color: AppData.BG1RED,
@@ -229,7 +229,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
                             _buildTileblue(
                               icon: "assets/images/accept.png",
                               fun: () {
-                                Navigator.pushNamed(context, "/acceptambulance");
+                                Navigator.pushNamed(context, "/acceptbloodbank");
 
                                 //chooseAppointment(context, model);
                                 //Navigator.pushNamed(context, "/userAppoint");
@@ -281,7 +281,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
                             _buildTilered(
                               icon: "assets/images/reject.png",
                               fun: () {
-                                Navigator.pushNamed(context, "/rejectambulance");
+                                Navigator.pushNamed(context, "/rejectbloodbank");
                                 //Navigator.pushNamed(context, "/testappointmentpage");
                                 //AppData.showInSnackBar(context, "Coming soon");
                               },
