@@ -86,7 +86,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Ambulance"),
+        title: Text("Bloodbank"),
         /* leading: Icon(
           Icons.menu,
         ),*/
@@ -95,7 +95,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/bookAmbulancePage");
+                  Navigator.pushNamed(context, "/bookBloodBankPage");
                  /* showDialog(
                     context: context,
                     builder: (BuildContext context) =>
