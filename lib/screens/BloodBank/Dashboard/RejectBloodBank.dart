@@ -76,8 +76,22 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
           backgroundColor: AppData.kPrimaryColor,
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        body: (ambulanceAppointmentModel != null)
-            ? SingleChildScrollView(
+        body: isdata == true
+            ? CircularProgressIndicator(
+          backgroundColor: AppData.matruColor,
+        )
+            : ambulanceAppointmentModel == null || ambulanceAppointmentModel == null
+            ? Container(
+          child: Center(
+            child: Text(
+              'No Data Found',
+              style:
+              TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+
+        ):
+            SingleChildScrollView(
           child: (ambulanceAppointmentModel != null)
               ? ListView.builder(
             physics: NeverScrollableScrollPhysics(),
@@ -246,24 +260,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
           )
               : Container(),
         )
-            : Container(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 300,
-                ),
-                (isdata)
-                    ? Text(
-                  'No Data Found',
-                  style:
-                  TextStyle(color: Colors.black, fontSize: 15),
-                )
-                    : CircularProgressIndicator(),
-              ],
-            ),
-          ),
-        ));
+           );
   }
 
 
