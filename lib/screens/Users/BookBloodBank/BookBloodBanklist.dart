@@ -7,7 +7,8 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AllergicModel.dart' as allergic;
 import 'package:user/models/AllergicPostModel.dart';
-import 'package:user/models/AmbulancelistModel.dart'as ambulance;
+
+import 'package:user/models/BloodbanklistModel.dart'as ambulance;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -47,7 +48,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
   ];
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
-  ambulance.AmbulancelistModel ambulancelistModel;
+  ambulance.BloodbanklistModel bloodbanklistModel;
   bool isdata = false;
 
   @override
@@ -59,7 +60,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.AMBULANCE_LIST + loginResponse.body.user,
+        api: ApiFactory.BLDBANK_LIST + loginResponse.body.user,
         userId: loginResponse.body.user,
         token: widget.model.token,        fun: (Map<String, dynamic> map) {
           setState(() {
@@ -67,7 +68,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-              ambulancelistModel = ambulance.AmbulancelistModel .fromJson(map);
+              bloodbanklistModel = ambulance.BloodbanklistModel .fromJson(map);
             } else {
               setState(() {
                 //isDataNoFound = true;
@@ -122,7 +123,7 @@ body:  isdata == true
     ? CircularProgressIndicator(
   backgroundColor: AppData.matruColor,
 )
-    : ambulancelistModel == null || ambulancelistModel == null
+    : bloodbanklistModel == null || bloodbanklistModel == null
     ? Container(
   child: Center(
     child: Text(
@@ -135,17 +136,17 @@ body:  isdata == true
 ):
 SingleChildScrollView(
 
-  child:(ambulancelistModel != null)? ListView.builder(
+  child:(bloodbanklistModel != null)? ListView.builder(
     physics: NeverScrollableScrollPhysics(),
     // controller: _scrollController,
     shrinkWrap: true,
     itemBuilder: (context, i) {
-      if (i == ambulancelistModel.body.length) {
-        return (ambulancelistModel.body.length % 10 == 0)
+      if (i == bloodbanklistModel.body.length) {
+        return (bloodbanklistModel.body.length % 10 == 0)
             ? CupertinoActivityIndicator()
             : Container();
       }
-      ambulance.Body body = ambulancelistModel.body[i];
+      ambulance.Body body = bloodbanklistModel.body[i];
       return Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
         child: Card(
@@ -180,7 +181,7 @@ SingleChildScrollView(
                                 width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
-                                  "Ambulance Name",
+                                  "BloodBank Name",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -192,7 +193,7 @@ SingleChildScrollView(
                               Text(" : "),
                               Text(
                                 /*'23-Nov-2020-11:30AM'*/
-                                body.ambulanceName,
+                                body.bloodBankName,
                                 overflow:
                                 TextOverflow
                                     .clip,
@@ -216,7 +217,7 @@ SingleChildScrollView(
                                 width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
-                                  "From Location",
+                                  "Blood Group",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -228,7 +229,7 @@ SingleChildScrollView(
                               Text(" : "),
                               Text(
                                 /*'23-Nov-2020-11:30AM'*/
-                                body.fromLocation,
+                                body.bloodGrName,
                                 overflow:
                                 TextOverflow
                                     .clip,
@@ -251,7 +252,7 @@ SingleChildScrollView(
                                 width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
-                                  "Destination",
+                                  "Date",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -263,7 +264,7 @@ SingleChildScrollView(
                               Text(" : "),
                               Text(
                                 /*'23-Nov-2020-11:30AM'*/
-                                body.toDestination,
+                                body.bookedDate,
                                 overflow:
                                 TextOverflow
                                     .clip,
@@ -310,41 +311,6 @@ SingleChildScrollView(
                           ),
                           SizedBox(
                             height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  /*'Confirmed'*/
-                                  "Date",
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.bookedDate,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
                           ),
                           Row(
                             children: [
@@ -395,7 +361,7 @@ SingleChildScrollView(
       );
     },
     //itemCount:5,
-    itemCount: ambulancelistModel.body.length,
+    itemCount: bloodbanklistModel.body.length,
   ): Container(),
 )  /* :Container(
   child: Center(
