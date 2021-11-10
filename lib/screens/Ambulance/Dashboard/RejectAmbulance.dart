@@ -69,7 +69,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Rejected',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,

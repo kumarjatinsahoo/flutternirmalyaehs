@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
+import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
@@ -159,6 +160,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       return Column(
                         children: [
                           ListTile(
+
                               title: Text(
                                 list[i].name,
                                 style: TextStyle(color: Colors.black),
@@ -221,15 +223,25 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       return Column(
                         children: [
                       ListTile(
+                          onTap:(){
+                            getMobNo(results[i].placeId);
+                          },
                       title: Text(
                       results[i].name,
                         style: TextStyle(color: Colors.black),
                       ),
                       trailing: InkWell(
                       onTap: () {
-                      //  AppData.launchURL("tel://" + list[i].mobile);
+                        AppData.launchURL("tel://" + results[i].name);
+
+                        //  AppData.launchURL("tel://" + list[i].mobile);
                       },
-                      child: Icon(Icons.call, color: Colors.black),
+                      child: InkWell(
+                        onTap: (){
+
+                        },
+                          child: Icon(Icons.call, color: Colors.black)
+                      ),
                       )
                       ),
                         (i == results.length - 1)
@@ -238,7 +250,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       ]
                       ,);
                     },
-                    itemCount: results.length,
+                    itemCount: 5,
                   ),
                 ),
               );
@@ -246,7 +258,39 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           );
         });
   }
+  getMobNo(placeId) {
+  MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              GooglePlacesSearchModel googlePlacesSearch = GooglePlacesSearchModel.fromJson(map);
+              if(googlePlacesSearch
+                  ?.result?.formattedPhoneNumber !=
+                  null)
+                AppData.launchURL("tel://" +
+                    googlePlacesSearch.result
+                        .formattedPhoneNumber);
+              else
+                AppData.showInSnackBar(context, "Mobile no is not available");
+              //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
 
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -693,6 +737,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                               googlePlaceModel =
                                                   GooglePlaceModel.fromJson(
                                                       map);
+                                              Navigator.pop(context);
                                               if (googlePlaceModel != null &&
                                                   googlePlaceModel
                                                       .results.isNotEmpty)
@@ -810,7 +855,35 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 /* SizedBox(width: 100,),*/
                                 InkWell(
                                     onTap: () {
-                                      // Navigator.pop(context);
+                                      MyWidgets.showLoading(context);
+                                      widget.model.GETMETHODCAL(
+                                          api: ApiFactory.GOOGLE_QUERY_API(
+                                              lati: latitude,
+                                              longi: longitude,
+                                              healthpro: "Police"),
+                                          fun: (Map<String, dynamic> map) {
+                                            setState(() {
+                                              //String msg = map[Const.MESSAGE];
+                                              //if (map["status"] == "ok") {
+                                              googlePlaceModel =
+                                                  GooglePlaceModel.fromJson(
+                                                      map);
+
+                                              Navigator.pop(context);
+                                              if (googlePlaceModel != null &&
+                                                  googlePlaceModel
+                                                      .results.isNotEmpty)
+                                                showUserList1(context,
+                                                    googlePlaceModel.results);
+                                              else
+                                                AppData.showInSnackBar(
+                                                    context, "Data not found");
+                                              /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+                                            });
+                                          });
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(

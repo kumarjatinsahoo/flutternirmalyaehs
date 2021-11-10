@@ -45,7 +45,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
 
   callAPI() {
     widget.model.GETMETHODCALL(
-        api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user,
+        api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user+ "&status=" +"",
         // userId: loginResponse.body.user,
         // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -209,7 +209,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-                                                Row(
+/*                                                Row(
                                                   children: [
                                                     Text(
                                                       ' ',
@@ -220,21 +220,21 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                     Spacer(),
                                                     InkWell(
                                                       onTap: () {
-                                                        showDialog(
+                                                        *//*showDialog(
                                                           context: context,
                                                           builder: (BuildContext
                                                                   context) =>
                                                               changeStatus(
                                                                   context,
                                                                   body.orderId),
-                                                        );
+                                                        );*//*
                                                         // widget.model.userappointment = appointmentlist;
 
                                                         //  Navigator.pushNamed(context, "/usermedicinelist");
                                                       },
                                                       child: MaterialButton(
                                                         child: Text(
-                                                          /*'Confirmed'*/
+                                                          *//*'Confirmed'*//*
                                                           "Status",
                                                           style: TextStyle(
                                                               fontWeight:
@@ -247,7 +247,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                       ),
                                                     ),
                                                   ],
-                                                ),
+                                                ),*/
                                               ],
                                             ),
                                           ),
