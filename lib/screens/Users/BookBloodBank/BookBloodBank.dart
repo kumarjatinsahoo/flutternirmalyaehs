@@ -181,7 +181,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
   void initState() {
     super.initState();
     comeFrom = widget.model.apntUserType;
-    BookBloodBankPage.ambulancenameModel = null;
+    BookBloodBankPage.bloodbankModel = null;
     BookBloodBankPage.stateModel = null;
     BookBloodBankPage.doctorModel = null;
     BookBloodBankPage.cityModel = null;
