@@ -126,7 +126,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
               children: [
                 Container(
                   child: Image.asset(
-                    "assets/images/ambulancebnr.jpg",
+                    "assets/images/blood.jpg",
                     // width: size.width,
                     // fit: BoxFit.cover,
                   ),

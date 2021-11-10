@@ -94,7 +94,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 appointModel = lab.LabBookModel.fromJson(map);
               } else {
                 isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
+               // AppData.showInSnackBar(context, msg);
               }
             });
           });

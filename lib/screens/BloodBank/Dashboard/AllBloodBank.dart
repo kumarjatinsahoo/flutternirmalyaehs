@@ -30,6 +30,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
   oderlist.PharmacyorderModel pharmacyorderModel;
   ambulanceall.AmbulanceAllModel ambulanceallmodel;
 
+
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -45,7 +46,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
 
   callAPI() {
     widget.model.GETMETHODCALL(
-        api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user,
+        api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+ "&status=" +"",
         // userId: loginResponse.body.user,
         // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -71,7 +72,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Blood Bank',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
