@@ -140,7 +140,7 @@ class ApiFactory {
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlister?usid=';
-  static String BLOODBANK_ALL = MAIN_URL + 'get-ambulance-actionlister?usid=';
+  static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
   static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
