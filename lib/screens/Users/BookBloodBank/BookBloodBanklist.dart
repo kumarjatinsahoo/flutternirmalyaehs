@@ -72,7 +72,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
             } else {
               setState(() {
                 //isDataNoFound = true;
-                AppData.showInSnackBar(context, msg);
+               // AppData.showInSnackBar(context, msg);
 
               });
             }
@@ -119,7 +119,21 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
           ),*/
         ],
       ),
-body: (ambulancelistModel != null)?
+body:  isdata == true
+    ? CircularProgressIndicator(
+  backgroundColor: AppData.matruColor,
+)
+    : ambulancelistModel == null || ambulancelistModel == null
+    ? Container(
+  child: Center(
+    child: Text(
+      'No Data Found',
+      style:
+      TextStyle(color: Colors.black, fontSize: 15),
+    ),
+  ),
+
+):
 SingleChildScrollView(
 
   child:(ambulancelistModel != null)? ListView.builder(
@@ -384,7 +398,7 @@ SingleChildScrollView(
     //itemCount:5,
     itemCount: ambulancelistModel.body.length,
   ): Container(),
-)   :Container(
+)  /* :Container(
   child: Center(
     child: Column(
       children: [
@@ -398,7 +412,7 @@ SingleChildScrollView(
     ),
   ),
 
-),
+),*/
 
 
     );

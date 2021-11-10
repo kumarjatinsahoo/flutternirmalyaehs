@@ -7,6 +7,7 @@ class ApiFactory {
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
+ //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
  static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
