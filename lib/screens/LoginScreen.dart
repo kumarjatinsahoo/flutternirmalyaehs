@@ -481,6 +481,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     }else if (loginResponse.body.roles[0] == "12".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/ambulancedash',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "13".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/bloodBankDashboard',(Route<dynamic> route) => false);
+
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
                     }
