@@ -2193,9 +2193,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
                         ]),
-                    SizedBox(
-                      width: 15,
-                    ),
+                    Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -2237,9 +2235,7 @@ class MyPage2Widget extends StatelessWidget {
                                         ),
                                         ),*/
                         ]),
-                    SizedBox(
-                      width: 15,
-                    ),
+                    Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -2270,7 +2266,9 @@ class MyPage2Widget extends StatelessWidget {
                           ),
                         ]),
                   ],
-                ),  Row(
+                ),
+                SizedBox(height: 5,),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -2284,7 +2282,7 @@ class MyPage2Widget extends StatelessWidget {
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Blood Bank",
                             fun: () {
-                              AppData.showInSnackDone(context, "Coming Soon");
+                              Navigator.pushNamed(context, "/bookBloodBanklist");
                              // Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG1RED,

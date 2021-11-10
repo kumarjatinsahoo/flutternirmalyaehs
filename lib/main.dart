@@ -908,6 +908,7 @@ class _MyAppState extends State<MyApp> {
               '/bookAmbulancelist': (context) => BookAmbulancelist(
                 model: _model,
               ),
+
               '/bookAmbulancePage': (context) => BookAmbulancePage(
                 model: _model,
               ),
