@@ -186,6 +186,8 @@ class ApiFactory {
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String ambulance_APPOINTMENT_status =
       MAIN_URL + 'change-ambulance-status?orderid=';
+ static String bloodbank_status =
+     MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';

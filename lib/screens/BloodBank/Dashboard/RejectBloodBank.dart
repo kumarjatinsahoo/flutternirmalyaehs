@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:user/models/AmbulanceAllModel.dart';
+import 'package:user/models/BloodbanklistModel.dart'as ambulanceappoint;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
-import 'package:user/models/AmbulanceAppointment.dart'as ambulanceappoint;
 
 class RejectBloodBank extends StatefulWidget {
   final MainModel model;
@@ -25,7 +25,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   bool isdata = false;
-  ambulanceappoint.AmbulanceAppointmentModel ambulanceAppointmentModel;
+  ambulanceappoint.BloodbanklistModel bloodbanklistModel;
 
 
   void selectDestination(int index) {
@@ -43,7 +43,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
 
   callAPI() {
     widget.model.GETMETHODCALL(
-        api: ApiFactory.AMBULANCE_APPOINTMENT + loginResponse.body.user+"&status="+"6",
+        api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"4",
         // userId: loginResponse.body.user,
         // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -52,8 +52,8 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                ambulanceAppointmentModel =
-                    ambulanceappoint.AmbulanceAppointmentModel.fromJson(map);
+                bloodbanklistModel =
+                    ambulanceappoint.BloodbanklistModel.fromJson(map);
               });
             } else {
               isDataNotAvail = true;
@@ -80,7 +80,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
             ? CircularProgressIndicator(
           backgroundColor: AppData.matruColor,
         )
-            : ambulanceAppointmentModel == null || ambulanceAppointmentModel == null
+            : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(
             child: Text(
@@ -92,18 +92,18 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
 
         ):
             SingleChildScrollView(
-          child: (ambulanceAppointmentModel != null)
+          child: (bloodbanklistModel != null)
               ? ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             // controller: _scrollController,
             shrinkWrap: true,
             itemBuilder: (context, i) {
-              if (i == ambulanceAppointmentModel.body.length) {
-                return (ambulanceAppointmentModel.body.length % 10 == 0)
+              if (i == bloodbanklistModel.body.length) {
+                return (bloodbanklistModel.body.length % 10 == 0)
                     ? CupertinoActivityIndicator()
                     : Container();
               }
-              ambulanceappoint.Body body = ambulanceAppointmentModel.body[i];
+              ambulanceappoint.Body body = bloodbanklistModel.body[i];
               return Padding(
                 padding: const EdgeInsets.only(
                     left: 15, right: 15, top: 15),
@@ -161,7 +161,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                     Row(
                                       children: [
                                         Text(
-                                          "From",
+                                          "Bloodgroup",
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -170,7 +170,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                         ),
                                         Spacer(),
                                         Text(
-                                          body.fromLocation,
+                                          body.bloodGrName,
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -182,7 +182,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                     Row(
                                       children: [
                                         Text(
-                                          "Destination",
+                                          "Date",
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -191,7 +191,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                         ),
                                         Spacer(),
                                         Text(
-                                          body.toDestination,
+                                          body.bookedDate,
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -256,7 +256,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
               );
             },
             //itemCount:5,
-            itemCount: ambulanceAppointmentModel.body.length,
+            itemCount: bloodbanklistModel.body.length,
           )
               : Container(),
         )

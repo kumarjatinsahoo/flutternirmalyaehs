@@ -892,8 +892,8 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/cnfpwd': (context) => ConfirmPassword(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/qrcode': (context) => QrcodePage(
                 model: _model,
               ),
@@ -921,7 +921,6 @@ class _MyAppState extends State<MyApp> {
               '/bookAmbulancelist': (context) => BookAmbulancelist(
                 model: _model,
               ),
-
               '/bookAmbulancePage': (context) => BookAmbulancePage(
                 model: _model,
               ),
@@ -931,10 +930,9 @@ class _MyAppState extends State<MyApp> {
               '/bookBloodBankPage': (context) => BookBloodBankPage(
                 model: _model,
               ),
-
-          '/bloodBankDashboard': (context) => BloodBankDashboard(
-          model: _model,
-          ),
+              '/bloodBankDashboard': (context) => BloodBankDashboard(
+               model: _model,
+               ),
 
             },
             localizationsDelegates: [
