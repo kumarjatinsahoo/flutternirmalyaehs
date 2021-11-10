@@ -551,9 +551,6 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   saveDb() {
     Map<String, dynamic> map = {
-
-
-
       "bloodBankId": BookBloodBankPage.bloodbankModel.key,
       "bloodGrId": BookBloodBankPage.bloodgroupmodel.key,
       "bookedDate":appointmentdate.text.toString(),

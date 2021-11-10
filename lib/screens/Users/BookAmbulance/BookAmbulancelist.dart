@@ -178,7 +178,7 @@ SingleChildScrollView(
                                 .end,
                             children: [
                               Container(
-                                width: 120,
+                               //width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
                                   "Ambulance Name",
@@ -209,9 +209,8 @@ SingleChildScrollView(
                           ),
                           Row(
                             // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
                             children: [
                               Container(
                                 width: 120,
@@ -227,7 +226,8 @@ SingleChildScrollView(
                                 ),
                               ),
                               Text(" : "),
-                              Text(
+                              Expanded(
+                                child:Text(
                                 /*'23-Nov-2020-11:30AM'*/
                                 body.fromLocation,
                                 overflow:
@@ -236,7 +236,17 @@ SingleChildScrollView(
                                 style: TextStyle(
                                     color: Colors
                                         .black),
-                              ),
+                              ),)
+                              /*Text(
+                                *//*'23-Nov-2020-11:30AM'*//*
+                                body.fromLocation,
+                                overflow:
+                                TextOverflow
+                                    .clip,
+                                style: TextStyle(
+                                    color: Colors
+                                        .black),
+                              ),*/
                             ],
                           ),
                           SizedBox(
@@ -244,9 +254,7 @@ SingleChildScrollView(
                           ),
                           Row(
                             // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
                                 width: 120,
@@ -262,16 +270,18 @@ SingleChildScrollView(
                                 ),
                               ),
                               Text(" : "),
-                              Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.toDestination,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),
+                              Expanded(
+                                child:Text(
+                                  /*'23-Nov-2020-11:30AM'*/
+                                  body.toDestination,
+                                  overflow:
+                                  TextOverflow
+                                      .clip,
+                                  style: TextStyle(
+                                      color: Colors
+                                          .black),
+                                ),)
+
                             ],
                           ),
                           SizedBox(
