@@ -605,7 +605,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "Take Appointment",
+            "SUBMIT",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),

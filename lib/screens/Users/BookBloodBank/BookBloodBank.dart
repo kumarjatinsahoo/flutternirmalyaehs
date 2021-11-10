@@ -40,8 +40,8 @@ class BookBloodBankPage extends StatefulWidget {
 
   BookBloodBankPage({Key key, this.model}) : super(key: key);
 
-  static KeyvalueModel ambulancenameModel = null;
-  static KeyvalueModel stateModel = null;
+  static KeyvalueModel bloodbankModel = null;
+  static KeyvalueModel bloodgroupmodel = null;
   static KeyvalueModel distrModel = null;
   static KeyvalueModel cityModel = null;
   static KeyvalueModel specialistModel = null;
@@ -181,8 +181,8 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
   void initState() {
     super.initState();
     comeFrom = widget.model.apntUserType;
-    BookBloodBankPage.ambulancenameModel = null;
-    BookBloodBankPage.stateModel = null;
+    BookBloodBankPage.bloodbankModel = null;
+    BookBloodBankPage.bloodgroupmodel = null;
     BookBloodBankPage.doctorModel = null;
     BookBloodBankPage.cityModel = null;
     BookBloodBankPage.distrModel = null;
@@ -244,7 +244,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Book Ambulance",
+          "Book Bloodbank",
           style: TextStyle(color: Colors.white),
         ),
         //automaticallyImplyLeading: false,
@@ -286,152 +286,59 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                           padding: const EdgeInsets.only(left: 0, right: 0),
                           child: SizedBox(
                             height: 58,
-                            child: DropDown.networkDropdownGetpartUser(
-                                "Ambulance Name",
-                                ApiFactory.AMBULANCE_API,
-                                "ambulancename",
-                                Icons.location_on_rounded,
-                                23.0, (KeyvalueModel data) {
+                            child: DropDown.networkDropdownGetpartUser4(
+                                "Blood Bank Name",
+                                ApiFactory.BLOODBBANKNAME_API,
+                                "bloodBankName",
+                                 (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.AMBULANCE_API);
-                                BookBloodBankPage.ambulancenameModel = data;
+                                print(ApiFactory.BLOODBBANKNAME_API);
+                                BookBloodBankPage.bloodbankModel = data;
 
                               });
                             }),
                           ),
                         ),
-                        SizedBox(
-                          height: 8,
-                        ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Material(
-                           // elevation: 5,
-                            child: Container(
-                              width: double.maxFinite,
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: SizedBox(
+                            height: 58,
+                            child: DropDown.networkDropdownGetpartUser4(
+                                "Blood Group",
+                                ApiFactory.BLOODGROUP_API,
+                                "bloodgroupBooh",
+                                 (KeyvalueModel data) {
+                              setState(() {
+                                print(ApiFactory.BLOODGROUP_API);
+                                BookBloodBankPage.bloodgroupmodel = data;
 
-                              child: TypeAheadField(
-
-                                textFieldConfiguration: TextFieldConfiguration(
-                                  controller: fromPlace,
-                                  style: TextStyle(color: Colors.black),
-                                  textInputAction: TextInputAction.search,
-
-                                  decoration: InputDecoration(
-                                    fillColor: Colors.white,
-                                    border: InputBorder.none,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black, width: 0.3),
-                                    ),
-                                    hintText: 'From Place',
-                                    alignLabelWithHint: true,
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 2, horizontal: 20),
-                                    focusedBorder:OutlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.black, width: 0.3),
-                                      //borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                  ),
-                                  onSubmitted: (String value) {
-                                    if (value != "") {
-                                      /*widget.model.searchFilter = value;
-                                    Navigator.pushNamed(context, "/searchResult");*/
-                                      //fetchSearchResult(value);
-                                    }
-                                    //AppData.showInSnackDone(context, value);
-                                  },
-                                ),
-                                getImmediateSuggestions: true,
-                                suggestionsCallback: (pattern) async {
-                                  return (pattern != null)
-                                      ? await fetchSearchAutoComplete(pattern)
-                                      : null;
-                                },
-                                hideOnLoading: true,
-                                itemBuilder: (context, Predictions suggestion) {
-                                  return ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text(suggestion.description),
-                                  );
-                                },
-                                onSuggestionSelected: (Predictions suggestion) {
-                                  fromPlace.text=suggestion.description;
-                                  //address = "${suggestion.description}";
-                                  //longitudes = suggestion.longitude.toString();
-                                  //latitudes = position.altitude.toString();
-                                  locationData(suggestion.placeId);
-                                },
-                              ),
-                            ),
+                              });
+                            }),
                           ),
                         ),
-
-
-
-
-
-                        SizedBox(
+                       /* SizedBox(
                           height: 8,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Material(
-                            // elevation: 5,
-                            child: Container(
-                              width: double.maxFinite,
+                        ),*/
+                        /*Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: SizedBox(
+                            height: 58,
+                            child:  DropDown.networkDropdownlabler1(
+                            "Blood Group",
+                            ApiFactory.BLOODGROUP_API,
+                            "bloodgroupBooh", (KeyvalueModel model) {
+                          setState(() {
+                            BookBloodBankPage.bloodgroupmodel = model;
 
-                              child: TypeAheadField(
+                            // updateProfileModel.bloodGroup = model.key;
+                          });
+                        }),
+                          )),*/
 
-                                textFieldConfiguration: TextFieldConfiguration(
-                                  controller: toPlace,
-                                  style: TextStyle(color: Colors.black),
-                                  textInputAction: TextInputAction.search,
 
-                                  decoration: InputDecoration(
-                                    fillColor: Colors.white,
-                                    border: InputBorder.none,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black, width: 0.3),
-                                    ),
-                                    hintText: 'To Place',
-                                    alignLabelWithHint: true,
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 2, horizontal: 20),
-                                    focusedBorder:OutlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.black, width: 0.3),
-                                      //borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                  ),
-                                  onSubmitted: (String value) {
-                                    if (value != "") {
-                                      /*widget.model.searchFilter = value;
-                                    Navigator.pushNamed(context, "/searchResult");*/
-                                      //fetchSearchResult(value);
-                                    }
-                                    //AppData.showInSnackDone(context, value);
-                                  },
-                                ),
-                                getImmediateSuggestions: true,
-                                suggestionsCallback: (pattern) async {
-                                  return (pattern != null)
-                                      ? await fetchSearchAutoComplete(pattern)
-                                      : null;
-                                },
-                                hideOnLoading: true,
-                                itemBuilder: (context, Predictions suggestion) {
-                                  return ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text(suggestion.description),
-                                  );
-                                },
-                                onSuggestionSelected: (Predictions suggestion) {
-                                  toPlace.text=suggestion.description;
-                                  locationData1(suggestion.placeId);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
+
+
+
                         SizedBox(
                           height: 8,
                         ),
@@ -605,7 +512,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "Take Appointment",
+            "SUBMIT",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -617,14 +524,13 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   validate() async {
     _formKey.currentState.validate();
-    if (BookBloodBankPage.ambulancenameModel == null ||
-        BookBloodBankPage.ambulancenameModel == "") {
-      AppData.showInSnackBar(context, "Please select Ambulance Nme");
-    } else if (fromPlace.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your From Place");
-    } else if (toPlace.text == "" || toPlace.text == null) {
-      AppData.showInSnackBar(context, "Please select your To Place");
-    } else if (appointmentdate.text == "" || appointmentdate.text == null) {
+    if (BookBloodBankPage.bloodbankModel == null ||
+        BookBloodBankPage.bloodbankModel == "") {
+      AppData.showInSnackBar(context, "Please select Bloodbank Name");
+    }if (BookBloodBankPage.bloodgroupmodel == null ||
+          BookBloodBankPage.bloodgroupmodel == "") {
+        AppData.showInSnackBar(context, "Please select Blood Group");
+      } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
 
     } else {
@@ -645,7 +551,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   saveDb() {
     Map<String, dynamic> map = {
-      "ambulanceId":BookBloodBankPage.ambulancenameModel.key,
+     /* "ambulanceId":BookBloodBankPage.bloodbankModel.key,
       "fromLocation":fromPlace.text,
       "toDestination":toPlace.text,
       "fromLongitude":fromllongitudes,
@@ -654,9 +560,14 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
       "toLatitude":toatitudes,
       "bookedDate": appointmentdate.text.toString(),
       "patientNote": textEditingController[1].text,
+      "patientId": widget.model.user,*/
+
+
+      "bloodBankId": BookBloodBankPage.bloodbankModel.key,
+      "bloodGrId": BookBloodBankPage.bloodgroupmodel.key,
+      "bookedDate":appointmentdate.text.toString(),
+      "patientNote": textEditingController[1].text,
       "patientId": widget.model.user,
-
-
 
     };
 
