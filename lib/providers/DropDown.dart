@@ -2297,6 +2297,9 @@ class DropDown {
           case "ambulancename":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "bloodBankName":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
 
         }
 

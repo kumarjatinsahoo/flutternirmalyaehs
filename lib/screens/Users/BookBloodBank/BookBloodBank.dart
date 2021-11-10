@@ -40,7 +40,7 @@ class BookBloodBankPage extends StatefulWidget {
 
   BookBloodBankPage({Key key, this.model}) : super(key: key);
 
-  static KeyvalueModel ambulancenameModel = null;
+  static KeyvalueModel bloodbankModel = null;
   static KeyvalueModel stateModel = null;
   static KeyvalueModel distrModel = null;
   static KeyvalueModel cityModel = null;
@@ -287,14 +287,14 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "Ambulance Name",
-                                ApiFactory.AMBULANCE_API,
-                                "ambulancename",
+                                "Blood Bank Name",
+                                ApiFactory.BLOODBBANKNAME_API,
+                                "bloodBankName",
                                 Icons.location_on_rounded,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
-                                print(ApiFactory.AMBULANCE_API);
-                                BookBloodBankPage.ambulancenameModel = data;
+                                print(ApiFactory.BLOODBBANKNAME_API);
+                                BookBloodBankPage.bloodbankModel = data;
 
                               });
                             }),
@@ -617,8 +617,8 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   validate() async {
     _formKey.currentState.validate();
-    if (BookBloodBankPage.ambulancenameModel == null ||
-        BookBloodBankPage.ambulancenameModel == "") {
+    if (BookBloodBankPage.bloodbankModel == null ||
+        BookBloodBankPage.bloodbankModel == "") {
       AppData.showInSnackBar(context, "Please select Ambulance Nme");
     } else if (fromPlace.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select your From Place");
@@ -645,7 +645,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
 
   saveDb() {
     Map<String, dynamic> map = {
-      "ambulanceId":BookBloodBankPage.ambulancenameModel.key,
+      "ambulanceId":BookBloodBankPage.bloodbankModel.key,
       "fromLocation":fromPlace.text,
       "toDestination":toPlace.text,
       "fromLongitude":fromllongitudes,
