@@ -2279,10 +2279,10 @@ class MyPage2Widget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _buildTilered(
-                            icon: "assets/health_checkup.png",
+                            icon: "assets/blooddonationuser.png",
                             //icon: Icons.search,
                             //icon: FontAwesomeIcons.accusoft,
-                            title: "Health Checkup",
+                            title: "Blood Bank",
                             fun: () {
                               AppData.showInSnackDone(context, "Coming Soon");
                              // Navigator.pushNamed(context, "/healthCheckup");
@@ -2297,7 +2297,7 @@ class MyPage2Widget extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 35,
-                            child: Text(MyLocalizations.of(context).text("HEALTH_CHECKUP"),
+                            child: Text(MyLocalizations.of(context).text("Blood Bank"),
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),
