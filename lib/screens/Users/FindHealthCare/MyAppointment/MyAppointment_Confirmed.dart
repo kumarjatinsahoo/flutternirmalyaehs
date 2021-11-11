@@ -43,6 +43,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
       selectedDatestr = df.format(date).toString();
       loginResponse = widget.model.loginResponse1;
       print(">>>>>>>" + jsonEncode(loginResponse.toJson()));
+      isdata = true;
       callAPI("");
     });
   }
@@ -87,18 +88,20 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.USER_APPOINTMENT_LIST +
             widget.model.user +
-            "&date=" +
+            "&date="+
             today +
-            "&status=" +
+            "&status="+
             "2",
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               appointmentlistModel = apnt.AppointmentlistModel.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
             }
@@ -273,18 +276,33 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                 ),
               ),*/
               isdata == true
-                  ? CircularProgressIndicator(
-                      backgroundColor: AppData.matruColor,
+                  ? Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height:
+                            MediaQuery.of(context).size.height * 0.35,
+                          ),
+                          CircularProgressIndicator(),
+                        ],
+                      ),
                     )
+                  /* Center(
+                child: CircularProgressIndicator(),
+              )*/
                   : appointmentlistModel == null || appointmentlistModel == null
                       ? Container(
-                          child: Center(
-                            child: Column(
+                        child: Center(
+
+                          child: Column(
                               children: [
+
                                 SizedBox(
-                                  height: 300,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 Text(
+
                                   'No Data Found',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -294,8 +312,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                           ),
                         )
                       : (appointmentlistModel != null)
-                          ?
-              ListView.builder(
+                          ?ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               itemBuilder: (context, i) {

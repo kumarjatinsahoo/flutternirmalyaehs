@@ -49,6 +49,8 @@ class ApiFactory {
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
+  static String smoking_API = MAIN_URL + 'get-smoking-details-list';
+  static String alchohol_API = MAIN_URL + 'get-alchohol-details-api';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_AMBULANCEDETAILS= MAIN_URL + 'post-ambulance-details';
   static String POST_BlOODBANKDETAILS= MAIN_URL + 'post-bloodbank-details';
@@ -77,9 +79,10 @@ class ApiFactory {
       MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST =
       MAIN_URL + 'delete-medicine-by-app-no?appno=';
-  static String VITAL_SIGN_DETAIS =
-      MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String VITAL_SIGN_DETAIS = MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String IIFESTYLE_DETAIS = MAIN_URL + 'get-patient-lifestyle-details?userid=';
   static String UPDATE_VITAL_SIGN = MAIN_URL + 'update-vital-signs';
+  static String  patient_lifestyle_details= MAIN_URL + 'post-patient-lifestyle-details';
   static String POST_PHARMACY_REQUST = MAIN_URL + 'post-pharmacy-request-api';
   static String ALERGY_LIST = MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS =

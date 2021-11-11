@@ -64,6 +64,7 @@ import 'package:user/screens/Users/EmergencyHelp/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
+import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
 import 'package:user/screens/Users/SearchPage.dart';
@@ -933,6 +934,9 @@ class _MyAppState extends State<MyApp> {
               '/bloodBankDashboard': (context) => BloodBankDashboard(
                model: _model,
                ),
+              '/lifeStyleHistory': (context) => LifeStyleHistory(
+                model: _model,
+              ),
 
             },
             localizationsDelegates: [
