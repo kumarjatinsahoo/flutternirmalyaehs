@@ -171,7 +171,7 @@ import 'package:user/screens/UserAppointmentPage.dart';
 import 'screens/Users/UserSignUpForm.dart';
 import 'screens/Users/MyMedicalRecord/UserVitalSigns.dart';
 import 'package:user/screens/WalkInUserProfile.dart';
-import 'package:user/screens/WalkinRegisterListPage.dart';
+import 'package:user/screens/walkin_labrotry/Screen/WalkinRegisterListPage.dart';
 import 'package:user/screens/WorldwideHospitals.dart';
 import 'screens/Users/FindHealthCare/Find/FindPage.dart';
 import 'screens/Users/Medipedia/MedipediaPage.dart';
