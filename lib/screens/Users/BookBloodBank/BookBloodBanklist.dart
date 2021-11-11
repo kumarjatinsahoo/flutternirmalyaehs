@@ -7,7 +7,8 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AllergicModel.dart' as allergic;
 import 'package:user/models/AllergicPostModel.dart';
-import 'package:user/models/AmbulancelistModel.dart'as ambulance;
+
+import 'package:user/models/BloodbanklistModel.dart'as ambulance;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -18,19 +19,19 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
-class BookAmbulancelist extends StatefulWidget {
+class BookBloodBanklist extends StatefulWidget {
   MainModel model;
   static KeyvalueModel nameModel = null;
   static KeyvalueModel typeModel = null;
   static KeyvalueModel severitylistModel = null;
 
-  BookAmbulancelist({Key key, this.model}) : super(key: key);
+  BookBloodBanklist({Key key, this.model}) : super(key: key);
 
   @override
-  _BookAmbulancelistState createState() => _BookAmbulancelistState();
+  _BookBloodBanklistState createState() => _BookBloodBanklistState();
 }
 
-class _BookAmbulancelistState extends State<BookAmbulancelist> {
+class _BookBloodBanklistState extends State<BookBloodBanklist> {
   var selectedMinValue;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -47,7 +48,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
   ];
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
-  ambulance.AmbulancelistModel ambulancelistModel;
+  ambulance.BloodbanklistModel bloodbanklistModel;
   bool isdata = false;
 
   @override
@@ -59,16 +60,15 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.AMBULANCE_LIST + loginResponse.body.user,
+        api: ApiFactory.BLDBANK_LIST + loginResponse.body.user,
         userId: loginResponse.body.user,
-        token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
+        token: widget.model.token,        fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-              ambulancelistModel = ambulance.AmbulancelistModel .fromJson(map);
+              bloodbanklistModel = ambulance.BloodbanklistModel .fromJson(map);
             } else {
               setState(() {
                 //isDataNoFound = true;
@@ -86,7 +86,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Ambulance"),
+        title: Text("Bloodbank"),
         /* leading: Icon(
           Icons.menu,
         ),*/
@@ -95,7 +95,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/bookAmbulancePage");
+                  Navigator.pushNamed(context, "/bookBloodBankPage");
                  /* showDialog(
                     context: context,
                     builder: (BuildContext context) =>
@@ -119,11 +119,11 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
           ),*/
         ],
       ),
-body: isdata == true
+body:  isdata == true
     ? CircularProgressIndicator(
   backgroundColor: AppData.matruColor,
 )
-    : ambulancelistModel == null || ambulancelistModel == null
+    : bloodbanklistModel == null || bloodbanklistModel == null
     ? Container(
   child: Center(
     child: Text(
@@ -136,17 +136,17 @@ body: isdata == true
 ):
 SingleChildScrollView(
 
-  child:(ambulancelistModel != null)? ListView.builder(
+  child:(bloodbanklistModel != null)? ListView.builder(
     physics: NeverScrollableScrollPhysics(),
     // controller: _scrollController,
     shrinkWrap: true,
     itemBuilder: (context, i) {
-      if (i == ambulancelistModel.body.length) {
-        return (ambulancelistModel.body.length % 10 == 0)
+      if (i == bloodbanklistModel.body.length) {
+        return (bloodbanklistModel.body.length % 10 == 0)
             ? CupertinoActivityIndicator()
             : Container();
       }
-      ambulance.Body body = ambulancelistModel.body[i];
+      ambulance.Body body = bloodbanklistModel.body[i];
       return Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
         child: Card(
@@ -178,10 +178,10 @@ SingleChildScrollView(
                                 .end,
                             children: [
                               Container(
-                               //width: 120,
+                                width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
-                                  "Ambulance Name",
+                                  "BloodBank Name",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -193,7 +193,7 @@ SingleChildScrollView(
                               Text(" : "),
                               Text(
                                 /*'23-Nov-2020-11:30AM'*/
-                                body.ambulanceName,
+                                body.bloodBankName,
                                 overflow:
                                 TextOverflow
                                     .clip,
@@ -204,86 +204,6 @@ SingleChildScrollView(
                             ],
                           ),
 
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  /*'Confirmed'*/
-                                  "From Location",
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Expanded(
-                                child:Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.fromLocation,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),)
-                              /*Text(
-                                *//*'23-Nov-2020-11:30AM'*//*
-                                body.fromLocation,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),*/
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  /*'Confirmed'*/
-                                  "Destination",
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Expanded(
-                                child:Text(
-                                  /*'23-Nov-2020-11:30AM'*/
-                                  body.toDestination,
-                                  overflow:
-                                  TextOverflow
-                                      .clip,
-                                  style: TextStyle(
-                                      color: Colors
-                                          .black),
-                                ),)
-
-                            ],
-                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -297,7 +217,7 @@ SingleChildScrollView(
                                 width: 120,
                                 child: Text(
                                   /*'Confirmed'*/
-                                  "Patient Notes",
+                                  "Blood Group",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -309,7 +229,7 @@ SingleChildScrollView(
                               Text(" : "),
                               Text(
                                 /*'23-Nov-2020-11:30AM'*/
-                                body.patientNote,
+                                body.bloodGrName,
                                 overflow:
                                 TextOverflow
                                     .clip,
@@ -355,7 +275,42 @@ SingleChildScrollView(
                             ],
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 10,
+                          ),
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment:
+                            CrossAxisAlignment
+                                .end,
+                            children: [
+                              Container(
+                                width: 120,
+                                child: Text(
+                                  /*'Confirmed'*/
+                                  "Patient Notes",
+                                  style: TextStyle(
+                                    fontWeight:
+                                    FontWeight
+                                        .w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                              Text(" : "),
+                              Text(
+                                /*'23-Nov-2020-11:30AM'*/
+                                body.patientNote,
+                                overflow:
+                                TextOverflow
+                                    .clip,
+                                style: TextStyle(
+                                    color: Colors
+                                        .black),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Row(
                             children: [
@@ -406,9 +361,24 @@ SingleChildScrollView(
       );
     },
     //itemCount:5,
-    itemCount: ambulancelistModel.body.length,
+    itemCount: bloodbanklistModel.body.length,
   ): Container(),
-)
+)  /* :Container(
+  child: Center(
+    child: Column(
+      children: [
+        SizedBox(height: 300,),
+        (isdata)? Text(
+          'No Data Found',
+          style:
+          TextStyle(color: Colors.black, fontSize: 15),
+        ):CircularProgressIndicator(),
+      ],
+    ),
+  ),
+
+),*/
+
 
     );
   }
@@ -479,7 +449,7 @@ SingleChildScrollView(
                             23.0, (KeyvalueModel data) {
                           setState(() {
                             print(ApiFactory.TYPE_API);
-                            BookAmbulancelist.typeModel = data;
+                            BookBloodBanklist.typeModel = data;
                           });
                         }),
                         /*SizedBox(
@@ -494,7 +464,7 @@ SingleChildScrollView(
                             23.0, (KeyvalueModel data) {
                           setState(() {
                             print(ApiFactory.NAME_API);
-                            BookAmbulancelist.nameModel = data;
+                            BookBloodBanklist.nameModel = data;
                           });
                         }),
                        /* SizedBox(
@@ -506,7 +476,7 @@ SingleChildScrollView(
                             "SEVERITY", severitylist,
                             (KeyvalueModel data) {
                           setState(() {
-                            BookAmbulancelist.severitylistModel = data;
+                            BookBloodBanklist.severitylistModel = data;
                           });
                         }),
                         SizedBox(
@@ -533,9 +503,9 @@ SingleChildScrollView(
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-            BookAmbulancelist.nameModel.key = "";
-            BookAmbulancelist.typeModel.key = "";
-            BookAmbulancelist.severitylistModel.key = "";
+            BookBloodBanklist.nameModel.key = "";
+            BookBloodBanklist.typeModel.key = "";
+            BookBloodBanklist.severitylistModel.key = "";
             textEditingController[1].text = "";
             textEditingController[2].text = "";
 
@@ -546,14 +516,14 @@ SingleChildScrollView(
         ),
         new FlatButton(
           onPressed: () {
-            if (BookAmbulancelist.nameModel == null ||
-                BookAmbulancelist.nameModel == "") {
+            if (BookBloodBanklist.nameModel == null ||
+                BookBloodBanklist.nameModel == "") {
               AppData.showInSnackBar(context, "Please select Name ");
-            } else if (BookAmbulancelist.typeModel == null ||
-                BookAmbulancelist.typeModel == "") {
+            } else if (BookBloodBanklist.typeModel == null ||
+                BookBloodBanklist.typeModel == "") {
               AppData.showInSnackBar(context, "Please select Type ");
-            } else if (BookAmbulancelist.severitylistModel == null ||
-                BookAmbulancelist.severitylistModel == "") {
+            } else if (BookBloodBanklist.severitylistModel == null ||
+                BookBloodBanklist.severitylistModel == "") {
               AppData.showInSnackBar(context, "Please select Severity ");
             } else if (textEditingController[1].text == "" ||
                 textEditingController[1].text == null) {
@@ -569,9 +539,9 @@ SingleChildScrollView(
               MyWidgets.showLoading(context);
               AllergicPostModel allergicmodel = AllergicPostModel();
               allergicmodel.userid = loginResponse.body.user;
-              allergicmodel.allnameid = BookAmbulancelist.nameModel.key;
-              allergicmodel.alltypeid = BookAmbulancelist.typeModel.key;
-              allergicmodel.severity = BookAmbulancelist.severitylistModel.key;
+              allergicmodel.allnameid = BookBloodBanklist.nameModel.key;
+              allergicmodel.alltypeid = BookBloodBanklist.typeModel.key;
+              allergicmodel.severity = BookBloodBanklist.severitylistModel.key;
               allergicmodel.reaction = textEditingController[1].text;
               allergicmodel.updatedby = textEditingController[2].text;
               print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +

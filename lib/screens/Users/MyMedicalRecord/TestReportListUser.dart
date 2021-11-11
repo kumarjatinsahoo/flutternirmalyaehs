@@ -282,8 +282,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
               ],
             ),
           ),
-
-        ));
+        )
+    );
     /*body: ListTile(
         onTap: () {
         },

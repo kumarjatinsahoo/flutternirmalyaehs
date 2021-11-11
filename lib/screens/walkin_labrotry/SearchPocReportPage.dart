@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart'as poclogin;
 
 //import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/PocReportModel.dart';
@@ -25,8 +26,9 @@ class SearchPocReportPage extends StatefulWidget {
 
 class _SearchPocReportPageState extends State<SearchPocReportPage> {
   PocReportModel pocReportModel;
-
+  poclogin.LoginResponse1 loginResponse1;
   //LoginResponse1 loginResponse;
+  bool isdata = false;
 
   TextEditingController _searchContain = TextEditingController();
   ScrollController _scrollController = ScrollController();
@@ -37,6 +39,8 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
   void initState() {
     //loginResponse = widget.model.loginResponse1;
     super.initState();
+    loginResponse1 = widget.model.loginResponse1;
+
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -47,8 +51,9 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
 
   callAPI(String search, int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.POC_REPORT_LIST +
-            "?page=" +
+        api: ApiFactory.POC_REPORT_LISTT +
+            loginResponse1.body.user +
+            "&page=" +
             i.toString() +
             "&search=" +
             search,
@@ -144,7 +149,7 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
                                 )
                               ],
                             ),
-                            child: ListTile(
+                            child:(pocReportModel != null)? ListTile(
                               onTap: () {
                                 if (patient.reportUrl != null) {
                                   /*widget.model.pdfUrl = patient.reportUrl;
@@ -211,12 +216,29 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
                               ),
                               //leading: SizedBox(width:20,child: Text((i+1).toString(),style: TextStyle(color: Colors.black),)),
                               trailing: Icon(Icons.arrow_right_outlined),
-                            ),
+                            ): Container(),
+
                           );
                         },
                         itemCount: pocReportModel.body.length + 1,
                       )
-                    : Container(),
+                    : Container(
+                  child: Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 300,
+                        ),
+                        (isdata)
+                            ? Text(
+                          'No Data Found',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        )
+                            : CircularProgressIndicator(),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             )
           ],

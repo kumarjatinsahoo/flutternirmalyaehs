@@ -11,6 +11,11 @@ import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
 import 'package:user/screens/Ambulance/Dashboard/RejectAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/RequestAmbulance.dart';
+import 'package:user/screens/BloodBank/Dashboard/AcceptBloodBank.dart';
+import 'package:user/screens/BloodBank/Dashboard/AllBloodBank.dart';
+import 'package:user/screens/BloodBank/Dashboard/BloodBankDashboard.dart';
+import 'package:user/screens/BloodBank/Dashboard/RejectBloodBank.dart';
+import 'package:user/screens/BloodBank/Dashboard/RequestBloodBank.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
@@ -24,6 +29,8 @@ import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulance.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
+import 'package:user/screens/Users/BookBloodBank/BookBloodBank.dart';
+import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
@@ -885,8 +892,8 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/cnfpwd': (context) => ConfirmPassword(
-                    model: _model,
-                  ),
+                model: _model,
+              ),
               '/qrcode': (context) => QrcodePage(
                 model: _model,
               ),
@@ -902,12 +909,30 @@ class _MyAppState extends State<MyApp> {
               ),'/rejectambulance': (context) => RejectAmbulance(
                 model: _model,
               ),
+              '/allbloodbank': (context) => AllBloodBank(
+                model: _model,
+              ),'/requestbloodbank': (context) => RequestBloodBank(
+                model: _model,
+              ),'/acceptbloodbank': (context) => AcceptBloodBank(
+                model: _model,
+              ),'/rejectbloodbank': (context) => RejectBloodBank(
+                model: _model,
+              ),
               '/bookAmbulancelist': (context) => BookAmbulancelist(
                 model: _model,
               ),
               '/bookAmbulancePage': (context) => BookAmbulancePage(
                 model: _model,
               ),
+              '/bookBloodBanklist': (context) => BookBloodBanklist(
+                model: _model,
+              ),
+              '/bookBloodBankPage': (context) => BookBloodBankPage(
+                model: _model,
+              ),
+              '/bloodBankDashboard': (context) => BloodBankDashboard(
+               model: _model,
+               ),
 
             },
             localizationsDelegates: [

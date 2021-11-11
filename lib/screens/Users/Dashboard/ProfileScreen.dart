@@ -1865,7 +1865,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       setState(() {
         pathUsr = File(_path);
         // callApii();
-        //widget.model.patientimg =base64Encode(enc);
+        // widget.model.patientimg =base64Encode(enc);
         //widget.model.patientimgtype =extName;
         //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
         //updateProfileModel.profileImageType = extName;

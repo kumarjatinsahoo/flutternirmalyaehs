@@ -94,7 +94,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 appointModel = lab.LabBookModel.fromJson(map);
               } else {
                 isDataNotAvail = true;
-                AppData.showInSnackBar(context, msg);
+               // AppData.showInSnackBar(context, msg);
               }
             });
           });
@@ -208,9 +208,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                               dialogRegNo(context),
                         );
                       }),
-                      MyWidgets.toggleButton1("REPORTS", () {
+                     /* MyWidgets.toggleButton1("REPORTS", () {
                         AppData.showInSnackBar(context, "Reports click");
-                      }),
+                      }),*/
                     ],
                   ),
 

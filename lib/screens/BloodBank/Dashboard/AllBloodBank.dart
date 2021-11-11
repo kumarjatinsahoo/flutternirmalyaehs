@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:user/models/AmbulanceAllModel.dart' as ambulanceall;
 import 'package:user/models/AmbulanceAllModel.dart';
+import 'package:user/models/BloodbanklistModel.dart'as bloodbank;
+import 'package:user/models/BloodbanklistModel.dart';
 import 'package:user/models/PharmacyorderModel.dart' as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -12,23 +14,24 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class AllAmbulance extends StatefulWidget {
+class AllBloodBank extends StatefulWidget {
   final MainModel model;
 
-  const AllAmbulance({Key key, this.model}) : super(key: key);
+  const AllBloodBank({Key key, this.model}) : super(key: key);
 
   @override
-  _AllAmbulanceState createState() => _AllAmbulanceState();
+  _AllBloodBankState createState() => _AllBloodBankState();
 }
 
-class _AllAmbulanceState extends State<AllAmbulance> {
+class _AllBloodBankState extends State<AllBloodBank> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   bool isdata = false;
 
-  oderlist.PharmacyorderModel pharmacyorderModel;
-  ambulanceall.AmbulanceAllModel ambulanceallmodel;
+
+  bloodbank.BloodbanklistModel bloodbanklistModel;
+
 
   void selectDestination(int index) {
     setState(() {
@@ -45,7 +48,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
 
   callAPI() {
     widget.model.GETMETHODCALL(
-        api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user+ "&status=" +"",
+        api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+ "&status=" +"",
         // userId: loginResponse.body.user,
         // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -54,8 +57,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                ambulanceallmodel =
-                    ambulanceall.AmbulanceAllModel.fromJson(map);
+                bloodbanklistModel =
+                    bloodbank.BloodbanklistModel.fromJson(map);
               });
             } else {
               isDataNotAvail = true;
@@ -71,18 +74,18 @@ class _AllAmbulanceState extends State<AllAmbulance> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Blood Bank',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        body:  isdata == true
+        body: isdata == true
             ? CircularProgressIndicator(
           backgroundColor: AppData.matruColor,
         )
-            : ambulanceallmodel == null || ambulanceallmodel == null
+            : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(
             child: Text(
@@ -94,18 +97,18 @@ class _AllAmbulanceState extends State<AllAmbulance> {
 
         ):
              SingleChildScrollView(
-                child: (ambulanceallmodel != null)
+                child: (bloodbanklistModel != null)
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         // controller: _scrollController,
                         shrinkWrap: true,
                         itemBuilder: (context, i) {
-                          if (i == ambulanceallmodel.body.length) {
-                            return (ambulanceallmodel.body.length % 10 == 0)
+                          if (i == bloodbanklistModel.body.length) {
+                            return (bloodbanklistModel.body.length % 10 == 0)
                                 ? CupertinoActivityIndicator()
                                 : Container();
                           }
-                          ambulanceall.Body body = ambulanceallmodel.body[i];
+                          bloodbank.Body body = bloodbanklistModel.body[i];
                           return Padding(
                             padding: const EdgeInsets.only(
                                 left: 15, right: 15, top: 15),
@@ -163,7 +166,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "From",
+                                                      "Blood Group",
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -172,7 +175,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                     ),
                                                     Spacer(),
                                                     Text(
-                                                      body.fromLocation,
+                                                      body.bloodGrName,
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -184,7 +187,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "Destination",
+                                                      "Date",
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -193,7 +196,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                     ),
                                                     Spacer(),
                                                     Text(
-                                                      body.toDestination,
+                                                      body.bookedDate,
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -223,7 +226,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-/*                                                Row(
+                                               /* Row(
                                                   children: [
                                                     Text(
                                                       ' ',
@@ -234,14 +237,14 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                     Spacer(),
                                                     InkWell(
                                                       onTap: () {
-                                                        *//*showDialog(
+                                                        showDialog(
                                                           context: context,
                                                           builder: (BuildContext
                                                                   context) =>
                                                               changeStatus(
                                                                   context,
                                                                   body.orderId),
-                                                        );*//*
+                                                        );
                                                         // widget.model.userappointment = appointmentlist;
 
                                                         //  Navigator.pushNamed(context, "/usermedicinelist");
@@ -275,11 +278,12 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                           );
                         },
                         //itemCount:5,
-                        itemCount: ambulanceallmodel.body.length,
+                        itemCount:bloodbanklistModel.body.length,
                       )
                     : Container(),
               )
-           );
+
+    );
   }
 
 
@@ -324,7 +328,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                         api: ApiFactory.ambulance_APPOINTMENT_status +
                             orderid +
                             "&status=" +
-                            "4",
+                            "2",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
@@ -332,8 +336,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                             if (map[Const.CODE] == Const.SUCCESS) {
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
-                              ambulanceallmodel =
-                                  AmbulanceAllModel.fromJson(map);
+                              bloodbanklistModel =
+                                  BloodbanklistModel.fromJson(map);
                               AppData.showInSnackBar(context, msg);
 
                               // appointModel = lab.LabBookModel.fromJson(map);
@@ -357,7 +361,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                         api: ApiFactory.ambulance_APPOINTMENT_status +
                             orderid +
                             "&status=" +
-                            "6",
+                            "4",
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           setState(() {
@@ -365,8 +369,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                             if (map[Const.CODE] == Const.SUCCESS) {
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
-                              ambulanceallmodel =
-                                  AmbulanceAllModel.fromJson(map);
+                              bloodbanklistModel =
+                                  BloodbanklistModel.fromJson(map);
                               AppData.showInSnackBar(context, msg);
 
                             } else {

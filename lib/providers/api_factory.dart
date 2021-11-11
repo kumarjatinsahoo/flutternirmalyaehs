@@ -3,7 +3,7 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
- //static String MAIN_URL = "http://192.168.43.251:8062/nirmalyaRest/api/";
+ static String MAIN_URL = "http://192.168.43.251:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
@@ -11,6 +11,7 @@ class ApiFactory {
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
+  static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
@@ -49,6 +50,7 @@ class ApiFactory {
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_AMBULANCEDETAILS= MAIN_URL + 'post-ambulance-details';
+  static String POST_BlOODBANKDETAILS= MAIN_URL + 'post-bloodbank-details';
   static String POST_MEDICATION = MAIN_URL + 'post-user-medication-doctor';
   static String PATIENT_PROFILE = MAIN_URL + 'get-patient-details?userid=';
   static String USER_PROFILE = MAIN_URL + 'other-user-profile?userid=';
@@ -136,7 +138,8 @@ class ApiFactory {
   static String AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
-  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlister?usid=';
+  static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
   static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
@@ -144,8 +147,9 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
   static String POST_EMERGENCY_MESSAGE =
       MAIN_URL + 'post-user-emergency-message';
-  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list';
-  static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list';
+  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?userid=';
+  // static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
+   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
   static String UPDATE_EMERGENCY_CONTACT =
       MAIN_URL + 'post-emergency-contact-api';
@@ -181,6 +185,8 @@ class ApiFactory {
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String ambulance_APPOINTMENT_status =
       MAIN_URL + 'change-ambulance-status?orderid=';
+ static String bloodbank_status =
+     MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
@@ -195,6 +201,7 @@ class ApiFactory {
       MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
+  static String BLDBANK_LIST = MAIN_URL + 'get-patient-bldbank-details?userid=';
   static String CHANGE_STATUS_PHARMACY = MAIN_URL + 'change-pharmacy-status?orderid=';
   static String CHANGE_STATUS_LAB = MAIN_URL + 'change-lab-status?orderid=';
   static String HEALTH_CHART =

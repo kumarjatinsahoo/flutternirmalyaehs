@@ -2153,7 +2153,7 @@ class MyPage2Widget extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 18, right: 18, bottom: 18),
             /* child: SingleChildScrollView(*/
             child: Column(
               children: [
@@ -2193,9 +2193,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
                         ]),
-                    SizedBox(
-                      width: 15,
-                    ),
+                    Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -2237,9 +2235,7 @@ class MyPage2Widget extends StatelessWidget {
                                         ),
                                         ),*/
                         ]),
-                    SizedBox(
-                      width: 15,
-                    ),
+                    Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -2269,6 +2265,47 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
                         ]),
+                  ],
+                ),
+                SizedBox(height: 5,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTilered(
+                            icon: "assets/blooddonationuser.png",
+                            //icon: Icons.search,
+                            //icon: FontAwesomeIcons.accusoft,
+                            title: "Blood Bank",
+                            fun: () {
+                              Navigator.pushNamed(context, "/bookBloodBanklist");
+                             // Navigator.pushNamed(context, "/healthCheckup");
+                            },
+                            color: AppData.BG1RED,
+                            bordercolor: AppData.BG1RED,
+                            //size: (size.width - 130) / 3,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            child: Text(MyLocalizations.of(context).text("Blood Bank"),
+                              textAlign: TextAlign.center,
+                              //overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ]),
+                    SizedBox(
+                      width: 15,
+                    ),
+
+
                   ],
                 ),
               ],
