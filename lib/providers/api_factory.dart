@@ -1,13 +1,14 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
- //static String MAIN_URL = "http://192.168.43.251:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
- //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+ //static String MAIN_URL = "http://192.168.43.251:8062/nirmalyaRest/api/";
+// static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
@@ -48,6 +49,8 @@ class ApiFactory {
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
+  static String smoking_API = MAIN_URL + 'get-smoking-details-list';
+  static String alchohol_API = MAIN_URL + 'get-alchohol-details-api';
   static String POST_APPOINTMENT = MAIN_URL + 'post-doctor-appointment';
   static String POST_AMBULANCEDETAILS= MAIN_URL + 'post-ambulance-details';
   static String POST_BlOODBANKDETAILS= MAIN_URL + 'post-bloodbank-details';
@@ -76,9 +79,10 @@ class ApiFactory {
       MAIN_URL + 'find-health-provider-details';
   static String DELETE_MEDICINE_LIST =
       MAIN_URL + 'delete-medicine-by-app-no?appno=';
-  static String VITAL_SIGN_DETAIS =
-      MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String VITAL_SIGN_DETAIS = MAIN_URL + 'view-user-vital-sign-details?userid=';
+  static String IIFESTYLE_DETAIS = MAIN_URL + 'get-patient-lifestyle-details?userid=';
   static String UPDATE_VITAL_SIGN = MAIN_URL + 'update-vital-signs';
+  static String  patient_lifestyle_details= MAIN_URL + 'post-patient-lifestyle-details';
   static String POST_PHARMACY_REQUST = MAIN_URL + 'post-pharmacy-request-api';
   static String ALERGY_LIST = MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS =

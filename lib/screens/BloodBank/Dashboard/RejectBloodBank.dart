@@ -24,7 +24,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
   ambulanceappoint.BloodbanklistModel bloodbanklistModel;
 
 
@@ -42,21 +42,22 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"4",
-        // userId: loginResponse.body.user,
-        // token: widget.model.token,
+         userId: loginResponse.body.user,
+          token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isdata = false;
                 bloodbanklistModel =
                     ambulanceappoint.BloodbanklistModel.fromJson(map);
               });
             } else {
-              isDataNotAvail = true;
+              isdata = false;
               //AppData.showInSnackBar(context, msg);
             }
           });
@@ -69,7 +70,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Rejected',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -77,9 +78,11 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
         body: isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
+            ? Center(
+              child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
+        ),
+            )
             : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(

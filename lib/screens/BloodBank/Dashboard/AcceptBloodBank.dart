@@ -45,10 +45,10 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"2",
-        // userId: loginResponse.body.user,
-        // token: widget.model.token,
+        userId: loginResponse.body.user,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
@@ -72,7 +72,7 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Accepted ',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,

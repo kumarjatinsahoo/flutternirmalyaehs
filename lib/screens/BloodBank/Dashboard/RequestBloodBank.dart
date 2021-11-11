@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:user/models/BloodbanklistModel.dart'as ambulanceappoint;
+import 'package:user/models/BloodBankModel.dart'as ambulanceappoint;
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -25,8 +26,8 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
-  ambulanceappoint.BloodbanklistModel bloodbanklistModel;
+  bool isdata =true;
+  ambulanceappoint.BloodBankModel bloodbanklistModel;
 
 
   void selectDestination(int index) {
@@ -43,21 +44,22 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"7",
-        // userId: loginResponse.body.user,
-        // token: widget.model.token,
+         userId: loginResponse.body.user,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isdata =false;
                 bloodbanklistModel =
-                    ambulanceappoint.BloodbanklistModel.fromJson(map);
+                    ambulanceappoint.BloodBankModel.fromJson(map);
               });
             } else {
-              isDataNotAvail = true;
+              isdata =false;
               //AppData.showInSnackBar(context, msg);
             }
           });
@@ -81,9 +83,11 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
         // (ambulanceAppointmentModel != null)
         //     ?
         isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
+            ? Center(
+              child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
+        ),
+            )
             : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(

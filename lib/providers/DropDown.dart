@@ -566,6 +566,12 @@ class DropDown {
           case "bloodgroupBooh":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "smoking":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "alcohol":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
 
           case "gender":
             List<KeyvalueModel> listS = [];
