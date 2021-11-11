@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:user/models/BloodbanklistModel.dart'as ambulanceappoint;
+import 'package:user/models/BloodBankModel.dart'as ambulanceappoint;
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -26,7 +27,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   bool isdata = false;
-  ambulanceappoint.BloodbanklistModel bloodbanklistModel;
+  ambulanceappoint.BloodBankModel bloodbanklistModel;
 
 
   void selectDestination(int index) {
@@ -43,10 +44,10 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"7",
-        // userId: loginResponse.body.user,
-        // token: widget.model.token,
+         userId: loginResponse.body.user,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
@@ -54,7 +55,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 bloodbanklistModel =
-                    ambulanceappoint.BloodbanklistModel.fromJson(map);
+                    ambulanceappoint.BloodBankModel.fromJson(map);
               });
             } else {
               isDataNotAvail = true;

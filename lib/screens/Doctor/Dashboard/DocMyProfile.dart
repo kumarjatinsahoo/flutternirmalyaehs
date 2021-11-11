@@ -200,7 +200,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ListTile(
                                         contentPadding: EdgeInsets.symmetric(
                                             horizontal: 12, vertical: 4),
-                                        leading: Icon(Icons.person),
+                                        leading: Icon(Icons.wc),
                                         title: Text(MyLocalizations.of(context).text("GENDER").toUpperCase()),
                                         subtitle: Text(
                                             profileModel1.body.gender ?? "N/A"),
@@ -214,7 +214,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.face),
+                                        leading: Icon(Icons.article),
                                         title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),
                                         ),
                                         subtitle: Text(
@@ -222,9 +222,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.email),
+                                        leading: Icon(Icons.home_work_sharp),
                                         title: Text(MyLocalizations.of(context).text("ORGANIZATION").toUpperCase()),
-                                        subtitle: Text("NIRMALYA"),
+                                        //subtitle: Text("NIRMALYA"),
+                                        subtitle: Text(profileModel1.body.organization ??
+                                            "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.contact_phone),
@@ -233,14 +235,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.imano ?? "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.info_outline),
+                                        leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("PAN_CARD_NO").toUpperCase(),
                                         ),
                                         subtitle:
                                             Text(profileModel1.body.pancardno),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.info_outline),
+                                        leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("PASSPORT_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(
@@ -248,7 +250,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.info_outline),
+                                        leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("VOTER_CARD_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(
@@ -256,7 +258,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.filter),
+                                        leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("LICENCE_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(

@@ -192,9 +192,9 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
       context: context,
       fun: () {
         if (textEditingController[0].text == "" || textEditingController[0].text== null) {
-          AppData.showInSnackBar(context, "Please enter age");
+          AppData.showInSnackBar(context, "Please enter Age");
         } else if (textEditingController[0].text != "" && textEditingController[0].text== "0") {
-            AppData.showInSnackBar(context, "Please enter a valid age");
+            AppData.showInSnackBar(context, "Please enter a valid Age");
         }  else {
           widget.model.patientage = textEditingController[0].text;
           Navigator.pushNamed(context, "/patientRegistration3");

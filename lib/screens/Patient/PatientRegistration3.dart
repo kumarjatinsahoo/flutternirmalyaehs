@@ -72,21 +72,21 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     child: NumberformField(0, "Height(CM)"),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: NumberformField(1, "Weight(kg)"),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: formField(2, "Email(OPTIONAL)"),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height:5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -109,7 +109,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     ),
                   ),*/
                   SizedBox(
-                    height: size.height * 0.01,
+                    height:7,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -117,17 +117,19 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       height: 55,
                       child: DropDown.networkDropdownGetpart4(
                           "Country", ApiFactory.COUNTRY_API, "country",
-                              (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.COUNTRY_API);
-                              PatientRegistration3.countryModel = data;
-                              PatientRegistration3.stateModel = null;
-                            });
-                          }),
+                          (KeyvalueModel data) {
+                        setState(() {
+                          print(ApiFactory.COUNTRY_API);
+                          PatientRegistration3.countryModel = data;
+                          PatientRegistration3.stateModel = null;
+                          PatientRegistration3.districtModel = null;
+                          PatientRegistration3.cityModel = null;
+                        });
+                      }),
                     ),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height:7,
                   ),
                   (PatientRegistration3.countryModel != null)
                       ? Padding(
@@ -142,53 +144,55 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 "state", (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.stateModel = data;
+                                PatientRegistration3.districtModel = null;
+                                PatientRegistration3.cityModel = null;
                               });
                             }),
                           ),
                         )
                       : Container(),
-
                   SizedBox(
-                    height: size.height * 0.01,
+                    height: 2,
                   ),
                   (PatientRegistration3.stateModel != null)
                       ? Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 10.0, bottom: 7.0),
-                    child: SizedBox(
-                      height: 55,
-                      child: DropDown.networkDropdownGetpart4(
-                          "District",
-                          ApiFactory.DISTRICT_API +
-                              PatientRegistration3.stateModel.key,
-                          "districtid", (KeyvalueModel data) {
-                        setState(() {
-                          PatientRegistration3.districtModel = data;
-                        });
-                      }),
-                    ),
-                  )
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 10.0, bottom: 7.0),
+                          child: SizedBox(
+                            height: 55,
+                            child: DropDown.networkDropdownGetpart4(
+                                "District",
+                                ApiFactory.DISTRICT_API +
+                                    PatientRegistration3.stateModel.key,
+                                "districtid", (KeyvalueModel data) {
+                              setState(() {
+                                PatientRegistration3.districtModel = data;
+                                PatientRegistration3.cityModel = null;
+                              });
+                            }),
+                          ),
+                        )
                       : Container(),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height:2,
                   ),
                   (PatientRegistration3.districtModel != null)
                       ? Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 10.0, bottom: 7.0),
-                    child: SizedBox(
-                      height: 55,
-                      child: DropDown.networkDropdownGetpart4(
-                          "City",
-                          ApiFactory.CITY_API +
-                              PatientRegistration3.districtModel.key,
-                          "city", (KeyvalueModel data) {
-                        setState(() {
-                          PatientRegistration3.cityModel = data;
-                        });
-                      }),
-                    ),
-                  )
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 10.0, bottom: 7.0),
+                          child: SizedBox(
+                            height: 55,
+                            child: DropDown.networkDropdownGetpart4(
+                                "City",
+                                ApiFactory.CITY_API +
+                                    PatientRegistration3.districtModel.key,
+                                "city", (KeyvalueModel data) {
+                              setState(() {
+                                PatientRegistration3.cityModel = data;
+                              });
+                            }),
+                          ),
+                        )
                       : Container(),
                   SizedBox(
                     height: size.height * 0.07,
@@ -318,11 +322,10 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-             maxLength: 5,
+            maxLength: 5,
             keyboardType: TextInputType.number,
             inputFormatters: [
-              WhitelistingTextInputFormatter(
-                  RegExp("[0-9. ]")),
+              WhitelistingTextInputFormatter(RegExp("[0-9. ]")),
             ],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
@@ -373,8 +376,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             maxLength: 12,
             keyboardType: TextInputType.number,
             inputFormatters: [
-              WhitelistingTextInputFormatter(
-                  RegExp("[0-9. ]")),
+              WhitelistingTextInputFormatter(RegExp("[0-9. ]")),
             ],
             decoration: InputDecoration(
               /* suffixIcon: Icon(Icons.phone),*/
@@ -399,7 +401,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       fun: () {
         if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter height(CM)");
+          AppData.showInSnackBar(context, "Please enter Height(CM)");
         } else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please enter Weight(kg)");
@@ -407,24 +409,21 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
         } else if (textEditingController[3].text != '' &&
-            textEditingController[3].text.length != 12 ) {
+            textEditingController[3].text.length != 12) {
           AppData.showInSnackBar(context, "Please enter a valid Aadhaar no.");
-        }
-        else if (PatientRegistration3.countryModel == null ||
+        } else if (PatientRegistration3.countryModel == null ||
             PatientRegistration3.countryModel == "") {
           AppData.showInSnackBar(context, "Please select Country");
-        }
-        else if (PatientRegistration3.stateModel == null ||
+        } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");}
-        else if (PatientRegistration3.districtModel == null ||
+          AppData.showInSnackBar(context, "Please select State");
+        } else if (PatientRegistration3.districtModel == null ||
             PatientRegistration3.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select Distric");
-        }
-        else if (PatientRegistration3.cityModel == null ||
+          AppData.showInSnackBar(context, "Please select District");
+        } else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
           AppData.showInSnackBar(context, "Please select City");
-       /* } else if (textEditingController[2].text != '' &&
+          /* } else if (textEditingController[2].text != '' &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
           // return false;
@@ -435,7 +434,8 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           widget.model.patientemail = textEditingController[2].text;
           widget.model.patientaadhar = textEditingController[3].text;
           widget.model.patienCountrykey = PatientRegistration3.countryModel.key;
-          widget.model.patienCountrycode = PatientRegistration3.countryModel.code;
+          widget.model.patienCountrycode =
+              PatientRegistration3.countryModel.code;
           widget.model.patienStatekey = PatientRegistration3.stateModel.key;
           widget.model.patienStatecode = PatientRegistration3.stateModel.code;
           widget.model.districtid = PatientRegistration3.districtModel.key;

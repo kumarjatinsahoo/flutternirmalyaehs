@@ -56,7 +56,7 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
               regDataModel = patientSuf.PatientListModel.fromJson(map);
             } else {
               isDataNotFound = true;
-              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });
         });

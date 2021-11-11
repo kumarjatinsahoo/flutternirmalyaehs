@@ -950,47 +950,14 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
               });
               AppData.fieldFocusChange(context, fnode1, null);
             },
-            /*inputFormatters: [
+            inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
-            ],*/
+            ],
           ),
         ),
       ),
     );
   }
-
-// Widget formFieldPass(int index, String hint, int obqueTxt) {
-//   return TextFieldContainer(
-//     child: TextFormField(
-//       controller: controller[index],
-//       textInputAction: TextInputAction.done,
-//       obscureText: !isViewList[obqueTxt],
-//       keyboardType: Validator.getKeyboardTyp(Const.PASS),
-//       style: TextStyle(fontSize: 13),
-//       textAlignVertical: TextAlignVertical.center,
-//       decoration: InputDecoration(
-//           hintText: hint,
-//           hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
-//           border: InputBorder.none,
-//           suffixIcon: InkWell(
-//             onTap: () {
-//               setState(() {
-//                 isViewList[obqueTxt] = !isViewList[obqueTxt];
-//               });
-//             },
-//             child: Icon(
-//               isViewList[obqueTxt]
-//                   ? CupertinoIcons.eye_slash_fill
-//                   : CupertinoIcons.eye_fill,
-//               size: 19,
-//               color: Colors.grey,
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-//     ),
-//   );
-// }
-//
 
 }
