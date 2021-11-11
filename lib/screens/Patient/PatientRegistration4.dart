@@ -127,18 +127,18 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                         child: SafeArea(
                           child: Column(
                             children: [
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 40.0, top: 20.0),
-                                  child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ),
+                              // Container(
+                              //   child: Padding(
+                              //     padding: const EdgeInsets.only(
+                              //         right: 40.0, top: 20.0),
+                              //     child: Align(
+                              //         alignment: Alignment.topRight,
+                              //         child: Icon(
+                              //           Icons.edit,
+                              //           color: Colors.white,
+                              //         )),
+                              //   ),
+                              // ),
                               /*  Align(
                               alignment: Alignment.topCenter,
                               child: Container(
@@ -397,7 +397,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-            "Mobile No.:"+mobile,
+            "Mobile No. :"+mobile,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -408,7 +408,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-              "UserId:."+userid,
+              "UserId:"+userid,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,

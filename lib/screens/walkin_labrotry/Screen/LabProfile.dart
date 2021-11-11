@@ -197,8 +197,8 @@ class _LabProfileState extends State<LabProfile> {
                                 ), ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 4),
-                                  leading: Icon(Icons.person),
-                                  title: Text("REGISTRATION NO"),
+                                  leading: Icon(Icons.app_registration),
+                                  title: Text("REGISTRATION NO."),
                                   subtitle: Text(profileModel1.body.useraccount??"N/A"),
                                 ),
                                 ListTile(
@@ -218,7 +218,7 @@ class _LabProfileState extends State<LabProfile> {
 
                                 ListTile(
                                   leading: Icon(Icons.email),
-                                  title: Text("EMAIL"),
+                                  title: Text("E MAIL"),
                                   subtitle: Text(profileModel1.body.email??"N/A"),
                                 ),
                                 ListTile(

@@ -340,13 +340,13 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
         if (textEditingController[0].text== "" || textEditingController[0].text== null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
+          AppData.showInSnackBar(context, "Please enter Mobile Number");
         }  else if (textEditingController[0].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+          AppData.showInSnackBar(context, "Please enter Valid Mobile Number");
         }else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
-          AppData.showInSnackBar(context, "Please enter patient name");
+          AppData.showInSnackBar(context, "Please enter Patient Name");
         }else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Name ");
+          AppData.showInSnackBar(context, "Please enter valid Patient Name ");
         } else {
           widget.model.patientphnNo = textEditingController[0].text;
           widget.model.patientName = textEditingController[1].text;
