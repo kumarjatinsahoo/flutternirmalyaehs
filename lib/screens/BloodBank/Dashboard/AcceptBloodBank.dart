@@ -72,7 +72,7 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Accepted ',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
