@@ -2,7 +2,7 @@ class BloodBankModel {
   List<Body> body;
   String message;
   String code;
-  String total;
+  Null total;
 
   BloodBankModel({this.body, this.message, this.code, this.total});
 
@@ -33,52 +33,52 @@ class BloodBankModel {
 class Body {
   String patientId;
   String patientName;
-  String fromLocation;
-  String toDestination;
   String status;
   String bookedDate;
   String patientNote;
   String bloodBankId;
   String bloodBankName;
   String orderId;
+  String bloodGrId;
+  String bloodGrName;
 
   Body(
       {this.patientId,
         this.patientName,
-        this.fromLocation,
-        this.toDestination,
         this.status,
         this.bookedDate,
         this.patientNote,
         this.bloodBankId,
         this.bloodBankName,
-        this.orderId});
+        this.orderId,
+        this.bloodGrId,
+        this.bloodGrName});
 
   Body.fromJson(Map<String, dynamic> json) {
     patientId = json['patientId'];
     patientName = json['patientName'];
-    fromLocation = json['fromLocation'];
-    toDestination = json['toDestination'];
     status = json['status'];
     bookedDate = json['bookedDate'];
     patientNote = json['patientNote'];
     bloodBankId = json['bloodBankId'];
     bloodBankName = json['bloodBankName'];
     orderId = json['orderId'];
+    bloodGrId = json['bloodGrId'];
+    bloodGrName = json['bloodGrName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['patientId'] = this.patientId;
     data['patientName'] = this.patientName;
-    data['fromLocation'] = this.fromLocation;
-    data['toDestination'] = this.toDestination;
     data['status'] = this.status;
     data['bookedDate'] = this.bookedDate;
     data['patientNote'] = this.patientNote;
     data['bloodBankId'] = this.bloodBankId;
     data['bloodBankName'] = this.bloodBankName;
     data['orderId'] = this.orderId;
+    data['bloodGrId'] = this.bloodGrId;
+    data['bloodGrName'] = this.bloodGrName;
     return data;
   }
 }
