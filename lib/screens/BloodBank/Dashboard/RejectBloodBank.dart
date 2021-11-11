@@ -42,10 +42,10 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
   }
 
   callAPI() {
-    widget.model.GETMETHODCALL(
+    widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"4",
-        // userId: loginResponse.body.user,
-        // token: widget.model.token,
+         userId: loginResponse.body.user,
+          token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
