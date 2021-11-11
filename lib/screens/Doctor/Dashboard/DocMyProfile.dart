@@ -214,7 +214,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.article),
+                                        leading: Icon(Icons.work_outlined),
                                         title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),
                                         ),
                                         subtitle: Text(

@@ -278,6 +278,34 @@ class _AllergicListListState extends State<AllergicListList> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
+
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 100,
+                                                      child: Text(MyLocalizations.of(context).text("REACTION"),
+                                                        style: TextStyle(
+                                                            color:
+                                                            Colors.black,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      body.reaction ?? "N/A",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+
+
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
                                                 Row(
                                                   children: [
                                                     Container(
@@ -558,7 +586,8 @@ class _AllergicListListState extends State<AllergicListList> {
             hintText: hint,
             /* prefixIcon:
             Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+            hintStyle:
+            TextStyle(color: AppData.hintColor, fontSize: 15),
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
