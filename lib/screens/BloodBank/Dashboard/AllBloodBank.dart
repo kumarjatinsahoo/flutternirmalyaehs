@@ -27,7 +27,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
 
 
   bloodbank.BloodBankModel bloodbanklistModel;
@@ -43,10 +43,13 @@ class _AllBloodBankState extends State<AllBloodBank> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
+    //isdata = true;
     callAPI();
   }
 
   callAPI() {
+    //MyWidgets.showLoading(context);
+
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+ "&status=" +"",
          userId: loginResponse.body.user,
@@ -57,11 +60,13 @@ class _AllBloodBankState extends State<AllBloodBank> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isdata = false;
                 bloodbanklistModel =
                     bloodbank.BloodBankModel.fromJson(map);
               });
             } else {
-              isDataNotAvail = true;
+              isdata = false;
+              //isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
           });
@@ -82,20 +87,39 @@ class _AllBloodBankState extends State<AllBloodBank> {
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
         body: isdata == true
-            ? CircularProgressIndicator(
+    ?/*showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            })*/Center(
+            child: CircularProgressIndicator(),
+          )
+        /* ? Center(
+              child: CircularProgressIndicator(
           backgroundColor: AppData.matruColor,
-        )
+        ),
+            )*/
             : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(
-            child: Text(
-              'No Data Found',
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 300,
+                ),
+                Text(
+                  'No Data Found',
+                  style: TextStyle(
+                      color: Colors.black, fontSize: 15),
+                ),
+              ],
             ),
           ),
-
-        ):
+        )
+            :
              SingleChildScrollView(
                 child: (bloodbanklistModel != null)
                     ? ListView.builder(

@@ -26,7 +26,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata =true;
   ambulanceappoint.BloodBankModel bloodbanklistModel;
 
 
@@ -54,11 +54,12 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isdata =false;
                 bloodbanklistModel =
                     ambulanceappoint.BloodBankModel.fromJson(map);
               });
             } else {
-              isDataNotAvail = true;
+              isdata =false;
               //AppData.showInSnackBar(context, msg);
             }
           });
@@ -82,9 +83,11 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
         // (ambulanceAppointmentModel != null)
         //     ?
         isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
+            ? Center(
+              child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
+        ),
+            )
             : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(

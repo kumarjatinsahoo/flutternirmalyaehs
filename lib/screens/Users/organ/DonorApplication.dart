@@ -443,7 +443,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
                   ],
                 ),
               ),
@@ -797,7 +797,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
                     ],
                   ),
                 ),
@@ -832,30 +832,7 @@ class DonorApplicationState extends State<DonorApplication> {
                             });
                           }),
                     ),
-                      /*DropdownButton<KeyvalueModel>(
-                        // hint: Text("Select Device"),
-                        underline: Container(
-                          color: Colors.grey,
-                        ),
-                        value: selectedUser1,
-                        isDense: true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedUser1 = newValue;
-                          });
-                          print(selectedUser1);
-                        },
-                        items: UserType1.map((KeyvalueModel value) {
-                          return DropdownMenuItem<KeyvalueModel>(
-                            value: value,
-                            child: new Text(
-                              value.name,
-                              style: new TextStyle(color: Colors.black),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),*/
+
                     Container(
                       height: 35.0,
                       width: 1.0,
@@ -869,7 +846,9 @@ class DonorApplicationState extends State<DonorApplication> {
                         // focusNode: fnode8,
                         cursorColor: AppData.kPrimaryColor,
                         textInputAction: TextInputAction.next,
-
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                        ],
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           // border: InputBorder.none,
@@ -988,7 +967,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z]")),
+                      WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z ]")),
                     ],
                   ),
                 ),
@@ -1493,6 +1472,9 @@ class DonorApplicationState extends State<DonorApplication> {
                 cursorColor: AppData.kPrimaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
+                inputFormatters: [
+                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")),
+                ],
                 decoration: InputDecoration(
                   // border: InputBorder.none,
                   counterText: "",
