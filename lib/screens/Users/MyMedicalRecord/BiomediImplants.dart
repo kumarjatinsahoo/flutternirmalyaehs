@@ -97,9 +97,11 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-        *//* leading: Icon(
+        */
+      /* leading: Icon(
           Icons.menu,
-        ),*//*
+        ),*/
+      /*
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -117,7 +119,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                   size: 26.0,
                 ),
               )),
-          *//*Padding(
+          */
+      /*Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
@@ -125,7 +128,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     Icons.more_vert
                 ),
               )
-          ),*//*
+          ),*/
+      /*
         ],
       ),*/
         appBar: AppBar(
@@ -185,10 +189,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               TextStyle(color: Colors.black, fontSize: 15),
             ),
           ),
-
-        )
-            :
-         Container(
+        ) : Container(
             child: SingleChildScrollView(
             child:
         (biomedicalModel != null)

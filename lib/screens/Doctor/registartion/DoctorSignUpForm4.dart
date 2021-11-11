@@ -702,9 +702,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         } else if (DoctorSignUpForm4.cityModel == null ||
             DoctorSignUpForm4.cityModel == "") {
           AppData.showInSnackBar(context, "Please select City");
-        } else if (textEditingController[5].text == "" ||
-            textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        } else if (textEditingController[5].text != "" &&
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code");
           FocusScope.of(context).requestFocus(fnode2);
         } else if (textEditingController[4].text != "" &&
             textEditingController[4].text.length != 10) {
@@ -1223,10 +1223,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
             },
             /* textAlignVertical:
             TextAlignVertical.center,*/
-            /*inputFormatters: [
+           inputFormatters: [
               WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")),
-            ],*/
+                  RegExp("[a-zA-Z0-9.@]")),
+            ],
           ),
         ),
       ),
