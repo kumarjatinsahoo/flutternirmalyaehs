@@ -1,14 +1,14 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
@@ -207,8 +207,8 @@ class ApiFactory {
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String ambulance_APPOINTMENT_status =
       MAIN_URL + 'change-ambulance-status?orderid=';
-  static String bloodbank_status =
-      MAIN_URL + 'change-bloodbank-status?orderid=';
+ static String bloodbank_status =
+     MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
@@ -257,6 +257,8 @@ class ApiFactory {
     return
       MAIN_URL + "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
   }*/
+
+
 
 }
 /*
