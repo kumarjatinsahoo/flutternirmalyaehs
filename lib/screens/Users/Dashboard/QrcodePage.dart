@@ -45,14 +45,11 @@ class _QrcodePageState extends State<QrcodePage> {
             Container(
               padding: EdgeInsets.all(40),
               alignment: Alignment.center,
-              child: Expanded(
-                //padding: EdgeInsets.symmetric(horizontal: 15),
-                child: QrImage(
-                  data: loginResponse1.body.user?? "0",
-                  version: QrVersions.auto,
-                  //size: 190.0,
-                  backgroundColor: Colors.white,
-                ),
+              child: QrImage(
+                data: loginResponse1.body.user?? "0",
+                version: QrVersions.auto,
+                //size: 190.0,
+                backgroundColor: Colors.white,
               ),
             ),
             Align(

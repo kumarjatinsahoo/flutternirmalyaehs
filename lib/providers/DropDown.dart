@@ -14,6 +14,7 @@ import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
+import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm4.dart';
@@ -611,6 +612,7 @@ class DropDown {
           case "speciality":
             specialitymodel = data;
             break;
+
         }
         //selectedKey = data;
       },
@@ -2022,6 +2024,12 @@ class DropDown {
         break;
       case "bloodgroup":
         return  ProfileScreen.bloodgroupmodel;
+        break;
+      case "smoking":
+        return  LifeStyleHistory.smokingmodel;
+        break;
+      case "alcohol":
+        return  LifeStyleHistory.smokingmodel;
         break;
     }
   }

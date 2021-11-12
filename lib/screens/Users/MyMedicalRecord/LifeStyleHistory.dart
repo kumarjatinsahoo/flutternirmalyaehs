@@ -70,7 +70,6 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Vag"),
     KeyvalueModel(key: "2", name: "Non Vag"),
-
   ];
   TextEditingController _height = TextEditingController();
   TextEditingController _weight = TextEditingController();
@@ -100,6 +99,25 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               lifeStyleHistryModel = LifeStyleHistryModel.fromJson(map);
+              if (lifeStyleHistryModel?.body?.smokingName != null) {
+                LifeStyleHistory.smokingmodel = KeyvalueModel(
+                    key: lifeStyleHistryModel.body.smokingId,
+                    name: lifeStyleHistryModel.body.smokingName);
+              }else{
+                LifeStyleHistory.smokingmodel=null;
+              }if (lifeStyleHistryModel?.body?.alcoholName != null) {
+                LifeStyleHistory.alcoholmodel = KeyvalueModel(
+                    key: lifeStyleHistryModel.body.alcoholId,
+                    name: lifeStyleHistryModel.body.alcoholName);
+              }else{
+                LifeStyleHistory.alcoholmodel=null;
+              }if (lifeStyleHistryModel?.body?.diet != null) {
+                LifeStyleHistory.ditemodel = KeyvalueModel(
+                   // key: lifeStyleHistryModel.body.,
+                    name: lifeStyleHistryModel.body.diet);
+              }else{
+                LifeStyleHistory.ditemodel=null;
+              }
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
@@ -133,7 +151,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   context: context,
                   builder: (BuildContext context) => dialogaddnomination(context),
                 );
-               // dialogaddnomination(context);
+               //dialogaddnomination(context);
 
 
 
@@ -485,16 +503,17 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
   }
   Widget dialogaddnomination(BuildContext context) {
    // DoctorMedicationlistModel item = DoctorMedicationlistModel();
-   /* vitalsignsModel.body[0].height.toString()=="0.0"?"N/A":textEditingController[0].text=vitalsignsModel.body[0].height.toString();
-    vitalsignsModel.body[0].weight.toString()=="0.0"?"N/A": textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
-    vitalsignsModel.body[0].bmi.toString()=="0.0"?"N/A":textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
-    vitalsignsModel.body[0].tempcel.toString()=="0.0"?"N/A":textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
-    vitalsignsModel.body[0].sysbp.toString()=="0"?"N/A":textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
-    vitalsignsModel.body[0].diabp.toString()=="0"?"N/A":textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
-    vitalsignsModel.body[0].pulse.toString()=="0"?"N/A": textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
-    vitalsignsModel.body[0].respiartion.toString()=="0"?"N/A":textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
-    vitalsignsModel.body[0].oxygen.toString()=="0"?"N/A":textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();*/
-    //Nomine
+    /*lifeStyleHistryModel?.body.exercise.toString()==null?"N/A":textEditingController[0].text=lifeStyleHistryModel?.body.exercise.toString();
+    lifeStyleHistryModel?.body.occupation.toString()==null?"N/A": textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString();
+    lifeStyleHistryModel?.body.pets.toString()==null?"N/A":textEditingController[2].text=lifeStyleHistryModel.body.pets.toString();*/
+    lifeStyleHistryModel!=null? textEditingController[0].text=lifeStyleHistryModel.body.exercise.toString() ?? "N/A":textEditingController[0].text="N/A";
+    lifeStyleHistryModel!=null? textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A":textEditingController[1].text="N/A";
+    lifeStyleHistryModel!=null? textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N/A":textEditingController[2].text="N/A";
+   /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
+    textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/
+
+
+
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -530,8 +549,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           (KeyvalueModel model) {
                         setState(() {
                           LifeStyleHistory.smokingmodel = model;
-                         /* patientProfileModel.body.eRelationId = model.key;
-                          patientProfileModel.body.eRelation = model.name;*/
+                          lifeStyleHistryModel.body.smokingId = model.key;
+                          lifeStyleHistryModel.body.smokingName = model.name;
                           // updateProfileModel.eRelation = model.key;
                         });
                       }),
@@ -546,8 +565,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                             (KeyvalueModel model) {
                           setState(() {
                             LifeStyleHistory.alcoholmodel = model;
-                            /* patientProfileModel.body.eRelationId = model.key;
-                          patientProfileModel.body.eRelation = model.name;*/
+                            lifeStyleHistryModel.body.alcoholId = model.key;
+                            lifeStyleHistryModel.body.alcoholName = model.name;
                             // updateProfileModel.eRelation = model.key;
                           });
                         }),
@@ -600,7 +619,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               {
                     "smokingId":LifeStyleHistory.smokingmodel.key,
                     "alcoholId":LifeStyleHistory.alcoholmodel.key,
-                    "diet":LifeStyleHistory.genderModel.name,
+                    "diet":LifeStyleHistory.ditemodel.name,
                     "exercise": textEditingController[0].text,
                     "occupation": textEditingController[1].text,
                     "pets": textEditingController[2].text,
@@ -650,8 +669,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
   Widget gender() {
     return DropDown.staticDropdown3("Dite", "genderPartner", genderList,
             (KeyvalueModel model) {
-              LifeStyleHistory.genderModel = model;
-        });
+              LifeStyleHistory.ditemodel = model;
+    });
   }
   Widget formField(
       int index,
