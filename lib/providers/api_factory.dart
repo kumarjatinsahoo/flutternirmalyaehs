@@ -10,7 +10,7 @@ class ApiFactory {
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
- static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+ //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
@@ -223,7 +223,7 @@ class ApiFactory {
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String AMBULANCE_LIST =
       MAIN_URL + 'get-patient-ambulance-details?userid=';
-  static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
+  //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
   static String MYPATIENTLIST_LIST = MAIN_URL + 'get-doctor-my-patientlist?drid=';
   static String BLDBANK_LIST = MAIN_URL + 'get-patient-bldbank-details?userid=';
   static String CHANGE_STATUS_PHARMACY =
