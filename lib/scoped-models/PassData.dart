@@ -138,4 +138,6 @@ String profilerelation;
 String medicineStore;
 String regNoValue;
 
+String insuranceid;
+
 }
