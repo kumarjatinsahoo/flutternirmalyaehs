@@ -24,6 +24,7 @@ class LifeStyleHistory extends StatefulWidget {
   static KeyvalueModel smokingmodel = null;
   static KeyvalueModel alcoholmodel = null;
   static KeyvalueModel ditemodel = null;
+  static KeyvalueModel genderModel = null;
 
 
   const LifeStyleHistory({Key key, this.model,this.isConfirmPage= false}) : super(key: key);
@@ -45,6 +46,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       _selectedDestination = index;
     });
   }
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -65,6 +67,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     new TextEditingController(),
     new TextEditingController(),
   ];
+  List<KeyvalueModel> genderList = [
+    KeyvalueModel(key: "1", name: "Vag"),
+    KeyvalueModel(key: "2", name: "Non Vag"),
+
+  ];
   TextEditingController _height = TextEditingController();
   TextEditingController _weight = TextEditingController();
   TextEditingController _bmi = TextEditingController();
@@ -74,6 +81,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
   TextEditingController _pulse = TextEditingController();
   TextEditingController _respiration = TextEditingController();
   TextEditingController _oxygensaturation = TextEditingController();
+
  // VITAL_SIGN_DETAIS
   void initState() {
     // TODO: implement initState
@@ -349,8 +357,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                         fit: BoxFit.cover,
                         // color: Colors.blue
                       ),
-                    ),
-  ]
+                    ),]
         ),
                 /* Align(
                   alignment: Alignment.center,
@@ -394,7 +401,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 ),
                 SizedBox(height: 5.0),
                 Text( subtitle,
-                  style: TextStyle( color: Colors.grey,fontSize: 12),
+                  style: TextStyle(color: Colors.grey,fontSize: 12),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.clip,
                   maxLines: 2,
@@ -545,6 +552,16 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           });
                         }),
                   ),
+                  gender(),
+                 /* Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: DropDown.staticDropdown3(
+                        "QTY", "callFrom", spinnerItems, (value) {
+                      setState(() {
+                        //qtyData = value.name;
+                      });
+                    }),
+                  ),*/
                   SizedBox(
                     height: 8,
                   ),
@@ -583,7 +600,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               {
                     "smokingId":LifeStyleHistory.smokingmodel.key,
                     "alcoholId":LifeStyleHistory.alcoholmodel.key,
-                    "diet":"Vag",
+                    "diet":LifeStyleHistory.genderModel.name,
                     "exercise": textEditingController[0].text,
                     "occupation": textEditingController[1].text,
                     "pets": textEditingController[2].text,
@@ -630,7 +647,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       ],
     );
   }
-
+  Widget gender() {
+    return DropDown.staticDropdown3("Dite", "genderPartner", genderList,
+            (KeyvalueModel model) {
+              LifeStyleHistory.genderModel = model;
+        });
+  }
   Widget formField(
       int index,
       String hint,
