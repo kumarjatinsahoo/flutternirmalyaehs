@@ -72,6 +72,8 @@ class _PatientDetail extends State<PatientDetail> {
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
+          physics: ScrollPhysics(),
+
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: (patientsDetails != null && patientsDetails.body!=null && patientsDetails.body.isNotEmpty)
@@ -1066,6 +1068,7 @@ class _PatientDetail extends State<PatientDetail> {
                       child:
                       ListView.builder(
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         // scrollDirection: Axis.horizontal,
                         itemCount: patientsDetails.body[0].allergies.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -1078,7 +1081,7 @@ class _PatientDetail extends State<PatientDetail> {
                                   child: Container(
                                     width: 80,
                                     child: Text(
-                                      patientsDetails.body[0].allergies[index].allName,
+                                      patientsDetails.body[0].allergies[index].allName??"N/A",
                                       style: TextStyle(
                                         color: Colors.grey[700],
                                       ),
@@ -1092,7 +1095,7 @@ class _PatientDetail extends State<PatientDetail> {
                                   child: Container(
                                     width: 80,
                                     child: Text(
-                                      patientsDetails.body[0].allergies[index].allFood,
+                                      patientsDetails.body[0].allergies[index].allFood??"N/A",
                                       style: TextStyle(
                                         color: Colors.grey[700],),
                                     ),
@@ -1105,7 +1108,7 @@ class _PatientDetail extends State<PatientDetail> {
                                   child: Container(
                                     width: 80,
                                     child: Text(
-                                      patientsDetails.body[0].allergies[index].severity,
+                                      patientsDetails.body[0].allergies[index].severity??"N/A",
                                       style: TextStyle(
                                         color: Colors.grey[700],),
                                     ),
@@ -1118,7 +1121,7 @@ class _PatientDetail extends State<PatientDetail> {
                                   child: Container(
                                     width: 80,
                                     child: Text(
-                                      patientsDetails.body[0].allergies[index].reaction,
+                                      patientsDetails.body[0].allergies[index].reaction??"N/A",
                                       style: TextStyle(
                                         color: Colors.grey[700],
                                       ),
@@ -1172,42 +1175,47 @@ class _PatientDetail extends State<PatientDetail> {
                       ),
                     ]),
                   ),
-                  (patientsDetails!=null && patientsDetails.body.isNotEmpty && patientsDetails.body[0].bioMedical.isNotEmpty)?ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: patientsDetails.body[0].bioMedical.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                patientsDetails.body[0].bioMedical[index].bioMName,
-                                style: TextStyle(
-                                    color: Colors.grey[700]),
-                              ),
+                  (patientsDetails!=null && patientsDetails.body.isNotEmpty && patientsDetails.body[0].bioMedical.isNotEmpty)?SingleChildScrollView(
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: patientsDetails.body[0].bioMedical.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    patientsDetails.body[0].bioMedical[index].bioMName??"N/A",
+                                    style: TextStyle(
+                                        color: Colors.grey[700]),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    patientsDetails.body[0].bioMedical[index].bioMReason??"N/A",
+                                    style: TextStyle(
+                                        color: Colors.grey[700]),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    patientsDetails.body[0].bioMedical[index].bioMDate??"N/A",
+                                    style: TextStyle(
+                                      color: Colors.grey[700], ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 5),
-                            Expanded(
-                              child: Text(
-                                patientsDetails.body[0].bioMedical[index].bioMReason,
-                                style: TextStyle(
-                                    color: Colors.grey[700]),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Expanded(
-                              child: Text(
-                                patientsDetails.body[0].bioMedical[index].bioMDate,
-                                style: TextStyle(
-                                  color: Colors.grey[700], ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                          );
+                        },
+                      ),
+                    ),
                   ):Container(),
                   SizedBox(height: 10),
                 ],
