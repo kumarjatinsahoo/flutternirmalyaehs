@@ -602,7 +602,7 @@ class _MyAppState extends State<MyApp> {
               '/medicalrecordpage': (context) => MedicalRecordPage(
                     model: _model,
                   ),
-              '/immunizationlist': (context) => Immunizationlist(
+              '/immunizationlist': (context) => Immunization(
                     model: _model,
                   ),
               '/worldwidehospital': (context) => WorldwideHospitals(

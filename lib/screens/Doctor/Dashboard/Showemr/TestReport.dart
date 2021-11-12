@@ -79,6 +79,8 @@ class _TestReport extends State<TestReport> {
                 child: Expanded(
                   child: (userlabtestreportModel != null && userlabtestreportModel.body!=null && userlabtestreportModel.body.isNotEmpty)
                       ? ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+
                     shrinkWrap: true,
                     // scrollDirection: Axis.horizontal,
                     itemCount: userlabtestreportModel.body.length,

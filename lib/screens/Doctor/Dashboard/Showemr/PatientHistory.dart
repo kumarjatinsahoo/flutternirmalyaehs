@@ -72,6 +72,8 @@ class _PatientHistory extends State<PatientHistory> {
                 child: Expanded(
                   child:
                   ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+
                     shrinkWrap: true,
                     itemCount: 2,
                     itemBuilder: (BuildContext context, int index) {
