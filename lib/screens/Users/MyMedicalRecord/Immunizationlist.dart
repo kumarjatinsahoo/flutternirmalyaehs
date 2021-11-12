@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
+import 'package:user/models/ImmunizationListModel.dart' as immunization;
+import 'package:user/models/ImmunizationPostModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -20,6 +22,7 @@ import 'package:user/widgets/MyWidget.dart';
 class Immunization extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
+  static KeyvalueModel immunizationmodel = null;
 
   const Immunization({Key key, this.model}) : super(key: key);
 
@@ -30,6 +33,7 @@ class Immunization extends StatefulWidget {
 class _ImmunizationState extends State<Immunization> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
+  immunization.ImmunizationListModel immunizationListModel;
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
@@ -38,7 +42,8 @@ class _ImmunizationState extends State<Immunization> {
   final df = new DateFormat('dd/MM/yyyy');
 
   TextEditingController _date = TextEditingController();
-  TextEditingController _reason = TextEditingController();
+
+  //TextEditingController _reason = TextEditingController();
   TextEditingController _name = TextEditingController();
 
   List<TextEditingController> textEditingController = [
@@ -70,7 +75,7 @@ class _ImmunizationState extends State<Immunization> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.BIOMEDICAL_IMPLANTS + loginResponse1.body.user,
+        api: ApiFactory.IMMUNIZATION_LIST + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -78,7 +83,8 @@ class _ImmunizationState extends State<Immunization> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                biomedicalModel = bio.BiomedicalModel.fromJson(map);
+                immunizationListModel =
+                    immunization.ImmunizationListModel.fromJson(map);
               });
             } else {
               setState(() {
@@ -93,45 +99,6 @@ class _ImmunizationState extends State<Immunization> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-        */
-      /* leading: Icon(
-          Icons.menu,
-        ),*/
-      /*
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        displayTextInputDialog(context),
-                  );
-                  // callAPI();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              )),
-          */
-      /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-      /*
-        ],
-      ),*/
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
@@ -139,186 +106,217 @@ class _ImmunizationState extends State<Immunization> {
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child:InkWell(
+              child: InkWell(
                 onTap: () {
                   displayTextInputDialog(context);
                 },
                 child: Icon(
                   Icons.add_circle_outline_sharp,
                   size: 26.0,
-                ),),
-              /* GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) =>
-                  displayTextInputDialog(context),
-            );
-            // callAPI();
-          },
-          child: Icon(
-            Icons.add_circle_outline_sharp,
-            size: 26.0,
-          ),
-        )*/),
-          ]
-        /* Row(
-
-            children: [
-             ),
-              *//*Spacer(),*//*
-              InkWell(
-                  onTap: () {
-                    displayTextInputDialog(context);
-                  },
-                  child: Icon(Icons.add_circle_outline)),
-            ],
-          ),*/
-      ),
-      body:
-      isdata == true
+                ),
+              ),
+            ),
+          ]),
+      body: isdata == true
           ? CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )
-          : biomedicalModel == null || biomedicalModel == null
-          ? Container(
-        child: Center(
-          child: Text(
-            'No Data Found',
-            style:
-            TextStyle(color: Colors.black, fontSize: 15),
-          ),
-        ),
-      ) : Container(
-        child: SingleChildScrollView(
-          child:
-          (biomedicalModel != null)
-              ? ListView.builder(
-            itemCount: biomedicalModel.body.length,
-            shrinkWrap: true,
-            itemBuilder: (context, i) {
-              bio.Body body = biomedicalModel.body[i];
-              return Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  shadowColor: Colors.grey,
-                  elevation: 10,
-                  child: ClipPath(
-                    clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
-                    child: Container(
-                      decoration: (i % 2 == 0)
-                          ? BoxDecoration(
-                          border: Border(
-                              left: BorderSide(
-                                  color: AppData.kPrimaryRedColor,
-                                  width: 5)))
-                          : BoxDecoration(
-                          border: Border(
-                              left: BorderSide(
-                                  color: AppData.kPrimaryColor,
-                                  width: 5))),
-                      width: double.maxFinite,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Name",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    body?.bioMName ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          //SizedBox(height: 2),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Date",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(flex: 1,
-                                  child: Text(
-                                    body?.bioMDate ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // SizedBox(height: 5),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Reason",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(flex: 1,
-                                  child: Text(
-                                    body?.bioMReason ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                        ],
-                      ),
+              backgroundColor: AppData.matruColor,
+            )
+          : immunizationListModel == null || immunizationListModel == null
+              ? Container(
+                  child: Center(
+                    child: Text(
+                      'No Data Found',
+                      style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
-                ),
-              );
-            },
-          ): Container(),
-        ),
-        /* ): Container(
+                )
+              : Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Container(
+
+                    child: SingleChildScrollView(
+                      child: (immunizationListModel != null)
+                          ? ListView.builder(
+                              itemCount: immunizationListModel.body.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, i) {
+                                immunization.Body body =
+                                    immunizationListModel.body[i];
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 5, right: 5, top: 5),
+                                  child: Card(
+                                    elevation: 5,
+                                    child: Container(
+                                      decoration: (i % 2 == 0)
+                                          ? BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  width: 5)))
+                                          : BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryColor,
+                                                  width: 5))),
+                                      width: double.maxFinite,
+                                     // width: MediaQuery.of(context).size.width,
+                                      height: 80,
+                                      /*decoration: BoxDecoration(
+                                        // color: Colors.indigo[50],
+                                        borderRadius: BorderRadius.circular(5.0),
+                                        border: Border.all(
+                                            color: Colors.grey, width: 0.7),
+                                      ),*/
+                                      child: Row(
+                                          //mainAxisAlignment: MainAxisAlignment.spic,
+                                          children: [
+                                            Container(
+                                                child: Row(
+                                                    //mainAxisAlignment: MainAxisAlignment.spic,
+                                                    children: [
+                                                  InkWell(
+                                                      onTap: () {
+                                                        // Navigator.pop(context);
+                                                      },
+                                                      child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10.0,
+                                                                  right: 10.0),
+                                                          child: Image.asset(
+                                                            "assets/redinjection40.png",
+                                                            color: Colors.black,
+                                                            height: 40,
+                                                          ))),
+                                                ])),
+                                            new Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    body.immunizationId,
+                                                    overflow: TextOverflow.clip,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Prescrlbed by:' +
+                                                        body.doctorName,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    body.immunizationDate,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
+
+
+                                                ],
+                                              ),
+                                            ),
+                                            new Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10.0),
+                                              child: InkWell(
+                                                onTap: (){
+                                        String slno=body.slno;
+                                        String status=body.status;
+
+                                        widget.model.GETMETHODCALL_TOKEN(
+                                            api: ApiFactory.IMMUNIZATION_STATUS +slno+"&status="+status,
+                                            token: widget.model.token,
+                                            fun: (Map<String, dynamic> map) {
+                                              setState(() {
+                                                log("Value>>>" + jsonEncode(map));
+                                                String msg = map[Const.MESSAGE];
+                                                if (map[Const.CODE] == Const.SUCCESS) {
+                                                  setState(() {
+                                                    Navigator.of(context).pop();
+                                                  });
+                                                } else {
+                                                  setState(() {
+                                                    isDataNoFound = true;
+                                                  });
+                                                  //AppData.showInSnackBar(context, msg);
+                                                }
+                                              });
+                                            });
+
+                                                },
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Status",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 14),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      body.status,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 14),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            new Spacer(),
+
+                                          ]),
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          : Container(),
+                    ),
+                    /* ): Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
 */
-      ),
+                  ),
+              ),
     );
   }
 
   displayTextInputDialog(BuildContext context) {
     _date.text = "";
-    _reason.text = "";
+    // = "";
+    //_reason.text = "";
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -368,37 +366,15 @@ class _ImmunizationState extends State<Immunization> {
                             23.0, (KeyvalueModel data) {
                           setState(() {
                             print(ApiFactory.IMMUNIZATION_API);
-                            Immunization.admequipmentmodel = data;
+                            Immunization.immunizationmodel = data;
                           });
                         }),
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-
-                        formField(1, "  Prescribed By"),
+                        formField(1, "Prescribed By"),
                         SizedBox(height: 8),
-                        formField(1, "  Immunization Details"),
-
-                        // TextField(
-                        //   controller: _reason,
-                        //   inputFormatters: [
-                        //     WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                        //   ],
-                        //   decoration: InputDecoration(hintText: "Reason"),
-                        // ),
-                        // TextField(
-                        //   onChanged: (value) {
-                        //     setState(() {
-                        //       // valueText = value;
-                        //       // updateProfileModel.fName = value;
-                        //     });
-                        //   },
-                        //   // controller: _fDoctor,
-                        //   inputFormatters: [
-                        //     WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")),
-                        //   ],
-                        //   decoration: InputDecoration(hintText: "Updated by"),
-                        // ),
+                        formField(2, "Immunization Details"),
                       ],
                     ),
                   ),
@@ -424,25 +400,38 @@ class _ImmunizationState extends State<Immunization> {
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  if (Immunization.admequipmentmodel == null ||
-                      Immunization.admequipmentmodel == "") {
-                    AppData.showInSnackBar(context, "Please select Name ");
+                  if (Immunization.immunizationmodel == null ||
+                      Immunization.immunizationmodel == "") {
+                    AppData.showInSnackBar(
+                        context, "Please Select Immunization Type ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please enter date");
-                  } else if (_reason.text == "" || _reason.text == null) {
-                    AppData.showInSnackBar(context, "Please enter reason");
+                    AppData.showInSnackBar(context, "Please Enter Date");
+                  } else if (textEditingController[1].text == "" ||
+                      textEditingController[1].text == null) {
+                    AppData.showInSnackBar(
+                        context, "Please Enter Prescribed By");
+                  } else if (textEditingController[2].text == "" ||
+                      textEditingController[2].text == null) {
+                    AppData.showInSnackBar(
+                        context, "Please Enter ImmunizationDetails ");
                   } else {
                     MyWidgets.showLoading(context);
-                    AddBioMedicalModel biomedicalModel = AddBioMedicalModel();
-                    biomedicalModel.userid = loginResponse1.body.user;
-                    biomedicalModel.bioMName =
-                        Immunization.admequipmentmodel.key;
-                    biomedicalModel.bioMDate = _date.text;
-                    biomedicalModel.bioMReason = _reason.text;
-
+                    ImmunizationPostModel immunizationmodel =
+                        ImmunizationPostModel();
+                    immunizationmodel.patientId = loginResponse1.body.user;
+                    immunizationmodel.immunizationId =
+                        Immunization.immunizationmodel.key;
+                    immunizationmodel.immunizationDate = _date.text;
+                    immunizationmodel.doctorName =
+                        textEditingController[1].text;
+                    immunizationmodel.immunizationDetails =
+                        textEditingController[2].text;
+                    immunizationmodel.status = "yes";
+                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+                        immunizationmodel.toJson().toString());
                     widget.model.POSTMETHOD2(
-                      api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
-                      json: biomedicalModel.toJson(),
+                      api: ApiFactory.ADD_IMMUNIZATION,
+                      json: immunizationmodel.toJson(),
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         Navigator.pop(context);
@@ -453,7 +442,6 @@ class _ImmunizationState extends State<Immunization> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
-
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         });
@@ -508,13 +496,13 @@ class _ImmunizationState extends State<Immunization> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("  Date of Birth"),
+                hintText: ("Immunization Date"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -531,7 +519,7 @@ class _ImmunizationState extends State<Immunization> {
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-        DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -542,9 +530,9 @@ class _ImmunizationState extends State<Immunization> {
   }
 
   Widget formField(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
@@ -565,7 +553,8 @@ class _ImmunizationState extends State<Immunization> {
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
-          controller: _reason,
+          // controller: _reason,
+          controller:textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
             WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
