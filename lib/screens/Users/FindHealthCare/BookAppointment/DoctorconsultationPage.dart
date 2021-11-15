@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
@@ -286,7 +287,7 @@ String formattedDate;
                             });
                           }),*/
                             child: DropDown.networkDropdownGetpartUser(
-                                "Country",
+                                MyLocalizations.of(context).text("COUNTRY"),
                                 ApiFactory.COUNTRY_API,
                                 "country",
                                 Icons.location_on_rounded,
@@ -309,7 +310,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "State",
+                                     MyLocalizations.of(context).text("STATE"),
                                       ApiFactory.STATE_API +
                                           DoctorconsultationPage
                                               .countryModel.key,
@@ -334,7 +335,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "District",
+                                  MyLocalizations.of(context).text("DIST"),
                                       ApiFactory.DISTRICT_API +
                                           DoctorconsultationPage.stateModel.key,
                                       "districtDA",
@@ -361,7 +362,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "City",
+                                     MyLocalizations.of(context).text("city"),
                                       ApiFactory.CITY_API +
                                           DoctorconsultationPage.distrModel.key,
                                       "cityDA",
@@ -384,7 +385,7 @@ String formattedDate;
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "Speciality",
+                               MyLocalizations.of(context).text("SPECIALITY"),
                                 ApiFactory.SPECIALITY_API,
                                 "specialityapp",
                                 Icons.work_outlined,
@@ -500,7 +501,7 @@ String formattedDate;
                             : Container(),
                         fromAddress(
                             1,
-                            "Reason for choice of Doctor",
+                           MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -975,7 +976,7 @@ String formattedDate;
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                      "Appointment Date",
+                     MyLocalizations.of(context).text("APPOINTMENT_DATE"),
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: Icon(

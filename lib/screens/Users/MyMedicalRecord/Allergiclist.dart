@@ -139,8 +139,7 @@ class _AllergicListListState extends State<AllergicListList> {
           : allergicModel == null || allergicModel == null
           ? Container(
         child: Center(
-          child: Text(
-            'No Data Found',
+          child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
             style:
             TextStyle(color: Colors.black, fontSize: 15),
           ),
@@ -310,7 +309,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                   children: [
                                                     Container(
                                                       width: 100,
-                                                      child: Text(MyLocalizations.of(context).text("UPDATED_BY"),
+                                                      child: Text(MyLocalizations.of(context).text("  UPDATED_BY"),
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.black,
@@ -418,8 +417,7 @@ class _AllergicListListState extends State<AllergicListList> {
                         SizedBox(
                           height: 15,
                         ),
-                        DropDown.networkDropdownGetpartUser1(
-                            "Name" ,
+                        DropDown.networkDropdownGetpartUser1(MyLocalizations.of(context).text("NAME"),
                             ApiFactory.TYPE_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -459,11 +457,11 @@ class _AllergicListListState extends State<AllergicListList> {
                         SizedBox(
                           height: 8,
                         ),
-                        formField(1,"   Reaction"),
+                        formField(1,MyLocalizations.of(context).text("REACTION")),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(2,"   Updated By"),
+                        formField(2,MyLocalizations.of(context).text("UPDATED_BY")),
                       ],
                     ),
                   ),
@@ -574,7 +572,7 @@ class _AllergicListListState extends State<AllergicListList> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

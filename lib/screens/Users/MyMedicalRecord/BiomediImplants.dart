@@ -183,8 +183,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             : biomedicalModel == null || biomedicalModel == null
             ? Container(
           child: Center(
-            child: Text(
-              'No Data Found',
+            child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
@@ -339,8 +338,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -360,8 +358,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         //   });
                         // }),
 
-                        DropDown.networkDropdownGetpartUser1(
-                            "Name",
+                        DropDown.networkDropdownGetpartUser1(MyLocalizations.of(context).text("NAME"),
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -375,7 +372,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         dob(),
                         SizedBox(height: 8),
 
-                        formField(1, "  Reason"),
+                        formField(1,MyLocalizations.of(context).text("REASON")),
 
                         // TextField(
                         //   controller: _reason,
@@ -406,7 +403,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL',
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -416,8 +413,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(
-                  'SUBMIT',
+                child: Text(MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -506,7 +502,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("  Date of Birth"),
+                hintText:(MyLocalizations.of(context).text("DOB1")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

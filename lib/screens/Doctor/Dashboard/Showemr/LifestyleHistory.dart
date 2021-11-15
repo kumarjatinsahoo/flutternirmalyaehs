@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/LifeStyleHistryModel.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -15,13 +18,34 @@ class LifeStylehistory extends StatefulWidget {
 
 class _LifeStylehistory extends State<LifeStylehistory> {
   FocusNode _descriptionFocus, _focusNode;
+  String eHealthCardno;
+  LifeStyleHistryModel lifeStyleHistryModel;
   @override
   void initState() {
     super.initState();
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
+    eHealthCardno = widget.model.patientseHealthCard;
+    callAPI(eHealthCardno);
   }
+  callAPI(String eHealthCardno ) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.IIFESTYLE_DETAIS + eHealthCardno ,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              lifeStyleHistryModel = LifeStyleHistryModel.fromJson(map);
 
+              //appointModel = lab.LabBookModel.fromJson(map);
+            } else {
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +95,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "Very Frequently 25/day",
+                            /*"Very Frequently 25/day"*/ (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.smokingName.toString()=="")
+                              ?"N/A": lifeStyleHistryModel.body.smokingName.toString(),
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
@@ -91,7 +116,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "Very Frequently",
+                            /*"Very Frequently"*/(lifeStyleHistryModel?.body == null|| lifeStyleHistryModel.body.alcoholName.toString()=="0")
+                              ? "N/A":lifeStyleHistryModel.body.alcoholName.toString(),
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
@@ -111,7 +137,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "veg",
+                            /*"veg"*/(lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.diet.toString()=="0")
+                              ?"N/A" :lifeStyleHistryModel.body.diet.toString() ,
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
@@ -131,7 +158,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "Twice a Day",
+                            /*"Twice a Day"*/(lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.exercise.toString()=="0")
+                              ?"N/A": lifeStyleHistryModel.body.exercise.toString()+" times",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
@@ -151,12 +179,14 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "Software Developer",
-                            style: TextStyle(color: Colors.black, fontSize: 15),
+                            /*"Software Developer",*/ (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.occupation.toString()=="0")
+                              ?"N/A" :lifeStyleHistryModel.body.occupation.toString(),
+
+                style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
                       ),
-                      SizedBox(height: 5),
+                      /*SizedBox(height: 5),
                       Row(
                         children: [
                           Container(
@@ -171,11 +201,11 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "5'3",
+                            ,
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
-                      ),
+                      ),*/
                       SizedBox(height: 5),
                       Row(
                         children: [
@@ -191,7 +221,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                            "Yes",
+                              (lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.pets.toString()=="0")
+                                  ?"N/A": lifeStyleHistryModel.body.pets.toString(),
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],

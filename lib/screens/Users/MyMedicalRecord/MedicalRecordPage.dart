@@ -520,7 +520,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Upload Document",
+                                                Text(MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,

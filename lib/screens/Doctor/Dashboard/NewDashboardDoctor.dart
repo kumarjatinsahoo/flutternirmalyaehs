@@ -175,8 +175,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   fun: () {
                                     //AppData.showInSnackBar(context, "Coming soon");
                                     // Navigator.pushNamed(context, "/medicalrecordpage");
-                                    Navigator.pushNamed(
-                                        context, "/docMyProf");
+                                    Navigator.pushNamed(context, "/docMyProf");
                                   },
                                   color: AppData.BG2BLUE,
                                   bordercolor: AppData.BG2BLUE,
@@ -386,7 +385,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   icon: "assets/images/mypatient.png",
                                   fun: () {
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    Navigator.pushNamed(context, "/myPatientlist");
                                     //AppData.showInSnackBar(context, "Coming soon");
                                   },
                                   //color: AppData.BG2BLUE,
