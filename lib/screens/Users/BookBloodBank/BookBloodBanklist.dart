@@ -49,7 +49,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
   ambulance.BloodbanklistModel bloodbanklistModel;
-  bool isdata = false;
+  bool isdata = true;
 
   @override
   void initState() {
@@ -67,10 +67,12 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               // pocReportModel = PocReportModel.fromJson(map);
               bloodbanklistModel = ambulance.BloodbanklistModel .fromJson(map);
             } else {
               setState(() {
+                isdata = false;
                 //isDataNoFound = true;
                // AppData.showInSnackBar(context, msg);
 
@@ -120,9 +122,11 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
         ],
       ),
 body:  isdata == true
-    ? CircularProgressIndicator(
-  backgroundColor: AppData.matruColor,
-)
+    ? Center(
+      child: CircularProgressIndicator(
+  //backgroundColor: AppData.matruColor,
+),
+    )
     : bloodbanklistModel == null || bloodbanklistModel == null
     ? Container(
   child: Center(

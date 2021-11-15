@@ -27,7 +27,7 @@ class _DoctorAppointmentConfirmedState
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
-  bool isdata = false;
+  bool isdata = true;
 
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -95,6 +95,7 @@ class _DoctorAppointmentConfirmedState
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               doctorAppointmment = DoctorAppointmment.fromJson(map);
               //String userid=map["userid"];
 
@@ -102,6 +103,7 @@ class _DoctorAppointmentConfirmedState
 
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
@@ -158,14 +160,25 @@ class _DoctorAppointmentConfirmedState
                 ],
               ),
               isdata == true
-                  ? CircularProgressIndicator(
-                      backgroundColor: AppData.matruColor,
-                    )
+                  ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height:
+                          MediaQuery.of(context).size.height * 0.35,
+                        ),
+                        CircularProgressIndicator(
+                           // backgroundColor: AppData.matruColor,
+                          ),
+                      ],
+                    ),
+                  )
                   : doctorAppointmment == null || doctorAppointmment == null
                       ? Container(
                           child: Center(
                             child: Column(
                               children: [
+
                                 //SizedBox(height: 300,),
                                 SizedBox(
                                   height:

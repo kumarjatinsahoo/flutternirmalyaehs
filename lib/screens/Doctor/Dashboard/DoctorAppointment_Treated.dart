@@ -20,7 +20,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
-  bool isdata = false;
+  bool isdata = true;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -78,9 +78,11 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               doctorAppointmment=DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
@@ -137,9 +139,16 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                     ],
                   ),
                   isdata == true
-                      ? CircularProgressIndicator(
-                    backgroundColor: AppData.matruColor,
-                  )
+                      ? Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                            CircularProgressIndicator(
+                    //backgroundColor: AppData.matruColor,
+                  ),
+                          ],
+                        ),
+                      )
                       : doctorAppointmment == null || doctorAppointmment == null
                       ? Container(
                     child: Center(

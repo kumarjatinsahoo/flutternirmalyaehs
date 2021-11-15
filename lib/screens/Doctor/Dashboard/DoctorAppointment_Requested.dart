@@ -31,7 +31,8 @@ class _DoctorAppointmentRequestedState
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
-  bool isdata = false;
+  bool isdata = true;
+
   DateTime date = DateTime.now();
 
   void initState() {
@@ -95,9 +96,11 @@ class _DoctorAppointmentRequestedState
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               doctorAppointmment = DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
 /*
               AppData.showInSnackBar(context, msg);
@@ -158,9 +161,16 @@ class _DoctorAppointmentRequestedState
                 ],
               ),
               isdata == true
-                  ? CircularProgressIndicator(
-                  backgroundColor: AppData.matruColor,
-                    )
+                  ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                        CircularProgressIndicator(
+                        //backgroundColor: AppData.matruColor,
+                          ),
+                      ],
+                    ),
+                  )
                   : doctorAppointmment == null || doctorAppointmment == null
                       ? Container(
                           child: Center(

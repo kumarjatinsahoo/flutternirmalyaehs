@@ -24,7 +24,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
-  bool isdata = false;
+  bool isdata = true;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -87,9 +87,11 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               doctorAppointmment = DoctorAppointmment.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
             }
@@ -104,6 +106,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
+
             children: [
               //appointdate(),
               Row(
@@ -146,16 +149,25 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                 ],
               ),
               isdata == true
-                  ? CircularProgressIndicator(
-                      backgroundColor: AppData.matruColor,
-                    )
-                  : doctorAppointmment == null || doctorAppointmment == null
+                  ?
+              Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.35,
+                    ),
+                    CircularProgressIndicator(
+                        //backgroundColor: AppData.matruColor,
+                      ),
+                  ],
+                ),
+              ) : doctorAppointmment == null || doctorAppointmment == null
                       ? Container(
                           child: Center(
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: 300,
+                                  height: MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 Text(
                                   'No Data Found',
@@ -166,7 +178,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                             ),
                           ),
                         )
-                      : (doctorAppointmment != null)
+                      :(doctorAppointmment != null)
                           ? ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),

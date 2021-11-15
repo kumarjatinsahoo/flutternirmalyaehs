@@ -24,7 +24,7 @@ class WalkinRegisterListPage extends StatefulWidget {
 class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
   patientSuf.PatientListModel regDataModel;
   LoginResponse1 loginResponse;
-  bool isdata = false;
+  bool isdata = true;
 
   //ScrollController _scrollController = ScrollController();
   int currentMax = 1;
@@ -53,9 +53,10 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
         fun: (Map<String, dynamic> map) {
           setState(() {
             if (map[Const.STATUS] == Const.SUCCESS) {
+              isdata = false;
               regDataModel = patientSuf.PatientListModel.fromJson(map);
             } else {
-              isDataNotFound = true;
+              isdata = false;
              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });
@@ -101,9 +102,11 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
       ),
       body:
       isdata == true
-          ? CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )
+          ? Center(
+            child: CircularProgressIndicator(
+        //backgroundColor: AppData.matruColor,
+      ),
+          )
           : regDataModel == null || regDataModel == null
           ? Container(
         child: Center(

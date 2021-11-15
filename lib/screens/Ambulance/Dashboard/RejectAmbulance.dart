@@ -24,7 +24,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
   ambulanceappoint.AmbulanceAppointmentModel ambulanceAppointmentModel;
 
 
@@ -52,10 +52,12 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isdata = false;
                 ambulanceAppointmentModel =
                     ambulanceappoint.AmbulanceAppointmentModel.fromJson(map);
               });
             } else {
+              isdata = false;
               isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
@@ -77,9 +79,11 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
         body:  isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
+            ? Center(
+              child: CircularProgressIndicator(
+         // backgroundColor: AppData.matruColor,
+        ),
+            )
             : ambulanceAppointmentModel == null || ambulanceAppointmentModel == null
             ? Container(
           child: Center(
