@@ -134,7 +134,7 @@
   "NO_DATA_FOUND": "डाटा प्राप्त नहीं हुआ",
   "DATE": "Date",
   "DATE_IMPLANT": "Date Of Implant",
-  "REASON": "Reason",
+  "REASON": "कारण",
   "ADD_DETAILS": "विवरण जोड़ें",
   "BOOK_APPOINTMENT": "निर्धारित तारीख बुक करना",
   "MY_APPOINTMENT": "मेरी नियुक्ति",
@@ -183,8 +183,8 @@
 
   "IMMUNIZATION_TYPE":"टीकाकरण प्रकार",
   "PRESCRIBED_BY":"द्वारा निर्धारित",
-  "IMMUNIZATION_DETAILS": "टीकाकरण विवरण"
-
-
+  "IMMUNIZATION_DETAILS": "टीकाकरण विवरण",
+  "IMMUNIZATION_DATE": "टीकाकरण तिथि",
+  "VISIT_SUMMARY": "यात्रा सारांश"
 }
 

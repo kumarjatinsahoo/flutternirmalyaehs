@@ -136,7 +136,7 @@
   "NO_DATA_FOUND": "କଣସି ତଥ୍ୟ ମିଳିଲା ନାହିଁ ",
   "DATE": "Date",
   "DATE_IMPLANT": "Date Of Implant",
-  "REASON": "Reason",
+  "REASON": "କାରଣ",
   "ADD_DETAILS": "ବିବରଣୀ ଯୋଡନ୍ତୁ ",
   "BOOK_APPOINTMENT": "ବୁକ୍ ନିଯୁକ୍ତି ",
   "MY_APPOINTMENT": "ମୋର ନିଯୁକ୍ତି",
@@ -183,8 +183,10 @@
   "BOOK_FUNERAL_HALL": "",
   "DISPERSAL_ASHES&UMS": "",
   "IMMUNIZATION_TYPE": "ପ୍ରତିରୋପଣ ପ୍ରକାର",
-  "PRESCRIBED_BY":"ନିର୍ଦ୍ଦିଷ୍ଟ By",
+  "PRESCRIBED_BY":"ନିର୍ଦ୍ଦିଷ୍ଟ ଦ୍ବାରା",
   "IMMUNIZATION_DETAILS": "ପ୍ରତିରୋପଣ ବିବରଣୀ",
+  "IMMUNIZATION_DATE":"ପ୍ରତିରୋପଣ ତାରିଖ",
+  "VISIT_SUMMARY": "ସାରାଂଶ ପରିଦର୍ଶନ",
 
 
 

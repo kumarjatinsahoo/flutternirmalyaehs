@@ -158,6 +158,9 @@
   "REGISTERED_DOCTOR": "Registered Doctor",
   "OTHER_DOCTOR": "Other Doctor",
   "REASON_FOR_DOCTOR": "Reason For choice of Doctor",
+  "IMMUNIZATION_DATE": "Immunization Date",
+  "VISIT_SUMMARY": "Visit Summary",
+
   "NOTE": "",
   "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",

@@ -8,7 +8,7 @@
   "CREATE_ACCOUNT":" साइन अप करा",
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
 
-  "WELCOMENACK": "परत स्वागत"
+  "WELCOMENACK": "परत स्वागत",
 
   "USER_REGISTRATION": "वापरकर्ता नोंदणी",
   "DOCTOR_REGISTRATION": "डॉक्टर नोंदणी",
@@ -136,7 +136,7 @@
   "NO_DATA_FOUND": "माहिती आढळली नाही",
   "DATE": "Date",
   "DATE_IMPLANT": "Date Of Implant",
-  "REASON": "Reason",
+  "REASON": "कारण",
   "ADD_DETAILS": "तपशील जोडा",
   "BOOK_APPOINTMENT": "बुक भेट",
   "MY_APPOINTMENT": "माझी भेट",
@@ -185,7 +185,8 @@
 
   "IMMUNIZATION_TYPE":"लसीकरण प्रकार",
   "PRESCRIBED_BY":"द्वारे विहित",
-  "IMMUNIZATION_DETAILS": "लसीकरण तपशील"
-
+  "IMMUNIZATION_DETAILS": "लसीकरण तपशील",
+  "IMMUNIZATION_DATE": "लसीकरण तारीख",
+  "VISIT_SUMMARY": "भेटीचा सारांश"
 }
 

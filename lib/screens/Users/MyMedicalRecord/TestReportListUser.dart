@@ -102,7 +102,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-            title: Text(/*MyLocalizations.of(context).text("Visit Summery")*/"Visit Summary",
+            title: Text(MyLocalizations.of(context).text("VISIT_SUMMARY"),
               style: TextStyle(color: AppData.white),
             ),
             centerTitle: true,
@@ -274,8 +274,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
             child: Column(
               children: [
                 SizedBox(height: 300,),
-                (isdata)? Text(
-                  'No Data Found',
+                (isdata)? Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
                   style:
                   TextStyle(color: Colors.black, fontSize: 15),
                 ):CircularProgressIndicator(),
