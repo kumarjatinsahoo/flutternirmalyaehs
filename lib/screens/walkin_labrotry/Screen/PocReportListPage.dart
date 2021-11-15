@@ -288,7 +288,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                             'No Data Found',
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           )
-                        : CircularProgressIndicator(),
+                        : Center(child: CircularProgressIndicator()),
                   ],
                 ),
               ),

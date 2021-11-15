@@ -24,7 +24,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
 
   oderlist.PharmacyorderModel pharmacyorderModel;
   void selectDestination(int index) {
@@ -50,12 +50,15 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+
               setState(() {
+                isdata = false;
                 pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
               });
 
             } else {
-              isDataNotAvail = true;
+              isdata = false;
+              //isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
           });
@@ -86,9 +89,11 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
       ),
       body:
       isdata == true
-          ? CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )
+          ? Center(
+            child: CircularProgressIndicator(
+        //backgroundColor: AppData.matruColor,
+      ),
+          )
           : pharmacyorderModel == null || pharmacyorderModel == null
           ? Container(
         child: Center(

@@ -86,7 +86,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
           //backgroundColor: AppData.matruColor,
         ),
             )
-            : ambulanceAppointmentModel == null || ambulanceAppointmentModel == null
+            : ambulanceAppointmentModel == null || ambulanceAppointmentModel == ""
             ? Container(
           child: Center(
             child: Text(
