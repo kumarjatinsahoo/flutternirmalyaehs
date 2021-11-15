@@ -8,7 +8,7 @@ class ApiFactory {
  // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -32,11 +32,14 @@ class ApiFactory {
 
   static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
+  static String IMMUNIZATION_LIST =
+      MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list =
       MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String INSURANCE_Details =
       MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
+  static String IMMUNIZATION_STATUS = MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
@@ -109,6 +112,7 @@ class ApiFactory {
 
   static String ADD_BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'post-biomedical-implants-api';
+  static String ADD_IMMUNIZATION = MAIN_URL + 'post-patient-immunization-details';
   static String SMS_TO_EMERGENCY =
       MAIN_URL + 'sms-to-emergency-contact-users?userid=';
 
@@ -222,6 +226,8 @@ class ApiFactory {
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String AMBULANCE_LIST =
       MAIN_URL + 'get-patient-ambulance-details?userid=';
+  //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
+  static String MYPATIENTLIST_LIST = MAIN_URL + 'get-doctor-my-patientlist?drid=';
   static String BLDBANK_LIST = MAIN_URL + 'get-patient-bldbank-details?userid=';
   static String CHANGE_STATUS_PHARMACY =
       MAIN_URL + 'change-pharmacy-status?orderid=';

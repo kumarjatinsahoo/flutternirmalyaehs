@@ -141,6 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }else{
                 ProfileScreen.specialitymodel=null;
               }
+
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
