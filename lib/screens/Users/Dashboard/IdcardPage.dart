@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -53,6 +54,9 @@ class _IdCardPageState extends State<IdCardPage> {
                 padding: const EdgeInsets.only(right:70.0),
                 child: InkWell(
                   onTap: () {
+    _onShareWithEmptyFields(context); 
+                  //  Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id);
+
                     //Navigator.pushNamed(context, "/qrcode");
                   },
                   child: Icon(Icons.share),
@@ -100,8 +104,10 @@ class _IdCardPageState extends State<IdCardPage> {
         child:
         WebView(
           initialUrl: 'https://ehealthsystem.com/download-ehealthcard?userid='+id,
+          //String  url= initialUrl.toString();
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
+
           },
         ),
 
@@ -116,5 +122,9 @@ class _IdCardPageState extends State<IdCardPage> {
         // ),
       ),
     );
+  }
+
+  _onShareWithEmptyFields(BuildContext context) async {
+    await Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id);
   }
 }
