@@ -135,7 +135,7 @@ class _ImmunizationState extends State<Immunization> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("Immunization")),
+          title: Text(MyLocalizations.of(context).text("IMMUNIZATION")),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -339,8 +339,7 @@ class _ImmunizationState extends State<Immunization> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -361,7 +360,7 @@ class _ImmunizationState extends State<Immunization> {
                         // }),
 
                         DropDown.networkDropdownGetpartUser1(
-                            "Immunization Type",
+                          MyLocalizations.of(context).text("IMMUNIZATION_TYPE"),
                             ApiFactory.IMMUNIZATION_API,
                             "immunization",
                             Icons.location_on_rounded,
@@ -375,9 +374,9 @@ class _ImmunizationState extends State<Immunization> {
                         dob(),
                         SizedBox(height: 8),
 
-                        formField(1, "  Prescribed By"),
+                        formField(1, MyLocalizations.of(context).text("PRESCRIBED_BY")),
                         SizedBox(height: 8),
-                        formField(1, "  Immunization Details"),
+                        formField(1, MyLocalizations.of(context).text("IMMUNIZATION_DETAILS")),
 
                         // TextField(
                         //   controller: _reason,
@@ -408,7 +407,7 @@ class _ImmunizationState extends State<Immunization> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL',
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -418,8 +417,7 @@ class _ImmunizationState extends State<Immunization> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(
-                  'SUBMIT',
+                child: Text(MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -508,7 +506,7 @@ class _ImmunizationState extends State<Immunization> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("  Date of Birth"),
+                hintText:(MyLocalizations.of(context).text("DOB1")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

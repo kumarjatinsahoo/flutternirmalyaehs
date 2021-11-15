@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _BookAppointmentTab extends State<BookAppointmentTab> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-        title: const Text('Book Appointment'),
+        title: Text(MyLocalizations.of(context).text("BOOK_APPOINTMENT")),
         backgroundColor: AppData.kPrimaryColor,
         actions: <Widget>[
 
@@ -41,11 +42,11 @@ class _BookAppointmentTab extends State<BookAppointmentTab> {
           dragStartBehavior: DragStartBehavior.down,
           tabs: [
             Tab(
-              text:"Registered Doctor",
+              text:MyLocalizations.of(context).text("REGISTERED_DOCTOR"),
 
             ),
             Tab(
-              text:"Other Doctor",
+              text:MyLocalizations.of(context).text("OTHER_DOCTOR"),
             ),
           ],
         ),

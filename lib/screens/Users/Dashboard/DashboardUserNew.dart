@@ -2259,7 +2259,7 @@ class MyPage2Widget extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 35,
-                            child: Text("Book Ambulance",
+                            child: Text(MyLocalizations.of(context).text("BOOK_AMBULANCE"),
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),
@@ -2295,7 +2295,7 @@ class MyPage2Widget extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 35,
-                            child: Text(MyLocalizations.of(context).text("Blood Bank"),
+                            child: Text(MyLocalizations.of(context).text("BLOOD_BANK"),
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),

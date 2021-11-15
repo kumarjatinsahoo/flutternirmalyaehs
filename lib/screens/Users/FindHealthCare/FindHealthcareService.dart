@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -23,7 +24,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text('Find Healthcare Service'),
+        title: Text(MyLocalizations.of(context).text("HEALTHCARE_SERVICE")),
         /* leading: Icon(
         Icons.menu,
       ),*/
@@ -140,8 +141,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Book an Appointment',
+                                                Text(MyLocalizations.of(context).text("BOOK_APPOINTMENT"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -205,8 +205,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'My Appointment',
+                                                Text(MyLocalizations.of(context).text("MY_APPOINTMENT"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -262,8 +261,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Find',
+                                                Text(MyLocalizations.of(context).text("FIND"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -320,8 +318,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Medical Service',
+                                                Text(MyLocalizations.of(context).text("MEDICAL_SERVICE"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
