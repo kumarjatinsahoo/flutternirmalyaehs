@@ -336,7 +336,7 @@ class _ImmunizationState extends State<Immunization> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
+                                child: Text("Add Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -345,7 +345,7 @@ class _ImmunizationState extends State<Immunization> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
                         // DropDown.networkDropdownGet(
                         //     "Name", ApiFactory.ADM_EQUIPMENT_API, "admequipment",
@@ -356,8 +356,7 @@ class _ImmunizationState extends State<Immunization> {
                         //   });
                         // }),
 
-                        DropDown.networkDropdownGetpartUser1(
-                          MyLocalizations.of(context).text("IMMUNIZATION_TYPE"),
+                        DropDown.networkDropdownGetpartUser1("Immunization Type",
                             ApiFactory.IMMUNIZATION_API,
                             "immunization",
                             Icons.location_on_rounded,
@@ -370,9 +369,9 @@ class _ImmunizationState extends State<Immunization> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-                        formField(1,MyLocalizations.of(context).text("PRESCRIBED_BY")),
+                        formField(1,"Precribed By"),
                         SizedBox(height: 8),
-                        formField(2,MyLocalizations.of(context).text("IMMUNIZATION_DETAILS")),
+                        formField(2,"Immunization Details"),
                       ],
                     ),
                   ),
@@ -498,7 +497,7 @@ class _ImmunizationState extends State<Immunization> {
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
-                  size: 18,
+                  size: 15,
                   color: Colors.grey,
                 ),
               ),
