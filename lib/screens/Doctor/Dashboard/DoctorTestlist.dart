@@ -41,7 +41,7 @@ List<TextEditingController> textEditingController = [
 class _DoctorTestlistState extends State<DoctorTestlist> {
   DateTime selectedDate = DateTime.now();
   UserListModel userListModel;
-  bool isdata =false;
+  bool isdata =true;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
@@ -103,10 +103,12 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             String msg = map[Const.MESSAGE];
             if (map["code"] == Const.SUCCESS) {
               setState(() {
+                isdata =false;
                 userListModel = UserListModel.fromJson(map);
               });
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata =false;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
@@ -232,9 +234,17 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
               ):*/
               isdata == true
-                  ? CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              )
+                  ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                        CircularProgressIndicator(
+
+               // backgroundColor: AppData.matruColor,
+              ),
+                      ],
+                    ),
+                  )
                   : userListModel == null || userListModel == null
                   ? Center(
                     child: Container(

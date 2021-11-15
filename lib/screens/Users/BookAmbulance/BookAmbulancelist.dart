@@ -48,7 +48,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
   ambulance.AmbulancelistModel ambulancelistModel;
-  bool isdata = false;
+  bool isdata = true;
 
   @override
   void initState() {
@@ -67,10 +67,12 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               // pocReportModel = PocReportModel.fromJson(map);
               ambulancelistModel = ambulance.AmbulancelistModel .fromJson(map);
             } else {
               setState(() {
+                isdata = false;
                 //isDataNoFound = true;
                // AppData.showInSnackBar(context, msg);
 
@@ -120,9 +122,11 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
         ],
       ),
 body: isdata == true
-    ? CircularProgressIndicator(
-  backgroundColor: AppData.matruColor,
-)
+    ? Center(
+      child: CircularProgressIndicator(
+  //backgroundColor: AppData.matruColor,
+),
+    )
     : ambulancelistModel == null || ambulancelistModel == null
     ? Container(
   child: Center(
