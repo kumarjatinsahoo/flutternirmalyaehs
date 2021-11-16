@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -23,7 +24,7 @@ class _RIPScreenState extends State<RIPScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'RIP',
+          MyLocalizations.of(context).text("RIP"),
           style: TextStyle(color: AppData.white),
         ),
         centerTitle: true,
@@ -96,7 +97,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Book a Hearse Van',
+                                                MyLocalizations.of(context).text("BOOK_HEARSE_VAN"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,
@@ -159,7 +160,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Book a Mortuary Freezer',
+                                                MyLocalizations.of(context).text("BOOOK_MORTUARY_FREEZER"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,
@@ -222,7 +223,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Book a Priest',
+                                                MyLocalizations.of(context).text("BOOK_PRIEST"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,
@@ -285,7 +286,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Book a Repatriation',
+                                                MyLocalizations.of(context).text("BOOK_REPATRIATION"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,
@@ -348,7 +349,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Book a Funeral Hall',
+                                                MyLocalizations.of(context).text("BOOK_FUNERAL_HALL"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,
@@ -411,7 +412,7 @@ class _RIPScreenState extends State<RIPScreen> {
                                             MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Dispersal of Ashes & Ums',
+                                                MyLocalizations.of(context).text("DISPERSAL_ASHES_UMS"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                     FontWeight.normal,

@@ -1,12 +1,13 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 
-import 'Users/FindHealthCare/MyAppointment/MyAppointment_Cancel.dart';
-import 'Users/FindHealthCare/MyAppointment/MyAppointment_Confirmed.dart';
-import 'Users/FindHealthCare/MyAppointment/MyAppointment_Requested.dart';
-import 'Users/FindHealthCare/MyAppointment/MyAppointment_Treated.dart';
+import 'MyAppointment_Cancel.dart';
+import 'MyAppointment_Confirmed.dart';
+import 'MyAppointment_Requested.dart';
+import 'MyAppointment_Treated.dart';
 
 class MyAppointment extends StatefulWidget {
   final MainModel model;
@@ -32,7 +33,7 @@ class _MyAppointmentState extends State<MyAppointment> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('My Appointment'),
+          title: Text(MyLocalizations.of(context).text("MY_APPOINTMENT")),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
            /* IconButton(
@@ -57,16 +58,16 @@ class _MyAppointmentState extends State<MyAppointment> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text: /*"Confirmed"*/ "CONFIRMED",
+                text:(MyLocalizations.of(context).text("CONFIRMED").toUpperCase()),
               ),
               Tab(
-                text: /*"Requested"*/ "REQUESTED",
+                text: (MyLocalizations.of(context).text("REQUESTED").toUpperCase()),
               ),
               Tab(
-                text: /*"Cancelled"*/ "CANCELLED",
+                text: (MyLocalizations.of(context).text("CANCELLED").toUpperCase()),
               ),
               Tab(
-                text: /*"Treated"*/ "TREATED",
+                text: (MyLocalizations.of(context).text("TREATED").toUpperCase()),
               ),
             ],
           ),

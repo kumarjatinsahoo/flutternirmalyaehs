@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -31,7 +32,7 @@ class _OrganDonationState extends State<OrganDonation> {
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
         title: Text(
-          'Organ Donation',
+          MyLocalizations.of(context).text("ORGAN_DONATION"),
           style: TextStyle(
               fontSize: 20, color: Colors.white),
         ),
@@ -61,7 +62,8 @@ class _OrganDonationState extends State<OrganDonation> {
                             height: 15,
                           ),
                           Text(
-                            'What is Organ\nDonation?',
+                            MyLocalizations.of(context).text("WHAT_IS_ORGANDONATION"),
+                           // 'What is Organ\nDonation?',
                             // 'What is Organ Donation?',
                             style: TextStyle(
                               fontSize: 14,
@@ -91,7 +93,7 @@ class _OrganDonationState extends State<OrganDonation> {
                             height: 15,
                           ),
                           Text(
-                            'Who Can Donate?\n',
+                            MyLocalizations.of(context).text("WHO_DONATE"),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -126,7 +128,7 @@ class _OrganDonationState extends State<OrganDonation> {
                             height: 15,
                           ),
                           Text(
-                            'Which Organs?',
+                            MyLocalizations.of(context).text("WHICH_ORGAN"),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -154,7 +156,7 @@ class _OrganDonationState extends State<OrganDonation> {
                             height: 10,
                           ),
                           Text(
-                            'How to Donate?',
+                            MyLocalizations.of(context).text("HOW_DONATE"),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -295,7 +297,7 @@ class _OrganDonationState extends State<OrganDonation> {
 
   Widget _applicationButton() {
     return MyWidgets.nextButton(
-      text: "Application",
+      text: MyLocalizations.of(context).text("APPLICATION"),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");

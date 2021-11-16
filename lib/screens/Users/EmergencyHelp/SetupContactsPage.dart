@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/services.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -71,7 +72,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
-          log("Response>>>"+jsonEncode(map));
+          log("Response>>>" + jsonEncode(map));
           String msg = map[Const.MESSAGE];
           emger_ms = map["emer_msg"];
           if (map[Const.STATUS1] == Const.SUCCESS) {
@@ -116,503 +117,502 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
     return Scaffold(
       appBar: AppBar(
-    backgroundColor: AppData.kPrimaryColor,
-    //backgroundColor: AppData.kPrimaryColor,
-    leading: IconButton(
-      icon: Icon(Icons.arrow_back, color: Colors.white),
-      onPressed: () => Navigator.of(context).pop(),
-    ),
-    centerTitle: true,
-    title: Text('Setup Contacts'),
+        backgroundColor: AppData.kPrimaryColor,
+        //backgroundColor: AppData.kPrimaryColor,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        centerTitle: true,
+        title: Text(MyLocalizations.of(context).text("SETUP_CONTACT")),
       ),
       body: Container(
-    child: Column(
-      children: [
-        Expanded(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
                     ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5))),
-                              child: InkWell(
-                                onTap: () {
-                                  (value1 != null)
-                                      ? _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 0)
-                                      : _displayTextInputDialog(
-                                          context, emergencyHelpModel);
-                                },
-                                child: Container(
-                                  height: 60,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          left: BorderSide(
-                                              color:
-                                                  AppData.kPrimaryRedColor,
-                                              width: 5))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            color: Colors.white,
-                                            padding: EdgeInsets.all(3),
-                                            child: Image.asset(
-                                              "assets/Add.png",
-                                              height: 30,
-                                              color: Colors.red,
-                                            )),
-                                        SizedBox(
-                                          width: spaceTab,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                (value1 != null)
-                                                    ? value1
-                                                    : "Add Emergency Contact",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                    fontSize: 15),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/vitalSigns"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: InkWell(
+                                    onTap: () {
+                                      (value1 != null)
+                                          ? _displayTextInputDialog1(
+                                              context, emergencyHelpModel, 0)
+                                          : _displayTextInputDialog(
+                                              context, emergencyHelpModel);
+                                    },
+                                    child: Container(
+                                      height: 60,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color:
+                                                      AppData.kPrimaryRedColor,
+                                                  width: 5))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                color: Colors.white,
+                                                padding: EdgeInsets.all(3),
+                                                child: Image.asset(
+                                                  "assets/Add.png",
+                                                  height: 30,
+                                                  color: Colors.red,
+                                                )),
+                                            SizedBox(
+                                              width: spaceTab,
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    (value1 != null)
+                                                        ? value1
+                                                        : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                          ],
                                         ),
-                                        // Image.asset("assets/Forwordarrow.png",height: 25,)
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                            SizedBox(
+                              height: 8,
                             ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5))),
-                              child: InkWell(
-                                onTap: () {
-                                  (value2 != null)
-                                      ? _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 1)
-                                      : _displayTextInputDialog(
-                                          context, emergencyHelpModel);
-                                },
-                                child: Container(
-                                    height: 60,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color:
-                                                    AppData.kPrimaryColor,
-                                                width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              //color: Colors.red,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/Add.png",
-                                                height: 30,
-                                                color: Colors.blue,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  (value2 != null)
-                                                      ? value2
-                                                      : "Add Emergency Contact",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15),
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: InkWell(
+                                    onTap: () {
+                                      (value2 != null)
+                                          ? _displayTextInputDialog1(
+                                              context, emergencyHelpModel, 1)
+                                          : _displayTextInputDialog(
+                                              context, emergencyHelpModel);
+                                    },
+                                    child: Container(
+                                        height: 60,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
+                                                        AppData.kPrimaryColor,
+                                                    width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  //color: Colors.red,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/Add.png",
+                                                    height: 30,
+                                                    color: Colors.blue,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (value2 != null)
+                                                          ? value2
+                                                          :MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
                                           ),
-                                          //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                            SizedBox(
+                              height: 8,
                             ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5))),
-                              child: InkWell(
-                                onTap: () {
-                                  /* _displayTextInputDialog1(
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/findScreen"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: InkWell(
+                                    onTap: () {
+                                      /* _displayTextInputDialog1(
                                       context, emergencyHelpModel, 2);*/
-                                  (value3 != null)
-                                      ? _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 2)
-                                      : _displayTextInputDialog(
-                                          context, emergencyHelpModel);
-                                },
-                                child: Container(
-                                    height: 60,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color: AppData
-                                                    .kPrimaryRedColor,
-                                                width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: Colors.white,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/Add.png",
-                                                height: 30,
-                                                color: Colors.red,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  (value3 != null)
-                                                      ? value3
-                                                      : "Add Emergency Contact",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15),
+                                      (value3 != null)
+                                          ? _displayTextInputDialog1(
+                                              context, emergencyHelpModel, 2)
+                                          : _displayTextInputDialog(
+                                              context, emergencyHelpModel);
+                                    },
+                                    child: Container(
+                                        height: 60,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: Colors.white,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/Add.png",
+                                                    height: 30,
+                                                    color: Colors.red,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (value3 != null)
+                                                          ? value3
+                                                          : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              // Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
                                           ),
-                                          // Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                            SizedBox(
+                              height: 8,
                             ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5))),
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: InkWell(
+                                    onTap: () {
+                                      (value4 != null)
+                                          ? _displayTextInputDialog1(
+                                              context, emergencyHelpModel, 3)
+                                          : _displayTextInputDialog(
+                                              context, emergencyHelpModel);
+                                    },
+                                    child: Container(
+                                        height: 60,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
+                                                        AppData.kPrimaryColor,
+                                                    width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: Colors.white,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/Add.png",
+                                                    height: 30,
+                                                    color: Colors.blue,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (value4 != null)
+                                                          ? value4
+                                                          :MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (value5 != null)
+                                        _displayTextInputDialog1(
+                                            context, emergencyHelpModel, 4);
+                                      else
+                                        _displayTextInputDialog(
+                                            context, emergencyHelpModel);
+                                    },
+                                    child: Container(
+                                        height: 60,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: Colors.white,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/Add.png",
+                                                    height: 30,
+                                                    color: Colors.red,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (value5 != null)
+                                                          ? value5
+                                                          : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),                                                 style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              //Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            GestureDetector(
+                              // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                               child: InkWell(
                                 onTap: () {
-                                  (value4 != null)
-                                      ? _displayTextInputDialog1(
-                                          context, emergencyHelpModel, 3)
-                                      : _displayTextInputDialog(
-                                          context, emergencyHelpModel);
+                                  // (emergencyHelpModel != null)
+                                  //     ? _displayTextInputDialog1(
+                                  //     context, emergencyHelpModel, 5)
+                                  //     : _displayTextInputDialog2(
+                                  //     context, emergencyHelpModel);
+                                  // _displayTextInputDialog2(context);
                                 },
-                                child: Container(
-                                    height: 60,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color:
-                                                    AppData.kPrimaryColor,
-                                                width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: Colors.white,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/Add.png",
-                                                height: 30,
-                                                color: Colors.blue,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  (value4 != null)
-                                                      ? value4
-                                                      : "Add Emergency Contact",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 5,
-                            child: ClipPath(
-                              clipper: ShapeBorderClipper(
+                                child: Card(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5))),
-                              child: InkWell(
-                                onTap: () {
-                                  if (value5 != null)
-                                    _displayTextInputDialog1(
-                                        context, emergencyHelpModel, 4);
-                                  else
-                                    _displayTextInputDialog(
-                                        context, emergencyHelpModel);
-                                },
-                                child: Container(
-                                    height: 60,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color: AppData
-                                                    .kPrimaryRedColor,
-                                                width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: Colors.white,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/Add.png",
-                                                height: 30,
-                                                color: Colors.red,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  (value5 != null)
-                                                      ? value5
-                                                      : "Add Emergency Contact",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5))),
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
+                                                        AppData.kPrimaryColor,
+                                                    width: 5))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      // (emergencyHelpModel != null)
+                                                      emger_ms ??
+                                                          "Emergency Alert ! \n I need help.",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 18,
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              //   Image.asset("assets/Forwordarrow.png",height: 25,)
+                                            ],
                                           ),
-                                          //Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                         SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
-                          child: InkWell(
-                            onTap: () {
-                              // (emergencyHelpModel != null)
-                              //     ? _displayTextInputDialog1(
-                              //     context, emergencyHelpModel, 5)
-                              //     : _displayTextInputDialog2(
-                              //     context, emergencyHelpModel);
-                             // _displayTextInputDialog2(context);
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              elevation: 5,
-                              child: ClipPath(
-                                clipper: ShapeBorderClipper(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5))),
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color:
-                                                    AppData.kPrimaryColor,
-                                                width: 5))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  // (emergencyHelpModel != null)
-                                                  emger_ms ??
-                                                      "Emergency Alert ! \n I need help.",
-                                                  textAlign:
-                                                      TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                      color: Colors.blue),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          //   Image.asset("assets/Forwordarrow.png",height: 25,)
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                          ),
+                          height: 2,
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
-    ),
       ),
     );
   }
@@ -763,7 +763,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     children: [
                       SizedBox(height: 10),
                       Text(
-                        "Add Emergency Contact",
+                        MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -784,7 +784,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
-                        decoration: InputDecoration(hintText: "Name"),
+                        decoration: InputDecoration(hintText:MyLocalizations.of(context).text("NAME")),
                       ),
                       TextField(
                         onChanged: (value) {
@@ -801,10 +801,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         ],
                         maxLength: 10,
                         decoration: InputDecoration(
-                            hintText: "Emergency Contact No.", counterText: ""),
+                            hintText: MyLocalizations.of(context).text("EMERGENCY_CONTACT_NO"),
+                            counterText: ""),
                       ),
                       DropDown.networkDropdown(
-                          "Relation", ApiFactory.RELATION_API, "relation",
+                          MyLocalizations.of(context).text("RELATION"),
+                          ApiFactory.RELATION_API, "relation",
                           (KeyvalueModel model) {
                         setState(() {
                           // patientProfileModel.body.eRelation= model.name;
@@ -823,7 +825,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL',
+                child: Text( MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -834,7 +836,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  'SUBMIT',
+                  MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),

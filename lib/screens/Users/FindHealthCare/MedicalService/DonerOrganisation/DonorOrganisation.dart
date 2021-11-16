@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -24,7 +25,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
     centerTitle: true,
     backgroundColor:AppData.kPrimaryColor,
     title: Text(
-      'Donor Organization',
+      MyLocalizations.of(context).text("DONOR_ORGANIZATION"),
       style: TextStyle(
           fontWeight: FontWeight.w300, fontSize: 20, color: Colors.white),
     ),
@@ -92,8 +93,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            'Blood Donation',
+                                          Text(MyLocalizations.of(context).text("BLOOD_DONATION"),
                                             style: TextStyle(
                                                 fontWeight:
                                                 FontWeight.normal,
@@ -157,7 +157,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                                         MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Bone Marrow Registry',
+                                            MyLocalizations.of(context).text("BONEMARROW_REGISTRY"),
                                             style: TextStyle(
                                                 fontWeight:
                                                 FontWeight.normal,

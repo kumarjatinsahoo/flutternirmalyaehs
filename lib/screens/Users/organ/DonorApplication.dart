@@ -183,8 +183,8 @@ class DonorApplicationState extends State<DonorApplication> {
     KeyvalueModel(name: "6", key: "1"),
   ];
 
-  List<String> selectedOrganList=[];
-  List<String> selectedTissueList=[];
+  List<String> selectedOrganList = [];
+  List<String> selectedTissueList = [];
 
   @override
   void initState() {
@@ -212,6 +212,7 @@ class DonorApplicationState extends State<DonorApplication> {
     organcallAPI();
     tissuecallAPI();
   }
+
   List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems(List listItems) {
     List<DropdownMenuItem<KeyvalueModel>> items = List();
     for (KeyvalueModel listItem in listItems) {
@@ -224,7 +225,9 @@ class DonorApplicationState extends State<DonorApplication> {
     }
     return items;
   }
-  List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems1(List listItems) {
+
+  List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems1(
+      List listItems) {
     List<DropdownMenuItem<KeyvalueModel>> items = List();
     for (KeyvalueModel listItem in listItems) {
       items.add(
@@ -236,6 +239,7 @@ class DonorApplicationState extends State<DonorApplication> {
     }
     return items;
   }
+
   tissuecallAPI() {
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.TISSUE_API,
@@ -306,7 +310,7 @@ class DonorApplicationState extends State<DonorApplication> {
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
         title: Text(
-          'Donor Applications',
+          MyLocalizations.of(context).text("DONOR_APPLICATION"),
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
@@ -322,7 +326,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[0],
                   decoration: InputDecoration(
-                      hintText: "Person Name",
+                      hintText: MyLocalizations.of(context).text("NAME"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
@@ -369,7 +373,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   controller: textEditingController[3],
                   decoration: InputDecoration(
                       counterText: "",
-                      hintText: "Age: Years",
+                      hintText: MyLocalizations.of(context).text("AGE"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   maxLength: 3,
@@ -385,8 +389,9 @@ class DonorApplicationState extends State<DonorApplication> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: DropDown.networkDropdownGetpartUserundreline(
-                    "Blood Group", ApiFactory.BLOODGROUP_API, "bloodgroupdn",
-                    (KeyvalueModel data) {
+                    MyLocalizations.of(context).text("BLOODGROUP"),
+                    ApiFactory.BLOODGROUP_API,
+                    "bloodgroupdn", (KeyvalueModel data) {
                   setState(() {
                     print(ApiFactory.BLOODGROUP_API);
                     DonorApplication.bloodgroupModel = data;
@@ -403,7 +408,8 @@ class DonorApplicationState extends State<DonorApplication> {
                   controller: textEditingController[4],
                   decoration: InputDecoration(
                       counterText: "",
-                      hintText: "Mobile Number",
+                      hintText:
+                          MyLocalizations.of(context).text("PHONE_NUMBER"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
@@ -421,7 +427,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[5],
                   decoration: InputDecoration(
-                      hintText: "Email ID(Optional)",
+                      hintText: MyLocalizations.of(context).text("EMAILID"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
@@ -438,7 +444,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[6],
                   decoration: InputDecoration(
-                      hintText: "Address",
+                      hintText: MyLocalizations.of(context).text("ADDRESS"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
@@ -454,21 +460,19 @@ class DonorApplicationState extends State<DonorApplication> {
                     color: Colors.black26,
                     height: 40,
                     child: Row(
-                      children: const <Widget>[
+                      children: <Widget>[
                         SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            'Organ(s)',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                                fontSize: 15),
-                          ),
+                        Text(
+                          MyLocalizations.of(context).text("ORGAN"),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 15),
                         ),
-                        SizedBox(width: 40),
+                        SizedBox(width: 180),
                         Expanded(
                           child: Text(
-                            'Tissue(s)',
+                            MyLocalizations.of(context).text("TISSUE"),
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
@@ -493,7 +497,7 @@ class DonorApplicationState extends State<DonorApplication> {
                           activeColor: Colors.blue[300],
                           dense: true,
                           title: new Text(
-                            "All Organs",
+                            MyLocalizations.of(context).text("ALL_ORGAN"),
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -515,7 +519,7 @@ class DonorApplicationState extends State<DonorApplication> {
                               activeColor: Colors.blue[300],
                               dense: true,
                               title: new Text(
-                                "All Tisues",
+                                MyLocalizations.of(context).text("ALL_TISUES"),
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -535,84 +539,90 @@ class DonorApplicationState extends State<DonorApplication> {
               ),
               Row(
                 children: <Widget>[
-                  (organModel!=null)? Flexible(
-                    child: ListView.builder(
-                      itemBuilder: (context, i) {
-                        organ.Body body = organModel.body[i];
-                        // widget.model.medicinelist = ;
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: CheckboxListTile(
-                            activeColor: Colors.blue[300],
-                            dense: true,
-                            //font change
-                            title: new Text(
-                              body.name ?? "N/A",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.5),
-                            ),
-                            value: body.isChecked,
-                            onChanged: (val) {
-                              setState(() {
-                                body.isChecked = val;
-                                if (val) {
-                                  selectedorgan.add(body);
-                                  selectedOrganList.add(body.key.toString());
-                                } else {
-                                  selectedorgan.remove(body);
-                                  selectedOrganList.remove(body.key.toString());
-                                }
-                              });
+                  (organModel != null)
+                      ? Flexible(
+                          child: ListView.builder(
+                            itemBuilder: (context, i) {
+                              organ.Body body = organModel.body[i];
+                              // widget.model.medicinelist = ;
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: CheckboxListTile(
+                                  activeColor: Colors.blue[300],
+                                  dense: true,
+                                  //font change
+                                  title: new Text(
+                                    body.name ?? "N/A",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.5),
+                                  ),
+                                  value: body.isChecked,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      body.isChecked = val;
+                                      if (val) {
+                                        selectedorgan.add(body);
+                                        selectedOrganList
+                                            .add(body.key.toString());
+                                      } else {
+                                        selectedorgan.remove(body);
+                                        selectedOrganList
+                                            .remove(body.key.toString());
+                                      }
+                                    });
+                                  },
+                                ),
+                              );
                             },
+                            itemCount: organModel.body.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                           ),
-                        );
-                      },
-                      itemCount: organModel.body.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                    ),
-                  ):Container(),
-                  (tissueModel!=null)? Flexible(
-                    child: ListView.builder(
-                      itemBuilder: (context, i) {
-                        tissue.Body body = tissueModel.body[i];
-                        // widget.model.medicinelist = ;
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: CheckboxListTile(
-                            activeColor: Colors.blue[300],
-                            dense: true,
-                            //font change
-                            title: new Text(
-                              body.name ?? "N/A",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.5),
-                            ),
-                            value: body.isChecked,
-                            onChanged: (val) {
-                              setState(() {
-                                body.isChecked = val;
-                                if (val) {
-                                  selectetissue.add(body);
-                                  selectedTissueList.add(body.key);
-                                } else {
-                                  selectetissue.remove(body);
-                                  selectedTissueList.remove(body.key);
-                                }
-                              });
+                        )
+                      : Container(),
+                  (tissueModel != null)
+                      ? Flexible(
+                          child: ListView.builder(
+                            itemBuilder: (context, i) {
+                              tissue.Body body = tissueModel.body[i];
+                              // widget.model.medicinelist = ;
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: CheckboxListTile(
+                                  activeColor: Colors.blue[300],
+                                  dense: true,
+                                  //font change
+                                  title: new Text(
+                                    body.name ?? "N/A",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.5),
+                                  ),
+                                  value: body.isChecked,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      body.isChecked = val;
+                                      if (val) {
+                                        selectetissue.add(body);
+                                        selectedTissueList.add(body.key);
+                                      } else {
+                                        selectetissue.remove(body);
+                                        selectedTissueList.remove(body.key);
+                                      }
+                                    });
+                                  },
+                                ),
+                              );
                             },
+                            itemCount: tissueModel.body.length ?? 0,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                           ),
-                        );
-                      },
-                      itemCount: tissueModel.body.length ?? 0,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                    ),
-                  ):Container(),
+                        )
+                      : Container(),
                 ],
               ),
               Padding(
@@ -625,7 +635,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     children: [
                       Expanded(
                         child: Text(
-                          "Add Witness",
+                          MyLocalizations.of(context).text("ADD_WITNESS"),
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -804,81 +814,81 @@ class DonorApplicationState extends State<DonorApplication> {
                 SizedBox(
                   height: 8,
                 ),
-            Padding(
-              //padding: const EdgeInsets.all(8.0),
-              padding:
-              const EdgeInsets.only(top: 0.0, left: 10.0, right: 5.0, bottom: 0.0),
-              child: Container(
-                // decoration: BoxDecoration(
-                //   color: AppData.kPrimaryLightColor,
-                //   borderRadius: BorderRadius.circular(29),
-                //   /*border: Border.all(
-                //        color: Colors.black,width: 0.3)*/
-                // ),
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child:
-                      DropdownButton<KeyvalueModel>(
-                          underline: Container(
-                            color: Colors.grey,
-                          ),
-                          value: _selectedItem1,
-                          items: _dropdownMenuItems1,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedItem1= value;
-                            });
-                          }),
-                    ),
-
-                    Container(
-                      height: 35.0,
-                      width: 1.0,
-                      color: Colors.grey.withOpacity(0.5),
-                      margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-                    ),
-                    new Expanded(
-                      child: TextFormField(
-                        enabled: widget.isConfirmPage ? false : true,
-                        controller: textEditingController[8],
-                        // focusNode: fnode8,
-                        cursorColor: AppData.kPrimaryColor,
-                        textInputAction: TextInputAction.next,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                        ],
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          // border: InputBorder.none,
-                          counterText: "",
-                          hintText: "S/O,D/O,W/O",
-                          hintStyle: TextStyle(color: Colors.grey),
+                Padding(
+                  //padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(
+                      top: 0.0, left: 10.0, right: 5.0, bottom: 0.0),
+                  child: Container(
+                    // decoration: BoxDecoration(
+                    //   color: AppData.kPrimaryLightColor,
+                    //   borderRadius: BorderRadius.circular(29),
+                    //   /*border: Border.all(
+                    //        color: Colors.black,width: 0.3)*/
+                    // ),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: DropdownButton<KeyvalueModel>(
+                              underline: Container(
+                                color: Colors.grey,
+                              ),
+                              value: _selectedItem1,
+                              items: _dropdownMenuItems1,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedItem1 = value;
+                                });
+                              }),
                         ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            error[4] = true;
-                            return null;
-                          }
-                          error[4] = false;
-                          return null;
-                        },
-                        onFieldSubmitted: (value) {
-                          // print(error[2]);
-                          error[4] = false;
-                          setState(() {});
-                          //AppData.fieldFocusChange(context, fnode7, fnode8);
-                        },
-                        onSaved: (value) {
-                          //userPersonalForm.phoneNumber = value;
-                        },
-                      ),
-                    )
-                  ],
+                        Container(
+                          height: 35.0,
+                          width: 1.0,
+                          color: Colors.grey.withOpacity(0.5),
+                          margin:
+                              const EdgeInsets.only(left: 00.0, right: 10.0),
+                        ),
+                        new Expanded(
+                          child: TextFormField(
+                            enabled: widget.isConfirmPage ? false : true,
+                            controller: textEditingController[8],
+                            // focusNode: fnode8,
+                            cursorColor: AppData.kPrimaryColor,
+                            textInputAction: TextInputAction.next,
+                            inputFormatters: [
+                              WhitelistingTextInputFormatter(
+                                  RegExp("[a-zA-Z., ]")),
+                            ],
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              // border: InputBorder.none,
+                              counterText: "",
+                              hintText: "S/O,D/O,W/O",
+                              hintStyle: TextStyle(color: Colors.grey),
+                            ),
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                error[4] = true;
+                                return null;
+                              }
+                              error[4] = false;
+                              return null;
+                            },
+                            onFieldSubmitted: (value) {
+                              // print(error[2]);
+                              error[4] = false;
+                              setState(() {});
+                              //AppData.fieldFocusChange(context, fnode7, fnode8);
+                            },
+                            onSaved: (value) {
+                              //userPersonalForm.phoneNumber = value;
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
                 /*Padding(
                   padding: const EdgeInsets.only(right: 3.0),
                   child: witnmobileNumber(),
@@ -944,8 +954,10 @@ class DonorApplicationState extends State<DonorApplication> {
                   child: TextFormField(
                     controller: textEditingController[11],
                     decoration: InputDecoration(
-                        hintText: /*MyLocalizations.of(context)
-                            .text("Email ID(optional)"*/"Email ID(Optional)",
+                        hintText:
+                            /*MyLocalizations.of(context)
+                            .text("Email ID(optional)"*/
+                            "Email ID(Optional)",
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
@@ -995,49 +1007,49 @@ class DonorApplicationState extends State<DonorApplication> {
         ),
         new FlatButton(
           onPressed: () {
-    setState(() {
-            if (textEditingController[7].text == "" ||
-                textEditingController[7].text == null) {
-              AppData.showInSnackBar(context, "Please enter Person Name");
-            } else if (textEditingController[8].text != "" &&
-                textEditingController[8].text == null) {
-              AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
-            }else if (textEditingController[9].text == "" ||
-                textEditingController[9].text == null) {
-              AppData.showInSnackBar(context, "Please enter Dob");
-            }else if (textEditingController[9].text == "" ||
-                textEditingController[9].text == null) {
-              AppData.showInSnackBar(context, "Please enter Age: Years");
-            } else if (DonorApplication.relationmodel == null ||
-                DonorApplication.relationmodel == "") {
-              AppData.showInSnackBar(context, "Please select Blood Relation");
-            } else if (textEditingController[10].text != "" &&
-                textEditingController[10].text.length != 10) {
-              AppData.showInSnackBar(context, "Please enter Mobile No");
-            } else if (textEditingController[11].text != '' &&
-                !AppData.isValidEmail(textEditingController[11].text)) {
-              AppData.showInSnackBar(context, "Please enter a valid E-mail");
-            } else if (textEditingController[12].text != "" &&
-                textEditingController[12].text == null) {
-              AppData.showInSnackBar(context, "Please enter Address");
-            } else {
-              WitnessModel witness = WitnessModel();
-              witness.donorName = textEditingController[7].text;
-              witness.donorType = _selectedItem1.key;
-              witness.typeUserName = textEditingController[8].text;
-              witness.relation = DonorApplication.relationmodel.key;
-              witness.age = textEditingController[9].text;
-              witness.mob = textEditingController[10].text;
-              witness.email = textEditingController[11].text;
-              witness.address = textEditingController[12].text;
+            setState(() {
+              if (textEditingController[7].text == "" ||
+                  textEditingController[7].text == null) {
+                AppData.showInSnackBar(context, "Please enter Person Name");
+              } else if (textEditingController[8].text != "" &&
+                  textEditingController[8].text == null) {
+                AppData.showInSnackBar(context, "Please enter S/o,D/0,W/o");
+              } else if (textEditingController[9].text == "" ||
+                  textEditingController[9].text == null) {
+                AppData.showInSnackBar(context, "Please enter Dob");
+              } else if (textEditingController[9].text == "" ||
+                  textEditingController[9].text == null) {
+                AppData.showInSnackBar(context, "Please enter Age: Years");
+              } else if (DonorApplication.relationmodel == null ||
+                  DonorApplication.relationmodel == "") {
+                AppData.showInSnackBar(context, "Please select Blood Relation");
+              } else if (textEditingController[10].text != "" &&
+                  textEditingController[10].text.length != 10) {
+                AppData.showInSnackBar(context, "Please enter Mobile No");
+              } else if (textEditingController[11].text != '' &&
+                  !AppData.isValidEmail(textEditingController[11].text)) {
+                AppData.showInSnackBar(context, "Please enter a valid E-mail");
+              } else if (textEditingController[12].text != "" &&
+                  textEditingController[12].text == null) {
+                AppData.showInSnackBar(context, "Please enter Address");
+              } else {
+                WitnessModel witness = WitnessModel();
+                witness.donorName = textEditingController[7].text;
+                witness.donorType = _selectedItem1.key;
+                witness.typeUserName = textEditingController[8].text;
+                witness.relation = DonorApplication.relationmodel.key;
+                witness.age = textEditingController[9].text;
+                witness.mob = textEditingController[10].text;
+                witness.email = textEditingController[11].text;
+                witness.address = textEditingController[12].text;
 
-              //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
+                //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
 
-              setState(() {
-                witnessModle.add(witness);
-              });
-            }
-    });
+                setState(() {
+                  witnessModle.add(witness);
+                });
+              }
+            });
             Navigator.of(context).pop();
             textEditingController[7].text = "";
             textEditingController[8].text = "";
@@ -1233,7 +1245,7 @@ class DonorApplicationState extends State<DonorApplication> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-        text: "Submit".toUpperCase(),
+        text: MyLocalizations.of(context).text("SUBMIT"),
         context: context,
         fun: () {
           //Navigator.pushNamed(context, "/addWitness");
@@ -1252,16 +1264,16 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (DonorApplication.bloodgroupModel == null ||
               DonorApplication.bloodgroupModel == "") {
             AppData.showInSnackBar(context, "Please select Blood Group");
-          } else if (textEditingController[4].text ==""||
+          } else if (textEditingController[4].text == "" ||
               textEditingController[4].text == null) {
             AppData.showInSnackBar(context, "Please enter Mobile Number");
-          } else if (textEditingController[4].text !=""&&
+          } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter valid Mobile Number");
           } else if (textEditingController[5].text != '' &&
               !AppData.isValidEmail(textEditingController[5].text)) {
             AppData.showInSnackBar(context, "Please enter a valid E-mail");
-          } else if (textEditingController[6].text =="" ||
+          } else if (textEditingController[6].text == "" ||
               textEditingController[6].text == null) {
             AppData.showInSnackBar(context, "Please enter Address");
           } else {
@@ -1274,7 +1286,7 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.typeUserName = textEditingController[1].text;
             addOrganDonModel.dob = textEditingController[2].text;
             addOrganDonModel.age = textEditingController[3].text;
-            addOrganDonModel.bldGr =DonorApplication.bloodgroupModel.key;
+            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
             addOrganDonModel.address = textEditingController[6].text;
@@ -1282,7 +1294,7 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.organList = selectedOrganList;
             addOrganDonModel.tissueList = selectedTissueList;
 
-            log("Post json>>>>"+jsonEncode(addOrganDonModel.toJson()));
+            log("Post json>>>>" + jsonEncode(addOrganDonModel.toJson()));
 
             //AppData.showInSnackBar(context, "add Successfully");
             widget.model.POSTMETHOD1(
@@ -1382,7 +1394,7 @@ class DonorApplicationState extends State<DonorApplication> {
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
-       // validate();
+        // validate();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -1423,7 +1435,7 @@ class DonorApplicationState extends State<DonorApplication> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child:DropdownButton<KeyvalueModel>(
+              child: DropdownButton<KeyvalueModel>(
                   underline: Container(
                     color: Colors.grey,
                   ),
@@ -1478,7 +1490,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 decoration: InputDecoration(
                   // border: InputBorder.none,
                   counterText: "",
-                  hintText: "S/O,D/O,W/O",
+                  hintText: MyLocalizations.of(context).text("RELATION_OF"),
                   hintStyle: TextStyle(color: Colors.grey),
                 ),
                 validator: (value) {
@@ -1654,13 +1666,14 @@ class DonorApplicationState extends State<DonorApplication> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:/* MyLocalizations.of(context).text("DATE_OF_BIRTH")*/"Date of Birth",
+                hintText: MyLocalizations.of(context).text("DOB1"),
+                //"Date of Birth",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
                 /*prefixIcon: Icon(
                   Icons.calendar_today,
@@ -1668,7 +1681,6 @@ class DonorApplicationState extends State<DonorApplication> {
                   color: AppData.kPrimaryColor,
                 ),*/
               ),
-
             ),
           ),
         ),
@@ -1714,6 +1726,4 @@ class DonorApplicationState extends State<DonorApplication> {
       },
     );
   }
-
-
 }
