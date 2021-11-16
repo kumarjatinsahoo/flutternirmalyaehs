@@ -107,7 +107,7 @@ class _InsuranceListState extends State<InsuranceList> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Insurance"),
+          title: Text(MyLocalizations.of(context).text("INSURANCE")),
           centerTitle: true,
           iconTheme: IconThemeData(color: AppData.white),
           actions: <Widget>[

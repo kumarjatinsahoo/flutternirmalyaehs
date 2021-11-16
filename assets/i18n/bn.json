@@ -17,7 +17,7 @@
   "NGO": "ଏନଜିଓ",
   "BLOOD_BANK": "ରକ୍ତ ବ୍ୟାଙ୍କ",
   "CANCEL": "ବାତିଲ୍",
-  "SAVE": "Save",
+  "SAVE": "ସେଭ",
   "UPDATE": "ଅଦ୍ୟତନ କରନ୍ତୁ ",
 
 
@@ -150,7 +150,7 @@
   "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
-  "SEARCH": "",
+  "SEARCH": "ସନ୍ଧାନ",
   "AYUSH_DOCTOR": "ଆୟୁଷ ଡାକ୍ତର",
   "DONOR_ORGANIZATION": "ଦାନ ସଂଗଠନ ",
   "LIFESTYLE_SOLUTION": "ଜୀବନ ସମାଧାନ",
@@ -233,27 +233,17 @@
   "EYE_BALL": "ଆଖି",
   "BLOOD_VESSELS": "ରକ୍ତ ବାହିକା",
   "ADD_WITNESS": "ସାକ୍ଷୀ",
-  "FIND_GENERIC_STORE": " ",
-  "FIND_HEALTH_SCHEMES": " ",
-
+  "FIND_GENERIC_STORE": "ଜେନେରିକ୍ ମେଡିକାଲ୍ ଷ୍ଟୋର ଖୋଜ",
+  "FIND_HEALTH_SCHEMES": "ସ୍ୱାସ୍ଥ୍ୟ ସ୍କିମ୍ ଖୋଜ",
+  "MOBILE_NO": "ମୋବାଇଲ୍ ନମ୍ବର",
 
 
   "REQUESTED": "ଅନୁରୋଧ",
   "CONFIRMED": "ନିଶ୍ଚିତ",
   "CANCELLED": "ବାତିଲ୍",
-  "TREATED": "ଚିକିତ୍ସିତ",
+  "TREATED": "ଚିକିତ୍ସିତ"
 
 
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": "",
-  "AMBULANCE": ""
+
 }
 

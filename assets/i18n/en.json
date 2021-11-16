@@ -172,7 +172,7 @@
   "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
-  "SEARCH": "",
+  "SEARCH": "Search",
   "AYUSH_DOCTOR": "AYUSH Doctors",
   "DONOR_ORGANIZATION": "Donor organization",
   "LIFESTYLE_SOLUTION": "Life Style Solution",
@@ -242,8 +242,8 @@
   "EYE_BALL": "Eyes",
   "BLOOD_VESSELS": "Blood Vessels",
   "ADD_WITNESS": "Add Witness",
-  "FIND_GENERIC_STORE": " ",
-  "FIND_HEALTH_SCHEMES": " ",
+  "FIND_GENERIC_STORE": "Find Generic Medical Store",
+  "FIND_HEALTH_SCHEMES": "Find Health schemes ",
   "WALK_IN_PATIENT": "Walk in Patient",
   "EMERGENCY_ACCESS": "Emergency Access",
   "SHARE_APPOINTMENT": "Share Appointment",
@@ -261,6 +261,7 @@
   "TREATED": "Treated",
   "UHID_NO": "Uhid No",
   "PATHOLOGY_LAB": "Pathology Lab",
+
 
 
 

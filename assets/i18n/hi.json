@@ -17,7 +17,7 @@
   "NGO": "गैर सरकारी संगठन",
   "BLOOD_BANK": "रक्त बैंक",
   "CANCEL": "रद्द करना",
-  "SAVE": "Save",
+  "SAVE": "संचित करना",
   "UPDATE": "अपडेट करें",
 
 
@@ -148,7 +148,7 @@
   "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
-  "SEARCH": "",
+  "SEARCH": "खोज",
   "AYUSH_DOCTOR": "आयुष चिकित्सक",
   "DONOR_ORGANIZATION": "दाता संगठन",
   "LIFESTYLE_SOLUTION": "जीवन शैली समाधान",
@@ -226,8 +226,9 @@
   "EYE_BALL": "आंख",
   "BLOOD_VESSELS": "रक्त वाहिकाएं",
   "ADD_WITNESS": "गवाह जोड़ें",
-  "FIND_GENERIC_STORE": " ",
-  "FIND_HEALTH_SCHEMES": " ",
+  "FIND_GENERIC_STORE": "जेनेरिक मेडिकल स्टोर खोजें",
+  "FIND_HEALTH_SCHEMES": "स्वास्थ्य योजनाएं खोजें",
+  "MOBILE_NO": "मोबाइल नंबर",
 
   "IMMUNIZATION_TYPE":"टीकाकरण प्रकार",
   "PRESCRIBED_BY":"द्वारा निर्धारित",

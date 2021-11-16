@@ -8,7 +8,6 @@
   "CREATE_ACCOUNT":" साइन अप करा",
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
 
-  "WELCOMENACK": "परत स्वागत",
 
   "USER_REGISTRATION": "वापरकर्ता नोंदणी",
   "DOCTOR_REGISTRATION": "डॉक्टर नोंदणी",
@@ -18,7 +17,7 @@
   "NGO": "एनजीओ",
   "BLOOD_BANK": "ब्लड बँक",
   "CANCEL": "रद्द करा",
-  "SAVE": "Save",
+  "SAVE": "जतन करा",
   "UPDATE": "अपडेट करा",
 
 
@@ -150,7 +149,7 @@
   "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
-  "SEARCH": "",
+  "SEARCH": "शोध",
   "AYUSH_DOCTOR": "आयुष डॉक्टर",
   "DONOR_ORGANIZATION": "देणगी संस्था",
   "LIFESTYLE_SOLUTION": "जीवनशैलीसाठी उपाययोजना",
@@ -228,8 +227,9 @@
   "EYE_BALL": "डोळा",
   "BLOOD_VESSELS": "रक्तवाहिन्या",
   "ADD_WITNESS": "साक्षीदार जोडा",
-  "FIND_GENERIC_STORE": " ",
-  "FIND_HEALTH_SCHEMES": " ",
+  "FIND_GENERIC_STORE": "जेनेरिक मेडिकल स्टोअर शोधा",
+  "FIND_HEALTH_SCHEMES": "आरोग्य योजना शोधा",
+  "MOBILE_NO": "मोबाईल नंबर",
 
 
 
