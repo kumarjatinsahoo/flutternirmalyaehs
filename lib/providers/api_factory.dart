@@ -1,7 +1,7 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
  //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
@@ -10,7 +10,7 @@ class ApiFactory {
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-// static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
+ static String MAIN_URL = "http://192.168.56.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
@@ -41,6 +41,7 @@ class ApiFactory {
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String IMMUNIZATION_STATUS = MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
+  static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';

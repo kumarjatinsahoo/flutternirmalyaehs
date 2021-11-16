@@ -537,7 +537,8 @@ class _DoctorAppointmentConfirmedState
                                                                     appointmentlist.userid;
                                                                 Navigator.pushNamed(context, "/showemr");
                                                               },
-                                                              child: Material(
+                                                              child:
+                                                              Material(
                                                                 elevation: 5,
                                                                 color: AppData
                                                                     .kPrimaryColor,

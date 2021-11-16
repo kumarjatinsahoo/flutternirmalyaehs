@@ -478,7 +478,8 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                             ),
                             GestureDetector(
                               onTap: () {
-
+                                Navigator.pushNamed(
+                                    context, "/uploaddocument");
                                 /*AppData.launchURL(
                                 "http://docs.google.com/gview?embedded=true&url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=" +
                                     "");*/
