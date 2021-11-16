@@ -1,5 +1,6 @@
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apt;
 import 'package:user/providers/Const.dart';
@@ -168,7 +169,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                   height: 300,
                                 ),
                                 Text(
-                                  'No Data Found',
+                                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),

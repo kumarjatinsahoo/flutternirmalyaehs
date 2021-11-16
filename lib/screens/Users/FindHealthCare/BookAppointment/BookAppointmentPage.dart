@@ -14,6 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/models/TimeScheduleModel.dart';
@@ -305,7 +306,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "Speciality",
+                               MyLocalizations.of(context).text("SPECIALITY"),
                                 ApiFactory.SPECIALITY_API,
                                 "specialityapp",
                                 Icons.work_outlined,
@@ -437,7 +438,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                           child: SizedBox(
                             height: 58,
                             child: DropDown.docList(
-                                "Doctor",
+                                MyLocalizations.of(context).text("DOCTOR"),
                                 ApiFactory.DOC_LIST +
                                     BookAppointmentPage
                                         .specialistModel.key,/*+
@@ -498,7 +499,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
                             : Container(),
                         fromAddress(
                             1,
-                            "Notes",
+                            MyLocalizations.of(context).text("NOTE"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -976,7 +977,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
               },
               decoration: InputDecoration(
                 hintText: //"Last Period Date",
-                    "Appointment Date",
+                MyLocalizations.of(context).text("APPOINTMENT_DATE"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

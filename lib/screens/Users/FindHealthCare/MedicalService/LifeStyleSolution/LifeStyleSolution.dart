@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -23,7 +24,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Life Style Solution',
+          MyLocalizations.of(context).text("LIFESTYLE_SOLUTION"),
           style: TextStyle(color: AppData.white),
         ),
         centerTitle: true,
@@ -96,8 +97,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Child Caretaker',
+                                                Text(MyLocalizations.of(context).text("CHILD_CARETAKER"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -159,7 +159,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Developing',
+                                                  MyLocalizations.of(context).text("DEVELOPING"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -222,7 +222,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Diagnostics',
+                                                  MyLocalizations.of(context).text("DIAGNOSTICS"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -284,7 +284,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Gym',
+                                                  MyLocalizations.of(context).text("GYMS"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -347,7 +347,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Hair Treatment Center',
+                                                  MyLocalizations.of(context).text("HAIR_TREATMENT"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -409,7 +409,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Personal',
+                                                  MyLocalizations.of(context).text("PERSONAL"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,

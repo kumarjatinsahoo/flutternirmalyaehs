@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apnt;
 import 'package:user/models/LoginResponse1.dart';
 
@@ -302,8 +303,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                   MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 Text(
-
-                                  'No Data Found',
+                                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),

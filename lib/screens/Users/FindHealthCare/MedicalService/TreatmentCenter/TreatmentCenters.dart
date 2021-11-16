@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -21,8 +22,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Treatment Centers',
+        title: Text(MyLocalizations.of(context).text("TREATMENT_CENTER"),
           style: TextStyle(color: AppData.white),
         ),
         centerTitle: true,
@@ -97,7 +97,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Cancer',
+                                                  MyLocalizations.of(context).text("CANCER"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -162,7 +162,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Cardiology',
+                                                  MyLocalizations.of(context).text("CARDIOLOGY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -227,7 +227,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Diabetic',
+                                                  MyLocalizations.of(context).text("DIABETIC"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -292,7 +292,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Neurology',
+                                                  MyLocalizations.of(context).text("NEUROLOGY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -357,7 +357,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Nephrology',
+                                                  MyLocalizations.of(context).text("NEPHROLOGY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -423,7 +423,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Ophthalmology',
+                                                  MyLocalizations.of(context).text("OPTHALMOLOGY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,

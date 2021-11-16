@@ -130,7 +130,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Life Style History",
+        title: Text(MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
           style: TextStyle(color: AppData.white),
         ),
         centerTitle: true,
@@ -189,7 +189,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/smoking.png",
                                   title: (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.smokingName.toString()=="")
                       ?"N/A": lifeStyleHistryModel.body.smokingName.toString() ,
-                                  subtitle:"Smoking",
+                                  subtitle:MyLocalizations.of(context).text("SMOKING"),
                                   fun: () {
                                     /*Navigator.pushNamed(
                                     context, "/patientRegistration");*/
@@ -208,7 +208,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/alcohol.png",
                                   title:(lifeStyleHistryModel?.body == null|| lifeStyleHistryModel.body.alcoholName.toString()=="0")
                                       ? "N/A":lifeStyleHistryModel.body.alcoholName.toString(),
-                                  subtitle:"Alcohol",
+                                  subtitle:MyLocalizations.of(context).text("ALCOHOL"),
                                   fun: () {
                                    // chooseAppointment(context);
                                     // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -233,7 +233,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/diet.png",
                                   title: (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.diet.toString()=="0")
                                       ?"N/A" :lifeStyleHistryModel.body.diet.toString() ,
-                                  subtitle:"Dite",
+                                  subtitle:MyLocalizations.of(context).text("DIET"),
                                   fun: () {
                                     /*Navigator.pushNamed(
                                         context, "/pocreportlist");*/
@@ -251,7 +251,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                 icon: "assets/exercise.png",
                                 title: (lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.exercise.toString()=="0")
                                     ?"N/A": lifeStyleHistryModel.body.exercise.toString()+" times",
-                                subtitle:"Exercise",
+                                subtitle:MyLocalizations.of(context).text("EXERCISE"),
                                 fun: () {
                                   //chooseAppointment1(context);
                                  /* Navigator.pushNamed(
@@ -279,7 +279,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/occupation.png",
                                   title: (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.occupation.toString()=="0")
                                       ?"N/A" :lifeStyleHistryModel.body.occupation.toString() ,
-                                  subtitle:"Occupation",
+                                  subtitle:MyLocalizations.of(context).text("OCCUPATION"),
                                   fun: () {
                                     /*Navigator.pushNamed(
                                         context, "/pocreportlist");*/
@@ -298,7 +298,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                 icon: "assets/pet.png",
                                 title: (lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.pets.toString()=="0")
                                     ?"N/A": lifeStyleHistryModel.body.pets.toString(),
-                                subtitle:"Pets",
+                                subtitle:MyLocalizations.of(context).text("PETS"),
                                 fun: () {
                                   //chooseAppointment1(context);
                                   /* Navigator.pushNamed(
@@ -529,7 +529,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
-                  Text("Update Life Style History",
+                  Text(MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.black,
@@ -545,7 +545,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 padding:
                 const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
                 child:DropDown.networkDropdownlabler1(
-                      "Smoking", ApiFactory.smoking_API, "smoking",
+                    MyLocalizations.of(context).text("SMOKING"),
+                    ApiFactory.smoking_API, "smoking",
                           (KeyvalueModel model) {
                         setState(() {
                           LifeStyleHistory.smokingmodel = model;
@@ -561,7 +562,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     padding:
                     const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
                     child:DropDown.networkDropdownlabler1(
-                        "Alcohol", ApiFactory.alchohol_API, "alcohol",
+                        MyLocalizations.of(context).text("ALCOHOL"),
+                       ApiFactory.alchohol_API, "alcohol",
                             (KeyvalueModel model) {
                           setState(() {
                             LifeStyleHistory.alcoholmodel = model;
@@ -584,15 +586,15 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 8,
                   ),
-                  formFieldMobile(0, "Exercise"),
+                  formFieldMobile(0,MyLocalizations.of(context).text("EXERCISE")),
                   SizedBox(
                     height: 8,
                   ),
-                  formField(1,"Occupation"),
+                  formField(1,MyLocalizations.of(context).text("OCCUPATION")),
                   SizedBox(
                     height: 8,
                   ),
-                  formField(2,"Pets"),
+                  formField(2,MyLocalizations.of(context).text("PETS")),
                   SizedBox(
                     height: 5,
 
@@ -667,7 +669,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     );
   }
   Widget gender() {
-    return DropDown.staticDropdown3("Dite", "genderPartner", genderList,
+    return DropDown.staticDropdown3(
+        MyLocalizations.of(context).text("DIET"),
+      "genderPartner", genderList,
             (KeyvalueModel model) {
               LifeStyleHistory.ditemodel = model;
     });

@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -305,7 +306,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Emergency Help',
+                    MyLocalizations.of(context).text("EMERGENCY_HELP"),
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
@@ -393,8 +394,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Text(
-                                "HELP",
+                              child: Text(MyLocalizations.of(context).text("HELP"),
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 30,
@@ -477,8 +477,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               },
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Text(
-                                  'Call Emergency ',
+                                child: Text(MyLocalizations.of(context).text("CALL_EMERGENCY"),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
@@ -687,7 +686,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     "tel://" + emergencyHelpModel.ambulance);
                               },
                               child: Text(
-                                'Call Ambulance ',
+                                MyLocalizations.of(context).text("CALL_AMBULANCE"),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
@@ -820,7 +819,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     "tel://" + emergencyHelpModel.police);
                               },
                               child: Text(
-                                'Call Police ',
+                                MyLocalizations.of(context).text("CALL_POLICE"),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
