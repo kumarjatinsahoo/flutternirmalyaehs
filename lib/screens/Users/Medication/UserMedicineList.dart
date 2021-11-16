@@ -70,7 +70,7 @@ class _MedicineList extends State<UserMedicineList> {
   Map<String, dynamic> mapK = {};
 
   bool isDataNoFound = false;
-  bool isdata = true;
+  bool isdata =false;
 
   void initState() {
     // TODO: implement initState

@@ -49,7 +49,7 @@ class _MedicineList extends State<UserTestList> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   String userid;
-  bool isdata =true;
+  bool isdata =false;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();

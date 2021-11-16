@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
@@ -29,7 +30,29 @@ class _IdCardPageState extends State<IdCardPage> {
     loginResponse1=widget.model.loginResponse1;
     id=base64.encode(utf8.encode(loginResponse1.body.user));
   }
+  final Completer<InAppWebViewController> _controller1 =
+  Completer<InAppWebViewController>();
 
+  final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
+    crossPlatform: InAppWebViewOptions(
+      //useShouldOverrideUrlLoading: true,
+     // mediaPlaybackRequiresUserGesture: false,
+     // javaScriptEnabled: true,
+      supportZoom: false,
+      javaScriptEnabled: true,
+      disableHorizontalScroll: true,
+      disableVerticalScroll: true,
+    ),
+    android: AndroidInAppWebViewOptions(
+      useHybridComposition: true,
+      loadWithOverviewMode: true,
+      useWideViewPort: false,
+      builtInZoomControls: false,
+      domStorageEnabled: true,
+      supportMultipleWindows: true,
+
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,14 +122,62 @@ class _IdCardPageState extends State<IdCardPage> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+      body:Builder(builder: (BuildContext context) {
+        return InAppWebView(
+          initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id/*"https://www.google.com/search?client=firefox-b-d&q=pdf+example"*/)),
+          initialOptions: _options,
+          shouldOverrideUrlLoading: (controller, action) {
+            print("override");
+            return Future.value(NavigationActionPolicy.ALLOW);
+          },
+          onWebViewCreated: (webViewController) {
+            _controller1.complete(webViewController);
+          },
+          onDownloadStart: (controller, uri) {
+            print("download");
+          },
+        );
+      }),
+
+      /*Container(
+    height: height,
+    child: InAppWebView(
+      initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id)),
+      initialOptions: _options,
+      shouldOverrideUrlLoading: (controller, action) {
+        print("override");
+        return Future.value(NavigationActionPolicy.ALLOW);
+      },
+      onWebViewCreated: (webViewController) {
+        _controller1.complete(webViewController);
+      },
+      onDownloadStart: (controller, uri) {
+        print("download");
+      },
+    *//*initialOptions: InAppWebViewGroupOptions(
+
+      crossPlatform: InAppWebViewOptions(
+    supportZoom: false,
+    javaScriptEnabled: true,
+    disableHorizontalScroll: true,
+    disableVerticalScroll: true,
+    ),
+    ),*//*
+    )
+      ),*/
+      /* Container(
+        width: MediaQuery.of(context).size.width,
+        height:MediaQuery.of(context).size.height ,
+        padding: EdgeInsets.symmetric(horizontal: 0),
         child:
         WebView(
+
           initialUrl: 'https://ehealthsystem.com/download-ehealthcard?userid='+id,
           //String  url= initialUrl.toString();
+
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
+
 
           },
         ),
@@ -120,7 +191,7 @@ class _IdCardPageState extends State<IdCardPage> {
         //     Image.asset("assets/images/healthCard2.jpeg"),
         //   ],
         // ),
-      ),
+      ),*/
     );
   }
 
