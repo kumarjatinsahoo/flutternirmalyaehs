@@ -234,7 +234,7 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
                           'No Data Found',
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         )
-                            : CircularProgressIndicator(),
+                            : Center(child: CircularProgressIndicator()),
                       ],
                     ),
                   ),

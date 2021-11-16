@@ -43,7 +43,7 @@ class _MedicationlistState extends State<Medicationlist> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
-  bool isdata =false;
+  bool isdata =true;
   String selectedDatestr;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -103,10 +103,12 @@ class _MedicationlistState extends State<Medicationlist> {
             String msg = map[Const.MESSAGE];
             if (map["code"] == Const.SUCCESS) {
               setState(() {
+                isdata =false;
                 medicationlistModel = MedicationlistModel.fromJson(map);
               });
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata =false;
               // isDataNotAvail = true;
              // AppData.showInSnackBar(context, msg);
             }
@@ -169,9 +171,16 @@ class _MedicationlistState extends State<Medicationlist> {
           SingleChildScrollView(
 
             child: isdata == true
-                ? CircularProgressIndicator(
-              backgroundColor: AppData.matruColor,
-            )
+                ? Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
+                      CircularProgressIndicator(
+             // backgroundColor: AppData.matruColor,
+            ),
+                    ],
+                  ),
+                )
                 : medicationlistModel == null || medicationlistModel == null
                 ? Container(
               child: Center(

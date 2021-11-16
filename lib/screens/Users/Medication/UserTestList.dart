@@ -108,9 +108,11 @@ class _MedicineList extends State<UserTestList> {
         if (map[Const.CODE] == Const.SUCCESS) {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
+            isdata =false;
             userListModel = UserListModel.fromJson(map);
           });
         } else {
+          isdata =false;
           //isDataNotAvail = true;
           //AppData.showInSnackBar(context, msg);
         }
@@ -159,9 +161,11 @@ class _MedicineList extends State<UserTestList> {
         child: Scaffold(
       body:
       isdata == true
-          ? MyWidgets.showLoading(context)/* CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )*/
+          ?Center(
+            child: CircularProgressIndicator(
+        //backgroundColor: AppData.matruColor,
+      ),
+          )
           : userListModel == null || userListModel == null
           ? Container(
         child: Center(
@@ -193,10 +197,12 @@ class _MedicineList extends State<UserTestList> {
                 SizedBox(
                   height: 15,
                 ),*/
-                isdata == true
-                    ? CircularProgressIndicator(
+                /*isdata == true
+                    ? Center(
+                      child: CircularProgressIndicator(
                   backgroundColor: AppData.matruColor,
-                )
+                ),
+                    )
                     : userListModel == null || userListModel == null
                     ?
                 Align(
@@ -209,8 +215,8 @@ class _MedicineList extends State<UserTestList> {
                     ),
                   ),
 
-                ))
-                    :
+                )):*/
+
                 (userListModel != null)
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),

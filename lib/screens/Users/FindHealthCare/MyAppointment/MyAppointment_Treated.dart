@@ -26,7 +26,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
-  bool isdata = false;
+  bool isdata = true;
 
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -91,6 +91,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               appointmentlistModel = AppointmentlistModel.fromJson(map);
               String userid = map["userid"];
               //String travel =travel_allownces.toString();
@@ -99,6 +100,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
             }
@@ -157,16 +159,27 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
               ),
 
               isdata == true
-                  ? CircularProgressIndicator(
-                      backgroundColor: AppData.matruColor,
-                    )
+                  ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height:
+                          MediaQuery.of(context).size.height * 0.35,
+                        ),
+                        CircularProgressIndicator(
+                            //backgroundColor: AppData.matruColor,
+                          ),
+                      ],
+                    ),
+                  )
                   : appointmentlistModel == null || appointmentlistModel == null
                       ? Container(
                           child: Center(
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: 300,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 Text(
                                   MyLocalizations.of(context).text("NO_DATA_FOUND"),

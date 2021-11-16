@@ -26,7 +26,7 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
-  bool isdata = false;
+  bool isdata = true;
 
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -92,9 +92,11 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               appointmentlistModel = AppointmentlistModel.fromJson(map);
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              isdata = false;
               // isDataNotAvail = true;
            //   AppData.showInSnackBar(context, msg);
             }
@@ -153,15 +155,28 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
               ),
 
               isdata == true
-                  ? CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              )
+                  ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height:
+                          MediaQuery.of(context).size.height * 0.35,
+                        ),
+                        CircularProgressIndicator(
+               // backgroundColor: AppData.matruColor,
+              ),
+                      ],
+                    ),
+                  )
                   : appointmentlistModel == null || appointmentlistModel == null
                   ? Container(
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(height: 300,),
+                      SizedBox(
+                        height:
+                        MediaQuery.of(context).size.height * 0.35,
+                      ),
                       Text(
                         MyLocalizations.of(context).text("NO_DATA_FOUND"),
                         style:
