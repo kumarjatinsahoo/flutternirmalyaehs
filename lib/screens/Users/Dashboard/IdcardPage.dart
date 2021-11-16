@@ -34,18 +34,33 @@ class _IdCardPageState extends State<IdCardPage> {
   Completer<InAppWebViewController>();
 
   final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
-    crossPlatform: InAppWebViewOptions(
+      crossPlatform: InAppWebViewOptions(
+
+        useShouldOverrideUrlLoading: true,
+
+        javaScriptCanOpenWindowsAutomatically: true,
+        mediaPlaybackRequiresUserGesture: false,
+        disableHorizontalScroll: true,
+        disableVerticalScroll: true,
+      ),
+    /*crossPlatform: InAppWebViewOptions(
        //useShouldOverrideUrlLoading: true,
-      // mediaPlaybackRequiresUserGesture: false,
+       mediaPlaybackRequiresUserGesture: false,
       // javaScriptEnabled: true,
       //debuggingEnabled: true,
-      preferredContentMode: UserPreferredContentMode.DESKTOP,
+      //preferredContentMode: UserPreferredContentMode.DESKTOP,
       supportZoom: false,
       javaScriptEnabled: true,
       //disableHorizontalScroll: false,
       disableHorizontalScroll: true,
       disableVerticalScroll: true,
-    ),
+    ),*/
+      android: AndroidInAppWebViewOptions(
+        useHybridComposition: true,
+      ),
+      ios: IOSInAppWebViewOptions(
+        allowsInlineMediaPlayback: true,
+      )
     /*android: AndroidInAppWebViewOptions(
       useHybridComposition: true,
       loadWithOverviewMode: true,
@@ -127,26 +142,27 @@ class _IdCardPageState extends State<IdCardPage> {
       ),
       body:Builder(builder: (BuildContext context) {
         print("api......"+'https://ehealthsystem.com/download-ehealthcard?userid='+id);
-        return Container(
+        return  Container(
+          width: MediaQuery.of(context).size.width,
           child: SizedBox(
-            width: MediaQuery.of(context).size.height,
-            child: InAppWebView(
-              initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id/*"https://www.google.com/search?client=firefox-b-d&q=pdf+example"*/)),
-              initialOptions: _options,
+       // width: MediaQuery.of(context).size.height,
+        child: InAppWebView(
 
-              shouldOverrideUrlLoading: (controller, action) {
-                print("override");
-                return Future.value(NavigationActionPolicy.ALLOW);
-              },
-              onWebViewCreated: (webViewController) {
-                _controller1.complete(webViewController);
-              },
-              onDownloadStart: (controller, uri) {
-                print("download");
-              },
-            ),
+          initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id/*"https://www.google.com/search?client=firefox-b-d&q=pdf+example"*/)),
+          initialOptions: _options,
+
+          shouldOverrideUrlLoading: (controller, action) {
+            print("override");
+            return Future.value(NavigationActionPolicy.ALLOW);
+          },
+          onWebViewCreated: (webViewController) {
+            _controller1.complete(webViewController);
+          },
+          onDownloadStart: (controller, uri) {
+            print("download");
+          },
+        ),
           ),
-
         );
       }),
 
