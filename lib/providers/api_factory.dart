@@ -1,7 +1,7 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
  //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
@@ -10,7 +10,8 @@ class ApiFactory {
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
- static String MAIN_URL = "http://192.168.56.208:8062/nirmalyaRest/api/";
+// static String MAIN_URL = "http://192.168.29.10:8062/nirmalyaRest/api/";
+// static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
@@ -111,8 +112,8 @@ class ApiFactory {
     return MAIN_URL + "login-with-otp?mobileNo=$mob";
   }
 
-  static String ADD_BIOMEDICAL_IMPLANTS =
-      MAIN_URL + 'post-biomedical-implants-api';
+  static String ADD_BIOMEDICAL_IMPLANTS = MAIN_URL + 'post-biomedical-implants-api';
+  static String ADD_UPLOAD_DOCUMENT = MAIN_URL + 'post-medical-dataupload-api';
   static String ADD_IMMUNIZATION = MAIN_URL + 'post-patient-immunization-details';
   static String SMS_TO_EMERGENCY =
       MAIN_URL + 'sms-to-emergency-contact-users?userid=';

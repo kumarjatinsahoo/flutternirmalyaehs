@@ -18,8 +18,6 @@ import 'package:user/widgets/MyWidget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 
-
-
 class UploadDocument extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
@@ -69,7 +67,7 @@ class _UploadDocumentState extends State<UploadDocument> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    callApi();
+    //callApi();
   }
 
   callApi() {
@@ -96,46 +94,8 @@ class _UploadDocumentState extends State<UploadDocument> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      /*appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-        */
-      /* leading: Icon(
-          Icons.menu,
-        ),*/
-      /*
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        displayTextInputDialog(context),
-                  );
-                  // callAPI();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              )),
-          */
-      /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-      /*
-        ],
-      ),*/
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
@@ -143,174 +103,96 @@ class _UploadDocumentState extends State<UploadDocument> {
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child:InkWell(
+              child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                      context, "/adduploaddocument");
-                 // displayTextInputDialog(context);
+                  Navigator.pushNamed(context, "/adduploaddocument");
+                  // displayTextInputDialog(context);
                 },
                 child: Icon(
                   Icons.add_circle_outline_sharp,
                   size: 26.0,
-                ),),
-              /* GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) =>
-                  displayTextInputDialog(context),
-            );
-            // callAPI();
-          },
-          child: Icon(
-            Icons.add_circle_outline_sharp,
-            size: 26.0,
-          ),
-        )*/),
-          ]
-        /* Row(
-
-            children: [
-             ),
-              *//*Spacer(),*//*
-              InkWell(
-                  onTap: () {
-                    displayTextInputDialog(context);
-                  },
-                  child: Icon(Icons.add_circle_outline)),
-            ],
-          ),*/
-      ),
+                ),
+              ),
+            ),
+          ]),
       body:
-      isdata == true
+          /*isdata == true
           ? CircularProgressIndicator(
-        backgroundColor: AppData.matruColor,
-      )
+              backgroundColor: AppData.matruColor,
+            )
           : biomedicalModel == null || biomedicalModel == null
-          ? Container(
-        child: Center(
-          child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-            style:
-            TextStyle(color: Colors.black, fontSize: 15),
-          ),
-        ),
-      ) : Container(
-        child: SingleChildScrollView(
-          child:
-          (biomedicalModel != null)
-              ? ListView.builder(
-            itemCount: biomedicalModel.body.length,
-            shrinkWrap: true,
-            itemBuilder: (context, i) {
-              bio.Body body = biomedicalModel.body[i];
-              return Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  shadowColor: Colors.grey,
-                  elevation: 10,
-                  child: ClipPath(
-                    clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
-                    child: Container(
-                      decoration: (i % 2 == 0)
-                          ? BoxDecoration(
-                          border: Border(
-                              left: BorderSide(
-                                  color: AppData.kPrimaryRedColor,
-                                  width: 5)))
-                          : BoxDecoration(
-                          border: Border(
-                              left: BorderSide(
-                                  color: AppData.kPrimaryColor,
-                                  width: 5))),
-                      width: double.maxFinite,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Name",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    body?.bioMName ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          //SizedBox(height: 2),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Date",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(flex: 1,
-                                  child: Text(
-                                    body?.bioMDate ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // SizedBox(height: 5),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0, top: 10, right: 10.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "Reason",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(flex: 1,
-                                  child: Text(
-                                    body?.bioMReason ?? "N/A",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                        ],
-                      ),
+              ? Container(
+                  child: Center(
+                    child: Text(
+                      MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                      style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
+                )
+              :*/
+          Container(
+        child: SingleChildScrollView(
+            child: /*(biomedicalModel != null)
+                        ? */
+                ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, i) {
+            /* apnt.Body appointmentlist =
+            appointmentlistModel.body[i];*/
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: size.width*0.20,
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                    ),
+                    side: BorderSide(width: 1, color: AppData.kPrimaryColor),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              "assets/images/govtschemes.jpg",
+                              // width: size.width,
+                              fit: BoxFit.cover,
+                              height: MediaQuery.of(context).size.height*0.20,
+                              width: double.maxFinite,
+                            ),
+                          ),
+                          SizedBox(height: 15,),
+
+                          Row(
+                            children: [
+                              Text("Document Name:",style: TextStyle(fontSize: 15,fontWeight:FontWeight.bold)),
+                              Text(" Name ",style: TextStyle(fontSize: 13,fontWeight:FontWeight.normal)),
+                            ],
+                          ),
+                          SizedBox(height: 15,),
+                          Text("View Upload",style: TextStyle(fontSize: 15,fontWeight:FontWeight.bold),),
+                          SizedBox(height: 10,),
+
+
+
+                        ]),
+                  ),
                 ),
-              );
-            },
-          ): Container(),
-        ),
+              ),
+            );
+          },
+          itemCount: 2,
+        )
+            //: Container(),
+            ),
         /* ): Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -344,7 +226,8 @@ class _UploadDocumentState extends State<UploadDocument> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text("Add Document",
+                                child: Text(
+                                  "Add Document",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -364,29 +247,26 @@ class _UploadDocumentState extends State<UploadDocument> {
                         //   });
                         // }),
 
-                        DropDown.networkDropdownGetpartUser1("Document Category",
+                        DropDown.networkDropdownGetpartUser1(
+                            "Document Category",
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
                             23.0, (KeyvalueModel data) {
-                              setState(() {
-                                print(ApiFactory.ADM_EQUIPMENT_API);
-                                UploadDocument.admequipmentmodel = data;
-                              });
-                            }),
+                          setState(() {
+                            print(ApiFactory.ADM_EQUIPMENT_API);
+                            UploadDocument.admequipmentmodel = data;
+                          });
+                        }),
                         SizedBox(height: 8),
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             getPdfAndUpload();
                           },
                           child: Material(
                             elevation: 5,
-                            color: AppData
-                                .kPrimaryColor,
-                            borderRadius:
-                            BorderRadius
-                                .circular(
-                                10.0),
+                            color: AppData.kPrimaryColor,
+                            borderRadius: BorderRadius.circular(10.0),
                             child: MaterialButton(
                               minWidth: 100,
                               height: 40.0,
@@ -394,13 +274,9 @@ class _UploadDocumentState extends State<UploadDocument> {
                                 /*'Confirmed'*/
                                 "Upload Document",
                                 style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .bold,
-                                    fontSize:
-                                    15,
-                                    color: Colors
-                                        .white),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.white),
                               ),
                             ),
                           ),
@@ -409,42 +285,40 @@ class _UploadDocumentState extends State<UploadDocument> {
                         SizedBox(height: 8),
                         (idproof != null)
                             ? Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    "Report Path :" + idproof,
-                                    style:
-                                    TextStyle(color: Colors.green),
-                                  ),
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        child: Text(
+                                          "Report Path :" + idproof,
+                                          style: TextStyle(color: Colors.green),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      child: SizedBox(
+                                          width: 50.0,
+                                          child: Icon(Icons.clear)),
+                                      onTap: () {
+                                        setState(() {
+                                          idproof = null;
+                                          // registrationModel.profilePhotoBase64 =
+                                          null;
+                                          //registrationModel.profilePhotoExt =
+                                          null;
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              InkWell(
-                                child: SizedBox(
-                                    width: 50.0,
-                                    child: Icon(Icons.clear)),
-                                onTap: () {
-                                  setState(() {
-                                    idproof = null;
-                                    // registrationModel.profilePhotoBase64 =
-                                    null;
-                                    //registrationModel.profilePhotoExt =
-                                    null;
-                                  });
-                                },
-                              ),
-
-                            ],
-                          ),
-                        )
+                              )
                             : Container(),
-                      //  formField(1,MyLocalizations.of(context).text("REASON")),
+                        //  formField(1,MyLocalizations.of(context).text("REASON")),
                       ],
                     ),
                   ),
@@ -452,7 +326,9 @@ class _UploadDocumentState extends State<UploadDocument> {
               },
             ),
             actions: <Widget>[
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               FlatButton(
                 textColor: Colors.grey,
                 child: Text(MyLocalizations.of(context).text("CANCEL"),
@@ -465,16 +341,19 @@ class _UploadDocumentState extends State<UploadDocument> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text("Upload",
+                child: Text(
+                  "Upload",
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
                   if (UploadDocument.admequipmentmodel == null ||
                       UploadDocument.admequipmentmodel == "") {
-                    AppData.showInSnackBar(context, "Please select Document Category ");
+                    AppData.showInSnackBar(
+                        context, "Please select Document Category ");
                   } else if (idproof == "" || idproof == null) {
-                    AppData.showInSnackBar(context, "Please Upload daDocumentte");
+                    AppData.showInSnackBar(
+                        context, "Please Upload daDocumentte");
                   } else {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModel = AddBioMedicalModel();
@@ -550,13 +429,13 @@ class _UploadDocumentState extends State<UploadDocument> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:(MyLocalizations.of(context).text("DOB1")),
+                hintText: (MyLocalizations.of(context).text("DOB1")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -573,7 +452,7 @@ class _UploadDocumentState extends State<UploadDocument> {
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-        DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -584,9 +463,9 @@ class _UploadDocumentState extends State<UploadDocument> {
   }
 
   Widget formField(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
@@ -616,6 +495,7 @@ class _UploadDocumentState extends State<UploadDocument> {
       ),
     );
   }
+
   Future getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
@@ -640,5 +520,4 @@ class _UploadDocumentState extends State<UploadDocument> {
       });
     }
   }
-
 }
