@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -24,7 +25,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text('Medipedia'),
+        title: Text(MyLocalizations.of(context).text("MEDIPEDIA")),
       actions: <Widget>[
        /* Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -84,7 +85,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Disease Info',
+                                          MyLocalizations.of(context).text("DISEASE_INFO"),
                                           style: TextStyle(
                                               fontWeight:
                                                   FontWeight.normal,
@@ -123,7 +124,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Health Days',
+                                          MyLocalizations.of(context).text("HEALTH_DAYS"),
                                           style: TextStyle(
                                               fontWeight:
                                                   FontWeight.normal,
@@ -164,7 +165,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Health Tips',
+                                          MyLocalizations.of(context).text("HEALTH_TIPS"),
                                           style: TextStyle(
                                               fontWeight:
                                                   FontWeight.normal,
@@ -202,7 +203,7 @@ class _MedipediaPageState extends State<MedipediaPage> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Videos',
+                                          MyLocalizations.of(context).text("VIDEOS"),
                                           style: TextStyle(
                                               fontWeight:
                                                   FontWeight.normal,

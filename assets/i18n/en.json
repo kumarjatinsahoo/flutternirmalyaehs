@@ -222,10 +222,10 @@
   "DONOR_APPLICATION": "Donor Applications",
   "RELATION_OF": "S/O,D/O,W/O",
   "REQUEST_DOCTOR_PRESCRIBE": "",
-  "DISEASE_INFO": "",
-  "HEALTH_DAYS": "",
-  "HEALTH_TIPS": "",
-  "VIDEOS": "",
+  "DISEASE_INFO": "Disease Info",
+  "HEALTH_DAYS": "Health Days",
+  "HEALTH_TIPS": "Health Tips",
+  "VIDEOS": "Videos",
   "ORGAN": "Organ(s)",
   "ALL_ORGAN": "All Organs",
   "LIVER": "Liver",
@@ -262,9 +262,25 @@
   "UHID_NO": "Uhid No",
   "PATHOLOGY_LAB": "Pathology Lab",
 
+  "ADD_INSURANCE": "Add Insurance",
+  "INSURANCE_COMPANY": "Insurance Company",
+  "HEALTH_INSURANCE_TYPE": "Health Insurance Type",
+  "POLICY_NO": "Policy No",
+  "POLICY_START_DATE": "Policy Start Date",
+  "TOTAL_INSURANCE_AMOUNT": "Total Insurance Amount",
+  "PREMIUM_DUE_DATE": "Premium Due Date",
+  "INSURANCE_TYPE": "Insurance Type",
+  "THIRDPARTY_ADMINSTRATOR": "Third Party Adminstrator",
+  "PREMIUM_AMOUNT": "Premium Amount",
+  "POLICY_END_DATE": "Policy end date",
+  "SUM_ASSURED_AMOUNT": "Sum Assured Amount",
 
 
-
+  "BOOK_AMBULANCE": "Book Ambulance",
+  "AMBULANCE_NAME": "Ambulance Name",
+  "FROM_PLACE": "From Place",
+  "TO_PLACE": "To Place",
+  "BLOODBANK_NAME": "Blood Bank Name",
 
 
 

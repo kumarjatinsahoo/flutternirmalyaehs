@@ -88,7 +88,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Bloodbank"),
+        title: Text(MyLocalizations.of(context).text("BLOOD_BANK")),
         /* leading: Icon(
           Icons.menu,
         ),*/
