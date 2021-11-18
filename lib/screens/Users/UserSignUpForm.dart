@@ -976,6 +976,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         enabled: !enb,
         controller: textEditingController[index],
         focusNode: currentfn,
+
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),

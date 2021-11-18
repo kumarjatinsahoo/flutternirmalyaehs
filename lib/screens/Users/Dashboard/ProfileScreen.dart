@@ -75,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   FocusNode fnode5 = new FocusNode();
+  FocusNode fnode6 = new FocusNode();
 
   TextEditingController _fname = TextEditingController();
   TextEditingController _address = TextEditingController();
@@ -1152,7 +1153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     textEditingController[5].text =patientProfileModel.body.address??"";
     textEditingController[1].text = patientProfileModel.body.eName??"";
     textEditingController[2].text = patientProfileModel.body.eMobile??"";
-    textEditingController[3].text = patientProfileModel.body.fDoctor??" ";
+    textEditingController[3].text = patientProfileModel.body.fDoctor??"";
     textEditingController[4].text = patientProfileModel.body.docMobile??"";
     textEditingController[0].text = (patientProfileModel != null)? myFormatDate(patientProfileModel.body.dob.toString()): "";
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
@@ -1271,7 +1272,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             });
                           }),
                           ]),
-                          formField(1,"Emergency Contact Name"),
+                          formField(1,"Emergency Contact Name",fnode1,fnode2),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1302,8 +1303,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           }),
               ]),
                           /*   Divider(height: 2, color: Colors.black),*/
-                          formFieldMobileno(2,"Emergency Contact No."),
-                          formField(3,"Family Doctor's Name"),
+                          formFieldMobileno(2,"Emergency Contact No.",fnode2,fnode3),
+                          formField(3,"Family Doctor's Name",fnode3,fnode4),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1336,8 +1337,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 2,
                             color: Colors.black,
                           ),*/
-                          formFieldMobileno(4,"Doctors Mobile No"),
-                          formFieldAddress(5,"Address"),
+                          formFieldMobileno(4,"Doctors Mobile No",fnode4,fnode5),
+                          formFieldAddress(5,"Address",fnode5,null),
 
 
                         ],
@@ -1376,31 +1377,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
        if (textEditingController[0].text == "N/A" || textEditingController[0].text== null|| textEditingController[0].text == "") {
           //AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
           AppData.showInSnackBar(context, "Please enter DOB");
+
+
        }else if (ProfileScreen.bloodgroupmodel== null ||
            ProfileScreen.bloodgroupmodel == "") {
          AppData.showInSnackBar(context, "Please select Blood Group");
           //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
           }else if (textEditingController[1].text == "N/A" ||textEditingController[1].text== null|| textEditingController[1].text == ""){
          AppData.showInSnackBar(context, "Please enter Emergency Contact Name");
+         FocusScope.of(context).requestFocus(fnode1);
+       } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Emergency Contact Name ");
+         FocusScope.of(context).requestFocus(fnode1);
        }else if (ProfileScreen.relationmodel== null ||
           ProfileScreen.relationmodel == "") {
           AppData.showInSnackBar(context, "Please select Relation");
        }else if (textEditingController[2].text == "N/A" ||textEditingController[2].text== null|| textEditingController[2].text == ""){
          AppData.showInSnackBar(context, "Please enter  Emergency Contact No.");
-       } else if ( textEditingController[2].text != "N/A" &&  textEditingController[2].text != 10)  {
+         FocusScope.of(context).requestFocus(fnode2);
+       } else if ( textEditingController[2].text != "" &&  textEditingController[2].text.length != 10)  {
        AppData.showInSnackBar(context, "Please enter valid Emergency Contact No.");
+       FocusScope.of(context).requestFocus(fnode2);
                 }else if (textEditingController[3].text == "" || textEditingController[3].text == null|| textEditingController[3].text == "") {
          AppData.showInSnackBar(context, "Please enter Family Doctor Name");
+         FocusScope.of(context).requestFocus(fnode3);
+       } else if ( textEditingController[3].text != "" &&  textEditingController[3].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor Name ");
+         FocusScope.of(context).requestFocus(fnode3);
        }else if (ProfileScreen.specialitymodel== null ||
            ProfileScreen.specialitymodel == "") {
          AppData.showInSnackBar(context, "Please select Speciality");
        }else if (textEditingController[4].text == "N/A" ||textEditingController[4].text== null||textEditingController[4].text== ""){
-         AppData.showInSnackBar(context, "Please enter  Family Doctor No.");
-       } else if ( textEditingController[4].text != "N/A" &&  textEditingController[4].text != 10)  {
-         AppData.showInSnackBar(context, "Please enter valid Family Doctor No.");
+         AppData.showInSnackBar(context, "Please enter  Family Doctor Mobile No.");
+         FocusScope.of(context).requestFocus(fnode4);
+       } else if ( textEditingController[4].text != "" &&  textEditingController[4].text.length != 10)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor Mobile No.");
+         FocusScope.of(context).requestFocus(fnode4);
          //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
        }else if (textEditingController[5].text == "N/A" || textEditingController[5].text == null|| textEditingController[5].text == "") {
          AppData.showInSnackBar(context, "Please enter Address");
+         FocusScope.of(context).requestFocus(fnode5);
+       } else if ( textEditingController[5].text != "" &&  textEditingController[5].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Address");
+         FocusScope.of(context).requestFocus(fnode5);
 
        } else {
            updateProfileModel.dob = textEditingController[0].text;
@@ -1473,7 +1492,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
 
-  Widget formFieldMobileno(int controller, String hint) {
+  Widget formFieldMobileno(int controller, String hint,FocusNode currentfn, FocusNode nextFn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1495,6 +1514,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller:textEditingController[controller],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
+              focusNode: currentfn,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
                   RegExp("[0-9]"),
@@ -1513,13 +1533,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
       ],
     );
   }
-  Widget formFieldAddress(int controller, String hint) {
+  Widget formFieldAddress(int controller, String hint,FocusNode currentfn, FocusNode nextFn,) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1541,12 +1565,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller: textEditingController[controller],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
+              focusNode: currentfn,
               /*inputFormatters: [
                 WhitelistingTextInputFormatter(
                   RegExp("[0-9]"),
                 ),
               ],*/
-              maxLength: 10,
+              ///maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
@@ -1559,13 +1584,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
       ],
     );
   }
-  Widget formField(int index, String hint) {
+  Widget formField(int index, String hint,FocusNode currentfn, FocusNode nextFn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1586,6 +1615,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: TextFormField(
               controller: textEditingController[index],
               textInputAction: TextInputAction.done,
+              focusNode: currentfn,
               keyboardType: TextInputType.text,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
@@ -1600,6 +1630,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   contentPadding:
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                print("ValueValue" + error[index].toString());
+
+                setState(() {
+                  error[index] = false;
+                });
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
