@@ -139,5 +139,6 @@ String medicineStore;
 String regNoValue;
 
 String insuranceid;
+String pdfurl;
 
 }

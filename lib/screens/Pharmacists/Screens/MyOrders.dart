@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/PharmacyorderModel.dart' as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -53,7 +54,7 @@ class _MyOrdersState extends State<MyOrders> {
               });
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -331,6 +332,7 @@ class _MyOrdersState extends State<MyOrders> {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              popup(msg, context);
               // pocReportModel = PocReportModel.fromJson(map);
               //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
               //  AppData.showInSnackBar(context, msg);
@@ -354,13 +356,45 @@ class _MyOrdersState extends State<MyOrders> {
             log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              callAPI();
-              AppData.showInSnackDone(context, msg);
+              popup(msg, context);
+
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });
         });
+  }
+
+  popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: (){
+              //Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              //callAPI();
+
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 }

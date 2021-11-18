@@ -66,6 +66,8 @@ import 'package:user/screens/Users/EmergencyHelp/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
+import 'package:user/screens/Users/MyMedicalRecord/DocumentList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/DocumentPdfView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
@@ -947,6 +949,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/adduploaddocument': (context) => AddUploadDocument(
+                model: _model,
+              ),
+              '/documentpdf': (context) => DocumentPdf(
                 model: _model,
               ),
 
