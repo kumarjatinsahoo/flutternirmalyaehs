@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _SetDisountState extends State<SetDisount> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Discounts and Offers',
+          MyLocalizations.of(context).text("DISCOUNT_OFFER"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,

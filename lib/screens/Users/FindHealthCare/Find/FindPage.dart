@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AutocompleteDTO.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -298,7 +299,7 @@ class _FindPageState extends State<FindPage> {
         Align(
           alignment: Alignment.center,
           child: Text(
-            'Find',
+            MyLocalizations.of(context).text("FIND"),
             style: TextStyle(
               color: Colors.white,
             ),

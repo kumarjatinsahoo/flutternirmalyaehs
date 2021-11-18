@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -15,18 +16,19 @@ class MedicalService extends StatefulWidget {
 class _MedicalServiceState extends State<MedicalService> {
   var selectedMinValue;
   double tileSize = 80;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-    backgroundColor: AppData.kPrimaryColor,
-    title: Text('Medical Service'),
-    centerTitle: true,
-    /* leading: Icon(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(MyLocalizations.of(context).text("MEDICAL_SERVICE")),
+        centerTitle: true,
+        /* leading: Icon(
         Icons.menu,
       ),*/
-    actions: <Widget>[
-      /*  Padding(
+        actions: <Widget>[
+          /*  Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {},
@@ -36,7 +38,7 @@ class _MedicalServiceState extends State<MedicalService> {
                 ),
               )
           ),*/
-      /*Padding(
+          /*Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
@@ -45,12 +47,12 @@ class _MedicalServiceState extends State<MedicalService> {
               ),
             )
         ),*/
-    ],
+        ],
       ),
       body: Container(
-    child: Column(
-      children: [
-        /* Container(
+        child: Column(
+          children: [
+            /* Container(
            color:AppData.kPrimaryColor,
             child: Padding(
               padding: const EdgeInsets.only( left:15.0,right: 15.0),
@@ -71,331 +73,329 @@ class _MedicalServiceState extends State<MedicalService> {
             height: MediaQuery.of(context).size.height * 0.1,
             width: MediaQuery.of(context).size.width,
           ),*/
-        Expanded(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10.0,
                     ),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () =>
-                              Navigator.pushNamed(context, "/aYUSHDoctors"),
-                          child: Card(
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            GestureDetector(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, "/aYUSHDoctors"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.medical_services_outlined,
+                                              size: 50,
+                                              color: AppData.kPrimaryRedColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("AYUSH_DOCTOR"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/donorOrganisation"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.accessible_forward,
+                                              size: 50,
+                                              color: AppData.kPrimaryBlueColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                               (MyLocalizations.of(context).text("DONOR_ORGANIZATION")),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/lifeStyleSolution"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.style,
+                                              size: 50,
+                                              color: AppData.kPrimaryRedColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  MyLocalizations.of(context).text("LIFESTYLE_SOLUTION"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/treatmentCenters"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.center_focus_weak_sharp,
+                                              size: 50,
+                                              color: AppData.kPrimaryBlueColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("TREATMENT_CENTER"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                widget.model.medicallserviceType =
+                                    "Air Ambulance";
+                                Navigator.pushNamed(
+                                    context, "/medicalsServiceOngooglePage");
 
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.medical_services_outlined,
-                                          size: 50, color: AppData.kPrimaryRedColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'AYUSH Doctors',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
+                                // AppData.showInSnackBar(context,"hi");
+                              },
+                              //onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
                                         ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.airplanemode_active,
+                                              size: 50,
+                                              color: AppData.kPrimaryRedColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("AIR_AMBULANCE"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                )),
-                          ),
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, "/rPScreen"),
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.pregnant_woman_sharp,
+                                              size: 50,
+                                              color: AppData.kPrimaryBlueColor),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("RIP"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, "/donorOrganisation"),
-                          child: Card(
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.accessible_forward,
-                                          size: 50,
-                                          color: AppData.kPrimaryBlueColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Donor Organization',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, "/lifeStyleSolution"),
-                          child: Card(
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.style,
-                                          size: 50, color: AppData.kPrimaryRedColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Life Style Solution',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, "/treatmentCenters"),
-                          child: Card(
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.center_focus_weak_sharp,
-                                          size: 50,
-                                          color: AppData.kPrimaryBlueColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Treatment Centers',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            widget.model.medicallserviceType =
-                                "Air Ambulance";
-                            Navigator.pushNamed(
-                                context, "/medicalsServiceOngooglePage");
-
-                            // AppData.showInSnackBar(context,"hi");
-                          },
-                          //onTap: () =>   Navigator.pushNamed(context, "/airAmbulanceList"),
-                          child: Card(
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.airplanemode_active,
-                                          size: 50, color: AppData.kPrimaryRedColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Air Ambulance',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () =>
-                              Navigator.pushNamed(context, "/rPScreen"),
-                          child: Card(
-                            elevation: 5,
-                            child: Container(
-                                height: tileSize,
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                    ),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.pregnant_woman_sharp,
-                                          size: 50,
-                                          color: AppData.kPrimaryBlueColor),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'RIP',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
-    ),
       ),
     );
   }

@@ -160,7 +160,7 @@ class RequestHealthCheakupState extends State<RequestHealthCheakup> {
                         Navigator.pop(context);
                       },
                       child: Icon(Icons.arrow_back,color:Colors.white )),
-                  Text('Health Checkup ',
+                  Text(MyLocalizations.of(context).text("HEALTH_CHECKUP"),
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
                   Icon(Icons.search,color:Colors.white ),
                 ],
@@ -238,7 +238,7 @@ class RequestHealthCheakupState extends State<RequestHealthCheakup> {
                       const EdgeInsets.symmetric(horizontal: 25),
                       child: TextFormField(
                         decoration: InputDecoration(
-                            hintText: 'Fast Name',
+                            hintText: MyLocalizations.of(context).text("NAME"),
                             hintStyle: TextStyle(color: Colors.grey)),
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.emailAddress,

@@ -976,6 +976,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         enabled: !enb,
         controller: textEditingController[index],
         focusNode: currentfn,
+
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
@@ -1158,10 +1159,16 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         textEditingController[0].text == null) {
       AppData.showInSnackBar(context, "Please enter First Name");
       FocusScope.of(context).requestFocus(fnode1);
-    } else if (textEditingController[1].text == "" ||
+    }else if (textEditingController[0].text != "" &&
+        textEditingController[0].text.length <= 3) {
+      AppData.showInSnackBar(context, "Please enter a valid First Name");
+    }else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
       FocusScope.of(context).requestFocus(fnode2);
+    }else if (textEditingController[1].text != "" &&
+        textEditingController[1].text.length <= 3) {
+      AppData.showInSnackBar(context, "Please enter a valid  Last Name");
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select Gender");

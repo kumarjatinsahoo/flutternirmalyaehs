@@ -135,7 +135,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          title: Text("Dashboard"),
+          title: Text(MyLocalizations.of(context).text("DASHBOARD")),
           backgroundColor: AppData.kPrimaryColor),
       body: Stack(
        // fit: StackFit.expand,
@@ -189,7 +189,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                    "My Profile",
+                                    MyLocalizations.of(context).text("MY_PROFILE"),
                                     // MyLocalizations.of(context).text("MY_PROFILE"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
@@ -224,7 +224,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                    "Appointment",
+                                    MyLocalizations.of(context).text("APPOINTMENT"),
                                     // MyLocalizations.of(context).text("APPOINTMENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
@@ -272,7 +272,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                    "Walk in Patient",
+                                    MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                                     // MyLocalizations.of(context).text("WALK_IN_PATIENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
@@ -319,8 +319,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    "Emergency Access",
-                                    //MyLocalizations.of(context).text("EMERGENCY ACCESS"),
+                                    MyLocalizations.of(context).text("EMERGENCY_ACCESS"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -367,8 +366,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                    "Share Appointment",
-                                    // MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
+                                    MyLocalizations.of(context).text("SHARE_APPOINTMENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -400,8 +398,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    "My Patient",
-                                    //MyLocalizations.of(context).text("MY_PATIENT"),
+                                    MyLocalizations.of(context).text("MY_PATIENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -445,8 +442,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    "Monthly Overview",
-                                    // MyLocalizations.of(context).text("Monthly Overview"),
+                                   MyLocalizations.of(context).text("MONTHLY_OVERVIEW"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -493,8 +489,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                    "Video Consultation",
-                                    // MyLocalizations.of(context).text("Video Consulation"),
+                                MyLocalizations.of(context).text("VIDEO_CONSULTATION"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -628,7 +623,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("Dashboard"),
+              title: Text(MyLocalizations.of(context).text("DASHBOARD")),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -654,7 +649,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("My Profile"),
+              title: Text(MyLocalizations.of(context).text("MY_PROFILE")),
               onTap: () {
                 Navigator.pushNamed(
                     context, "/docMyProf");
@@ -682,7 +677,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("About Us"),
+              title: Text(MyLocalizations.of(context).text("ABOUT_US")),
               onTap: () {
                 Navigator.pop(context);
 
@@ -711,7 +706,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("Share"),
+              title: Text(MyLocalizations.of(context).text("SHARE")),
               onTap: () {
                 Navigator.pushNamed(context, "/emergencydetails");
               },
@@ -737,7 +732,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("Contact Us"),
+              title: Text(MyLocalizations.of(context).text("CONTACT_US")),
               onTap: () {
                 Navigator.pushNamed(context, "/contactus");
               },
@@ -796,7 +791,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ],
                 ),
               ),
-              title: Text("Logout"),
+              title: Text(MyLocalizations.of(context).text("LOGOUT")),
               onTap: () {
                 // selectDestination(9);
                 sharedPref.save(Const.IS_LOGIN, false.toString());

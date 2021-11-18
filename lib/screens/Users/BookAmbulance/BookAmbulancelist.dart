@@ -88,7 +88,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Ambulance"),
+        title: Text(MyLocalizations.of(context).text("AMBULANCE")),
         /* leading: Icon(
           Icons.menu,
         ),*/

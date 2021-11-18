@@ -15,6 +15,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AutocompleteDTO.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
@@ -243,8 +244,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Book Bloodbank",
+        title: Text(MyLocalizations.of(context).text("BLOOD_BANK"),
           style: TextStyle(color: Colors.white),
         ),
         //automaticallyImplyLeading: false,
@@ -287,7 +287,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser4(
-                                "Blood Bank Name",
+                                MyLocalizations.of(context).text("BLOODBANK_NAME"),
                                 ApiFactory.BLOODBBANKNAME_API,
                                 "bloodBankName",
                                  (KeyvalueModel data) {
@@ -304,7 +304,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser4(
-                                "Blood Group",
+                                MyLocalizations.of(context).text("BLOODGROUP"),
                                 ApiFactory.BLOODGROUP_API,
                                 "bloodgroupBooh",
                                  (KeyvalueModel data) {
@@ -347,7 +347,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                         //comultationTime(),
                         fromAddress(
                             1,
-                            "Reason for choice of Doctor",
+                            MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -512,7 +512,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "SUBMIT",
+            MyLocalizations.of(context).text("SUBMIT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -895,7 +895,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                      "Date",
+                  MyLocalizations.of(context).text("DATE"),
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: Icon(

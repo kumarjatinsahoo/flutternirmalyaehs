@@ -138,7 +138,7 @@ import 'package:user/screens/Users/MyMedicalRecord/MedicalRecordPage.dart';
 import 'screens/Users/MedicineReminder/MedicineReminder.dart';
 import 'screens/Users/MedicineReminder/MedicineReminderOther.dart';
 import 'package:user/screens/Pharmacists/Screens/MonthlyView.dart';
-import 'package:user/screens/MyAppointment.dart';
+import 'package:user/screens/Users/FindHealthCare/MyAppointment/MyAppointment.dart';
 import 'screens/Pharmacists/Screens/OnlineChats.dart';
 import 'package:user/screens/Users/organ/OrganDonation.dart';
 import 'package:user/screens/Pharmacists/Screens/DashboardPharmacy.dart';

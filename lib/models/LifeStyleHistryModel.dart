@@ -50,16 +50,16 @@ class Body {
         this.pets});
 
   Body.fromJson(Map<String, dynamic> json) {
-    patientId = json['patientId'];
-    patientName = json['patientName'];
-    smokingId = json['smokingId'];
-    smokingName = json['smokingName'];
-    alcoholId = json['alcoholId'];
-    alcoholName = json['alcoholName'];
-    diet = json['diet'];
-    exercise = json['exercise'];
-    occupation = json['occupation'];
-    pets = json['pets'];
+    patientId = json['patientId'].toString();
+    patientName = json['patientName'].toString();
+    smokingId = json['smokingId'].toString();
+    smokingName = json['smokingName'].toString();
+    alcoholId = json['alcoholId'].toString();
+    alcoholName = json['alcoholName'].toString();
+    diet = json['diet'].toString();
+    exercise = json['exercise'].toString();
+    occupation = json['occupation'].toString();
+    pets = json['pets'].toString();
   }
 
   Map<String, dynamic> toJson() {

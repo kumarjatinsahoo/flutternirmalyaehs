@@ -15,6 +15,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AutocompleteDTO.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
@@ -243,8 +244,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Book Ambulance",
+        title: Text(MyLocalizations.of(context).text("BOOK_AMBULANCE"),
           style: TextStyle(color: Colors.white),
         ),
         //automaticallyImplyLeading: false,
@@ -287,7 +287,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                "Ambulance Name",
+                                MyLocalizations.of(context).text("AMBULANCE_NAME"),
                                 ApiFactory.AMBULANCE_API,
                                 "ambulancename",
                                 Icons.location_on_rounded,
@@ -323,7 +323,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.black, width: 0.3),
                                     ),
-                                    hintText: 'From Place',
+                                    hintText:MyLocalizations.of(context).text("FROM_PLACE"),
                                     alignLabelWithHint: true,
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 2, horizontal: 20),
@@ -393,7 +393,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.black, width: 0.3),
                                     ),
-                                    hintText: 'To Place',
+                                    hintText: MyLocalizations.of(context).text("TO_PLACE"),
                                     alignLabelWithHint: true,
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 2, horizontal: 20),
@@ -440,7 +440,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                         //comultationTime(),
                         fromAddress(
                             1,
-                            "Reason for choice of Doctor",
+                            MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -605,7 +605,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "SUBMIT",
+            MyLocalizations.of(context).text("SUBMIT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -996,7 +996,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                      "Date",
+                  MyLocalizations.of(context).text("DATE"),
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: Icon(

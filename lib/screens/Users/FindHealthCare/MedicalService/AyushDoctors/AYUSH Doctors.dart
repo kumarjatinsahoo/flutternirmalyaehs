@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -23,8 +24,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'AYUSH Doctors',
+          title: Text(MyLocalizations.of(context).text("AYUSH_DOCTOR"),
             style: TextStyle(color: AppData.white),
           ),
           centerTitle: true,
@@ -100,8 +100,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Ayurveda',
+                                                Text(MyLocalizations.of(context).text("AYURVEDA"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -160,8 +159,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Homeopathy',
+                                                Text(MyLocalizations.of(context).text("HOMEOPATHY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -221,8 +219,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  'Siddha Treatment',
+                                                Text(MyLocalizations.of(context).text("SIDDHA_TREATMENT"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -283,7 +280,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                               MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Unani',
+                                                  MyLocalizations.of(context).text("UNANI"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -345,7 +342,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                                                 MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    'Yoga & Natureopathy',
+                                                    MyLocalizations.of(context).text("YOGA_NATUROPATHY"),
                                                     style: TextStyle(
                                                         fontWeight:
                                                         FontWeight.normal,
