@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -179,7 +180,7 @@ class _DoctorAppointmentRequestedState
                                 //SizedBox(height: 300,),
                                 SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
                                 Text(
-                                  'No Data Found',
+                                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
                                   style:
                                       TextStyle(color: Colors.black, fontSize: 15),
                                 ),

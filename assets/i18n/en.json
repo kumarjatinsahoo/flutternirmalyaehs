@@ -248,8 +248,11 @@
   "EMERGENCY_ACCESS": "Emergency Access",
   "SHARE_APPOINTMENT": "Share Appointment",
   "MY_PATIENT": "My Patient",
-  "QR_SEARCH": "Qr Search",
+  "MONTHLY_OVERVIEW": "Monthly Overview",
+  "VIDEO_CONSULTATION": "Video Consultation",
+  "QR_SEARCH": "Qr Scan",
   "USER_INFORMATION": "User Information",
+  "ORGANIZATION": "Organization",
   "IMA_NO": "Ima No",
   "PAN_CARD_NO": "Pan Card No",
   "PASSPORT_NO": "Passport No",
@@ -260,6 +263,7 @@
   "CANCELLED": "Cancelled",
   "TREATED": "Treated",
   "UHID_NO": "Uhid No",
+  "SHOW_EMR": "Show EMR",
   "PATHOLOGY_LAB": "Pathology Lab",
 
   "ADD_INSURANCE": "Add Insurance",
@@ -274,6 +278,12 @@
   "PREMIUM_AMOUNT": "Premium Amount",
   "POLICY_END_DATE": "Policy end date",
   "SUM_ASSURED_AMOUNT": "Sum Assured Amount",
+
+  "HOSPITAL_DOCTOR": "Hospital & Doctor",
+  "DIAGNOSTIC_PATHALOGY": "Diagnostic & Pathalogy",
+  "SHOPPING": "Shopping",
+  "HEALTH_SERVICE": "Other Health Service",
+  "FREE_HEALTH_CHECKUP": "Free Health Checkup",
 
 
   "BOOK_AMBULANCE": "Book Ambulance",

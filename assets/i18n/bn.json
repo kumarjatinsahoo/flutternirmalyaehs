@@ -62,7 +62,7 @@
   "WELCM_EHEALTHSYSTEM": "ୱେଲକମ୍ ଏହଲ୍ ସିଷ୍ଟମ୍ ",
 
 
-  "DASHBOARD": "ଡ୍ୟାସବୋର୍ଡ |",
+  "DASHBOARD": "ଡ୍ୟାସବୋର୍ଡ",
   "MEDICAL_RECORD": "ମେଡିକାଲ୍ ରେକର୍ଡ",
   "HEALTHCARE_SERVICE": "ସ୍ୱାସ୍ଥ୍ୟ ସେବା ଖୋଜ",
   "APPOINTMENT": "ଆବେଦନ",
@@ -250,11 +250,33 @@
   "POLICY_END_DATE": "ନୀତି ଶେଷ ତାରିଖ ",
   "SUM_ASSURED_AMOUNT": "ସୁନିଶ୍ଚିତ ରାଶି",
 
+  "HOSPITAL_DOCTOR": "ଡାକ୍ତରଖାନା ଏବଂ ଡାକ୍ତର",
+  "DIAGNOSTIC_PATHALOGY": "ଡାଇଗ୍ନୋଷ୍ଟିକ୍ ଏବଂ ପାଥୋଲୋଜି ",
+  "SHOPPING": "ସପିଂ",
+  "HEALTH_SERVICE": "ଅନ୍ୟାନ୍ୟ ସ୍ୱାସ୍ଥ୍ୟ ସେବା ",
+  "FREE_HEALTH_CHECKUP": "ମାଗଣା ସ୍ୱାସ୍ଥ୍ୟ ଯାଞ୍ଚ ",
+
   "AMBULANCE_NAME": "ଆମ୍ବୁଲାନ୍ସ ନାମ",
   "FROM_PLACE": "ସ୍ଥାନରୁ",
   "TO_PLACE": "ସ୍ଥାନକୁ",
   "BLOODBANK_NAME": "ବ୍ଲଡ ବ୍ୟାଙ୍କ ନାମ ",
 
+  "WALK_IN_PATIENT": "Walk in Patient",
+  "EMERGENCY_ACCESS": "ଜରୁରୀକାଳୀନ ପ୍ରବେଶ",
+  "SHARE_APPOINTMENT": "ନିଯୁକ୍ତି ଅଂଶୀଦାର କରନ୍ତୁ",
+  "MY_PATIENT": "ମୋର ରୋଗୀ",
+  "MONTHLY_OVERVIEW": "ମାସିକ ସମୀକ୍ଷା",
+  "VIDEO_CONSULTATION": "ଭିଡିଓ ପରାମର୍ଶ",
+  "QR_SEARCH": "QR ସ୍କାନ୍",
+  "USER_INFORMATION": "ଉପଯୋଗକର୍ତ୍ତା ସୂଚନା",
+  "ORGANIZATION": "ସଂଗଠନ ",
+  "IMA_NO": "IMA ନମ୍ବର ",
+  "PAN_CARD_NO": "ପ୍ୟାନ୍ କାର୍ଡ ନଂ",
+  "PASSPORT_NO": "ପାସପୋର୍ଟ ନଂ",
+  "VOTER_CARD_NO": "ଭୋଟର କାର୍ଡ ନଂ",
+  "LICENCE_NO": "ଲାଇସେନ୍ସ ନଂ",
+  "SHOW_EMR": "EMR ଦେଖାନ୍ତୁ ",
+  "UHID_NO": "Uhid No",
 
   "REQUESTED": "ଅନୁରୋଧ",
   "CONFIRMED": "ନିଶ୍ଚିତ",

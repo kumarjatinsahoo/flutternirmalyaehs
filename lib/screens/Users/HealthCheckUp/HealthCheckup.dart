@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -34,8 +35,7 @@ class _HealthCheckupState extends State<HealthCheckup> {
                           Navigator.pop(context);
                         },
                         child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Text(
-                      'Health Checkup ',
+                    Text(MyLocalizations.of(context).text("HEALTH_CHECKUP"),
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           fontSize: 20,
@@ -106,7 +106,7 @@ class _HealthCheckupState extends State<HealthCheckup> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Free Health Checkup',
+                                                MyLocalizations.of(context).text("FREE_HEALTH_CHECKUP"),
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.normal,

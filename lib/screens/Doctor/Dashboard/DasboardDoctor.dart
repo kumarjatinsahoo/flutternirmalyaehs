@@ -9,14 +9,13 @@ import 'package:user/scoped-models/MainModel.dart';
 class DasboardDoctor extends StatefulWidget {
   MainModel model;
 
-
   DasboardDoctor({Key key, this.model}) : super(key: key);
 
   @override
   _DasboardDoctorState createState() => _DasboardDoctorState();
 }
-SharedPref sharedPref = SharedPref();
 
+SharedPref sharedPref = SharedPref();
 
 chooseAppointment(BuildContext context) {
   return showDialog(
@@ -50,7 +49,7 @@ chooseAppointment(BuildContext context) {
                         icon: CupertinoIcons.calendar_today,
                         title: "Health Check-up",
                         fun: () {
-                         //Navigator.pushNamed(context, "/qrViewExample1");
+                          //Navigator.pushNamed(context, "/qrViewExample1");
                         },
                       ),
                       Divider(),
@@ -64,7 +63,6 @@ chooseAppointment(BuildContext context) {
                           // Navigator.pop(context);
                         },
                       ),
-
 
                       /* ListTile(
                           title: Text("Health Screening"),
@@ -127,9 +125,8 @@ chooseAppointment(BuildContext context) {
         );
       });
 }
-Widget _Tilered({IconData icon,
-  String title,
-  Function fun}) {
+
+Widget _Tilered({IconData icon, String title, Function fun}) {
   return InkWell(
     onTap: fun,
     child: Container(
@@ -138,35 +135,44 @@ Widget _Tilered({IconData icon,
       child: Row(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(icon, color: Colors.grey, size: 35,),
+          Icon(
+            icon,
+            color: Colors.grey,
+            size: 35,
+          ),
           SizedBox(
             width: 20,
           ),
           Text(title,
-              style: TextStyle(/*fontWeight: FontWeight.w300,*/
+              style: TextStyle(
+                  /*fontWeight: FontWeight.w300,*/
                   fontSize: 17,
-                  color: Colors.black), textAlign: TextAlign.center),
+                  color: Colors.black),
+              textAlign: TextAlign.center),
           //Icon(Icons.search, color: Colors.white),
         ],
       ),
-
     ),
   );
 }
 
 class _DasboardDoctorState extends State<DasboardDoctor> {
   LoginResponse1 loginResponse;
+
   @override
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
     // checkApiCallOrNot();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      AppBar(centerTitle: true, title: Text("Dashboard"),backgroundColor:Color(0xFF0F6CE1)),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text("Dashboard"),
+          backgroundColor: Color(0xFF0F6CE1)),
       body: Center(
         child: Column(children: <Widget>[
           Row(
@@ -179,15 +185,13 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                 child: InkWell(
                   child: Column(
                     children: [
-
                       Padding(
                         padding: EdgeInsets.all(15.00),
-                        child:
-                        Container(
-                            width:50,
+                        child: Container(
+                            width: 50,
                             height: 50,
-                            child: Image.asset('assets/images/dprofile.png',fit: BoxFit.cover)
-                        ),
+                            child: Image.asset('assets/images/dprofile.png',
+                                fit: BoxFit.cover)),
                       ),
                       Text(
                         "My Profile",
@@ -198,27 +202,26 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ),
                     ],
                   ),
-                  onTap: (){
-
+                  onTap: () {
                     Navigator.pushNamed(context, "/docMyProf");
                   },
                 ),
               ),
               SizedBox(
-                //  width: 10.00,
-              ),
+                  //  width: 10.00,
+                  ),
               Expanded(
                 child: InkWell(
                     child: Column(
                       children: [
                         Padding(
                           padding: EdgeInsets.all(15.00),
-                          child:
-                          Container(
-                              width:50,
+                          child: Container(
+                              width: 50,
                               height: 50,
-                              child: Image.asset('assets/images/appointment.png',fit: BoxFit.cover)
-                          ),
+                              child: Image.asset(
+                                  'assets/images/appointment.png',
+                                  fit: BoxFit.cover)),
                         ),
                         Text(
                           "Appointment",
@@ -230,30 +233,28 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () {
-                     /* Navigator.push(context,
+                      /* Navigator.push(context,
                           new MaterialPageRoute(
                               builder: (context) => new Appointment1()));*/
                       //Navigator.pushNamed(context, "/apntMange");
                       Navigator.pushNamed(context, "/doctorAppointment");
                       //chooseAppointment(context);
-                    }
-                ),
+                    }),
               ),
               SizedBox(
-                //   width: 10.00,
-              ),
+                  //   width: 10.00,
+                  ),
               Expanded(
                 child: InkWell(
                   child: Column(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(15.00),
-                        child:
-                        Container(
-                            width:50,
+                        child: Container(
+                            width: 50,
                             height: 50,
-                            child: Image.asset('assets/images/walk.png',fit: BoxFit.cover)
-                        ),
+                            child: Image.asset('assets/images/walk.png',
+                                fit: BoxFit.cover)),
                       ),
                       Text(
                         "Walk in Patient",
@@ -264,7 +265,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ),
                     ],
                   ),
-                  onTap: (){
+                  onTap: () {
                     /*Navigator.push(context,
                         new MaterialPageRoute(
                             builder: (context) => new WalkPatient()));*/
@@ -272,7 +273,6 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   },
                 ),
               ),
-
             ],
           ),
           SizedBox(
@@ -287,12 +287,13 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       children: [
                         Padding(
                           padding: EdgeInsets.all(15.00),
-                          child:
-                          Container(
-                              width:50,
+                          child: Container(
+                              width: 50,
                               height: 50,
-                              child: Image.asset('assets/images/emergency.png',fit: BoxFit.cover,)
-                          ),
+                              child: Image.asset(
+                                'assets/images/emergency.png',
+                                fit: BoxFit.cover,
+                              )),
                         ),
                         Text(
                           "Emergency  ",
@@ -310,33 +311,27 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                         ),
                       ],
                     ),
-
                     onTap: () {
                       /*Navigator.push(context,
                           new MaterialPageRoute(
                               builder: (context) => new EmergencyAccess()));*/
                       Navigator.pushNamed(context, "/emegencyAc");
-                    }
-                ),
-
-
+                    }),
               ),
               SizedBox(
-                //  width: 10.00,
-              ),
-
+                  //  width: 10.00,
+                  ),
               Expanded(
                 child: InkWell(
                   child: Column(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(15.00),
-                        child:
-                        Container(
-                            width:50,
+                        child: Container(
+                            width: 50,
                             height: 50,
-                            child: Image.asset('assets/images/shareapnt.png',fit: BoxFit.cover)
-                        ),
+                            child: Image.asset('assets/images/shareapnt.png',
+                                fit: BoxFit.cover)),
                       ),
                       Text(
                         "  Share  ",
@@ -361,22 +356,20 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   // },
                 ),
               ),
-
               SizedBox(
-                //  width: 10.00,
-              ),
+                  //  width: 10.00,
+                  ),
               Expanded(
                 child: GestureDetector(
                   child: Column(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(15.00),
-                        child:
-                        Container(
-                            width:50,
+                        child: Container(
+                            width: 50,
                             height: 50,
-                            child: Image.asset('assets/images/mypatient.png',fit: BoxFit.cover)
-                        ),
+                            child: Image.asset('assets/images/mypatient.png',
+                                fit: BoxFit.cover)),
                       ),
                       Text(
                         "My Patients",
@@ -387,13 +380,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ),
                     ],
                   ),
-                  onTap: (){
-                   // Navigator.pushNamed(context, "/showEmr");
+                  onTap: () {
+                    // Navigator.pushNamed(context, "/showEmr");
                   },
                 ),
               ),
-
-
             ],
           ),
           SizedBox(
@@ -409,16 +400,18 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       children: [
                         Padding(
                           padding: EdgeInsets.all(15.00),
-                          child:
-                          Container(
-                              width:50,
+                          child: Container(
+                              width: 50,
                               height: 50,
-                              child: Image.asset('assets/images/monthlyoverview.png',fit: BoxFit.cover)
-                          ),
+                              child: Image.asset(
+                                  'assets/images/monthlyoverview.png',
+                                  fit: BoxFit.cover)),
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 13,),
+                            SizedBox(
+                              width: 13,
+                            ),
                             Text(
                               " Monthly Overview ",
                               style: TextStyle(
@@ -430,7 +423,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                         ),
                       ],
                     ),
-                    onTap: ()  {},
+                    onTap: () {},
                   ),
                   SizedBox(
                     width: 30,
@@ -440,16 +433,17 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       children: [
                         Padding(
                           padding: EdgeInsets.all(15.00),
-                          child:
-                          Container(
-                              width:50,
+                          child: Container(
+                              width: 50,
                               height: 50,
-                              child: Image.asset('assets/images/video.png',fit: BoxFit.cover)
-                          ),
+                              child: Image.asset('assets/images/video.png',
+                                  fit: BoxFit.cover)),
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 7,),
+                            SizedBox(
+                              width: 7,
+                            ),
                             Text(
                               "Video Consultation  ",
                               style: TextStyle(
@@ -462,13 +456,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                       ],
                     ),
                     onTap: () async {
-    //Navigator.pushNamed(context, "/Healthchart");
-    Navigator.pushNamed(context, "/Newdashboard");
-
+                      //Navigator.pushNamed(context, "/Healthchart");
+                      Navigator.pushNamed(context, "/Newdashboard");
                     },
                   ),
-                ]
-            ),
+                ]),
           ),
         ]),
       ),
@@ -496,8 +488,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                 padding: const EdgeInsets.all(3.0),
                 child: CircleAvatar(
                   backgroundColor: Colors.orange,
-                  child:
-                  Icon(Icons.person,size: 35,),
+                  child: Icon(
+                    Icons.person,
+                    size: 35,
+                  ),
                 ),
               ),
               decoration: BoxDecoration(
@@ -512,10 +506,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/myprofile.png',fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/myprofile.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -528,7 +522,7 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                 Navigator.pushNamed(context, "/docMyProf");
                 //Navigator.pop(context);
 
-               // Navigator.pushNamed(context, "/qrViewExample1");
+                // Navigator.pushNamed(context, "/qrViewExample1");
               },
             ),
             SizedBox(
@@ -541,10 +535,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/dash.png',fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/dash.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -567,10 +561,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/aboutus.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -593,10 +587,11 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/share.png',fit: BoxFit.cover)
-                    ),                    VerticalDivider(
+                        child: Image.asset('assets/images/share.png',
+                            fit: BoxFit.cover)),
+                    VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
                     ),
@@ -618,10 +613,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/contact.png',fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/contact.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -644,14 +639,14 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
-                        height: 30,
-                        child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
-                        Icon(
-                          Icons.qr_code,
-                          color: AppData.menublueColor,
-                          size: 30.0,
-                        ),
+                      width: 30,
+                      height: 30,
+                      child: /*Image.asset('assets/images/aboutus.png',fit: BoxFit.cover)*/
+                          Icon(
+                        Icons.qr_code,
+                        color: AppData.menublueColor,
+                        size: 30.0,
+                      ),
                     ),
                     VerticalDivider(
                       thickness: 1,
@@ -677,10 +672,10 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        width:30,
+                        width: 30,
                         height: 30,
-                        child: Image.asset('assets/images/logout.png',fit: BoxFit.cover)
-                    ),
+                        child: Image.asset('assets/images/logout.png',
+                            fit: BoxFit.cover)),
                     VerticalDivider(
                       thickness: 1,
                       color: Colors.grey,
@@ -690,23 +685,21 @@ class _DasboardDoctorState extends State<DasboardDoctor> {
               ),
               title: Text("Logout"),
               onTap: () {
-               // selectDestination(9);
+                // selectDestination(9);
                 sharedPref.save(Const.IS_LOGIN, false.toString());
                 sharedPref.save(Const.IS_REGISTRATION, false.toString());
                 sharedPref.remove(Const.IS_REGISTRATION);
                 sharedPref.remove(Const.IS_LOGIN);
                 sharedPref.remove(Const.LOGIN_DATA);
                 sharedPref.remove(Const.IS_REG_SERVER);
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-              //  _exitApp();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/login', (Route<dynamic> route) => false);
+                //  _exitApp();
               },
             ),
           ],
         ),
       ),
     );
-
   }
-
 }
