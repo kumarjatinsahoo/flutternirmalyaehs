@@ -48,7 +48,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Government Schemes"),
+        title: Text(MyLocalizations.of(context).text("GOVT_SCHEMES")),
         centerTitle: true,
       ),
       body:
@@ -68,7 +68,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                    ),
                  ),
                  Text(
-                   'Find Health Schemes',
+                   MyLocalizations.of(context).text("FIND_HEALTH_SCHEMES"),
                    style:
                    TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
                  ),
@@ -89,7 +89,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                        height: 58,
                        child: DropDown.genericMedicine(
                            context,
-                           "Country",
+                           MyLocalizations.of(context).text("COUNTRY"),
                            ApiFactory.COUNTRY_API,
                            "country",
                            Icons.location_on_rounded,
@@ -112,7 +112,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                        height: 58,
                        child: DropDown.genericMedicine(
                            context,
-                           "State",
+                           MyLocalizations.of(context).text("STATE"),
                            ApiFactory.STATE_API +
                                (GovtSchemes?.countryModel?.key??""),
                            "state",
@@ -134,7 +134,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                        height: 58,
                        child: DropDown.genericMedicine(
                            context,
-                           "District",
+                           MyLocalizations.of(context).text("DIST"),
                            ApiFactory.DISTRICT_API +
                                (GovtSchemes?.stateModel?.key??""),
                            "district1",
@@ -157,7 +157,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                        height: 58,
                        child: DropDown.genericMedicine(
                            context,
-                           "City",
+                           MyLocalizations.of(context).text("CITY"),
                            ApiFactory.CITY_API +
                                (GovtSchemes?.districtModel?.key??""),
                            "city",
@@ -193,7 +193,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "search".toUpperCase(),
+      text:MyLocalizations.of(context).text("SEARCH").toUpperCase(),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");

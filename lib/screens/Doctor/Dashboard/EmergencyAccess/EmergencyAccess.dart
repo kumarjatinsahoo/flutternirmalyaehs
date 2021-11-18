@@ -53,7 +53,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
       appBar: AppBar(
         backgroundColor:AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text('Emergency Access '),
+        title: Text(MyLocalizations.of(context).text("EMERGENCY_ACCESS")),
       ),
       body: Container(
         height: 300,
@@ -84,7 +84,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                               Container(
                                 width: 120,
                                 child: Text(
-                                  "UHID No",
+                                  MyLocalizations.of(context).text("UHID_NO").toUpperCase(),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -246,7 +246,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                     minWidth: 200,
                     height: 40.0,
                     child: Text(
-                      "Show EMR",
+                      MyLocalizations.of(context).text("SHOW_EMR"),
                       style: TextStyle(
                           color: Colors.white, fontSize: 17.0),
                     ),
@@ -262,7 +262,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
 
   Widget _scanButton() {
     return MyWidgets.outlinedButton(
-      text: "QR SCAN",
+      text: MyLocalizations.of(context).text("QR_SEARCH"),
       context: context,
       fun: () {
         Navigator.pop(context);

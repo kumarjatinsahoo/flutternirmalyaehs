@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
-import 'package:user/models/InsuranceModel.dart'as insurance;
+import 'package:user/models/InsuranceModel.dart' as insurance;
 import 'package:user/models/InsurancePostModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -26,7 +26,7 @@ class InsuranceList extends StatefulWidget {
 class _InsuranceListState extends State<InsuranceList> {
   var selectedMinValue;
   LoginResponse1 loginResponse1;
-  insurance. InsuranceModel insuranceModel;
+  insurance.InsuranceModel insuranceModel;
 
   DateTime selectedDate = DateTime.now();
   String selectDob;
@@ -69,9 +69,9 @@ class _InsuranceListState extends State<InsuranceList> {
   FocusNode fnode9 = new FocusNode();
   FocusNode fnode10 = new FocusNode();
   FocusNode fnode11 = new FocusNode();
-  FocusNode fnode12= new FocusNode();
-  FocusNode fnode13= new FocusNode();
-  FocusNode fnode14= new FocusNode();
+  FocusNode fnode12 = new FocusNode();
+  FocusNode fnode13 = new FocusNode();
+  FocusNode fnode14 = new FocusNode();
 
   @override
   void initState() {
@@ -80,6 +80,7 @@ class _InsuranceListState extends State<InsuranceList> {
     loginResponse1 = widget.model.loginResponse1;
     callApi();
   }
+
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.INSURANCE_list + loginResponse1.body.user,
@@ -94,7 +95,7 @@ class _InsuranceListState extends State<InsuranceList> {
               });
             } else {
               setState(() {
-               // isDataNoFound = true;
+                // isDataNoFound = true;
               });
               //AppData.showInSnackBar(context, msg);
             }
@@ -107,7 +108,7 @@ class _InsuranceListState extends State<InsuranceList> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Insurance"),
+          title: Text(MyLocalizations.of(context).text("INSURANCE")),
           centerTitle: true,
           iconTheme: IconThemeData(color: AppData.white),
           actions: <Widget>[
@@ -137,102 +138,101 @@ class _InsuranceListState extends State<InsuranceList> {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (insuranceModel !=null) ?ListView.builder(
-               itemCount: insuranceModel.body.length,
-               // itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, i) {
-                  insurance.Body body = insuranceModel.body[i];
-                  String insuranceid=body.key;
-                  widget.model.insuranceid=insuranceid;
-                  return
-                    InkWell(
-                      onTap: () {
-                widget.model.insuranceid=body.key;
-                Navigator.pushNamed(context, "/insuranceDetalis");
-
-                },
-
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    shadowColor: Colors.grey,
-                    elevation: 10,
-                    child: ClipPath(
-                      clipper: ShapeBorderClipper(
+            (insuranceModel != null)
+                ? ListView.builder(
+                    itemCount: insuranceModel.body.length,
+                    // itemCount: 4,
+                    shrinkWrap: true,
+                    itemBuilder: (context, i) {
+                      insurance.Body body = insuranceModel.body[i];
+                      String insuranceid = body.key;
+                      widget.model.insuranceid = insuranceid;
+                      return InkWell(
+                        onTap: () {
+                          widget.model.insuranceid = body.key;
+                          Navigator.pushNamed(context, "/insuranceDetalis");
+                        },
+                        child: Card(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5))),
-                      child: Container(
-                          decoration: (i % 2 == 0)
-                              ? BoxDecoration(
-                              border: Border(
-                                  left: BorderSide(
-                                      color: AppData.kPrimaryRedColor,
-                                      width: 5)))
-                              : BoxDecoration(
-                              border: Border(
-                                  left: BorderSide(
-                                      color: AppData.kPrimaryColor,
-                                      width: 5))),
-                          width: double.maxFinite,
-                          /*  margin: const EdgeInsets.only(top: 6.0),*/
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Column(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          shadowColor: Colors.grey,
+                          elevation: 10,
+                          child: ClipPath(
+                            clipper: ShapeBorderClipper(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
+                            child: Container(
+                                decoration: (i % 2 == 0)
+                                    ? BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryRedColor,
+                                                width: 5)))
+                                    : BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryColor,
+                                                width: 5))),
+                                width: double.maxFinite,
+                                /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        body.name,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              body.name,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              body.code,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Premium Amount',
+                                              overflow: TextOverflow.clip,
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                      Image.asset(
+                                        "assets/forwardarrow.png",
+                                        fit: BoxFit.fitWidth,
+                                        /*width: 50,*/
+                                        height: 30,
                                       ),
                                       SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        body.code,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        'Premium Amount',
-                                        overflow: TextOverflow.clip,
-                                        style: TextStyle(color: Colors.grey),
+                                        width: 10,
                                       ),
                                     ],
                                   ),
-                                ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                Image.asset(
-                                  "assets/forwardarrow.png",
-                                  fit: BoxFit.fitWidth,
-                                  /*width: 50,*/
-                                  height: 30,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                              ],
-                            ),
-                          )
-                      ),
-
-                    ),
-                  ),
-                );
-                },
-                  ):Container(),
+                                )),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -243,13 +243,13 @@ class _InsuranceListState extends State<InsuranceList> {
     textEditingController[1].text = "";
     textEditingController[2].text = "";
     textEditingController[3].text = "";
-    _startdate.text="";
+    _startdate.text = "";
     textEditingController[5].text = "";
-    _enddate.text="";
+    _enddate.text = "";
     textEditingController[7].text = "";
     textEditingController[8].text = "";
     textEditingController[9].text = "";
-    _premiumdate.text="";
+    _premiumdate.text = "";
     textEditingController[11].text = "";
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -264,7 +264,6 @@ class _InsuranceListState extends State<InsuranceList> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-
                   SizedBox(
                     height: 10,
                   ),
@@ -274,7 +273,8 @@ class _InsuranceListState extends State<InsuranceList> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Center(
-                          child: Text("ADD INSURANCE",
+                          child: Text(
+                            MyLocalizations.of(context).text("ADD_INSURANCE"),
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
@@ -285,41 +285,56 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 10,
                         ),
-                        formField(1,"Insurance Company"),
+                        formField(
+                            1,
+                            MyLocalizations.of(context)
+                                .text("INSURANCE_COMPANY")),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(2,"Health Insurance Type"),
+                        formField(
+                            2,
+                            MyLocalizations.of(context)
+                                .text("HEALTH_INSURANCE_TYPE")),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(3,"Policy No"),
+                        formField(
+                            3, MyLocalizations.of(context).text("POLICY_NO")),
                         SizedBox(
                           height: 8,
                         ),
                         startdate(),
-                       // formField(4,"Policy Start Date"),
+                        // formField(4,"Policy Start Date"),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(5,"Total Insurance Amount"),
+                        formField(
+                            5,
+                            MyLocalizations.of(context)
+                                .text("TOTAL_INSURANCE_AMOUNT")),
                         SizedBox(
                           height: 8,
                         ),
                         premiumDate(),
-                      //  formField(6,"Premium Due Date"),
+                        //  formField(6,"Premium Due Date"),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(7,"Insurance Type"),
+                        formField(7,
+                            MyLocalizations.of(context).text("INSURANCE_TYPE")),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(8,"Third Party Adminstrator"),
+                        formField(
+                            8,
+                            MyLocalizations.of(context)
+                                .text("THIRDPARTY_ADMINSTRATOR")),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(9,"Premium Amount"),
+                        formField(9,
+                            MyLocalizations.of(context).text("PREMIUM_AMOUNT")),
                         SizedBox(
                           height: 8,
                         ),
@@ -328,7 +343,10 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 8,
                         ),
-                        formField(11,"Sum Assured Amount"),
+                        formField(
+                            11,
+                            MyLocalizations.of(context)
+                                .text("SUM_ASSURED_AMOUNT")),
                         SizedBox(
                           height: 8,
                         ),
@@ -351,77 +369,71 @@ class _InsuranceListState extends State<InsuranceList> {
             textEditingController[1].text = "";
             textEditingController[2].text = "";
             textEditingController[3].text = "";
-            _startdate.text="";
+            _startdate.text = "";
             textEditingController[5].text = "";
-            _enddate.text="";
+            _enddate.text = "";
             textEditingController[7].text = "";
             textEditingController[8].text = "";
             textEditingController[9].text = "";
-            _premiumdate.text="";
+            _premiumdate.text = "";
             textEditingController[11].text = "";
 
             // textEditingController[0].text = "";
           },
-          child:Text("CANCEL",
+          child: Text(
+            MyLocalizations.of(context).text("CANCEL"),
             style: TextStyle(color: AppData.matruColor),
           ),
         ),
         new FlatButton(
-        child: Text(
-        'SAVE',
-    style: TextStyle(color: AppData.matruColor),
-    ),
+          child: Text(
+            MyLocalizations.of(context).text("SAVE"),
+            style: TextStyle(color: AppData.matruColor),
+          ),
           onPressed: () {
             if (textEditingController[1].text == null ||
                 textEditingController[1].text == "") {
-              AppData.showInSnackBar(context, "Please Enter Insurance Company Name ");
+              AppData.showInSnackBar(
+                  context, "Please Enter Insurance Company Name ");
             } else if (textEditingController[2].text == null ||
                 textEditingController[2].text == "") {
-              AppData.showInSnackBar(context, "Please Enter Health Insurance Type");
+              AppData.showInSnackBar(
+                  context, "Please Enter Health Insurance Type");
             } else if (textEditingController[3].text == null ||
                 textEditingController[3].text == "") {
               AppData.showInSnackBar(context, "Please Enter Policy No ");
-            }
-            else if (_startdate.text == "" ||
-                _startdate.text == null) {
+            } else if (_startdate.text == "" || _startdate.text == null) {
               AppData.showInSnackBar(context, "Please Enter Policy Start Date");
-            }
-            else if (textEditingController[5].text == "" ||
+            } else if (textEditingController[5].text == "" ||
                 textEditingController[5].text == null) {
-              AppData.showInSnackBar(context, "Please Enter Total Insurance Amount");
-            }
-            else if (_premiumdate.text == "" ||
-                _premiumdate.text == null) {
+              AppData.showInSnackBar(
+                  context, "Please Enter Total Insurance Amount");
+            } else if (_premiumdate.text == "" || _premiumdate.text == null) {
               AppData.showInSnackBar(context, "Please Enter Premium Due Date");
-            }
-            else if (textEditingController[7].text == "" ||
+            } else if (textEditingController[7].text == "" ||
                 textEditingController[7].text == null) {
               AppData.showInSnackBar(context, "Please Enter Insurance Type");
-            }
-            else if (textEditingController[8].text == "" ||
+            } else if (textEditingController[8].text == "" ||
                 textEditingController[8].text == null) {
-              AppData.showInSnackBar(context, "Please Enter Third Party Adminstrator");
-            }
-            else if (textEditingController[9].text == "" ||
+              AppData.showInSnackBar(
+                  context, "Please Enter Third Party Adminstrator");
+            } else if (textEditingController[9].text == "" ||
                 textEditingController[9].text == null) {
               AppData.showInSnackBar(context, "Please Enter Premium Amount");
-            }
-            else if (_enddate.text == "" ||
-                _enddate.text == null) {
+            } else if (_enddate.text == "" || _enddate.text == null) {
               AppData.showInSnackBar(context, "Please Enter Policy End  Date");
-            }
-            else if (textEditingController[11].text == "" ||
+            } else if (textEditingController[11].text == "" ||
                 textEditingController[11].text == null) {
-              AppData.showInSnackBar(context, "Please Enter Sum Assured Amount");
-            }
-            else {
+              AppData.showInSnackBar(
+                  context, "Please Enter Sum Assured Amount");
+            } else {
               MyWidgets.showLoading(context);
-              InsurancePostModel insurancepostmodel  = InsurancePostModel();
+              InsurancePostModel insurancepostmodel = InsurancePostModel();
               insurancepostmodel.patientId = loginResponse1.body.user;
               insurancepostmodel.insCompany = textEditingController[1].text;
               insurancepostmodel.healthInsType = textEditingController[2].text;
-              insurancepostmodel.policyNo =textEditingController[3].text;
-              insurancepostmodel.policyStartDt =_startdate.text;
+              insurancepostmodel.policyNo = textEditingController[3].text;
+              insurancepostmodel.policyStartDt = _startdate.text;
               insurancepostmodel.totalInsAmount = textEditingController[5].text;
               insurancepostmodel.premiumDueDt = _premiumdate.text;
               insurancepostmodel.insType = textEditingController[7].text;
@@ -440,8 +452,7 @@ class _InsuranceListState extends State<InsuranceList> {
                   setState(() {
                     if (map[Const.STATUS1] == Const.SUCCESS) {
                       callApi();
-                      AppData.showInSnackDone(
-                          context, map[Const.MESSAGE]);
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
@@ -464,9 +475,9 @@ class _InsuranceListState extends State<InsuranceList> {
   }
 
   Widget formField(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
@@ -496,10 +507,11 @@ class _InsuranceListState extends State<InsuranceList> {
       ),
     );
   }
-Widget formField1(
-      int index,
-      String hint,
-      ) {
+
+  Widget formField1(
+    int index,
+    String hint,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
@@ -570,14 +582,14 @@ Widget formField1(
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("Policy End Date"),
+                hintText: (MyLocalizations.of(context).text("POLICY_END_DATE")),
                 hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -586,6 +598,7 @@ Widget formField1(
       ),
     );
   }
+
   Widget premiumDate() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -626,14 +639,15 @@ Widget formField1(
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("Premium Due Date"),
+                hintText:
+                    (MyLocalizations.of(context).text("PREMIUM_DUE_DATE")),
                 hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -683,14 +697,15 @@ Widget formField1(
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:("Policy Start Date"),
+                hintText:
+                    (MyLocalizations.of(context).text("POLICY_START_DATE")),
                 hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -699,6 +714,7 @@ Widget formField1(
       ),
     );
   }
+
   Future<Null> _startDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -706,7 +722,7 @@ Widget formField1(
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-        DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -715,6 +731,7 @@ Widget formField1(
         //addBioMedicalModel.bioMDate = df.format(picked);
       });
   }
+
   Future<Null> _endDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -722,7 +739,7 @@ Widget formField1(
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-        DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -731,6 +748,7 @@ Widget formField1(
         //addBioMedicalModel.bioMDate = df.format(picked);
       });
   }
+
   Future<Null> _premiumDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -738,7 +756,7 @@ Widget formField1(
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-        DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -747,5 +765,4 @@ Widget formField1(
         //addBioMedicalModel.bioMDate = df.format(picked);
       });
   }
-
 }

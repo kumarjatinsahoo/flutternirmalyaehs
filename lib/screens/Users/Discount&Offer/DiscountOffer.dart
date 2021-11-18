@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -296,7 +297,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
         title: Row(
           children: [
             Text(
-              'Discount And Offer',
+              MyLocalizations.of(context).text("DISCOUNT_OFFER"),
               style: TextStyle(
                   fontSize: 20, color: Colors.white),
             ),
@@ -352,7 +353,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              'Hospital & Doctor',
+                                              MyLocalizations.of(context).text("HOSPITAL_DOCTOR"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.normal,
@@ -390,7 +391,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              'Diagnostic & Pathalogy',
+                                              MyLocalizations.of(context).text("DIAGNOSTIC_PATHALOGY"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.normal,
@@ -430,7 +431,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              'Pharmacy',
+                                              MyLocalizations.of(context).text("PHARMACY"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.normal,
@@ -468,7 +469,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              'Shopping',
+                                              MyLocalizations.of(context).text("SHOPPING"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.normal,
@@ -506,7 +507,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              'Other Health Service',
+                                              MyLocalizations.of(context).text("HEALTH_SERVICE"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.normal,

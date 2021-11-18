@@ -409,7 +409,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   decoration: InputDecoration(
                       counterText: "",
                       hintText:
-                          MyLocalizations.of(context).text("PHONE_NUMBER"),
+                          MyLocalizations.of(context).text("MOBILE_NO"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
@@ -793,7 +793,7 @@ class DonorApplicationState extends State<DonorApplication> {
               children: <Widget>[
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
-                Text("Add Witness"),
+                Text(MyLocalizations.of(context).text("ADD_WITNESS")),
                 SizedBox(
                   height: 8,
                 ),
@@ -802,7 +802,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   child: TextFormField(
                     controller: textEditingController[7],
                     decoration: InputDecoration(
-                        hintText: "Full Name",
+                        hintText: MyLocalizations.of(context).text("NAME"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -863,7 +863,7 @@ class DonorApplicationState extends State<DonorApplication> {
                             decoration: InputDecoration(
                               // border: InputBorder.none,
                               counterText: "",
-                              hintText: "S/O,D/O,W/O",
+                              hintText: MyLocalizations.of(context).text("RELATION_OF"),
                               hintStyle: TextStyle(color: Colors.grey),
                             ),
                             validator: (value) {
@@ -903,7 +903,8 @@ class DonorApplicationState extends State<DonorApplication> {
                     controller: textEditingController[9],
                     decoration: InputDecoration(
                         counterText: "",
-                        hintText: "Age: Years",
+                        hintText:
+                        MyLocalizations.of(context).text("AGE"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
@@ -920,7 +921,8 @@ class DonorApplicationState extends State<DonorApplication> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: DropDown.networkDropdownGetpartUserundreline(
-                      "Relation", ApiFactory.RELATION_API, "relation",
+                      MyLocalizations.of(context).text("RELATION"),
+                 ApiFactory.RELATION_API, "relation",
                       (KeyvalueModel model) {
                     setState(() {
                       DonorApplication.relationmodel = model;
@@ -936,7 +938,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     controller: textEditingController[10],
                     decoration: InputDecoration(
                         counterText: "",
-                        hintText: "Mobile Number",
+                        hintText: MyLocalizations.of(context).text("MOBILE_NO"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
@@ -955,9 +957,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     controller: textEditingController[11],
                     decoration: InputDecoration(
                         hintText:
-                            /*MyLocalizations.of(context)
-                            .text("Email ID(optional)"*/
-                            "Email ID(Optional)",
+                        MyLocalizations.of(context).text("EMAILID"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
@@ -974,7 +974,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   child: TextFormField(
                     controller: textEditingController[12],
                     decoration: InputDecoration(
-                        hintText: "Address",
+                        hintText:MyLocalizations.of(context).text("ADDRESS"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -1003,7 +1003,7 @@ class DonorApplicationState extends State<DonorApplication> {
             textEditingController[12].text = "";
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Cancel'),
+          child: Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
@@ -1061,7 +1061,7 @@ class DonorApplicationState extends State<DonorApplication> {
              controller[1].text="";*/
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Save'),
+          child:Text(MyLocalizations.of(context).text("SAVE")),
         ),
       ],
     );

@@ -1450,8 +1450,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                       // Navigator.pushNamed(context, "/medicinereminder");
+                      AppData.showInSnackDone(context, "Coming Soon");
+                      //Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -2175,7 +2175,7 @@ class MyPage2Widget extends StatelessWidget {
                             title: "Health Checkup",
                             fun: () {
                               AppData.showInSnackDone(context, "Coming Soon");
-                             // Navigator.pushNamed(context, "/healthCheckup");
+                             //Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG2BLUE,
                             bordercolor: AppData.BG2BLUE,
@@ -2203,7 +2203,7 @@ class MyPage2Widget extends StatelessWidget {
                             title: "Discount & Offers",
                             fun: () {
                               AppData.showInSnackDone(context, "Coming Soon");
-                             // Navigator.pushNamed(context, "/emergencyroom");
+                             //Navigator.pushNamed(context, "/emergencyroom");
                               // AppData.showSnack(
                               //     context, "Coming soon", Colors.green);
                             },

@@ -83,7 +83,7 @@ String uhid;
                             children: [
                               Container(
                                 width: 120,
-                                child: Text(MyLocalizations.of(context).text("UHID_NO"),
+                                child: Text(MyLocalizations.of(context).text("UHID_NO").toUpperCase(),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -249,7 +249,7 @@ String uhid;
                     minWidth: 200,
                     height: 40.0,
                     child: Text(
-                      "Show EMR",
+                      MyLocalizations.of(context).text("SHOW_EMR"),
                       style: TextStyle(
                           color: Colors.white, fontSize: 17.0),
                     ),
@@ -265,7 +265,7 @@ String uhid;
 
   Widget _scanButton() {
     return MyWidgets.outlinedButton(
-      text: "QR SCAN",
+      text:MyLocalizations.of(context).text("QR_SEARCH"),
       context: context,
       fun: () {
         Navigator.pop(context);
