@@ -144,12 +144,12 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Appointments",
+            Text(MyLocalizations.of(context).text("APPOINTMENT"),
               style: TextStyle(color: bgColor),
             ),
           ],
         ),
+
         titleSpacing: 2,
         backgroundColor: AppData.matruColor,
       ),
@@ -187,7 +187,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                               },
                           ),
                           TextSpan(
-                              text: " Appointments",
+                              text:MyLocalizations.of(context).text("APPOINTMENT"),
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15.0,
@@ -198,7 +198,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   ),
                   Row(
                     children: [
-                      MyWidgets.toggleButton("NEW", () {
+                      MyWidgets.toggleButton(MyLocalizations.of(context).text("NEW"), () {
                         //Navigator.pushNamed(context, "/qrCode1");
                         //dialogRegNo(context);
                         //dialogPopup(context);
@@ -265,7 +265,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     SizedBox(
                       width: 60,
                       child: Text(
-                        "Reg No",
+                        MyLocalizations.of(context).text("REG_NO"),
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.black,
@@ -296,7 +296,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     SizedBox(
                       width: 35,
                       child: Text(
-                        "Age",
+                        MyLocalizations.of(context).text("AGE"),
+
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -307,7 +308,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     SizedBox(
                       width: 60,
                       child: Text(
-                        "Gender",
+                        MyLocalizations.of(context).text("GENDER"),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -317,7 +318,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     ),
                     Expanded(
                       child: Text(
-                        "Status",
+                        MyLocalizations.of(context).text("STATUS"),
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             color: Colors.black,
@@ -463,8 +464,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
               children: <Widget>[
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
-                Text(
-                  "SEARCH BENEFICIARY",
+                Text(MyLocalizations.of(context).text("SEARCH_BENEFICIARY"),
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -474,7 +474,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   height: 10,
                 ),
                 fromFieldNew(
-                    "Beneficiary No",
+                    MyLocalizations.of(context).text("BENEFICIARY_NO"),
                     widget.isConfirmPage,
                     TextInputAction.next,
                     TextInputType.text,
@@ -500,7 +500,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
             Navigator.pushNamed(context, "/qrCode1");
           },
           textColor: Colors.grey[900],
-          child: const Text('SCAN'),
+          child:  Text(MyLocalizations.of(context).text("SCAN")),
         ),
         new FlatButton(
           onPressed: () {
@@ -544,7 +544,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
             }
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('SEARCH'),
+          child: Text(MyLocalizations.of(context).text("SEARCH")),
         ),
       ],
     );

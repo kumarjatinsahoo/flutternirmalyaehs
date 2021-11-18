@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -46,7 +47,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
               color: Colors.white,
             ),*/
         title: Text(
-          'Patient Registration',
+          MyLocalizations.of(context).text("PATIENT_REGISTRATION"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -64,33 +65,33 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     height: size.height * 0.02,
                   ),
                   Text(
-                    'Profile',
+                    MyLocalizations.of(context).text("PROFILE"),
                     style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: NumberformField(0, "Height(CM)"),
+                    child: NumberformField(0,MyLocalizations.of(context).text("HEIGHT")),
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: NumberformField(1, "Weight(kg)"),
+                    child: NumberformField(1, MyLocalizations.of(context).text("WEIGHT")),
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: formField(2, "Email(OPTIONAL)"),
+                    child: formField(2, MyLocalizations.of(context).text("EMAIL")),
                   ),
                   SizedBox(
                     height:5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: adharaformField(3, "Aadhaar(OPTIONAL)"),
+                    child: adharaformField(3, MyLocalizations.of(context).text("AADHAAR_NO")),
                   ),
 
                   /* Padding(
@@ -116,7 +117,8 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                     child: SizedBox(
                       height: 55,
                       child: DropDown.networkDropdownGetpart4(
-                          "Country", ApiFactory.COUNTRY_API, "country",
+                          MyLocalizations.of(context).text("COUNTRY"),
+                          ApiFactory.COUNTRY_API, "country",
                           (KeyvalueModel data) {
                         setState(() {
                           print(ApiFactory.COUNTRY_API);
@@ -138,7 +140,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                           child: SizedBox(
                             height: 55,
                             child: DropDown.networkDropdownGetpart4(
-                                "State",
+                                MyLocalizations.of(context).text("STATE"),
                                 ApiFactory.STATE_API +
                                     PatientRegistration3.countryModel.key,
                                 "state", (KeyvalueModel data) {
@@ -161,7 +163,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                           child: SizedBox(
                             height: 55,
                             child: DropDown.networkDropdownGetpart4(
-                                "District",
+                                MyLocalizations.of(context).text("DIST"),
                                 ApiFactory.DISTRICT_API +
                                     PatientRegistration3.stateModel.key,
                                 "districtid", (KeyvalueModel data) {
@@ -183,7 +185,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                           child: SizedBox(
                             height: 55,
                             child: DropDown.networkDropdownGetpart4(
-                                "City",
+                                MyLocalizations.of(context).text("CITY"),
                                 ApiFactory.CITY_API +
                                     PatientRegistration3.districtModel.key,
                                 "city", (KeyvalueModel data) {
@@ -396,7 +398,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:  MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
         if (textEditingController[0].text == "" ||

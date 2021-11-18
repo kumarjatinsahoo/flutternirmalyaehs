@@ -75,8 +75,7 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
         ),*/
         title: Row(
           children: [
-            Text(
-              "Register Beneficiary List",
+            Text(MyLocalizations.of(context).text("BENEFICIARY_LIST"),
               style: TextStyle(color: Colors.white),
             ),
             Spacer(),

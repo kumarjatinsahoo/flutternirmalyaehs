@@ -324,15 +324,6 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                     //overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                /*Align(
-                                                    alignment: Alignment.center,
-                                                    child: Expanded(
-                                                      child: Text(
-                                                        "Health               chat",
-                                                        style: TextStyle(color: Colors.black),
-                                                        textAlign: TextAlign.center,
-                                                      ),
-                                                    )),*/
                               ]),
                           SizedBox(
                             width: 5,

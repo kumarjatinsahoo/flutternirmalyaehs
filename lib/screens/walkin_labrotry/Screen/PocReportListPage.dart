@@ -108,8 +108,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text(
-              "POC Report List",
+            Text(MyLocalizations.of(context).text("POC_REPORT_LIST"),
               style: TextStyle(color: Colors.white),
             ),
             Spacer(),
@@ -124,7 +123,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                 }
               },
               child: Text(
-                "Send SMS",
+                MyLocalizations.of(context).text("SEND_SMS"),
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
