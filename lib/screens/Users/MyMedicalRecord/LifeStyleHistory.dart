@@ -68,8 +68,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     new TextEditingController(),
   ];
   List<KeyvalueModel> genderList = [
-    KeyvalueModel(key: "1", name: "Vag"),
-    KeyvalueModel(key: "2", name: "Non Vag"),
+    KeyvalueModel(key: "1", name: "Veg"),
+    KeyvalueModel(key: "2", name: "Non Veg"),
   ];
   TextEditingController _height = TextEditingController();
   TextEditingController _weight = TextEditingController();

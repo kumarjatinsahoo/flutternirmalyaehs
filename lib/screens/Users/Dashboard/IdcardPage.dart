@@ -147,7 +147,6 @@ class _IdCardPageState extends State<IdCardPage> {
           child: SizedBox(
        // width: MediaQuery.of(context).size.height,
         child: InAppWebView(
-
           initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id/*"https://www.google.com/search?client=firefox-b-d&q=pdf+example"*/)),
           initialOptions: _options,
 
