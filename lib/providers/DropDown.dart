@@ -3538,6 +3538,9 @@ class DropDown {
             case "immunization":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "documentlist":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
 
         return list;

@@ -75,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   FocusNode fnode5 = new FocusNode();
+  FocusNode fnode6 = new FocusNode();
 
   TextEditingController _fname = TextEditingController();
   TextEditingController _address = TextEditingController();
@@ -1138,15 +1139,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
     ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";*/
 
-    _eMobile.text = patientProfileModel.body.eMobile.toString() ?? "N/A";
-    _fDoctor.text = patientProfileModel.body.fDoctor.toString() ?? "N/A";
-    _eName.text = patientProfileModel.body.eName.toString() ?? "N?A";
-    _docMobile.text = patientProfileModel.body.docMobile.toString() ?? "N/A";
-    _address.text =(patientProfileModel != null)||(patientProfileModel.body.address==null)?patientProfileModel.body.address.toString():"N/A";
-    textEditingController[2].text = (patientProfileModel != null)
-        ? myFormatDate(patientProfileModel.body.dob.toString()): "N/A";
+    //_fDoctor.text =(patientProfileModel != null)||(patientProfileModel.body.fDoctor==null)?"N/A":patientProfileModel.body.fDoctor.toString();
+    //_eName.text =(patientProfileModel != null)||(patientProfileModel.body.eName!=null)? patientProfileModel.body.eName.toString():"N/A";
+    //_docMobile.text =(patientProfileModel != null)||(patientProfileModel.body.docMobile == null)?patientProfileModel.body.docMobile:"N/A";
+    //_eMobile.text = (patientProfileModel != null)||(patientProfileModel.body.eMobile==null)?"N/A":patientProfileModel.body.eMobile.toString();
+
+    //patientProfileModel.body.eMobile.toString() == null?"N/A":_eMobile.text =patientProfileModel.body.eMobile.toString();
+    //textEditingController[1].text = (patientProfileModel != null)||(patientProfileModel.body.eName == null)?patientProfileModel.body.eName.toString(): "N/A";
+    //patientProfileModel.body.fDoctor.toString() == null?"N/A":_fDoctor.text =patientProfileModel.body.fDoctor.toString();
+    //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
+   // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
+    //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
+    textEditingController[5].text =patientProfileModel.body.address??"";
+    textEditingController[1].text = patientProfileModel.body.eName??"";
+    textEditingController[2].text = patientProfileModel.body.eMobile??"";
+    textEditingController[3].text = patientProfileModel.body.fDoctor??"";
+    textEditingController[4].text = patientProfileModel.body.docMobile??"";
+    textEditingController[0].text = (patientProfileModel != null)? myFormatDate(patientProfileModel.body.dob.toString()): "";
     updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
+
     updateProfileModel.id = patientProfileModel.body.id.toString();
+    if (patientProfileModel?.body?.bloodGroup == null||patientProfileModel?.body?.bloodGroup == "") {
+      ProfileScreen.bloodgroupmodel=null;
+    }if (patientProfileModel?.body?.eRelation == null||patientProfileModel?.body?.eRelation == "") {
+      ProfileScreen.relationmodel=null;
+    }if (patientProfileModel?.body?.speciality == null||patientProfileModel?.body?.speciality == "") {
+      ProfileScreen.specialitymodel=null;}
+      if (patientProfileModel?.body?.eMobile == null||patientProfileModel?.body?.eMobile == "") {
+        textEditingController[2].text= "";
+      }if (patientProfileModel?.body?.docMobile == null||patientProfileModel?.body?.docMobile == "") {
+      textEditingController[4].text = "";}
 
     return showDialog(
         context: context,
@@ -1250,7 +1272,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             });
                           }),
                           ]),
-                          formField(_eName,"Emergency Contact Name"),
+                          formField(1,"Emergency Contact Name",fnode1,fnode2),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1281,8 +1303,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           }),
               ]),
                           /*   Divider(height: 2, color: Colors.black),*/
-                          formFieldMobileno(_eMobile,"Emergency Contact No."),
-                          formField(_fDoctor,"Family Doctor's Name"),
+                          formFieldMobileno(2,"Emergency Contact No.",fnode2,fnode3),
+                          formField(3,"Family Doctor's Name",fnode3,fnode4),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1315,8 +1337,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 2,
                             color: Colors.black,
                           ),*/
-                          formFieldMobileno(_docMobile,"Doctors Mobile No"),
-                          formFieldAddress(_address,"Address"),
+                          formFieldMobileno(4,"Doctors Mobile No",fnode4,fnode5),
+                          formFieldAddress(5,"Address",fnode5,null),
 
 
                         ],
@@ -1352,34 +1374,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
            ScaffoldMessenger.of(context)
                .showSnackBar(SnackBar(content: Text("My amazing message! O.o")));
 */
-       if (_eMobile.text == "" || _eMobile.text == null) {
-         AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
+       if (textEditingController[0].text == "N/A" || textEditingController[0].text== null|| textEditingController[0].text == "") {
+          //AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
+          AppData.showInSnackBar(context, "Please enter DOB");
+
+
+       }else if (ProfileScreen.bloodgroupmodel== null ||
+           ProfileScreen.bloodgroupmodel == "") {
+         AppData.showInSnackBar(context, "Please select Blood Group");
+          //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
+          }else if (textEditingController[1].text == "N/A" ||textEditingController[1].text== null|| textEditingController[1].text == ""){
+         AppData.showInSnackBar(context, "Please enter Emergency Contact Name");
+         FocusScope.of(context).requestFocus(fnode1);
+       } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Emergency Contact Name ");
+         FocusScope.of(context).requestFocus(fnode1);
+       }else if (ProfileScreen.relationmodel== null ||
+          ProfileScreen.relationmodel == "") {
+          AppData.showInSnackBar(context, "Please select Relation");
+       }else if (textEditingController[2].text == "N/A" ||textEditingController[2].text== null|| textEditingController[2].text == ""){
+         AppData.showInSnackBar(context, "Please enter  Emergency Contact No.");
+         FocusScope.of(context).requestFocus(fnode2);
+       } else if ( textEditingController[2].text != "" &&  textEditingController[2].text.length != 10)  {
+       AppData.showInSnackBar(context, "Please enter valid Emergency Contact No.");
+       FocusScope.of(context).requestFocus(fnode2);
+                }else if (textEditingController[3].text == "" || textEditingController[3].text == null|| textEditingController[3].text == "") {
+         AppData.showInSnackBar(context, "Please enter Family Doctor Name");
+         FocusScope.of(context).requestFocus(fnode3);
+       } else if ( textEditingController[3].text != "" &&  textEditingController[3].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor Name ");
+         FocusScope.of(context).requestFocus(fnode3);
+       }else if (ProfileScreen.specialitymodel== null ||
+           ProfileScreen.specialitymodel == "") {
+         AppData.showInSnackBar(context, "Please select Speciality");
+       }else if (textEditingController[4].text == "N/A" ||textEditingController[4].text== null||textEditingController[4].text== ""){
+         AppData.showInSnackBar(context, "Please enter  Family Doctor Mobile No.");
+         FocusScope.of(context).requestFocus(fnode4);
+       } else if ( textEditingController[4].text != "" &&  textEditingController[4].text.length != 10)  {
+         AppData.showInSnackBar(context, "Please enter valid Family Doctor Mobile No.");
+         FocusScope.of(context).requestFocus(fnode4);
          //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
-       } else if (_eMobile.text != "" && _eMobile.text.length != 10)  {
-       AppData.showInSnackBar(context, "Please enter valid Emergency Contact No.");}
-       else if (_eMobile.text == "" || _eMobile.text == null) {
-         AppData.showInSnackBar(context, "Please enter Family Doctor's No");
-         //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
-       } else if (_docMobile.text != "" && _docMobile.text.length != 10)  {
-         AppData.showInSnackBar(context, "Please enter valid Family Doctor's No");
+       }else if (textEditingController[5].text == "N/A" || textEditingController[5].text == null|| textEditingController[5].text == "") {
+         AppData.showInSnackBar(context, "Please enter Address");
+         FocusScope.of(context).requestFocus(fnode5);
+       } else if ( textEditingController[5].text != "" &&  textEditingController[5].text.length <= 3)  {
+         AppData.showInSnackBar(context, "Please enter valid Address");
+         FocusScope.of(context).requestFocus(fnode5);
+
        } else {
-           updateProfileModel.dob = textEditingController[2].text;
-           updateProfileModel.bloodGroup =
-               ProfileScreen.bloodgroupmodel.key;
-           updateProfileModel.address = _address.text;
+           updateProfileModel.dob = textEditingController[0].text;
+           updateProfileModel.bloodGroup = ProfileScreen.bloodgroupmodel.key;
+           updateProfileModel.address = textEditingController[5].text;
            //Emergency
-           updateProfileModel.eName = _eName.text;
-           updateProfileModel.eMobile = _eMobile.text;
-           updateProfileModel.eRelation =
-               ProfileScreen.relationmodel.key;
+           updateProfileModel.eName = /*_eName.text*/textEditingController[1].text;
+           updateProfileModel.eMobile = /*_eMobile.text*/textEditingController[2].text;
+           updateProfileModel.eRelation = ProfileScreen.relationmodel.key;
            //doctor
-           updateProfileModel.fDoctor = _fDoctor.text;
+           updateProfileModel.fDoctor =/* _fDoctor.text*/textEditingController[3].text;
            updateProfileModel.speciality =
                ProfileScreen.specialitymodel.key;
-           updateProfileModel.docMobile = _docMobile.text;
+           updateProfileModel.docMobile = /*_docMobile.text*/textEditingController[4].text;
 
-           log("Post json>>>>" +
-               jsonEncode(updateProfileModel.toJson()));
+           log("Post json>>>>" + jsonEncode(updateProfileModel.toJson()));
 
            widget.model.POSTMETHOD_TOKEN(
                api: ApiFactory.USER_UPDATEPROFILE,
@@ -1436,7 +1492,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
 
-  Widget formFieldMobileno(TextEditingController controller, String hint) {
+  Widget formFieldMobileno(int controller, String hint,FocusNode currentfn, FocusNode nextFn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1455,9 +1511,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: TextFormField(
-              controller: controller,
+              controller:textEditingController[controller],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
+              focusNode: currentfn,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
                   RegExp("[0-9]"),
@@ -1476,13 +1533,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
       ],
     );
   }
-  Widget formFieldAddress(TextEditingController controller, String hint) {
+  Widget formFieldAddress(int controller, String hint,FocusNode currentfn, FocusNode nextFn,) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1501,15 +1562,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: TextFormField(
-              controller: controller,
+              controller: textEditingController[controller],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
+              focusNode: currentfn,
               /*inputFormatters: [
                 WhitelistingTextInputFormatter(
                   RegExp("[0-9]"),
                 ),
               ],*/
-              maxLength: 10,
+              ///maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
@@ -1522,13 +1584,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
       ],
     );
   }
-  Widget formField(TextEditingController controller, String hint) {
+  Widget formField(int index, String hint,FocusNode currentfn, FocusNode nextFn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1547,8 +1613,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: TextFormField(
-              controller: controller,
+              controller: textEditingController[index],
               textInputAction: TextInputAction.done,
+              focusNode: currentfn,
               keyboardType: TextInputType.text,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
@@ -1563,6 +1630,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   contentPadding:
                   EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                print("ValueValue" + error[index].toString());
+
+                setState(() {
+                  error[index] = false;
+                });
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
             ),
           ),
         ),
@@ -1616,7 +1691,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: TextFormField(
                     //focusNode: fnode4,
                     //enabled: !widget.isConfirmPage ? false : true,
-                    controller:textEditingController[2],
+                    controller:textEditingController[0],
                     keyboardType: TextInputType.datetime,
                     textAlign: TextAlign.left,
                     textAlignVertical: TextAlignVertical.center,
@@ -1736,9 +1811,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-        error[2] = false;
-        textEditingController[2].value =
-            TextEditingValue(text: df.format(picked));
+
+        textEditingController[0].value =TextEditingValue(text: df.format(picked));
         //updateProfileModel.dob = df.format(picked);
       });
   }

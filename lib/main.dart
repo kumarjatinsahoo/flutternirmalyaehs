@@ -56,6 +56,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
+import 'package:user/screens/Users/MyMedicalRecord/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
@@ -65,6 +66,9 @@ import 'package:user/screens/Users/EmergencyHelp/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
+import 'package:user/screens/Users/MyMedicalRecord/DocumentList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/DocumentPdfView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
@@ -939,6 +943,15 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/myPatientlist': (context) => MyPatientlist(
+                model: _model,
+              ),
+              '/uploaddocument': (context) => UploadDocument(
+                model: _model,
+              ),
+              '/adduploaddocument': (context) => AddUploadDocument(
+                model: _model,
+              ),
+              '/documentpdf': (context) => DocumentPdf(
                 model: _model,
               ),
 

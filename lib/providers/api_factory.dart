@@ -5,7 +5,7 @@ class ApiFactory {
   static String MAIN_URL1 = "https://1331.co.in/api";
  //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http:// 192.168.192.208:8062/nirmalyaRest/api/";
- // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.29.16:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.162.208:8062/nirmalyaRest/api/";
@@ -30,8 +30,8 @@ class ApiFactory {
   static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String DELETE_TEST_LIST = MAIN_URL + 'delete-test-by-app-no?appno=';
 
-  static String BIOMEDICAL_IMPLANTS =
-      MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
+  static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
+  static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String IMMUNIZATION_LIST =
       MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list =
@@ -41,6 +41,7 @@ class ApiFactory {
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String IMMUNIZATION_STATUS = MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
+  static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
@@ -110,8 +111,8 @@ class ApiFactory {
     return MAIN_URL + "login-with-otp?mobileNo=$mob";
   }
 
-  static String ADD_BIOMEDICAL_IMPLANTS =
-      MAIN_URL + 'post-biomedical-implants-api';
+  static String ADD_BIOMEDICAL_IMPLANTS = MAIN_URL + 'post-biomedical-implants-api';
+  static String ADD_UPLOAD_DOCUMENT = MAIN_URL + 'post-medical-dataupload-api';
   static String ADD_IMMUNIZATION = MAIN_URL + 'post-patient-immunization-details';
   static String SMS_TO_EMERGENCY =
       MAIN_URL + 'sms-to-emergency-contact-users?userid=';

@@ -238,7 +238,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
                                           onTap: () {
                                             String orderid = body.orderId;
                                             rejectApi(orderid);
-                                            callAPI();
+                                           // callAPI();
                                           },
                                           child: Container(
                                             height: size.height * 0.06,
