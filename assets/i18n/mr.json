@@ -319,6 +319,14 @@
   "PLACED": "ठेवले",
   "PROCESSING": "प्रक्रिया",
   "DISPATCHED": "पाठवले",
-  "ORDER_PLACED": "ऑर्डर दिली"
+  "ORDER_PLACED": "ऑर्डर दिली",
+  "ORDER_CONFIRMED": "ऑर्डर पुष्टी केली",
+  "ORDER_PROCESSED": "ऑर्डर प्रक्रिया केली",
+  "READY_PICKUP": "पिकअपसाठी तयार",
+  "WE_RCVD_UR_ORDER": "आम्हाला तुमची ऑर्डर मिळाली",
+  "ORDER_HASBEEN_CONFIRMED": "ऑर्डरची पुष्टी झाली आहे",
+  "ORDER_PREPARING": "आम्ही तुमची ऑर्डर तयार करत आहोत",
+  "ORDER_READYTO_PICKUP": "तुमची ऑर्डर पिकअपसाठी तयार आहे",
+  "CALL": "कॉल"
 }
 

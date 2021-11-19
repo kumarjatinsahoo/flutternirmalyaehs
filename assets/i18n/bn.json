@@ -319,6 +319,14 @@
   "PLACED": "ସ୍ଥାନିତ",
   "PROCESSING": "ପ୍ରକ୍ରିୟାକରଣ",
   "DISPATCHED": "ପଠାଯାଇଛି",
-  "ORDER_PLACED": "ଅର୍ଡର ସ୍ଥାନିତ"
+  "ORDER_PLACED": "ଅର୍ଡର ସ୍ଥାନିତ",
+  "ORDER_CONFIRMED": "ଅର୍ଡର ନିଶ୍ଚିତ ହୋଇଛି ",
+  "ORDER_PROCESSED": "ଅର୍ଡର ପ୍ରକ୍ରିୟାକରଣ",
+  "READY_PICKUP": "ପିକଅପ୍ ପାଇଁ ପ୍ରସ୍ତୁତ",
+  "WE_RCVD_UR_ORDER": "ଆମେ ତୁମର ଅର୍ଡର ପାଇଲୁ ",
+  "ORDER_HASBEEN_CONFIRMED": "ଅର୍ଡର ନିଶ୍ଚିତ ହୋଇଛି ",
+  "ORDER_PREPARING": "ଆମେ ତୁମର ଅର୍ଡର ପ୍ରସ୍ତୁତ କରୁଛୁ ",
+  "ORDER_READYTO_PICKUP": "ତୁମର ଅର୍ଡର ପିକଅପ୍ ପାଇଁ ପ୍ରସ୍ତୁତ",
+  "CALL": "କଲ୍"
 }
 

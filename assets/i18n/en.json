@@ -330,6 +330,12 @@
   "ORDER_PLACED": "Order Placed",
   "ORDER_CONFIRMED": "Order Confirmed",
   "ORDER_PROCESSED": "Order Processed",
+  "READY_PICKUP": "Ready to Pickup",
+  "WE_RCVD_UR_ORDER": "We Received your Order",
+  "ORDER_HASBEEN_CONFIRMED": "Order has been Confirmed",
+  "ORDER_PREPARING": "We are preparing your Order",
+  "ORDER_READYTO_PICKUP": "Your order is ready to Pickup",
+  "CALL": "Call",
 
 
 
