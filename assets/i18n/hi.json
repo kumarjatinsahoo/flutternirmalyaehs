@@ -280,6 +280,38 @@
   "REQUESTED": "अनुरोध किया",
   "CONFIRMED": "पुष्टि करना",
   "CANCELLED": "रद्द",
-  "TREATED": "इलाज"
+  "TREATED": "इलाज",
+
+  "PATIENT_NAME": "रोगी का नाम",
+  "PATIENT_ADDRESS": "रोगी का पता",
+  "OPD_DATE": "ओपीडी तिथि",
+
+  "REGISTER_PATIENT": "Rरोगी पंजीकृत करें",
+  "POC_REPORTS": "पीओसी रिपोर्ट",
+  "MY_ORDERS": "मेरे आदेश",
+  "UPDATION_DATA": "अद्यतन डेटा",
+  "BENEFICIARY_LIST": "रजिस्टर लाभार्थी सूची",
+  "PATIENT_REGISTRATION": "रोगी पंजीकरण",
+  "PROFILE": "प्रोफ़ाइल",
+  "AADHAAR_NO": "आधार संख्या",
+
+  "HEALTH_SCREENING": "स्वास्थ्य जांच",
+  "DOCTOR_APPOINTMENT": "चिकित्सक की नियुक्ति",
+  "NEW": "नया",
+  "REG_NO": "संख्या",
+  "STATUS": "स्थिति",
+
+  "SEARCH_BENEFICIARY": "लाभार्थी खोजें",
+  "BENEFICIARY_NO": "लाभार्थी संख्या",
+  "SCAN": "स्कैन",
+  "POC_REPORT_LIST": "पीओसी रिपोर्ट सूची",
+  "SEND_SMS": "संदेश भेजो",
+  "CONFIRM_ORDER_LIST": "आदेश सूची की पुष्टि करें",
+  "REJECT": "अस्वीकार",
+  "ACCEPT": "स्वीकार",
+  "CONFIRMED_ORDER": " पुष्टि आदेश",
+  "PROCESSED_ORDER": "संसाधित आदेश",
+  "DELIVERD_ORDER": "वितरण आदेश",
+  "INVOICES": "चालान"
 }
 

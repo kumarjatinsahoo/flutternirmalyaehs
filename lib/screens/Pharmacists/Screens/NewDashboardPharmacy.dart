@@ -7,6 +7,7 @@ import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
+
 //import 'dart:html';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -57,7 +58,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
     loginResponse = widget.model.loginResponse1;
   }
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,7 +65,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Dashboard",
+          MyLocalizations.of(context).text("DASHBOARD"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -74,25 +74,22 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
-      body:
-      Stack(
-        children: [
+      body: Stack(children: [
         Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            child: Image.asset(
-              "assets/images/pharmacybanner.jpg",
-              // width: size.width,
-              // fit: BoxFit.cover,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              child: Image.asset(
+                "assets/images/pharmacybanner.jpg",
+                // width: size.width,
+                // fit: BoxFit.cover,
+              ),
             ),
-          ),
-          SizedBox(height:3),
-
-        ],
-      ),
-         Container(
+            SizedBox(height: 3),
+          ],
+        ),
+        Container(
           padding: EdgeInsets.symmetric(horizontal: 7),
           child: Column(
             children: [
@@ -124,8 +121,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("My Orders",
-                            // MyLocalizations.of(context).text("My Orders"),
+                          child: Text(
+                            MyLocalizations.of(context).text("MY_ORDERS"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -157,7 +154,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Confirmed Order",
+                          child: Text(
+                            MyLocalizations.of(context).text("CONFIRMED_ORDER"),
                             // MyLocalizations.of(context).text("Confirmed Order"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -203,8 +201,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Processed Orders",
-                            // MyLocalizations.of(context).text("Processed Orders"),
+                          child: Text(
+                            MyLocalizations.of(context).text("PROCESSED_ORDER"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -219,10 +217,11 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                                           ),
                                         )),*/
                       ]),
-
                 ],
               ),
-              SizedBox(height: 7,),
+              SizedBox(
+                height: 7,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -248,10 +247,10 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Deliverd Order",
-/*
-                            MyLocalizations.of(context).text("Deliverd Order").toString(),
-*/
+                          child: Text(
+                            MyLocalizations.of(context)
+                                .text("DELIVERD_ORDER")
+                                .toString(),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -297,8 +296,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Invoices",
-                            // MyLocalizations.of(context).text("Invoices"),
+                          child: Text(
+                            MyLocalizations.of(context).text("INVOICES"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
@@ -329,24 +328,21 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Monthly Overview",
-                            // MyLocalizations.of(context).text("Monthly Overview"),
+                          child: Text(
+                            MyLocalizations.of(context)
+                                .text("MONTHLY_OVERVIEW"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
                           ),
                         ),
-
                       ]),
                 ],
               ),
               SizedBox(height: 50),
-
-
             ],
           ),
         ),
-      ]
-      ),
+      ]),
       drawer: Drawer(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -380,19 +376,12 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       ),*/
                       CircleAvatar(
                         radius: 35,
-                        foregroundColor:
-                        Colors
-                            .white,
+                        foregroundColor: Colors.white,
                         backgroundColor: Colors.white,
-                        child:
-                        Image.asset(
+                        child: Image.asset(
                           'assets/images/user.png',
-                          height:
-                          size.height *
-                              0.07,
-                          width:
-                          size.width *
-                              0.13,
+                          height: size.height * 0.07,
+                          width: size.width * 0.13,
                           //fit: BoxFit.cover,
                         ),
                       ),
@@ -415,7 +404,9 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
               ListTile(
                   leading: Icon(Icons.dashboard,
                       color: AppData.menublueColor, size: 27),
-                  title: Text(MyLocalizations.of(context).text("DASHBOARD"),),
+                  title: Text(
+                    MyLocalizations.of(context).text("DASHBOARD"),
+                  ),
                   selected: _selectedDestination == 0,
                   onTap: () {
                     selectDestination(0);
@@ -423,16 +414,18 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     //Navigator.pushNamed(context, "/dashboard");
                     // Navigator.pushNamed(context, "/dashboard1");
                   }
-                // onTap: (){},
+                  // onTap: (){},
 
-              ),
+                  ),
               ListTile(
                 leading: Image.asset(
                   "assets/images/myprofile.png",
                   height: 30,
                   //color: Colors.redAccent,
                 ),
-                title: Text(MyLocalizations.of(context).text("MY_PROFILE"),),
+                title: Text(
+                  MyLocalizations.of(context).text("MY_PROFILE"),
+                ),
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
@@ -492,7 +485,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                 leading: Image.asset(
                   "assets/images/logout.png",
                   height: 30,
-                ),                title: Text('Logout'),
+                ),
+                title: Text('Logout'),
                 selected: _selectedDestination == 10,
                 onTap: () {
                   selectDestination(10);
@@ -518,8 +512,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
 
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
-    return
-      Container(
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
         children: [
@@ -646,7 +639,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                                           ),
                                         )),*/
                   ]),
-
             ],
           ),
           Row(
@@ -705,7 +697,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Invoices",
                       fun: () {
-                         AppData.showInSnackDone(context, "Coming Soon");
+                        AppData.showInSnackDone(context, "Coming Soon");
                         // Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
@@ -759,7 +751,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-
                   ]),
             ],
           ),
@@ -775,7 +766,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
           //   color: AppData.white,
           //   bordercolor: AppData.white,
           // ),
-
         ],
       ),
     );
@@ -935,13 +925,15 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
-  Widget _buildTile({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+
+  Widget _buildTile(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -968,7 +960,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
-
               children: <Widget>[
                 Align(
                     alignment: Alignment.center,
@@ -976,22 +967,22 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                       /* "assets/logo1.png"*/
                       icon,
                       fit: BoxFit.fitWidth,
-
                     )),
               ],
             ),
-
           ],
         ),
       ),
     );
   }
-  Widget _buildTilered({String icon,
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+
+  Widget _buildTilered(
+      {String icon,
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1002,7 +993,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
         width: 100,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -1013,8 +1004,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
             border: Border.all(
               color: AppData.kPrimaryRedColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
@@ -1032,24 +1022,22 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     color: AppData.kPrimaryRedColor,
                   ),
                 ),
-
               ],
             ),
-
           ],
         ),
       ),
     );
   }
 
-
-  Widget _buildTileblue({String icon,
-    /*IconData icon,*/
-    String title,
-    double size,
-    Color bordercolor,
-    Color color,
-    Function fun}) {
+  Widget _buildTileblue(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -1059,7 +1047,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
         width: 100,
         decoration: BoxDecoration(
 
-          /// borderRadius: BorderRadius.circular(7.0),
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -1070,8 +1058,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
             border: Border.all(
               color: AppData.kPrimaryColor,
               width: 1.0,
-            )
-        ),
+            )),
         child: Stack(
           children: [
             Column(
@@ -1090,7 +1077,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     )),
               ],
             ),
-
           ],
         ),
       ),

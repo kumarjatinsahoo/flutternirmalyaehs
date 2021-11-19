@@ -91,7 +91,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("My Patient"),
+          title: Text(MyLocalizations.of(context).text("MY_PATIENT")),
           /* leading: Icon(
           Icons.menu,
         ),*/
@@ -187,7 +187,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          "Patient Name",
+                                          MyLocalizations.of(context).text("PATIENT_NAME"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -223,7 +223,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          "Patient Address",
+                                          MyLocalizations.of(context).text("PATIENT_ADDRESS"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -268,7 +268,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          "Mobile No.",
+                                          MyLocalizations.of(context).text("MOBILE_NO"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -305,7 +305,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          "OPD Date",
+                                          MyLocalizations.of(context).text("OPD_DATE"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight

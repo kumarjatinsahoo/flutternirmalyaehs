@@ -281,6 +281,37 @@
   "REQUESTED": "विनंती",
   "CONFIRMED": "पुष्टी केली",
   "CANCELLED": "रद्द केले",
-  "TREATED": "उपचार केलेले"
+  "TREATED": "उपचार केलेले",
+
+  "PATIENT_NAME": "रुग्णाचे नाव",
+  "PATIENT_ADDRESS": "रुग्णाचा पत्ता",
+  "OPD_DATE": "ओपीडी तारीख",
+
+  "REGISTER_PATIENT": "रुग्णाची नोंदणी करा",
+  "POC_REPORTS": "POC अहवाल",
+  "MY_ORDERS": "माझी ऑर्डर",
+  "UPDATION_DATA": "अद्यतन डेटा",
+  "BENEFICIARY_LIST": "लाभार्थ्यांची यादी नोंदवा",
+  "PATIENT_REGISTRATION": "रुग्ण नोंदणी",
+  "PROFILE": "प्रोफाइल",
+  "AADHAAR_NO": "आधार क्र",
+
+  "HEALTH_SCREENING": "आरोग्य तपासणी",
+  "DOCTOR_APPOINTMENT": "डॉक्टरांची भेट",
+  "NEW": "नवीन",
+  "REG_NO": "क्रमांक",
+  "STATUS": "स्थिती",
+  "SEARCH_BENEFICIARY": "लाभार्थी शोधा",
+  "BENEFICIARY_NO": "लाभार्थी क्र",
+  "SCAN": "स्कॅन करा",
+  "POC_REPORT_LIST": "POC अहवाल यादी",
+  "SEND_SMS": "एसएमएस पाठवा",
+  "CONFIRM_ORDER_LIST": "ऑर्डर यादीची पुष्टी करा",
+  "REJECT": "नकार द्या",
+  "ACCEPT": "स्वीकारा",
+  "CONFIRMED_ORDER": "पुष्टी ऑर्डर",
+  "PROCESSED_ORDER": "प्रक्रिया ऑर्डर",
+  "DELIVERD_ORDER": "ऑर्डर वितरित करा",
+  "INVOICES": "पावत्या"
 }
 

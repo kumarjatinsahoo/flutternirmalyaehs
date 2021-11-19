@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -37,8 +38,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
         /*leading: BackButton(
               color: Colors.white,
             ),*/
-        title: Text(
-          'Patient Registration',
+        title: Text(MyLocalizations.of(context).text("PATIENT_REGISTRATION"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -206,7 +206,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                                   /* suffixIcon: Icon(Icons.phone),*/
                                   border: InputBorder.none,
                                   counterText: "",
-                                  hintText: "Mobile Number",
+                                  hintText:MyLocalizations.of(context).text("MOBILE_NO"),
                                   hintStyle: TextStyle(
                                       color: Colors.black26, fontSize: 17),
                                 ),
@@ -243,7 +243,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: formField(1, "Patient Name"),
+                  child: formField(1,MyLocalizations.of(context).text("PATIENT_NAME")),
                 ),
                 SizedBox(
                   height: size.height * 0.07,
@@ -335,7 +335,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text: MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
