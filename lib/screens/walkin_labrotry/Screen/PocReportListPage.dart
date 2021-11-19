@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart' as poclogin;
 import 'package:user/models/PocReportModel.dart';
 import 'package:user/providers/Const.dart';
@@ -198,12 +199,6 @@ class _PocReportListPageState extends State<PocReportListPage> {
                             });
                           }),
                     ),
-                    /*title:
-              Text(
-                (i + 1).toString() + ". " + patient.name + " ",
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-              ),*/
                     subtitle: SizedBox(
                       child: InkWell(
                         onTap: () {

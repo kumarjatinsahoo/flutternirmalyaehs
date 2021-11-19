@@ -308,6 +308,10 @@
   "SEND_SMS": "SMS ପଠାନ୍ତୁ ",
   "CONFIRM_ORDER_LIST": "ଅର୍ଡର ତାଲିକା ନିଶ୍ଚିତ କରନ୍ତୁ",
   "REJECT": "ପ୍ରତ୍ୟାଖ୍ୟାନ",
-  "ACCEPT": "ଗ୍ରହଣ କର"
+  "ACCEPT": "ଗ୍ରହଣ କର",
+  "CONFIRMED_ORDER": "ନିଶ୍ଚିତ କ୍ରମ ",
+  "PROCESSED_ORDER": "ପ୍ରକ୍ରିୟା ଅର୍ଡର ",
+  "DELIVERD_ORDER": "ବିତରଣ ଅର୍ଡର",
+  "INVOICES": "ଇନଭଏସ୍"
 }
 

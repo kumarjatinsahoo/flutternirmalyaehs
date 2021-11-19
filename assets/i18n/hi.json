@@ -308,6 +308,10 @@
   "SEND_SMS": "संदेश भेजो",
   "CONFIRM_ORDER_LIST": "आदेश सूची की पुष्टि करें",
   "REJECT": "अस्वीकार",
-  "ACCEPT": "स्वीकार"
+  "ACCEPT": "स्वीकार",
+  "CONFIRMED_ORDER": " पुष्टि आदेश",
+  "PROCESSED_ORDER": "संसाधित आदेश",
+  "DELIVERD_ORDER": "वितरण आदेश",
+  "INVOICES": "चालान"
 }
 

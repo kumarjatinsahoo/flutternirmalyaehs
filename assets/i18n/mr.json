@@ -308,6 +308,10 @@
   "SEND_SMS": "एसएमएस पाठवा",
   "CONFIRM_ORDER_LIST": "ऑर्डर यादीची पुष्टी करा",
   "REJECT": "नकार द्या",
-  "ACCEPT": "स्वीकारा"
+  "ACCEPT": "स्वीकारा",
+  "CONFIRMED_ORDER": "पुष्टी ऑर्डर",
+  "PROCESSED_ORDER": "प्रक्रिया ऑर्डर",
+  "DELIVERD_ORDER": "ऑर्डर वितरित करा",
+  "INVOICES": "पावत्या"
 }
 
