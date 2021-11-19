@@ -141,14 +141,12 @@ class _MedicineList extends State<UserTestList> {
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
             address = "${finder.formattedAddress}";
-            cityName = finder.addressComponents[4].longName;
+            cityName = finder.addressComponents[5].longName;
 
             mapK["address"] = address;
             mapK["city"] = cityName;
-            //mapK["city"] = "bhubaneswar";
-
             widget.model.pharmacyaddress = address;
-            widget.model.pharmacity = finder.addressComponents[4].longName;
+            widget.model.pharmacity = finder.addressComponents[5].longName;
             longitudes = position.longitude.toString();
             latitudes = position.altitude.toString();
           });

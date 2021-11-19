@@ -241,48 +241,48 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                             ListTile(
                               leading: Icon(Icons.call),
                               title: Text(/*"9011118424"*/ patientphnNo),
-                              subtitle: Text("Mobile"),
+                              subtitle: Text(MyLocalizations.of(context).text("MOBILE_NO")),
                             ),
                             ListTile(
                               leading: Icon(Icons.assignment_ind),
                               title: Text(/*"32 Year"*/ patientage),
-                              subtitle: Text("Age"),
+                              subtitle: Text(MyLocalizations.of(context).text("AGE")),
+
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               leading: Icon(Icons.group),
                               title: Text(/*"Male"*/ patientgender),
-                              subtitle: Text("Gender"
-                                  /*address*/),
+                              subtitle: Text(MyLocalizations.of(context).text("GENDER")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               leading: Icon(CupertinoIcons.sportscourt),
                               title: Text(/*"184CM"*/ patientheight),
-                              subtitle: Text("Height"),
+                              subtitle: Text(MyLocalizations.of(context).text("HEIGHT")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               leading: Icon(CupertinoIcons.sportscourt),
                               title: Text(/*"134 Kg"*/ patientweight),
-                              subtitle: Text("Weight"),
+                              subtitle: Text(MyLocalizations.of(context).text("WEIGHT")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               leading: Icon(CupertinoIcons.sportscourt),
                               title: Text(email ?? "N/A"),
-                              subtitle: Text("Email"),
+                              subtitle: Text(MyLocalizations.of(context).text("EMAILID")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               leading: Icon(CupertinoIcons.sportscourt),
                               title: Text(addhar ?? "N/A"),
-                              subtitle: Text("Aadhaar"),
+                              subtitle: Text(MyLocalizations.of(context).text("AADHAAR_NO")),
                             ),
                           ],
                         ),
@@ -321,7 +321,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
 
   Widget  _submitButton() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text: MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
         //print("form submit");

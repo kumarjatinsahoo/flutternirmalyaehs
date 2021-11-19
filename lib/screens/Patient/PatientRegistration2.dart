@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -38,8 +39,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
         /*leading: BackButton(
               color: Colors.white,
             ),*/
-        title: Text(
-          'Patient Registration',
+        title: Text(MyLocalizations.of(context).text("PATIENT_REGISTRATION"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -56,13 +56,12 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  Text(
-                    'Profile',
+                  Text(MyLocalizations.of(context).text("PROFILE"),
                     style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: formField(0, "Age"),
+                    child: formField(0, MyLocalizations.of(context).text("AGE")),
                   ),
                   //SizedBox(height: size.height * 0.01,),
                   Padding(
@@ -73,7 +72,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
                         /* Expanded(
                         flex: 5,*/
                         Text(
-                          'Gender',
+                          MyLocalizations.of(context).text("GENDER"),
                           style: TextStyle(color: Colors.black, fontSize: 17),
                         ),
                         new Spacer(),
@@ -188,7 +187,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text: MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
         if (textEditingController[0].text == "" || textEditingController[0].text== null) {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -21,7 +22,9 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Processed Order", style: TextStyle(color: Colors.white),),
+        title: Text(
+          MyLocalizations.of(context).text("PROCESSED_ORDER"),
+          style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         iconTheme: IconThemeData(color: Colors.white),
@@ -51,7 +54,8 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                     content: Text(""),
                     title: Column(
                       children: [
-                        new Text(" Placed",style:
+                        new Text(MyLocalizations.of(context).text("PLACED"),
+                          style:
                         TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 12),),
                       ],
                     ),
@@ -63,7 +67,7 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                     content: Text(""),
                     title: Column(
                       children: [
-                        new Text("Processing",style:
+                        new Text(MyLocalizations.of(context).text("PROCESSING"),style:
                         TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 12),),
                       ],
                     ),
@@ -74,7 +78,7 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                     content: Text(""),
                     title: Column(
                       children: [
-                        new Text("Dispatched",style:
+                        new Text(MyLocalizations.of(context).text("DISPATCHED"),style:
                         TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 12),),
                       ],
                     ),

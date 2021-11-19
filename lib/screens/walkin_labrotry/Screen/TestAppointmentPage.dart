@@ -242,7 +242,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               },
                           ),
                           TextSpan(
-                              text: " Appointments",
+                              text: MyLocalizations.of(context).text("APPOINTMENT"),
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15.0,
@@ -265,7 +265,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     SizedBox(
                       width: 60,
                       child: Text(
-                        "Reg No",
+                        MyLocalizations.of(context).text("REG_NO"),
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.black,
@@ -287,7 +287,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     SizedBox(
                       width: 35,
                       child: Text(
-                        "Age",
+                        MyLocalizations.of(context).text("AGE"),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -298,7 +298,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     SizedBox(
                       width: 60,
                       child: Text(
-                        "Gender",
+                        MyLocalizations.of(context).text("GENDER"),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -309,7 +309,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     SizedBox(
                       width: 80,
                       child: Text(
-                        "Status",
+                        MyLocalizations.of(context).text("STATUS"),
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             color: Colors.black,

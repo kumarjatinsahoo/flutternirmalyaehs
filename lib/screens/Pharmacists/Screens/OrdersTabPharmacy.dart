@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class _UserMedicineList extends State<OrdersTabPharmacy> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Order Details'),
+          title: Text(MyLocalizations.of(context).text("ORDER_DETAILS")),
+          centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 
@@ -42,10 +44,10 @@ class _UserMedicineList extends State<OrdersTabPharmacy> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Confirmed Orders",
+                text:MyLocalizations.of(context).text("CONFIRMED_ORDER"),
               ),
               Tab(
-                text:"Cancelled Orders",
+               text:MyLocalizations.of(context).text("CANCELLED_ORDER"),
               ),
             ],
           ),

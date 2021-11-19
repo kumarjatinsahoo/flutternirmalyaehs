@@ -108,7 +108,7 @@ class _LabDashboardState extends State<LabDashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Dashboard",
+          MyLocalizations.of(context).text("DASHBOARD"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -167,7 +167,7 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Register Patient",
+                          child: Text(MyLocalizations.of(context).text("REGISTER_PATIENT"),
                             // MyLocalizations.of(context).text("My Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -201,7 +201,7 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("Appointment",
+                          child: Text(MyLocalizations.of(context).text("APPOINTMENT"),
                             // MyLocalizations.of(context).text("Confirmed Order"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -247,7 +247,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("POC Reports",
+                          child: Text(
+                            MyLocalizations.of(context).text("POC_REPORTS"),
                             // MyLocalizations.of(context).text("Processed Orders"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -292,7 +293,8 @@ class _LabDashboardState extends State<LabDashboard> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Test",
+                          child: Text(
+                            MyLocalizations.of(context).text("TEST"),
 /*
                             MyLocalizations.of(context).text("Deliverd Order").toString(),
 */
@@ -340,7 +342,8 @@ class _LabDashboardState extends State<LabDashboard> {
                           width: 100,
                           height: 35,
                           /* child: Expanded(*/
-                          child: Text("My Orders",
+                          child: Text(
+                            MyLocalizations.of(context).text("MY_ORDERS"),
                             // MyLocalizations.of(context).text("Invoices"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -372,7 +375,8 @@ class _LabDashboardState extends State<LabDashboard> {
                         Container(
                           width: 100,
                           height: 35,
-                          child: Text("Updation Data",
+                          child: Text(
+                            MyLocalizations.of(context).text("UPDATION_DATA"),
                             // MyLocalizations.of(context).text("Monthly Overview"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,
@@ -573,7 +577,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   "assets/images/logout.png",
                   height: 30,
                 ),
-                title: Text('Logout'),
+                title: Text(MyLocalizations.of(context).text("LOGOUT")),
                 selected: _selectedDestination == 10,
                 onTap: () {
                   selectDestination(10);
@@ -1018,7 +1022,7 @@ class _LabDashboardState extends State<LabDashboard> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         ListTile(
-                          title: Text("Health Screening"),
+                          title: Text(MyLocalizations.of(context).text("HEALTH_SCREENING")),
                           onTap: () {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
@@ -1029,7 +1033,7 @@ class _LabDashboardState extends State<LabDashboard> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Health Check-up"),
+                          title: Text(MyLocalizations.of(context).text("HEALTH_CHECKUP")),
                           onTap: () {
                             widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
                             Navigator.pop(context);
@@ -1038,7 +1042,7 @@ class _LabDashboardState extends State<LabDashboard> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Text("Doctor Appointment"),
+                          title: Text(MyLocalizations.of(context).text("DOCTOR_APPOINTMENT")),
                           onTap: () {
                             widget.model.apntUserType = Const.DOC_APNT;
                             Navigator.pop(context);
@@ -1048,7 +1052,7 @@ class _LabDashboardState extends State<LabDashboard> {
                         Divider(),
                         MaterialButton(
                           child: Text(
-                            "CANCEL",
+                            MyLocalizations.of(context).text("CANCEL"),
                             style: TextStyle(color: Colors.black),
                           ),
                           onPressed: () {
