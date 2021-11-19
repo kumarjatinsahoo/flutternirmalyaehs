@@ -312,6 +312,13 @@
   "CONFIRMED_ORDER": " पुष्टि आदेश",
   "PROCESSED_ORDER": "संसाधित आदेश",
   "DELIVERD_ORDER": "वितरण आदेश",
-  "INVOICES": "चालान"
+  "INVOICES": "चालान",
+  "ORDER_LIST": "आदेश सूची",
+  "ORDER_DETAILS": "ऑर्डर का विवरण",
+  "CANCELLED_ORDER": "रद्द आदेश",
+  "PLACED": "रखा हे",
+  "PROCESSING": "प्रसंस्करण",
+  "DISPATCHED": "भेजा गया",
+  "ORDER_PLACED": "आदेश रखा"
 }
 

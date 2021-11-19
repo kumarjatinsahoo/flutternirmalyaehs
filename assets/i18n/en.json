@@ -316,11 +316,20 @@
   "CONFIRM_ORDER_LIST": "Confirm Order List",
   "REJECT": "Reject",
   "ACCEPT": "Accept",
+
   "CONFIRMED_ORDER": "Confirmed Order",
   "PROCESSED_ORDER": "Processed Order",
   "DELIVERD_ORDER": "Deliverd Order",
   "INVOICES": "Invoices",
-
+  "ORDER_LIST": "Order List",
+  "ORDER_DETAILS": "Order Details",
+  "CANCELLED_ORDER": "Cancelled Orders",
+  "PLACED": "Placed",
+  "PROCESSING": "Processing",
+  "DISPATCHED": "Dispatched",
+  "ORDER_PLACED": "Order Placed",
+  "ORDER_CONFIRMED": "Order Confirmed",
+  "ORDER_PROCESSED": "Order Processed",
 
 
 

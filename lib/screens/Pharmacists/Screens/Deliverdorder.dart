@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -21,7 +22,7 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Deliverd Order",
+        title: Text(MyLocalizations.of(context).text("DELIVERD_ORDER"),
             style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
@@ -55,7 +56,8 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style:
+                              new Text(MyLocalizations.of(context).text("ORDER_PLACED"),
+                                style:
                               TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
                               Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),),
                               callButton(),

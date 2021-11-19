@@ -309,9 +309,16 @@
   "CONFIRM_ORDER_LIST": "ଅର୍ଡର ତାଲିକା ନିଶ୍ଚିତ କରନ୍ତୁ",
   "REJECT": "ପ୍ରତ୍ୟାଖ୍ୟାନ",
   "ACCEPT": "ଗ୍ରହଣ କର",
-  "CONFIRMED_ORDER": "ନିଶ୍ଚିତ କ୍ରମ ",
+  "CONFIRMED_ORDER": "ନିଶ୍ଚିତ ଅର୍ଡର ",
   "PROCESSED_ORDER": "ପ୍ରକ୍ରିୟା ଅର୍ଡର ",
   "DELIVERD_ORDER": "ବିତରଣ ଅର୍ଡର",
-  "INVOICES": "ଇନଭଏସ୍"
+  "INVOICES": "ଇନଭଏସ୍",
+  "ORDER_LIST": "ଅର୍ଡର ତାଲିକା ",
+  "ORDER_DETAILS": "ଅର୍ଡର ବିବରଣୀ",
+  "CANCELLED_ORDER": "ବାତିଲ୍ ଆଦେଶ ",
+  "PLACED": "ସ୍ଥାନିତ",
+  "PROCESSING": "ପ୍ରକ୍ରିୟାକରଣ",
+  "DISPATCHED": "ପଠାଯାଇଛି",
+  "ORDER_PLACED": "ଅର୍ଡର ସ୍ଥାନିତ"
 }
 

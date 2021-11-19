@@ -312,6 +312,13 @@
   "CONFIRMED_ORDER": "पुष्टी ऑर्डर",
   "PROCESSED_ORDER": "प्रक्रिया ऑर्डर",
   "DELIVERD_ORDER": "ऑर्डर वितरित करा",
-  "INVOICES": "पावत्या"
+  "INVOICES": "पावत्या",
+  "ORDER_LIST": "ऑर्डर यादी",
+  "ORDER_DETAILS": "ऑर्डर तपशील",
+  "CANCELLED_ORDER": "ऑर्डर रद्द केली",
+  "PLACED": "ठेवले",
+  "PROCESSING": "प्रक्रिया",
+  "DISPATCHED": "पाठवले",
+  "ORDER_PLACED": "ऑर्डर दिली"
 }
 
