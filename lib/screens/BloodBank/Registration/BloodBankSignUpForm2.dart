@@ -229,7 +229,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGN UP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(
@@ -279,7 +279,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   Column(
                                     children: [
                                       Text(
-                                        "Fill in personal Information (All fields are mandatory)",
+                                        MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.black),
                                       ),
@@ -290,7 +290,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   ),
 
                                   DropDown.networkDropdownGetpartUser(
-                                      "Country",
+                                      MyLocalizations.of(context).text("COUNTRY"),
                                       ApiFactory.COUNTRY_API,
                                       "country",
                                       Icons.location_on_rounded,
@@ -302,7 +302,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                     });
                                   }),
                                   DropDown.networkDropdownGetpartUser(
-                                      "State",
+                                      MyLocalizations.of(context).text("STATE"),
                                       ApiFactory.STATE_API +
                                           (BloodBankSignUpForm2
                                                   ?.countryModel?.key ??
@@ -318,7 +318,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   }),
 
                                   DropDown.networkDropdownGetpartUser(
-                                      "District",
+                                      MyLocalizations.of(context).text("DIST"),
                                       ApiFactory.DISTRICT_API +
                                           (BloodBankSignUpForm2
                                                   ?.stateModel?.key ??
@@ -334,7 +334,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   }),
 
                                   DropDown.networkDropdownGetpartUser(
-                                      "City",
+                                      MyLocalizations.of(context).text("CITY"),
                                       ApiFactory.CITY_API +
                                           (BloodBankSignUpForm2
                                                   ?.districtModel?.key ??
@@ -352,30 +352,33 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formFieldzip(5, "Enter Zip/Pin Code :",fnode1,fnode2),
+                                  formFieldzip(5,MyLocalizations.of(context).text("ENTER_ZIP_CODE"),
+                                      fnode1,fnode2),
                                   SizedBox(
                                     height: 8,
                                   ),
 
-                                  formFieldMobile(10, "Mobile Number :",fnode2,fnode3),
+                                  formFieldMobile(10,MyLocalizations.of(context).text("MOBILE_NO") ,fnode2,fnode3),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formFieldEmail(11, "Email Id :",fnode3,null),
+                                  formFieldEmail(11,MyLocalizations.of(context).text("EMAILID"),fnode3,null),
                                   SizedBox(
                                     height: 8,
                                   ),
                                   Container(
                                     child: Row(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(
-                                            "Upload Document : ",
-                                            style: TextStyle(
-                                                color: AppData.kPrimaryColor,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Text(
+                                              MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                                              style: TextStyle(
+                                                  color: AppData.kPrimaryColor,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(width: 5),
@@ -391,7 +394,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                             minWidth: 120,
                                             height: 40.0,
                                             child: Text(
-                                              "Upload",
+                                              MyLocalizations.of(context).text("UPLOAD"),
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 17.0),
@@ -461,7 +464,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                             text: TextSpan(
                                               children: [
                                                 TextSpan(
-                                                  text: 'I agree to NCORDS ',
+                                                  text: MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
                                                   style: TextStyle(
                                                     fontFamily: "Monte",
                                                     fontSize: 13,
@@ -469,7 +472,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                                   ),
                                                 ),
                                                 TextSpan(
-                                                  text: 'Terms and Conditions',
+                                                  text: MyLocalizations.of(context).text("T&C"),
                                                   style: TextStyle(
                                                     fontFamily: "Monte",fontSize: 13,
                                                     color: Colors.indigo,
@@ -643,7 +646,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "SUBMIT".toUpperCase(),
+      text:MyLocalizations.of(context).text("SUBMIT").toUpperCase(),
       context: context,
       fun: () {
         if (BloodBankSignUpForm2.countryModel == null ||

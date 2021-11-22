@@ -238,7 +238,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(
-          "SIGN UP",
+          MyLocalizations.of(context).text("SIGNUP"),
           style: TextStyle(color: Colors.white),
         ),
 
@@ -286,7 +286,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                 children: <Widget>[
                                   Column(
                                     children: [
-                                      Text("Fill in personal Information (All fields are mandatory)",
+                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -427,9 +427,11 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                   Container(
                                     child: Row(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                          ),
                                         ),
                                         SizedBox(width:5),
                                         Material(
@@ -736,7 +738,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "SUBMIT".toUpperCase(),
+      text:MyLocalizations.of(context).text("SUBMIT").toUpperCase(),
       context: context,
       fun: () {
         if (NgoSignUpForm2.countryModel == null ||

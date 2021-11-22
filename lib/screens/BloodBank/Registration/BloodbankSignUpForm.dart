@@ -167,7 +167,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGN UP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(
@@ -228,7 +228,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                   Column(
                                     children: [
                                       Text(
-                                        "Fill in personal Information (All fields are mandatory)",
+                                        MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.black),
                                       ),
@@ -238,7 +238,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                     height: 5,
                                   ),
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Organization Name",
+                                    MyLocalizations.of(context).text("ORGANIZATION_NAME"),
                                       ApiFactory.BlOODBANK_ORGANISATION_API,
                                       "bloodbank",
                                       Icons.location_on_rounded,
@@ -250,7 +250,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                     });
                                   }),
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Title",
+                                      MyLocalizations.of(context).text("TITLE"),
                                       ApiFactory.TITLE_API,
                                       "title",
                                       Icons.location_on_rounded,
@@ -264,19 +264,20 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                     height: 8,
                                   ),
                                   formField(
-                                      9, "Professional's Name", fnode1, fnode2),
+                                      9,MyLocalizations.of(context).text("PROFESSIONAL_NAME"),
+                                      fnode1, fnode2),
 
                                   SizedBox(height: 8),
 
                                   experience(
-                                      10, "Experience(Years)", fnode2, fnode3),
+                                      10,MyLocalizations.of(context).text("EXPERIENCE"), fnode2, fnode3),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField(11, "Address", fnode3, null),
+                                  formField(11,MyLocalizations.of(context).text("ADDRESS"), fnode3, null),
 
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Gender",
+                                      MyLocalizations.of(context).text("GENDER"),
                                       ApiFactory.GENDER_API,
                                       "gender",
                                       Icons.location_on_rounded,
@@ -557,7 +558,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text: "NEXT".toUpperCase(),
+      text:MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
         if (BloodBankSignUpForm.bloodbankModel == null ||
@@ -568,10 +569,10 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
           AppData.showInSnackBar(context, "Please select Title");
         } else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          AppData.showInSnackBar(context, "Please Enter Professional's Name");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+          AppData.showInSnackBar(context, "Please Enter Experience");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
