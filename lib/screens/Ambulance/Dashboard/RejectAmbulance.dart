@@ -134,121 +134,119 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                 /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
                               },
-                              child: Expanded(
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Name ",
-                                          style: TextStyle(
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Name ",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.patientName,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                        textAlign:
+                                        TextAlign.right,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "From",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.fromLocation,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Destination",
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.toDestination,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Patient Notes',
+                                        style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        body.patientNote,
+                                        style: TextStyle(
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        ' ',
+                                        style: TextStyle(
                                             fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientName,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                          textAlign:
-                                          TextAlign.right,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "From",
-                                          style: TextStyle(
+                                            FontWeight.w600),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        /*'Confirmed'*/
+                                      body.status,
+                                        style: TextStyle(
                                             fontWeight:
-                                            FontWeight.w600,
+                                            FontWeight
+                                                .bold,
                                             fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.fromLocation,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Destination",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.toDestination,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Patient Notes',
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientNote,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          ' ',
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight.w600),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          /*'Confirmed'*/
-                                        body.status,
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight
-                                                  .bold,
-                                              fontSize: 15,
-                                              color: AppData
-                                                  .kPrimaryBlueColor),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                            color: AppData
+                                                .kPrimaryBlueColor),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),

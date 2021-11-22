@@ -164,10 +164,9 @@ class ApiFactory {
       "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE&input=";
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
-  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlister?usid=';
+  static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
-  static String AMBULANCE_APPOINTMENT =
-      MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
@@ -213,15 +212,13 @@ class ApiFactory {
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
-  static String ambulance_APPOINTMENT_status =
-      MAIN_URL + 'change-ambulance-status?orderid=';
+  static String ambulance_APPOINTMENT_status = MAIN_URL + 'change-ambulance-status?orderid=';
   static String bloodbank_status =
       MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
-  static String ORDER_LIST =
-      MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+  static String ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
 
   static String ORDER_LIST_STATUS =
       MAIN_URL + 'view-status-lab-orderlist-by-id?userid=';
