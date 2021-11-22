@@ -69,6 +69,7 @@ import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/DocumentPdfView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument.dart';
+import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
@@ -91,7 +92,7 @@ import 'notification/TokenMonitor.dart';
 import 'notification/local_notification_service.dart';
 import 'screens/Users/organ/AddWitness.dart';
 import 'screens/Users/FindHealthCare/MedicalService/AirAmbulance/AirAmbulanceList.dart';
-import 'package:user/screens/AllAppointmentPage.dart';
+import 'package:user/screens/walkin_labrotry/Screen/AllAppointmentPage.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';
@@ -952,6 +953,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/documentpdf': (context) => DocumentPdf(
+                model: _model,
+              ),
+              '/labqrcode': (context) => LabQrcode(
                 model: _model,
               ),
 

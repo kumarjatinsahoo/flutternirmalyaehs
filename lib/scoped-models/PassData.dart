@@ -137,6 +137,7 @@ String profilerelation;
 
 String medicineStore;
 String regNoValue;
+String labregNoValue;
 
 String insuranceid;
 String pdfurl;

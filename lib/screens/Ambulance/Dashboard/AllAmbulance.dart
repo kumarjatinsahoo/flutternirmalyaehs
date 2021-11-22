@@ -136,138 +136,136 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                             /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
                                           },
-                                          child: Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "Name ",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 15,
-                                                      ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "Name ",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15,
                                                     ),
-                                                    Spacer(),
-                                                    Text(
-                                                      body.patientName,
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                      textAlign:
-                                                          TextAlign.right,
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    body.patientName,
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+                                                    textAlign:
+                                                        TextAlign.right,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "From",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15,
                                                     ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "From",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 15,
-                                                      ),
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    body.fromLocation,
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "Destination",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15,
                                                     ),
-                                                    Spacer(),
-                                                    Text(
-                                                      body.fromLocation,
-                                                      style: TextStyle(
-                                                          fontSize: 15),
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    body.toDestination,
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.01,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Patient Notes',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 15,
                                                     ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "Destination",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 15,
-                                                      ),
-                                                    ),
-                                                    Spacer(),
-                                                    Text(
-                                                      body.toDestination,
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.01,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      'Patient Notes',
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 15,
-                                                      ),
-                                                    ),
-                                                    Spacer(),
-                                                    Text(
-                                                      body.patientNote,
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
+                                                  ),
+                                                  Spacer(),
+                                                  Text(
+                                                    body.patientNote,
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
 /*                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      ' ',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    Spacer(),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        *//*showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              changeStatus(
-                                                                  context,
-                                                                  body.orderId),
-                                                        );*//*
-                                                        // widget.model.userappointment = appointmentlist;
+                                                children: [
+                                                  Text(
+                                                    ' ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Spacer(),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      *//*showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            changeStatus(
+                                                                context,
+                                                                body.orderId),
+                                                      );*//*
+                                                      // widget.model.userappointment = appointmentlist;
 
-                                                        //  Navigator.pushNamed(context, "/usermedicinelist");
-                                                      },
-                                                      child: MaterialButton(
-                                                        child: Text(
-                                                          *//*'Confirmed'*//*
-                                                          "Status",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15,
-                                                              color: AppData
-                                                                  .kPrimaryBlueColor),
-                                                        ),
+                                                      //  Navigator.pushNamed(context, "/usermedicinelist");
+                                                    },
+                                                    child: MaterialButton(
+                                                      child: Text(
+                                                        *//*'Confirmed'*//*
+                                                        "Status",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                            fontSize: 15,
+                                                            color: AppData
+                                                                .kPrimaryBlueColor),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),*/
-                                              ],
-                                            ),
+                                                  ),
+                                                ],
+                                              ),*/
+                                            ],
                                           ),
                                         ),
                                       ),

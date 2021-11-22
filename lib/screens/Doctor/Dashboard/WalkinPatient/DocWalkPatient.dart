@@ -102,7 +102,6 @@ String uhid;
                                 maxLength: 16,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
-
                                     border: InputBorder.none, hintText: ' ', counterText: "",
                                 ),
                               ),

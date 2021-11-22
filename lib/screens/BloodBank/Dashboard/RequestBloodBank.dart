@@ -546,7 +546,8 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
             onPressed: (){
               //Navigator.pop(context, true);
              Navigator.pop(context, true);
-             callAPI();
+             Navigator.pop(context, true);
+            // callAPI();
 
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
