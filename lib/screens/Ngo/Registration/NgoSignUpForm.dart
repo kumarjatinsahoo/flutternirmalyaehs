@@ -172,7 +172,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(
-          "SIGN UP",
+          MyLocalizations.of(context).text("SIGNUP"),
           style: TextStyle(color: Colors.white),
         ),
 
@@ -231,7 +231,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                 children: <Widget>[
                                   Column(
                                     children: [
-                                      Text("Fill in personal Information (All fields are mandatory)",
+                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -239,7 +239,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                     height: 5,
                                   ),
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Organization Name",
+                                      MyLocalizations.of(context).text("ORGANIZATION_NAME"),
                                       ApiFactory.NGO_ORGANISATION_API,
                                       "ngo",
                                       Icons.location_on_rounded,
@@ -250,7 +250,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                     });
                                   }),
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Title",
+                                      MyLocalizations.of(context).text("TITLE"),
                                       ApiFactory.TITLE_API,
                                       "title",
                                       Icons.location_on_rounded,
@@ -289,7 +289,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                   ),
                                   formField(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
                                   DropDown.networkDropdownGetpartUser1(
-                                      "Gender",
+                                    MyLocalizations.of(context).text("GENDER"),
                                       ApiFactory.GENDER_API,
                                       "gender",
                                       Icons.location_on_rounded,
