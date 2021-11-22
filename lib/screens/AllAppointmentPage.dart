@@ -32,6 +32,7 @@ class AllAppointmentPage extends StatefulWidget {
 
 class _AllAppointmentPageState extends State<AllAppointmentPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String benificiaryno;
 
   //LoginResponse1 loginResponse;
   lab.LabBookModel appointModel;
@@ -64,6 +65,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     //final df = new DateFormat('yyyy/MM/dd');
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
+    benificiaryno=widget.model.labregNoValue;
+    benificiaryno=shiftname_.text;
+    print("rrrrrrreeeeegggg"+benificiaryno);
     callAPI(today);
   }
 
@@ -144,6 +148,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+
             Text(MyLocalizations.of(context).text("APPOINTMENT"),
               style: TextStyle(color: bgColor),
             ),
@@ -198,6 +203,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   ),
                   Row(
                     children: [
+                      SizedBox(height: 5,),
                       MyWidgets.toggleButton(MyLocalizations.of(context).text("NEW"), () {
                         //Navigator.pushNamed(context, "/qrCode1");
                         //dialogRegNo(context);
@@ -205,7 +211,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) =>
-                              dialogRegNo(context),
+                              dialogRegNo(context,benificiaryno),
                         );
                       }),
                      /* MyWidgets.toggleButton1("REPORTS", () {
@@ -448,7 +454,10 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     );
   }
 
-  Widget dialogRegNo(BuildContext context) {
+  Widget dialogRegNo(BuildContext context,String benificiaryno) {
+    widget.model.labregNoValue=shiftname_.text;
+    print("rrrrrrrrrrrrr"+shiftname_.text);
+
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
   //  shiftname_.text=widget.model.beneficiary;
@@ -478,7 +487,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                     widget.isConfirmPage,
                     TextInputAction.next,
                     TextInputType.text,
-                    MyLocalizations.of(context).text("NAME"),
+                    MyLocalizations.of(context).text(""),
                     shiftname_),
 
               ],
@@ -497,7 +506,10 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         new FlatButton(
           onPressed: () {
             // widget.model.QR_FROM = Const.APNT_CALL;
-            Navigator.pushNamed(context, "/qrCode1");
+            // Navigator.pushNamed(context, "/qrCode1");
+            Navigator.pushNamed(context, "/labqrcode");
+
+           // _scanButton();
           },
           textColor: Colors.grey[900],
           child:  Text(MyLocalizations.of(context).text("SCAN")),
@@ -724,4 +736,16 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
       ),
     );
   }
+
+  Widget _scanButton() {
+    return MyWidgets.outlinedButton(
+      text: MyLocalizations.of(context).text("QR_SEARCH"),
+      context: context,
+      fun: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, "/labqrcode");
+      },
+    );
+  }
 }
+
