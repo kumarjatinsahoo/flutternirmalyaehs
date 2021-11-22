@@ -312,6 +312,21 @@
   "CONFIRMED_ORDER": "पुष्टी ऑर्डर",
   "PROCESSED_ORDER": "प्रक्रिया ऑर्डर",
   "DELIVERD_ORDER": "ऑर्डर वितरित करा",
-  "INVOICES": "पावत्या"
+  "INVOICES": "पावत्या",
+  "ORDER_LIST": "ऑर्डर यादी",
+  "ORDER_DETAILS": "ऑर्डर तपशील",
+  "CANCELLED_ORDER": "ऑर्डर रद्द केली",
+  "PLACED": "ठेवले",
+  "PROCESSING": "प्रक्रिया",
+  "DISPATCHED": "पाठवले",
+  "ORDER_PLACED": "ऑर्डर दिली",
+  "ORDER_CONFIRMED": "ऑर्डर पुष्टी केली",
+  "ORDER_PROCESSED": "ऑर्डर प्रक्रिया केली",
+  "READY_PICKUP": "पिकअपसाठी तयार",
+  "WE_RCVD_UR_ORDER": "आम्हाला तुमची ऑर्डर मिळाली",
+  "ORDER_HASBEEN_CONFIRMED": "ऑर्डरची पुष्टी झाली आहे",
+  "ORDER_PREPARING": "आम्ही तुमची ऑर्डर तयार करत आहोत",
+  "ORDER_READYTO_PICKUP": "तुमची ऑर्डर पिकअपसाठी तयार आहे",
+  "CALL": "कॉल"
 }
 

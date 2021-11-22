@@ -1,3 +1,4 @@
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +8,12 @@ class MonthlyView extends StatefulWidget {
   final MainModel model;
 
   const MonthlyView({Key key, this.model}) : super(key: key);
+
   @override
   _MonthlyViewState createState() => _MonthlyViewState();
 }
 
 class _MonthlyViewState extends State<MonthlyView> {
- 
   Widget _showNeedHelpButton() {
     return Container(
       width: 90,
@@ -48,72 +49,73 @@ class _MonthlyViewState extends State<MonthlyView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-  return Scaffold(
-    appBar: AppBar(
-      title: Text(
-        'Monthly Overview',
-        style: TextStyle(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          MyLocalizations.of(context).text("MONTHLY_OVERVIEW"),
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      centerTitle: true,
-      backgroundColor: AppData.kPrimaryColor,
-      iconTheme: IconThemeData(color: Colors.white),
-    ),
-    body: SingleChildScrollView(
-      child: Column(
-        children: [
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Container(
-              child:SfCalendar(
-  view: CalendarView.month,
-  monthViewSettings: const MonthViewSettings(
-      appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-    )
-          ),
-           ),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Container(
-                  height: 15,
-                  width: 15,
-                  color: Colors.green,
-                ),
-                SizedBox(width: 5,),
-                Text('Done')
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  child: SfCalendar(
+                view: CalendarView.month,
+                monthViewSettings: const MonthViewSettings(
+                    appointmentDisplayMode:
+                        MonthAppointmentDisplayMode.appointment),
+              )),
             ),
-          ),
-           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Container(
-                  height: 15,
-                  width: 15,
-                  color: Colors.orange,
-                ),
-                SizedBox(width: 5,),
-                Text('Pending')
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: 15,
+                    width: 15,
+                    color: Colors.green,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text('Done')
+                ],
+              ),
             ),
-          ),
-          Divider(),
-          Container(
-            height: size.height * 0.35,
-            child: Image.asset(
-              'assets/piechart.png',
-              fit: BoxFit.cover,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: 15,
+                    width: 15,
+                    color: Colors.orange,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text('Pending')
+                ],
+              ),
             ),
-          ),
-          Divider(),
-
-
-        ],
+            Divider(),
+            Container(
+              height: size.height * 0.35,
+              child: Image.asset(
+                'assets/piechart.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Divider(),
+          ],
+        ),
       ),
-    ),
-  );
+    );
   }
 }

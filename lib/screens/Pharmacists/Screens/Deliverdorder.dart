@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
@@ -21,7 +22,7 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Deliverd Order",
+        title: Text(MyLocalizations.of(context).text("DELIVERD_ORDER"),
             style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
@@ -55,9 +56,11 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Placed",style:
+                              new Text(MyLocalizations.of(context).text("ORDER_PLACED"),
+                                style:
                               TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                              Text("We have received your order",style: TextStyle(color: Colors.grey,fontSize: 13),),
+                              Text(MyLocalizations.of(context).text("WE_RCVD_UR_ORDER"),
+                                style: TextStyle(color: Colors.grey,fontSize: 13),),
                               callButton(),
                             ],
                           ),
@@ -68,9 +71,11 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Confirmed",style:
+                              new Text(MyLocalizations.of(context).text("ORDER_CONFIRMED"),
+                                style:
                               TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                              Text("Your order has been confirmed",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              Text(MyLocalizations.of(context).text("ORDER_HASBEEN_CONFIRMED"),
+                                style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
                           //isActive: _currentStep >= 0,
@@ -80,9 +85,11 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Order Processed",style:
+                              new Text(MyLocalizations.of(context).text("ORDER_PROCESSED"),
+                                style:
                               TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                              Text("We are preparing your order",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              Text(MyLocalizations.of(context).text("ORDER_PREPARING"),
+                                style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
                          // isActive: _currentStep >= 0,
@@ -93,9 +100,11 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
                           content: Text(""),
                           title: Column(
                             children: [
-                              new Text("Ready to Pickup",style:
+                              new Text(MyLocalizations.of(context).text("READY_PICKUP"),
+                                style:
                               TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                              Text("Your order is ready to pickup",style: TextStyle(color: Colors.grey,fontSize: 13),)
+                              Text(MyLocalizations.of(context).text("ORDER_READYTO_PICKUP"),
+                                style: TextStyle(color: Colors.grey,fontSize: 13),)
                             ],
                           ),
                          // isActive: _currentStep >= 0,
@@ -149,7 +158,7 @@ class _DeliverdOrderState extends State<DeliverdOrder> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 12.0, bottom: 12.0),
           child: Text(
-            "Call",
+            MyLocalizations.of(context).text("CALL"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),

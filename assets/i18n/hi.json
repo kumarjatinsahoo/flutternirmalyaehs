@@ -312,6 +312,21 @@
   "CONFIRMED_ORDER": " पुष्टि आदेश",
   "PROCESSED_ORDER": "संसाधित आदेश",
   "DELIVERD_ORDER": "वितरण आदेश",
-  "INVOICES": "चालान"
+  "INVOICES": "चालान",
+  "ORDER_LIST": "आदेश सूची",
+  "ORDER_DETAILS": "ऑर्डर का विवरण",
+  "CANCELLED_ORDER": "रद्द आदेश",
+  "PLACED": "रखा हे",
+  "PROCESSING": "प्रसंस्करण",
+  "DISPATCHED": "भेजा गया",
+  "ORDER_PLACED": "आदेश रखा",
+  "ORDER_CONFIRMED": "ऑर्डर की पुष्टि की गई",
+  "ORDER_PROCESSED": "आदेश संसाधित",
+  "READY_PICKUP": "पिकअप के लिए तैयार",
+  "WE_RCVD_UR_ORDER": "हमें आपका आदेश प्राप्त हुआ",
+  "ORDER_HASBEEN_CONFIRMED": "आदेश की पुष्टि की गई है",
+  "ORDER_PREPARING": "हम आपका आदेश तैयार कर रहे हैं",
+  "ORDER_READYTO_PICKUP": "आपका ऑर्डर पिकअप के लिए तैयार है",
+  "CALL": "बुलाना"
 }
 
