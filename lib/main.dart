@@ -92,7 +92,7 @@ import 'notification/TokenMonitor.dart';
 import 'notification/local_notification_service.dart';
 import 'screens/Users/organ/AddWitness.dart';
 import 'screens/Users/FindHealthCare/MedicalService/AirAmbulance/AirAmbulanceList.dart';
-import 'package:user/screens/AllAppointmentPage.dart';
+import 'package:user/screens/walkin_labrotry/Screen/AllAppointmentPage.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/BookanAppointmentlist.dart';

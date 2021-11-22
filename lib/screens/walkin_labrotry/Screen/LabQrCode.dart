@@ -92,7 +92,7 @@ class _LabQrcodeState extends State<LabQrcode> {
                         } else{
                           widget.model.labregNoValue = _regNo.text.toString();
                           print("regggggg"+_regNo.text.toString());
-                          Navigator.pushNamed(context, "/docApnt",);
+                          Navigator.pushNamed(context, "/docApnt",).then((value) => widget.model.labregNoValue );
                         }
 
                       },

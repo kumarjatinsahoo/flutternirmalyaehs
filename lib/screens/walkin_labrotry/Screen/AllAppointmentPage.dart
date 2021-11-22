@@ -13,7 +13,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
 class AllAppointmentPage extends StatefulWidget {
@@ -43,6 +43,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   bool isOnline = false;
   TimeOfDay selectedTime = TimeOfDay.now();
   String time;
+  TextEditingController myController = new TextEditingController();
   TextEditingController shiftname_ = new TextEditingController();
   TextEditingController starttime_ = new TextEditingController();
   TextEditingController endtime_ = new TextEditingController();
@@ -68,6 +69,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     benificiaryno=widget.model.labregNoValue;
     benificiaryno=shiftname_.text;
     print("rrrrrrreeeeegggg"+benificiaryno);
+    myController.text=benificiaryno;
     callAPI(today);
   }
 
@@ -210,8 +212,8 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         //dialogPopup(context);
                         showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              dialogRegNo(context,benificiaryno),
+                          builder: (BuildContext context,) =>
+                              dialogRegNo(context,widget.model.labregNoValue),
                         );
                       }),
                      /* MyWidgets.toggleButton1("REPORTS", () {
@@ -455,8 +457,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   }
 
   Widget dialogRegNo(BuildContext context,String benificiaryno) {
-    widget.model.labregNoValue=shiftname_.text;
-    print("rrrrrrrrrrrrr"+shiftname_.text);
+    widget.model.labregNoValue=myController.text;
+    print("rrrrrrrrrrrrr"+myController.text);
+    myController.text=benificiaryno;
 
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
@@ -482,13 +485,27 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 SizedBox(
                   height: 10,
                 ),
+              /*  Text(MyLocalizations.of(context).text("BENEFICIARY_NO"),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                 TextField(
+                  controller: myController,
+                  maxLength: 16,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: InputBorder.none, hintText: ' ', counterText: "",
+                  ),
+                ),*/
                 fromFieldNew(
                     MyLocalizations.of(context).text("BENEFICIARY_NO"),
                     widget.isConfirmPage,
                     TextInputAction.next,
                     TextInputType.text,
                     MyLocalizations.of(context).text(""),
-                    shiftname_),
+                    myController),
 
               ],
             ),
@@ -516,12 +533,12 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         ),
         new FlatButton(
           onPressed: () {
-            if (shiftname_.text == "" || shiftname_.text == null) {
+            if (myController.text == "" || myController.text== null) {
               AppData.showInSnackBar(context, "Please enter beneficiary no");
             } else {
               MyWidgets.showLoading(context);
               widget.model.GETMETHODCALL_TOKEN(
-                  api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
+                  api: ApiFactory.GET_BENE_DETAILS + myController.text,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     setState(() {
@@ -714,7 +731,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
       padding: const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 7.0),
       child: TextFormField(
         autofocus: false,
-        controller: controller,
+        controller: myController,
         inputFormatters: [
           /* AppData.*/
           //  UpperCaseTextFormatter(),
