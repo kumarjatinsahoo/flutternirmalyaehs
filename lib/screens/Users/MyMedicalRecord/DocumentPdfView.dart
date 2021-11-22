@@ -48,7 +48,7 @@ class _DocumentPdfState extends State<DocumentPdf> {
         elevation: 0,
       ),
     //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
-      url:'https://matrujyoti.in/testreport/9122U000000000001.pdf',
+      url:'http://docs.google.com/matrujyoti.in/testreport/9122U000000000001.pdf',
       withZoom: true,
       useWideViewPort: false,
       displayZoomControls: true,
