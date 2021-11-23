@@ -99,7 +99,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                 //documentListModel.addMore(map);
               }
             } else {
-              if (i == 1) AppData.showInSnackBar(context, msg);
+              //if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
