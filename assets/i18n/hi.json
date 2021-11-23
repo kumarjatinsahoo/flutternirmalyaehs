@@ -1,12 +1,14 @@
 {
   "WELCOMENACK": "वापसी पर स्वागत है",
-  "USER_NAME":"यूज़र आईडी/ईमेल/कार्ड नं.",
+  "USER_NAME":"यूज़र आईडी/ईमेल/मोबाइल नं.",
   "PASSWORD":"पासवर्ड",
   "LOGIN":"लॉग इन",
   "LOGIN_WITH_OTP":"ओटीपी के साथ लॉगिन करें",
   "DIDHAVEACC":"खाता नहीं है?",
   "CREATE_ACCOUNT":" साइन-अप करें",
   "FORGOT_PASSWORD":"पासवर्ड भूल गए?",
+  "FORGOT_USERID": "यूज़र आईडी भूल गए ?",
+  "OR": "अथवा",
 
 
   "USER_REGISTRATION": "उपयोगकर्ता पंजीकरण",
@@ -40,7 +42,7 @@
   "DOB1": "जन्म तिथि",
   "YEARS": "वर्ष",
   "SUBMIT": "जमा करें",
-  "AGREE_EHEALTHSYSTEM": "सहमत स्वास्थ्य प्रणाली",
+  "AGREE_EHEALTHSYSTEM": "मैं स्वास्थ्य प्रणाली से सहमत हूं",
   "T&C": "नियम व शर्तें",
   "ADDRESS": "पता",
   "INDIVIDUAL": "व्यक्तिगत",
@@ -331,6 +333,22 @@
   "ORDER_HASBEEN_CONFIRMED": "आदेश की पुष्टि की गई है",
   "ORDER_PREPARING": "हम आपका आदेश तैयार कर रहे हैं",
   "ORDER_READYTO_PICKUP": "आपका ऑर्डर पिकअप के लिए तैयार है",
-  "CALL": "बुलाना"
+  "CALL": "बुलाना",
+
+
+  "PLEASE_SELECT_ORGANIZATION": "Please select Organization Name",
+  "PLEASE_SELECT_TITLE": "Please select Title",
+  "PLEASE_ENTER_PROFNAME": "Please Enter Professional's Name",
+  "PLEASE_ENTER_EXPERIENCE": "Please Enter Experience",
+  "PLEASE_SELECT_COUNTRY": "Please Select Country",
+  "PLEASE_SELECT_STATE": "Please Select State",
+  "PLEASE_SELECT_DIST": "Please Select District",
+  "PLEASE_SELECT_CITY": "Please Select City",
+  "PLEASE_ENTER_ZIP": "Please enter Zip/Pin Code",
+  "PLEASE_ENTER_MOBILE": "Please enter Mobile Number",
+  "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
+  "PLEASE_ENTER_EMAIL": "Please enter Email Id",
+  "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
+  "PLEASE_CHECK_TC": "Please check terms and Condition"
 }
 

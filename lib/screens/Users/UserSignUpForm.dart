@@ -161,7 +161,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-    title: Text("SIGN UP"),
+    title: Text(MyLocalizations.of(context).text("SIGNUP")),
     centerTitle: true,
     backgroundColor: AppData.kPrimaryColor,
     iconTheme: IconThemeData(color: Colors.white),
@@ -801,6 +801,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             color: Colors.grey,
                                           ),
                                         ),
+                                       // SizedBox(width: 10),
                                         TextSpan(
                                           text:MyLocalizations.of(context).text("T&C"),
                                           /* "Welcome back",*/
@@ -1243,6 +1244,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         context: context,
         title: message,
         desc:
+
             "Now you can login through your mobile no and password is: User@123",
         type: AlertType.success,
         onWillPopActive: true,

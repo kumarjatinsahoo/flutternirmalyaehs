@@ -1,12 +1,14 @@
 {
   "WELCOMENACK": "ପୁଣି ଥରେ ସ୍ୱାଗତ",
-  "USER_NAME": "ଉପଯୋଗକର୍ତ୍ତା ନାମ",
+  "USER_NAME": "ମୋବାଇଲ୍ ନଂ/ଇମେଲ୍/ଉପଯୋଗକର୍ତ୍ତା ନାମ",
   "PASSWORD": "ପାସୱାର୍ଡ ",
   "LOGIN": "ଲଗଇନ୍ ",
   "DIDHAVEACC": "ଖାତା ନାହିଁ?",
-  "CREATE_ACCOUNT": "ଖାତା ଖୋଲ",
-  "FORGOT_PASSWORD": "ପାସୱାର୍ଡ଼ ଭୁଲି ଗଲେ କି",
-  "LOGIN_WITH_OTP":"OTP ସହିତ ଲୋଗିନ୍",
+  "CREATE_ACCOUNT": "ଖାତା ଖୋଲନ୍ତୁ",
+  "FORGOT_PASSWORD": "ପାସୱାର୍ଡ଼ ଭୁଲି ଗଲେ କି ?",
+  "FORGOT_USERID": "ଉପଯୋଗକର୍ତ୍ତା ID ଭୁଲିଗଲେ କି? ",
+  "LOGIN_WITH_OTP":"OTP ସହିତ ଲଗଇନ୍",
+  "OR": "କିମ୍ବା",
 
 
   "USER_REGISTRATION": "ଉପଯୋଗକର୍ତ୍ତା ପଞ୍ଜୀକରଣ",
@@ -41,7 +43,7 @@
   "DOB1": "ଜନ୍ମ ତାରିଖ",
   "YEARS": "ବର୍ଷ",
   "SUBMIT": "ସବମିଟ୍",
-  "AGREE_EHEALTHSYSTEM": "ସହମତ ସ୍ୱାସ୍ଥ୍ୟ ବ୍ୟବସ୍ଥା",
+  "AGREE_EHEALTHSYSTEM": "ମୁଁ ସ୍ୱାସ୍ଥ୍ୟ ବ୍ୟବସ୍ଥା ପାଇଁ ରାଜି ଅଟେ",
   "T&C": "ସର୍ତ୍ତ ଏବଂ ସର୍ତ୍ତ",
   "ADDRESS": "ଠିକଣା",
   "INDIVIDUAL": "ବ୍ୟକ୍ତିଗତ",
@@ -279,7 +281,7 @@
   "VOTER_CARD_NO": "ଭୋଟର କାର୍ଡ ନଂ",
   "LICENCE_NO": "ଲାଇସେନ୍ସ ନଂ",
   "SHOW_EMR": "EMR ଦେଖାନ୍ତୁ ",
-  "UHID_NO": "Uhid No",
+  "UHID_NO": "UHID NO",
 
   "REQUESTED": "ଅନୁରୋଧ",
   "CONFIRMED": "ନିଶ୍ଚିତ",
@@ -298,6 +300,7 @@
   "PATIENT_REGISTRATION": "ରୋଗୀ ପଞ୍ଜୀକରଣ",
   "PROFILE": "ପ୍ରୋଫାଇଲ୍",
   "AADHAAR_NO": "ଆଧାର ନଂ",
+
 
   "HEALTH_SCREENING": "ସ୍ୱାସ୍ଥ୍ୟ ସ୍କ୍ରିନିଂ",
   "DOCTOR_APPOINTMENT": "ଡାକ୍ତର ନିଯୁକ୍ତି",
@@ -330,6 +333,25 @@
   "ORDER_HASBEEN_CONFIRMED": "ଅର୍ଡର ନିଶ୍ଚିତ ହୋଇଛି ",
   "ORDER_PREPARING": "ଆମେ ତୁମର ଅର୍ଡର ପ୍ରସ୍ତୁତ କରୁଛୁ ",
   "ORDER_READYTO_PICKUP": "ତୁମର ଅର୍ଡର ପିକଅପ୍ ପାଇଁ ପ୍ରସ୍ତୁତ",
-  "CALL": "କଲ୍"
+  "CALL": "କଲ୍",
+
+
+  "PLEASE_SELECT_ORGANIZATION": "Please select Organization Name",
+  "PLEASE_SELECT_TITLE": "Please select Title",
+  "PLEASE_ENTER_PROFNAME": "Please Enter Professional's Name",
+  "PLEASE_ENTER_EXPERIENCE": "Please Enter Experience",
+  "PLEASE_SELECT_COUNTRY": "Please Select Country",
+  "PLEASE_SELECT_STATE": "Please Select State",
+  "PLEASE_SELECT_DIST": "Please Select District",
+  "PLEASE_SELECT_CITY": "Please Select City",
+  "PLEASE_ENTER_ZIP": "Please enter Zip/Pin Code",
+  "PLEASE_ENTER_MOBILE": "Please enter Mobile Number",
+  "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
+  "PLEASE_ENTER_EMAIL": "Please enter Email Id",
+  "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
+  "PLEASE_CHECK_TC": "Please check terms and Condition"
 }
+
+
+
 
