@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/ForgetUseridModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserDetailsModel.dart';
@@ -40,7 +41,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
              color: Colors.white,
            ),*/
         title: Text(
-          'User Id',
+          MyLocalizations.of(context).text("FORGOT_USERID"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -59,7 +60,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
               child: TextFormField(
                 controller: _emailid,
                 decoration: InputDecoration(
-                  hintText: 'Email ID ',
+                  hintText: MyLocalizations.of(context).text("EMAILID"),
                 ),
               ),
             ),
@@ -76,7 +77,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
               height: size.height * 0.01,
             ),
             Text(
-              'or',
+              MyLocalizations.of(context).text("OR"),
               style: TextStyle(
                 fontSize: 17,
               ),
@@ -86,6 +87,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
               child: TextFormField(
                 controller: _mobileno,
                 maxLength: 10,
+
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   //UpperCaseTextFormatter(),
@@ -93,7 +95,8 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                   WhitelistingTextInputFormatter(RegExp("[0-9]")),
                 ],
                 decoration: InputDecoration(
-                  hintText: 'Mobile Number',
+                  counterText: "",
+                  hintText: MyLocalizations.of(context).text("MOBILE_NO"),
                 ),
               ),
             ),
@@ -115,7 +118,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "submit".toUpperCase(),
+      text: MyLocalizations.of(context).text("SUBMIT").toUpperCase(),
       context: context,
       fun: () {
         if (_mobileno.text == "" && _emailid.text == "") {

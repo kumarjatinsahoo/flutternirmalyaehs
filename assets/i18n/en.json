@@ -7,6 +7,8 @@
   "DIDHAVEACC": "Don't have Account?",
   "CREATE_ACCOUNT": "Create Account",
   "FORGOT_PASSWORD": "Forgot Password?",
+  "FORGOT_USERID": "FORGOT USER ID?",
+  "OR": "OR",
 
   "USER_REGISTRATION": "User Registration",
   "DOCTOR_REGISTRATION": "Doctor Registration",
@@ -341,8 +343,6 @@
   "PLEASE_SELECT_TITLE": "Please select Title",
   "PLEASE_ENTER_PROFNAME": "Please Enter Professional's Name",
   "PLEASE_ENTER_EXPERIENCE": "Please Enter Experience",
-  "PLEASE_ENTER_ADDRESS1": "Please enter Address",
-
   "PLEASE_SELECT_COUNTRY": "Please Select Country",
   "PLEASE_SELECT_STATE": "Please Select State",
   "PLEASE_SELECT_DIST": "Please Select District",

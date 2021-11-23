@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -31,34 +32,34 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-    /*leading: BackButton(
+        /*leading: BackButton(
              color: Colors.white,
            ),*/
-    title: Text(
-      'Forgot Password',
-      style: TextStyle(color: Colors.white),
-    ),
-    centerTitle: true,
-    backgroundColor: AppData.kPrimaryColor,
-    iconTheme: IconThemeData(color: Colors.white),
+        title: Text(
+          MyLocalizations.of(context).text("FORGOT_PASSWORD"),
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: size.height * 0.02,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: TextFormField(
-            controller: _userid,
-            decoration: InputDecoration(
-              hintText: 'UHID No',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: size.height * 0.02,
             ),
-          ),
-        ),
-        /* SizedBox(height: size.height * 0.01,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                controller: _userid,
+                decoration: InputDecoration(
+                  hintText:MyLocalizations.of(context).text("UHID_NO"),
+                ),
+              ),
+            ),
+            /* SizedBox(height: size.height * 0.01,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
@@ -67,79 +68,74 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                  ),
              ),
               ),*/
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        Text(
-          'or',
-          style: TextStyle(
-            fontSize: 17,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: TextFormField(
-            controller: _mobileno,
-            maxLength: 10,
-            keyboardType: TextInputType.number,
-            inputFormatters: [
-              //UpperCaseTextFormatter(),
-              // ignore: deprecated_member_use
-              WhitelistingTextInputFormatter(RegExp("[0-9]")),
-            ],
-            decoration: InputDecoration(
-              hintText: 'Mobile Number',
+            SizedBox(
+              height: size.height * 0.01,
             ),
-          ),
+            Text(MyLocalizations.of(context).text("OR"),
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                controller: _mobileno,
+                maxLength: 10,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  //UpperCaseTextFormatter(),
+                  // ignore: deprecated_member_use
+                  WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                ],
+                decoration: InputDecoration(
+                  counterText: "",
+                  hintText:MyLocalizations.of(context).text("MOBILE_NO"),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _submitButton(),
+            ),
+            SizedBox(
+              height: size.height * 0.09,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/forgotuserid");
+              },
+              child: Text(
+                MyLocalizations.of(context).text("FORGOT_USERID").toUpperCase(),
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ],
         ),
-        SizedBox(
-          height: size.height * 0.05,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: _submitButton(),
-        ),
-        SizedBox(
-          height: size.height * 0.09,
-        ),
-         InkWell(
-         onTap: (){
-           Navigator.pushNamed(context, "/forgotuserid");
-         },
-                     child: Text('Forgot User id?'.toUpperCase(), style: TextStyle(
-                      fontSize: 15,
-
-                   ),),
-        ),
-      ],
-    ),
       ),
     );
   }
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text: "submit".toUpperCase(),
+      text: MyLocalizations.of(context).text("SUBMIT").toUpperCase(),
       context: context,
       fun: () {
         if (_mobileno.text == "" && _userid.text == "") {
           AppData.showInSnackBar(context, "Please enter UHID No or Mobile no");
-        }
-         else {
+        } else {
           var sendData;
-           if(_userid.text!="") {
-             sendData = {
-               "key": _userid.text,
-               "name": "UHID No"
-             };
-           }else{
-             sendData = {
-               "key": _mobileno.text,
-               "name": "Mobile number"
-             };
-           }
+          if (_userid.text != "") {
+            sendData = {"key": _userid.text, "name": "UHID No"};
+          } else {
+            sendData = {"key": _mobileno.text, "name": "Mobile number"};
+          }
           widget.model.phnNo = _mobileno.text;
-           MyWidgets.showLoading(context);
+          MyWidgets.showLoading(context);
           widget.model.POSTMETHOD(
               api: ApiFactory.FORGOT_OTP,
               json: sendData,
@@ -149,9 +145,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
-
-                    String userid=map["body"]["key"];
-                    String otp=map["body"]["code"];
+                    String userid = map["body"]["key"];
+                    String otp = map["body"]["code"];
                     Navigator.push(
                       context,
                       MaterialPageRoute(

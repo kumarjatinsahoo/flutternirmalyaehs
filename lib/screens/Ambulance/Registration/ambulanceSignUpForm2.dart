@@ -17,7 +17,6 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
-
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../models/KeyvalueModel.dart';
@@ -237,17 +236,14 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(
-          "SIGN UP",
+          MyLocalizations.of(context).text("SIGNUP"),
           style: TextStyle(color: Colors.white),
         ),
-
         //automaticallyImplyLeading: false,
-
       ),
       body: Container(
         child: Column(
           children: [
-
             Expanded(
               child: ListView(
                 shrinkWrap: true,
@@ -369,9 +365,11 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                                   Container(
                                     child: Row(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                          ),
                                         ),
                                         SizedBox(width:5),
                                         Material(

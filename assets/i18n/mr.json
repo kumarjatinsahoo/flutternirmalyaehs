@@ -7,6 +7,8 @@
   "DIDHAVEACC":"खाते नाही?",
   "CREATE_ACCOUNT":" साइन अप करा",
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
+  "FORGOT_USERID": "यूजर आयडी विसरलो?",
+  "OR": "किंवा",
 
 
   "USER_REGISTRATION": "वापरकर्ता नोंदणी",
@@ -330,6 +332,25 @@
   "ORDER_HASBEEN_CONFIRMED": "ऑर्डरची पुष्टी झाली आहे",
   "ORDER_PREPARING": "आम्ही तुमची ऑर्डर तयार करत आहोत",
   "ORDER_READYTO_PICKUP": "तुमची ऑर्डर पिकअपसाठी तयार आहे",
-  "CALL": "कॉल"
+  "CALL": "कॉल",
+
+
+  "PLEASE_SELECT_ORGANIZATION": "Please select Organization Name",
+  "PLEASE_SELECT_TITLE": "Please select Title",
+  "PLEASE_ENTER_PROFNAME": "Please Enter Professional's Name",
+  "PLEASE_ENTER_EXPERIENCE": "Please Enter Experience",
+  "PLEASE_SELECT_COUNTRY": "Please Select Country",
+  "PLEASE_SELECT_STATE": "Please Select State",
+  "PLEASE_SELECT_DIST": "Please Select District",
+  "PLEASE_SELECT_CITY": "Please Select City",
+  "PLEASE_ENTER_ZIP": "Please enter Zip/Pin Code",
+  "PLEASE_ENTER_MOBILE": "Please enter Mobile Number",
+  "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
+  "PLEASE_ENTER_EMAIL": "Please enter Email Id",
+  "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
+  "PLEASE_CHECK_TC": "Please check terms and Condition"
 }
+
+
+
 
