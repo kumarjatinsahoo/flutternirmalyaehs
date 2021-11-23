@@ -259,29 +259,31 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                         ),
                                       ),
                                     Spacer(),
-                                      InkWell(
-                                        onTap: () {
-                                          String orderid = body.orderId;
-                                          acceptApi(orderid);
-                                        },
-                                        child: Container(
-                                          height: size.height * 0.06,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color: Colors.black12),
-                                              color: Colors.blue),
-                                          child: RaisedButton(
-                                            onPressed: null,
-                                            child: Text(
-                                              'Accept',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            acceptApi(orderid);
+                                          },
+                                          child: Container(
+                                            height: size.height * 0.06,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.blue),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                'Accept',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.blue[600],
                                             ),
-                                            disabledColor: Colors.blue[600],
                                           ),
                                         ),
                                       ),
@@ -539,7 +541,6 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
             ),
             onPressed: (){
               //Navigator.pop(context, true);
-             Navigator.pop(context, true);
              Navigator.pop(context, true);
              callAPI();
 

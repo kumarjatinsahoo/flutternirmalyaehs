@@ -54,6 +54,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage5.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
+import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/AddUploadDocument.dart';
@@ -958,7 +959,9 @@ class _MyAppState extends State<MyApp> {
               '/labqrcode': (context) => LabQrcode(
                 model: _model,
               ),
-
+              '/dieseinfo': (context) => DieseInfo(
+                model: _model,
+              ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

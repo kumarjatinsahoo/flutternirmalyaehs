@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/InsuranceModel.dart' as insurance;
 import 'package:user/models/InsurancePostModel.dart';
@@ -130,112 +131,107 @@ class _InsuranceListState extends State<InsuranceList> {
               },
             ),
           ]),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 10.0,
-          right: 10.0,
-        ),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            (insuranceModel != null)
-                ? ListView.builder(
-                    itemCount: insuranceModel.body.length,
-                    // itemCount: 4,
-                    shrinkWrap: true,
-                    itemBuilder: (context, i) {
-                      insurance.Body body = insuranceModel.body[i];
-                      String insuranceid = body.key;
-                      widget.model.insuranceid = insuranceid;
-                      return InkWell(
-                        onTap: () {
-                          widget.model.insuranceid = body.key;
-                          Navigator.pushNamed(context, "/insuranceDetalis");
-                        },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          shadowColor: Colors.grey,
-                          elevation: 10,
-                          child: ClipPath(
-                            clipper: ShapeBorderClipper(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5))),
-                            child: Container(
-                                decoration: (i % 2 == 0)
-                                    ? BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color: AppData.kPrimaryRedColor,
-                                                width: 5)))
-                                    : BoxDecoration(
-                                        border: Border(
-                                            left: BorderSide(
-                                                color: AppData.kPrimaryColor,
-                                                width: 5))),
-                                width: double.maxFinite,
-                                /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              body.name,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              body.code,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              'Premium Amount',
-                                              overflow: TextOverflow.clip,
-                                              style:
-                                                  TextStyle(color: Colors.grey),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                      Image.asset(
-                                        "assets/forwardarrow.png",
-                                        fit: BoxFit.fitWidth,
-                                        /*width: 50,*/
-                                        height: 30,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
+      body: (insuranceModel != null)
+          ? Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+
+                  itemCount: insuranceModel.body.length,
+                  // itemCount: 4,
+                  shrinkWrap: true,
+                  itemBuilder: (context, i) {
+                    insurance.Body body = insuranceModel.body[i];
+                    String insuranceid = body.key;
+                    widget.model.insuranceid = insuranceid;
+                    return InkWell(
+                      onTap: () {
+                        widget.model.insuranceid = body.key;
+                        Navigator.pushNamed(context, "/insuranceDetalis");
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
-                      );
-                    },
-                  )
-                : Container(),
-          ],
-        ),
-      ),
+                        shadowColor: Colors.grey,
+                        elevation: 10,
+                        child: ClipPath(
+                          clipper: ShapeBorderClipper(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5))),
+                          child: Container(
+                              decoration: (i % 2 == 0)
+                                  ? BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color: AppData.kPrimaryRedColor,
+                                              width: 5)))
+                                  : BoxDecoration(
+                                      border: Border(
+                                          left: BorderSide(
+                                              color: AppData.kPrimaryColor,
+                                              width: 5))),
+                              width: double.maxFinite,
+                              /*  margin: const EdgeInsets.only(top: 6.0),*/
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            body.name,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            body.code,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'Premium Amount',
+                                            overflow: TextOverflow.clip,
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                    Image.asset(
+                                      "assets/forwardarrow.png",
+                                      fit: BoxFit.fitWidth,
+                                      /*width: 50,*/
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          : Container(),
     );
   }
 
@@ -444,21 +440,19 @@ class _InsuranceListState extends State<InsuranceList> {
               print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
                   insurancepostmodel.toJson().toString());
               widget.model.POSTMETHOD2(
-                api: ApiFactory.INSURANCE_POST,
-                json: insurancepostmodel.toJson(),
-                token: widget.model.token,
-                fun: (Map<String, dynamic> map) {
-                  Navigator.pop(context);
-                  setState(() {
-                    if (map[Const.STATUS1] == Const.SUCCESS) {
-                      callApi();
-                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                  api: ApiFactory.INSURANCE_POST,
+                  json: insurancepostmodel.toJson(),
+                  token: widget.model.token,
+                  fun: (Map<String, dynamic> map) {
+                    //  setState(() {
+                    String msg = map[Const.MESSAGE];
+                    if (map[Const.CODE] == Const.SUCCESS) {
+                      popup(msg, context);
                     } else {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      // isDataNotAvail = true;
+                      AppData.showInSnackBar(context, msg);
                     }
                   });
-                },
-              );
               //AppData.showInSnackBar(context, "add Successfully");
             }
 
@@ -764,5 +758,36 @@ class _InsuranceListState extends State<InsuranceList> {
         _premiumdate.value = TextEditingValue(text: df.format(picked));
         //addBioMedicalModel.bioMDate = df.format(picked);
       });
+  }
+
+  popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              //Navigator.pop(context, true);
+              //Navigator.pop(context, true);
+              //  Navigator.pop(context, true);
+//callApi();
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 }

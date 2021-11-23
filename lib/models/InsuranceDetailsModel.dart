@@ -26,18 +26,18 @@ class InsuranceDetailsModel {
 }
 
 class Body {
-  Null patientId;
-  Null patientName;
+  String patientId;
+  String patientName;
   String insCompany;
   String insType;
-  Null healthInsType;
+  String healthInsType;
   String policyNo;
   String policyStartDt;
   String policyEndDt;
   String totalInsAmount;
-  Null premiumDueDt;
+  String premiumDueDt;
   String thirdPartyAdm;
-  Null premiumAmount;
+  String premiumAmount;
   String sumAssuredAmt;
   String strtMonthYear;
   String strtDay;

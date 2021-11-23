@@ -8,26 +8,26 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 //import 'package:matrujyoti/models/LoginResponse.dart';
 
-class DocumentPdf extends StatefulWidget {
+class Diesepdf extends StatefulWidget {
   MainModel model;
 
-  DocumentPdf({Key key, this.model}) : super(key: key);
+  Diesepdf({Key key, this.model}) : super(key: key);
 
   @override
-  _DocumentPdfState createState() => _DocumentPdfState();
+  _DiesepdfState createState() => _DiesepdfState();
 }
 
-class _DocumentPdfState extends State<DocumentPdf> {
+class _DiesepdfState extends State<Diesepdf> {
   LoginResponse1 loginResponse;
-  String pdfurl;
+  String diese;
 
   @override
   void initState() {
     loginResponse = widget.model.loginResponse1;
-    pdfurl=widget.model.pdfurl;
-    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+pdfurl);
+    diese=widget.model.diesepdf;
+    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+diese);
     super.initState();
-   // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
+    // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
   }
 
   @override
@@ -50,10 +50,10 @@ class _DocumentPdfState extends State<DocumentPdf> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-    //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
-    url:'https://docs.google.com/viewer?url='+pdfurl??"N/A",
-     //url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
-       //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
+      //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
+       url:'https://docs.google.com/viewer?url='+diese??"N/A",
+      //url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
+      //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
       withZoom: true,
       useWideViewPort: false,
       displayZoomControls: true,
