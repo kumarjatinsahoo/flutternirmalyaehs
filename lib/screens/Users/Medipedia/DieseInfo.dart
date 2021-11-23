@@ -80,10 +80,10 @@ class _DieseInfoState extends State<DieseInfo> {
       }
     });*/
   }
-
   callAPI() {
     widget.model.GETMETHODCALL(
         api: ApiFactory.DIESEINFO,
+        // token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Value>>>" + jsonEncode(map));
@@ -94,13 +94,14 @@ class _DieseInfoState extends State<DieseInfo> {
               });
             } else {
               setState(() {
-                // isDataNoFound = true;
+                isDataNoFound = true;
               });
               //AppData.showInSnackBar(context, msg);
             }
           });
         });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +127,7 @@ class _DieseInfoState extends State<DieseInfo> {
             ),
           ]*/),
       body:
-      isdata == true
+      /*isdata == true
           ? CircularProgressIndicator(
         backgroundColor: AppData.matruColor,
       )
@@ -139,7 +140,7 @@ class _DieseInfoState extends State<DieseInfo> {
           ),
         ),
       )
-          :
+          :*/
       Container(
         child: SingleChildScrollView(
           child: (dieseinfoModel != null)
@@ -220,7 +221,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                      pdfurl=widget.model.diesepdf;
                                     print("ppppdddddddddddffffff"+pdfurl);
                                     print("pdf"+widget.model.diesepdf);
-                                    Navigator.pushNamed(context, "/documentpdf",).then((value) => widget.model.diesepdf);
+                                    Navigator.pushNamed(context, "/diesepdf",).then((value) => widget.model.diesepdf);
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(

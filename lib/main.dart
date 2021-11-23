@@ -55,6 +55,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
+import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/AddUploadDocument.dart';
@@ -960,6 +961,8 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/dieseinfo': (context) => DieseInfo(
+                model: _model,
+              ),'/diesepdf': (context) => Diesepdf(
                 model: _model,
               ),
             },
