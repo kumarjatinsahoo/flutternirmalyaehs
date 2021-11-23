@@ -88,7 +88,7 @@ class _DieseInfoState extends State<DieseInfo> {
           setState(() {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
+            if (map["status"] == Const.SUCCESS) {
               setState(() {
                 dieseinfoModel =dieseinfo.DieseinfoModel.fromJson(map);
               });
@@ -110,7 +110,7 @@ class _DieseInfoState extends State<DieseInfo> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Upload Document"),
+          title: Text("Diese Info"),
           /*actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -196,7 +196,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold)),
                                 SizedBox(width: 5,),
-                                Text(body.name,
+                                Text(body.name??"N/A",
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.normal)),
@@ -219,8 +219,8 @@ class _DieseInfoState extends State<DieseInfo> {
                                   onTap: (){
                                     String pdfurl=body.url;
                                      pdfurl=widget.model.diesepdf;
-                                    print("ppppdddddddddddffffff"+pdfurl);
-                                    print("pdf"+widget.model.diesepdf);
+                                  //  print("ppppdddddddddddffffff"+pdfurl);
+                                    //print("pdf"+widget.model.diesepdf);
                                     Navigator.pushNamed(context, "/diesepdf",).then((value) => widget.model.diesepdf);
                                   },
                                   child: Container(
@@ -252,7 +252,7 @@ class _DieseInfoState extends State<DieseInfo> {
                 ),
               );
             },
-            itemCount: documentListModel.body.length,
+            itemCount: dieseinfoModel.body.length,
           )
               : Container(),
         ),
