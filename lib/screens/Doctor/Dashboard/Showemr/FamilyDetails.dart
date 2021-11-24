@@ -38,7 +38,7 @@ class _FamilyDetails extends State<FamilyDetails> {
             if (map[Const.CODE] == Const.SUCCESS) {
               familyDetailsModel =family.FamilyDetailsModel.fromJson(map);
             } else {
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
