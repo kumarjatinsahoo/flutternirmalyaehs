@@ -291,9 +291,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         if (total != -1) {
           setState(() {
             //popup(context);
-            Navigator.pushNamed(context, "/uploaddocument");
 
-            //Navigator.pop(context);
+            //Navigator.pushNamed(context, "/uploaddocument");
+
+            Navigator.pop(context);
              //percentage = (received / total * 100).toStringAsFixed(0) + '%';
           });
           print((received / total * 100).toStringAsFixed(0) + '%');

@@ -239,7 +239,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                                       fontWeight: FontWeight.normal)),
                             ],
                           ),
-                          //  SizedBox(height: 10,),
+                           SizedBox(height: 5,),
                           InkWell(
                             onTap: (){
                               String pdfurl=body.fileName;
@@ -249,6 +249,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                             },
                             child: Center(
                               child: Container(
+                                width: 400,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     border: Border.all(color: Colors.black12),
