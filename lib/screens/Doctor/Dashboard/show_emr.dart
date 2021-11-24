@@ -121,7 +121,7 @@ class _ShowEmr extends State<ShowEmr> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 9,
+        length: 8,
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(130.0), // here the desired height
@@ -202,7 +202,7 @@ class _ShowEmr extends State<ShowEmr> {
                       height: 25,
                     ),
                     Row(children: <Widget>[
-                      Icon(
+                    /*  Icon(
                         Icons.print,
                         color: Colors.white,
                         size: 25,
@@ -218,7 +218,7 @@ class _ShowEmr extends State<ShowEmr> {
                       SizedBox(
                         width: 15,
                       ),
-                      Icon(
+*/                      Icon(
                         Icons.more_vert,
                         color: Colors.white,
                         size: 25,
@@ -279,11 +279,11 @@ class _ShowEmr extends State<ShowEmr> {
                             height: 50.0,
                             child: new Tab(text: 'IMMUNIZATION'),
                           ),
-                          new Container(
+                         /* new Container(
                             //  width: 100,
                             height: 50.0,
                             child: new Tab(text: 'TREATMENT TRACKER'),
-                          ),
+                          ),*/
                           new Container(
                             //  width: 100,
                             height: 50.0,
@@ -306,7 +306,7 @@ class _ShowEmr extends State<ShowEmr> {
               LifeStylehistory(model: widget.model,),
               FamilyDetails(model: widget.model,),
               Immunization(model: widget.model,),
-              TreatmentTracker(model: widget.model,),
+             // TreatmentTracker(model: widget.model,),
               MobileUpload(model: widget.model,),
         //      PatientDetails(),
         //      patientHistory(),

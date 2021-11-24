@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/AddUploadDocumentModel.dart';
@@ -278,7 +279,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   void postMultiPart() async {
     // view();
     MyWidgets.showLoading(context);
-
     //dio.options.headers["Content-Type"] = "multipart/form-data";
     //dio.options.baseUrl = 'https://eramps.in/';
     //dio.interceptors.add(LogInterceptor());
@@ -290,6 +290,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       onSendProgress: (received, total) {
         if (total != -1) {
           setState(() {
+            //popup(context);
             Navigator.pushNamed(context, "/uploaddocument");
 
             //Navigator.pop(context);
@@ -371,5 +372,35 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         //file1 = file; //file1 is a global variable which i created
       });
     }
+  }
+
+  popup( BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: (){
+              //Navigator.pop(context, true);
+              //Navigator.pop(context, true);
+              Navigator.pushNamed(context, "/uploaddocument");
+
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 }

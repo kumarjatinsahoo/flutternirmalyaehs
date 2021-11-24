@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
-import 'package:user/models/DieseinfoModel.dart'as dieseinfo;
+import 'package:user/models/DieseinfoModel.dart' as dieseinfo;
 import 'package:user/models/DieseinfoModel.dart';
 import 'package:user/models/DocumentListModel.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
@@ -47,7 +47,6 @@ class _DieseInfoState extends State<DieseInfo> {
   String profilePath = null, idproof = null;
   dieseinfo.DieseinfoModel dieseinfoModel;
 
-
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -73,13 +72,14 @@ class _DieseInfoState extends State<DieseInfo> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
-   /* _scrollController.addListener(() {
+    /* _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (documentListModel.body.length % 20 == 0) callAPI(++currentMax);
       }
     });*/
   }
+
   callAPI() {
     widget.model.GETMETHODCALL(
         api: ApiFactory.DIESEINFO,
@@ -90,7 +90,7 @@ class _DieseInfoState extends State<DieseInfo> {
             String msg = map[Const.MESSAGE];
             if (map["status"] == Const.SUCCESS) {
               setState(() {
-                dieseinfoModel =dieseinfo.DieseinfoModel.fromJson(map);
+                dieseinfoModel = dieseinfo.DieseinfoModel.fromJson(map);
               });
             } else {
               setState(() {
@@ -102,16 +102,15 @@ class _DieseInfoState extends State<DieseInfo> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text("Diese Info"),
-          /*actions: <Widget>[
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text("Disease Info"),
+        /*actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
@@ -125,9 +124,10 @@ class _DieseInfoState extends State<DieseInfo> {
                 ),
               ),
             ),
-          ]*/),
+          ]*/
+      ),
       body:
-      /*isdata == true
+          /*isdata == true
           ? CircularProgressIndicator(
         backgroundColor: AppData.matruColor,
       )
@@ -141,123 +141,113 @@ class _DieseInfoState extends State<DieseInfo> {
         ),
       )
           :*/
-      Container(
+          Container(
         child: SingleChildScrollView(
           child: (dieseinfoModel != null)
-              ?
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, i) {
-              dieseinfo.Body body = dieseinfoModel.body[i];
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: size.width * 0.20,
-                  child: Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8),
-                        bottomRight: Radius.circular(8),
-                        bottomLeft: Radius.circular(8),
-                      ),
-                      side: BorderSide(width: 1, color: AppData.kPrimaryColor),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10,
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, i) {
+                    dieseinfo.Body body = dieseinfoModel.body[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15,bottom: 5,top: 5),
+                      child: Container(
+                        width: size.width * 0.20,
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
                             ),
-                            Container(
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(55),
-                                    child: Icon(
-                                      Icons.picture_as_pdf_rounded,
-                                      color: AppData.kPrimaryRedColor,
-                                      size: 100,
-                                    )
-                                  // height: 95,
+                            side: BorderSide(
+                                width: 1, color: AppData.kPrimaryColor),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                      child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(55),
+                                          child: Icon(
+                                            Icons.picture_as_pdf_rounded,
+                                            color: AppData.kPrimaryRedColor,
+                                            size: 80,
+                                          )
+                                          // height: 95,
 
-                                )),
+                                          )),
 
-                            SizedBox(
-                              height: 20,
-                            ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
 
-                            Row(
-                              children: [
-                                Text("Document Name :",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(width: 5,),
-                                Text(body.name??"N/A",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.normal)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                                  Center(
+                                    child: Text(body.name ?? "N/A",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold))
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
 
-                            //  SizedBox(height: 10,),
-                            Row(
-                              children: [
-                                Text(
-                                  "",
-                                  style: TextStyle(
-                                      fontSize: 15, fontWeight: FontWeight.bold),
-                                ),
-                                Spacer(),
-                                InkWell(
-                                  onTap: (){
-                                    String pdfurl=body.url;
-                                     pdfurl=widget.model.diesepdf;
-                                  //  print("ppppdddddddddddffffff"+pdfurl);
-                                    //print("pdf"+widget.model.diesepdf);
-                                    Navigator.pushNamed(context, "/diesepdf",).then((value) => widget.model.diesepdf);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Colors.black12),
-                                        color: AppData.kPrimaryColor),
-                                    child: RaisedButton(
-                                      onPressed: null,
-                                      child: Text(
-                                        'View Pdf',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
+                                  //  SizedBox(height: 10,),
+                                  InkWell(
+                                    onTap: () {
+                                      String pdfurl = body.url;
+                                      widget.model.diesepdf=pdfurl;
+                                      print("ppppdddddddddddffffff" + pdfurl);
+                                      Navigator.pushNamed(
+                                        context,
+                                        "/diesepdf",
+                                      ).then((value) => widget.model.diesepdf);
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        width: 400,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                color: Colors.black12),
+                                            color: AppData.kPrimaryColor),
+                                        child: RaisedButton(
+                                          onPressed: null,
+                                          child: Text(
+                                            'View Pdf',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          disabledColor: AppData.kPrimaryColor,
+                                        ),
                                       ),
-                                      disabledColor: AppData.kPrimaryColor,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                          ]),
-                    ),
-                  ),
-                ),
-              );
-            },
-            itemCount: dieseinfoModel.body.length,
-          )
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount: dieseinfoModel.body.length,
+                )
               : Container(),
         ),
       ),
-
     );
   }
 }
