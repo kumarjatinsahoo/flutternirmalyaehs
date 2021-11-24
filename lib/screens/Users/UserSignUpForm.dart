@@ -1244,8 +1244,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         context: context,
         title: message,
         desc:
-
-            "Now you can login through your mobile no and password is: User@123",
+            MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(

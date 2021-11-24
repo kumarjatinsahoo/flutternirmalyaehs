@@ -9,6 +9,7 @@
   "FORGOT_PASSWORD": "Forgot Password?",
   "FORGOT_USERID": "FORGOT USER ID?",
   "OR": "OR",
+  "REG_SUCCESS_POPUP": "Now you can login through your mobile no and password is: User@123",
 
   "USER_REGISTRATION": "User Registration",
   "DOCTOR_REGISTRATION": "Doctor Registration",
@@ -32,7 +33,7 @@
   "DOB": "DOB",
   "DOB1": "Date Of Birth",
   "YEARS": "Years",
-  "SUBMIT": "SUBMIT",
+  "SUBMIT": "Submit",
   "AGREE_EHEALTHSYSTEM": "I Agree to eHealthSystem's  ",
   "T&C": "Terms and Condition",
   "ADDRESS": "Address",

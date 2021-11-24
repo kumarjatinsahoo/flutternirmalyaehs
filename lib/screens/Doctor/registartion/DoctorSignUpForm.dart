@@ -411,7 +411,7 @@ class DoctorSignUpFormState extends State<DoctorSignUpForm> {
                                       });
                                     },
                                   ),
-                                  Text(MyLocalizations.of(context).text("PATHOLOGY_LAB")),
+                                  Text(MyLocalizations.of(context).text("PATHOLOGYLAB")),
                                 ],
                               ),
                               SizedBox(height: 5),
