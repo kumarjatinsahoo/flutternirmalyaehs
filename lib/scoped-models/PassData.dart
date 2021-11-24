@@ -141,5 +141,6 @@ String labregNoValue;
 
 String insuranceid;
 String pdfurl;
+String diesepdf;
 
 }

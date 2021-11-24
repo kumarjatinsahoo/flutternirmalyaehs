@@ -34,7 +34,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.INSURANCE_Details +insuranceid,
+        api: ApiFactory.INSURANCE_Details + insuranceid,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -81,36 +81,49 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-
                       Container(
 /*                  height: 90,
                       width: double.maxFinite,*/
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(insuranceDetailsModel.body.insCompany,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,color: AppData.kPrimaryColor),),
-                                    SizedBox(height: 5,),
-                                    Text('Policy No:'+insuranceDetailsModel.body.policyNo,
-                                      style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                    SizedBox(height: 5,),
-                                    Text('Contact No:9020234567' ,
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                  ],
+                                Text(
+                                  insuranceDetailsModel.body.insCompany??"N/A",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: AppData.kPrimaryColor),
                                 ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-
-
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Policy No:' +
+                                      insuranceDetailsModel.body.policyNo??"N/A",
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Contact No:9020234567',
+                                  overflow: TextOverflow.clip,
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
+                                ),
                               ],
                             ),
-                          )),
+                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                          ],
+                        ),
+                      )),
                       Container(
                         decoration: BoxDecoration(
                           border: Border(
@@ -124,22 +137,28 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                       Container(
 /*                            height: 70,
                       width: double.maxFinite,*/
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Policy Name',
-                                    style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                  SizedBox(height: 5,),
-                                  Text('Life Insurance',
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                                ],
-                              ),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Policy Name',
+                              style: TextStyle(
+                                  color: Colors.black54, fontSize: 16),
                             ),
-                          )),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Life Insurance',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      )),
                       Container(
                         decoration: BoxDecoration(
                           border: Border(
@@ -153,28 +172,35 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                       Container(
 /*                      height: 70,
                       width: double.maxFinite,*/
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Insurance Type',
-                                        style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                      SizedBox(height: 5,),
-                                      Text(insuranceDetailsModel.body.insType,
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                                    ],
-                                  ),
+                                Text(
+                                  'Insurance Type',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
                                 ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  insuranceDetailsModel.body.insType,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
                               ],
                             ),
-                          )),
+                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                          ],
+                        ),
+                      )),
                       Container(
                         decoration: BoxDecoration(
                           border: Border(
@@ -190,28 +216,35 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                       height: 70,
                       width: double.maxFinite,
 */
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Third party Administrator',
-                                        style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                      SizedBox(height: 5,),
-                                      Text(insuranceDetailsModel.body.thirdPartyAdm,
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                                    ],
-                                  ),
+                                Text(
+                                  'Third party Administrator',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
                                 ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  insuranceDetailsModel.body.thirdPartyAdm,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
                               ],
                             ),
-                          )),
+                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                          ],
+                        ),
+                      )),
                       Container(
                         decoration: BoxDecoration(
                           border: Border(
@@ -223,30 +256,37 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                         ),
                       ),
                       Container(
-                        /* height: 70,
+                          /* height: 70,
                       width: double.maxFinite,*/
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Sum Assured Amount',
-                                        style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                      SizedBox(height: 5,),
-                                      Text(insuranceDetailsModel.body.sumAssuredAmt,
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                                    ],
-                                  ),
+                                Text(
+                                  'Sum Assured Amount',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
                                 ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  insuranceDetailsModel.body.sumAssuredAmt,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
                               ],
                             ),
-                          )),
+                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                          ],
+                        ),
+                      )),
                       Container(
                         decoration: BoxDecoration(
                           border: Border(
@@ -258,30 +298,37 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                         ),
                       ),
                       Container(
-                        /*height: 70,
+                          /*height: 70,
                       width: double.maxFinite,*/
-                        /*  margin: const EdgeInsets.only(top: 6.0),*/
+                          /*  margin: const EdgeInsets.only(top: 6.0),*/
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Total insurance Amount',
-                                        style: TextStyle(color: Colors.black54,fontSize: 16),),
-                                      SizedBox(height: 5,),
-                                      Text(insuranceDetailsModel.body.totalInsAmount,
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                                    ],
-                                  ),
+                                Text(
+                                  'Total insurance Amount',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 16),
                                 ),
-                                //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  insuranceDetailsModel.body.totalInsAmount,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
                               ],
                             ),
-                          )),
+                            //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                          ],
+                        ),
+                      )),
                       /* Container(
                     decoration: BoxDecoration(
                       border: Border(
@@ -299,75 +346,72 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                       scrollDirection: Axis.horizontal,*/
 
                       Padding(
-                        padding: const EdgeInsets.all(35.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-
                                 Text(
                                   'Start Date',
                                   style: TextStyle(
-                                      fontSize: 14,
-
-                                      color: Colors.black38),
+                                      fontSize: 14, color: Colors.black38),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Container(
-                                  width: 120,
-                                  height: 80,
+                                  height: 60,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     border: Border.all(color: Colors.black26),
-                                    /*color: Colors.blue[50]*/),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                    /*color: Colors.blue[50]*/
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        insuranceDetailsModel
+                                            .body.policyStartDt,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            insuranceDetailsModel.body.policyStartDt,
+                                            insuranceDetailsModel.body.strtDay,
                                             style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black38),
                                           ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                insuranceDetailsModel.body.strtDay,
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black38),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                insuranceDetailsModel.body.strtMonthYear,
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.black38,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            insuranceDetailsModel
+                                                .body.strtMonthYear,
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black38,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
                                         ],
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-
                             SizedBox(
                               width: 10,
                             ),
@@ -376,7 +420,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                     left: 10.0, right: 10.0),
                 child: Image.asset("assets/images/callambulance.png",height: 30,)
             ),
-*/                             CircularPercentIndicator(
+*/
+                            CircularPercentIndicator(
                               radius: 100.0,
                               lineWidth: 10.0,
                               percent: 0.8,
@@ -389,71 +434,67 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                               backgroundColor: Colors.grey,
                               progressColor: Colors.blue,
                             ),
-
                             SizedBox(
                               width: 10,
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-
                                 Text(
                                   'End Date',
                                   style: TextStyle(
-                                      fontSize: 14,
-
-                                      color: Colors.black38),
+                                      fontSize: 14, color: Colors.black38),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Container(
-                                  width: 120,
-                                  height: 80,
+                                  height: 60,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     border: Border.all(color: Colors.black26),
-                                    /*color: Colors.blue[50]*/),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                    /*color: Colors.blue[50]*/
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        insuranceDetailsModel.body.policyEndDt,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            insuranceDetailsModel.body.policyEndDt,
+                                            insuranceDetailsModel.body.endDay,
                                             style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black38),
                                           ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                insuranceDetailsModel.body.endDay,
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black38),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                insuranceDetailsModel.body.endMonthYear,
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.black38,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            insuranceDetailsModel
+                                                .body.endMonthYear,
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black38,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
                                         ],
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -471,6 +512,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
       ),
     );
   }
+
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "search".toUpperCase(),

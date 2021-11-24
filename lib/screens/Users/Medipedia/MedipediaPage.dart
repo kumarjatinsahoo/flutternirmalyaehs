@@ -61,7 +61,8 @@ class _MedipediaPageState extends State<MedipediaPage> {
                       physics: NeverScrollableScrollPhysics(),
                       children: [
                         GestureDetector(
-                           onTap: () =>  /* Navigator.pushNamed(context, "/bookanAppointmentlist")*/AppData.showInSnackDone(context, "Coming Soon"),
+                           onTap: () =>
+                               Navigator.pushNamed(context, "/dieseinfo"),
                           child: Card(
                             elevation: 5,
                             child: Container(
