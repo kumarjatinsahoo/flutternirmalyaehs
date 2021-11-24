@@ -9,6 +9,7 @@
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
   "FORGOT_USERID": "यूजर आयडी विसरलो?",
   "OR": "किंवा",
+  "REG_SUCCESS_POPUP": "आता तुम्ही तुमच्या मोबाईल नंबर वरून लॉग इन करू शकता आणि पासवर्ड आहे: User@123",
 
 
   "USER_REGISTRATION": "वापरकर्ता नोंदणी",
@@ -56,7 +57,7 @@
   "PHARMACY": "फार्मसी",
   "PATHOLOGYLAB": "पॅथॉलॉजीलॅब",
   "NEXT": "पुढे",
-  "FILL_IN_PERSONAL_INFORMATION": "वैयक्तिक माहिती भरा",
+  "FILL_IN_PERSONAL_INFORMATION": "वैयक्तिक माहिती भरा (सर्व फील्ड अनिवार्य आहेत)",
   "ORGANIZATION_NAME": "संस्थेचे नाव",
   "PROFESSIONAL_NAME": "व्यावसायिक नाव",
   "EDUCATION": "शिक्षण नाव",
@@ -210,6 +211,7 @@
   "APPLICATION": "अर्ज",
   "DONOR_APPLICATION": "दाता अर्ज",
   "EMAILID": "ई - मेल आयडी",
+  "ALTER_EMAILID": "पर्यायी ईमेल आयडी",
   "RELATION_OF": "चा पुत्र, ची कन्या, ची पत्नी",
   "REQUEST_DOCTOR_PRESCRIBE": "",
   "DISEASE_INFO": "आजाराची माहिती",

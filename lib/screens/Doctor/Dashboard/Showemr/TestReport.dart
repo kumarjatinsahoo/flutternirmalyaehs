@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/UserlabtestreportModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -24,6 +25,8 @@ class _TestReport extends State<TestReport> {
     bool isDataNotAvail = false;
   UserlabtestreportModel userlabtestreportModel = UserlabtestreportModel();
   String eHealthCardno;
+  bool isdata = false;
+
 
   @override
   void initState() {
@@ -31,7 +34,7 @@ class _TestReport extends State<TestReport> {
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
     eHealthCardno = widget.model.patientseHealthCard;
-
+    isdata = true;
     callLabtastAPI(eHealthCardno);
 
   }
@@ -44,9 +47,10 @@ class _TestReport extends State<TestReport> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               userlabtestreportModel = UserlabtestreportModel.fromJson(map);
             } else {
-              isDataNotAvail = true;
+              isdata = false;
               AppData.showInSnackBar(context, msg);
             }
           });
@@ -57,7 +61,20 @@ class _TestReport extends State<TestReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
-      body:
+      body:isdata == true
+          ? Center(
+            child: CircularProgressIndicator(
+        backgroundColor: AppData.matruColor,
+      ),
+          )
+          : userlabtestreportModel == null || userlabtestreportModel == null
+          ? Container(
+        child: Center(
+          child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+            style: TextStyle(color: Colors.black, fontSize: 15),
+          ),
+        ),
+      ):
       SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),

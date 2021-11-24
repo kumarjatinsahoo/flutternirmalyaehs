@@ -1379,18 +1379,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           AppData.showInSnackBar(context, "Please enter DOB");
 
 
-       }else if (ProfileScreen.bloodgroupmodel== null ||
-           ProfileScreen.bloodgroupmodel == "") {
+       }else if (ProfileScreen.bloodgroupmodel== null || ProfileScreen.bloodgroupmodel == "") {
          AppData.showInSnackBar(context, "Please select Blood Group");
           //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
           }else if (textEditingController[1].text == "N/A" ||textEditingController[1].text== null|| textEditingController[1].text == ""){
          AppData.showInSnackBar(context, "Please enter Emergency Contact Name");
          FocusScope.of(context).requestFocus(fnode1);
-       } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 3)  {
+       } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2)  {
          AppData.showInSnackBar(context, "Please enter valid Emergency Contact Name ");
          FocusScope.of(context).requestFocus(fnode1);
-       }else if (ProfileScreen.relationmodel== null ||
-          ProfileScreen.relationmodel == "") {
+       }else if (ProfileScreen.relationmodel== null || ProfileScreen.relationmodel == "") {
           AppData.showInSnackBar(context, "Please select Relation");
        }else if (textEditingController[2].text == "N/A" ||textEditingController[2].text== null|| textEditingController[2].text == ""){
          AppData.showInSnackBar(context, "Please enter  Emergency Contact No.");
@@ -1401,26 +1399,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }else if (textEditingController[3].text == "" || textEditingController[3].text == null|| textEditingController[3].text == "") {
          AppData.showInSnackBar(context, "Please enter Family Doctor Name");
          FocusScope.of(context).requestFocus(fnode3);
-       } else if ( textEditingController[3].text != "" &&  textEditingController[3].text.length <= 3)  {
+       } else if ( textEditingController[3].text != "" &&  textEditingController[3].text.length <= 2)  {
          AppData.showInSnackBar(context, "Please enter valid Family Doctor Name ");
          FocusScope.of(context).requestFocus(fnode3);
-       }else if (ProfileScreen.specialitymodel== null ||
-           ProfileScreen.specialitymodel == "") {
+       }else if (ProfileScreen.specialitymodel== null || ProfileScreen.specialitymodel == "") {
          AppData.showInSnackBar(context, "Please select Speciality");
        }else if (textEditingController[4].text == "N/A" ||textEditingController[4].text== null||textEditingController[4].text== ""){
-         AppData.showInSnackBar(context, "Please enter  Family Doctor Mobile No.");
+         AppData.showInSnackBar(context, "Please enter Doctor Mobile No.");
          FocusScope.of(context).requestFocus(fnode4);
        } else if ( textEditingController[4].text != "" &&  textEditingController[4].text.length != 10)  {
-         AppData.showInSnackBar(context, "Please enter valid Family Doctor Mobile No.");
+         AppData.showInSnackBar(context, "Please enter valid  Doctor Mobile No.");
          FocusScope.of(context).requestFocus(fnode4);
          //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
        }else if (textEditingController[5].text == "N/A" || textEditingController[5].text == null|| textEditingController[5].text == "") {
          AppData.showInSnackBar(context, "Please enter Address");
          FocusScope.of(context).requestFocus(fnode5);
-       } else if ( textEditingController[5].text != "" &&  textEditingController[5].text.length <= 3)  {
+       } else if (textEditingController[5].text != "" &&  textEditingController[5].text.length <= 2)  {
          AppData.showInSnackBar(context, "Please enter valid Address");
          FocusScope.of(context).requestFocus(fnode5);
-
        } else {
            updateProfileModel.dob = textEditingController[0].text;
            updateProfileModel.bloodGroup = ProfileScreen.bloodgroupmodel.key;

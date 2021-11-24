@@ -40,7 +40,7 @@ class _LifeStylehistory extends State<LifeStylehistory> {
               //appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, "Data Not Found");
             }
           });
         });
