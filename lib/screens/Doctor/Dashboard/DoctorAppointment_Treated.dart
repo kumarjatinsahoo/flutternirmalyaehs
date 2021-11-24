@@ -276,7 +276,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                             SizedBox(
                                                               height: 5,
                                                             ),*/
-                                                              Text(
+                                                            /*  Text(
                                                                 "Patient Notes: " +
                                                                     appointmentlist
                                                                         .notes ??
@@ -287,7 +287,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                 style:
                                                                 TextStyle(),
                                                               ),
-                                                              SizedBox(height:3),
+*/                                                              SizedBox(height:3),
                                                               (appointmentlist.age==null)
                                                                   ?Text(
                                                                 "Age : " +
@@ -399,6 +399,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       ),
                                                     ],
                                                   ),
+                                                  SizedBox(height: 5,),
                                                   Row(
                                                     // mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment:
@@ -459,7 +460,49 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                       ),
                                                     ],
                                                   ),
+                                                  SizedBox(height:5),
+                                                  Row(
+                                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .end,
+                                                    children: [
+                                                      Container(
+                                                        width:80,
+                                                        child: Text(
+                                                          /*'Confirmed'*/
+                                                          "Patient Notes : ",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold,
+                                                              fontSize: 15,
+                                                              color: AppData.kPrimaryColor
+                                                          ),
+                                                        ),
+                                                      ),
+
+                                                      Container(
+                                                          width: 250,
+                                                          child:
+                                                          (appointmentlist.notes==null)
+
+                                                              ? Text(
+
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            appointmentlist
+                                                                .notes ??"N?A"  ,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .clip,
+                                                            style:
+                                                            TextStyle(),
+                                                          ):Container(child:Text("N/A"))
+                                                      ),
+                                                    ],
+                                                  ),
                                                   SizedBox(height:10),
+
                                                   Row(
                                                     // mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment:
@@ -555,8 +598,6 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                           ),
                                                         ),
                                                       ),
-
-
                                                     ],
                                                   ),
 

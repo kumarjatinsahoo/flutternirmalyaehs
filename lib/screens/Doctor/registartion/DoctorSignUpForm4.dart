@@ -1438,7 +1438,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {Navigator.pop(context), getCerificateImage()},
+                  onTap: () => {Navigator.pop(context),
+                    getCerificateImage()},
                 ),
                 new ListTile(
                     leading: new Icon(Icons.file_copy),

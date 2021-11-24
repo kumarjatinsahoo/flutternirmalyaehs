@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -1500,7 +1501,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                     title: new Text('Document'),
                     onTap: () => {
                       Navigator.pop(context),
-                      getCameraImage(),
+                      getPdfAndUpload(),
                     }),
               ],
             ),
@@ -1556,7 +1557,34 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
       idproof = _fileName;
       userModel.profileImage = base64Encode(enc);
     });
-  }// Widget formFieldPass(int index, String hint, int obqueTxt) {
+  }
+
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        idproof = file.path;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+
+  // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
 //     child: TextFormField(
 //       controller: controller[index],

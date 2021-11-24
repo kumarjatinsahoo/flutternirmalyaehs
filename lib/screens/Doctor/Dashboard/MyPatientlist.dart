@@ -91,38 +91,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("MY_PATIENT")),
-          /* leading: Icon(
-          Icons.menu,
-        ),*/
-          actions: <Widget>[
-            /*  Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/bookAmbulancePage");
-                 */ /* showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        dialogaddnomination(context),
-                  );*/ /*
-                  // callAPI();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              )),*/
-            /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-          ],
+          title: Text("My Patient"),
         ),
         body: isdata == true
             ? Center(
