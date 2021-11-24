@@ -144,12 +144,12 @@ class _ShowEmr extends State<ShowEmr> {
                   SizedBox(
                     height: 5,
                   ),
-                  Center(
+                 /* Center(
                     child: Text(
                       " Visit On Aug 09,2021",
                       style: TextStyle(color: Colors.white, fontSize: 12.0),
                     ),
-                  )
+                  )*/
                 ],
               ),
               leading: new Padding(

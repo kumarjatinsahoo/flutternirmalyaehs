@@ -70,6 +70,7 @@ class _ImmunizationState extends State<Immunization> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
+    isdata = true;
     callApi();
   }
 
@@ -82,13 +83,15 @@ class _ImmunizationState extends State<Immunization> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata = false;
               setState(() {
                 immunizationListModel =
                     immunization.ImmunizationListModel.fromJson(map);
               });
             } else {
               setState(() {
-                isDataNoFound = true;
+                isdata = false;
+                //isDataNoFound = true;
               });
               //AppData.showInSnackBar(context, msg);
             }
@@ -118,9 +121,11 @@ class _ImmunizationState extends State<Immunization> {
             ),
           ]),
       body: isdata == true
-          ? CircularProgressIndicator(
-              backgroundColor: AppData.matruColor,
-            )
+          ? Center(
+            child: CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              ),
+          )
           : immunizationListModel == null || immunizationListModel == null
               ? Container(
                   child: Center(
@@ -369,7 +374,7 @@ class _ImmunizationState extends State<Immunization> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-                        formField(1,"Precribed By"),
+                        formField(1,"Prescribed By"),
                         SizedBox(height: 8),
                         formField(2,"Immunization Details"),
                       ],
@@ -409,7 +414,7 @@ class _ImmunizationState extends State<Immunization> {
                   } else if (textEditingController[2].text == "" ||
                       textEditingController[2].text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter ImmunizationDetails ");
+                        context, "Please Enter Immunization Details ");
                   } else {
                     MyWidgets.showLoading(context);
                     ImmunizationPostModel immunizationmodel =
@@ -438,6 +443,7 @@ class _ImmunizationState extends State<Immunization> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
+                            callApi();
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         });
@@ -460,7 +466,7 @@ class _ImmunizationState extends State<Immunization> {
         child: AbsorbPointer(
           child: Container(
             height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5),
@@ -533,7 +539,7 @@ class _ImmunizationState extends State<Immunization> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

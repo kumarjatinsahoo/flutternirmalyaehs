@@ -12,6 +12,7 @@ import 'package:user/models/MedicineListModel.dart'as medicine;
 class PassData extends Model {
   String empid;
   String phnNo;
+  String passWord;
 
   String apntUserType;
   String apntType;

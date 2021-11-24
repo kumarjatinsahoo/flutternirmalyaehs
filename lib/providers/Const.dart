@@ -29,6 +29,8 @@ class Const {
 
   static String REGISTRATION = "registrationForm";
   static String LOGIN_DATA = "loginResponse";
+  static String LOGIN_phoneno = 'phoneno';
+  static String LOGIN_password= 'password';
   static String IS_LOGIN = "IS_LOGIN";
   static String IS_REGISTRATION = "IS_REGISTRATION";
   static String IS_DETAIL_VIEW = "IS_VIEW_SHOWING";

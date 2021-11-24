@@ -499,7 +499,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                               ),
                                             ),
                                             TextSpan(
-                                              text: MyLocalizations.of(context)
+                                              text: "  "+MyLocalizations.of(context)
                                                   .text("T&C"),
                                               /* "Welcome back",*/
 

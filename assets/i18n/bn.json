@@ -9,6 +9,7 @@
   "FORGOT_USERID": "ଉପଯୋଗକର୍ତ୍ତା ID ଭୁଲିଗଲେ କି? ",
   "LOGIN_WITH_OTP":"OTP ସହିତ ଲଗଇନ୍",
   "OR": "କିମ୍ବା",
+  "REG_SUCCESS_POPUP": "ବର୍ତ୍ତମାନ ଆପଣ ଆପଣଙ୍କର ମୋବାଇଲ୍ ନଂ ମାଧ୍ୟମରେ ଲଗ୍ଇନ୍ କରିପାରିବେ ଏବଂ ପାସୱାର୍ଡ ହେଉଛି : User@123",
 
 
   "USER_REGISTRATION": "ଉପଯୋଗକର୍ତ୍ତା ପଞ୍ଜୀକରଣ",
@@ -57,7 +58,7 @@
   "PHARMACY": "ଫାର୍ମାସି",
   "PATHOLOGYLAB": "ପାଥୋଲୋଜି ଲ୍ୟାବ୍",
   "NEXT": "ପରବର୍ତ୍ତୀ",
-  "FILL_IN_PERSONAL_INFORMATION": "ବ୍ୟକ୍ତିଗତ ସୂଚନା ପୁରଣ କରନ୍ତୁ",
+  "FILL_IN_PERSONAL_INFORMATION": "ବ୍ୟକ୍ତିଗତ ସୂଚନା ପୁରଣ କରନ୍ତୁ (ସମସ୍ତ କ୍ଷେତ୍ର ବାଧ୍ୟତାମୂଳକ)",
   "ORGANIZATION_NAME": "ସଂଗଠନ ନାମ",
   "PROFESSIONAL_NAME": "ପ୍ରଫେସନାଲ୍ ନାମ",
   "EDUCATION": "ଶିକ୍ଷା ନାମ",
@@ -216,6 +217,7 @@
   "APPLICATION": "ପ୍ରୟୋଗ",
   "DONOR_APPLICATION": "ଦାତା ପ୍ରୟୋଗ ",
   "EMAILID": "ଇମେଲ୍ ",
+  "ALTER_EMAILID": "ବିକଳ୍ପ ଇମେଲ୍ ଆଇଡି",
   "RELATION_OF": "ସମ୍ପର୍କ",
   "REQUEST_DOCTOR_PRESCRIBE": "",
   "DISEASE_INFO": "ରୋଗ ସୂଚନା",

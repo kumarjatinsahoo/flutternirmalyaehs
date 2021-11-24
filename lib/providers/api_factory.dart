@@ -55,6 +55,7 @@ class ApiFactory {
   static String IABTEST_REPORTDOCTER =
       MAIN_URL + 'user-labtest-report-doctor?userid=';
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
+  static String FAMILY_DOCTER = MAIN_URL + 'get-patient-family-details?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
   static String RELATION_API = MAIN_URL + 'get-relation-list';
   static String smoking_API = MAIN_URL + 'get-smoking-details-list';

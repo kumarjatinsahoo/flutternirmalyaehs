@@ -5,7 +5,6 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
 
 class LifeStylehistory extends StatefulWidget {
   MainModel model;
@@ -41,7 +40,7 @@ class _LifeStylehistory extends State<LifeStylehistory> {
               //appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, "Data Not Found");
             }
           });
         });

@@ -407,13 +407,16 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
+                    BiomediImplants.admequipmentmodel=null;
+                    _date.text = "";
+                    _reason.text = "";
                     Navigator.pop(context);
                   });
                 },
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(MyLocalizations.of(context).text("SUBMIT"),
+                child: Text("Ok",
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -422,9 +425,11 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                       BiomediImplants.admequipmentmodel == "") {
                     AppData.showInSnackBar(context, "Please select Name ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please enter date");
+                    AppData.showInSnackBar(context, "Please enter DOB");
                   } else if (_reason.text == "" || _reason.text == null) {
-                    AppData.showInSnackBar(context, "Please enter reason");
+                    AppData.showInSnackBar(context, "Please enter Reason");
+                  } else if (_reason.text  != "" &&  _reason.text.length <= 2) {
+                    AppData.showInSnackBar(context, "Please enter valid Reason");
                   } else {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModel = AddBioMedicalModel();
@@ -470,7 +475,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         child: AbsorbPointer(
           child: Container(
             height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: EdgeInsets.symmetric(horizontal: 14.0),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5),
@@ -524,8 +529,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate:
-            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+        lastDate: DateTime.now().add(new Duration(days:0 ))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -543,7 +547,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 14),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
