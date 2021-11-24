@@ -33,6 +33,7 @@ import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBank.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
+import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
@@ -54,6 +55,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage5.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
+import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
@@ -964,7 +966,13 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),'/diesepdf': (context) => Diesepdf(
                 model: _model,
+              ),'/termsandConditionPage': (context) => TermsandConditionPage(
+                model: _model,
               ),
+          '/userMedicineList': (context) => UserMedicineList(
+          model: _model,
+          ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

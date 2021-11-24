@@ -157,6 +157,20 @@ class _MedicineList extends State<UserTestList> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text("Test List"),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+              ),
+            ],
+            toolbarHeight:
+            (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT)
+                ? 0
+                : AppBar().preferredSize.height,
+          ),
       body:
       isdata == true
           ?Center(
