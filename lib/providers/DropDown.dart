@@ -952,7 +952,7 @@ class DropDown {
       padding:
           const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
@@ -3411,7 +3411,7 @@ class DropDown {
       searchBoxDecoration: InputDecoration(
         hintText: "Search here",
         hintStyle: TextStyle(color: Colors.black),
-        contentPadding: EdgeInsets.only(left: 15),
+        contentPadding: EdgeInsets.only(left: 10),
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.green, width: 3.0),
           borderRadius: BorderRadius.only(

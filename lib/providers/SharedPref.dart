@@ -12,6 +12,7 @@ class SharedPref {
     prefs.setString(key, json.encode(value));
   }
 
+
   remove(String key) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
@@ -35,5 +36,16 @@ class SharedPref {
   getKey(key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.get(key);
+  }
+ //by lisa
+  saveValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('key', "value");
+  }
+  getValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString('key');
+    return stringValue;
   }
 }

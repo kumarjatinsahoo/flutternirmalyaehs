@@ -444,6 +444,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(context, "Please enter Password");
         } else {
           widget.model.phnNo = _loginId.text;
+          widget.model.passWord = passController.text ;
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
@@ -452,7 +453,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
+                 /*widget.model.phnNo = _loginId.text;
+                  widget.model.passWord = passController.text ;*/
                   setState(() {
+                    widget.model.phnNo = _loginId.text;
+                    widget.model.passWord = passController.text;
+                    sharedPref.save(Const.LOGIN_phoneno,_loginId.text);
+                    sharedPref.save(Const.LOGIN_password, passController.text );
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     widget.model.token = loginResponse.body.token;
                     widget.model.user = loginResponse.body.user;
@@ -489,10 +496,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       AppData.showInSnackBar(context, "No Role Assign");
                     }
                   });
-                } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                }
-              });
+    } else {
+    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+    }
+  });
         }
       },
     );

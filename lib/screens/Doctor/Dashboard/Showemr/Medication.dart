@@ -159,10 +159,12 @@ class _Medication extends State<Medication> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15),
                                   ),
-                                  Text(
+                                  Expanded(
+                                 child: Text(
                                     /*"5 Days From 12-08-2021"*/medition.dosage,
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15),
+                                  ),
                                   ),
                                 ],
                               ),
