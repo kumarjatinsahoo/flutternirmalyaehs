@@ -627,7 +627,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushNamed(context, "/doctorsignupform");
+                            Navigator.pushNamed(context, "/doctorsignupform2");
+                            // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
                         ),
