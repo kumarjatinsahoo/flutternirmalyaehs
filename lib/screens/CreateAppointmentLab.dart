@@ -108,7 +108,7 @@ class _CreateAppointmentLabState extends State<CreateAppointmentLab> {
               MyWidgets.header1("User Details", Alignment.center),
               Divider(),
               rowData(
-                  "User Name", widget.model.userModel.body[0].name ?? ""),
+                  "Patient Name", widget.model.userModel.body[0].name ?? ""),
               rowData("Reg No.", widget.model.userModel.body[0].regNo ?? ""),
               rowData("State",
                   widget.model.userModel.body[0].state ?? ""),

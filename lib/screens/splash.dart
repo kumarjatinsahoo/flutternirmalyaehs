@@ -232,9 +232,9 @@ class _SplashScreenState extends State<SplashScreen> {
               }
             });*/
         LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
-       // widget.model.setLoginData1(loginResponse1);
-        //widget.model.token = loginResponse1.body.token;
-       // widget.model.user = loginResponse1.body.user;
+        widget.model.setLoginData1(loginResponse1);
+        widget.model.token = loginResponse1.body.token;
+        widget.model.user = loginResponse1.body.user;
         if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/patientDashboard', (Route<dynamic> route) => false);
