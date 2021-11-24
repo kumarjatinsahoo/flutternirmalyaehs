@@ -211,6 +211,26 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
                                                           size.height * 0.01,
                                                     ),
                                                     Text(
+                                                      'User Name: ',
+                                                      style: TextStyle(
+                                                          color: Colors.blue,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      body.name,
+                                                      overflow:
+                                                          TextOverflow.clip,
+                                                      maxLines: 2,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(height: 5,),
+                                                    Text(
                                                       'Order ID: ',
                                                       style: TextStyle(
                                                           color: Colors.blue,
