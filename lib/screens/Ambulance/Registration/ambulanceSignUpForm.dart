@@ -171,7 +171,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(
-          "SIGN UP",
+          MyLocalizations.of(context).text("SIGNUP"),
           style: TextStyle(color: Colors.white),
         ),
 

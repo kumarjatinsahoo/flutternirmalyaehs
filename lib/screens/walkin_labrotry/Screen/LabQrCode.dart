@@ -10,19 +10,19 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
-class QrEmergencyAccess extends StatefulWidget {
+class LabQrcode extends StatefulWidget {
   MainModel model;
 
-  QrEmergencyAccess({
+  LabQrcode({
     Key key,
     this.model,
   }) : super(key: key);
 
   @override
-  _QrEmergencyAccessState createState() => _QrEmergencyAccessState();
+  _LabQrcodeState createState() => _LabQrcodeState();
 }
 
-class _QrEmergencyAccessState extends State<QrEmergencyAccess> {
+class _LabQrcodeState extends State<LabQrcode> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode result;
   QRViewController controller;
@@ -90,9 +90,9 @@ class _QrEmergencyAccessState extends State<QrEmergencyAccess> {
                             _regNo.text == "") {
                           AppData.showInSnackBar(context, "Please Scan Reg no");
                         } else{
-                          widget.model.regNoValue = _regNo.text.toString();
-                          print("regnooooooo"+_regNo.text.toString());
-                          Navigator.pushNamed(context, "/emegencyAccess",);
+                          widget.model.labregNoValue = _regNo.text.toString();
+                          print("regggggg"+_regNo.text.toString());
+                          Navigator.pushNamed(context, "/docApnt",).then((value) => widget.model.labregNoValue );
                         }
 
                       },

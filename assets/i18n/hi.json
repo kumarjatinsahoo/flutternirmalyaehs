@@ -1,12 +1,15 @@
 {
   "WELCOMENACK": "वापसी पर स्वागत है",
-  "USER_NAME":"यूज़र आईडी/ईमेल/कार्ड नं.",
+  "USER_NAME":"यूज़र आईडी/ईमेल/मोबाइल नं.",
   "PASSWORD":"पासवर्ड",
   "LOGIN":"लॉग इन",
   "LOGIN_WITH_OTP":"ओटीपी के साथ लॉगिन करें",
   "DIDHAVEACC":"खाता नहीं है?",
   "CREATE_ACCOUNT":" साइन-अप करें",
   "FORGOT_PASSWORD":"पासवर्ड भूल गए?",
+  "FORGOT_USERID": "यूज़र आईडी भूल गए ?",
+  "OR": "अथवा",
+  "REG_SUCCESS_POPUP": "अब आप अपने मोबाइल नंबर के माध्यम से लॉगिन कर सकते हैं और पासवर्ड है: User@123",
 
 
   "USER_REGISTRATION": "उपयोगकर्ता पंजीकरण",
@@ -19,6 +22,10 @@
   "CANCEL": "रद्द करना",
   "SAVE": "संचित करना",
   "UPDATE": "अपडेट करें",
+  "EXPERIENCE": "अनुभव",
+  "ENTER_ZIP_CODE": "ज़िप/पिन कोड दर्ज करें",
+  "UPLOAD": "डालना",
+
 
 
   "SIGNUP": "साइन अप करें",
@@ -36,7 +43,7 @@
   "DOB1": "जन्म तिथि",
   "YEARS": "वर्ष",
   "SUBMIT": "जमा करें",
-  "AGREE_EHEALTHSYSTEM": "सहमत स्वास्थ्य प्रणाली",
+  "AGREE_EHEALTHSYSTEM": "मैं स्वास्थ्य प्रणाली से सहमत हूं",
   "T&C": "नियम व शर्तें",
   "ADDRESS": "पता",
   "INDIVIDUAL": "व्यक्तिगत",
@@ -50,7 +57,7 @@
   "PHARMACY": "फार्मेसी",
   "PATHOLOGYLAB": "पैथोलोजीलैब",
   "NEXT": "अगला",
-  "FILL_IN_PERSONAL_INFORMATION": "व्यक्तिगत जानकारी भरें",
+  "FILL_IN_PERSONAL_INFORMATION": "व्यक्तिगत जानकारी भरें (सभी फील्ड अनिवार्य हैं)",
   "ORGANIZATION_NAME": "संस्था का नाम",
   "PROFESSIONAL_NAME": "पेशेवर नाम",
   "EDUCATION": "शिक्षा का नाम",
@@ -204,6 +211,7 @@
   "APPLICATION": "आवेदन",
   "DONOR_APPLICATION": "दाता आवेदन",
   "EMAILID": "ईमेल आईडी",
+  "ALTER_EMAILID": "वैकल्पिक ईमेल आईडी",
   "RELATION_OF": "पिता/पति का नाम",
   "REQUEST_DOCTOR_PRESCRIBE": "",
   "DISEASE_INFO": "रोग सूचना",
@@ -319,6 +327,30 @@
   "PLACED": "रखा हे",
   "PROCESSING": "प्रसंस्करण",
   "DISPATCHED": "भेजा गया",
-  "ORDER_PLACED": "आदेश रखा"
+  "ORDER_PLACED": "आदेश रखा",
+  "ORDER_CONFIRMED": "ऑर्डर की पुष्टि की गई",
+  "ORDER_PROCESSED": "आदेश संसाधित",
+  "READY_PICKUP": "पिकअप के लिए तैयार",
+  "WE_RCVD_UR_ORDER": "हमें आपका आदेश प्राप्त हुआ",
+  "ORDER_HASBEEN_CONFIRMED": "आदेश की पुष्टि की गई है",
+  "ORDER_PREPARING": "हम आपका आदेश तैयार कर रहे हैं",
+  "ORDER_READYTO_PICKUP": "आपका ऑर्डर पिकअप के लिए तैयार है",
+  "CALL": "बुलाना",
+
+
+  "PLEASE_SELECT_ORGANIZATION": "Please select Organization Name",
+  "PLEASE_SELECT_TITLE": "Please select Title",
+  "PLEASE_ENTER_PROFNAME": "Please Enter Professional's Name",
+  "PLEASE_ENTER_EXPERIENCE": "Please Enter Experience",
+  "PLEASE_SELECT_COUNTRY": "Please Select Country",
+  "PLEASE_SELECT_STATE": "Please Select State",
+  "PLEASE_SELECT_DIST": "Please Select District",
+  "PLEASE_SELECT_CITY": "Please Select City",
+  "PLEASE_ENTER_ZIP": "Please enter Zip/Pin Code",
+  "PLEASE_ENTER_MOBILE": "Please enter Mobile Number",
+  "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
+  "PLEASE_ENTER_EMAIL": "Please enter Email Id",
+  "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
+  "PLEASE_CHECK_TC": "Please check terms and Condition"
 }
 

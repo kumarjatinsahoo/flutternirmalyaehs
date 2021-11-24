@@ -13,7 +13,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'CreateAppointmentLab.dart';
+import '../../CreateAppointmentLab.dart';
 
 // ignore: must_be_immutable
 class AllAppointmentPage extends StatefulWidget {
@@ -32,6 +32,7 @@ class AllAppointmentPage extends StatefulWidget {
 
 class _AllAppointmentPageState extends State<AllAppointmentPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String benificiaryno;
 
   //LoginResponse1 loginResponse;
   lab.LabBookModel appointModel;
@@ -42,6 +43,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   bool isOnline = false;
   TimeOfDay selectedTime = TimeOfDay.now();
   String time;
+  TextEditingController myController = new TextEditingController();
   TextEditingController shiftname_ = new TextEditingController();
   TextEditingController starttime_ = new TextEditingController();
   TextEditingController endtime_ = new TextEditingController();
@@ -64,6 +66,10 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     //final df = new DateFormat('yyyy/MM/dd');
     final df = new DateFormat('dd/MM/yyyy');
     today = df.format(DateTime.now());
+    benificiaryno=widget.model.labregNoValue;
+    benificiaryno=shiftname_.text;
+    print("rrrrrrreeeeegggg"+benificiaryno);
+    myController.text=benificiaryno;
     callAPI(today);
   }
 
@@ -144,6 +150,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+
             Text(MyLocalizations.of(context).text("APPOINTMENT"),
               style: TextStyle(color: bgColor),
             ),
@@ -198,14 +205,15 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   ),
                   Row(
                     children: [
+                      SizedBox(height: 5,),
                       MyWidgets.toggleButton(MyLocalizations.of(context).text("NEW"), () {
                         //Navigator.pushNamed(context, "/qrCode1");
                         //dialogRegNo(context);
                         //dialogPopup(context);
                         showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              dialogRegNo(context),
+                          builder: (BuildContext context,) =>
+                              dialogRegNo(context,widget.model.labregNoValue),
                         );
                       }),
                      /* MyWidgets.toggleButton1("REPORTS", () {
@@ -448,7 +456,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
     );
   }
 
-  Widget dialogRegNo(BuildContext context) {
+  Widget dialogRegNo(BuildContext context,String benificiaryno) {
+    widget.model.labregNoValue=myController.text;
+    print("rrrrrrrrrrrrr"+myController.text);
+    myController.text=benificiaryno;
+
     //NomineeModel nomineeModel = NomineeModel();
     //Nomine
   //  shiftname_.text=widget.model.beneficiary;
@@ -473,13 +485,27 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                 SizedBox(
                   height: 10,
                 ),
+              /*  Text(MyLocalizations.of(context).text("BENEFICIARY_NO"),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                 TextField(
+                  controller: myController,
+                  maxLength: 16,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: InputBorder.none, hintText: ' ', counterText: "",
+                  ),
+                ),*/
                 fromFieldNew(
                     MyLocalizations.of(context).text("BENEFICIARY_NO"),
                     widget.isConfirmPage,
                     TextInputAction.next,
                     TextInputType.text,
-                    MyLocalizations.of(context).text("NAME"),
-                    shiftname_),
+                    MyLocalizations.of(context).text(""),
+                    myController),
 
               ],
             ),
@@ -497,19 +523,22 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         new FlatButton(
           onPressed: () {
             // widget.model.QR_FROM = Const.APNT_CALL;
-            Navigator.pushNamed(context, "/qrCode1");
+            // Navigator.pushNamed(context, "/qrCode1");
+            Navigator.pushNamed(context, "/labqrcode");
+
+           // _scanButton();
           },
           textColor: Colors.grey[900],
           child:  Text(MyLocalizations.of(context).text("SCAN")),
         ),
         new FlatButton(
           onPressed: () {
-            if (shiftname_.text == "" || shiftname_.text == null) {
+            if (myController.text == "" || myController.text== null) {
               AppData.showInSnackBar(context, "Please enter beneficiary no");
             } else {
               MyWidgets.showLoading(context);
               widget.model.GETMETHODCALL_TOKEN(
-                  api: ApiFactory.GET_BENE_DETAILS + shiftname_.text,
+                  api: ApiFactory.GET_BENE_DETAILS + myController.text,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     setState(() {
@@ -702,7 +731,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
       padding: const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 7.0),
       child: TextFormField(
         autofocus: false,
-        controller: controller,
+        controller: myController,
         inputFormatters: [
           /* AppData.*/
           //  UpperCaseTextFormatter(),
@@ -724,4 +753,16 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
       ),
     );
   }
+
+  Widget _scanButton() {
+    return MyWidgets.outlinedButton(
+      text: MyLocalizations.of(context).text("QR_SEARCH"),
+      context: context,
+      fun: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, "/labqrcode");
+      },
+    );
+  }
 }
+

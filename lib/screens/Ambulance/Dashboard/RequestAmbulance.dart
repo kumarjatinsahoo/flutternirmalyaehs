@@ -231,32 +231,30 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(
-                                        child: InkWell(
-                                          onTap: () {
-                                            String orderid = body.orderId;
-                                            rejectApi(orderid);
-                                            callAPI();
-                                          },
-                                          child: Container(
-                                            height: size.height * 0.06,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(5),
-                                                border: Border.all(
-                                                    color: Colors.black12),
-                                                color: Colors.red[900]),
-                                            child: RaisedButton(
-                                              onPressed: null,
-                                              child: Text(
-                                                'Reject',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                              disabledColor: Colors.red[900],
+                                      InkWell(
+                                        onTap: () {
+                                          String orderid = body.orderId;
+                                          rejectApi(orderid);
+                                          callAPI();
+                                        },
+                                        child: Container(
+                                          height: size.height * 0.06,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(5),
+                                              border: Border.all(
+                                                  color: Colors.black12),
+                                              color: Colors.red[900]),
+                                          child: RaisedButton(
+                                            onPressed: null,
+                                            child: Text(
+                                              'Reject',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400),
                                             ),
+                                            disabledColor: Colors.red[900],
                                           ),
                                         ),
                                       ),

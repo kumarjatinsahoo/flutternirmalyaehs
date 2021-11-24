@@ -99,7 +99,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                 //documentListModel.addMore(map);
               }
             } else {
-              if (i == 1) AppData.showInSnackBar(context, msg);
+              //if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -198,7 +198,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
                               SizedBox(width: 5,),
-                              Text(body.docName,
+                              Text(body.docName??"N/A",
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.normal)),
@@ -215,7 +215,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                                       fontWeight: FontWeight.bold)),
                               SizedBox(width: 5,),
 
-                              Text( body.docType,
+                              Text( body.docType??"N/A",
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.normal)),
@@ -236,7 +236,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                                   widget.model.pdfurl=pdfurl;
                                   print("ppppdddddddddddffffff"+pdfurl);
                                   print("pdf"+widget.model.pdfurl);
-                                  Navigator.pushNamed(context, "/documentpdf",);
+                                  Navigator.pushNamed(context, "/documentpdf",).then((value) => widget.model.pdfurl);
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

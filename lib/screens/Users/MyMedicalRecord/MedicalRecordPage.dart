@@ -522,7 +522,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Upload Document",
+                                                Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,
@@ -584,7 +584,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Life Style History",
+                                                Text(MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
                                                   style: TextStyle(
                                                       fontWeight:
                                                       FontWeight.normal,

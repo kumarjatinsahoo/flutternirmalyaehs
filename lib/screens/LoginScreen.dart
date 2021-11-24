@@ -159,8 +159,50 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       //Spacer(),
+                      Container(
+                        width: size.width,
+                        height: 60,
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        margin: EdgeInsets.only(top: 10.0),
+                        decoration: BoxDecoration(
+                          // color: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                              alignment: Alignment.center,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  value: AppData.selectedLanguage,
+                                  isDense: true,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      AppData.setSelectedLan(newValue);
+                                      _update(Locale(languagesMap[newValue]));
+                                    });
+                                    print(AppData.selectedLanguage);
+                                  },
+                                  items: languagesList.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(
+                                        value,
+                                        style: TextStyle(color: Colors.black),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
-                        height: 90,
+                        height: 20,
                       ),
                       Align(
                         alignment: Alignment.topLeft,
@@ -203,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //Navigator.pushNamed(context, "/docDash");
                         },
                         child: Text(
-                          '- OR -',
+                          MyLocalizations.of(context).text("OR"),
                           style: TextStyle(color: Colors.black54),
                         ),
                       ),
@@ -273,52 +315,52 @@ class _LoginScreenState extends State<LoginScreen> {
                     ]),
               ),
             ),
-            Positioned(
-              top: 170,
-              //right: 30,
-              child: Container(
-                width: size.width,
-                height: 60,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                margin: EdgeInsets.only(top: 30.0),
-                decoration: BoxDecoration(
-                  // color: Colors.grey.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(0),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                      alignment: Alignment.center,
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: AppData.selectedLanguage,
-                          isDense: true,
-                          onChanged: (newValue) {
-                            setState(() {
-                              AppData.setSelectedLan(newValue);
-                              _update(Locale(languagesMap[newValue]));
-                            });
-                            print(AppData.selectedLanguage);
-                          },
-                          items: languagesList.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
-                                style: TextStyle(color: Colors.black),
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: 170,
+            //   //right: 30,
+            //   child: Container(
+            //     width: size.width,
+            //     height: 60,
+            //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            //     margin: EdgeInsets.only(top: 30.0),
+            //     decoration: BoxDecoration(
+            //       // color: Colors.grey.withOpacity(0.5),
+            //       borderRadius: BorderRadius.circular(0),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.end,
+            //       children: <Widget>[
+            //         Container(
+            //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+            //           alignment: Alignment.center,
+            //           child: DropdownButtonHideUnderline(
+            //             child: DropdownButton<String>(
+            //               value: AppData.selectedLanguage,
+            //               isDense: true,
+            //               onChanged: (newValue) {
+            //                 setState(() {
+            //                   AppData.setSelectedLan(newValue);
+            //                   _update(Locale(languagesMap[newValue]));
+            //                 });
+            //                 print(AppData.selectedLanguage);
+            //               },
+            //               items: languagesList.map((String value) {
+            //                 return DropdownMenuItem<String>(
+            //                   value: value,
+            //                   child: Text(
+            //                     value,
+            //                     style: TextStyle(color: Colors.black),
+            //                     textAlign: TextAlign.center,
+            //                   ),
+            //                 );
+            //               }).toList(),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             isLoginLoading
                 ? Stack(
                     children: [
