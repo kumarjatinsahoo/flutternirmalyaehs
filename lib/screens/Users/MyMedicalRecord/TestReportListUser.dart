@@ -65,7 +65,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.POC_REPORT_LIST +
-            "?page=" +
+            "page=" +
             i.toString() +
             "&search=" +
             widget.model.user,

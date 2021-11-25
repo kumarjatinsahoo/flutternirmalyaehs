@@ -1,10 +1,10 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
 
-  static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
 
 // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
 
@@ -172,7 +172,7 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
   static String POST_EMERGENCY_MESSAGE =
       MAIN_URL + 'post-user-emergency-message';
-  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?userid=';
+  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?';
 
   // static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
