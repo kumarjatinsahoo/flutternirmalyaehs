@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/models/PatientmedicalhistoryModel%20.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/show_emr.dart';
@@ -19,14 +25,34 @@ class _PatientHistory extends State<PatientHistory> {
   String _ratingController;
   final myController = TextEditingController();
   final myControllerpass = TextEditingController();
+  String eHealthCardno;
+  PatientmedicalhistoryModel patientsDetails = PatientmedicalhistoryModel();
 
   @override
   void initState() {
     super.initState();
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
+    eHealthCardno = widget.model.patientseHealthCard;
+    callPERSONALAPI(eHealthCardno);
   }
-
+  callPERSONALAPI(String eHealthCardno) {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          log("Personal deatils API>>>" + jsonEncode(map));
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              patientsDetails = PatientmedicalhistoryModel.fromJson(map);
+            } else {
+              //isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {

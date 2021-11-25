@@ -3,11 +3,16 @@ import 'dart:core';
 import 'dart:core';
 import 'dart:developer';
 import 'dart:ui';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
+import 'package:user/models/AutocompleteDTO.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
+import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
@@ -119,14 +124,11 @@ class _MedicineList extends State<UserTestList> {
       },
     );
   }
-
   _getLocationName() async {
-    Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
-    print(
-        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    print('location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     geocodeFetch(position.latitude.toString(), position.longitude.toString());
   }
 
@@ -341,6 +343,7 @@ class _MedicineList extends State<UserTestList> {
                                           ],
                                         ),
                                       ),
+
                                       Container(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 15, vertical: 5),
@@ -452,7 +455,18 @@ class _MedicineList extends State<UserTestList> {
                       }, mapK),
                     ),
                   ),
-                  fromAddress(0, "Remark", TextInputAction.next,
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    MyLocalizations.of(context).text("OR"),
+                    style: TextStyle(color: Colors.black54),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  NumberformField(0,"Enter Lab"),
+                  fromAddress(1, "Remark", TextInputAction.next,
                       TextInputType.text, "remark"),
                 ],
               ),
@@ -513,7 +527,220 @@ class _MedicineList extends State<UserTestList> {
     data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
     return data;
   }
+  Widget dialogRegNo(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 400,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //_buildAboutText(),
+                  //_buildLogoAttribution(),
+                  Text(
+                    "SEARCH",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Material(
+                      elevation: 5,
+                      child: Container(
+                        width: double.maxFinite,
+                        child: TypeAheadField(
+                          textFieldConfiguration: TextFieldConfiguration(
+                            style: TextStyle(color: Colors.black),
+                            textInputAction: TextInputAction.search,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Search',
+                              alignLabelWithHint: true,
+                              hintStyle: TextStyle(
+                                  fontFamily: "Monte",
+                                  fontSize: 17,
+                                  color: Colors.black54),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 2, horizontal: 10),
+                            ),
+                            onSubmitted: (String value) {
+                              if (value != "") {
+                                /*widget.model.searchFilter = value;
+                                    Navigator.pushNamed(context, "/searchResult");*/
+                                //fetchSearchResult(value);
+                              }
+                              //AppData.showInSnackDone(context, value);
+                            },
+                          ),
+                          getImmediateSuggestions: true,
+                          suggestionsCallback: (pattern) async {
+                            return (pattern != null)
+                                ? await fetchSearchAutoComplete(pattern)
+                                : null;
+                          },
+                          hideOnLoading: true,
+                          itemBuilder: (context, Predictions suggestion) {
+                            return ListTile(
+                              leading: Icon(Icons.search),
+                              title: Text(suggestion.description),
+                            );
+                          },
+                          onSuggestionSelected: (Predictions suggestion) {
+                            //widget.model.courceName = suggestion.courseSlug;
+                            //Navigator.pushNamed(context, "/courceDetail1");
+                            Navigator.pop(context);
+                            setState(() {
+                              address = "${suggestion.description}";
+                              textEditingController[0].text =
+                              "${suggestion.description}";
+                              cityName = (suggestion?.terms != null &&
+                                  suggestion?.terms?.length >= 3)
+                                  ? suggestion
+                                  .terms[suggestion.terms.length - 3].value
+                                  : "";
+                              //print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
+                              // longitudes = suggestion.longitude.toString();
+                              // latitudes = position.altitude.toString();
+                              locationData(suggestion.placeId);
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("Cancel"),
+        ),
+        new FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('SEARCH'),
+        ),
+      ],*/
+    );
+  }
+  Future<List<Predictions>> fetchSearchAutoComplete(String course_name) async {
+    var dio = Dio();
+    //Map<String, dynamic> postMap = {"course_name": course_name};
+    final response = await dio.get(
+      ApiFactory.AUTO_COMPLETE + course_name,
+    );
 
+    if (response.statusCode == 200) {
+      AutoCompleteDTO model = AutoCompleteDTO.fromJson(response.data);
+      setState(() {
+        //this.courcesDto = model;
+      });
+      return model.predictions;
+    } else {
+      setState(() {
+        //isAnySearchFail = true;
+      });
+      throw Exception('Failed to load album');
+    }
+  }
+  locationData(placeId) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              setState(() {
+                GooglePlacesSearchModel googlePlacesSearch =
+                GooglePlacesSearchModel.fromJson(map);
+                log("Print Select Value>>>>" +
+                    googlePlacesSearch.result.geometry.location.lat.toString() +
+                    "<<<<" +
+                    googlePlacesSearch.result.geometry.location.lng.toString());
+                latitudes =
+                    googlePlacesSearch.result.geometry.location.lat.toString();
+                longitudes =
+                    googlePlacesSearch.result.geometry.location.lng.toString();
+              });
+            } else {
+              //isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
+  }
+  Widget NumberformField(
+      int index,
+      String hint,
+      ) {
+    return
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: GestureDetector(
+            onTap: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => dialogRegNo(context),),
+
+            child: AbsorbPointer(
+              child:Container(
+
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.black, width: 0.3),
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: hint,
+
+                    border: InputBorder.none,
+                    //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      size: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  minLines: 1,
+                  maxLines: 5,
+                  keyboardType: TextInputType.multiline,
+                  controller:textEditingController[index],
+
+                ),
+              ),
+            )
+        ),
+      );
+  }
   Widget nextButton() {
     return GestureDetector(
       onTap: () {

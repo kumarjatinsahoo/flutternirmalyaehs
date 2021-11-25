@@ -55,10 +55,8 @@ class ApiFactory {
   static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location';
   static String USER_PROFILE_IMAGE = MAIN_URL + 'update-user-profile-image';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
-  static String PERSONAL_DETAILS =
-      MAIN_URL + 'user-personal-information-doctor?userid=';
-  static String IABTEST_REPORTDOCTER =
-      MAIN_URL + 'user-labtest-report-doctor?userid=';
+  static String PERSONAL_DETAILS = MAIN_URL + 'user-personal-information-doctor?userid=';
+  static String IABTEST_REPORTDOCTER = MAIN_URL + 'user-labtest-report-doctor?userid=';
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String FAMILY_DOCTER = MAIN_URL + 'get-patient-family-details?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
