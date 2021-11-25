@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -711,8 +712,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
           pharmaSignupModel.role = "13";
           pharmaSignupModel.speciality = "4";
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-              pharmaSignupModel.toJson().toString());
+          log(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ jsonEncode(pharmaSignupModel.toJson()));
           widget.model.POSTMETHOD(
               api: ApiFactory.PHARMACY_REGISTRATION,
               json: pharmaSignupModel.toJson(),

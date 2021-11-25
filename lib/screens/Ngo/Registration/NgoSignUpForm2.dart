@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
@@ -781,7 +782,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
           AppData.showInSnackBar(context, "Please check Terms and Condition");
         }
         else {
-          MyWidgets.showLoading(context);
+
           pharmaSignupModel.organizationid = ngoorganisation;
           pharmaSignupModel.titleid = ngotitle;
           pharmaSignupModel.docname = ngoprofessional;
@@ -802,7 +803,8 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
           pharmaSignupModel.role="15";
           pharmaSignupModel.speciality="0";
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ pharmaSignupModel.toJson().toString());
+          log(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ jsonEncode(pharmaSignupModel.toJson()));
+         MyWidgets.showLoading(context);
           widget.model.POSTMETHOD(
               api: ApiFactory.PHARMACY_REGISTRATION,
               json: pharmaSignupModel.toJson(),

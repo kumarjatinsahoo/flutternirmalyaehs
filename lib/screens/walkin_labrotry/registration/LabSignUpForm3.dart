@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -812,9 +813,8 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           labSignupModel.experience = textEditingController[13].text;
           labSignupModel.role = "8";
           labSignupModel.speciality = "25";
+          log(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+ jsonEncode(labSignupModel.toJson()));
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-              labSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.LAB_SIGNUP,
               json: labSignupModel.toJson(),
