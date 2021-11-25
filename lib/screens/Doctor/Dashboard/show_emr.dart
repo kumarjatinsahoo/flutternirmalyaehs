@@ -89,6 +89,8 @@ class _ShowEmr extends State<ShowEmr> {
                                     builder: (context) => new WalkPatient()));*/
                             //Navigator.pushNamed(context, "/docWalkInReg");
                             Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                           },
                         ),
                         SizedBox(
