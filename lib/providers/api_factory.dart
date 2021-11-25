@@ -6,6 +6,7 @@ class ApiFactory {
 
  // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
+
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
@@ -170,7 +171,7 @@ class ApiFactory {
   static String POST_HEALTH_CHCKUP = MAIN_URL + 'post-addchkupAppointment';
   static String POST_EMERGENCY_MESSAGE =
       MAIN_URL + 'post-user-emergency-message';
-  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?userid=';
+  static String POC_REPORT_LIST = MAIN_URL + 'user-view-test-list?';
 
   // static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';

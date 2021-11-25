@@ -57,6 +57,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
+import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
@@ -972,10 +973,13 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),'/termsandConditionPage': (context) => TermsandConditionPage(
                 model: _model,
-              ),
-          '/userMedicineList': (context) => UserMedicineList(
+              ), '/userMedicineList': (context) => UserMedicineList(
           model: _model,
           ),
+
+              '/userTestList': (context) => UserTestList(
+                model: _model,
+              ),
 
             },
             localizationsDelegates: [
