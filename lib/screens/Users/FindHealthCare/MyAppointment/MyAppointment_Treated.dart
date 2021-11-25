@@ -195,8 +195,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               itemBuilder: (context, i) {
-                                apt.Body appointmentlist =
-                                    appointmentlistModel.body[i];
+                                apt.Body appointmentlist =appointmentlistModel.body[i];
                                 /* itemCount: lists.length,
                           itemBuilder: (context, index) {*/
                                 return InkWell(
@@ -878,10 +877,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           ),
                                                           InkWell(
                                                             onTap: () {
-                                                              widget.model
-                                                                      .userappointment =
-                                                                  appointmentlist;
-
+                                                             // widget.model.userappointment = appointmentlist;
+                                                              widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                                                              widget.model.appno=appointmentlist?.appno ;
                                                               Navigator.pushNamed(
                                                                   context,
                                                                   "/usermedicinelist");

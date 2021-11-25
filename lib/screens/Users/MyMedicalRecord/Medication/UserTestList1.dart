@@ -169,7 +169,16 @@ class _MedicineList extends State<UserTestList1> {
                       // widget.model.medicinelist = ;
                       return InkWell(
                         onTap: (){
+
                         //  Navigator.pushNamed(context, "/medicinelisturl");
+
+                          widget.model.apntUserType =
+                              Const.HEALTH_SCREENING_APNT;
+                          widget.model.appno=body?.appno ;
+                          Navigator.pushNamed(
+                              context,"/userTestList");
+
+                          //  Navigator.pushNamed(context, "/medicinelisturl");
 
                         },
                         child: Container(

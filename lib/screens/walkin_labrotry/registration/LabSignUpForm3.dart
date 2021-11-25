@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -65,6 +66,8 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  LabSignupModel labSignupModel = LabSignupModel();
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -513,6 +516,11 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
                                                 // fontSize: 25.0,
                                                 color: AppData.kPrimaryColor,
                                               ),
+                                                recognizer: TapGestureRecognizer()
+                                                  ..onTap = () {
+                                                    Navigator.pushNamed(context, "/termsandConditionPage");
+                                                    // AppData.showInSnackBar(context, "Please select Gender");
+                                                  }
                                             )
                                           ],
                                         ))),
@@ -776,11 +784,12 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
             textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);
+        }else if (labSignupModel.documentExt == null) {
+          AppData.showInSnackBar(context, "Please Upload Document");
         } else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please check Terms and Condition");
         } else {
           MyWidgets.showLoading(context);
-          LabSignupModel labSignupModel = LabSignupModel();
           labSignupModel.organizationid = labid;
           labSignupModel.titleid = labtitleid;
           labSignupModel.docname = labdname;
@@ -1616,7 +1625,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           _imageCertificate = image;
           idproof = _fileName;
           // Print("pathhh"+idproof);
-          userModel.profileImage = base64Encode(enc);
+         // userModel.profileImage = base64Encode(enc);
+          labSignupModel.documentUpload=base64Encode(enc);
+          labSignupModel.documentExt=extName;
         });
       }
     } catch (e) {
@@ -1640,7 +1651,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     setState(() {
       _imageCertificate = image;
       idproof = _fileName;
-      userModel.profileImage = base64Encode(enc);
+      //userModel.profileImage = base64Encode(enc);
+      labSignupModel.documentUpload=base64Encode(enc);
+      labSignupModel.documentExt=extName;
     });
   }
 
@@ -1663,6 +1676,8 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     if (file != null) {
       setState(() {
         idproof = file.path;
+        labSignupModel.documentUpload=base64Encode(enc);
+        labSignupModel.documentExt=extName;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
       });
