@@ -94,7 +94,7 @@ class LabSignupModel {
     data['homephone'] = this.homephone;
     data['officephone'] = this.officephone;
     data['role'] = this.role;
-    data['profileImage'] = this.documentUpload;
+    data['profileImage'] = [this.documentUpload];
     data['profileImageType'] =this.documentExt;
     return data;
   }

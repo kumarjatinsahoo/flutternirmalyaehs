@@ -81,7 +81,7 @@ class DoctorRegistrationModel{
       "userid": this.userid,
       "password": this.password,
       "role": this.role,
-      "profileImage": this.documentUpload,
+      "profileImage": [this.documentUpload],
       "profileImageType": this.documentExt,
     };
 

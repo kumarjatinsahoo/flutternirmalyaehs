@@ -69,7 +69,7 @@ class PharmacyRegistrationModel {
     data['mobno'] = this.mobno;
     data['email'] = this.email;
     data['role'] = this.role;
-    data['profileImage'] = this.documentUpload;
+    data['profileImage'] = [this.documentUpload];
     data['profileImageType'] =this.documentExt;
     return data;
   }

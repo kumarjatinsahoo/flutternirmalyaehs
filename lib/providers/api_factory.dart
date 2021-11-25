@@ -4,8 +4,7 @@ class ApiFactory {
   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
 
-  //static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
-
+ // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
 // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
 
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
