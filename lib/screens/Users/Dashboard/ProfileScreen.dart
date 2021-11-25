@@ -2003,7 +2003,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(
-        source: ImageSource.camera, imageQuality: 25);
+        source: ImageSource.camera, imageQuality: 45);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();
@@ -2030,7 +2030,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 25);
+        source: ImageSource.gallery, imageQuality: 45);
     // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
     if (image != null) {
       var enc = await image.readAsBytes();

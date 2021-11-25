@@ -65,6 +65,8 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -676,12 +678,13 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid e-Mail");
-        } else if (_checkbox == false) {
+        }else if (pharmaSignupModel.documentExt == null) {
+          AppData.showInSnackBar(context, "Please Upload Document");
+        }
+        else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please check terms and Condition");
         } else {
           MyWidgets.showLoading(context);
-          PharmacyRegistrationModel pharmaSignupModel =
-              PharmacyRegistrationModel();
           pharmaSignupModel.organizationid = bloodbankorganisation;
           pharmaSignupModel.titleid = bloodbanktitle;
           pharmaSignupModel.docname = bloodbankprofessional;
@@ -1418,7 +1421,9 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
           _imageCertificate = image;
           idproof = _fileName;
           // Print("pathhh"+idproof);
-          userModel.profileImage = base64Encode(enc);
+         // userModel.profileImage = base64Encode(enc);
+          pharmaSignupModel.documentUpload=base64Encode(enc);
+          pharmaSignupModel.documentExt=extName;
         });
       }
     } catch (e) {
@@ -1442,7 +1447,9 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
     setState(() {
       _imageCertificate = image;
       idproof = _fileName;
-      userModel.profileImage = base64Encode(enc);
+      //userModel.profileImage = base64Encode(enc);
+      pharmaSignupModel.documentUpload=base64Encode(enc);
+      pharmaSignupModel.documentExt=extName;
     });
   }
 
@@ -1462,6 +1469,8 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
     if(file != null) {
       setState(() {
         idproof = file.path;
+        pharmaSignupModel.documentUpload=base64Encode(enc);
+        pharmaSignupModel.documentExt=extName;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
       });

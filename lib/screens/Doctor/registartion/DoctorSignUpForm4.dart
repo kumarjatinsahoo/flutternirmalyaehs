@@ -346,24 +346,24 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 8,
                           ),
-                          formFieldMobile(
-                              4,
-                              MyLocalizations.of(context)
-                                  .text("ENTER_HOME_PHONE"),
-                              fnode3,
-                              fnode4),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          formFieldMobile(
-                              9,
-                              MyLocalizations.of(context)
-                                  .text("ENTER_OFFICE_PHONE"),
-                              fnode4,
-                              fnode5),
-                          SizedBox(
-                            height: 8,
-                          ),
+                          // formFieldMobile(
+                          //     4,
+                          //     MyLocalizations.of(context)
+                          //         .text("ENTER_HOME_PHONE"),
+                          //     fnode3,
+                          //     fnode4),
+                          // SizedBox(
+                          //   height: 8,
+                          // ),
+                          // formFieldMobile(
+                          //     9,
+                          //     MyLocalizations.of(context)
+                          //         .text("ENTER_OFFICE_PHONE"),
+                          //     fnode4,
+                          //     fnode5),
+                          // SizedBox(
+                          //   height: 8,
+                          // ),
                           formFieldMobile(
                               10,
                               MyLocalizations.of(context).text("MOBILE_NO"),
@@ -380,14 +380,14 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                           SizedBox(
                             height: 8,
                           ),
-                          formFielEmail(
-                              12,
-                              MyLocalizations.of(context).text("ALTER_EMAILID"),
-                              fnode7,
-                              fnode8),
-                          SizedBox(
-                            height: 8,
-                          ),
+                          // formFielEmail(
+                          //     12,
+                          //     MyLocalizations.of(context).text("ALTER_EMAILID"),
+                          //     fnode7,
+                          //     fnode8),
+                          // SizedBox(
+                          //   height: 8,
+                          // ),
                           formFieldExperience(
                               13,
                               MyLocalizations.of(context).text("EXPERIENCE"),
@@ -1471,7 +1471,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           _imageCertificate = image;
           idproof = _fileName;
           // Print("pathhh"+idproof);
-          userModel.profileImage = base64Encode(enc);
+          //userModel.profileImage = base64Encode(enc);
+          doctorModel.documentUpload=base64Encode(enc);
+          doctorModel.documentExt=extName;
         });
       }
     } catch (e) {
@@ -1500,6 +1502,8 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         idproof = file.path;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
+        doctorModel.documentUpload=base64Encode(enc);
+        doctorModel.documentExt=extName;
       });
     }
   }
@@ -1520,7 +1524,9 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     setState(() {
       _imageCertificate = image;
       idproof = _fileName;
-      userModel.profileImage = base64Encode(enc);
+      // userModel.profileImage = base64Encode(enc);
+      doctorModel.documentUpload=base64Encode(enc);
+      doctorModel.documentExt=extName;
     });
   }
 }

@@ -14,6 +14,8 @@ class PharmacyRegistrationModel {
   String mobno;
   String email;
   String role;
+  String documentUpload;
+  String documentExt;
 
   PharmacyRegistrationModel({this.organizationid,
     this.titleid,
@@ -47,6 +49,7 @@ class PharmacyRegistrationModel {
     mobno = json['mobno'];
     email = json['email'];
     role = json['role'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -66,6 +69,8 @@ class PharmacyRegistrationModel {
     data['mobno'] = this.mobno;
     data['email'] = this.email;
     data['role'] = this.role;
+    data['profileImage'] = this.documentUpload;
+    data['profileImageType'] =this.documentExt;
     return data;
   }
 
