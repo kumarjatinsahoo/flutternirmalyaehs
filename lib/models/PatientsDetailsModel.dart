@@ -1,4 +1,4 @@
-class PatientsDetailsModel {
+class  PatientsDetailsModel {
   List<Body> body;
   String message;
   String code;
