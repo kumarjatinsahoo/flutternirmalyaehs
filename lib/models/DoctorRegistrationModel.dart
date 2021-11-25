@@ -23,6 +23,8 @@ class DoctorRegistrationModel{
    String userid;
    String password;
    String role;
+   String documentUpload;
+   String documentExt;
   DoctorRegistrationModel();
   DoctorRegistrationModel.fromJson(Map<String, dynamic> json) {
     dctrid = json['dctrid'];
@@ -79,7 +81,8 @@ class DoctorRegistrationModel{
       "userid": this.userid,
       "password": this.password,
       "role": this.role,
-     // "profileImage":[this.profileImage]
+      "profileImage": this.documentUpload,
+      "profileImageType": this.documentExt,
     };
 
     return param;
