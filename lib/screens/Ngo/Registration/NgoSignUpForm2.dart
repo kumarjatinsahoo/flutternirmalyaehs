@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/gestures.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -539,6 +540,11 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                                         color: AppData
                                                             .kPrimaryColor,
                                                       ),
+                                                        recognizer: TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Navigator.pushNamed(context, "/termsandConditionPage");
+                                                            // AppData.showInSnackBar(context, "Please select Gender");
+                                                          }
                                                     )
                                                   ],
                                                 ))),

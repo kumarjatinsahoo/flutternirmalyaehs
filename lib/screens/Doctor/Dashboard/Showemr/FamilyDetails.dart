@@ -19,6 +19,7 @@ class _FamilyDetails extends State<FamilyDetails> {
   FocusNode _descriptionFocus, _focusNode;
   family.FamilyDetailsModel familyDetailsModel;
   String eHealthCardno;
+  bool isdata = false;
   @override
   void initState() {
     super.initState( );
@@ -37,7 +38,7 @@ class _FamilyDetails extends State<FamilyDetails> {
             if (map[Const.CODE] == Const.SUCCESS) {
               familyDetailsModel =family.FamilyDetailsModel.fromJson(map);
             } else {
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -51,6 +52,37 @@ class _FamilyDetails extends State<FamilyDetails> {
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
           body:
+          isdata == true
+              ? Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.35,
+                ),
+                CircularProgressIndicator(),
+              ],
+            ),
+          )
+          /* Center(
+                child: CircularProgressIndicator(),
+              )*/
+              : familyDetailsModel == null || familyDetailsModel == null
+              ? Container(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.35,
+                  ),
+                  Text(
+                    "Data Not Found",
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+          )
+              :
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(15.0),

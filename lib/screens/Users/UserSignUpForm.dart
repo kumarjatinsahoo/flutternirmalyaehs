@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -155,7 +156,24 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       isOnline = hasConnection;
     });
   }
+  void SelectedItem(BuildContext context, item) {
+    switch (item) {
+      case 0:
+        AppData.showInSnackBar(context, "Privacy Setting");
 
+       /* Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => SettingPage()));*/
+        break;
+      case 1:
+        AppData.showInSnackBar(context, "Privacy Clicked");
+
+        break;
+      case 2:
+        AppData.showInSnackBar(context, "User Logged out");
+
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -165,7 +183,24 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     centerTitle: true,
     backgroundColor: AppData.kPrimaryColor,
     iconTheme: IconThemeData(color: Colors.white),
+        /*actions: [
+          Theme(
+            data: Theme.of(context).copyWith(
+                textTheme: TextTheme().apply(bodyColor: Colors.black),
+                dividerColor: Colors.white,
+                iconTheme: IconThemeData(color: Colors.white)),
+            child: PopupMenuButton<int>(
+              color: Colors.white,
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(value: 0, child: Text("Setting", style: TextStyle(color: Colors.black),)),
+
+              ],
+              onSelected: (item) => SelectedItem(context, item),
+            ),
+          ),
+        ],*/
       ),
+
       body: Container(
     child: SingleChildScrollView(
       child: Column(
@@ -812,7 +847,12 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             color: AppData
                                                 .kPrimaryColor,
                                           ),
-                                        )
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.pushNamed(context, "/termsandConditionPage");
+                                               // AppData.showInSnackBar(context, "Please select Gender");
+                                              }),
+
                                       ],
                                     ))),
                               ],

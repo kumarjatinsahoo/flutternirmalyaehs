@@ -51,7 +51,7 @@ class _DocumentPdfState extends State<DocumentPdf> {
         elevation: 0,
       ),
     //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
-    url:'https://docs.google.com/viewer?url='+pdfurl??"N/A",
+      url:'https://docs.google.com/viewer?url='+widget.model.pdfurl,
      //url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
        //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
       withZoom: true,
