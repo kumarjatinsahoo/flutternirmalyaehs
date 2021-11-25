@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/DocterAppointmentlistModel.dart';
@@ -22,7 +21,6 @@ class DoctorAppointmentRequested extends StatefulWidget {
   _DoctorAppointmentRequestedState createState() =>
       _DoctorAppointmentRequestedState();
 }
-
 class _DoctorAppointmentRequestedState
     extends State<DoctorAppointmentRequested> {
   DateTime selectedDate = DateTime.now();
@@ -233,9 +231,6 @@ class _DoctorAppointmentRequestedState
                                         Card(
                                           elevation: 15,
                                           child: Container(
-
-                                              //width: double.maxFinite,
-
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   border: Border.all(
@@ -329,10 +324,7 @@ class _DoctorAppointmentRequestedState
                                                               height: 5,
                                                             ),*/
 
-                                                                (appointmentlist
-                                                                            .age ==
-                                                                        null)
-                                                                    ? Text(
+                                                                Text(
                                                                         "Age : " +
                                                                                 appointmentlist.age ??
                                                                             "N/A",
@@ -341,24 +333,11 @@ class _DoctorAppointmentRequestedState
                                                                         style: TextStyle(
                                                                             fontSize:
                                                                                 12),
-                                                                      )
-                                                                    : Container(
-                                                                        child:
-                                                                            Text(
-                                                                          "Age: " +
-                                                                              "N/A",
-                                                                          overflow:
-                                                                              TextOverflow.clip,
-                                                                          style:
-                                                                              TextStyle(fontSize: 12),
-                                                                        ),
                                                                       ),
+
                                                                 SizedBox(
                                                                     height: 3),
-                                                                (appointmentlist
-                                                                            .gender ==
-                                                                        null)
-                                                                    ? Text(
+                                                                       Text(
                                                                         "Gender: " +
                                                                                 appointmentlist.gender ??
                                                                             "N/A",
@@ -368,7 +347,7 @@ class _DoctorAppointmentRequestedState
                                                                             fontSize:
                                                                                 12),
                                                                       )
-                                                                    : Container(
+                                                                   /* : Container(
                                                                         child:
                                                                             Text(
                                                                           "Gender: " +
@@ -380,7 +359,7 @@ class _DoctorAppointmentRequestedState
                                                                         ),
                                                                       ),
 
-                                                                /* Text(
+*/                                                                /* Text(
                                                                   appointmentlist
                                                                       .patname ??
                                                                       "N/A",
@@ -412,14 +391,46 @@ class _DoctorAppointmentRequestedState
                                                     SizedBox(
                                                       height: 10,
                                                     ),
+
                                                     Row(
                                                       // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
+
                                                       children: [
                                                         Container(
-                                                          width: 80,
+                                                          child: Text(
+                                                            /*'Confirmed'*/
+                                                            "Notes    : ",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                fontSize: 15,
+                                                                color: AppData
+                                                                    .kPrimaryColor),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                            width: 250,
+                                                            child: Text(
+                                                              appointmentlist
+                                                                  .notes ??
+                                                                  "N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style:
+                                                              TextStyle(color: Colors.black),
+                                                            )
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height:5),
+
+                                                    Row(
+                                                      // mainAxisAlignment: MainAxisAlignment.center,
+
+                                                      children: [
+                                                        Container(
                                                           child: Text(
                                                             /*'Confirmed'*/
                                                             "Address : ",
@@ -434,10 +445,7 @@ class _DoctorAppointmentRequestedState
                                                         ),
                                                         Container(
                                                             width: 250,
-                                                            child: (appointmentlist
-                                                                        .address ==
-                                                                    null)
-                                                                ? Text(
+                                                            child: Text(
                                                                     /*'23-Nov-2020-11:30AM'*/
                                                                     appointmentlist
                                                                             .address ??
@@ -448,52 +456,11 @@ class _DoctorAppointmentRequestedState
                                                                     style:
                                                                         TextStyle(),
                                                                   )
-                                                                : Container(
-                                                                    child: Text(
-                                                                        "N/A"))),
+                                                                ),
                                                       ],
                                                     ),
 
-                                                    Row(
-                                                      // mainAxisAlignment: MainAxisAlignment.center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      children: [
-                                                        Container(
-                                                          width: 120,
-                                                          child: Text(
-                                                            /*'Confirmed'*/
-                                                            "Patient Notes : ",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 15,
-                                                                color: AppData
-                                                                    .kPrimaryColor),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                            width: 250,
-                                                            child: (appointmentlist
-                                                                        .notes ==
-                                                                    null)
-                                                                ? Text(
-                                                                    appointmentlist
-                                                                            .notes ??
-                                                                        "N/A",
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                    style:
-                                                                        TextStyle(color: Colors.black),
-                                                                  )
-                                                                : Container(
-                                                                    child: Text(
-                                                                        "N/A"))),
-                                                      ],
-                                                    ),
+
                                                     // Row(
                                                     //   // mainAxisAlignment: MainAxisAlignment.center,
                                                     //   crossAxisAlignment:
