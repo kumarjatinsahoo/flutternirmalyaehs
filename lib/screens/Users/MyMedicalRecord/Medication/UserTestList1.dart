@@ -176,7 +176,7 @@ class _MedicineList extends State<UserTestList1> {
                               Const.HEALTH_SCREENING_APNT;
                           widget.model.appno=body?.appno ;
                           Navigator.pushNamed(
-                              context,"/userMedicineList");
+                              context,"/userTestList");
 
                           //  Navigator.pushNamed(context, "/medicinelisturl");
 
