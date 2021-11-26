@@ -488,8 +488,8 @@ class _MedicineList extends State<UserTestList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserTestList.selectedLab == null
-                /*UserTestList.selectedLab == ""*/&& /*textEditingController[0].text ==null||*/textEditingController[0].text==null) {
+            if ((UserTestList.selectedLab == null||
+                UserTestList.selectedLab == "")&& (textEditingController[0].text ==""||textEditingController[0].text==null)) {
               AppData.showInSnackBar(context, "Please select Lab ");
             } else {
               Map<String, dynamic> map = fromJsonListData(selectedTest);
