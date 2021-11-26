@@ -18,6 +18,7 @@ import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/models/UserListModel.dart' as test;
+import 'package:user/models/PharmacylistModel.dart'as pharmacy;
 import 'package:user/models/UserListModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -33,6 +34,7 @@ class UserTestList extends StatefulWidget {
   MainModel model;
   static KeyvalueModel labModel = null;
   final bool isConfirmPage;
+
   static KeyvalueModel selectedLab = null;
   UserTestList({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
@@ -55,6 +57,7 @@ class _MedicineList extends State<UserTestList> {
   String selectedDatestr;
   String userid;
   bool isdata =false;
+  String selectlab;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
@@ -485,8 +488,8 @@ class _MedicineList extends State<UserTestList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserTestList.selectedLab == null ||
-                UserTestList.selectedLab == "") {
+            if ((UserTestList.selectedLab == null||
+                UserTestList.selectedLab == "")&& (textEditingController[0].text ==""||textEditingController[0].text==null)) {
               AppData.showInSnackBar(context, "Please select Lab ");
             } else {
               Map<String, dynamic> map = fromJsonListData(selectedTest);
@@ -522,7 +525,7 @@ class _MedicineList extends State<UserTestList> {
   Map<String, dynamic> fromJsonListData(List list) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
-    data['pharmacistid'] = UserTestList.selectedLab.key;
+    data['pharmacistid'] = (UserTestList.selectedLab!=null)?UserTestList.selectedLab.key:selectlab;
     data['patientnote'] = textEditingController[0].text;
     data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
     return data;
@@ -592,29 +595,30 @@ class _MedicineList extends State<UserTestList> {
                                 : null;
                           },
                           hideOnLoading: true,
-                          itemBuilder: (context, Predictions suggestion) {
+                          itemBuilder: (context, pharmacy.Body suggestion) {
                             return ListTile(
                               leading: Icon(Icons.search),
-                              title: Text(suggestion.description),
+                              title: Text(suggestion.name),
                             );
                           },
-                          onSuggestionSelected: (Predictions suggestion) {
+                          onSuggestionSelected: (pharmacy.Body suggestion) {
                             //widget.model.courceName = suggestion.courseSlug;
                             //Navigator.pushNamed(context, "/courceDetail1");
                             Navigator.pop(context);
                             setState(() {
-                              address = "${suggestion.description}";
+
                               textEditingController[0].text =
-                              "${suggestion.description}";
-                              cityName = (suggestion?.terms != null &&
-                                  suggestion?.terms?.length >= 3)
+                              "${suggestion.name}";
+                              selectlab=suggestion.key;
+                              cityName = (suggestion?.name != null &&
+                                  suggestion?.name?.length >= 3)
                                   ? suggestion
-                                  .terms[suggestion.terms.length - 3].value
+                                  .name[suggestion.name.length - 3]
                                   : "";
                               //print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
                               // longitudes = suggestion.longitude.toString();
                               // latitudes = position.altitude.toString();
-                              locationData(suggestion.placeId);
+                              // locationData(suggestion.placeId);
                             });
                           },
                         ),
@@ -642,19 +646,19 @@ class _MedicineList extends State<UserTestList> {
       ],*/
     );
   }
-  Future<List<Predictions>> fetchSearchAutoComplete(String course_name) async {
+  Future<List<pharmacy.Body>> fetchSearchAutoComplete(String course_name) async {
     var dio = Dio();
     //Map<String, dynamic> postMap = {"course_name": course_name};
     final response = await dio.get(
-      ApiFactory.AUTO_COMPLETE + course_name,
+      ApiFactory.lab_list_by_searchvalue + course_name,
     );
 
     if (response.statusCode == 200) {
-      AutoCompleteDTO model = AutoCompleteDTO.fromJson(response.data);
+      pharmacy.PharmacylistModel model =pharmacy. PharmacylistModel.fromJson(response.data);
       setState(() {
         //this.courcesDto = model;
       });
-      return model.predictions;
+      return model.body ;
     } else {
       setState(() {
         //isAnySearchFail = true;
@@ -662,6 +666,7 @@ class _MedicineList extends State<UserTestList> {
       throw Exception('Failed to load album');
     }
   }
+
   locationData(placeId) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCAL(
