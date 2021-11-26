@@ -26,7 +26,7 @@ class _PatientHistory extends State<PatientHistory> {
   final myController = TextEditingController();
   final myControllerpass = TextEditingController();
   String eHealthCardno;
-  PatientmedicalhistoryModel patientsDetails = PatientmedicalhistoryModel();
+  PatientmedicalhistoryModel patientmedicalhistoryModel = PatientmedicalhistoryModel();
 
   @override
   void initState() {
@@ -38,16 +38,16 @@ class _PatientHistory extends State<PatientHistory> {
   }
   callPERSONALAPI(String eHealthCardno) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.PERSONAL_DETAILS + eHealthCardno,
+        api: ApiFactory.GET_PATIENT_MEDICAL_HISTORY + eHealthCardno,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           log("Personal deatils API>>>" + jsonEncode(map));
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              patientsDetails = PatientmedicalhistoryModel.fromJson(map);
+              patientmedicalhistoryModel = PatientmedicalhistoryModel.fromJson(map);
             } else {
-              //isDataNotAvail = true;
+              ///isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });
@@ -59,8 +59,340 @@ class _PatientHistory extends State<PatientHistory> {
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
 
-      body:
-      SingleChildScrollView(
+      body:Container(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        child: SingleChildScrollView(
+          physics: ScrollPhysics(),
+
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: (patientmedicalhistoryModel != null && patientmedicalhistoryModel.body!=null )
+                ? Container(
+              child: Column(
+                children: [
+                  SizedBox(height: 5),
+                  Center(
+                    child: Text(
+                      "MEDICAL CONDITION",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(children: [
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "Medical Condition",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+
+                    ]),
+                  ),
+                  (patientmedicalhistoryModel!=null && patientmedicalhistoryModel.body!="" && patientmedicalhistoryModel.body.medicalCondition.isNotEmpty&&patientmedicalhistoryModel.body != null &&
+                      patientmedicalhistoryModel.body.medicalCondition.length > 0  )?SingleChildScrollView(
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: patientmedicalhistoryModel.body.medicalCondition.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    patientmedicalhistoryModel.body.medicalCondition[index].description??"N/A",
+                                    style: TextStyle(
+                                        color: Colors.grey[700]),
+                                  ),
+                                ),
+
+
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ):Container(),
+                  SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      "MEDICAL HISTOTORY",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(children: [
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "Name",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "DoctorName",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "Date",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "OPDName",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  Divider(height: 1,),
+                  (patientmedicalhistoryModel!=null && patientmedicalhistoryModel.body!="" && patientmedicalhistoryModel.body.medicalHistory.isNotEmpty&&patientmedicalhistoryModel.body != null &&
+                      patientmedicalhistoryModel.body.medicalHistory.length > 0  ) ?Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Expanded(
+                      child:
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        // scrollDirection: Axis.horizontal,
+                        itemCount: patientmedicalhistoryModel.body.medicalHistory.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding:
+                            const EdgeInsets.symmetric(horizontal: 0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: 80,
+                                    child: Text(
+                                      patientmedicalhistoryModel.body.medicalHistory[index].uname??"N/A",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    width: 80,
+                                    child: Text(
+                                      patientmedicalhistoryModel.body.medicalHistory[index].drName??"N/A",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    width: 80,
+                                    child: Text(
+                                      patientmedicalhistoryModel.body.medicalHistory[index].date??"N/A",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    width: 80,
+                                    child: Text(
+                                      patientmedicalhistoryModel.body.medicalHistory[index].opName??"N/A",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ):Container(),
+                  //alergic
+
+                  SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      "MAJOR SURGERY",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(children: [
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "Name",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "DoctorName",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "Date",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: 80,
+                          child: Text(
+                            "OPDName",
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  (patientmedicalhistoryModel!=null && patientmedicalhistoryModel.body!="" && patientmedicalhistoryModel.body.majorsurgery.isNotEmpty&&patientmedicalhistoryModel.body != null &&
+                      patientmedicalhistoryModel.body.majorsurgery.length > 0  )?SingleChildScrollView(
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: patientmedicalhistoryModel.body.majorsurgery.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    patientmedicalhistoryModel.body.majorsurgery[index].uname??"N/A",
+                                    style: TextStyle(
+                                        color: Colors.grey[700]),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    patientmedicalhistoryModel.body.majorsurgery[index].drName??"N/A",
+                                    style: TextStyle(
+                                        color: Colors.grey[700]),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    patientmedicalhistoryModel.body.majorsurgery[index].date??"N/A",
+                                    style: TextStyle(
+                                      color: Colors.grey[700], ),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    patientmedicalhistoryModel.body.majorsurgery[index].opName??"N/A",
+                                    style: TextStyle(
+                                      color: Colors.grey[700], ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ):Container(),
+                ],
+              ),
+            )
+                : Container(),
+          ),
+        ),
+      ),
+      /*SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Container(
@@ -386,7 +718,7 @@ class _PatientHistory extends State<PatientHistory> {
             ]),
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
