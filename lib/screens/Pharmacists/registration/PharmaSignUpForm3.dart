@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -505,6 +506,11 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                                         color: AppData
                                                             .kPrimaryColor,
                                                       ),
+                                                        recognizer: TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            Navigator.pushNamed(context, "/termsandConditionPage");
+                                                            // AppData.showInSnackBar(context, "Please select Gender");
+                                                          }
                                                     )
                                                   ],
                                                 ))),

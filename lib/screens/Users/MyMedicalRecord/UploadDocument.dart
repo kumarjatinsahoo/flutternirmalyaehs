@@ -129,21 +129,39 @@ class _UploadDocumentState extends State<UploadDocument> {
             ),
           ]),
       body:
-          isdata == true
-          ? CircularProgressIndicator(
-              backgroundColor: AppData.matruColor,
-            )
+      isdata == true
+          ? Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.35,
+            ),
+            CircularProgressIndicator(),
+          ],
+        ),
+      )
+      /* Center(
+                child: CircularProgressIndicator(),
+              )*/
           : documentListModel == null || documentListModel == null
-              ? Container(
-                  child: Center(
-                    child: Text(
-                      MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                  ),
-                )
-              :
-          Container(
+          ? Container(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.35,
+              ),
+              Text(
+                "Data Not Found",
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+      )
+          :
+
+      Container(
         child: SingleChildScrollView(
             child: (documentListModel != null)
              ?
@@ -153,17 +171,17 @@ class _UploadDocumentState extends State<UploadDocument> {
           itemBuilder: (context, i) {
             document.Body body = documentListModel.body[i];
             return Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(left: 10.0,right: 10,top: 5,bottom: 5),
               child: Container(
                 width: size.width * 0.20,
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
                     ),
                     side: BorderSide(width: 1, color: AppData.kPrimaryColor),
                   ),
@@ -221,42 +239,34 @@ class _UploadDocumentState extends State<UploadDocument> {
                                       fontWeight: FontWeight.normal)),
                             ],
                           ),
-                          //  SizedBox(height: 10,),
-                          Row(
-                            children: [
-                              Text(
-                                "",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: (){
-                                  String pdfurl=body.fileName;
-                                  widget.model.pdfurl=pdfurl;
-                                  print("ppppdddddddddddffffff"+pdfurl);
-                                  print("pdf"+widget.model.pdfurl);
-                                  Navigator.pushNamed(context, "/documentpdf",).then((value) => widget.model.pdfurl);
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: AppData.kPrimaryColor),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'View Pdf',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    disabledColor: AppData.kPrimaryColor,
+                           SizedBox(height: 5,),
+                          InkWell(
+                            onTap: (){
+                              String pdfurl=body.fileName;
+                              widget.model.pdfurl=pdfurl;
+                              print("ppppdddddddddddffffff"+pdfurl);
+                              Navigator.pushNamed(context, "/documentpdf",).then((value) => widget.model.pdfurl);
+                            },
+                            child: Center(
+                              child: Container(
+                                width: 400,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: Colors.black12),
+                                    color: AppData.kPrimaryColor),
+                                child: RaisedButton(
+                                  onPressed: null,
+                                  child: Text(
+                                    'View Pdf',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
                                   ),
+                                  disabledColor: AppData.kPrimaryColor,
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                           SizedBox(
                             height: 5,

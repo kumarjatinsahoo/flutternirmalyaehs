@@ -96,13 +96,14 @@ String pharmaprofessional;
 String pharmaaddress;
 String pharmaexperience;
 String pharmagender;
-pharma.Body userappointment;
+pharma.Body  userappointment;
 String userid;
 medicine.Body medicinelist;
 test.Body testList;
 String pharmacyaddress;
 String pharmacity;
 String pharamctorderid;
+String appno;
 cnfrm.Body pharmacyorderModel;
 
 ////////////
