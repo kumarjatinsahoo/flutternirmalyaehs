@@ -24,6 +24,7 @@ class ApiFactory {
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
   static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String DELETE_TEST_LIST = MAIN_URL + 'delete-test-by-app-no?appno=';
+  static String lab_list_by_searchvalue = MAIN_URL + 'get-lab-list-by-searchvalue?search=';
 
   static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
@@ -36,6 +37,7 @@ class ApiFactory {
   static String INSURANCE_Details =
       MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
+  static String pharmacy_list_by_searchvalue = MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
   static String IMMUNIZATION_STATUS =
       MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';

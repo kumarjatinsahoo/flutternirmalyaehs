@@ -19,6 +19,7 @@ import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicinModel.dart';
 import 'package:user/models/MedicineListModel.dart' as medicine;
 import 'package:user/models/MedicineListModel.dart';
+import 'package:user/models/PharmacylistModel.dart' as pharmacy;
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -36,6 +37,8 @@ class UserMedicineList extends StatefulWidget {
   final bool isConfirmPage;
   static KeyvalueModel medicinModel = null;
 
+  //static pharmacy.PharmacylistModel pharmacylistModel;
+
   UserMedicineList({Key key, this.model, this.isConfirmPage}) : super(key: key);
 
   @override
@@ -52,6 +55,7 @@ List<TextEditingController> textEditingController = [
 class _MedicineList extends State<UserMedicineList> {
   DateTime selectedDate = DateTime.now();
   medicine.MedicineListModel medicineListModel;
+  pharmacy.PharmacylistModel pharmacylistModel;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
@@ -71,11 +75,12 @@ class _MedicineList extends State<UserMedicineList> {
 
   List<MedicinlistModel> medicinlist = [];
   List<medicine.Body> selectedMedicine = [];
+  List<pharmacy.Body> selectedpharmacy = [];
 
   Map<String, dynamic> mapK = {};
 
   bool isDataNoFound = false;
-  bool isdata = false;
+  bool isdata = false;String selectPharma;
 
   void initState() {
     // TODO: implement initState
@@ -121,7 +126,8 @@ class _MedicineList extends State<UserMedicineList> {
     this.position = position;
     debugPrint('location: ${position.latitude}');
     print(
-        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position
+            .longitude}');
     geocodeFetch(position.latitude.toString(), position.longitude.toString());
   }
 
@@ -154,265 +160,265 @@ class _MedicineList extends State<UserMedicineList> {
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        title: Text("Medicine List"),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-          ),
-        ],
-        toolbarHeight:
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text("Medicine List"),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+              ),
+            ],
+            toolbarHeight:
             (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT)
                 ? 0
                 : AppBar().preferredSize.height,
-      ),
-      body: isdata == true
-          ? Center(
-              child: CircularProgressIndicator(
-                  // backgroundColor: AppData.matruColor,
-                  ),
-            ) /*MyWidgets.showLoading(context)`*/
-          : medicineListModel == null || medicineListModel == null
+          ),
+          body: isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              // backgroundColor: AppData.matruColor,
+            ),
+          ) /*MyWidgets.showLoading(context)`*/
+              : medicineListModel == null || medicineListModel == null
               ? Container(
-                  child: Center(
-                    child: Text(
-                      'No Data Found',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                  ),
-                )
+            child: Center(
+              child: Text(
+                'No Data Found',
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            ),
+          )
               : (medicineListModel != null)
-                  ? Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                // controller: _scrollController,
-                                shrinkWrap: true,
-                                itemBuilder: (context, i) {
-                                  if (i == medicineListModel.body.length) {
-                                    return (medicineListModel.body.length %
-                                                10 ==
-                                            0)
-                                        ? CupertinoActivityIndicator()
-                                        : Container();
-                                  }
-                                  medicine.Body body =
-                                      medicineListModel.body[i];
-                                  widget.model.medicinelist = body;
-                                  // Print("mediiiicinie"+$body);
-                                  return Container(
-                                    child: GestureDetector(
-                                      // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
-                                      // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
-                                        ),
-                                        elevation: 5,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
+              ? Container(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      // controller: _scrollController,
+                      shrinkWrap: true,
+                      itemBuilder: (context, i) {
+                        if (i == medicineListModel.body.length) {
+                          return (medicineListModel.body.length %
+                              10 ==
+                              0)
+                              ? CupertinoActivityIndicator()
+                              : Container();
+                        }
+                        medicine.Body body =
+                        medicineListModel.body[i];
+                        widget.model.medicinelist = body;
+                        // Print("mediiiicinie"+$body);
+                        return Container(
+                          child: GestureDetector(
+                            // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
+                            // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist"),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(5.0),
+                              ),
+                              elevation: 5,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    (!body.reqstatus)
+                                        ? CheckboxListTile(
+                                      activeColor:
+                                      Colors.blue[300],
+                                      dense: true,
+                                      //font change
+                                      title: new Text(
+                                        medicineListModel
+                                            .body[i]
+                                            .medname ??
+                                            "N/A",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            letterSpacing: 0.5),
+                                      ),
+                                      value: body.isChecked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          body.isChecked = val;
+                                          if (val)
+                                            selectedMedicine
+                                                .add(body);
+                                          else
+                                            selectedMedicine
+                                                .remove(body);
+                                        });
+                                      },
+                                    )
+                                        : /*Container(),*/ Text(
+                                      medicineListModel.body[i]
+                                          .medname ??
+                                          "N/A",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight:
+                                          FontWeight.w600,
+                                          letterSpacing: 0.5),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      children: [
+                                        Expanded(
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             children: [
-                                              (!body.reqstatus)
-                                                  ? CheckboxListTile(
-                                                      activeColor:
-                                                          Colors.blue[300],
-                                                      dense: true,
-                                                      //font change
-                                                      title: new Text(
-                                                        medicineListModel
-                                                                .body[i]
-                                                                .medname ??
-                                                            "N/A",
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            letterSpacing: 0.5),
-                                                      ),
-                                                      value: body.isChecked,
-                                                      onChanged: (val) {
-                                                        setState(() {
-                                                          body.isChecked = val;
-                                                          if (val)
-                                                            selectedMedicine
-                                                                .add(body);
-                                                          else
-                                                            selectedMedicine
-                                                                .remove(body);
-                                                        });
-                                                      },
-                                                    )
-                                                  : /*Container(),*/ Text(
-                                                      medicineListModel.body[i]
-                                                              .medname ??
-                                                          "N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          letterSpacing: 0.5),
-                                                    ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                              Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child: Column(
-                                                      children: [
-                                                        Container(
-                                                          child: Text(
-                                                            "Morning",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 13),
-                                                          ),
-                                                        ),
-                                                        (body.morning == "1")
-                                                            ? Container(
-                                                                width: 80,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .check_circle,
-                                                                  color: Colors
-                                                                      .green,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                width: 80,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .highlight_remove,
-                                                                  color: Colors
-                                                                          .yellow[
-                                                                      800],
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Column(
-                                                      children: [
-                                                        Container(
-                                                          //width: 80,
-                                                          child: Text(
-                                                            "Afternoon",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 13),
-                                                          ),
-                                                        ),
-                                                        (body.afternoon == "1")
-                                                            ? Container(
-                                                                width: 100,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .check_circle,
-                                                                  color: Colors
-                                                                      .green,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                width: 80,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .highlight_remove,
-                                                                  color: Colors
-                                                                          .yellow[
-                                                                      800],
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Column(
-                                                      children: [
-                                                        Container(
-                                                          child: Text(
-                                                            "Evening",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 13),
-                                                          ),
-                                                        ),
-                                                        (body.evening == "1")
-                                                            ? Container(
-                                                                width: 80,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .check_circle,
-                                                                  color: Colors
-                                                                      .green,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                width: 80,
-                                                                height: 30,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .highlight_remove,
-                                                                  color: Colors
-                                                                          .yellow[
-                                                                      800],
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
                                               Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 15,
-                                                    vertical: 10),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Duration: ",
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      body.dosage ?? "",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 13),
-                                                    ),
-                                                  ],
+                                                child: Text(
+                                                  "Morning",
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .black,
+                                                      fontSize: 13),
                                                 ),
                                               ),
-                                              /*Padding(
+                                              (body.morning == "1")
+                                                  ? Container(
+                                                width: 80,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .check_circle,
+                                                  color: Colors
+                                                      .green,
+                                                ),
+                                              )
+                                                  : Container(
+                                                width: 80,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .highlight_remove,
+                                                  color: Colors
+                                                      .yellow[
+                                                  800],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                //width: 80,
+                                                child: Text(
+                                                  "Afternoon",
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .black,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                              (body.afternoon == "1")
+                                                  ? Container(
+                                                width: 100,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .check_circle,
+                                                  color: Colors
+                                                      .green,
+                                                ),
+                                              )
+                                                  : Container(
+                                                width: 80,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .highlight_remove,
+                                                  color: Colors
+                                                      .yellow[
+                                                  800],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                  "Evening",
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .black,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                              (body.evening == "1")
+                                                  ? Container(
+                                                width: 80,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .check_circle,
+                                                  color: Colors
+                                                      .green,
+                                                ),
+                                              )
+                                                  : Container(
+                                                width: 80,
+                                                height: 30,
+                                                child: Icon(
+                                                  Icons
+                                                      .highlight_remove,
+                                                  color: Colors
+                                                      .yellow[
+                                                  800],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                          vertical: 10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Duration: ",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight:
+                                                FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            body.dosage ?? "",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 13),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    /*Padding(
                                         padding: const EdgeInsets.symmetric( horizontal: 15 ),
                                         child: Text(
                                           */ /*'Confirmed'*/ /*
@@ -426,40 +432,46 @@ class _MedicineList extends State<UserMedicineList> {
                                           ),
                                         ),
                                       ),*/
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                itemCount: medicineListModel.body.length,
+                                  ],
+                                ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              (selectedMedicine != null &&
-                                      selectedMedicine.length > 0)
-                                  ? Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: nextButton(),
-                                    )
-                                  : Container(),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    )
-                  : Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      alignment: Alignment.center,
-                      child: (isDataNoFound)
-                          ? Text("Data Not Found")
-                          : CircularProgressIndicator(),
+                        );
+                      },
+                      itemCount: medicineListModel.body.length,
                     ),
-    ));
+                    SizedBox(
+                      height: 10,
+                    ),
+                    (selectedMedicine != null &&
+                        selectedMedicine.length > 0)
+                        ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10),
+                      child: nextButton(),
+                    )
+                        : Container(),
+                  ],
+                ),
+              ),
+            ),
+          )
+              : Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height,
+            alignment: Alignment.center,
+            child: (isDataNoFound)
+                ? Text("Data Not Found")
+                : CircularProgressIndicator(),
+          ),
+        ));
   }
 
   Widget nextButton() {
@@ -473,7 +485,10 @@ class _MedicineList extends State<UserMedicineList> {
         //validate();
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         margin: EdgeInsets.only(left: 9.0, right: 9.0),
         decoration: BoxDecoration(
             color: AppData.kPrimaryColor,
@@ -484,7 +499,7 @@ class _MedicineList extends State<UserMedicineList> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
             "SUBMIT",
@@ -508,7 +523,10 @@ class _MedicineList extends State<UserMedicineList> {
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
-            width: MediaQuery.of(context).size.width * 0.86,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * 0.86,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -541,16 +559,16 @@ class _MedicineList extends State<UserMedicineList> {
                       }, mapK),
                     ),
                   ),
-              SizedBox(
-                height: 7,
-              ),
-              Text(
-                MyLocalizations.of(context).text("OR"),
-                style: TextStyle(color: Colors.black54),
-              ),
-              SizedBox(
-                height: 7,),
-                  NumberformField(0,"Enter Pharmacy"),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    MyLocalizations.of(context).text("OR"),
+                    style: TextStyle(color: Colors.black54),
+                  ),
+                  SizedBox(
+                    height: 7,),
+                  NumberformField(0, "Enter Pharmacy"),
                   fromAddress(1, "Remark", TextInputAction.next,
                       TextInputType.text, "remark"),
                 ],
@@ -565,7 +583,9 @@ class _MedicineList extends State<UserMedicineList> {
             Navigator.of(context).pop();
             textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: Theme
+              .of(context)
+              .primaryColor,
           child: const Text('Cancel'),
         ),
         new FlatButton(
@@ -578,6 +598,7 @@ class _MedicineList extends State<UserMedicineList> {
               log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
               log("TO POST>>>>" + jsonEncode(map));
               MyWidgets.showLoading(context);
+
               widget.model.POSTMETHOD_TOKEN(
                   api: ApiFactory.POST_PHARMACY_REQUST,
                   json: map,
@@ -598,7 +619,9 @@ class _MedicineList extends State<UserMedicineList> {
             Navigator.of(context).pop();
             textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: Theme
+              .of(context)
+              .primaryColor,
           child: const Text('Save'),
         ),
       ],
@@ -608,10 +631,11 @@ class _MedicineList extends State<UserMedicineList> {
   Map<String, dynamic> fromJsonListData(List list) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
-    data['pharmacistid'] = UserMedicineList.pharmacyModel.key;
+    data['pharmacistid'] = (UserMedicineList.pharmacyModel!=null)?UserMedicineList.pharmacyModel.key:selectPharma;
     data['patientnote'] = textEditingController[0].text;
     data['meddetails'] = this.selectedMedicine.map((v) => v.toJson1()).toList();
-    return data;
+    return
+    data;
   }
 
   Widget fromAddress(int index, String hint, inputAct, keyType, String type) {
@@ -655,7 +679,10 @@ class _MedicineList extends State<UserMedicineList> {
           return Container(
             padding: EdgeInsets.only(left: 5, right: 5, top: 30),
             //color: Colors.grey,
-            width: MediaQuery.of(context).size.width * 0.9,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * 0.9,
             height: 400,
             child: SingleChildScrollView(
               child: Column(
@@ -711,29 +738,31 @@ class _MedicineList extends State<UserMedicineList> {
                                 : null;
                           },
                           hideOnLoading: true,
-                          itemBuilder: (context, Predictions suggestion) {
+                          itemBuilder: (context, pharmacy.Body suggestion) {
                             return ListTile(
                               leading: Icon(Icons.search),
-                              title: Text(suggestion.description),
+                              title: Text(suggestion.name),
                             );
                           },
-                          onSuggestionSelected: (Predictions suggestion) {
+                          onSuggestionSelected: (pharmacy.Body suggestion) {
                             //widget.model.courceName = suggestion.courseSlug;
                             //Navigator.pushNamed(context, "/courceDetail1");
                             Navigator.pop(context);
+
                             setState(() {
-                              address = "${suggestion.description}";
                               textEditingController[0].text =
-                              "${suggestion.description}";
-                              cityName = (suggestion?.terms != null &&
-                                  suggestion?.terms?.length >= 3)
+                              "${suggestion.name}";
+                              selectPharma=suggestion.key;
+
+                              cityName = (suggestion?.name != null &&
+                                  suggestion?.name?.length >= 3)
                                   ? suggestion
-                                  .terms[suggestion.terms.length - 3].value
+                                  .name[suggestion.name.length - 3]
                                   : "";
                               //print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
                               // longitudes = suggestion.longitude.toString();
                               // latitudes = position.altitude.toString();
-                              locationData(suggestion.placeId);
+                              // locationData(suggestion.placeId);
                             });
                           },
                         ),
@@ -761,19 +790,21 @@ class _MedicineList extends State<UserMedicineList> {
       ],*/
     );
   }
-  Future<List<Predictions>> fetchSearchAutoComplete(String course_name) async {
+
+  Future<List<pharmacy.Body>> fetchSearchAutoComplete(
+      String course_name) async {
     var dio = Dio();
     //Map<String, dynamic> postMap = {"course_name": course_name};
     final response = await dio.get(
-      ApiFactory.AUTO_COMPLETE + course_name,
+      ApiFactory.pharmacy_list_by_searchvalue + course_name,
     );
 
     if (response.statusCode == 200) {
-      AutoCompleteDTO model = AutoCompleteDTO.fromJson(response.data);
+      pharmacylistModel = pharmacy.PharmacylistModel.fromJson(response.data);
       setState(() {
         //this.courcesDto = model;
       });
-      return model.predictions;
+      return pharmacylistModel.body;
     } else {
       setState(() {
         //isAnySearchFail = true;
@@ -781,6 +812,7 @@ class _MedicineList extends State<UserMedicineList> {
       throw Exception('Failed to load album');
     }
   }
+
   locationData(placeId) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCAL(
@@ -816,96 +848,50 @@ class _MedicineList extends State<UserMedicineList> {
           });
         });
   }
-  Widget NumberformField(
-      int index,
-      String hint,
-      ) {
+
+  Widget NumberformField(int index,
+      String hint) {
     return
- Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: GestureDetector(
-     onTap: () => showDialog(
-       context: context,
-       builder: (BuildContext context) => dialogRegNo(context),),
+            onTap: () =>
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => dialogRegNo(context),),
 
-    child: AbsorbPointer(
-        child:Container(
+            child: AbsorbPointer(
+              child: Container(
 
-        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.black, width: 0.3),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.black, width: 0.3),
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: hint,
+
+                    border: InputBorder.none,
+                    //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      size: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  minLines: 1,
+                  maxLines: 5,
+                  keyboardType: TextInputType.multiline,
+                  controller: textEditingController[index],
+
+                ),
+              ),
+            )
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: hint,
-
-            border: InputBorder.none,
-            //contentPadding: EdgeInsets.symmetric(vertical: 10),
-            suffixIcon: Icon(
-             Icons.search,
-              size: 20,
-              color: Colors.grey,
-            ),
-          ),
-          minLines: 1,
-          maxLines: 5,
-          keyboardType: TextInputType.multiline,
-          controller:textEditingController[index],
-
-        ),
-      ),
-    )
-    ),
-    );
+      );
   }
 
-  /*Widget NumberformField(
-       int index,
-      String hint,
-      ) {
-    return InkWell(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) => dialogRegNo(context),
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-        margin: EdgeInsets.only(left: 8, right: 8, top: 10),
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(3),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 1.0,
-              spreadRadius: 0.0,
-              offset: Offset(1.0, 1.0), //shadow direction: bottom right
-            )
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(child: Text(hint ?? "",style: TextStyle(color: Colors.black,fontSize: 16),)),
-            //Icon(Icons.add_location),
-            InkWell(
-                child: Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                )),
-          ],
-        ),
 
-      ),
-    );
-  }*/
-// void itemChange(bool val) {
-//   setState(() {
-//     _isChecked[index] = val;
-//   });
-// }
 }
