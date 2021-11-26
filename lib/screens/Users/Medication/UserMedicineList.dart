@@ -590,8 +590,8 @@ class _MedicineList extends State<UserMedicineList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserMedicineList.pharmacyModel == null ||
-                UserMedicineList.pharmacyModel == "") {
+            if (UserMedicineList.pharmacyModel == null
+               /* UserMedicineList.pharmacyModel == ""*/&&/*textEditingController[0].text ==null||*/textEditingController[0].text ==null) {
               AppData.showInSnackBar(context, "Please select Pharmacy ");
             } else {
               Map<String, dynamic> map = fromJsonListData(selectedMedicine);

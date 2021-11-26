@@ -488,8 +488,8 @@ class _MedicineList extends State<UserTestList> {
         ),
         new FlatButton(
           onPressed: () {
-            if (UserTestList.selectedLab == null ||
-                UserTestList.selectedLab == "") {
+            if (UserTestList.selectedLab == null
+                /*UserTestList.selectedLab == ""*/&& /*textEditingController[0].text ==null||*/textEditingController[0].text==null) {
               AppData.showInSnackBar(context, "Please select Lab ");
             } else {
               Map<String, dynamic> map = fromJsonListData(selectedTest);
@@ -525,7 +525,6 @@ class _MedicineList extends State<UserTestList> {
   Map<String, dynamic> fromJsonListData(List list) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
-    data['pharmacistid'] = UserTestList.selectedLab.key;
     data['pharmacistid'] = (UserTestList.selectedLab!=null)?UserTestList.selectedLab.key:selectlab;
     data['patientnote'] = textEditingController[0].text;
     data['meddetails'] = this.selectedTest.map((v) => v.toJson1()).toList();
