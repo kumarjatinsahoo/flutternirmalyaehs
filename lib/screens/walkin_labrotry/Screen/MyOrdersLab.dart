@@ -107,7 +107,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
               : (pharmacyorderModel != null)
                   ? SingleChildScrollView(
                       child: ListView.builder(
-                        //physics: NeverScrollableScrollPhysics(),
+                        physics: NeverScrollableScrollPhysics(),
                         // controller: _scrollController,
                         shrinkWrap: true,
                         itemBuilder: (context, i) {

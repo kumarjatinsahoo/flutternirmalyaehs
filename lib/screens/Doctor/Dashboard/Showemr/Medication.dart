@@ -88,231 +88,229 @@ class _Medication extends State<Medication> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(0.0),
-                          child: Expanded(
-                            child: (madicationlistModel != null &&
-                                    madicationlistModel.body != null &&
-                                    madicationlistModel.body.isNotEmpty)
-                                ? ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
+                          child: (madicationlistModel != null &&
+                                  madicationlistModel.body != null &&
+                                  madicationlistModel.body.isNotEmpty)
+                              ? ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
 
-                                    shrinkWrap: true,
-                                    // scrollDirection: Axis.horizontal,
-                                    /* itemCount: 2,
+                                  shrinkWrap: true,
+                                  // scrollDirection: Axis.horizontal,
+                                  /* itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {*/
-                                    itemBuilder: (context, i) {
-                                      apnt.Body medition =
-                                          madicationlistModel.body[i];
-                                      return Card(
-                                        color: Color(0xFFD2E4FC),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(5),
-                                              topRight: Radius.circular(5),
-                                              bottomRight: Radius.circular(5),
-                                              bottomLeft: Radius.circular(5),
-                                            ),
-                                            side: BorderSide(
-                                                width: 1,
-                                                color: Color(0xFFD2E4FC))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Doctor",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Text(
-                                                    /*"Paracetmol"*/
-                                                    medition.doctor,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Type",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Text(
-                                                    /*"Tablet"*/
-                                                    medition.medname,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Dosage",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      /*"5 Days From 12-08-2021"*/
-                                                      medition.dosage,
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Morning",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Text(
-                                                    /*"1"*/
-                                                    medition.morning,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Afternoon",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Text(
-                                                    medition.afternoon,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    width: 100,
-                                                    child: Text(
-                                                      "Evening",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "   :   ",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                  Text(
-                                                    /*"1"*/
-                                                    medition.evening,
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
-                                                ],
-                                              ),
-                                              /* SizedBox(height: 5),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 100,
-                                  child: Text(
-                                    "Doctor",
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 15),
-                                  ),
-                                ),
-                                Text(
-                                  "   :   ",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                ),
-                                Text(
-                                  "Mr.Neraj Desai",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                ),
-                              ],
-                            ),*/
-                                              SizedBox(height: 5),
-                                            ],
+                                  itemBuilder: (context, i) {
+                                    apnt.Body medition =
+                                        madicationlistModel.body[i];
+                                    return Card(
+                                      color: Color(0xFFD2E4FC),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            topRight: Radius.circular(5),
+                                            bottomRight: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5),
                                           ),
+                                          side: BorderSide(
+                                              width: 1,
+                                              color: Color(0xFFD2E4FC))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Doctor",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Text(
+                                                  /*"Paracetmol"*/
+                                                  medition.doctor,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Type",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Text(
+                                                  /*"Tablet"*/
+                                                  medition.medname,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Dosage",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    /*"5 Days From 12-08-2021"*/
+                                                    medition.dosage,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Morning",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Text(
+                                                  /*"1"*/
+                                                  medition.morning,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Afternoon",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Text(
+                                                  medition.afternoon,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Evening",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "   :   ",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                                Text(
+                                                  /*"1"*/
+                                                  medition.evening,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                            /* SizedBox(height: 5),
+                          Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                child: Text(
+                                  "Doctor",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                              Text(
+                                "   :   ",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                              ),
+                              Text(
+                                "Mr.Neraj Desai",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                              ),
+                            ],
+                          ),*/
+                                            SizedBox(height: 5),
+                                          ],
                                         ),
-                                      );
-                                    },
-                                    itemCount: madicationlistModel.body.length,
-                                  )
-                                : Container(),
-                          ),
+                                      ),
+                                    );
+                                  },
+                                  itemCount: madicationlistModel.body.length,
+                                )
+                              : Container(),
                         ),
                       ]),
                     ),

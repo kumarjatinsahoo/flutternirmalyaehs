@@ -20,7 +20,6 @@ import 'package:user/widgets/text_field_address.dart';
 import 'package:user/widgets/text_field_container.dart';
 
 class DoctorTestlist extends StatefulWidget {
-
   MainModel model;
   final bool isConfirmPage;
   static KeyvalueModel medicinModel = null;
@@ -41,7 +40,7 @@ List<TextEditingController> textEditingController = [
 class _DoctorTestlistState extends State<DoctorTestlist> {
   DateTime selectedDate = DateTime.now();
   UserListModel userListModel;
-  bool isdata =true;
+  bool isdata = true;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
   String useridst;
@@ -63,7 +62,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
       var df = DateFormat("dd/MM/yyyy");
       fromThis_.text = df.format(date);
       selectedDatestr = df.format(date).toString();
-      useridst =widget.model.appointmentlist.userid;
+      useridst = widget.model.appointmentlist.userid;
       //toThis_.text = df.format(date);
       //callAPI(selectedDatestr);
       callAPI();
@@ -96,25 +95,25 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.doctor_TEST_LIST +widget.model.appointmentlist.doctorName/*"4"*/,
+        api: ApiFactory.doctor_TEST_LIST +
+            widget.model.appointmentlist.doctorName /*"4"*/,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map["code"] == Const.SUCCESS) {
               setState(() {
-                isdata =false;
+                isdata = false;
                 userListModel = UserListModel.fromJson(map);
               });
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
-              isdata =false;
+              isdata = false;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
           });
-        }
-        );
+        });
   }
 
   @override
@@ -123,340 +122,365 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
     double deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Container(
-    height: double.maxFinite,
-    child: Column(
-
-      children: [
-        SizedBox(
-          height: 5,
-        ),
-        Container(
-          height: 50,
-          child: Card(
-            elevation: 1,
-            child: Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    "Add Test",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                //Spacer(),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogaddnomination(context),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.add_box,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-       /* Container(
-          height: 50,
-          child: Card(
-            elevation: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, bottom: 4),
-                  child:
-                  Text("Add Test",style: TextStyle(color:Colors.black,fontSize: 17,fontWeight: FontWeight.bold),)
-
-                  *//*MyWidgets.header(
-                      "  Add Test", Alignment.centerLeft,),*//*
-                  //child: MyWidgets.header("Attendance", Alignment.topLeft),
-                ),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogaddnomination(context),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.add_box,
-
-                      // color: Colors.red,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),*/
-
-        SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          height: double.maxFinite,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-
             children: [
-              /*isdata == true
-                  ? CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              )
-                  : userListModel == null || userListModel == null
-                  ? Container(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 50,
+                child: Card(
+                  elevation: 1,
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'No Data Found',
-                         textAlign: TextAlign.center,
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 15,),
+                      Expanded(
+                        child: Text(
+                          "Add Test",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      //Spacer(),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                dialogaddnomination(context),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Icon(
+                            Icons.add_box,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-
-              ):*/
-              isdata == true
-                  ? Center(
-                    child: Column(
-                      children: [
-                        SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
-                        CircularProgressIndicator(
-
-               // backgroundColor: AppData.matruColor,
               ),
+              /* Container(
+            height: 50,
+            child: Card(
+              elevation: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, bottom: 4),
+                    child:
+                    Text("Add Test",style: TextStyle(color:Colors.black,fontSize: 17,fontWeight: FontWeight.bold),)
+
+                    */ /*MyWidgets.header(
+                        "  Add Test", Alignment.centerLeft,),*/ /*
+                    //child: MyWidgets.header("Attendance", Alignment.topLeft),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            dialogaddnomination(context),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Icon(
+                        Icons.add_box,
+
+                        // color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),*/
+
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    /*isdata == true
+                    ? CircularProgressIndicator(
+                  backgroundColor: AppData.matruColor,
+                )
+                    : userListModel == null || userListModel == null
+                    ? Container(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'No Data Found',
+                           textAlign: TextAlign.center,
+                          style:
+                          TextStyle(color: Colors.black, fontSize: 15,),
+                        ),
                       ],
                     ),
-                  )
-                  : userListModel == null || userListModel == null
-                  ? Center(
-                    child: Container(
-                //height:  MediaQuery.of(context).size.height* 0.30,
+                  ),
 
-                child: Column(
-                  children: [
-                    SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
-                    Text(
-                        'No Data Found',
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                  ],
-                ),
-
-              ),
-                  ) : (userListModel != null)
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: userListModel.body.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        Body medicationlis = userListModel.body[index];
-
-                        return  Dismissible(
-
-                          //key: Key(item1),
-                          key: Key( userListModel.body[index].toString()),
-                          direction: DismissDirection.startToEnd,
-                            child:Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 5.0,
-                                  right: 5.0,
+                ):*/
+                    isdata == true
+                        ? Center(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.35,
                                 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
+                                CircularProgressIndicator(
+
+                                    // backgroundColor: AppData.matruColor,
                                     ),
-                                    Card(
-                                      elevation: 5,
-                                      child: Container(
-                                           //height: 100,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              border: Border.all(
-                                                color: Colors.grey[300],
+                              ],
+                            ),
+                          )
+                        : userListModel == null || userListModel == null
+                            ? Center(
+                                child: Container(
+                                  //height:  MediaQuery.of(context).size.height* 0.30,
+
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.35,
+                                      ),
+                                      Text(
+                                        'No Data Found',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : (userListModel != null)
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: userListModel.body.length,
+                                    itemBuilder: (BuildContext ctxt, int index) {
+                                      Body medicationlis =
+                                          userListModel.body[index];
+
+                                      return Dismissible(
+                                        //key: Key(item1),
+                                        key: Key(
+                                            userListModel.body[index].toString()),
+                                        direction: DismissDirection.startToEnd,
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 5.0,
+                                                right: 5.0,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      medicationlis.testname??"N/A",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 18),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      "Type: " +
-                                                          medicationlis
-                                                              .testgroup??"N/A",
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                    Text(
-                                                      medicationlis.remarks ??
-                                                          "N/A",
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-
-                                                  ],
-                                                ),
-                                                new Spacer(),
-                                                /*Padding(
-                                                  padding: const EdgeInsets.only(
-                                                    top: 15.0,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 10,
                                                   ),
-                                                  child: Column(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            widget.model.GETMETHODCALL_TOKEN(
-                                                                api: ApiFactory.DELETE_TEST_LIST +
-                                                                    widget.model.appointmentlist.doctorName
-                                                                    "4"+"&srlone=" +medicationlis.srlNoOne +
-                                                                    "&srltwo=" + medicationlis.srlNoTwo,
-                                                                token: widget.model.token,
-                                                                fun: (Map<String, dynamic> map) {
-                                                                  String msg = map[Const.MESSAGE];
-                                                                  if (map["status"] == "success") {
-                                                                    setState(() {
-                                                                      userListModel.body.removeAt(index);
-                                                                      //medicationlis.remove(index);
-                                                                      //AppData.showInSnackBar(context, "hii");
-                                                                      //medicinlist.remove(medicinlist[index]);
-                                                                      callAPI();
-                                                                      //medicinlist.remove(index);
-
-                                                                      //medicinlist.remove(medicinlist[index]);
-                                                                    });
-                                                                  }else {
-                                                                    // isDataNotAvail = true;
-                                                                    AppData.showInSnackBar(context, msg);
-                                                                  }
-
-                                                                  setState(() {
+                                                  Card(
+                                                    elevation: 5,
+                                                    child: Container(
+                                                        //height: 100,
+                                                        width: double.maxFinite,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            border: Border.all(
+                                                              color: Colors
+                                                                  .grey[300],
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(8)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(10.0),
+                                                          child: Row(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    medicationlis
+                                                                            .testname ??
+                                                                        "N/A",
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            18),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  Text(
+                                                                    "Type: " +
+                                                                            medicationlis
+                                                                                .testgroup ??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style:
+                                                                        TextStyle(),
+                                                                  ),
+                                                                  Text(
+                                                                    medicationlis
+                                                                            .remarks ??
+                                                                        "N/A",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style:
+                                                                        TextStyle(),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              new Spacer(),
+                                                              /*Padding(
+                                                    padding: const EdgeInsets.only(
+                                                      top: 15.0,
+                                                    ),
+                                                    child: Column(
+                                                      // mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.end,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              widget.model.GETMETHODCALL_TOKEN(
+                                                                  api: ApiFactory.DELETE_TEST_LIST +
+                                                                      widget.model.appointmentlist.doctorName
+                                                                      "4"+"&srlone=" +medicationlis.srlNoOne +
+                                                                      "&srltwo=" + medicationlis.srlNoTwo,
+                                                                  token: widget.model.token,
+                                                                  fun: (Map<String, dynamic> map) {
                                                                     String msg = map[Const.MESSAGE];
                                                                     if (map["status"] == "success") {
                                                                       setState(() {
+                                                                        userListModel.body.removeAt(index);
+                                                                        //medicationlis.remove(index);
+                                                                        //AppData.showInSnackBar(context, "hii");
+                                                                        //medicinlist.remove(medicinlist[index]);
                                                                         callAPI();
-                                                                        medicinlist.remove(medicinlist[index]);
+                                                                        //medicinlist.remove(index);
+
+                                                                        //medicinlist.remove(medicinlist[index]);
                                                                       });
-                                                                      //
-                                                                      //medicinlist.removeAt(index);
-                                                                      //medicinlist.removeAt(index);
-                                                                      //
-
-
-                                                                    } else {
+                                                                    }else {
                                                                       // isDataNotAvail = true;
                                                                       AppData.showInSnackBar(context, msg);
                                                                     }
+
+                                                                    setState(() {
+                                                                      String msg = map[Const.MESSAGE];
+                                                                      if (map["status"] == "success") {
+                                                                        setState(() {
+                                                                          callAPI();
+                                                                          medicinlist.remove(medicinlist[index]);
+                                                                        });
+                                                                        //
+                                                                        //medicinlist.removeAt(index);
+                                                                        //medicinlist.removeAt(index);
+                                                                        //
+
+
+                                                                      } else {
+                                                                        // isDataNotAvail = true;
+                                                                        AppData.showInSnackBar(context, msg);
+                                                                      }
+                                                                    });
                                                                   });
-                                                                });
-                                                            //DELETE_MEDICINE_LIST
-                                                            medicinlist.remove(
-                                                                medicinlist[
-                                                                    index]);
-                                                          });
-                                                        },
-                                                        child: Icon(
-                                                          Icons.delete,
-                                                          // color: Colors.red,
-                                                        ),
-                                                      )
-                                                    ],
+                                                              //DELETE_MEDICINE_LIST
+                                                              medicinlist.remove(
+                                                                  medicinlist[
+                                                                      index]);
+                                                            });
+                                                          },
+                                                          child: Icon(
+                                                            Icons.delete,
+                                                            // color: Colors.red,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),*/
+                                                            ],
+                                                          ),
+                                                        )),
                                                   ),
-                                                ),*/
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            ),
-                          onDismissed: (direction) {
-                          setState(() {
-                            userListModel.body.removeAt(index);
-                          });
-                        },
-                        );
-                      },
-                      // itemCount:medicinmodel.length,
-                    )
-              : Container(),/* Center(
-        child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'No Data Found',
-              textAlign: TextAlign.center,
-              style:
-              TextStyle(color: Colors.black, fontSize: 15,),
-            ),
-          ],
-        ),
-        ),*/
-              /*  Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child:  _submitButton(),
-              ),*/
-              SizedBox(
-                height: 16,
+                                          ],
+                                        ),
+                                        onDismissed: (direction) {
+                                          setState(() {
+                                            userListModel.body.removeAt(index);
+                                          });
+                                        },
+                                      );
+                                    },
+                                    // itemCount:medicinmodel.length,
+                                  )
+                                : Container(),
+                    /* Center(
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'No Data Found',
+                textAlign: TextAlign.center,
+                style:
+                TextStyle(color: Colors.black, fontSize: 15,),
+              ),
+            ],
+          ),
+          ),*/
+                    /*  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child:  _submitButton(),
+                ),*/
+                    SizedBox(
+                      height: 16,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
-      ],
-    ),
       ),
     );
   }
@@ -466,7 +490,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
     textEditingController[1].text = "";
     textEditingController[2].text = "";
 
-   /// DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    /// DoctorMedicationlistModel item = DoctorMedicationlistModel();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -491,7 +515,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     child: DropDown.networkDropdownGetpartUser(
                         "Test",
                         ApiFactory.TESTNAME_LIST,
-                       // "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
+                        // "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
                         "test",
                         Icons.fiber_manual_record,
                         23.0, (KeyvalueModel data) {
@@ -501,8 +525,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                         textEditingController[0].text =
                             DoctorTestlist.medicinModel.key;
                         textEditingController[1].text =
-                            DoctorTestlist.medicinModel.code ;
-
+                            DoctorTestlist.medicinModel.code;
 
                         /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
@@ -510,10 +533,10 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     }),
                   ),
                 ),
-                fromField1(0, "Test Groop", TextInputAction.next, TextInputType.text,
-                    "Type"),
-                fromField1(1, "Test Name", TextInputAction.next, TextInputType.text,
-                    "Type"),
+                fromField1(0, "Test Groop", TextInputAction.next,
+                    TextInputType.text, "Type"),
+                fromField1(1, "Test Name", TextInputAction.next,
+                    TextInputType.text, "Type"),
                 fromAddress(2, "Remark", TextInputAction.next,
                     TextInputType.text, "remark"),
               ],
@@ -542,12 +565,11 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             } else if (textEditingController[2].text == '') {
               AppData.showInSnackBar(context, "Please enter remark");
             } else {
-              var param =
-              [
+              var param = [
                 {
                   "userid": widget.model.appointmentlist.userid,
-                  "appno":  widget.model.appointmentlist.doctorName,//appno"4",
-                  "remarks": textEditingController[2].text ,
+                  "appno": widget.model.appointmentlist.doctorName, //appno"4",
+                  "remarks": textEditingController[2].text,
                   "doctor": widget.model.user,
                   "testgroup": textEditingController[0].text,
                   "testname": textEditingController[1].text
@@ -557,8 +579,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               print("TO POST>>>>" + jsonEncode(param));
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                 api: ApiFactory.POST_TEST,
-                 // api: "http://192.168.43.248:8062/nirmalyaRest/api/post-user-test-by-doctor",
+                  api: ApiFactory.POST_TEST,
+                  // api: "http://192.168.43.248:8062/nirmalyaRest/api/post-user-test-by-doctor",
                   json: param,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
@@ -972,8 +994,6 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
       ),
     );
   }
-
-
 
   Widget appointdate() {
     return Container(
