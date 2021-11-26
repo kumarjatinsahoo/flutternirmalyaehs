@@ -197,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Center(
               child: Text(
-                'My Profile',
+                MyLocalizations.of(context).text("MY_PROFILE"),
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -220,8 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, "/idCard");
                 },
-                child: Text(
-                  "ID CARD",
+                child: Text(MyLocalizations.of(context).text("ID_CARD"),
                   style: TextStyle(
                     fontSize: 14,
                     decoration: TextDecoration.underline,
@@ -517,7 +516,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           tabs: [
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text('Details'.toUpperCase(),
+                              child: Text(MyLocalizations.of(context).text("DETAILS").toUpperCase(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w900,
@@ -525,10 +524,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(
-                                  'Emergency Contacts'
-                                      .toUpperCase()
-                                      .toUpperCase(),
+                              child: Text(MyLocalizations.of(context).text("EMERGENCY_CONTACT").toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
@@ -536,7 +532,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text('Family Doctors'.toUpperCase(),
+                              child: Text(MyLocalizations.of(context).text("FAMILY_DOCTORS").toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
@@ -598,8 +594,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(width: 10),
                     Expanded(
                       flex: 1,
-                      child: Text(
-                        'Date Of Birth',
+                      child: Text(MyLocalizations.of(context).text("DOB1"),
                         style: TextStyle(
                           fontSize: 15
                           // color: Colors.black54,
@@ -648,8 +643,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(width: 10),
                     Expanded(
                       flex: 1,
-                      child: Text(
-                        'Blood Group',
+                      child: Text(MyLocalizations.of(context).text("BLOODGROUP"),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w800,
@@ -724,7 +718,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         alignment: Alignment.centerLeft,
                         width: 100,
                         child: Text(
-                          'Gender',
+                          MyLocalizations.of(context).text("GENDER"),
                           style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w800,
                             // color: AppData.kPrimaryColor,
@@ -768,7 +762,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Contact Details',
+                        MyLocalizations.of(context).text("CONTACT_DETAILS"),
                         style: TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w800,
                           // color: AppData.kPrimaryColor,
@@ -810,7 +804,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Address',
+                        MyLocalizations.of(context).text("ADDRESS"),
                         style: TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w800,
                           // color: AppData.kPrimaryColor,
@@ -873,7 +867,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Name',
+                        MyLocalizations.of(context).text("NAME"),
                         style: TextStyle(
                           fontSize: 15,
                           // color: Colors.black54,
@@ -917,7 +911,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Relation',
+                        MyLocalizations.of(context).text("RELATION"),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -959,7 +953,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Mobile No.',
+                        MyLocalizations.of(context).text("MOBILE_NO"),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -1035,7 +1029,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Name',
+                        MyLocalizations.of(context).text("NAME"),
                         style: TextStyle(
                           fontSize: 15
                           // color: Colors.black54,
@@ -1080,7 +1074,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Speciality ',
+                        MyLocalizations.of(context).text("SPECIALITY"),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -1122,7 +1116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        'Mobile No.',
+                        MyLocalizations.of(context).text("MOBILE_NO"),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -1271,14 +1265,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           // ),
 
                           SizedBox(height: 10),
-                          Text(
-                            "Update Profile",
+                          Text(MyLocalizations.of(context).text("UPDATE_PROFILE"),
                             style: TextStyle(color: Colors.black, fontSize: 20),
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          dob("DOB"),
+                          dob(MyLocalizations.of(context).text("DOB")),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1287,7 +1280,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Blood Group",
+                                    MyLocalizations.of(context).text("BLOODGROUP"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1311,7 +1304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 }),
                               ]),
                           formField(
-                              1, "Emergency Contact Name", fnode1, fnode2),
+                              1, MyLocalizations.of(context).text("EMERGENCY_CONTACT_NAME"), fnode1, fnode2),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1320,7 +1313,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Relation",
+                                    MyLocalizations.of(context).text("RELATION"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1345,8 +1338,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ]),
                           /*   Divider(height: 2, color: Colors.black),*/
                           formFieldMobileno(
-                              2, "Emergency Contact No.", fnode2, fnode3),
-                          formField(3, "Family Doctor's Name", fnode3, fnode4),
+                              2,  MyLocalizations.of(context).text("EMERGENCY_CONTACT_NO"), fnode2, fnode3),
+                          formField(3,  MyLocalizations.of(context).text("FAMILY_DOCTORS"), fnode3, fnode4),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1355,7 +1348,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Speciality",
+                                    MyLocalizations.of(context).text("SPECIALITY"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1380,8 +1373,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.black,
                           ),*/
                           formFieldMobileno(
-                              4, "Doctors Mobile No", fnode4, fnode5),
-                          formFieldAddress(5, "User Address", fnode5, null),
+                              4,MyLocalizations.of(context).text("DOC_MOBILE"), fnode4, fnode5),
+                          formFieldAddress(5, MyLocalizations.of(context).text("USER_ADDRESS"), fnode5, null),
                         ],
                       ),
                     ),
@@ -1392,7 +1385,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL',
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -1404,7 +1397,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  'OK',
+                  MyLocalizations.of(context).text("SAVE"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
