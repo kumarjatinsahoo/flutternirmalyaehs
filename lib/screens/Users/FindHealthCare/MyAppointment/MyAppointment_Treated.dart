@@ -457,10 +457,9 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                 ),
                                                                 InkWell(
                                                                   onTap: () {
-                                                                    widget.model
-                                                                        .userappointment =
-                                                                        appointmentlist;
-
+                                                                    // widget.model.userappointment = appointmentlist;
+                                                                    widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
+                                                                    widget.model.appno=appointmentlist?.appno ;
                                                                     Navigator.pushNamed(
                                                                         context,
                                                                         "/usermedicinelist");
@@ -478,8 +477,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                       minWidth: 90,
                                                                       height: 40.0,
                                                                       child: Text(
-                                                                        /*'Confirmed'*/
-                                                                        "Show Prescription",
+                                                                            "Show Prescription",
                                                                         style: TextStyle(
                                                                             fontWeight:
                                                                             FontWeight
@@ -546,7 +544,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                         children: [
                                                           Row(
                                                             children: [
-                                                              *//*Container(
+                                                              Container(
 
                                                             decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(85),
@@ -563,7 +561,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                     //fit: BoxFit.cover,
                                                                   ),
                                                                 )),
-                                                          ),*//*
+                                                          ),
                                                               CircleAvatar(
                                                                 radius: 50,
                                                                 foregroundColor:
@@ -594,7 +592,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                       Text(
                                                                         appointmentlist.doctorName ??
                                                                             "N/A",
-                                                                        *//*"",*//*
+
                                                                         style: TextStyle(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
@@ -677,7 +675,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                   SizedBox(
                                                                     height: 3,
                                                                   ),
-                                                                  *//*  Text(
+                                                                    Text(
                                                                 appointmentlist
                                                                     .patname ??
                                                                     "N/A",
@@ -687,7 +685,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .blue,fontSize: 13),
-                                                              ),*//*
+                                                              ),
                                                                   Row(
                                                                     children: [
                                                                       RatingBar
@@ -724,7 +722,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             ],
                                                           ),
                                                           //  SizedBox(width: 10,),
-                                                          *//*new Spacer(),*//*
+                                                          new Spacer(),
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsets
@@ -746,7 +744,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           Container(
                                                             width: 110,
                                                             child: Text(
-                                                              *//*'Confirmed'*//*
+                                                              'Confirmed'
                                                               "Address",
                                                               style: TextStyle(
                                                                   fontWeight:
@@ -758,7 +756,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           ),
                                                           Text(" : "),
                                                           Text(
-                                                            *//*'23-Nov-2020-11:30AM'*//*
+                                                            '23-Nov-2020-11:30AM'+
                                                             appointmentlist
                                                                 .dochospital,
                                                             overflow:
@@ -773,7 +771,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                       SizedBox(
                                                         height: 10,
                                                       ),
-                                                      *//* Text(
+                                                       Text(
                                                     "Patient Notes: " +
                                                         appointmentlist
                                                             .notes ??
@@ -783,7 +781,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                         .clip,
                                                     style:
                                                     TextStyle(fontSize: 13),
-                                                  ),*//*
+                                                  ),
                                                       Row(
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment:
@@ -793,7 +791,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           Container(
                                                             width: 110,
                                                             child: Text(
-                                                              *//*'Confirmed'*//*
+                                                              'Confirmed'
                                                               "Date",
                                                               style: TextStyle(
                                                                   fontWeight:
@@ -804,7 +802,6 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           ),
                                                           Text(" : "),
                                                           Text(
-                                                            *//*'23-Nov-2020-11:30AM'*//*
                                                             appointmentlist
                                                                     .appdate ??
                                                                 "N/A" +
@@ -830,7 +827,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           Container(
                                                             width: 110,
                                                             child: Text(
-                                                              *//*'Confirmed'*//*
+                                                              'Confirmed'
                                                               "Patient Notes",
                                                               style: TextStyle(
                                                                   fontWeight:
@@ -841,7 +838,6 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           ),
                                                           Text(" : "),
                                                           Text(
-                                                            *//*'23-Nov-2020-11:30AM'*//*
                                                             appointmentlist
                                                                 .notes,
                                                             overflow:
@@ -862,7 +858,6 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                           Padding(
                                                             padding: const EdgeInsets.only(left:5.0),
                                                             child: Text(
-                                                              *//*'Confirmed'*//*
                                                               appointmentlist
                                                                   .status ??
                                                                   "N/A",
@@ -897,7 +892,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                 minWidth: 90,
                                                                 height: 40.0,
                                                                 child: Text(
-                                                                  *//*'Confirmed'*//*
+                                                                  'Confirmed'
                                                                   "Show Prescription",
                                                                   style: TextStyle(
                                                                       fontWeight:

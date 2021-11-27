@@ -36,7 +36,7 @@ class _UserMedicineList extends State<UserMedicineTab> {
 
           bottom: TabBar(
             //indicatorSize: TabBarIndicatorSize.label,
-            indicatorColor: AppData.kPrimaryRedColor,
+            indicatorColor:Colors.white,
             //isScrollable: true,
             dragStartBehavior: DragStartBehavior.down,
             tabs: [

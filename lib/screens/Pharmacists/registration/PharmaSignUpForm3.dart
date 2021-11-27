@@ -66,6 +66,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -598,7 +599,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     setState(() {
       _imageCertificate = image;
       idproof = _fileName;
-      userModel.profileImage = base64Encode(enc);
+     // userModel.profileImage = base64Encode(enc);
+      pharmaSignupModel.documentUpload=base64Encode(enc);
+      pharmaSignupModel.documentExt=extName;
+
     });
   }
 
@@ -730,12 +734,12 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
+        }else if (pharmaSignupModel.documentExt == null) {
+          AppData.showInSnackBar(context, "Please Upload Document");
         } else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please check Terms and Condition");
         } else {
           MyWidgets.showLoading(context);
-          PharmacyRegistrationModel pharmaSignupModel =
-              PharmacyRegistrationModel();
           pharmaSignupModel.organizationid = pharmaorganisation;
           pharmaSignupModel.titleid = pharmatitle;
           pharmaSignupModel.docname = pharmaprofessional;
@@ -1410,7 +1414,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {Navigator.pop(context), getCerificateImage()},
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getCerificateImage()},
                 ),
                 new ListTile(
                     leading: new Icon(Icons.file_copy),
@@ -1448,7 +1454,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           _imageCertificate = image;
           idproof = _fileName;
           // Print("pathhh"+idproof);
-          userModel.profileImage = base64Encode(enc);
+          //userModel.profileImage = base64Encode(enc);
+          pharmaSignupModel.documentUpload=base64Encode(enc);
+          pharmaSignupModel.documentExt=extName;
+
         });
       }
     } catch (e) {
@@ -1475,6 +1484,8 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     if (file != null) {
       setState(() {
         idproof = file.path;
+        pharmaSignupModel.documentUpload=base64Encode(enc);
+        pharmaSignupModel.documentExt=extName;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
       });

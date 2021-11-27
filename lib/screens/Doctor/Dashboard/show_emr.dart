@@ -89,8 +89,7 @@ class _ShowEmr extends State<ShowEmr> {
                                     builder: (context) => new WalkPatient()));*/
                             //Navigator.pushNamed(context, "/docWalkInReg");
                             Navigator.of(context).pop();
-                            Navigator.of(context).pop();
-                            Navigator.of(context).pop();
+                            //Navigator.of(context).pop();
                           },
                         ),
                         SizedBox(
@@ -128,7 +127,8 @@ class _ShowEmr extends State<ShowEmr> {
                       child: TabBar(
                         isScrollable: true,
                         labelColor: Colors.white,
-                        indicatorColor: Color(0xFF0F6CE1),
+                        indicatorColor:Colors.white,
+                        //isScrollable: true,
                         labelStyle: TextStyle(fontSize: 15),
                         tabs: [
                           new Container(
