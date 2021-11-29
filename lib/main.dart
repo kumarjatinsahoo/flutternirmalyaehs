@@ -75,6 +75,7 @@ import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/DocumentPdfView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -982,6 +983,9 @@ class _MyAppState extends State<MyApp> {
               ),
 
               '/monthlyoverview': (context) => MonthlyOverview(
+                model: _model,
+              ),
+              '/healthchart': (context) => HealthChart(
                 model: _model,
               ),
 

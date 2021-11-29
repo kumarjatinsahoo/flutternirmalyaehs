@@ -137,24 +137,32 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               .circular(
                               3.0),
                           child:
-                          MaterialButton(
-                           // minWidth: 90,
-                            height: 70.0,
-                            child: Text(
-                              "CONFIRMED",
-                              style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  13,
-                                  color: Colors
-                                      .white),
+
+                          Expanded(
+                            child: MaterialButton(
+                              minWidth: 90,
+                              height: 80.0,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "CONFIRMED",
+                                    style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .bold,
+                                        fontSize:
+                                        13,
+                                        color: Colors
+                                            .white),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Text(monthlyOverviewModel.body.booked??"N/A",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.booked??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+
                       ],
                     ),
                     Spacer(),
@@ -169,24 +177,33 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               .circular(
                               3.0),
                           child:
-                          MaterialButton(
-                           // minWidth: 90,
-                            height: 70.0,
-                            child: Text(
-                              "REQUESTED",
-                              style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  12,
-                                  color: Colors
-                                      .white),
+                          Expanded(
+                            child: MaterialButton(
+                              minWidth: 90,
+                              height: 80.0,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "REQUESTED",
+                                    style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .bold,
+                                        fontSize:
+                                        12,
+                                        color: Colors
+                                            .white),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Text(monthlyOverviewModel.body.requested??"N/A",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+
                             ),
+
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.requested??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+
                       ],
                     ),
                     Spacer(),
@@ -201,24 +218,31 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               .circular(
                               3.0),
                           child:
-                          MaterialButton(
-                            //minWidth: 90,
-                            height: 70.0,
-                            child: Text(
-                              "TREATED",
-                              style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  12,
-                                  color: Colors
-                                      .white),
+                          Expanded(
+                            child: MaterialButton(
+                              minWidth: 100,
+                              height: 80.0,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "TREATED",
+                                    style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .bold,
+                                        fontSize:
+                                        12,
+                                        color: Colors
+                                            .white),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  Text(monthlyOverviewModel.body.treated??"N/A",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.treated??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+
                       ],
                     ),
                   ],
