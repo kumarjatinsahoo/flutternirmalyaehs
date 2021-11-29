@@ -543,7 +543,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     /*lifeStyleHistryModel?.body.exercise.toString()==null?"N/A":textEditingController[0].text=lifeStyleHistryModel?.body.exercise.toString();
     lifeStyleHistryModel?.body.occupation.toString()==null?"N/A": textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString();
     lifeStyleHistryModel?.body.pets.toString()==null?"N/A":textEditingController[2].text=lifeStyleHistryModel.body.pets.toString();*/
-    lifeStyleHistryModel != null
+   /* lifeStyleHistryModel != null
         ? textEditingController[0].text =
             lifeStyleHistryModel.body.exercise.toString() ?? "N/A"
         : textEditingController[0].text = "N/A";
@@ -554,7 +554,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     lifeStyleHistryModel != null
         ? textEditingController[2].text =
             lifeStyleHistryModel.body.pets.toString() ?? "N/A"
-        : textEditingController[2].text = "N/A";
+        : textEditingController[2].text = "N/A";*/
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
     textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/
 

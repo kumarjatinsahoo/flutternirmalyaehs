@@ -122,139 +122,53 @@ class _ImmunizationState extends State<Immunization> {
           ]),
       body: isdata == true
           ? Center(
-            child: CircularProgressIndicator(
+              child: CircularProgressIndicator(
                 backgroundColor: AppData.matruColor,
               ),
-          )
+            )
           : immunizationListModel == null || immunizationListModel == null
               ? Container(
                   child: Center(
-                    child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                    child: Text(
+                      MyLocalizations.of(context).text("NO_DATA_FOUND"),
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
                 )
               : Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Container(
-
+                  padding: const EdgeInsets.all(5.0),
+                  child: Container(
                     child: SingleChildScrollView(
                       child: (immunizationListModel != null)
                           ? ListView.builder(
                               itemCount: immunizationListModel.body.length,
                               shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, i) {
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, i) {
                                 immunization.Body body =
                                     immunizationListModel.body[i];
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 5, right: 5, top: 5),
-                                  child: Card(
-                                    elevation: 5,
-                                    child: Container(
-                                      decoration: (i % 2 == 0)
-                                          ? BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color: AppData.kPrimaryRedColor,
-                                                  width: 5)))
-                                          : BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color: AppData.kPrimaryColor,
-                                                  width: 5))),
-                                      width: double.maxFinite,
-                                     // width: MediaQuery.of(context).size.width,
-                                      height: 80,
-                                      /*decoration: BoxDecoration(
-                                        // color: Colors.indigo[50],
-                                        borderRadius: BorderRadius.circular(5.0),
-                                        border: Border.all(
-                                            color: Colors.grey, width: 0.7),
-                                      ),*/
-                                      child: Row(
-                                          //mainAxisAlignment: MainAxisAlignment.spic,
-                                          children: [
-                                            Container(
-                                                child: Row(
-                                                    //mainAxisAlignment: MainAxisAlignment.spic,
-                                                    children: [
-                                                  InkWell(
-                                                      onTap: () {
-                                                        // Navigator.pop(context);
-                                                      },
-                                                      child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10.0,
-                                                                  right: 10.0),
-                                                          child: Image.asset(
-                                                            "assets/redinjection40.png",
-                                                            color: Colors.black,
-                                                            height: 40,
-                                                          ))),
-                                                ])),
-                                            new Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    body.immunizationId,
-                                                    overflow: TextOverflow.clip,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        fontSize: 14),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Text(
-                                                    'Prescrlbed by:' +
-                                                        body.doctorName,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Text(
-                                                    body.immunizationDate,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14),
-                                                  ),
-
-
-                                                ],
-                                              ),
-                                            ),
-                                            new Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10.0),
-                                              child: InkWell(
-                                                onTap: (){
-                                        String slno=body.slno;
-                                        String status=body.status;
+                                child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        String slno = body.slno;
+                                        String status = body.status;
 
                                         widget.model.GETMETHODCALL_TOKEN(
-                                            api: ApiFactory.IMMUNIZATION_STATUS +slno+"&status="+status,
+                                            api: ApiFactory
+                                                .IMMUNIZATION_STATUS + slno +
+                                                "&status=" + status,
                                             token: widget.model.token,
                                             fun: (Map<String, dynamic> map) {
                                               setState(() {
-                                                log("Value>>>" + jsonEncode(map));
+                                                log("Value>>>" +
+                                                    jsonEncode(map));
                                                 String msg = map[Const.MESSAGE];
-                                                if (map[Const.CODE] == Const.SUCCESS) {
+                                                if (map[Const.CODE] ==
+                                                    Const.SUCCESS) {
                                                   setState(() {
                                                     Navigator.of(context).pop();
                                                   });
@@ -266,42 +180,115 @@ class _ImmunizationState extends State<Immunization> {
                                                 }
                                               });
                                             });
+                                      },
+                                  child:
 
-                                                },
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Status",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 14),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      body.status,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 14),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
+                                  Container(
+                                    decoration: (i % 2 == 0)
+                                        ?  BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border(
+                                        left: BorderSide(
+                                            color:
+                                            AppData.kPrimaryRedColor,
+                                            width: 5)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 1.0), //(x,y)
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
 
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            new Spacer(),
+                                    ): BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border(
+                                          left: BorderSide(
+                                              color:
+                                              AppData.kPrimaryColor,
+                                              width: 5)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 1.0), //(x,y)
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
 
-                                          ]),
                                     ),
-                                  ),
+
+
+                                    width: double.maxFinite,
+                                    /*height: 80,*/
+                                    child: ListTile(
+                                      leading:  InkWell(
+                                          onTap: () {
+                                            // Navigator.pop(context);
+                                          },
+                                          child: Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(
+                                                  left: 10.0,
+                                                  right: 10.0),
+                                              child: Image.asset(
+                                                "assets/redinjection40.png",
+                                                color: Colors.black,
+                                                height: 40,
+                                              ))),
+                                      subtitle:  Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              body.immunizationId,
+                                              overflow:
+                                              TextOverflow.clip,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  fontSize: 14),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Prescribed by:' +
+                                                  body.doctorName,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  fontSize: 14),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              body.immunizationDate,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  fontSize: 14),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      trailing: Text(
+                                        body.status,
+                                        style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            fontSize: 14),
+                                      ),
+                                    ),
+                                ),
+                                 /* ),*/
+                                    ),
+                                ),
                                 );
                               },
                             )
@@ -314,7 +301,7 @@ class _ImmunizationState extends State<Immunization> {
           child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
 */
                   ),
-              ),
+                ),
     );
   }
 
@@ -342,7 +329,8 @@ class _ImmunizationState extends State<Immunization> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text("Add Details",
+                                child: Text(
+                                  "Add Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -362,7 +350,8 @@ class _ImmunizationState extends State<Immunization> {
                         //   });
                         // }),
 
-                        DropDown.networkDropdownGetpartUser1("Immunization Type",
+                        DropDown.networkDropdownGetpartUser1(
+                            "Immunization Type",
                             ApiFactory.IMMUNIZATION_API,
                             "immunization",
                             Icons.location_on_rounded,
@@ -375,9 +364,9 @@ class _ImmunizationState extends State<Immunization> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-                        formField(1,"Prescribed By"),
+                        formField(1, "Prescribed By"),
                         SizedBox(height: 8),
-                        formField(2,"Immunization Details"),
+                        formField(2, "Immunization Details"),
                       ],
                     ),
                   ),
@@ -397,7 +386,8 @@ class _ImmunizationState extends State<Immunization> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(MyLocalizations.of(context).text("SUBMIT"),
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -499,7 +489,8 @@ class _ImmunizationState extends State<Immunization> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: (MyLocalizations.of(context).text("IMMUNIZATION_DATE")),
+                hintText:
+                    (MyLocalizations.of(context).text("IMMUNIZATION_DATE")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -557,7 +548,7 @@ class _ImmunizationState extends State<Immunization> {
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
           // controller: _reason,
-          controller:textEditingController[index],
+          controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
             WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),

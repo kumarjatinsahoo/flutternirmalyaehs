@@ -232,7 +232,7 @@ class _MedicineList extends State<UserMedicineList1> {
                                           children: [
                                             Text(
                                               /*'Confirmed'*/
-                                              "Precription Date",
+                                              "Prescription Date",
                                               style: TextStyle(
 
                                                   fontSize: 14,color: Colors
