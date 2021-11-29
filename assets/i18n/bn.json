@@ -85,6 +85,11 @@
   "EHEALTH_INFORMATION": "ଇ ସ୍ୱାସ୍ଥ୍ୟ ସୂଚନା",
   "BOOK_AMBULANCE": "ବୁକ୍ ଆମ୍ବୁଲାନ୍ସ",
   "MY_PROFILE": "ମୋର ପ୍ରୋଫାଇଲ୍",
+  "ID_CARD": "ପରିଚୟ ପତ୍ର",
+  "DETAILS": "ବିବରଣୀ",
+  "EMERGENCY_CONTACT": "ଜରୁରୀକାଳୀନ ସମ୍ପର୍କ",
+  "FAMILY_DOCTORS": "ପରିବାର ଡାକ୍ତର",
+  "CONTACT_DETAILS": "ସମ୍ପର୍କ ଠିକଣା",
   "ABOUT_US": "ଆମ ବିଷୟରେ",
   "SHARE": "ସେୟାର କରନ୍ତୁ",
   "CONTACT_US": "ଆମକୁ ଯୋଗାଯୋଗ କରନ୍ତୁ",
@@ -208,6 +213,7 @@
   "SETUP_CONTACT": "ସେଟଅପ୍ ଯୋଗାଯୋଗ ",
   "ADD_EMERGENCY_CONTACT": "ଅତିରିକ୍ତ ଯୋଗାଯୋଗ ଯୋଡନ୍ତୁ ",
   "EMERGENCY_CONTACT_NO": "ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ ନମ୍ବର ",
+  "EMERGENCY_CONTACT_NAME": "ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ ନାମ",
   "RELATION": "ସମ୍ପର୍କ",
   "EMERGENCY_ALERT": "",
   "WHAT_IS_ORGANDONATION": "ଅଙ୍ଗ ଦାନ କ’ଣ?",
@@ -351,7 +357,12 @@
   "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
   "PLEASE_ENTER_EMAIL": "Please enter Email Id",
   "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
-  "PLEASE_CHECK_TC": "Please check terms and Condition"
+  "PLEASE_CHECK_TC": "Please check terms and Condition",
+
+
+  "UPDATE_PROFILE": "ପ୍ରୋଫାଇଲ୍ ଅଦ୍ୟତନ କରନ୍ତୁ ",
+  "DOC_MOBILE": "ଡାକ୍ତର ମୋବାଇଲ୍ ନଂ",
+  "USER_ADDRESS": "ଉପଯୋଗକର୍ତ୍ତା ଠିକଣା"
 }
 
 

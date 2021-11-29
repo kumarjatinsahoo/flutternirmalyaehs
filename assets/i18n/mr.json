@@ -84,6 +84,11 @@
   "EHEALTH_INFORMATION": "आरोग्य माहितीशास्त्र",
   "BOOK_AMBULANCE": "रुग्णवाहिका बुक करा",
   "MY_PROFILE": "माझे प्रोफाइल",
+  "ID_CARD": "ओळखपत्र",
+  "DETAILS": "तपशील",
+  "EMERGENCY_CONTACT": "आपत्कालीन संपर्क",
+  "FAMILY_DOCTORS": "फॅमिली डॉक्टर्स",
+  "CONTACT_DETAILS": "संपर्काची माहिती",
   "ABOUT_US": "आमच्या बद्दल",
   "SHARE": "शेयर करा",
   "CONTACT_US": "आमच्याशी संपर्क साधा",
@@ -202,6 +207,7 @@
   "SETUP_CONTACT": "संपर्क यादी तयार करा",
   "ADD_EMERGENCY_CONTACT": "आपातकालीन संपर्क जोडा",
   "EMERGENCY_CONTACT_NO": "आपत्कालीन संपर्क क्रमांक",
+  "EMERGENCY_CONTACT_NAME": "आपत्कालीन संपर्क नाव",
   "RELATION": "नाते",
   "EMERGENCY_ALERT": "",
   "WHAT_IS_ORGANDONATION": "अवयव दान म्हणजे काय?",
@@ -350,7 +356,11 @@
   "PLEASE_ENTER_VALIDNUMBER": "Please enter a valid Mobile Number",
   "PLEASE_ENTER_EMAIL": "Please enter Email Id",
   "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
-  "PLEASE_CHECK_TC": "Please check terms and Condition"
+  "PLEASE_CHECK_TC": "Please check terms and Condition",
+
+  "UPDATE_PROFILE": "प्रोफाइल अपडेट",
+  "DOC_MOBILE": "डॉक्टरांचा मोबाईल क्र",
+  "USER_ADDRESS": "वापरकर्ता पत्ता"
 }
 
 

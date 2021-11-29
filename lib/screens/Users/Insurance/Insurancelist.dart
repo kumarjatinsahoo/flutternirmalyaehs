@@ -445,6 +445,7 @@ class _InsuranceListState extends State<InsuranceList> {
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
                     //  setState(() {
+                    Navigator.pop(context);
                     String msg = map[Const.MESSAGE];
                     if (map[Const.CODE] == Const.SUCCESS) {
                       popup(msg, context);
@@ -731,9 +732,8 @@ class _InsuranceListState extends State<InsuranceList> {
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
-        firstDate: DateTime(1901, 1),
-        lastDate:
-            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -748,9 +748,9 @@ class _InsuranceListState extends State<InsuranceList> {
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
-        firstDate: DateTime(1901, 1),
+        firstDate: DateTime.now(),
         lastDate:
-            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -780,10 +780,9 @@ class _InsuranceListState extends State<InsuranceList> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              //Navigator.pop(context, true);
-              //Navigator.pop(context, true);
-              //  Navigator.pop(context, true);
-//callApi();
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              callApi();
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

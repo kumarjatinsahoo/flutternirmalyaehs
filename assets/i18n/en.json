@@ -95,6 +95,11 @@
   "HEALTH_CHECKUP": "Health Checkup",
   "EHEALTH_INFORMATION": "eHealth Informatics",
   "MY_PROFILE": "My Profile",
+  "ID_CARD": "ID CARD",
+  "DETAILS": "Details",
+  "EMERGENCY_CONTACT": "Emergency Contacts",
+  "FAMILY_DOCTORS": "Family Doctor's Name",
+  "CONTACT_DETAILS": "Contact Details",
   "ABOUT_US": "About Us",
   "SHARE": "Share",
   "CONTACT_US": "Contact Us",
@@ -215,6 +220,7 @@
   "SETUP_CONTACT": "Setup Contacts",
   "ADD_EMERGENCY_CONTACT": "Add Emergency Contact",
   "EMERGENCY_CONTACT_NO": "Emergency Contact No.",
+  "EMERGENCY_CONTACT_NAME": "Emergency Contact Name",
   "RELATION": "Relation",
   "EMERGENCY_ALERT": "",
   "WHAT_IS_ORGANDONATION": "What is Organ Donation ? ",
@@ -354,6 +360,10 @@
   "PLEASE_ENTER_EMAIL": "Please enter Email Id",
   "PLEASE_ENTER_VALIDEMAIL": "Please enter a valid e-Mail",
   "PLEASE_CHECK_TC": "Please check terms and Condition",
+
+  "UPDATE_PROFILE": "Update Profile",
+  "DOC_MOBILE": "Doctors Mobile No.",
+  "USER_ADDRESS": "User Address",
 
 
   "AMBULANCE1": ""

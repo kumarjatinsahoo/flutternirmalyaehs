@@ -180,7 +180,7 @@ class _PatientHistory extends State<PatientHistory> {
                       SizedBox(
                         width: 5,
                       ),
-                      Expanded(
+                     /* Expanded(
                         child: Container(
                           width: 80,
                           child: Text(
@@ -189,7 +189,7 @@ class _PatientHistory extends State<PatientHistory> {
                                 color: Colors.black, fontSize: 15),
                           ),
                         ),
-                      ),
+                      ),*/
                     ]),
                   ),
                   Divider(height: 1,),
@@ -249,7 +249,7 @@ class _PatientHistory extends State<PatientHistory> {
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Expanded(
+                                /*Expanded(
                                   child: Container(
                                     width: 80,
                                     child: Text(
@@ -259,7 +259,7 @@ class _PatientHistory extends State<PatientHistory> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ),*/
                               ],
                             ),
                           );
@@ -282,7 +282,8 @@ class _PatientHistory extends State<PatientHistory> {
                   SizedBox(height: 5),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Row(children: [
+                    child:
+                    Row(children: [
                       Expanded(
                         child: Container(
                           width: 80,
@@ -322,7 +323,7 @@ class _PatientHistory extends State<PatientHistory> {
                       SizedBox(
                         width: 5,
                       ),
-                      Expanded(
+                      /*Expanded(
                         child: Container(
                           width: 80,
                           child: Text(
@@ -331,9 +332,10 @@ class _PatientHistory extends State<PatientHistory> {
                                 color: Colors.black, fontSize: 15),
                           ),
                         ),
-                      ),
+                      ),*/
                     ]),
                   ),
+                  Divider(height: 1,),
                   (patientmedicalhistoryModel!=null && patientmedicalhistoryModel.body!="" && patientmedicalhistoryModel.body.majorsurgery.isNotEmpty&&patientmedicalhistoryModel.body != null &&
                       patientmedicalhistoryModel.body.majorsurgery.length > 0  )?SingleChildScrollView(
                     child: SingleChildScrollView(
@@ -370,14 +372,14 @@ class _PatientHistory extends State<PatientHistory> {
                                       color: Colors.grey[700], ),
                                   ),
                                 ),
-                                SizedBox(width: 5),
+                                /*SizedBox(width: 5),
                                 Expanded(
                                   child: Text(
                                     patientmedicalhistoryModel.body.majorsurgery[index].opName??"N/A",
                                     style: TextStyle(
                                       color: Colors.grey[700], ),
                                   ),
-                                ),
+                                ),*/
                               ],
                             ),
                           );
