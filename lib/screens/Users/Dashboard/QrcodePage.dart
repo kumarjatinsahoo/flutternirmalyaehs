@@ -35,7 +35,7 @@ class _QrcodePageState extends State<QrcodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Qr code"),
+        title: Text("QR Code"),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
