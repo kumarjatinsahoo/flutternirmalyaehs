@@ -143,7 +143,8 @@ class _ImmunizationState extends State<Immunization> {
                           ? ListView.builder(
                               itemCount: immunizationListModel.body.length,
                               shrinkWrap: true,
-                              itemBuilder: (context, i) {
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, i) {
                                 immunization.Body body =
                                     immunizationListModel.body[i];
                                 return Padding(

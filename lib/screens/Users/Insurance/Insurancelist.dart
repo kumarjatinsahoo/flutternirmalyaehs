@@ -668,12 +668,10 @@ class _InsuranceListState extends State<InsuranceList> {
             ),
             child: TextFormField(
               focusNode: fnode3,
-              // enabled: !widget.isConfirmPage ? false : true,
               controller: _startdate,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               onSaved: (value) {
-                //userPersonalForm.dob = value;
                 selectDob = value;
               },
               validator: (value) {
@@ -718,7 +716,7 @@ class _InsuranceListState extends State<InsuranceList> {
         firstDate: DateTime(1901, 1),
         lastDate:
             DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
+   // if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
@@ -734,7 +732,7 @@ class _InsuranceListState extends State<InsuranceList> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
+  //  if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
@@ -751,7 +749,7 @@ class _InsuranceListState extends State<InsuranceList> {
         firstDate: DateTime.now(),
         lastDate:
             DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
+   /// if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;

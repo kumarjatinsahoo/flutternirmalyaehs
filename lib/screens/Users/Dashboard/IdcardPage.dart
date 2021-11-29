@@ -10,7 +10,8 @@ import 'dart:convert';
 
 class IdCardPage extends StatefulWidget {
   final MainModel model;
-  const IdCardPage({Key key,this.model}) : super(key: key);
+
+  const IdCardPage({Key key, this.model}) : super(key: key);
 
   @override
   _IdCardPageState createState() => _IdCardPageState();
@@ -22,28 +23,26 @@ class _IdCardPageState extends State<IdCardPage> {
   String id;
   LoginResponse1 loginResponse1;
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loginResponse1=widget.model.loginResponse1;
-    id=base64.encode(utf8.encode(loginResponse1.body.user));
+    loginResponse1 = widget.model.loginResponse1;
+    id = base64.encode(utf8.encode(loginResponse1.body.user));
   }
+
   final Completer<InAppWebViewController> _controller1 =
-  Completer<InAppWebViewController>();
+      Completer<InAppWebViewController>();
 
   final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
       crossPlatform: InAppWebViewOptions(
-
         useShouldOverrideUrlLoading: true,
-
         javaScriptCanOpenWindowsAutomatically: true,
         mediaPlaybackRequiresUserGesture: false,
         disableHorizontalScroll: true,
         disableVerticalScroll: true,
       ),
-    /*crossPlatform: InAppWebViewOptions(
+      /*crossPlatform: InAppWebViewOptions(
        //useShouldOverrideUrlLoading: true,
        mediaPlaybackRequiresUserGesture: false,
       // javaScriptEnabled: true,
@@ -61,7 +60,7 @@ class _IdCardPageState extends State<IdCardPage> {
       ios: IOSInAppWebViewOptions(
         allowsInlineMediaPlayback: true,
       )
-    /*android: AndroidInAppWebViewOptions(
+      /*android: AndroidInAppWebViewOptions(
       useHybridComposition: true,
       loadWithOverviewMode: true,
       useWideViewPort: false,
@@ -70,7 +69,8 @@ class _IdCardPageState extends State<IdCardPage> {
       supportMultipleWindows: true,
 
     ),*/
-  );
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,27 +89,25 @@ class _IdCardPageState extends State<IdCardPage> {
               ),
             ),
             //Spacer(),
-            Align(
+          /*  Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right:70.0),
+                padding: const EdgeInsets.only(right: 70.0),
                 child: InkWell(
                   onTap: () {
-    _onShareWithEmptyFields(context); 
-                  //  Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id);
-
-                    //Navigator.pushNamed(context, "/qrcode");
-                  },
+                    _onShareWithEmptyFields(context);
+                    },
                   child: Icon(Icons.share),
                 ),
               ),
-            ),
+            ),*/
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right:70.0),
+                padding: const EdgeInsets.only(right: 70.0),
                 child: InkWell(
                   onTap: () {
+                    _onShareWithEmptyFields(context);
                     //Navigator.pushNamed(context, "/qrcode");
                   },
                   child: Icon(Icons.share),
@@ -119,10 +117,8 @@ class _IdCardPageState extends State<IdCardPage> {
             Align(
               alignment: Alignment.topRight,
               child: InkWell(
-                onTap: () {
-                },
+                onTap: () {},
                 child: Icon(Icons.download),
-
               ),
             ),
             Align(
@@ -140,27 +136,29 @@ class _IdCardPageState extends State<IdCardPage> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body:Builder(builder: (BuildContext context) {
-        print("api......"+'https://ehealthsystem.com/download-ehealthcard?userid='+id);
-        return  Container(
+      body: Builder(builder: (BuildContext context) {
+        print("api......" +
+            'https://ehealthsystem.com/download-ehealthcard?userid=' +
+            id);
+        return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
-       // width: MediaQuery.of(context).size.height,
-        child: InAppWebView(
-          initialUrlRequest: URLRequest(url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id/*"https://www.google.com/search?client=firefox-b-d&q=pdf+example"*/)),
-          initialOptions: _options,
-
-          shouldOverrideUrlLoading: (controller, action) {
-            print("override");
-            return Future.value(NavigationActionPolicy.ALLOW);
-          },
-          onWebViewCreated: (webViewController) {
-            _controller1.complete(webViewController);
-          },
-          onDownloadStart: (controller, uri) {
-            print("download");
-          },
-        ),
+            // width: MediaQuery.of(context).size.height,
+            child: InAppWebView(
+              initialUrlRequest: URLRequest(
+                  url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id)),
+              initialOptions: _options,
+              shouldOverrideUrlLoading: (controller, action) {
+                print("override");
+                return Future.value(NavigationActionPolicy.ALLOW);
+              },
+              onWebViewCreated: (webViewController) {
+                _controller1.complete(webViewController);
+              },
+              onDownloadStart: (controller, uri) {
+                print("download");
+              },
+            ),
           ),
         );
       }),
@@ -180,7 +178,7 @@ class _IdCardPageState extends State<IdCardPage> {
       onDownloadStart: (controller, uri) {
         print("download");
       },
-    *//*initialOptions: InAppWebViewGroupOptions(
+    */ /*initialOptions: InAppWebViewGroupOptions(
 
       crossPlatform: InAppWebViewOptions(
     supportZoom: false,
@@ -188,7 +186,7 @@ class _IdCardPageState extends State<IdCardPage> {
     disableHorizontalScroll: true,
     disableVerticalScroll: true,
     ),
-    ),*//*
+    ),*/ /*
     )
       ),*/
       /* Container(
@@ -222,6 +220,6 @@ class _IdCardPageState extends State<IdCardPage> {
   }
 
   _onShareWithEmptyFields(BuildContext context) async {
-    await Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id);
+    await Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id,subject: "Please Check My Id");
   }
 }
