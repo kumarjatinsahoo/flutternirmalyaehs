@@ -1,21 +1,32 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MonthlyoverviewModel.dart'as monthly;
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+
 class MonthlyOverview extends StatefulWidget {
   MainModel model;
-  MonthlyOverview({Key key, this.model,}) :
-        super(key: key);
+
+  MonthlyOverview({
+    Key key,
+    this.model,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MonthlyOverview();
 }
 
 class _MonthlyOverview extends State<MonthlyOverview> {
-
   DateTime selectedDate = DateTime.now();
- // apnt.AppointmentlistModel appointmentlistModel;
+
+  // apnt.AppointmentlistModel appointmentlistModel;
   //LoginResponse1 loginResponse;
   TextEditingController fromThis_ = TextEditingController();
   TextEditingController toThis_ = TextEditingController();
@@ -24,86 +35,236 @@ class _MonthlyOverview extends State<MonthlyOverview> {
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
-
+  monthly.MonthlyOverviewModel monthlyOverviewModel;
+  LoginResponse1 loginResponse;
 
   @override
   void initState() {
     super.initState();
-  }
-  leftArrow() {
-    setState(() {
-      selectedDate = selectedDate.subtract(Duration(days: 1));
-      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-      selectedDatestr = df.format(selectedDate).toString();
-     // callAPI(selectedDatestr);
-    });
+    loginResponse = widget.model.loginResponse1;
+    callApi();
+
   }
 
-  rightArrow() {
-    setState(() {
-      selectedDate = selectedDate.add(Duration(days: 1));
-      fromThis_.value = TextEditingValue(text: df.format(selectedDate));
-      selectedDatestr = df.format(selectedDate).toString();
-      //callAPI(selectedDatestr);
-    });
+  callApi() {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.MONTHLY_OVERVIEW + loginResponse.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Value>>>" + jsonEncode(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              setState(() {
+                monthlyOverviewModel =
+                    monthly.MonthlyOverviewModel.fromJson(map);
+              });
+            } else {
+              setState(() {
+                // isDataNoFound = true;
+              });
+              //AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
   }
+
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            child: SingleChildScrollView(
-              child: Column(
+   // Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Monthly Overview'),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+      ),
+      body: (monthlyOverviewModel != null)? Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      width: 150,
+                      child: Text(
+                        "To Date",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
-                      InkWell(
-                        onTap: () {
-                          leftArrow();
-                        },
-                        child: Icon(
-                          CupertinoIcons.arrow_left_circle,
-                          size: 38,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Spacer(),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          appointdate(),
-                        ],
-                      ),
-                      Spacer(),
-
-                      InkWell(
-                        onTap: () {
-                          rightArrow();
-                        },
-                        child: Icon(
-                          CupertinoIcons.arrow_right_circle,
-                          size: 38,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
+                    ),
                   ),
+                  Spacer(),
+                  monthstartDate(),
+                  Spacer(),
                 ],
               ),
-            ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      width: 150,
+                      child: Text(
+                        "From Date",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  monthendDate(),
+                  Spacer(),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        Material(
+                          elevation: 5,
+                          color: Colors.green[500],
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              3.0),
+                          child:
+                          MaterialButton(
+                           // minWidth: 90,
+                            height: 70.0,
+                            child: Text(
+                              "CONFIRMED",
+                              style: TextStyle(
+                                  fontWeight:
+                                  FontWeight
+                                      .bold,
+                                  fontSize:
+                                  13,
+                                  color: Colors
+                                      .white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(monthlyOverviewModel.body.booked??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                    Spacer(),
+                    Column(
+                      children: [
+                        Material(
+                          elevation: 5,
+                          color: Colors.yellow[600]
+                              ,
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              3.0),
+                          child:
+                          MaterialButton(
+                           // minWidth: 90,
+                            height: 70.0,
+                            child: Text(
+                              "REQUESTED",
+                              style: TextStyle(
+                                  fontWeight:
+                                  FontWeight
+                                      .bold,
+                                  fontSize:
+                                  12,
+                                  color: Colors
+                                      .white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(monthlyOverviewModel.body.requested??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                    Spacer(),
+                    Column(
+                      children: [
+                        Material(
+                          elevation: 5,
+                          color: AppData
+                              .kPrimaryColor,
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              3.0),
+                          child:
+                          MaterialButton(
+                            //minWidth: 90,
+                            height: 70.0,
+                            child: Text(
+                              "TREATED",
+                              style: TextStyle(
+                                  fontWeight:
+                                  FontWeight
+                                      .bold,
+                                  fontSize:
+                                  12,
+                                  color: Colors
+                                      .white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(monthlyOverviewModel.body.treated??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+            ],
           ),
-        )
+        ),
+      ):Container(),
     );
   }
+  Widget monthstartDate(){
+    return Container(
+      height: 40,
+      width: 190,
+      margin: EdgeInsets.only(top: 20, bottom: 10),
+   child: Row(
+        children: [
+          Icon(Icons.calendar_today),
+          SizedBox(width:5,),
+          Text(monthlyOverviewModel.body.todate??"N/A"),
+        ],
+      ),
+
+    );
+
+}
+Widget monthendDate(){
+    return Container(
+      height: 40,
+      width: 190,
+      margin: EdgeInsets.only(top: 20, bottom: 10),
+
+
+   child: Row(
+        children: [
+          Icon(Icons.calendar_today),
+          SizedBox(width:5,),
+          Text(monthlyOverviewModel.body.fromdate??"N/A"),
+        ],
+      ),
+
+    );
+
+}
 
   Widget appointdate() {
     return Container(
@@ -154,7 +315,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
         initialDate: selectedDate ?? DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
         lastDate: DateTime.now()
-      /*.add(Duration(days: 60))*/); //18 years is 6570 days
+        /*.add(Duration(days: 60))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
