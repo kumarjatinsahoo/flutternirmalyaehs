@@ -214,7 +214,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                                   context, "Please Upload Document");
                             } else {
                               postMultiPart();
-                                                          }
+                            }
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -248,7 +248,14 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   }
 
   Future<FormData> FormData2() async {
-    log("File extension is:::::>>>>>"+extension+","+textEditingController[1].text+","+AddUploadDocument.getdocumentmodel.key+","+loginResponse1.body.user);
+    log("File extension is:::::>>>>>" +
+        extension +
+        "," +
+        textEditingController[1].text +
+        "," +
+        AddUploadDocument.getdocumentmodel.key +
+        "," +
+        loginResponse1.body.user);
     var formData = FormData();
     formData.fields
       ..add(MapEntry('userid', loginResponse1.body.user))
@@ -277,40 +284,32 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   }
 
   void postMultiPart() async {
-    // view();
     MyWidgets.showLoading(context);
-    //dio.options.headers["Content-Type"] = "multipart/form-data";
-    //dio.options.baseUrl = 'https://eramps.in/';
-    //dio.interceptors.add(LogInterceptor());
     Response response;
     response = await dio.post(
       ApiFactory.ADD_UPLOAD_DOCUMENT,
       data: await FormData2(),
-
       onSendProgress: (received, total) {
         if (total != -1) {
           setState(() {
-            //popup(context);
-
-            //Navigator.pushNamed(context, "/uploaddocument");
-
-            Navigator.pop(context);
-             //percentage = (received / total * 100).toStringAsFixed(0) + '%';
+            print((received / total * 100).toStringAsFixed(0) + '%');
           });
-          print((received / total * 100).toStringAsFixed(0) + '%');
         }
       },
     );
     if (response.statusCode == 200) {
       Navigator.pop(context);
       log("value" + jsonEncode(response.data));
-      if (response.data["status"] == "success") {
+      if (response.data["code"] == "success") {
         //Navigator.pushNamed(context, "/uploaddocument");
 
-        // popup("Successfully Uploaded", context);
+         popup(context);
       } else {
-        AppData.showInSnackBar(context, response.data["message"]);
+        AppData.showInSnackBar(context, "Something went wrong");
       }
+    }else{
+      Navigator.pop(context);
+      AppData.showInSnackBar(context, "Something went wrong");
     }
     print(response);
   }
@@ -368,17 +367,19 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         idproof = file.path;
         adduploaddocument.extension = extName;
         extension = extName;
-        print("Message is: " +extension);        // adduploaddocument.mulFile=file.path as MultipartFile;
-        print("Message isssss: " +extName);        // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message is: " +
+            extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
         //file1 = file; //file1 is a global variable which i created
       });
     }
   }
 
-  popup( BuildContext context) {
+  popup(BuildContext context) {
     return Alert(
         context: context,
-        title: "Success",
+        title: "Successfully Upload",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -393,11 +394,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
               "OK",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
-            onPressed: (){
-              //Navigator.pop(context, true);
-              //Navigator.pop(context, true);
-              Navigator.pushNamed(context, "/uploaddocument");
-
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

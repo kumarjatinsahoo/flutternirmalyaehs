@@ -35,6 +35,8 @@ class _DocumentPdfState extends State<DocumentPdf> {
     Size size = MediaQuery.of(context).size;
     return WebviewScaffold(
       // backgroundColor: Colors.grey[200],
+      clearCookies: true,
+      clearCache: true,
       appBar: AppBar(
         /*title: Text(
           "Patient List",

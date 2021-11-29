@@ -180,18 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add, color: Colors.white, size: 29,),
-        backgroundColor: AppData.kPrimaryColor,
-        elevation: 5,
-        splashColor: Colors.grey,
-      ),*/
       appBar: AppBar(
-        /* leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),*/
         automaticallyImplyLeading: false,
         title: Stack(
           children: [
@@ -201,7 +190,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            //Spacer(),
             Align(
               alignment: Alignment.topRight,
               child: Padding(
@@ -1205,10 +1193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            // title: Text('TextField in Dialog'),
             insetPadding: EdgeInsets.zero,
-
-            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
@@ -1220,51 +1205,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Container(
-                          //   width: double.infinity,
-                          //   height: 110.0,
-                          //   child: Center(
-                          //     child: Container(
-                          //       height: 110.0,
-                          //       width: 110.0,
-                          //       child: Stack(
-                          //         children: [
-                          //           // ClipRRect(
-                          //           //     borderRadius: BorderRadius.circular(110.0),
-                          //           //     child: _camImage != null
-                          //           //         ? Image.file(
-                          //           //       _camImage,
-                          //           //       height: 110,
-                          //           //       width: 110,
-                          //           //       fit: BoxFit.cover,
-                          //           //     )
-                          //           //         : Image.network(
-                          //           //         imgValue ?? AppData.defaultImgUrl,
-                          //           //         height: 140)),
-                          //           // Positioned(
-                          //           //   child: InkWell(
-                          //           //     onTap: () {
-                          //           //       //getCameraImage();
-                          //           //       //showDialog();
-                          //           //       //_settingModalBottomSheet(context);
-                          //           //       getCerificateImage();
-                          //           //     },
-                          //           //     child: Icon(
-                          //           //       Icons.camera_alt,
-                          //           //       color: Colors.black,
-                          //           //       size: 20,
-                          //           //     ),
-                          //           //   ),
-                          //           //   bottom: 3,
-                          //           //   right: 12,
-                          //           // )
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-
-                          SizedBox(height: 10),
+                         SizedBox(height: 10),
                           Text(MyLocalizations.of(context).text("UPDATE_PROFILE"),
                             style: TextStyle(color: Colors.black, fontSize: 20),
                           ),
@@ -1272,6 +1213,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 20,
                           ),
                           dob(MyLocalizations.of(context).text("DOB")),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1303,8 +1247,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   });
                                 }),
                               ]),
+                          SizedBox(
+                            height: 20,
+                          ),
                           formField(
                               1, MyLocalizations.of(context).text("EMERGENCY_CONTACT_NAME"), fnode1, fnode2),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1336,10 +1286,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   });
                                 }),
                               ]),
+                          SizedBox(
+                            height: 20,
+                          ),
                           /*   Divider(height: 2, color: Colors.black),*/
                           formFieldMobileno(
                               2,  MyLocalizations.of(context).text("EMERGENCY_CONTACT_NO"), fnode2, fnode3),
+                          SizedBox(
+                            height: 20,
+                          ),
                           formField(3,  MyLocalizations.of(context).text("FAMILY_DOCTORS"), fnode3, fnode4),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1368,12 +1327,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   });
                                 }),
                               ]),
+                          SizedBox(
+                            height: 20,
+                          ),
                           /*Divider(
                             height: 2,
                             color: Colors.black,
                           ),*/
                           formFieldMobileno(
                               4,MyLocalizations.of(context).text("DOC_MOBILE"), fnode4, fnode5),
+                          SizedBox(
+                            height: 20,
+                          ),
                           formFieldAddress(5, MyLocalizations.of(context).text("USER_ADDRESS"), fnode5, null),
                         ],
                       ),
@@ -1691,7 +1656,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               focusNode: currentfn,
               keyboardType: TextInputType.text,
               inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z .]")),
               ],
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),

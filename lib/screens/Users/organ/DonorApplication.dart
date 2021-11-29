@@ -60,6 +60,7 @@ class DonorApplicationState extends State<DonorApplication> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   bool isChecked = false;
+  bool isTissueChecked = false;
   DateTime selectedDate = DateTime.now();
   PayMode1 payMode1 = PayMode1.cash;
 
@@ -349,21 +350,6 @@ class DonorApplicationState extends State<DonorApplication> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: dob(),
               ),
-              /* Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: TextFormField(
-              controller: textEditingController[2],
-              decoration: InputDecoration(
-                  hintText: "Date Of Birth",
-                  hintStyle: TextStyle(color: Colors.grey)),
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              inputFormatters: [
-                WhitelistingTextInputFormatter(
-                    RegExp("[a-zA-Z,0-9 ]")),
-              ],
-            ),
-          ),*/
               SizedBox(
                 height: 8,
               ),
@@ -507,6 +493,19 @@ class DonorApplicationState extends State<DonorApplication> {
                           onChanged: (val) {
                             setState(() {
                               isChecked = val;
+                              //selectedOrganList.clear();
+                              organModel.body.forEach((element) {
+                                element.isChecked=val;
+                                if (val) {
+                                  selectedorgan.add(element);
+                                  selectedOrganList
+                                      .add(element.key.toString());
+                                } else {
+                                  selectedorgan.remove(element);
+                                  selectedOrganList
+                                      .remove(element.key.toString());
+                                }
+                              });
                             });
                           },
                         ),
@@ -525,10 +524,21 @@ class DonorApplicationState extends State<DonorApplication> {
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5),
                               ),
-                              value: isChecked,
+                              value: isTissueChecked,
                               onChanged: (val) {
                                 setState(() {
-                                  isChecked = val;
+                                  isTissueChecked = val;
+                                  // selectedTissueList.clear();
+                                  tissueModel.body.forEach((body) {
+                                    body.isChecked=val;
+                                    if (val) {
+                                      selectetissue.add(body);
+                                      selectedTissueList.add(body.key);
+                                    } else {
+                                      selectetissue.remove(body);
+                                      selectedTissueList.remove(body.key);
+                                    }
+                                  });
                                 });
                               },
                             ),
@@ -680,13 +690,13 @@ class DonorApplicationState extends State<DonorApplication> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5))),
                         child: Container(
-                            height: 100,
+                            //height: 100,
                             width: double.maxFinite,
                             /*  margin: const EdgeInsets.only(top: 6.0),*/
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     child: Column(
@@ -724,7 +734,6 @@ class DonorApplicationState extends State<DonorApplication> {
                                       ],
                                     ),
                                   ),
-                                  //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
                                   InkWell(
                                     onTap: () {
                                       setState(() {
@@ -737,6 +746,8 @@ class DonorApplicationState extends State<DonorApplication> {
                                       // color: Colors.red,
                                     ),
                                   ),
+                                  //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+
                                   /*Image.asset(
                                 "assets/forwardarrow.png",
                                 fit: BoxFit.fitWidth,
