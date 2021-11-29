@@ -2160,11 +2160,11 @@ class MyPage2Widget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Row(
+            /*    Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
-                    Column(
+                 *//*   Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2192,9 +2192,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),
+                        ]),*//*
                     Spacer(),
-                    Column(
+                  *//*  Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2223,7 +2223,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
 
-                          /*  Align(
+                          *//**//*  Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
                                             width:100, child: FittedBox(child:Text(
@@ -2233,8 +2233,8 @@ class MyPage2Widget extends StatelessWidget {
                                           ),
                                           )
                                         ),
-                                        ),*/
-                        ]),
+                                        ),*//**//*
+                        ]),*//*
                     Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2267,7 +2267,7 @@ class MyPage2Widget extends StatelessWidget {
                         ]),
                   ],
                 ),
-                SizedBox(height: 5,),
+                SizedBox(height: 5,),*/
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -2305,7 +2305,35 @@ class MyPage2Widget extends StatelessWidget {
                       width: 15,
                     ),
 
-
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildTileblue(
+                            icon: "assets/ambulance.png",
+                            //icon: Icons.search,
+                            //icon: FontAwesomeIcons.accusoft,
+                            title: "Book Ambulance",
+                            fun: () {
+                              //AppData.showInSnackDone(context, "Coming Soon");
+                              Navigator.pushNamed(context, "/bookAmbulancelist");
+                            },
+                            color: AppData.BG2BLUE,
+                            bordercolor: AppData.BG2BLUE,
+                            //size: (size.width - 130) / 3,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            child: Text(MyLocalizations.of(context).text("BOOK_AMBULANCE"),
+                              textAlign: TextAlign.center,
+                              //overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ]),
                   ],
                 ),
               ],

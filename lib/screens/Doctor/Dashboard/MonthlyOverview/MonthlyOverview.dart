@@ -68,9 +68,10 @@ class _MonthlyOverview extends State<MonthlyOverview> {
         });
   }
 
+
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+   // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Monthly Overview'),
@@ -261,40 +262,40 @@ class _MonthlyOverview extends State<MonthlyOverview> {
           : Container(),
     );
   }
-
-  Widget monthstartDate() {
+  Widget monthstartDate(){
     return Container(
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-      child: Row(
+   child: Row(
         children: [
           Icon(Icons.calendar_today),
-          SizedBox(
-            width: 5,
-          ),
-          Text(monthlyOverviewModel.body.todate ?? "N/A"),
+          SizedBox(width:5,),
+          Text(monthlyOverviewModel.body.todate??"N/A"),
         ],
       ),
-    );
-  }
 
-  Widget monthendDate() {
+    );
+
+}
+Widget monthendDate(){
     return Container(
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-      child: Row(
+
+
+   child: Row(
         children: [
           Icon(Icons.calendar_today),
-          SizedBox(
-            width: 5,
-          ),
-          Text(monthlyOverviewModel.body.fromdate ?? "N/A"),
+          SizedBox(width:5,),
+          Text(monthlyOverviewModel.body.fromdate??"N/A"),
         ],
       ),
+
     );
-  }
+
+}
 
   Widget appointdate() {
     return Container(

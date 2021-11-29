@@ -16,7 +16,6 @@ class AllAmbulance extends StatefulWidget {
   final MainModel model;
 
   const AllAmbulance({Key key, this.model}) : super(key: key);
-
   @override
   _AllAmbulanceState createState() => _AllAmbulanceState();
 }
@@ -118,6 +117,8 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                 //height: height * 0.30,
                                 // color: Colors.grey[200],
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -137,26 +138,27 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                               Navigator.pushNamed(context, "/orderDetails");*/
                                           },
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+
                                             children: [
                                               Row(
                                                 children: [
-                                                  Text(
-                                                    "Name ",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 15,
+                                                  Container(
+                                                    width: 140,
+                                                    child: Text(
+                                                      "Name ",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
                                                     ),
                                                   ),
-                                                  Spacer(),
-                                                  Text(
-                                                    body.patientName,
-                                                    style: TextStyle(
-                                                        fontSize: 15),
-                                                    textAlign:
-                                                        TextAlign.right,
+                                                  Expanded(
+                                                    child: Text(
+                                                      body.patientName,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -165,20 +167,24 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                               ),
                                               Row(
                                                 children: [
-                                                  Text(
-                                                    "From",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 15,
+                                                  Container(
+                                                    width: 140,
+                                                    child: Text(
+                                                      "From",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
                                                     ),
                                                   ),
-                                                  Spacer(),
-                                                  Text(
+                                                  Expanded(
+                                                 child: Text(
                                                     body.fromLocation,
                                                     style: TextStyle(
                                                         fontSize: 15),
                                                   ),
+                                                  ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -186,20 +192,24 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                               ),
                                               Row(
                                                 children: [
-                                                  Text(
-                                                    "Destination",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 15,
+                                                  Container(
+                                                    width: 140,
+                                                    child: Text(
+                                                      "Destination",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
                                                     ),
                                                   ),
-                                                  Spacer(),
-                                                  Text(
+                                                  Expanded(
+                                                 child: Text(
                                                     body.toDestination,
                                                     style: TextStyle(
                                                         fontSize: 15),
                                                   ),
+                                                  ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -207,64 +217,29 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                               ),
                                               Row(
                                                 children: [
-                                                  Text(
-                                                    'Patient Notes',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 15,
+                                                  Container(
+                                                    width: 140,
+                                                    child: Text(
+                                                      'Patient Notes',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
                                                     ),
                                                   ),
-                                                  Spacer(),
-                                                  Text(
-                                                    body.patientNote,
-                                                    style: TextStyle(
-                                                        fontSize: 15),
+                                                  Expanded(
+                                                    child: Text(
+                                                      body.patientNote,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
                                               SizedBox(
                                                 height: 5,
                                               ),
-/*                                                Row(
-                                                children: [
-                                                  Text(
-                                                    ' ',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  Spacer(),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      *//*showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            changeStatus(
-                                                                context,
-                                                                body.orderId),
-                                                      );*//*
-                                                      // widget.model.userappointment = appointmentlist;
-
-                                                      //  Navigator.pushNamed(context, "/usermedicinelist");
-                                                    },
-                                                    child: MaterialButton(
-                                                      child: Text(
-                                                        *//*'Confirmed'*//*
-                                                        "Status",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                            fontSize: 15,
-                                                            color: AppData
-                                                                .kPrimaryBlueColor),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),*/
                                             ],
                                           ),
                                         ),
