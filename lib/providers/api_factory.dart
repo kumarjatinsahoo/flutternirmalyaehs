@@ -1,11 +1,9 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
-
- // static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
-// static String MAIN_URL = "http://192.168.29.2:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
 
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
@@ -34,8 +32,8 @@ class ApiFactory {
       MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list =
       MAIN_URL + 'get-patient-insurance-list-api?userid=';
-  static String INSURANCE_Details =
-      MAIN_URL + 'get-patient-insurance-details-api?key=';
+  static String INSURANCE_Details = MAIN_URL + 'get-patient-insurance-details-api?key=';
+  static String MONTHLY_OVERVIEW = MAIN_URL + 'get-doctor-month-overviewlist?drid=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String pharmacy_list_by_searchvalue = MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
   static String IMMUNIZATION_STATUS =

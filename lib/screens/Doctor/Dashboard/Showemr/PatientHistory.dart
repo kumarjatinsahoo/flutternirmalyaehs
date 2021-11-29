@@ -48,7 +48,7 @@ class _PatientHistory extends State<PatientHistory> {
               patientmedicalhistoryModel = PatientmedicalhistoryModel.fromJson(map);
             } else {
               ///isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+            //  AppData.showInSnackBar(context, msg);
             }
           });
         });
