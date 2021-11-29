@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:user/models/LoginResponse1.dart';
-import 'package:user/models/MonthlyoverviewModel.dart'as monthly;
+import 'package:user/models/MonthlyoverviewModel.dart' as monthly;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -43,7 +43,6 @@ class _MonthlyOverview extends State<MonthlyOverview> {
     super.initState();
     loginResponse = widget.model.loginResponse1;
     callApi();
-
   }
 
   callApi() {
@@ -69,202 +68,233 @@ class _MonthlyOverview extends State<MonthlyOverview> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
-   // Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Monthly Overview'),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
-      body: (monthlyOverviewModel != null)? Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      width: 150,
-                      child: Text(
-                        "To Date",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  monthstartDate(),
-                  Spacer(),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      width: 150,
-                      child: Text(
-                        "From Date",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  monthendDate(),
-                  Spacer(),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
+      body: (monthlyOverviewModel != null)
+          ? Container(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Column(
+                    Row(
                       children: [
-                        Material(
-                          elevation: 5,
-                          color: Colors.green[500],
-                          borderRadius:
-                          BorderRadius
-                              .circular(
-                              3.0),
-                          child:
-                          MaterialButton(
-                           // minWidth: 90,
-                            height: 70.0,
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Container(
+                            width: 150,
                             child: Text(
-                              "CONFIRMED",
+                              "To Date",
                               style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  13,
-                                  color: Colors
-                                      .white),
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.booked??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                        Spacer(),
+                        monthstartDate(),
+                        Spacer(),
                       ],
                     ),
-                    Spacer(),
-                    Column(
+                    Row(
                       children: [
-                        Material(
-                          elevation: 5,
-                          color: Colors.yellow[600]
-                              ,
-                          borderRadius:
-                          BorderRadius
-                              .circular(
-                              3.0),
-                          child:
-                          MaterialButton(
-                           // minWidth: 90,
-                            height: 70.0,
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Container(
+                            width: 150,
                             child: Text(
-                              "REQUESTED",
+                              "From Date",
                               style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  12,
-                                  color: Colors
-                                      .white),
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.requested??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                        Spacer(),
+                        monthendDate(),
+                        Spacer(),
                       ],
                     ),
-                    Spacer(),
-                    Column(
-                      children: [
-                        Material(
-                          elevation: 5,
-                          color: AppData
-                              .kPrimaryColor,
-                          borderRadius:
-                          BorderRadius
-                              .circular(
-                              3.0),
-                          child:
-                          MaterialButton(
-                            //minWidth: 90,
-                            height: 70.0,
-                            child: Text(
-                              "TREATED",
-                              style: TextStyle(
-                                  fontWeight:
-                                  FontWeight
-                                      .bold,
-                                  fontSize:
-                                  12,
-                                  color: Colors
-                                      .white),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              widget.model.apntUserType = Const.CONFIRMED;
+                              widget.model.wtodate =
+                                  monthlyOverviewModel.body.todate;
+                              widget.model.wfromdate =
+                                  monthlyOverviewModel.body.fromdate;
+                              Navigator.pushNamed(
+                                  context, "/monthlyOverviewlist");
+                            },
+                            child: Column(
+                              children: [
+                                Material(
+                                  elevation: 5,
+                                  color: Colors.green[500],
+                                  borderRadius: BorderRadius.circular(3.0),
+                                  child: MaterialButton(
+                                    // minWidth: 90,
+                                    height: 70.0,
+                                    child: Text(
+                                      "CONFIRMED",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  monthlyOverviewModel.body.booked ?? "N/A",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10,),
-                        Text(monthlyOverviewModel.body.treated??"N/A",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
-                      ],
+                          Spacer(),
+                          InkWell(
+                            onTap: () {
+                              widget.model.apntUserType = Const.REQUESTED;
+                              widget.model.wtodate =
+                                  monthlyOverviewModel.body.todate;
+                              widget.model.wfromdate =
+                                  monthlyOverviewModel.body.fromdate;
+                              Navigator.pushNamed(
+                                  context, "/monthlyOverviewlist");
+                            },
+                            child: Column(
+                              children: [
+                                Material(
+                                  elevation: 5,
+                                  color: Colors.yellow[600],
+                                  borderRadius: BorderRadius.circular(3.0),
+                                  child: MaterialButton(
+                                    // minWidth: 90,
+                                    height: 70.0,
+                                    child: Text(
+                                      "REQUESTED",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  monthlyOverviewModel.body.requested ?? "N/A",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          InkWell(
+                            onTap: () {
+                              widget.model.apntUserType = Const.TREATED;
+                              widget.model.wtodate =
+                                  monthlyOverviewModel.body.todate;
+                              widget.model.wfromdate =
+                                  monthlyOverviewModel.body.fromdate;
+                              Navigator.pushNamed(
+                                  context, "/monthlyOverviewlist");
+                            },
+                            child: Column(
+                              children: [
+                                Material(
+                                  elevation: 5,
+                                  color: AppData.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(3.0),
+                                  child: MaterialButton(
+                                    //minWidth: 90,
+                                    height: 70.0,
+                                    child: Text(
+                                      "TREATED",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  monthlyOverviewModel.body.treated ?? "N/A",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-
-            ],
-          ),
-        ),
-      ):Container(),
+            )
+          : Container(),
     );
   }
-  Widget monthstartDate(){
+
+  Widget monthstartDate() {
     return Container(
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-   child: Row(
+      child: Row(
         children: [
           Icon(Icons.calendar_today),
-          SizedBox(width:5,),
-          Text(monthlyOverviewModel.body.todate??"N/A"),
+          SizedBox(
+            width: 5,
+          ),
+          Text(monthlyOverviewModel.body.todate ?? "N/A"),
         ],
       ),
-
     );
+  }
 
-}
-Widget monthendDate(){
+  Widget monthendDate() {
     return Container(
       height: 40,
       width: 190,
       margin: EdgeInsets.only(top: 20, bottom: 10),
-
-
-   child: Row(
+      child: Row(
         children: [
           Icon(Icons.calendar_today),
-          SizedBox(width:5,),
-          Text(monthlyOverviewModel.body.fromdate??"N/A"),
+          SizedBox(
+            width: 5,
+          ),
+          Text(monthlyOverviewModel.body.fromdate ?? "N/A"),
         ],
       ),
-
     );
-
-}
+  }
 
   Widget appointdate() {
     return Container(
