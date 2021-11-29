@@ -141,21 +141,24 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                   children: [
                                     Row(
                                       children: [
-                                        Text(
-                                          "Name ",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                                        Container(
+                                          width: 140,
+                                          child: Text(
+                                            "Name ",
+                                            style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
                                           ),
                                         ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientName,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                          textAlign:
-                                          TextAlign.right,
+                                        Expanded(
+                                          child: Text(
+                                            body.patientName,
+                                            style: TextStyle(
+                                                fontSize: 15),
+
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -164,20 +167,23 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          "From",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                                        Container(
+                                          width: 140,
+                                          child: Text(
+                                            "From",
+                                            style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
                                           ),
                                         ),
-                                        Spacer(),
-                                        Text(
+                                       Expanded( child:Text(
                                           body.fromLocation,
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
+                                       ),
                                       ],
                                     ),
                                     SizedBox(
@@ -185,19 +191,23 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          "Destination",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                                        Container(
+                                          width: 140,
+                                          child: Text(
+                                            "Destination",
+                                            style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
                                           ),
                                         ),
-                                        Spacer(),
-                                        Text(
-                                          body.toDestination,
-                                          style: TextStyle(
-                                              fontSize: 15),
+                                        Expanded(
+                                          child: Text(
+                                            body.toDestination,
+                                            style: TextStyle(
+                                                fontSize: 15),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -206,19 +216,24 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          'Patient Notes',
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
+                                       Container(
+                                         width: 140,
+                                         child: Text(
+                                            'Patient Notes',
+                                            style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          body.patientNote,
-                                          style: TextStyle(
-                                              fontSize: 15),
+                                       ),
+                                        Expanded(
+                                          child: Text(
+                                            body.patientNote,
+                                            style: TextStyle(
+                                                fontSize: 15),
+                                          ),
+
                                         ),
                                       ],
                                     ),
