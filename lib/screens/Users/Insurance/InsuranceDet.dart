@@ -23,6 +23,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
   var selectedMinValue;
   String insuranceid;
   insurancedetails.InsuranceDetailsModel insuranceDetailsModel;
+  bool isdata = true;
 
   @override
   void initState() {
@@ -63,7 +64,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
         title: Text("Insurance"),
         centerTitle: true,
       ),
-      body: Container(
+      body:
+      (insuranceDetailsModel != null)? Container(
         child: Column(
           children: [
             Padding(
@@ -94,7 +96,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  insuranceDetailsModel.body.insCompany??"N/A",
+                                  insuranceDetailsModel.body ?.insCompany??"N/A",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
@@ -425,7 +427,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                               radius: 100.0,
                               lineWidth: 10.0,
                               percent: 0.8,
-                              header: new Text("Icon header"),
+                             // header: new Text("Icon header"),
                               center: new Icon(
                                 Icons.person_pin,
                                 size: 50.0,
@@ -509,7 +511,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
             ),
           ],
         ),
-      ),
+      ):Container()
     );
   }
 

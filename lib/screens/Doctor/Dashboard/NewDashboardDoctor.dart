@@ -417,8 +417,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 _buildTileblue(
                                   icon: "assets/images/monthlyoverview.png",
                                   fun: () {
+
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    // Navigator.pushNamed(context, "/discountoffer");
+                                    Navigator.pushNamed(context, "/monthlyoverview");
                                     //AppData.showInSnackBar(context, "Coming soon");
                                   },
                                   //color: AppData.BG2BLUE,
