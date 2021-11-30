@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/DoctoreModel.dart';
+import 'package:user/models/ShareApntModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
@@ -3541,11 +3542,96 @@ class DropDown {
             case "documentlist":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "doctorreceptionist":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
-
         return list;
       },
       onChanged: (KeyvalueModel data) {
+        fun(data);
+      },
+    ));
+  }
+  static sharenetworkDropdownGetpartUser(String label, final String API,token,
+      String callFrom, IconData iconData, double iconSize, Function fun) {
+    return newContainer(DropdownSearch<ShareApntModel>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.black),
+        contentPadding: EdgeInsets.only(left: 10),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      errorBuilder: (cg, value, v) {
+        return Material(
+            child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "No Data Found",
+                  style: TextStyle(color: Colors.black),
+                )));
+      },
+      emptyBuilder:( context, searchEntry){
+        return  Material(
+          child:Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      } ,
+
+      hint: label,
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        /*   icon: Icon(
+          iconData,
+          size: iconSize,
+        ),*/
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      showSearchBox: true,
+     // selectedItem: getData(callFrom),
+      onFind: (String filter) async {
+        print("DROP DOWN API?????" + API);
+        print("DROP ?????" + token);
+        var response = await Dio().get(
+          API,
+          options: Options(
+            headers: {
+              "Authorization": token,
+            },
+          ),
+        );
+        //log("valllllluueeeee"+jsonEncode(response.data));
+        var list = ShareApntModel.fromJsonList(response.data["body"]);
+
+        return list;
+      },
+      onChanged: (ShareApntModel data) {
         fun(data);
       },
     ));
