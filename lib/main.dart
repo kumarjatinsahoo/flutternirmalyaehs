@@ -21,6 +21,7 @@ import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
 import 'package:user/screens/Doctor/Dashboard/ContactUs.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.dart';
+import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverViewList.dart';
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverview.dart';
 import 'package:user/screens/Doctor/Dashboard/MyPatientlist.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
@@ -990,6 +991,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/healthchart': (context) => HealthChart(
+                model: _model,
+              ),
+              '/monthlyOverviewlist': (context) => MonthlyOverviewlist(
                 model: _model,
               ),
 

@@ -1,15 +1,16 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
-  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://192.168.29.254:8062/nirmalyaRest/api/";
 
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
@@ -161,6 +162,7 @@ class ApiFactory {
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String GET_DOCTEROVERVIEWLIST = MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
   static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
   static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';

@@ -67,6 +67,9 @@ class Const {
 
   static String DOC_APNT = "DOC_APNT";
   static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
+  static String CONFIRMED = "CONFIRMED";
+  static String REQUESTED = "REQUESTED";
+  static String TREATED = "TREATED";
   static String HEALTH_SCREENING_USER_APNT = "HEALTH_SCREENING_USER_APNT";
   static String PATINTDETAILS = "PATINTDETAILS";
   static String HEALTH_CHKUP_APNT = "HEALTH_CHKUP_APNT";

@@ -236,7 +236,7 @@ class _ImmunizationState extends State<Immunization> {
                                                 color: Colors.black,
                                                 height: 40,
                                               ))),
-                                      subtitle:  Padding(
+                                      subtitle: Padding(
                                         padding: const EdgeInsets.only(
                                             top: 10.0),
                                         child: Column(
