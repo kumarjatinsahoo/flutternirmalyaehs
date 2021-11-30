@@ -9,14 +9,19 @@ import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MonthlyoverviewModel.dart' as monthly;
+import 'package:user/models/ShareApntModel.dart';
+import 'package:user/models/ShareModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class ShareAppointment extends StatefulWidget {
   MainModel model;
+  static ShareApntModel shareappontmentmodel = null;
+  static KeyvalueModel doctorreceptionmodel = null;
 
   ShareAppointment({
     Key key,
@@ -45,36 +50,12 @@ class _ShareAppointment extends State<ShareAppointment> {
   LoginResponse1 loginResponse;
   RadioGroup radioGroup = RadioGroup.payonshop;
   RadioGroup1 radioGroup1 = RadioGroup1.payon_shop;
-  String btnName = "1";
+  String roleid = "2";
 
   @override
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
-    callApi();
-  }
-
-  callApi() {
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.MONTHLY_OVERVIEW + loginResponse.body.user,
-        token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
-          setState(() {
-            log("Value>>>" + jsonEncode(map));
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              setState(() {
-                monthlyOverviewModel =
-                    monthly.MonthlyOverviewModel.fromJson(map);
-              });
-            } else {
-              setState(() {
-                // isDataNoFound = true;
-              });
-              //AppData.showInSnackBar(context, msg);
-            }
-          });
-        });
   }
 
 
@@ -87,94 +68,131 @@ class _ShareAppointment extends State<ShareAppointment> {
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
-      body: (monthlyOverviewModel != null) ? Container(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 10),
-                SizedBox(
-                  height: 20,
+      body:SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 10),
+              SizedBox(
+                height: 20,
+              ),
+              DropDown.sharenetworkDropdownGetpartUser("UHID",
+                  ApiFactory.SHARE_APPOINTMENT_UHID+loginResponse.body.user,widget.model.token,
+                  "shareappointment",
+                  Icons.location_on_rounded,
+                  23.0, (ShareApntModel data) {
+                setState(() {
+                  print(ApiFactory.SHARE_APPOINTMENT_UHID);
+                   ShareAppointment.shareappontmentmodel = data;
+                });
+              }),
+              SizedBox(height: 8),
+
+              Container(
+                height: 20,
+                child: Row(
+                 // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Radio(
+                          value: RadioGroup1.payon_shop,
+                          groupValue: radioGroup1,
+                          onChanged: (RadioGroup1 value) {
+                            setState(() {
+                              radioGroup1 = value;
+                              roleid = "2";
+                              //bookPostModel.paymentway = "0";
+                            });
+                          },
+                        ),
+                        Text(
+                          "Doctor",
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        )
+                      ],
+                    ),
+                    SizedBox(width:100),
+                    Row(
+                      children: [
+                        Radio(
+                          value: RadioGroup1.online,
+                          groupValue: radioGroup1,
+                          onChanged: (RadioGroup1 value) {
+                            setState(() {
+                              radioGroup1 = value;
+                               roleid = "5";
+                              //bookPostModel.paymentway = "1";
+                            });
+                          },
+                        ),
+                        Text(
+                          "Receptionlist",
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-                DropDown.networkDropdownGetpartUser1(
-                    MyLocalizations.of(context).text("NAME"),
-                    ApiFactory.ADM_EQUIPMENT_API,
-                    "typelist",
-                    Icons.location_on_rounded,
-                    23.0, (KeyvalueModel data) {
-                  setState(() {
-                    print(ApiFactory.ADM_EQUIPMENT_API);
-                    // BiomediImplants.admequipmentmodel = data;
-                  });
-                }),
-                SizedBox(height: 8),
+              ),
 
-                Container(
-                  height: 20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Radio(
-                            value: RadioGroup1.payon_shop,
-                            groupValue: radioGroup1,
-                            onChanged: (RadioGroup1 value) {
-                              setState(() {
-                                radioGroup1 = value;
-                                btnName = "1";
-                                //bookPostModel.paymentway = "0";
-                              });
-                            },
-                          ),
-                          Text(
-                            "Pay on Shop",
-                            style: TextStyle(color: Colors.black, fontSize: 12),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Radio(
-                            value: RadioGroup1.online,
-                            groupValue: radioGroup1,
-                            onChanged: (RadioGroup1 value) {
-                              setState(() {
-                                radioGroup1 = value;
-                                 btnName = "2";
-                                //bookPostModel.paymentway = "1";
-                              });
-                            },
-                          ),
-                          Text(
-                            "Online",
-                            style: TextStyle(color: Colors.black, fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              DropDown.networkDropdownGetpartUser1(
+                  MyLocalizations.of(context).text("NAME"),
+                  ApiFactory.SHARE_APPOINTMENT_DOCTORRECEPTIONIST +loginResponse.body.user+"&roleid="+roleid,
+                  "doctorreceptionist",
+                  Icons.location_on_rounded,
+                  23.0, (KeyvalueModel data) {
+                setState(() {
+                  print(ApiFactory.SHARE_APPOINTMENT_DOCTORRECEPTIONIST);
+                  ShareAppointment.doctorreceptionmodel = data;
+                });
+              }),
+              SizedBox(height: 8),
+              formField(1, "Notes"),
+              SizedBox(height: 30),
 
-                DropDown.networkDropdownGetpartUser1(
-                    MyLocalizations.of(context).text("NAME"),
-                    ApiFactory.ADM_EQUIPMENT_API,
-                    "typelist",
-                    Icons.location_on_rounded,
-                    23.0, (KeyvalueModel data) {
-                  setState(() {
-                    print(ApiFactory.ADM_EQUIPMENT_API);
-                    // BiomediImplants.admequipmentmodel = data;
-                  });
-                }),
-                SizedBox(height: 8),
-                formField(1, "Notes"),
-                SizedBox(height: 30),
+              InkWell(
+                onTap: () {
+                  if (ShareAppointment.shareappontmentmodel == null ||
+                      ShareAppointment.shareappontmentmodel == "") {
+                    AppData.showInSnackBar(context, "Please select UHID ");
+                  }else if (ShareAppointment.doctorreceptionmodel == null ||
+                      ShareAppointment.doctorreceptionmodel == "") {
+                    AppData.showInSnackBar(context, "Please select Doctor/Receptionlist Name ");
+                  }  else if (_reason.text == "" || _reason.text == null) {
+                    AppData.showInSnackBar(context, "Please enter Notes");
+                  }else {
+                    MyWidgets.showLoading(context);
+                    ShareModel sharemodel = ShareModel();
+                    sharemodel.drid = ShareAppointment.doctorreceptionmodel.key;
+                    sharemodel.patientid = ShareAppointment.shareappontmentmodel.userid;
+                    sharemodel.refdrid = loginResponse.body.user;
+                    sharemodel.appno = ShareAppointment.shareappontmentmodel.appno;
+                    sharemodel.notes = _reason.text;
 
-                Material(
+                    widget.model.POSTMETHOD2(
+                      api: ApiFactory.POST_SHARE_APPOINTMENT,
+                      json: sharemodel.toJson(),
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        Navigator.pop(context);
+                          if (map["code"] == Const.SUCCESS) {
+                            Navigator.pop(context);
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+
+
+                          } else {
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                      },
+                    );
+                  }
+                },
+                child: Material(
                   elevation: 5,
                   color: AppData
                       .kPrimaryColor,
@@ -183,30 +201,28 @@ class _ShareAppointment extends State<ShareAppointment> {
                       .circular(
                       3.0),
                   child:
-                  Expanded(
-                    child: MaterialButton(
-                      minWidth: 200,
-                      height: 50.0,
-                        child:  Text(
-                            "Share",
-                            style: TextStyle(
-                                fontWeight:
-                                FontWeight
-                                    .bold,
-                                fontSize:
-                                12,
-                                color: Colors
-                                    .white),
-                          ),
+                  MaterialButton(
+                    minWidth: 200,
+                    height: 50.0,
+                      child:  Text(
+                          "Share",
+                          style: TextStyle(
+                              fontWeight:
+                              FontWeight
+                                  .bold,
+                              fontSize:
+                              12,
+                              color: Colors
+                                  .white),
+                        ),
 
-                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      ) : Container(),
+      ),
     );
   }
 

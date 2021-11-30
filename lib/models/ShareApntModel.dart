@@ -1,7 +1,7 @@
-class KeyvalueModel {
+class ShareApntModel {
   dynamic name;
-  dynamic key;
-  dynamic code;
+  dynamic patname;
+  dynamic appno;
   dynamic optional;
   dynamic genderOptional;
   dynamic itemid;
@@ -14,26 +14,26 @@ class KeyvalueModel {
   dynamic userid;
 
 
-  KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty,this.userid});
+  //ShareApntModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty,this.userid});
 
-  static List<KeyvalueModel> fromJsonList(List list) {
+  static List<ShareApntModel> fromJsonList(List list) {
     if (list == null) return null;
-    return list.map((item) => KeyvalueModel.fromsJson(item)).toList();
+    return list.map((item) => ShareApntModel.fromsJson(item)).toList();
   }
 
-  static List<KeyvalueModel> fromJsonListData(List list) {
+  static List<ShareApntModel> fromJsonListData(List list) {
     if (list == null) return null;
-    List<KeyvalueModel> myList = [];
+    List<ShareApntModel> myList = [];
     list.forEach((element) {
-      myList.add(new KeyvalueModel.fromsJson(element));
+      myList.add(new ShareApntModel.fromsJson(element));
     });
     return myList;
   }
 
-  KeyvalueModel.fromsJson(Map<String, dynamic> json) {
-    key = json['key']??json['bookstatus']??json['id'];
-    name = json['name']??json['userid'];
-    code = json['code']??json['hospitalid']??json['isbooked'];
+  ShareApntModel.fromsJson(Map<String, dynamic> json) {
+    patname = json['patname'];
+    name = json['userid'];
+    appno = json['appno'];
     optional = json['gender_name']??['address'];
     itemid = json['itemid']??['pin'];
     desc = json['desc']??['image'];
@@ -55,8 +55,6 @@ class KeyvalueModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
-    data['key'] = this.key;
-    data['code'] = this.code;
     data['gender_name'] = this.optional;
     data['genderOptional'] = this.genderOptional;
     data['itemid'] = this.itemid;
