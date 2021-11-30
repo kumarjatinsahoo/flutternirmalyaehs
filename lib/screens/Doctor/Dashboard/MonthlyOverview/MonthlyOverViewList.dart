@@ -203,14 +203,20 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                       fontSize: 15,
                                                     ),
                                                   ),
-                                                  Spacer(),
+                                          Text(
+                                            "  :",
+                                            style: TextStyle(
+                                                fontSize: 15),
+
+                                          ),
+                                          Expanded(child:
                                                   Text(
                                                     body.patientname,
                                                     style: TextStyle(
                                                         fontSize: 15),
-                                                    textAlign:
-                                                        TextAlign.right,
+
                                                   ),
+                                          ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -226,11 +232,18 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                       fontSize: 15,
                                                     ),
                                                   ),
-                                                  Spacer(),
+                                                  Text(
+                                                    "  :",
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+
+                                                  ),
+                                                  Expanded(child:
                                                   Text(
                                                     body.reqDate,
                                                     style: TextStyle(
                                                         fontSize: 15),
+                                                  ),
                                                   ),
                                                 ],
                                               ),
@@ -248,11 +261,18 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                       fontSize: 15,
                                                     ),
                                                   ),
-                                                  Spacer(),
+                                                  Text(
+                                                    "  :",
+                                                    style: TextStyle(
+                                                        fontSize: 15),
+
+                                                  ),
+                                                  Expanded(child:
                                                   Text(
                                                     body.patNote??"N/A",
                                                     style: TextStyle(
                                                         fontSize: 15),
+                                                  ),
                                                   ),
                                                 ],
                                               ),

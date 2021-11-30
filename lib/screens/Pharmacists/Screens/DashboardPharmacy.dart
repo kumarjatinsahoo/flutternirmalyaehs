@@ -153,7 +153,6 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                           ),
                           Text(
                             loginResponse.body.userName,
-
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -439,7 +438,8 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                             icon: "assets/monthlyoverview2.png",
                             title: "Monthly Overview",
                             fun: () {
-                               Navigator.pushNamed(context, "/monthloveryview");
+                               //Navigator.pushNamed(context, "/monthloveryview");
+                               Navigator.pushNamed(context, "/monthlyOverviewPharma");
                             },
                             color: AppData.BG1RED,
                             bordercolor: AppData.BG1RED,

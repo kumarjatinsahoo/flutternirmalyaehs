@@ -13,16 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class MonthlyOverviewAmbulancelist extends StatefulWidget {
+class MonthlyOverviewBloodbanklist extends StatefulWidget {
   final MainModel model;
 
-  const MonthlyOverviewAmbulancelist({Key key, this.model}) : super(key: key);
+  const MonthlyOverviewBloodbanklist({Key key, this.model}) : super(key: key);
 
   @override
-  _MonthlyOverviewAmbulancelistState createState() => _MonthlyOverviewAmbulancelistState();
+  _MonthlyOverviewBloodbanklistState createState() => _MonthlyOverviewBloodbanklistState();
 }
 
-class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancelist> {
+class _MonthlyOverviewBloodbanklistState extends State<MonthlyOverviewBloodbanklist> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
@@ -46,8 +46,8 @@ class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancel
   callAPI() {
     if(widget.model.apntUserType == Const.CONFIRMED) {
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "2" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -70,8 +70,8 @@ class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancel
           });
     }else if(widget.model.apntUserType == Const.REQUESTED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "1" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -96,8 +96,8 @@ class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancel
 
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "6" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -203,20 +203,20 @@ class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancel
                                                       fontSize: 15,
                                                     ),
                                                   ),
-                                          Text(
-                                            "  :",
-                                            style: TextStyle(
-                                                fontSize: 15),
+                                                  Text(
+                                                   ":",
+                                                    style: TextStyle(
+                                                        fontSize: 15),
 
-                                          ),
-                                          Expanded(child:
+                                                  ),
+                                                  Expanded(child:
                                                   Text(
                                                     body.patientname,
                                                     style: TextStyle(
                                                         fontSize: 15),
 
                                                   ),
-                                          ),
+                                                      ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -244,7 +244,7 @@ class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancel
                                                     style: TextStyle(
                                                         fontSize: 15),
                                                   ),
-                                                  ),
+                                                  )
                                                 ],
                                               ),
                                               SizedBox(

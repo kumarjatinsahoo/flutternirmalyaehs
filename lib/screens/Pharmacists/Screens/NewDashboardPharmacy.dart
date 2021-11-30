@@ -314,7 +314,8 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           icon: "assets/images/pharmacymonthly.png",
                           fun: () {
                             // AppData.showInSnackDone(context, "Coming Soon");
-                            Navigator.pushNamed(context, "/monthloveryview");
+                            //Navigator.pushNamed(context, "/monthloveryview");
+                            Navigator.pushNamed(context, "/monthlyOverviewPharma");
                             //AppData.showInSnackBar(context, "Coming soon");
                           },
                           //color: AppData.BG2BLUE,

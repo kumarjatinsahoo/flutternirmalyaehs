@@ -135,38 +135,72 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewAmbulancelist");
                             },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.green[500],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "CONFIRMED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                          color: Colors.white),
-                                    ),
+                            child: Container(
+                              padding: const EdgeInsets.all(0.0),
+                              /* height: MediaQuery.of(context).size.height * 0.23,*/
+                              height: 85,
+                              width: 110,
+                              decoration: BoxDecoration(
+
+                                /// borderRadius: BorderRadius.circular(7.0),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(5.0),
+                                    topRight:Radius.circular(5.0),
+                                    bottomLeft: Radius.circular(5.0),
+                                    bottomRight: Radius.circular(5.0),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.booked ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                                  color:  Colors.green[500],
+                                  border: Border.all(
+                                    color: Colors.green[500],
+                                    width: 1.0,
+                                  )
+                              ),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Align(
+                                          alignment: Alignment.center,
+                                        child: Text(
+                                          "CONFIRMED",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child:Text(
+                                          monthlyOverviewModel.body.booked ?? "N/A",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                         /* child: Image.asset(
+                                            *//* "assets/logo1.png"*//*
+                                            icon,
+                                            fit: BoxFit.fitWidth,
+                                            width: 50,
+                                            height: 50.0,
+                                            color:AppData.kPrimaryColor,
+                                          )*/
+                                    ],
+                                  ),
+
+                                ],
+                              ),
                             ),
+
                           ),
                           Spacer(),
                           InkWell(
@@ -177,38 +211,72 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewAmbulancelist");
                             },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.yellow[600],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "REQUESTED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
-                                    ),
+                            child: Container(
+                              padding: const EdgeInsets.all(0.0),
+                              /* height: MediaQuery.of(context).size.height * 0.23,*/
+                              height: 85,
+                              width: 110,
+                              decoration: BoxDecoration(
+
+                                /// borderRadius: BorderRadius.circular(7.0),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(5.0),
+                                    topRight:Radius.circular(5.0),
+                                    bottomLeft: Radius.circular(5.0),
+                                    bottomRight: Radius.circular(5.0),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.requested ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                                  color:  Colors.yellow[600],
+                                  border: Border.all(
+                                    color: Colors.yellow[600],
+                                    width: 1.0,
+                                  )
+                              ),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "REQUESTED",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child:Text(
+                                          monthlyOverviewModel.body.requested ?? "N/A",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      /* child: Image.asset(
+                                            *//* "assets/logo1.png"*//*
+                                            icon,
+                                            fit: BoxFit.fitWidth,
+                                            width: 50,
+                                            height: 50.0,
+                                            color:AppData.kPrimaryColor,
+                                          )*/
+                                    ],
+                                  ),
+
+                                ],
+                              ),
                             ),
+
                           ),
                           Spacer(),
                           InkWell(
@@ -219,38 +287,71 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
+                                  context, "/monthlyOverviewAmbulancelist");
+                            }, child: Container(
+                            padding: const EdgeInsets.all(0.0),
+                            /* height: MediaQuery.of(context).size.height * 0.23,*/
+                            height: 85,
+                            width: 110,
+                            decoration: BoxDecoration(
+
+                              /// borderRadius: BorderRadius.circular(7.0),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5.0),
+                                  topRight:Radius.circular(5.0),
+                                  bottomLeft: Radius.circular(5.0),
+                                  bottomRight: Radius.circular(5.0),
+                                ),
+                                color: AppData.kPrimaryColor,
+                                border: Border.all(
                                   color: AppData.kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    //minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "TREATED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
+                                  width: 1.0,
+                                )
+                            ),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "REJECTED",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                            color: Colors.white),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child:Text(
+                                        monthlyOverviewModel.body.treated ?? "N/A",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    /* child: Image.asset(
+                                            *//* "assets/logo1.png"*//*
+                                            icon,
+                                            fit: BoxFit.fitWidth,
+                                            width: 50,
+                                            height: 50.0,
+                                            color:AppData.kPrimaryColor,
+                                          )*/
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.treated ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
+
                               ],
                             ),
+                          ),
+
                           ),
                         ],
                       ),
