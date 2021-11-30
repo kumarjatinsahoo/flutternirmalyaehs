@@ -47,7 +47,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
     if(widget.model.apntUserType == Const.CONFIRMED) {
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+              "&status=" + "2" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -56,41 +56,18 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
               String msg = map[Const.MESSAGE];
               if (map[Const.CODE] == Const.SUCCESS) {
                 setState(() {
-                  monthlyOverviewlistModel =
-                      monthlyoverview.MonthlyOverviewlistModel.fromJson(map);
+                  isdata=false;
+                  monthlyOverviewlistModel = monthlyoverview.MonthlyOverviewlistModel.fromJson(map);
                 });
               } else {
                 setState(() {
+                  isdata=false;
                   // isDataNoFound = true;
                 });
                 //AppData.showInSnackBar(context, msg);
               }
             });
           });
-    }else if(widget.model.apntUserType == Const.CONFIRMED){
-      widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
-              widget.model.wtodate,
-          token: widget.model.token,
-          fun: (Map<String, dynamic> map) {
-            setState(() {
-              log("Value>>>" + jsonEncode(map));
-              String msg = map[Const.MESSAGE];
-              if (map[Const.CODE] == Const.SUCCESS) {
-                setState(() {
-                  monthlyOverviewlistModel =
-                      monthlyoverview.MonthlyOverviewlistModel.fromJson(map);
-                });
-              } else {
-                setState(() {
-                  // isDataNoFound = true;
-                });
-                //AppData.showInSnackBar(context, msg);
-              }
-            });
-          });
-
     }else if(widget.model.apntUserType == Const.REQUESTED){
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
@@ -103,11 +80,13 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
               String msg = map[Const.MESSAGE];
               if (map[Const.CODE] == Const.SUCCESS) {
                 setState(() {
+                  isdata=false;
                   monthlyOverviewlistModel =
                       monthlyoverview.MonthlyOverviewlistModel.fromJson(map);
                 });
               } else {
                 setState(() {
+                  isdata=false;
                   // isDataNoFound = true;
                 });
                 //AppData.showInSnackBar(context, msg);
@@ -118,7 +97,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+              "&status=" + "5" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -127,12 +106,13 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
               String msg = map[Const.MESSAGE];
               if (map[Const.CODE] == Const.SUCCESS) {
                 setState(() {
+                  isdata=false;
                   monthlyOverviewlistModel =
                       monthlyoverview.MonthlyOverviewlistModel.fromJson(map);
                 });
               } else {
                 setState(() {
-                  // isDataNoFound = true;
+                  isdata=false;
                 });
                 //AppData.showInSnackBar(context, msg);
               }
@@ -141,37 +121,13 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
 
     }
   }
-  /*callAPI() {
-    widget.model.GETMETHODCALL(
-        api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user+ "&status=" +"",
-        // userId: loginResponse.body.user,
-         token: widget.model.token,
-        fun: (Map<String, dynamic> map) {
-          setState(() {
-            log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              setState(() {
-                isdata = false;
-                ambulanceallmodel =
-                    ambulanceall.AmbulanceAllModel.fromJson(map);
-              });
-            } else {
-              isdata = false;
-             // isDataNotAvail = true;
-              //AppData.showInSnackBar(context, msg);
-            }
-          });
-        });
-  }
-*/
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Ambulance',
+            'Monthly Overview List',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -231,8 +187,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                             bottom: 5),
                                         child: InkWell(
                                           onTap: () {
-                                            /* widget.model.pharmacyorderModel=body;
-                              Navigator.pushNamed(context, "/orderDetails");*/
+
                                           },
                                           child: Column(
                                             crossAxisAlignment:
@@ -295,7 +250,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                   ),
                                                   Spacer(),
                                                   Text(
-                                                    body.patNote,
+                                                    body.patNote??"N/A",
                                                     style: TextStyle(
                                                         fontSize: 15),
                                                   ),
