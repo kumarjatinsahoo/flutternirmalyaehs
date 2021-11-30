@@ -341,7 +341,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   title: "Share_appointment",
                                   fun: () {
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    // Navigator.pushNamed(context, "/medicinereminder");
+                                    Navigator.pushNamed(context, "/shareappointment");
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },

@@ -24,6 +24,7 @@ import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverview.dart';
 import 'package:user/screens/Doctor/Dashboard/MyPatientlist.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
+import 'package:user/screens/Doctor/Dashboard/ShareAppointment/ShareAppointment.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/AddImmunization.dart';
 import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
@@ -697,6 +698,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/medicinelisturl': (context) => UserMedicineUrl(
+                    model: _model,
+                  ),
+                  '/shareappointment': (context) => ShareAppointment(
                     model: _model,
                   ),
 
