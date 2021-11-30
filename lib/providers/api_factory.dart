@@ -35,6 +35,7 @@ class ApiFactory {
       MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String INSURANCE_Details = MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String MONTHLY_OVERVIEW = MAIN_URL + 'get-doctor-month-overviewlist?drid=';
+  static String AMBULANCE_MONTH_OVERVIEW = MAIN_URL + 'get-ambulance-month-overviewlist?ambid=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String pharmacy_list_by_searchvalue = MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
   static String IMMUNIZATION_STATUS =

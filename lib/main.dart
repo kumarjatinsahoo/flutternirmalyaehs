@@ -9,6 +9,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
+import 'package:user/screens/Ambulance/Dashboard/MonthlyOverview/MonthlyOverviewAmbulanc.dart';
 import 'package:user/screens/Ambulance/Dashboard/RejectAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/RequestAmbulance.dart';
 import 'package:user/screens/BloodBank/Dashboard/AcceptBloodBank.dart';
@@ -994,6 +995,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/monthlyOverviewlist': (context) => MonthlyOverviewlist(
+                model: _model,
+              ),
+              '/monthlyOverviewAmbulanc': (context) => MonthlyOverviewAmbulanc(
                 model: _model,
               ),
 
