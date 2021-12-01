@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MonthlyoverviewModel.dart' as monthly;
 import 'package:user/providers/Const.dart';
@@ -11,10 +12,10 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
-class MonthlyOverview extends StatefulWidget {
+class MonthlyOverviewPharma extends StatefulWidget {
   MainModel model;
 
-  MonthlyOverview({
+  MonthlyOverviewPharma({
     Key key,
     this.model,
   }) : super(key: key);
@@ -23,7 +24,7 @@ class MonthlyOverview extends StatefulWidget {
   State<StatefulWidget> createState() => _MonthlyOverview();
 }
 
-class _MonthlyOverview extends State<MonthlyOverview> {
+class _MonthlyOverview extends State<MonthlyOverviewPharma> {
   DateTime selectedDate = DateTime.now();
 
   // apnt.AppointmentlistModel appointmentlistModel;
@@ -44,10 +45,15 @@ class _MonthlyOverview extends State<MonthlyOverview> {
     loginResponse = widget.model.loginResponse1;
     callApi();
   }
+  Map<String, double> dataMap = {
+    "Flutter": 5,
+    "React": 3,
+    "Xamarin": 2,
 
+  };
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.MONTHLY_OVERVIEW + loginResponse.body.user,
+        api: ApiFactory.GET_PHARMACY_MONTHOVERVIEW + loginResponse.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -135,7 +141,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewPharmaklist");
                             },
                             child: Container(
                               padding: const EdgeInsets.all(0.0),
@@ -164,7 +170,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Align(
-                                        alignment: Alignment.center,
+                                          alignment: Alignment.center,
                                         child: Text(
                                           "CONFIRMED",
                                           style: TextStyle(
@@ -173,9 +179,9 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                               color: Colors.white),
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                       Align(
                                         alignment: Alignment.center,
                                         child:Text(
@@ -186,7 +192,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                      /* child: Image.asset(
+                                         /* child: Image.asset(
                                             *//* "assets/logo1.png"*//*
                                             icon,
                                             fit: BoxFit.fitWidth,
@@ -211,7 +217,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewPharmaklist");
                             },
                             child: Container(
                               padding: const EdgeInsets.all(0.0),
@@ -287,7 +293,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewPharmaklist");
                             }, child: Container(
                             padding: const EdgeInsets.all(0.0),
                             /* height: MediaQuery.of(context).size.height * 0.23,*/
@@ -317,7 +323,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                     Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "TREATED",
+                                        "REJECTED",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13,
@@ -356,138 +362,50 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         ],
                       ),
                     ),
-                    /*Padding(
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.CONFIRMED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.green[500],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "CONFIRMED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.booked ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                      child: Center(
+                        child: PieChart(
+                          dataMap: dataMap,
+                          animationDuration: Duration(milliseconds: 800),
+                          chartLegendSpacing: 32,
+                          chartRadius: MediaQuery.of(context).size.width / 1.5,
+                          //colorList: colorList,
+                          initialAngleInDegree: 0,
+                          chartType: ChartType.ring,
+                          ringStrokeWidth: 100,
+                          //centerText: "HYBRID",
+                          legendOptions: LegendOptions(
+                            showLegendsInRow: false,
+                            legendPosition: LegendPosition.right,
+                            showLegends: false,
+                            //legendShape: _BoxShape.circle,
+                            legendTextStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Spacer(),
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.REQUESTED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.yellow[600],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "REQUESTED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.requested ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                          chartValuesOptions: ChartValuesOptions(
+                            showChartValueBackground: true,
+                            showChartValues: true,
+                            showChartValuesInPercentage: false,
+                            showChartValuesOutside: false,
+                            decimalPlaces: 1,
                           ),
-                          Spacer(),
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.TREATED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: AppData.kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    //minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "TREATED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.treated ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          // gradientList: ---To add gradient colors---
+                          // emptyColorGradient: ---Empty Color gradient---
+                        ),
                       ),
-                    ),*/
+                    )
+      /*PieChart(
+        PieChartData(
+          // read about it in the PieChartData section
+        ),
+        swapAnimationDuration: Duration(milliseconds: 150), // Optional
+        swapAnimationCurve: Curves.linear, // Optional
+      ),*/
                   ],
                 ),
               ),

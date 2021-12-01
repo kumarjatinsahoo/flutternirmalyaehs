@@ -13,16 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class MonthlyOverviewlist extends StatefulWidget {
+class MonthlyOverviewAmbulancelist extends StatefulWidget {
   final MainModel model;
 
-  const MonthlyOverviewlist({Key key, this.model}) : super(key: key);
+  const MonthlyOverviewAmbulancelist({Key key, this.model}) : super(key: key);
 
   @override
-  _MonthlyOverviewlistState createState() => _MonthlyOverviewlistState();
+  _MonthlyOverviewAmbulancelistState createState() => _MonthlyOverviewAmbulancelistState();
 }
 
-class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
+class _MonthlyOverviewAmbulancelistState extends State<MonthlyOverviewAmbulancelist> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
@@ -46,8 +46,8 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
   callAPI() {
     if(widget.model.apntUserType == Const.CONFIRMED) {
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "2" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -70,8 +70,8 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
           });
     }else if(widget.model.apntUserType == Const.REQUESTED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "1" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -96,8 +96,8 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
 
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "5" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_AMBULANCE_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "6" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {

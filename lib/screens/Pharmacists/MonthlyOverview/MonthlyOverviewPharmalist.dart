@@ -13,16 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-class MonthlyOverviewlist extends StatefulWidget {
+class MonthlyOverviewPharmaklist extends StatefulWidget {
   final MainModel model;
 
-  const MonthlyOverviewlist({Key key, this.model}) : super(key: key);
+  const MonthlyOverviewPharmaklist({Key key, this.model}) : super(key: key);
 
   @override
-  _MonthlyOverviewlistState createState() => _MonthlyOverviewlistState();
+  _MonthlyOverviewPharmaklistState createState() => _MonthlyOverviewPharmaklistState();
 }
 
-class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
+class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
@@ -46,8 +46,8 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
   callAPI() {
     if(widget.model.apntUserType == Const.CONFIRMED) {
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "2" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_Farmacy_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -70,7 +70,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
           });
     }else if(widget.model.apntUserType == Const.REQUESTED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
+          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
               "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
@@ -96,8 +96,8 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
 
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "5" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -203,20 +203,20 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                       fontSize: 15,
                                                     ),
                                                   ),
-                                          Text(
-                                            "  :",
-                                            style: TextStyle(
-                                                fontSize: 15),
+                                                  Text(
+                                                   ":",
+                                                    style: TextStyle(
+                                                        fontSize: 15),
 
-                                          ),
-                                          Expanded(child:
+                                                  ),
+                                                  Expanded(child:
                                                   Text(
                                                     body.patientname,
                                                     style: TextStyle(
                                                         fontSize: 15),
 
                                                   ),
-                                          ),
+                                                      ),
                                                 ],
                                               ),
                                               SizedBox(
@@ -244,7 +244,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
                                                     style: TextStyle(
                                                         fontSize: 15),
                                                   ),
-                                                  ),
+                                                  )
                                                 ],
                                               ),
                                               SizedBox(

@@ -33,6 +33,9 @@ class ApiFactory {
       MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String INSURANCE_Details = MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String MONTHLY_OVERVIEW = MAIN_URL + 'get-doctor-month-overviewlist?drid=';
+  static String AMBULANCE_MONTH_OVERVIEW = MAIN_URL + 'get-ambulance-month-overviewlist?ambid=';
+  static String GET_BLDBANK_MONTHOVERVIEW = MAIN_URL + 'get-bldbnk-month-overviewlist?bldbnkid=';
+  static String GET_PHARMACY_MONTHOVERVIEW = MAIN_URL + 'get-pharmacy-month-overviewlist?pharmacyid=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
   static String pharmacy_list_by_searchvalue = MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
   static String IMMUNIZATION_STATUS =
@@ -163,6 +166,9 @@ class ApiFactory {
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String GET_DOCTEROVERVIEWLIST = MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
+  static String GET_AMBULANCE_OVERVIEWLIST= MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
+  static String GET_BLDBANK_OVERVIEWLIST= MAIN_URL + 'get-bldbnk-overviewlist-bystatus?bldbnkid=';
+  static String GET_Farmacy_OVERVIEWLIST= MAIN_URL + 'get-pharmacy-overviewlist-bystatus?pharmacyid=';
   static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
   static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';

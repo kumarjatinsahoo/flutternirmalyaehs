@@ -11,10 +11,10 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
-class MonthlyOverview extends StatefulWidget {
+class MonthlyOverviewAmbulanc extends StatefulWidget {
   MainModel model;
 
-  MonthlyOverview({
+  MonthlyOverviewAmbulanc({
     Key key,
     this.model,
   }) : super(key: key);
@@ -23,7 +23,7 @@ class MonthlyOverview extends StatefulWidget {
   State<StatefulWidget> createState() => _MonthlyOverview();
 }
 
-class _MonthlyOverview extends State<MonthlyOverview> {
+class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
   DateTime selectedDate = DateTime.now();
 
   // apnt.AppointmentlistModel appointmentlistModel;
@@ -47,7 +47,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
 
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.MONTHLY_OVERVIEW + loginResponse.body.user,
+        api: ApiFactory.AMBULANCE_MONTH_OVERVIEW + loginResponse.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -135,7 +135,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewAmbulancelist");
                             },
                             child: Container(
                               padding: const EdgeInsets.all(0.0),
@@ -164,7 +164,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Align(
-                                        alignment: Alignment.center,
+                                          alignment: Alignment.center,
                                         child: Text(
                                           "CONFIRMED",
                                           style: TextStyle(
@@ -173,9 +173,9 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                               color: Colors.white),
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                       Align(
                                         alignment: Alignment.center,
                                         child:Text(
@@ -186,7 +186,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                      /* child: Image.asset(
+                                         /* child: Image.asset(
                                             *//* "assets/logo1.png"*//*
                                             icon,
                                             fit: BoxFit.fitWidth,
@@ -211,7 +211,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewAmbulancelist");
                             },
                             child: Container(
                               padding: const EdgeInsets.all(0.0),
@@ -287,7 +287,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                               widget.model.wfromdate =
                                   monthlyOverviewModel.body.fromdate;
                               Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
+                                  context, "/monthlyOverviewAmbulancelist");
                             }, child: Container(
                             padding: const EdgeInsets.all(0.0),
                             /* height: MediaQuery.of(context).size.height * 0.23,*/
@@ -317,7 +317,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                                     Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "TREATED",
+                                        "REJECTED",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 13,
@@ -356,138 +356,6 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         ],
                       ),
                     ),
-                    /*Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.CONFIRMED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.green[500],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "CONFIRMED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.booked ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.REQUESTED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: Colors.yellow[600],
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    // minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "REQUESTED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.requested ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          InkWell(
-                            onTap: () {
-                              widget.model.apntUserType = Const.TREATED;
-                              widget.model.wtodate =
-                                  monthlyOverviewModel.body.todate;
-                              widget.model.wfromdate =
-                                  monthlyOverviewModel.body.fromdate;
-                              Navigator.pushNamed(
-                                  context, "/monthlyOverviewlist");
-                            },
-                            child: Column(
-                              children: [
-                                Material(
-                                  elevation: 5,
-                                  color: AppData.kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(3.0),
-                                  child: MaterialButton(
-                                    //minWidth: 90,
-                                    height: 70.0,
-                                    child: Text(
-                                      "TREATED",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  monthlyOverviewModel.body.treated ?? "N/A",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),*/
                   ],
                 ),
               ),

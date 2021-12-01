@@ -9,6 +9,8 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
+import 'package:user/screens/Ambulance/Dashboard/MonthlyOverview/MonthlyOverviewAmbulanc.dart';
+import 'package:user/screens/Ambulance/Dashboard/MonthlyOverview/MonthlyOverviewAmbulancelist.dart';
 import 'package:user/screens/Ambulance/Dashboard/RejectAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/RequestAmbulance.dart';
 import 'package:user/screens/BloodBank/Dashboard/AcceptBloodBank.dart';
@@ -16,6 +18,8 @@ import 'package:user/screens/BloodBank/Dashboard/AllBloodBank.dart';
 import 'package:user/screens/BloodBank/Dashboard/BloodBankDashboard.dart';
 import 'package:user/screens/BloodBank/Dashboard/RejectBloodBank.dart';
 import 'package:user/screens/BloodBank/Dashboard/RequestBloodBank.dart';
+import 'package:user/screens/BloodBank/MonthlyOverview/MonthlyOverviewBlodBank.dart';
+import 'package:user/screens/BloodBank/MonthlyOverview/MonthlyOverviewBoldbanklist.dart';
 import 'package:user/screens/BloodBank/Registration/BloodBankSignUpForm2.dart';
 import 'package:user/screens/BloodBank/Registration/BloodbankSignUpForm.dart';
 import 'package:user/screens/ConfirmPassword.dart';
@@ -31,6 +35,8 @@ import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart'
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
+import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.dart';
+import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm1.dart';
@@ -1011,6 +1017,25 @@ class _MyAppState extends State<MyApp> {
               '/receptionlistSignupform2': (context) => ReceptionlistSignupForm2(
                 model: _model,
               ),
+              '/monthlyOverviewAmbulanc': (context) => MonthlyOverviewAmbulanc(
+                model: _model,
+              ),
+              '/monthlyOverviewAmbulancelist': (context) => MonthlyOverviewAmbulancelist(
+                model: _model,
+              ),
+              '/monthlyOverviewBloodBank': (context) => MonthlyOverviewBloodBank(
+                model: _model,
+              ),
+              '/monthlyOverviewBloodbanklist': (context) => MonthlyOverviewBloodbanklist(
+                model: _model,
+              ),
+              '/monthlyOverviewPharma': (context) => MonthlyOverviewPharma(
+                model: _model,
+              ),
+              '/monthlyOverviewPharmaklist': (context) => MonthlyOverviewPharmaklist(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),
