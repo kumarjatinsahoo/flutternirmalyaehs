@@ -87,9 +87,10 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Container(
-                            width: 150,
-                            child: Text(
+                          child: Expanded(
+                            child: Container(
+                           // width: 150,
+                              child: Text(
                               "To Date",
                               style: TextStyle(
                                   fontSize: 15,
@@ -98,7 +99,8 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        ),
+                        //Spacer(),
                         monthstartDate(),
                         Spacer(),
                       ],
@@ -108,7 +110,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Container(
-                            width: 150,
+                           //// width: 150,
                             child: Text(
                               "From Date",
                               style: TextStyle(

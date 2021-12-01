@@ -70,8 +70,8 @@ class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist>
           });
     }else if(widget.model.apntUserType == Const.REQUESTED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "7" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_Farmacy_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "1" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
@@ -96,8 +96,8 @@ class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist>
 
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.GET_BLDBANK_OVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+          api: ApiFactory.GET_Farmacy_OVERVIEWLIST + loginResponse.body.user +
+              "&status=" + "6" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
