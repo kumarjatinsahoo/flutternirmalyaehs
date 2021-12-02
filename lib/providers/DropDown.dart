@@ -2031,7 +2031,7 @@ class DropDown {
         return  LifeStyleHistory.smokingmodel;
         break;
       case "alcohol":
-        return  LifeStyleHistory.smokingmodel;
+        return  LifeStyleHistory.alcoholmodel;
         break;
     }
   }

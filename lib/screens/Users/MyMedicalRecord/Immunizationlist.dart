@@ -375,7 +375,7 @@ class _ImmunizationState extends State<Immunization> {
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: Colors.grey,
+                //textColor: Colors.grey,
                 child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {

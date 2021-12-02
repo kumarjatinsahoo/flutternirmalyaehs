@@ -338,7 +338,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z 0-9.-]")),
           ],
         ),
       ),

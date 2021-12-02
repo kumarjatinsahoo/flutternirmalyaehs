@@ -821,7 +821,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        patientProfileModel?.body?.address+patientProfileModel?.body?.pAddress ?? "N/A",
+                        (patientProfileModel?.body?.address??"N/A") +" "+(patientProfileModel?.body?.pAddress??"N/A"),
                         style: TextStyle(fontSize: 14
                             //fontWeight: FontWeight.w500,
                             // color: AppData.kPrimaryColor,
@@ -1378,12 +1378,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               ),
               FlatButton(
+                textColor: Theme.of(context).primaryColor,
+                child:Text(MyLocalizations.of(context).text("UPDATE")),
                 //textColor: Colors.grey,
-                child: Text(
+                /*child: Text(
                   MyLocalizations.of(context).text("SAVE"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
-                ),
+                ),*/
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {

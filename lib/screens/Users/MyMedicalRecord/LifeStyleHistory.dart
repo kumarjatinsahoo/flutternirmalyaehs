@@ -543,7 +543,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     /*lifeStyleHistryModel?.body.exercise.toString()==null?"N/A":textEditingController[0].text=lifeStyleHistryModel?.body.exercise.toString();
     lifeStyleHistryModel?.body.occupation.toString()==null?"N/A": textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString();
     lifeStyleHistryModel?.body.pets.toString()==null?"N/A":textEditingController[2].text=lifeStyleHistryModel.body.pets.toString();*/
-   /* lifeStyleHistryModel != null
+    lifeStyleHistryModel != null
         ? textEditingController[0].text =
             lifeStyleHistryModel.body.exercise.toString() ?? "N/A"
         : textEditingController[0].text = "N/A";
@@ -554,7 +554,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     lifeStyleHistryModel != null
         ? textEditingController[2].text =
             lifeStyleHistryModel.body.pets.toString() ?? "N/A"
-        : textEditingController[2].text = "N/A";*/
+        : textEditingController[2].text = "N/A";
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
     textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/
 
@@ -659,12 +659,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             Navigator.of(context).pop();
             // textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
-          child: Text(MyLocalizations.of(context).text("CANCEL")),
+          child: Text(MyLocalizations.of(context).text("CANCEL"),
+              style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
           child: Text(
-            'OK',
+            'Update',
             //style: TextStyle(color: Colors.grey),
             style: TextStyle(color: AppData.matruColor),
           ),
@@ -742,6 +742,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
         MyLocalizations.of(context).text("DIET"), "genderPartner", genderList,
         (KeyvalueModel model) {
       LifeStyleHistory.ditemodel = model;
+      //lifeStyleHistryModel.body.smokingId = model.key;
+      lifeStyleHistryModel.body.diet = model.name;
+      //LifeStyleHistory.ditemodel = model;
     });
   }
 

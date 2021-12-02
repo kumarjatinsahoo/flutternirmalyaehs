@@ -483,8 +483,9 @@ class _MedicineList extends State<UserTestList> {
             Navigator.of(context).pop();
             textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
-          child: const Text('Cancel'),
+    textColor: AppData.kPrimaryRedColor,
+    child:Text(MyLocalizations.of(context).text("CANCEL"),),
+
         ),
         new FlatButton(
           onPressed: () {
@@ -515,8 +516,10 @@ class _MedicineList extends State<UserTestList> {
             // Navigator.of(context).pop();
             // textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
-          child: const Text('Save'),
+          child: Text(
+            MyLocalizations.of(context).text("SUBMIT"),
+            //style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: AppData.matruColor),),
         ),
       ],
     );
