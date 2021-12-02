@@ -645,7 +645,7 @@ class _VitalSignsState extends State<VitalSigns> {
             Navigator.of(context).pop();
            // textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: AppData.kPrimaryRedColor,
           child:Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(

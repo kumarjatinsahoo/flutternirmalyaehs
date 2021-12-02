@@ -554,7 +554,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Card(
       elevation: 0,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8.0,right:8.0,top: 8.0),
         child: Container(
           /*decoration: BoxDecoration(
             color: Colors.white,
@@ -566,7 +566,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
               borderRadius: BorderRadius.circular(5),
 
-    ),*/
+    ),*/child:SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -783,13 +783,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
                   children: [
                     Icon(
                       Icons.location_on_rounded,
                       size: 20,
                     ),
                     SizedBox(width: 10),
-                    Expanded(
+
+
+                  Container(
+                    width: 120,
+                    child: Text(
+                      /*'Confirmed'*/
+                      MyLocalizations.of(context).text("ADDRESS"),
+                      style: TextStyle(
+                        fontWeight:
+                        FontWeight
+                            .w600,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                    /*Expanded(
                       flex: 1,
                       child: Text(
                         MyLocalizations.of(context).text("ADDRESS"),
@@ -799,12 +816,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
+                    ),*/
                     SizedBox(width: 10),
                     Expanded(
                       flex: 1,
                       child: Text(
-                        patientProfileModel?.body?.address ?? "N/A",
+                        patientProfileModel?.body?.address+patientProfileModel?.body?.pAddress ?? "N/A",
                         style: TextStyle(fontSize: 14
                             //fontWeight: FontWeight.w500,
                             // color: AppData.kPrimaryColor,
@@ -817,6 +834,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 10),
             ],
           ),
+        ),
         ),
       ),
     );

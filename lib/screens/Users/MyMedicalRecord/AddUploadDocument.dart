@@ -319,7 +319,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

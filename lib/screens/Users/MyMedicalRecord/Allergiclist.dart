@@ -427,7 +427,14 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text(
+                                child: Text( MyLocalizations.of(context)
+                              .text("ADD_ALLERGIC"),
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),/*Text(
                                   MyLocalizations.of(context)
                                       .text("ADD_ALLERGIC"),
                                   style: TextStyle(
@@ -435,7 +442,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                ),
+                                ),*/
                               ),
                               SizedBox(
                                 height: 15,
@@ -498,9 +505,10 @@ class _AllergicListListState extends State<AllergicListList> {
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: Colors.grey,
-                child: Text('CANCEL',
-                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                //textColor: Colors.grey,
+            textColor: AppData.kPrimaryRedColor,
+            child:Text(MyLocalizations.of(context).text("CANCEL"),
+          ),
                 onPressed: () {
                   setState(() {
              /* Navigator.of(context).pop();*/
@@ -517,9 +525,9 @@ class _AllergicListListState extends State<AllergicListList> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  'OK',
-                  //style: TextStyle(color: Colors.grey),
-                  style: TextStyle(color: AppData.matruColor),
+              MyLocalizations.of(context).text("SUBMIT"),
+          //style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
