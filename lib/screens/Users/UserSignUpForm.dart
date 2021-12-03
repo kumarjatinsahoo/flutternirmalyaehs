@@ -307,7 +307,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             child: Container(
                               height: 50,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
+                                  EdgeInsets.symmetric(horizontal: 0),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
@@ -353,7 +353,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             child: Container(
                               height: 50,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
+                                  EdgeInsets.symmetric(horizontal: 0),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius:
@@ -398,9 +398,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 horizontal: 0),
                             child: SizedBox(
                               height: 58,
-                              child:
-                              DropDown.
-                              networkDropdownGetpartUserundreline1(
+
+
+                              child:DropDown.networkDropdownGetpartUserundreline1(
                                       //"Gender"
                                       MyLocalizations.of(context)
                                           .text("GENDER") +"*",
@@ -422,7 +422,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                right: 9.0, left: 0),
+                                right: 10.0, left: 0),
                             child: mobileNoOTPSearch(),
                           ),
                           SizedBox(
@@ -644,6 +644,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             onFieldSubmitted: (value) {
                                               AppData.fieldFocusChange(context, fnode4, null);
                                             },
+                                            onChanged:(s){
+                                              textEditingController[4].text=(DateTime.now().year-int.parse(textEditingController[3].text)).toString();
+                                            }
                                             //maxLength: 2,
                                           ),
                                         ),
@@ -655,7 +658,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         onTap: () {
                                           //_selectDate1(context);
 
-                                          showDialog(
+                                          /*showDialog(
                                             context: context,
                                             builder: (BuildContext
                                                 context) {
@@ -699,7 +702,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 ),
                                               );
                                             },
-                                          );
+                                          );*/
                                         },
                                         child: Padding(
                                           padding:
@@ -1201,14 +1204,14 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter First Name");
       FocusScope.of(context).requestFocus(fnode1);
     }else if (textEditingController[0].text != "" &&
-        textEditingController[0].text.length <= 3) {
+        textEditingController[0].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid First Name");
     }else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
       FocusScope.of(context).requestFocus(fnode2);
     }else if (textEditingController[1].text != "" &&
-        textEditingController[1].text.length <= 3) {
+        textEditingController[1].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid  Last Name");
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {

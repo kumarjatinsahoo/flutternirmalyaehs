@@ -402,9 +402,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: Colors.grey,
-                child: Text(MyLocalizations.of(context).text("CANCEL"),
-                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                textColor: AppData.kPrimaryRedColor,
+                child:Text(MyLocalizations.of(context).text("CANCEL"),
+                ),
                 onPressed: () {
                   setState(() {
                     BiomediImplants.admequipmentmodel=null;
@@ -416,7 +416,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text("Ok",
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),

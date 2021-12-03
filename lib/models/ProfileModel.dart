@@ -34,6 +34,7 @@ class Body {
   String lName;
   String mobile;
   String address;
+  String pAddress;
   String bloodGroup;
   String eRelation;
   String eMobile;
@@ -79,6 +80,8 @@ class Body {
         this.lName,
         this.mobile,
         this.address,
+        this.pAddress,
+
         this.bloodGroup,
         this.eRelation,
         this.fDoctor,
@@ -120,6 +123,7 @@ class Body {
     lName = json['lName'];
     mobile = json['mobile'];
     address = json['address'];
+    pAddress = json['pAddress'];
     bloodGroup = json['bloodGroup'];
     eRelation = json['eRelation'];
     eMobile = json['eMobile'];
@@ -171,6 +175,7 @@ class Body {
     data['lName'] = this.lName;
     data['mobile'] = this.mobile;
     data['address'] = this.address;
+    data['pAddress'] = this.pAddress;
     data['bloodGroup'] = this.bloodGroup;
     data['eRelation'] = this.eRelation;
     data['eMobile'] = this.eMobile;

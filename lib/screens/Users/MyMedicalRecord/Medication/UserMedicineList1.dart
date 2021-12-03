@@ -55,7 +55,7 @@ class _MedicineList extends State<UserMedicineList1> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   String userid;
-  final df = new DateFormat('dd/MM/yyyy');
+  var df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
 
@@ -94,6 +94,8 @@ class _MedicineList extends State<UserMedicineList1> {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
             medicineListModel = MedicalPrescriptionModel.fromJson(map);
+            print(
+                "location>>>>>>>>>>>>>>>>>>"+medicineListModel.body[0].meddate);
           });
         } else {
           setState(() {
@@ -105,7 +107,19 @@ class _MedicineList extends State<UserMedicineList1> {
       },
     );
   }
-
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
+     // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -128,6 +142,7 @@ class _MedicineList extends State<UserMedicineList1> {
           setState(() {
             address = "${finder.formattedAddress}";
             cityName = finder.addressComponents[4].longName;
+
 
             mapK["address"] = address;
             mapK["city"] = cityName;
@@ -240,16 +255,16 @@ class _MedicineList extends State<UserMedicineList1> {
                                             ),
                                             Spacer(),
                                             Text(
-                                              /*'Confirmed'*/
-                                              body
-                                                  .meddate ??
-                                                  "N/A",
+                                              toDate(body.meddate)??"N/A",
+
+
                                               style: TextStyle(
 
                                                   fontSize: 14,
                                                   color: Colors
                                                       .grey),
                                             ),
+
                                           ],
                                         ),
                                         SizedBox(
