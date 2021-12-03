@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -16,6 +20,7 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactScreenState extends State<ContactScreen> {
 
+  GooglePlacesSearchModel googlePlacesSearch;
 
   getGender(String gender) {
     switch (gender) {
@@ -63,17 +68,31 @@ class _ContactScreenState extends State<ContactScreen> {
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
                         children: <Widget>[
-                          buildTile(
-                              name: "Contact Number".toUpperCase(),
-                              value: " 20 2565 6552",
-                              /*value1: "011-41182138",*/
-                              icon: CupertinoIcons.phone_fill),
-                          SizedBox(height: 5,),
-                          buildTile(
+                          InkWell(
+                            onTap: (){
+                              AppData.launchURL("tel:+2025656552");
 
-                          name: "Address".toUpperCase(),
-                              value: AppData.address,
-                              icon: Icons.location_on_rounded),
+                            },
+                            child: buildTile(
+                                name: "Contact Number".toUpperCase(),
+                                value: " 20 2565 6552",
+                                /*value1: "011-41182138",*/
+                                icon: CupertinoIcons.phone_fill),
+                          ),
+                          SizedBox(height: 5,),
+                          InkWell(
+                            onTap: () {
+                              MapsLauncher.launchQuery('1073, Bhosale Mystiqa,Gokhale,Road Model Colony,Pune - 411016, (MH) INDIA');
+
+                             // MapsLauncher.launchCoordinates(37.4220041, -122.0862462);
+
+                             // AppData.launchURL("18.516726,73.856255");
+                            },
+                            child: buildTile(
+                            name: "Address".toUpperCase(),
+                                value: AppData.address,
+                                icon: Icons.location_on_rounded),
+                          ),
                           SizedBox(height: 5,),
                           buildTile(
                               name: "Office hour".toUpperCase(),
@@ -180,4 +199,6 @@ class _ContactScreenState extends State<ContactScreen> {
       ),
     );
   }
+
+
 }

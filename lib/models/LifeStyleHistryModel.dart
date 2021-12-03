@@ -38,7 +38,8 @@ class Body {
   String pets;
 
   Body(
-      {this.patientId,
+      {
+        this.patientId,
         this.patientName,
         this.smokingId,
         this.smokingName,

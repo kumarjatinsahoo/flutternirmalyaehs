@@ -147,4 +147,6 @@ String insuranceid;
 String pdfurl;
 String diesepdf;
 
+String emergencyrelation;
+
 }

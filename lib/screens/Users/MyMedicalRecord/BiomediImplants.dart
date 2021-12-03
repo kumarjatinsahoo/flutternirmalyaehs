@@ -183,7 +183,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             : biomedicalModel == null || biomedicalModel == null
             ? Container(
           child: Center(
-            child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+            child: Text("No Data Found",
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
@@ -338,7 +338,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
+                                child: Text("Add Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),

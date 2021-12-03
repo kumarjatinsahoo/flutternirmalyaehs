@@ -621,6 +621,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
       BuildContext context, emergencyHelpModel, int index) async {
     _fname.text = emergencyHelpModel.emergency[index].name;
     _mobile.text = emergencyHelpModel.emergency[index].mobile;
+   //emergencyHelpModel.emergency[index].relId=widget.model.emergencyrelation;
+    SetupContactsPage.relationmodel.name=widget.model.emergencyrelation;
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -681,6 +684,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           // emergencyHelpModel.body.eRelation= model.name;
                           SetupContactsPage.relationmodel = model;
                           updateEmergencyModel.relation = model.key;
+                          model.key= emergencyHelpModel.emergency[index].relId;
+                          updateEmergencyModel.id = model.name;
+
                         });
                       }),
                       Divider(height: 2, color: Colors.black),
@@ -712,11 +718,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     updateEmergencyModel = UpdateEmergencyModel();
                     updateEmergencyModel.name = _fname.text;
                     updateEmergencyModel.mobile = _mobile.text;
-                    updateEmergencyModel.id =
-                        emergencyHelpModel.emergency[index].id;
+                    updateEmergencyModel.id = emergencyHelpModel.emergency[index].id;
                     updateEmergencyModel.userid = widget.model.user;
-                    updateEmergencyModel.relation =
-                        emergencyHelpModel.emergency[index].relId;
+                    updateEmergencyModel.relation = SetupContactsPage.relationmodel.key;
+
+
+                        //emergencyHelpModel.emergency[index].relId;
                     print("Value json>>" +
                         updateEmergencyModel.toJson().toString());
                     widget.model.POSTMETHOD_TOKEN(
@@ -726,6 +733,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         fun: (Map<String, dynamic> map) {
                           Navigator.pop(context);
                           if (map[Const.STATUS1] == Const.SUCCESS) {
+                            widget.model.emergencyrelation=SetupContactsPage.relationmodel.key;
                             // popup(context, map[Const.MESSAGE]);
                             callAPI();
                             AppData.showInSnackDone(
