@@ -315,7 +315,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   alignment: Alignment.topRight,
                   child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, "/setupcontacts");
+                        Navigator.pushNamed(context, "/setupcontacts").then((value) => callAPI());
                       },
                       child: Icon(Icons.settings))),
               Align(

@@ -129,7 +129,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, "Data Not Found");
+              //AppData.showInSnackBar(context, "Data Not Found");
             }
           });
         });
@@ -172,7 +172,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             SingleChildScrollView(
               child: Container(
                 width: double.infinity,
-                height: double.maxFinite,
+                //height: double.maxFinite,
                 //mainAxisSize:MainAxisSize.max,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0, right: 5, left: 5),
@@ -191,9 +191,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/smoking.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.smokingName
-                                                  .toString() ==
-                                              "")
-                                      ? "N/A"
+                                                  .toString() == "") ? "N/A"
                                       : lifeStyleHistryModel.body.smokingName
                                           .toString(),
                                   subtitle: MyLocalizations.of(context)
@@ -216,9 +214,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/alcohol.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.alcoholName
-                                                  .toString() ==
-                                              "0")
-                                      ? "N/A"
+                                                  .toString() == "0") ? "N/A"
                                       : lifeStyleHistryModel.body.alcoholName
                                           .toString(),
                                   subtitle: MyLocalizations.of(context)
@@ -247,11 +243,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/diet.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.diet
-                                                  .toString() ==
-                                              "0")
-                                      ? "N/A"
-                                      : lifeStyleHistryModel.body.diet
-                                          .toString(),
+                                                  .toString() == "0") ? "N/A"
+                                      : lifeStyleHistryModel.body.diet.toString(),
                                   subtitle:
                                       MyLocalizations.of(context).text("DIET"),
                                   fun: () {
