@@ -521,6 +521,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] == "5".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dashboardreceptionlist', (Route<dynamic> route) => false);
                     } else if(loginResponse.body.roles[0] == "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboardpharmacy',(Route<dynamic> route) => false);

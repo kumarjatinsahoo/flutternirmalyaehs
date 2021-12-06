@@ -248,6 +248,10 @@ class _SplashScreenState extends State<SplashScreen> {
           /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/dashDoctor', (Route<dynamic> route) => false);
+        } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
+          /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardreceptionlist', (Route<dynamic> route) => false);
         } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
           /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
           Navigator.of(context).pushNamedAndRemoveUntil(

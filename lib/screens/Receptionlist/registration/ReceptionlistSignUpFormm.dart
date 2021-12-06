@@ -1158,8 +1158,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
 
     else {
       doctorModel.titleid = ReceptionlistSignUpFormm.titleModel.key;
-      doctorModel.organizationid =
-          ReceptionlistSignUpFormm.organizationModel.key;
+      doctorModel.organizationid = ReceptionlistSignUpFormm.organizationModel.key;
       doctorModel.gender = ReceptionlistSignUpFormm.genderModel.key;
       doctorModel.address = textEditingController[3].text;
       doctorModel.pincode = textEditingController[0].text;

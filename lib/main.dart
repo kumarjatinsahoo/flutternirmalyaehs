@@ -38,6 +38,7 @@ import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Receptionlist/Dashboard/DashboardReceptionlist.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm1.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm2.dart';
@@ -1009,6 +1010,9 @@ class _MyAppState extends State<MyApp> {
 ////////////////////////////////////////////////////////////////////////////////
             // RECEPTIONLIST
               '/receptionlistsignUpformm': (context) => ReceptionlistSignUpFormm(
+                model: _model,
+              ),
+              '/dashboardreceptionlist': (context) => DashboardReceptionlist(
                 model: _model,
               ),
               '/receptionlistsignup1': (context) => ReceptionlistSignupForm1(
